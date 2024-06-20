@@ -151,11 +151,11 @@ jobs:
         run: |
           git diff --name-only HEAD HEAD~1 | xargs touch
         
-      - name: Check that the docs folder is there and populated
-        run: | 
-          ls -la
-          ls -la docs
-          ls -la tut
+      # - name: Check that the docs folder is there and populated
+      #   run: | 
+      #     ls -la
+      #     ls -la docs
+      #     ls -la tut
 
       # configure git
       - name: Configure git
@@ -198,4 +198,4 @@ jobs:
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: docs
+          folder: /
