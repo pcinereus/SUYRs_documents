@@ -1,0 +1,201 @@
+name: Render and publish the tutorials
+
+on:
+  workflow_dispatch:
+#  pull_request:
+#  push:
+#    branches: ['release']
+
+jobs:
+  render-tutorials:
+    runs-on: ubuntu-latest
+
+    name: ${{ matrix.config.r }}
+
+    strategy:
+      fail-fast: false
+      matrix:
+        config:
+        - { r: '4.3.2' }
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0  # ensure that more than the last commit is checked out so that we can get time stamps
+      # Restore the timestamps - I am going to try to use these to work out what is new and what is not    
+      - name: Restore Timestamps
+        uses: chetan/git-restore-mtime-action@v1
+
+      # install graphviz
+      - name: Install Graphviz
+        run: sudo apt-get install graphviz
+        
+      # install R
+      - uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: ${{ matrix.config.R }}
+
+      - name: Repos
+        run: |
+          cat("\noptions(repos=c(stan='https://mc-stan.org/r-packages/',CRAN ='https://cloud.r-project.org'))\n", file = "~/.Rprofile", append = TRUE)
+        shell: Rscript {0}
+        
+      ## Install R packages
+      - name: install R packages
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 2
+          packages: |
+            any::rmarkdown
+            any::magick
+            any::pdftools
+            any::quarto
+            any::tidyverse
+            any::mvabund
+            any::pander
+            any::GGally
+            any::plotrix
+            any::PBSmapping
+            any::gmodels
+            any::mvtnorm
+            any::coda
+            any::gganimate
+            any::gridExtra
+            any::ggfortify
+            any::DHARMa
+            any::glmmTMB
+            any::performance
+            any::see
+            any::cmdstanr
+            any::brms
+            any::knitr
+            any::simstudy
+            any::sf
+            any::stars
+            any::gstat
+            any::patchwork
+            any::remotes
+            any::inlabru
+            any::Hmisc
+            any::igraph
+            any::ggraph
+            any::easystats
+
+      - name: Install other R packages
+        run: |
+          Rscript -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
+          Rscript -e "install.packages('RandomFields', repos = c('https://spatstat.r-universe.dev', 'https://cloud.r-project.org'))"
+          Rscript -e "install.packages('RandomFieldsUtils', repos = c('https://spatstat.r-universe.dev', 'https://cloud.r-project.org'))"
+
+
+      - name: Install CmdStan
+        shell: Rscript {0}
+        run: |
+          version <- "2.34.1"
+          url <- sprintf("https://github.com/stan-dev/cmdstan/releases/download/v%s/cmdstan-%s.tar.gz", version, version)
+          cmdstanr::install_cmdstan(cores = 2, release_url = url)        
+          #cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+          #cmdstanr::install_cmdstan(cores = 2)
+          #cmdstan <- file.path(Sys.getenv("RUNNER_TEMP"), "cmdstan")
+          #file.rename(cmdstanr::cmdstan_path(), cmdstan)
+          #lines <- paste0("\nCMDSTAN=", cmdstan, "\n")
+          #cat(lines, file = "~/.Renviron", append = TRUE)
+          
+      - name: install tinytex
+        uses: r-lib/actions/setup-tinytex@v2
+      - run: |
+          tlmgr --version
+          tlmgr update --self
+
+      - name: Install additional LaTeX packages
+        run: |
+          tlmgr install titlesec
+          tlmgr list --only-installed
+
+      - name: Install Google Fonts
+        run: |
+          #wget -O architects_daughter.zip https://fonts.google.com/download?family=Architects%20Daughter
+          #unzip -d architects_daughter/ architects_daughter.zip
+          #mv architects_daughter /usr/share/fonts/
+          
+          #wget -O inconsolata.zip https://fonts.google.com/download?family=Inconsolata
+          #unzip -d inconsolata/ inconsolata.zip
+          #mv inconsolata /usr/share/fonts/
+
+          #wget -O noto_sans.zip https://fonts.google.com/download?family=Noto%20Sans
+          #unzip -d noto_sans/ noto_sans.zip
+          #mv noto_sans /usr/share/fonts/
+
+          fc-cache -fv
+          ##fc-list
+          ##fc-list -v | grep -i archi
+          ##fc-list -v | grep -i inconsolata
+          ##fc-list -v | grep -i noto
+
+      # install quarto
+      - name: Install quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+      - name: Change ImageMagick policy to allow pdf->png conversion.
+        run: |
+          sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
+          
+      # Checkout the gh-pages branch into the docs folder    
+      - name: Retrieve previous compiled pages
+        uses: actions/checkout@v3
+        with:
+          path: docs  # Specify the target folder for checkout
+          ref: gh-pages  
+          
+      - name: Touch those files that have changed since the last commit
+        run: |
+          git diff --name-only HEAD HEAD~1 | xargs touch
+        
+      - name: Check that the docs folder is there and populated
+        run: | 
+          ls -la
+          ls -la docs
+          ls -la tut
+
+      # configure git
+      - name: Configure git
+        run: |
+          git config --global user.name "pcinereus"
+          git config --global user.email "i.obesulus@gmail.com"
+          git config --global init.defaultBranch main
+
+      # Download artifacts
+      #- name: download artifacts
+      #  uses: actions/download-artifact@v4
+      #  with: 
+      #    name: artifact
+      #    github-token: ${{ secrets.GH_PAT }} # token with actions:read permissions on target repo
+      #    path: data
+      #    run-id: 8493870822
+      #- name: Display structure of downloaded files
+      #  run: ls -R data
+  
+      # render tutorials
+      - name: Make tutorials
+        run: |
+          echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
+          make -i tut
+        #run: |
+        #  echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
+        #  echo "library(quarto); quarto_render(\"tut/10_git.qmd\")" | R --no-save --no-restore;
+
+      # upload artifacts  
+      #- name: upload artifacts
+      #  uses: actions/upload-artifact@v4
+      #  with: 
+      #    name: artifact
+      #    path: data/reef_data_synthetic_*.csv
+      #    if-no-files-found: ignore
+      #    overwrite: true
+        
+      # Deploy site to gh-pages branch
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs
