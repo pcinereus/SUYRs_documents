@@ -141,11 +141,11 @@ jobs:
           sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
           
       # Checkout the gh-pages branch into the docs folder    
-      - name: Retrieve previous compiled pages
-        uses: actions/checkout@v3
-        with:
-          path: docs  # Specify the target folder for checkout
-          ref: gh-pages  
+      # - name: Retrieve previous compiled pages
+      #   uses: actions/checkout@v3
+      #   with:
+      #     path: docs  # Specify the target folder for checkout
+      #     ref: gh-pages  
           
       - name: Touch those files that have changed since the last commit
         run: |
