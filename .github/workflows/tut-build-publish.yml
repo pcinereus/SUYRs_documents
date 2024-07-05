@@ -144,7 +144,7 @@ jobs:
       - name: Retrieve previous compiled pages
         uses: actions/checkout@v3
         with:
-          path: /  # Specify the target folder for checkout
+          path: ''  # Specify the target folder for checkout
           ref: gh-pages  
           
       - name: Touch those files that have changed since the last commit
