@@ -70,6 +70,7 @@ Throughout the tutorials, Julia code snippets will be presented in a block such 
 
 ```{julia}
 #| label: j_cmd1
+#| eval: false
 ## load any packages
 using DataFrames
 using Random
