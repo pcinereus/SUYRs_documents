@@ -140,9 +140,16 @@ jobs:
         run: |
           sudo sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
           
-      # Checkout the gh-pages branch into the docs folder    
+      # configure git
+      - name: Configure git
+        run: |
+          git config --global user.name "pcinereus"
+          git config --global user.email "i.obesulus@gmail.com"
+          git config --global init.defaultBranch main
+
+      # Checkout the gh-pages branch into the root folder    
       - name: Retrieve previous compiled pages
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: .  # Specify the target folder for checkout
           ref: gh-pages  
@@ -157,12 +164,6 @@ jobs:
       #     ls -la docs
       #     ls -la tut
 
-      # configure git
-      - name: Configure git
-        run: |
-          git config --global user.name "pcinereus"
-          git config --global user.email "i.obesulus@gmail.com"
-          git config --global init.defaultBranch main
 
       # Download artifacts
       #- name: download artifacts
