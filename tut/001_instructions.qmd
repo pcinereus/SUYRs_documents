@@ -68,7 +68,7 @@ x <- rep(1:5, times = 2)
 ## Julia code
 Throughout the tutorials, Julia code snippets will be presented in a block such as:
 
-```{julia}
+```{Rjulia}
 #| label: j_cmd1
 #| eval: false
 ## load any packages
