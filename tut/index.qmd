@@ -38,3 +38,6 @@ output_dir: "docs"
 ### Introduction to linear modelling
 
 - [Generalised linear models](30_glm.html)
+- [Bayesian generalised linear models](35_bayesian_glm.html)
+
+
