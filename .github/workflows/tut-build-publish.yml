@@ -147,16 +147,15 @@ jobs:
           git config --global user.email "i.obesulus@gmail.com"
           git config --global init.defaultBranch main
 
-      # Checkout the gh-pages branch into the root folder    
-      - name: Retrieve previous compiled pages
-        uses: actions/checkout@v4
-        with:
-          path: tut  # Specify the target folder for checkout
-          ref: gh-pages  
+      # Checkout the gh-pages branch into the tut folder    
+      # - name: Retrieve previous compiled pages
+      #   uses: actions/checkout@v4
+      #   with:
+      #     path: tut  # Specify the target folder for checkout
+      #     ref: gh-pages  
           
       - name: Touch those files that have changed since the last commit
         run: |
-          git log
           git diff --name-only HEAD HEAD~1 | xargs touch
         
       # - name: Check that the docs folder is there and populated
