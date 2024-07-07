@@ -1,4 +1,4 @@
-TUT_SRC_DIR  = $(addprefix , docs/tut)
+TUT_SRC_DIR  = $(addprefix , tut)
 ifdef FILE
 TUT_FILES = $(TUT_SRC_DIR)/$(FILE)
 else
@@ -7,7 +7,7 @@ endif
 
 HTML_FILES := $(patsubst %.qmd, %.html, $(TUT_FILES))
 PUBLIC_DIR := public/
-DOCS_DIR   := $(addprefix ,docs/)
+DOCS_DIR   := $(addprefix , ./)
 DOCS_HTML_FILES := $(patsubst $(TUT_SRC_DIR)/%.qmd, $(DOCS_DIR)%.html, $(TUT_FILES))
 FILES := $(patsubst $(TUT_SRC_DIR)/%.qmd, %.html, $(TUT_FILES))
 
@@ -25,7 +25,7 @@ $(info ************************************)
 
 all: $(DOCS_HTML_FILES)
 
-$(DOCS_HTML_FILES): docs/%.html: docs/tut/%.qmd
+$(DOCS_HTML_FILES): %.html: tut/%.qmd
 	@echo "Compiling documentation for analyses"
 	$(info Source = $<; Destination = $@)
 	@echo $(notdir $@)
