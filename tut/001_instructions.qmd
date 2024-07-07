@@ -1,0 +1,124 @@
+---
+title: Instructions 
+author: "Murray Logan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+crossref:
+  fig-title: '**Figure**'
+  fig-labels: arabic
+  tbl-title: '**Table**'
+  tbl-labels: arabic
+engine: knitr
+bibliography: ../resources/references.bib
+output_dir: "docs"
+---
+ 
+# Purpose
+
+This tutorial series should be considered reference and background
+materials in support of preparation for more advanced statistical
+analyses with R. The topics covered progress from introductory and
+foundational through to more advanced and as such, the tutorials are
+intended to be consumed and worked through largely in the order laid
+out in the sidebar menu to the left.
+ 
+# Format of tutorials 
+
+## R code
+Throughout the tutorials, R code snippets will be presented in a block such as:
+
+```{r}
+#| label: cmd1
+## construct variables
+set.seed(123)
+x <- rep(1:5, times = 2)
+g <- gl(n = 2, k = 5, labels = c('High', 'Low'))
+y <- 2 + (3 * x) + (as.numeric(g) - 1) + rnorm(10, mean = 0, sd = 1)
+## compile into a data frame
+dat <- data.frame(x, g, y)
+## print out data frame
+dat
+```
+
+This format is partially reminiscent of the layout of code editors,
+albeit with a very opinionated color scheme.
+
+- the R code appears as the text over the faint yellow background.
+- any output appears below the code (white background) and in red font
+- the light gray numbers in the left hand gutter represent the line
+  numbers. These can be useful when trying to draw attention to a
+  particular line of code
+- the light gray text in the R code block beginning with two hash
+  symbols '##' are comments
+- in the upper right hand corner there is a clipboard symbol. Clicking
+  on this symbol will copy the code to the clipboard to help you
+  transfer the code to your own R session.
+
+Occasionally (and particularly within tables) code snippets may
+alternatively be presented without the line number gutter. In such
+cases, there tends to only be a single line of code and there are
+substantial space savings if the gutter is removed.
+
+```{r}
+#| label: cmd2
+#| class: plain
+x <- rep(1:5, times = 2)
+```
+
+<!--
+## Julia code
+Throughout the tutorials, Julia code snippets will be presented in a block such as:
+
+```{julia}
+#| label: j_cmd1
+## load any packages
+using DataFrames
+using Random
+using Distributions
+## construct variables
+Random.seed!(123);
+x = repeat(1:5, 2);
+g = repeat(["High", "Low"], inner = 5);
+y = 2 .+ (3 .* x) .+ (repeat(1:2, inner=5) .- 1) .+ rand(Normal(0, 1), 10);
+dat = DataFrame(x = x, g = g, y = y);
+println(dat)
+```
+-->
+
+## Bash (shell) code
+
+Bash is a command-line shell that gives you access and control over
+your computer's operating system. Whilst the majority of the tutorials
+in this series are focused on R, there are a couple of tutorials on
+other supporting topics (like version control) that might be
+interfaced via a shell (commands entered on a terminal). Furthermore,
+some software installation and/or configuration instructions might be
+in the form of shell commands.
+
+Such commands are presented as:
+
+```{bash}
+#| label: bash
+#| classes: bash 
+pwd
+```
+
+## Plain text
+
+The contents of plain text files will similarly be presented either as:
+
+```{txt}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Maecenas sed metus congue risus sagittis viverra. Etiam 
+hendrerit orci arcu, et vehicula libero vulputate nec. 
+Aliquam placerat lacinia ex sit amet varius. Suspendisse 
+potenti. Nam tristique fringilla lacus id tincidunt. Donec 
+quis turpis tempus leo pharetra malesuada. Vivamus consequat 
+a quam nec vestibulum.
+```
+
+or when necessary to save space:
+
+```{txt, class = "plain"}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+```
+ 
