@@ -156,6 +156,7 @@ jobs:
           
       - name: Touch those files that have changed since the last commit
         run: |
+          git log
           git diff --name-only HEAD HEAD~1 | xargs touch
         
       # - name: Check that the docs folder is there and populated
