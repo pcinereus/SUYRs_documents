@@ -1,0 +1,43 @@
+\documentclass{minimal}
+\usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
+%\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[xelatex,active,tightpage]{preview}
+\renewcommand{\baselinestretch}{0.75} 
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\begin{document}
+\include{preview}
+\begin{preview}
+
+\input{../resources/common1.tikz}
+      
+\begin{tikzpicture}
+\commit{}{2d0d258}{color_inactive}{2d0d258}{ Initial repo a..}
+\commit{right = 1.5cm of 2d0d258}{a0cf475}{color_inactive}{a0cf475}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (2d0d258) -- (a0cf475.west);
+
+\commit{right = 1.5cm of a0cf475}{716ee45}{color_inactive}{716ee45}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (a0cf475.east) -- (716ee45.west);
+
+% new commit on main
+\commit{right = 1.5cm of 716ee45}{741a3e6}{color_inactive}{741a3e6}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (716ee45.east) -- (741a3e6.west);
+
+\commit{above = 3cm of 741a3e6}{4813b6a}{color_inactive}{4813b6a}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (716ee45.north east) -- (4813b6a.south west);
+
+\commit{right = 1.5cm of 4813b6a}{91b5ae6}{color_inactive}{91b5ae6}{Feature complet..}
+\draw [<-,line width=3pt,draw=black!60] (4813b6a.east) -- (91b5ae6.west);
+
+\commit{right = 5cm of 741a3e6}{61ea7b0}{color_commit}{61ea7b0}{ Merge made by ..}
+\draw [<-,line width=3pt,draw=black!60] (91b5ae6.south east) -- (61ea7b0.north west);
+\draw [<-,line width=3pt,draw=black!60] (741a3e6.east) -- (61ea7b0.west);
+
+\master{below = 1cm of 61ea7b0} 
+\branch{below = 1cm of 91b5ae6}{Feature} 
+\HEAD{below = 0.1cm of master} 
+
+\end{tikzpicture}
+\end{preview}
+\end{document}

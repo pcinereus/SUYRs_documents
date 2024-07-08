@@ -1,0 +1,34 @@
+\documentclass{minimal}
+\usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
+%\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[xelatex,active,tightpage]{preview}
+\renewcommand{\baselinestretch}{0.75} 
+\usepackage{tikz}
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\begin{document}
+\include{preview}
+\begin{preview}
+    
+\input{../resources/common1.tikz}
+
+\begin{tikzpicture}
+\commit{}{2d0d258}{color_inactive}{2d0d258}{ Initial repo a..}
+\commit{right = 1.5cm of 2d0d258}{a0cf475}{color_inactive}{a0cf475}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (2d0d258) -- (a0cf475.west);
+    
+\commit{right = 1.5cm of a0cf475}{716ee45}{color_inactive}{716ee45}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (a0cf475.east) -- (716ee45.west);
+    
+\commit{right = 1.5cm of 716ee45}{741a3e6}{color_commit}{741a3e6}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (716ee45.east) -- (741a3e6.west);
+    
+\commit{above = 3cm of 741a3e6}{4813b6a}{color_inactive}{4813b6a}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (716ee45.north east) -- (4813b6a.south west);
+\branch{below = 1cm of 4813b6a}{Feature} 
+
+\master{below = 1cm of 741a3e6} 
+\HEAD{below = 0.1cm of master} 
+\end{tikzpicture}
+\end{preview}
+\end{document}

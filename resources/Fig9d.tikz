@@ -1,0 +1,30 @@
+\documentclass{minimal}
+\usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
+%\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[xelatex,active,tightpage]{preview}
+\renewcommand{\baselinestretch}{0.75} 
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\begin{document}
+\include{preview}
+\begin{preview}
+
+\input{../resources/common1.tikz}
+      
+\begin{tikzpicture}
+\commit{}{fc62297}{color_inactive}{fc62297}{ Initial repo a..}
+\commit{right = 1.5cm of fc62297}{6c1dd00}{color_commit!20}{6c1dd00}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (fc62297) -- (6c1dd00.west);
+
+\commit{right = 1.5cm of 6c1dd00}{f05474f}{color_inactive}{f05474f}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (6c1dd00) -- (f05474f.west);
+
+\commit{right = 1.5cm of f05474f}{29f92d6}{color_commit}{29f92d6}{Revert Modified..}
+\draw [<-,line width=3pt,draw=black!60] (f05474f.east) -- (29f92d6.west);
+
+\master{below = 1cm of 29f92d6} 
+\HEAD{below = 0.1cm of master} 
+\end{tikzpicture}
+\end{preview}
+\end{document}

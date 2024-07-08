@@ -1,0 +1,120 @@
+\documentclass{minimal}
+\usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
+%\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
+\usepackage{fontspec}
+\usepackage[xelatex,active,tightpage]{preview}
+\renewcommand{\baselinestretch}{0.75} 
+\usepackage{tikz}
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\begin{document}
+\include{preview}
+\begin{preview}
+
+\usetikzlibrary{arrows.meta}
+\definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
+\definecolor{color_tree}{HTML}{9ACD32} %\definecolor{color_tree}{rgb}{0.78,0.86,0.27}
+\definecolor{color_commit}{rgb}{0.9,0.9,0.2}
+\definecolor{color_remote}{rgb}{1,0.55,0.15}
+\definecolor{color_master}{rgb}{0.36,0.27,0.87}
+\definecolor{color_head}{HTML}{6495ED} %\definecolor{color_head}{HTML}{6495ED}
+\definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
+\definecolor{color_file}{rgb}{1,1,1}
+
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+
+%Define a file 
+\newcommand{\file}[4] {
+\def\corner{0.15in};
+\def\cornerradius{0.02in};
+\def\lwidth{0.02in};
+\def\h{0.5in};
+\def\w{0.85in};
+\def\nline{0};
+\def\iconmargin{0.1in};
+\def\topmargin{0.3in};
+\node at (#1) {\begin{tikzpicture}
+\coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
+\coordinate (#3) at (#1); 
+\coordinate (ne0) at ($(nw) + (\w, 0)$);
+\coordinate (ne1) at ($(ne0) - (\corner, 0)$);
+\coordinate (ne2) at ($(ne0) - (0, \corner)$);
+\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
+[rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
+\draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
+\node [anchor=north west,TREE] at (nw) {#2};
+\foreach \k in {0,...,\nline}
+{
+\draw [-, line width = \lwidth, line cap=round] 
+($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
+-- ++ ($(\w,0) - 2*(\iconmargin,0)$);
+}
+\end{tikzpicture}};
+}
+% end of file definition
+    
+\begin{tikzpicture}
+\coordinate (G_ul) at (0,0);
+\coordinate (G_ll) at ($(G_ul) +(0,-10)$);
+\coordinate (G_lr) at ($(G_ll) +(4,0)$);
+\coordinate (G_ur) at ($(G_ul) +(4,0)$);
+
+\node[TREE,anchor=west] at ($(G_ul) +(0,-0.5)$) (git) {.git/};
+\file{$(git.west) +(1.5,-2)$}{HEAD}{HEAD}{color_head}
+\file{$(HEAD) +(0,-2)$}{index}{index}{color_index}
+\draw[] (G_ul) -- (G_ll) -- (G_lr) -- (G_ur) -- cycle;
+
+%refs
+\node[TREE,anchor=west] at ($(G_ul) +(-5,-0.5)$) (git_ref) {.git/refs/};
+\file{$(git_ref.west) +(1.5,-2)$}{\textcolor{white}{master}}{master}{color_master}
+\draw[] ($(G_ul) +(-5,0)$) -- ++(0,-10) -- ++(4.9,0) -- ++(0,10) -- cycle;
+
+
+%files
+\node[TREE,anchor=west] at ($(G_ul) +(-21,-0.5)$) (root) {/};
+\file{$(root.west) +(1.7,-2)$}{\textcolor{black}{file1}}{file1}{color_file}
+%\file{$(root.west) +(1.7,-3.5)$}{\textcolor{black}{file2}}{file2}{color_file}
+\node[TREE,anchor=west] at ($(root |- file1) +(0.4,-2.5)$) (dir1) {dir1/};
+\draw [very thick] (root) -- (root |- file1) -- ++(0.2,0);
+%\draw [very thick] (root) -- (root |- file2) -- ++(0.2,0);
+\draw [very thick] (root) -- (root |- dir1) -- ++(0.2,0);
+\file{$(dir1.west) +(1.7,-1.0)$}{\textcolor{black}{file2}}{file2}{color_file}
+\draw [very thick] ($(dir1.west) +(0.2,-0.2)$) -- ($(dir1.west |- file2) +(0.2,0)$) -- ++(0.2,0);
+\begin{pgfonlayer}{background}
+\draw[fill=color_workspace!20] ($(G_ul) +(-21,0)$) -- ++(0,-10) -- ++(3.9,0) -- ++(0,10) -- cycle;
+\end{pgfonlayer}
+
+%objects
+
+\node[TREE,anchor=west] at ($(G_ul) +(-17,-0.5)$) (git_object) {.git/objects/};
+\file{$(git_object.west) +(1.5,-2)$}{\textcolor{black}{50fcd}}{blob1}{color_workspace}
+\file{$(git_object.west) +(1.5,-3.5)$}{\textcolor{black}{28ed2}}{blob2}{color_workspace}
+\file{$(git_object.west |- file2.north) +(1.5,-0)$}{\textcolor{black}{4fcc8}}{blob3}{color_workspace}
+\draw[] ($(G_ul) +(-17,0)$) -- ++(0,-10) -- ++(11.9,0) -- ++(0,10) -- cycle;
+
+%trees
+\file{$(blob1.west) +(5,0)$}{\textcolor{black}{07a94}}{tree1}{color_tree}
+    
+%commits
+\file{$(tree1.west) +(3,0)$}{\textcolor{black}{8e3e7}}{commit1}{color_commit}
+
+
+%arrows
+
+\draw[->,very thick] ($(HEAD) +(-1,0)$) -- ($(master) +(1.2,0)$);
+\draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit1) +(1.2,0)$);
+\draw[->,very thick] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
+\draw[->,very thick] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
+    
+\draw[<-,very thick,dashed] ($(blob2) +(-1.2,0)$) -- ($(file1) +(1.2,0)$);
+\draw[<-,very thick,dashed] ($(blob3) +(-1.2,0)$) -- ($(file2) +(1.2,0)$);
+    
+\draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
+\draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
+               
+\end{tikzpicture}
+\end{preview}
+\end{document}
