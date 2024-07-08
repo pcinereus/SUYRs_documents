@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.7)  7 JUL 2024 22:29
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.7)  8 JUL 2024 00:44
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**tikz2a0359e40d10.tex
-(./tikz2a0359e40d10.tex
+**tikz2a4b290abd78.tex
+(./tikz2a4b290abd78.tex
 LaTeX2e <2024-06-01> patch level 2
 L3 programming layer <2024-05-27>
 (/home/runner/.TinyTeX/texmf-dist/tex/latex/base/article.cls
@@ -463,8 +463,8 @@ Package: fontspec-xetex 2024/05/11 v2.9e Font selection for XeLaTeX and LuaLaTeX
 Package: fontenc 2021/04/29 v2.0v Standard LaTeX package
 ) (/home/runner/.TinyTeX/texmf-dist/tex/latex/fontspec/fontspec.cfg))) (/home/runner/.TinyTeX/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarymatrix.code.tex
 File: tikzlibrarymatrix.code.tex 2023-01-15 v3.1.10 (3.1.10)
-) (./tikz2a0359e40d10.aux (./preview.aux))
-\openout1 = `tikz2a0359e40d10.aux'.
+) (./tikz2a4b290abd78.aux (./preview.aux))
+\openout1 = `tikz2a4b290abd78.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
