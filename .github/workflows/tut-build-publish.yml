@@ -115,8 +115,8 @@ jobs:
 
       - name: Install Google Fonts
         run: |
-          wget -O architects_daughter.zip https://fonts.google.com/download?family=Architects%20Daughter
-          unzip -d architects_daughter/ architects_daughter.zip
+          wget -O Architects_Daughter.zip https://fonts.google.com/download?family=Architects%20Daughter
+          unzip -d architects_daughter/ Architects_Daughter.zip
           mv architects_daughter /usr/share/fonts/
           
           #wget -O inconsolata.zip https://fonts.google.com/download?family=Inconsolata
