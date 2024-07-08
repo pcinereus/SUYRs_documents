@@ -39,7 +39,7 @@ x
 }
 library(tidyverse)
 library(pander)
-FIG_PATH <- '05_grammar_of_graphics_files/figure-html/'
+FIG_PATH <- "05_grammar_of_graphics_files/figure-html/"
 if (!dir.exists(FIG_PATH)) dir.create(FIG_PATH)
 ```
  
