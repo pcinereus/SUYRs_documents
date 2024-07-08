@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.8)  8 JUL 2024 22:05
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex 2024.7.8)  8 JUL 2024 22:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -488,27 +488,146 @@ Preview: PDFoutput 1
 \openout2 = `preview.aux'.
 
 No file preview.tex.
+(../resources/../resources/common1.tikz)
 
-! LaTeX Error: File `../resources/common1.tikz' not found.
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
 
-Type X to quit or <RETURN> to proceed,
-or enter new name. (Default extension: tikz)
 
-Enter file name: 
-! Emergency stop.
-<read *> 
-         
-l.13 \input{../resources/common1.tikz}
-                                      ^^M
-End of file on the terminal!
+Package fontspec Info: 
+(fontspec)             Could not resolve font
+(fontspec)             "InconsolataSemiCondensed-Regular/I" (it probably
+(fontspec)             doesn't exist).
 
- 
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular/B scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular/BI scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'InconsolataSemiCondensed-Regular(0)'
+(fontspec)             created for font 'InconsolataSemiCondensed-Regular'
+(fontspec)             with options [Scale=1.5].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[1.5]"InconsolataSemiCondensed-Regular/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.5]"InconsolataSemiCondensed-Regular/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[1.5]"InconsolataSemiCondensed-Regular/BI/OT:script=latn;language=dflt;"
+
+LaTeX Font Info:    Font shape `TU/InconsolataSemiCondensed-Regular(0)/m/n' will be
+(Font)              scaled to size 15.0pt on input line 16.
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Could not resolve font
+(fontspec)             "InconsolataSemiCondensed-Regular/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular/B scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular/BI scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             Font family 'InconsolataSemiCondensed-Regular(1)'
+(fontspec)             created for font 'InconsolataSemiCondensed-Regular'
+(fontspec)             with options [Scale=1.0].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->s*[1.0]"InconsolataSemiCondensed-Regular/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold' (b/n) with NFSS spec.:
+(fontspec)             <->s*[1.0]"InconsolataSemiCondensed-Regular/B/OT:script=latn;language=dflt;"
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[1.0]"InconsolataSemiCondensed-Regular/BI/OT:script=latn;language=dflt;"
+
+LaTeX Font Info:    Font shape `TU/InconsolataSemiCondensed-Regular(1)/m/n' will be
+(Font)              scaled to size 10.0pt on input line 16.
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.0.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Package fontspec Info: 
+(fontspec)             InconsolataSemiCondensed-Regular scale = 1.5.
+
+
+Preview: Tightpage -32891 -32891 32891 32891
+[1] (../resources/Fig7e.aux (../resources/preview.aux))
+ ***********
+LaTeX2e <2024-06-01> patch level 2
+L3 programming layer <2024-05-27>
+ ***********
+ ) 
 Here is how much of TeX's memory you used:
- 17780 strings out of 476239
- 444510 string characters out of 5787079
- 1919557 words of memory out of 5000000
- 40040 multiletter control sequences out of 15000+600000
- 558085 words of font info for 38 fonts, out of 8000000 for 9000
+ 18034 strings out of 476239
+ 451206 string characters out of 5787079
+ 1928557 words of memory out of 5000000
+ 40271 multiletter control sequences out of 15000+600000
+ 558149 words of font info for 46 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 102i,2n,107p,593b,198s stack positions out of 10000i,1000n,20000p,200000b,200000s
-No pages of output.
+ 102i,8n,107p,593b,1274s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on ../resources/Fig7e.pdf (1 page).

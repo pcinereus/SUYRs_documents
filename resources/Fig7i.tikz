@@ -13,24 +13,24 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{2d0d258}{color_inactive}{2d0d258}{ Initial repo a..}
-\commit{right = 1.5cm of 2d0d258}{a0cf475}{color_inactive}{a0cf475}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (2d0d258) -- (a0cf475.west);
+\commit{}{e2fc24e}{color_inactive}{e2fc24e}{ Initial repo a..}
+\commit{right = 1.5cm of e2fc24e}{15e8287}{color_inactive}{15e8287}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (e2fc24e) -- (15e8287.west);
 
-\commit{right = 1.5cm of a0cf475}{716ee45}{color_inactive}{716ee45}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (a0cf475.east) -- (716ee45.west);
+\commit{right = 1.5cm of 15e8287}{92e8916}{color_inactive}{92e8916}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (15e8287.east) -- (92e8916.west);
 
 % new commit on main
-\commit{right = 1.5cm of 716ee45}{741a3e6}{color_inactive}{741a3e6}{Bug fix in file..}
-\draw [<-,line width=3pt,draw=black!60] (716ee45.east) -- (741a3e6.west);
+\commit{right = 1.5cm of 92e8916}{83a9aa5}{color_inactive}{83a9aa5}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (92e8916.east) -- (83a9aa5.west);
 
-\commit{above = 3cm of 741a3e6}{4813b6a}{color_inactive}{4813b6a}{New feature..}
-\draw [<-,line width=3pt,draw=black!60] (716ee45.north east) -- (4813b6a.south west);
+\commit{above = 3cm of 83a9aa5}{c312c19}{color_inactive}{c312c19}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (92e8916.north east) -- (c312c19.south west);
 
-\commit{right = 1.5cm of 4813b6a}{91b5ae6}{color_inactive}{91b5ae6}{Feature complet..}
-\draw [<-,line width=3pt,draw=black!60] (4813b6a.east) -- (91b5ae6.west);
+\commit{right = 1.5cm of c312c19}{034bd0c}{color_inactive}{034bd0c}{Feature complet..}
+\draw [<-,line width=3pt,draw=black!60] (c312c19.east) -- (034bd0c.west);
 
-\master{below = 1cm of 741a3e6} 
+\master{below = 1cm of 83a9aa5} 
 \HEAD{below = 0.1cm of master} 
 
 \end{tikzpicture}
