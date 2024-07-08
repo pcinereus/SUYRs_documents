@@ -283,10 +283,10 @@ ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.d
 %\tikzstyle{Title} = [font={\fontspec[Scale=2]{CompleteinHim}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=1.5]{ArchitectsDaughter-Regular}}]
 
-\newcommand{\fplus}[1][black!20]{%
+\newcommand{\fplus}[1][black!20]{
   \tikz\draw[#1,line width=0.5em] (0,0) -- (1,0)(0.5,0.5) -- (0.5,-0.5);
 }
-\newcommand{\fequal}[1][black!20]{%
+\newcommand{\fequal}[1][black!20]{
   \tikz\draw[#1,line width=0.5em] (0,0.2) -- (1,0.2)(0,-0.2) -- (1,-0.2);
 }
 \tikzset{ 
