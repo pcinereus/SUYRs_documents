@@ -1,0 +1,70 @@
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
+
+\definecolor{color_branch}{rgb}{1,0.8,0.4}
+\definecolor{color_head}{HTML}{6495ED} %
+\definecolor{color_HEAD}{rgb}{0.26,0.65,0.91}
+\definecolor{color_commit}{rgb}{0.9,0.9,0.2}
+\definecolor{color_inactive}{rgb}{0.90,0.9,0.9}
+\definecolor{color_detached}{rgb}{0.90,0.9,0.9}
+\definecolor{color_derivative}{rgb}{0.12,0.6,0.51}
+\definecolor{color_local}{rgb}{0.9,0.9,0.2}
+\definecolor{color_remote}{rgb}{1,0.55,0.15}
+ 
+% A template for making the storage symbol
+\newcommand{\state}[3]{
+\draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
+\begin{tikzpicture}
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\end{tikzpicture}
+};
+}
+
+\newcommand{\commit}[5]{
+\node [#1,inner sep=0,outer sep=0] (#2) {
+\begin{tikzpicture}[#1]
+\draw [#1] node [draw=black!40!#3,fill=#3,shape=circle,minimum width=1.0cm,line width=3pt] (x) {};
+%\node [below,hashText] at (x.south) {#4};
+\end{tikzpicture}
+};
+\ifx\notempty#4\empty
+\node [below,hashText, minimum height = 0] at (#2.south) {#4};
+\fi
+\ifx\notempty#5\empty
+\node [below,commentText,text=gray, minimum height = 0] at ($(#2.south) +(0,-0.5)$) {#5};
+\fi
+}
+
+\newcommand{\rcommit}[5]{
+\node [#1,inner sep=0,outer sep=0] (#2) {
+\begin{tikzpicture}[#1]
+\draw [#1] node [draw=black!40!#3,fill=#3,shape=rectangle,minimum width=1.0cm,minimum height=1.0cm,line width=3pt] (x) {};
+%\node [below,hashText] at (x.south) {#4};
+\end{tikzpicture}
+};
+\node [below,hashText] at (#2.south) {#4};
+\node [below,commentText,text=gray] at ($(#2.south) +(0,-0.5)$) {#5};
+}
+
+\newcommand{\master}[1] {
+\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (master) {main};
+}
+\newcommand{\rmaster}[1] {
+\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (rmaster) {origin/main};
+}
+\newcommand{\branch}[2] {
+\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (#2) {#2};
+}
+
+\newcommand{\HEAD}[1] {
+\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (HEAD) {HEAD};
+}
+\newcommand{\rHEAD}[1] {
+\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (rHEAD) {origin/HEAD};
+}
