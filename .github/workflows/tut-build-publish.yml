@@ -124,12 +124,12 @@ jobs:
 
           
           #wget -O inconsolata.zip https://fonts.google.com/download?family=Inconsolata
-          #unzip -d inconsolata/ inconsolata.zip
-          #mv inconsolata /usr/share/fonts/
+          unzip -d inconsolata/ Inconsolata.zip
+          mv inconsolata /usr/share/fonts/
 
           #wget -O noto_sans.zip https://fonts.google.com/download?family=Noto%20Sans
-          #unzip -d noto_sans/ noto_sans.zip
-          #mv noto_sans /usr/share/fonts/
+          unzip -d noto_sans/ Moto_Sans.zip
+          mv noto_sans /usr/share/fonts/
 
           fc-cache -fv
           fc-list
