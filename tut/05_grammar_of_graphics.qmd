@@ -270,7 +270,7 @@ g <- ggplot() +
     geom_point(data=dat, aes(x=V1,y=V2,color=V3, size=V2)) +
     coord_equal() +
     theme_classic()
-ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6)
+ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.dir = TRUE)
 ```
 ```{tikz}
 %| label: tikz_basics 
