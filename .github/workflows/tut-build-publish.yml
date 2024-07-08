@@ -128,7 +128,7 @@ jobs:
           #mv noto_sans /usr/share/fonts/
 
           fc-cache -fv
-          ##fc-list
+          fc-list
           ##fc-list -v | grep -i archi
           ##fc-list -v | grep -i inconsolata
           ##fc-list -v | grep -i noto
