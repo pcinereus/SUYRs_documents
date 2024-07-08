@@ -306,10 +306,6 @@ ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.d
         text depth=0.5ex,
         text height=2ex,
         nodes in empty cells,
-%%
-        %%every even row/.style={
-        %%    nodes={fill=gray!30}
-        %%},
         column 1/.style={
             nodes={text width=2em,font=\bfseries}
         },
