@@ -1,0 +1,241 @@
+---
+title: Different statistical philosophies
+author: "Murray Logan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format: 
+  html:
+    toc: true
+    toc-float: true
+    page-layout: full
+    number-sections: true
+    number-depth: 3
+    embed-resources: true
+    code-fold: false
+    code-tools: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-block-border-left: "#ccc"
+    code-copy: true
+    highlight-style: atom-one
+    theme: [default, ../resources/tut-style.scss]
+    css: ../resources/tut-style.css
+crossref:
+  fig-title: '**Figure**'
+  fig-labels: arabic
+  tbl-title: '**Table**'
+  tbl-labels: arabic
+engine: knitr
+bibliography: ../resources/references.bib
+output_dir: "docs"
+---
+
+The two major opposing philosophies (frequentist and Bayesian) differ
+in how they consider population parameters and thus how
+interpretations are framed.
+
+# Frequentist (classical)
+
+Variation in observed data allows the long-run frequency of different
+outcomes to be approximated (we can directly measure the likelihood of
+obtaining the data given a certain null hypothesis).
+
+In the frequentist framework, population parameters (characteristics
+of the population) are considered fixed quantities (albeit unknown).
+That is, there is one true state (e.g. mean) per population. The
+observed data (and its characteristics - sample mean) however,
+represents just one possible outcome that could be collected from this
+true state. Multiple simultaneous data collection experiments would
+yield different outcomes. This notion that there is a single true
+population parameter and a distribution of possible sample outcomes is
+the basis for a framework that conveniently allows a logical and
+relatively simple algebraic link between data, hypotheses and
+probability.
+
+Traditional (frequentist) statistics focus on determining the
+probability of obtaining the collected data, given a set of parameters
+(hypothesis). In probability notation, this can be written as:
+$$P(D|H)$$ where $D$ represents the collected data and $H$ represents
+the set of population parameters or hypothese(s).
+
+The process of **inference** (hypothesis testing) is based on
+approximating long-run frequencies (probability) of repeated sampling
+from the stationary (non-varying) population(s). This approach to
+statistics provides relatively simple analytical methods to
+objectively evaluate research questions (albeit with rigid underlying
+assumptions) and thus gained enormous popularity across many
+disciplines.
+
+The price for mathematical convenience is that under this philosophy,
+the associated statistical interpretations and conclusions are
+somewhat counter-intuitive and not quite aligned with the desired
+manner in which researchers would like to phrase research conclusions.
+**Importantly, conclusions are strictly about the data, not the
+parameters or hypotheses.** 
+
+Inference (probability and confidence intervals) is based on comparing
+the one observed outcome (parameter estimate) to all other outcomes
+that might be expected if the null hypothesis really was true.
+Moreover, as probabilities of point events always equal zero (e.g. the
+probability of obtaining a mean of 13.5646 is infinitely small),
+probability (the p-value) is calculated as the probability of
+obtaining data that is at least as extreme as that observed.
+ 
+As a result of the somewhat obtuse association between hypotheses and
+the collected data, frequentist statistical outcomes (particularly
+p-values and confidence intervals) are often misused and
+misinterpreted. Of particular note;
+
+- A frequentist p-value is the probability of rejecting the null
+  hypothesis, **it is not a measure of the magnitude of an effect or
+  the probability of a hypothesis being true**.
+- Given that a statistical null hypothesis can never actually be true
+  (e.g. a population slope is never going to be exactly zero), a
+  p-value is really just a **measure of whether the sample size is big
+  enough to detect a non-zero effect**.
+- A 95% confidence interval defines the proportion of repeated samples
+  (95/100) of a particular spread of values that are likely to contain
+  the true mean. **It is not a range of values for which you are 95%
+  confident the true mean lies between**.
+
+
+# Bayesian
+
+By contrast, the Bayesian framework considers the observed data to be
+fixed and a truth (a real property of a population) whilst the
+population parameters (and therefore also the hypotheses) are
+considered to have a distribution of possible values. Consequently,
+inferential statements can be made directly about the probability of
+hypotheses and parameters. Furthermore, outcomes depend on the
+observed data and not other more extreme (unobserved) data.
+
+Bound up in this framework is the manner in which Bayesian philosophy
+treats knowledge and probability. Rather than being a long-run
+frequency of repeated outcomes (which never actually occur) as it is
+in frequentist statistics, probability is considered a degree of
+belief in an outcome. It naturally acknowledges that belief is an
+iterative process by which knowledge is continually refined on the
+basis of new information. In the purest sense, our updated (posterior)
+belief about a parameter or hypothesis is the weighted product of our
+prior belief in the parameter or hypothesis and the likelihood of
+obtaining the data given the parameter or hypothesis, such that our
+prior beliefs are reevaluated in light of the collected data.
+
+The fundamental distinction between Bayesian and frequentist
+statistics is the opposing perspectives and interpretations of
+probability. Whereas, frequestists focus on the probability of the
+data given the (null) hypothesis ($P(D|H)$), Bayesians focus on the
+probability of the hypothesis given the data ($P(H|D)$).
+
+Whilst the characteristics of a single sample (in particular, its
+variability) permit direct numerical insights (likelihood) into the
+characteristics of the data given a specific hypothesis (and hence
+frequentist probability), this is not the case for Bayesian
+hypotheses.
+
+Nevertheless, further manipulations of conditional probability rules
+reveal a potential pathway to yield insights about a hypothesis given
+a collected sample (and thus Bayesian probability).
+
+Recall the conditional probability law: 
+
+$$P(A|B) = \frac{P(AB)}{P(B)}~ \text{and equivalently, } P(B|A) = \frac{P(BA)}{PAB)}$$ 
+
+These can be transformed to express in terms of $P(AB)$:
+
+$$P(AB) = P(A|B)\times P(B), \text{ and } P(BA) = P(B|A)\times P(A)$$
+
+Since $P(AB)$ is the same as $P(BA)$,
+
+\begin{align*} P(A|B)\times P(B) &= P(B|A)\times
+P(A)\\ P(A|B) &= \frac{P(B|A)\times P(A)}{P(B)} \end{align*}
+
+This probability statement (the general Bayes' rule) relates the
+conditional probability of outcome $A$ given $B$ to the conditional
+probability of $B$ given $A$. If we now substitute outcome $A$ for $H$
+(hypothesis) and outcome $B$ for $D$ (data), it becomes clearer how
+Bayes' rule can be used to examine the probability of a parameter or
+hypothesis given a single sample of data. 
+
+$$P(H|D) =
+\frac{P(D|H)\times P(H)}{P(D)}$$
+
+where $P(H|D)$ is the <b>posterior
+probability</b> of the hypothesis (our beliefs about the hypothesis
+after inspiration from the newly collected data), $P(D|H)$ is the
+<b>likelihood</b> of the data, $P(H)$ is the <b>prior probability</b>
+of the hypothesis (our prior beliefs about the hypotheses before
+collecting the data) and $P(D)$ is the <b>normalizing constant</b>.
+
+Bayesian statistics offer the following advantages;
+
+- Interpretive simplicity:
+  - Since probability statements pertain to population parameters (or
+    hypotheses), drawn conclusions are directly compatible with
+    research or management questions.
+- Computationally robustness:
+  - Design balance (unequal sample sizes) is not relevant
+  - Multicollinearity is not relevant
+  - There is no need to have expected counts greater than 5 in
+    contingency analyses
+- Inferential flexibility:
+  - The stationary joint posterior distribution reflects the relative
+    credibility of all combinations of parameter values and from which
+    we can explore any number and combination of inferences. For
+    example, because this stationary joint posterior distribution
+    never changes no matter what perspective (number and type of
+    questions) it is examined from, we can explore all combinations of
+    pairwise comparisons without requiring adjustments designed to
+    protect against inflating type II errors. We simply derive samples
+    of each new parameter (e.g. difference between two groups) from
+    the existing parameter samples thereby obtaining the posterior
+    distribution of these new parameters.
+  - As we have the posterior density distributions for each parameter,
+    we have inherent credible intervals for any parameter. That is we
+    can state the probability that a parameter values lies within a
+    particular range. We can also state the probability that two
+    groups are different.
+  - We get the covariances between parameters and therefore we can
+    assess interactions in multiple regression
+
+Despite all the merits of the Bayesian philosophy (and that its roots
+pre-date the frequentist movement), widespread adoption has been
+hindered by two substantial factors;
+
+  - Proponents have argued that the incorporation (indeed necessity)
+    of prior beliefs introduces subjectivity into otherwise objective
+    pursuits. Bayesians however, claim that considering so many other
+    aspects of experimental design (choice of subjects and treatment
+    levels etc) and indeed the research questions asked are
+    discretionary, objectivity is really a fallacy. Rather than being
+    a negative, true Bayesians consider the incorporation of priors to
+    be a strength. Nevertheless, it is possible to define vague or
+    non-informative priors
+  - Expressing probability as a function of the parameters and
+    hypotheses rather than as a function of the data relies on
+    applying an extension of conditional probability (called Bayes'
+    rule) that is only tractable (solved with simple algebra) for the
+    most trivial examples. Hence it is only through advances in modern
+    computing power that Bayesian analyses have become feasible.<br>
+    For example, when only a discrete set of hypotheses are possible,
+    then $P(D)$ essentially becomes the sum of all these possible
+    scenarios (each $P(DH_i)$):
+
+    $$P(D) = \sum{P(D|H)P(H)}$$
+
+    $$P(H|D) = \frac{P(D|H)\times P(H)}{\sum{P(D|H_i)P(H)}}$$
+
+    However, if there are potentially an infinite number of possible
+    hypotheses (the typical case, at least in theory) this sum is
+    replaced with an integral:
+
+    $$P(H|D) = \frac{P(D|H)\times P(H)}{\int P(D|H_i)P(H)dH}$$
+
+Whilst it is not always possible to integrate over all the possible
+scenarios, modern computing now permits more brute force solutions in
+which very large numbers of samples can be drawn from the parameter
+space which in turn can be used to recreate the exact posterior
+probability distribution.
+  
+
+
+
