@@ -81,6 +81,7 @@ jobs:
             any::igraph
             any::ggraph
             any::easystats
+            any::gridGraphics
 
       - name: Install other R packages
         run: |
