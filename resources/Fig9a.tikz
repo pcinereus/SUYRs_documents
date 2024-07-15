@@ -13,14 +13,14 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{58e7026}{color_inactive}{58e7026}{Initial re..}
-\commit{right = 1.5cm of 58e7026}{50899d0}{color_inactive}{50899d0}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (58e7026) -- (50899d0.west);
+\commit{}{567a551}{color_inactive}{567a551}{Initial re..}
+\commit{right = 1.5cm of 567a551}{06d1f95}{color_inactive}{06d1f95}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (567a551) -- (06d1f95.west);
 
-\commit{right = 1.5cm of 50899d0}{83941c1}{color_inactive}{83941c1}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (50899d0.east) -- (83941c1.west);
+\commit{right = 1.5cm of 06d1f95}{24bf1c5}{color_inactive}{24bf1c5}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (06d1f95.east) -- (24bf1c5.west);
 
-\master{below = 1cm of 83941c1} 
+\master{below = 1cm of 24bf1c5} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
