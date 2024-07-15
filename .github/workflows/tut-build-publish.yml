@@ -81,6 +81,7 @@ jobs:
             any::igraph
             any::ggraph
             any::easystats
+            any::tidybayes
 
       - name: Install other R packages
         run: |
