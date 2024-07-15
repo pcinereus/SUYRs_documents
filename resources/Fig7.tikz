@@ -13,15 +13,15 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{d7fa697}{color_inactive}{d7fa697}{ Initial repo a..}
+\commit{}{f78c80b}{color_inactive}{f78c80b}{ Initial repo a..}
 
-\commit{right = 1.5cm of d7fa697}{43f96fd}{color_inactive}{43f96fd}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (d7fa697) -- (43f96fd.west);
+\commit{right = 1.5cm of f78c80b}{cae277b}{color_inactive}{cae277b}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (f78c80b) -- (cae277b.west);
 
-\commit{right = 1.5cm of 43f96fd}{385a437}{color_commit}{385a437}{Modified file2,..}
-\master{below = 1cm of 385a437} 
+\commit{right = 1.5cm of cae277b}{67ffc4b}{color_commit}{67ffc4b}{Modified file2,..}
+\master{below = 1cm of 67ffc4b} 
 \HEAD{below = 0.1cm of master} 
-\draw [<-,line width=3pt,draw=black!60] (43f96fd.east) -- (385a437.west);
+\draw [<-,line width=3pt,draw=black!60] (cae277b.east) -- (67ffc4b.west);
 \end{tikzpicture}
 \end{preview}
 \end{document}
