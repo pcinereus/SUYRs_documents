@@ -7,7 +7,8 @@ endif
 
 HTML_FILES := $(patsubst %.qmd, %.html, $(TUT_FILES))
 PUBLIC_DIR := public/
-DOCS_DIR   := $(addprefix , ./)
+# DOCS_DIR   := $(addprefix , ./)
+DOCS_DIR   := $(addprefix , docs/)
 DOCS_HTML_FILES := $(patsubst $(TUT_SRC_DIR)/%.qmd, $(DOCS_DIR)%.html, $(TUT_FILES))
 FILES := $(patsubst $(TUT_SRC_DIR)/%.qmd, %.html, $(TUT_FILES))
 
@@ -25,7 +26,9 @@ $(info ************************************)
 
 all: $(DOCS_HTML_FILES)
 
-$(DOCS_HTML_FILES): %.html: tut/%.qmd
+$(DOCS_HTML_FILES): docs/%.html: tut/%.qmd
+  ## create a docs directory if it does not already exits
+	@mkdir -p $(DOCS_DIR)
 	@echo "Compiling documentation for analyses"
 	$(info Source = $<; Destination = $@)
 	@echo $(notdir $@)
