@@ -81,7 +81,7 @@
 \file{$(blob1.west) +(5,0)$}{\textcolor{black}{07a94}}{tree1}{color_tree}
 
 %commits
-\file{$(tree1.west) +(3,0)$}{\textcolor{black}{79dbe}}{commit1}{color_commit}
+\file{$(tree1.west) +(3,0)$}{\textcolor{black}{38a2f}}{commit1}{color_commit}
 
 %files
 \node[TREE,anchor=west] at ($(G_ul) +(-21,-0.5)$) (root) {/};

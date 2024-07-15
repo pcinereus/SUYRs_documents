@@ -13,14 +13,14 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{f78c80b}{color_inactive}{f78c80b}{ Initial repo a..}
+\commit{}{76fd128}{color_inactive}{76fd128}{ Initial repo a..}
     
-\commit{right = 1.5cm of f78c80b}{cae277b}{color_inactive}{cae277b}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (f78c80b) -- (cae277b.west);
+\commit{right = 1.5cm of 76fd128}{5bf2734}{color_inactive}{5bf2734}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (76fd128) -- (5bf2734.west);
     
-\commit{right = 1.5cm of cae277b}{67ffc4b}{color_commit}{67ffc4b}{Modified file2,..}
-\master{below = 1cm of 67ffc4b} 
-\draw [<-,line width=3pt,draw=black!60] (cae277b.east) -- (67ffc4b.west);
+\commit{right = 1.5cm of 5bf2734}{e0c1ed7}{color_commit}{e0c1ed7}{Modified file2,..}
+\master{below = 1cm of e0c1ed7} 
+\draw [<-,line width=3pt,draw=black!60] (5bf2734.east) -- (e0c1ed7.west);
 \branch{below = 0.1cm of master}{Feature} 
 \HEAD{below = 0.1cm of Feature} 
 \end{tikzpicture}
