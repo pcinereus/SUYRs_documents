@@ -107,9 +107,9 @@
 \file{$($(blob4.west) !0.5! (blob5.west)$) +(5.75,0)$}{\textcolor{black}{2b61e}}{tree5}{color_tree}
 
 %commits
-\file{$(tree1.west) +(3,0)$}{\textcolor{black}{c0839}}{commit1}{color_commit!20}
-\file{$(tree3.west) +(2.75,0)$}{\textcolor{black}{ce629}}{commit2}{color_commit!20}
-\file{$(tree5.west) +(2.75,0)$}{\textcolor{black}{c7ad6}}{commit3}{color_commit}
+\file{$(tree1.west) +(3,0)$}{\textcolor{black}{1889a}}{commit1}{color_commit!20}
+\file{$(tree3.west) +(2.75,0)$}{\textcolor{black}{7ee3d}}{commit2}{color_commit!20}
+\file{$(tree5.west) +(2.75,0)$}{\textcolor{black}{8ad79}}{commit3}{color_commit}
 
 %arrows
 \draw[->,very thick,draw=black] ($(HEAD) +(-1,0)$) -- ($(master) +(1.2,0)$);
