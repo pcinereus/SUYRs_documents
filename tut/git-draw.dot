@@ -6,21 +6,24 @@ digraph structs {
   _143a8 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|143a8}|\*\ Notes\l\-\-\-\l}"]  _c0af8 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|c0af8}|100644\ blob\ 1944f\	\.gitignore\l040000\ tree\ 6a7e6\	dir1\l100644\ blob\ 87df5\	file1\l}"]  _c0af8 -> _1944f
   _c0af8 -> _6a7e6
   _c0af8 -> _87df5
-  _4fcc8 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|4fcc8}|\*\ Notes\l}"]  _4f4a8 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|4f4a8}|tree\ 2b61e\lparent\ 8bba3\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lModified\ file1\ and\ added\ file2\ \(in\ dir1\)\l}"]  _4f4a8 -> _2b61e
-  _4f4a8 -> _8bba3
-  _77030 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|77030}|tree\ 91d70\lparent\ 0808e\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lBug\ fix\ in\ file1\l}"]  _77030 -> _91d70
-  _77030 -> _0808e
-  _c426a [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|c426a}|100644\ blob\ 143a8\	file2\l}"]  _c426a -> _143a8
-  _1944f [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|1944f}|\*\.tmp\l}"]  _50fcd [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|50fcd}|File\ 1\l}"]  _0808e [fillcolor="gold", style="filled,rounded", label="{{obj:commit|0808e}|tree\ 3c7af\lparent\ 4f4a8\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lModified\ file2\,\ added\ \.gitignore\l}"]  _0808e -> _3c7af
-  _0808e -> _4f4a8
+  _4fcc8 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|4fcc8}|\*\ Notes\l}"]  _c426a [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|c426a}|100644\ blob\ 143a8\	file2\l}"]  _c426a -> _143a8
+  _1944f [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|1944f}|\*\.tmp\l}"]  _50fcd [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|50fcd}|File\ 1\l}"]  _c91b0 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|c91b0}|tree\ 3c7af\lparent\ 29b10\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lModified\ file2\,\ added\ \.gitignore\l}"]  _c91b0 -> _3c7af
+  _c91b0 -> _29b10
+  _29b10 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|29b10}|tree\ 2b61e\lparent\ 02b9b\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lModified\ file1\ and\ added\ file2\ \(in\ dir1\)\l}"]  _29b10 -> _2b61e
+  _29b10 -> _02b9b
+  _753c2 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|753c2}|tree\ 91d70\lparent\ c91b0\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lBug\ fix\ in\ file1\l}"]  _753c2 -> _91d70
+  _753c2 -> _c91b0
+  _02b9b [fillcolor="gold", style="filled,rounded", label="{{obj:commit|02b9b}|tree\ 07a94\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lInitial\ repo\ and\ added\ file1\l}"]  _02b9b -> _07a94
+  _0e723 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|0e723}|tree\ c0af8\lparent\ 0b2c7\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lFeature\ complete\l}"]  _0e723 -> _c0af8
+  _0e723 -> _0b2c7
+  _0b2c7 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|0b2c7}|tree\ ae0a8\lparent\ c91b0\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721081705\ \+0000\l\lNew\ feature\l}"]  _0b2c7 -> _ae0a8
+  _0b2c7 -> _c91b0
   _8cf9e [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|8cf9e}|File\ 3\l}"]  _91d70 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|91d70}|100644\ blob\ 1944f\	\.gitignore\l040000\ tree\ 174b4\	dir1\l100644\ blob\ 28ed2\	file1\l}"]  _91d70 -> _1944f
   _91d70 -> _174b4
   _91d70 -> _28ed2
   _9a83f [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|9a83f}|\*\ Notes\l\-\-\-\l\ another\ bug\ fix\l}"]  _ae0a8 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|ae0a8}|100644\ blob\ 1944f\	\.gitignore\l040000\ tree\ 362b7\	dir1\l100644\ blob\ 87df5\	file1\l}"]  _ae0a8 -> _1944f
   _ae0a8 -> _362b7
   _ae0a8 -> _87df5
-  _15597 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|15597}|tree\ c0af8\lparent\ 6d458\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lFeature\ complete\l}"]  _15597 -> _c0af8
-  _15597 -> _6d458
   _2b61e [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|2b61e}|040000\ tree\ f2fa5\	dir1\l100644\ blob\ 28ed2\	file1\l}"]  _2b61e -> _f2fa5
   _2b61e -> _28ed2
   _87df5 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|87df5}|File\ 1\l\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\lb\l}"]  _362b7 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|362b7}|100644\ blob\ 143a8\	file2\l100644\ blob\ 8cf9e\	file3\l}"]  _362b7 -> _143a8
@@ -31,16 +34,13 @@ digraph structs {
   _28ed2 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|28ed2}|File\ 1\l\-\-\-\-\-\-\-\-\-\-\-\-\-\-\-\l}"]  _6a7e6 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|6a7e6}|100644\ blob\ 143a8\	file2\l100644\ blob\ decc8\	file3\l}"]  _6a7e6 -> _143a8
   _6a7e6 -> _decc8
   _174b4 [fillcolor="yellowgreen", style="filled,rounded", label="{{obj:tree|174b4}|100644\ blob\ 9a83f\	file2\l}"]  _174b4 -> _9a83f
-  _decc8 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|decc8}|File\ 3\l\ a\ modification\l}"]  _6d458 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|6d458}|tree\ ae0a8\lparent\ 0808e\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lNew\ feature\l}"]  _6d458 -> _ae0a8
-  _6d458 -> _0808e
-  _8bba3 [fillcolor="gold", style="filled,rounded", label="{{obj:commit|8bba3}|tree\ 07a94\lauthor\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\lcommitter\ pcinereus\ \<i\.obesulus\@gmail\.com\>\ 1721035422\ \+0000\l\lInitial\ repo\ and\ added\ file1\l}"]  _8bba3 -> _07a94
-  _refs___heads___Feature [style=filled, fillcolor=slateblue3, fontcolor = white,  label="{{ref:local branch|refs\/heads\/Feature}|15597\l}"]
-  _refs___heads___Feature -> _15597
+  _decc8 [fillcolor="forestgreen", style="filled,rounded", label="{{obj:blob|decc8}|File\ 3\l\ a\ modification\l}"]  _refs___heads___Feature [style=filled, fillcolor=slateblue3, fontcolor = white,  label="{{ref:local branch|refs\/heads\/Feature}|0e723\l}"]
+  _refs___heads___Feature -> _0e723
   _refs___heads___main -> _refs___remotes___origin___main [style=dotted, color=gray, fontcolor=gray, label="upstream branch"]
-  _refs___heads___main [style=filled, fillcolor=slateblue3, fontcolor = white,  label="{{ref:local branch|refs\/heads\/main}|77030\l|remote\ \=\ origin\lmerge\ \=\ refs\/heads\/main\l}"]
-  _refs___heads___main -> _77030
-  _refs___remotes___origin___main [style=filled, fillcolor=yellow, fontcolor = black,  label="{{ref:remote tracking branch|refs\/remotes\/origin\/main}|77030\l}"]
-  _refs___remotes___origin___main -> _77030
+  _refs___heads___main [style=filled, fillcolor=slateblue3, fontcolor = white,  label="{{ref:local branch|refs\/heads\/main}|753c2\l|remote\ \=\ origin\lmerge\ \=\ refs\/heads\/main\l}"]
+  _refs___heads___main -> _753c2
+  _refs___remotes___origin___main [style=filled, fillcolor=yellow, fontcolor = black,  label="{{ref:remote tracking branch|refs\/remotes\/origin\/main}|753c2\l}"]
+  _refs___remotes___origin___main -> _753c2
   _HEAD [style=filled, fillcolor=cornflowerblue, fontcolor=black,  label="{{ref|HEAD}|refs\/heads\/main\l}"]
   _HEAD -> _refs___heads___main
   index -> _1944f
