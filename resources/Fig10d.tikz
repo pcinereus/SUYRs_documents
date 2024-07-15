@@ -13,80 +13,80 @@
 \input{../resources/common1.tikz}
 \begin{tikzpicture}
 
-\commit{}{1d00b2e}{color_inactive}{1d00b2e}{Initial re..}
-\commit{right = 1.5cm of 1d00b2e}{c510c53}{color_inactive}{c510c53}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (1d00b2e) -- (c510c53.west);
+\commit{}{c9927dc}{color_inactive}{c9927dc}{Initial re..}
+\commit{right = 1.5cm of c9927dc}{4c0fe48}{color_inactive}{4c0fe48}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (c9927dc) -- (4c0fe48.west);
 
-\commit{right = 1.5cm of c510c53}{e03ea5f}{color_inactive}{e03ea5f}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (c510c53.east) -- (e03ea5f.west);
+\commit{right = 1.5cm of 4c0fe48}{35477b5}{color_inactive}{35477b5}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (4c0fe48.east) -- (35477b5.west);
 
 % new commit on main
-\commit{right = 1.5cm of e03ea5f}{7098087}{color_commit}{7098087}{Bug fix in..}
-\draw [<-,line width=3pt,draw=black!60] (e03ea5f.east) -- (7098087.west);
+\commit{right = 1.5cm of 35477b5}{b9debab}{color_commit}{b9debab}{Bug fix in..}
+\draw [<-,line width=3pt,draw=black!60] (35477b5.east) -- (b9debab.west);
 
-\commit{above = 3cm of 7098087}{45b9e5c}{color_inactive}{45b9e5c}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (e03ea5f.north east) -- (45b9e5c.south west);
+\commit{above = 3cm of b9debab}{2a3a9ad}{color_inactive}{2a3a9ad}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (35477b5.north east) -- (2a3a9ad.south west);
 
-\commit{right = 1.5cm of 45b9e5c}{1bb508b}{color_inactive}{1bb508b}{Feature co..}
-\draw [<-,line width=3pt,draw=black!60] (45b9e5c.east) -- (1bb508b.west);
-\branch{below = 1cm of 1bb508b}{Feature} 
+\commit{right = 1.5cm of 2a3a9ad}{79b8592}{color_inactive}{79b8592}{Feature co..}
+\draw [<-,line width=3pt,draw=black!60] (2a3a9ad.east) -- (79b8592.west);
+\branch{below = 1cm of 79b8592}{Feature} 
 
-\master{below = 1cm of 7098087} 
+\master{below = 1cm of b9debab} 
 \HEAD{below = 0.1cm of master} 
-\node [anchor=north west,TARGET] at ($(1d00b2e.south) + (0,-2cm)$) {Local Repository};
-\draw [fill=white, fill opacity = 0.5, draw=none] ($(1d00b2e.west |- 1bb508b.north west) +(-0.5cm,0.5cm)$) rectangle ($(1bb508b.east |- HEAD.south east) +(0.8cm,-0.5cm)$);
+\node [anchor=north west,TARGET] at ($(c9927dc.south) + (0,-2cm)$) {Local Repository};
+\draw [fill=white, fill opacity = 0.5, draw=none] ($(c9927dc.west |- 79b8592.north west) +(-0.5cm,0.5cm)$) rectangle ($(79b8592.east |- HEAD.south east) +(0.8cm,-0.5cm)$);
 
-\rcommit{right = 8cm of 7098087}{r1d00b2e}{color_inactive}{1d00b2e}{Initial re..}
-\rcommit{right = 1.5cm of r1d00b2e}{rc510c53}{color_inactive}{c510c53}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (r1d00b2e) -- (rc510c53.west);
-\rcommit{right = 1.5cm of rc510c53}{re03ea5f}{color_inactive}{e03ea5f}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (rc510c53) -- (re03ea5f.west);
+\rcommit{right = 8cm of b9debab}{rc9927dc}{color_inactive}{c9927dc}{Initial re..}
+\rcommit{right = 1.5cm of rc9927dc}{r4c0fe48}{color_inactive}{4c0fe48}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (rc9927dc) -- (r4c0fe48.west);
+\rcommit{right = 1.5cm of r4c0fe48}{r35477b5}{color_inactive}{35477b5}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (r4c0fe48) -- (r35477b5.west);
 
 % new commit on main
-\rcommit{right = 1.5cm of re03ea5f}{r45b9e5c}{color_inactive}{45b9e5c}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (re03ea5f.east) -- (r45b9e5c.west);
+\rcommit{right = 1.5cm of r35477b5}{r2a3a9ad}{color_inactive}{2a3a9ad}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (r35477b5.east) -- (r2a3a9ad.west);
 
-\rcommit{right = 1.5cm of r45b9e5c}{r7098087}{color_commit}{7098087}{Bug fix in..}
-\draw [<-,line width=3pt,draw=black!60] (r45b9e5c.east) -- (r7098087.west);
+\rcommit{right = 1.5cm of r2a3a9ad}{rb9debab}{color_commit}{b9debab}{Bug fix in..}
+\draw [<-,line width=3pt,draw=black!60] (r2a3a9ad.east) -- (rb9debab.west);
 
-%%\rcommit{above = 3cm of r7098087}{r45b9e5c}{color_inactive}{45b9e5c}{New featur..}
-%%\draw [<-,line width=3pt,draw=black!60] (re03ea5f.north east) -- (r45b9e5c.south west);
+%%\rcommit{above = 3cm of rb9debab}{r2a3a9ad}{color_inactive}{2a3a9ad}{New featur..}
+%%\draw [<-,line width=3pt,draw=black!60] (r35477b5.north east) -- (r2a3a9ad.south west);
 
-%%\rcommit{right = 1.5cm of r45b9e5c}{r1bb508b}{color_inactive}{1bb508b}{Feature co..}
-%%\draw [<-,line width=3pt,draw=black!60] (r45b9e5c.east) -- (r1bb508b.west);
-%%\rbranch{below = 1cm of r1bb508b}{Feature} 
+%%\rcommit{right = 1.5cm of r2a3a9ad}{r79b8592}{color_inactive}{79b8592}{Feature co..}
+%%\draw [<-,line width=3pt,draw=black!60] (r2a3a9ad.east) -- (r79b8592.west);
+%%\rbranch{below = 1cm of r79b8592}{Feature} 
 
-\rmaster{below = 1cm of r7098087} 
+\rmaster{below = 1cm of rb9debab} 
 \rHEAD{below = 0.1cm of rmaster} 
 
-\node [anchor=north west,TARGET] at ($(r1d00b2e.south) + (0,-2cm)$) (Remote) {Remote Repository};
+\node [anchor=north west,TARGET] at ($(rc9927dc.south) + (0,-2cm)$) (Remote) {Remote Repository};
 
-\draw [dashed] ($(r1d00b2e.west |- r1d00b2e.north west) +(-0.5cm,0.5cm)$) rectangle ($(rHEAD.south east) +(0.8cm,-0.5cm)$);
+\draw [dashed] ($(rc9927dc.west |- rc9927dc.north west) +(-0.5cm,0.5cm)$) rectangle ($(rHEAD.south east) +(0.8cm,-0.5cm)$);
 
-%\draw [->,very thick,dashed] ($(7098087.east) +(0.5cm,0)$) to [out=10,in=220] ($(r1d00b2e.east) +(-2cm,0)$);
+%\draw [->,very thick,dashed] ($(b9debab.east) +(0.5cm,0)$) to [out=10,in=220] ($(rc9927dc.east) +(-2cm,0)$);
 
 
-\commit{below = 5cm of 1d00b2e}{1d00b2e}{color_inactive}{1d00b2e}{Initial re..}
-\commit{right = 1.5cm of 1d00b2e}{c510c53}{color_inactive}{c510c53}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (1d00b2e) -- (c510c53.west);
-\commit{right = 1.5cm of c510c53}{e03ea5f}{color_inactive}{e03ea5f}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (c510c53.east) -- (e03ea5f.west);
+\commit{below = 5cm of c9927dc}{c9927dc}{color_inactive}{c9927dc}{Initial re..}
+\commit{right = 1.5cm of c9927dc}{4c0fe48}{color_inactive}{4c0fe48}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (c9927dc) -- (4c0fe48.west);
+\commit{right = 1.5cm of 4c0fe48}{35477b5}{color_inactive}{35477b5}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (4c0fe48.east) -- (35477b5.west);
 
 % new commit on main
-\commit{right = 1.5cm of e03ea5f}{7098087}{color_inactive}{45b9e5c}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (e03ea5f.east) -- (7098087.west);
+\commit{right = 1.5cm of 35477b5}{b9debab}{color_inactive}{2a3a9ad}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (35477b5.east) -- (b9debab.west);
 
-\commit{right = 1.5cm of 7098087}{6e5ab5e}{color_commit}{7098087}{Bug fix in..}
-\draw [->,line width=3pt,draw=black!60] (7098087.east) -- (6e5ab5e.west);
+\commit{right = 1.5cm of b9debab}{ef0d467}{color_commit}{b9debab}{Bug fix in..}
+\draw [->,line width=3pt,draw=black!60] (b9debab.east) -- (ef0d467.west);
 
-%\commit{right = 1.5cm of 7098087}{commits2hash6}{color_inactive}{1bb508b}{Feature co..}
-%\draw [<-,line width=3pt,draw=black!60] (7098087.east) -- (commits2hash6.west);
-%\branch{below = 1cm of 1bb508b}{Feature} 
+%\commit{right = 1.5cm of b9debab}{commits2hash6}{color_inactive}{79b8592}{Feature co..}
+%\draw [<-,line width=3pt,draw=black!60] (b9debab.east) -- (commits2hash6.west);
+%\branch{below = 1cm of 79b8592}{Feature} 
 
-\master{below = 1cm of 6e5ab5e} 
+\master{below = 1cm of ef0d467} 
 \HEAD{below = 0.1cm of master} 
-\node [anchor=north west,TARGET] at ($(1d00b2e.south) + (0,-2cm)$) {Cloned Repository};
-\draw [<-,very thick,dashed] ($(6e5ab5e.east) +(0.5cm,0)$) to [out=10,in=220] ($(r1d00b2e.east) +(-2cm,0)$);
+\node [anchor=north west,TARGET] at ($(c9927dc.south) + (0,-2cm)$) {Cloned Repository};
+\draw [<-,very thick,dashed] ($(ef0d467.east) +(0.5cm,0)$) to [out=10,in=220] ($(rc9927dc.east) +(-2cm,0)$);
 \end{tikzpicture}
 \end{preview}
 \end{document}
