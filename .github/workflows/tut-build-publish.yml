@@ -82,6 +82,9 @@ jobs:
             any::ggraph
             any::easystats
             any::gridGraphics
+            any::HDInterval
+            any::bayestestR
+            any::standist
 
       - name: Install other R packages
         run: |
