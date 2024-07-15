@@ -81,13 +81,13 @@ jobs:
             any::igraph
             any::ggraph
             any::easystats
-            any::tidybayes
 
       - name: Install other R packages
         run: |
           Rscript -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
           Rscript -e "install.packages('RandomFields', repos = c('https://spatstat.r-universe.dev', 'https://cloud.r-project.org'))"
           Rscript -e "install.packages('RandomFieldsUtils', repos = c('https://spatstat.r-universe.dev', 'https://cloud.r-project.org'))"
+          Rscript -e "install.packages('tidybayes')"
 
 
       - name: Install CmdStan
