@@ -31,7 +31,7 @@ output_dir: "docs"
 
 ```{r setup, include=FALSE,warning=FALSE, message=FALSE}
 options(tinytex.engine = 'xelatex')
-knitr::read_chunk("components/35_bayesian_glm_example1.R")
+#knitr::read_chunk("components/35_bayesian_glm_example1.R")
 ```
 
 # Preparations
