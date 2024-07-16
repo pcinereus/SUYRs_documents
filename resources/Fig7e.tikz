@@ -13,21 +13,21 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{fa7e732}{color_inactive}{fa7e732}{ Initial repo a..}
-\commit{right = 1.5cm of fa7e732}{890791f}{color_inactive}{890791f}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (fa7e732) -- (890791f.west);
+\commit{}{11bf0b8}{color_inactive}{11bf0b8}{ Initial repo a..}
+\commit{right = 1.5cm of 11bf0b8}{72219f8}{color_inactive}{72219f8}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (11bf0b8) -- (72219f8.west);
     
-\commit{right = 1.5cm of 890791f}{660d452}{color_inactive}{660d452}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (890791f.east) -- (660d452.west);
+\commit{right = 1.5cm of 72219f8}{b3cbe27}{color_inactive}{b3cbe27}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (72219f8.east) -- (b3cbe27.west);
     
-\commit{right = 1.5cm of 660d452}{f2f2aa7}{color_commit}{f2f2aa7}{Bug fix in file..}
-\draw [<-,line width=3pt,draw=black!60] (660d452.east) -- (f2f2aa7.west);
+\commit{right = 1.5cm of b3cbe27}{2d77cf6}{color_commit}{2d77cf6}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (b3cbe27.east) -- (2d77cf6.west);
     
-\commit{above = 3cm of f2f2aa7}{731857d}{color_inactive}{731857d}{New feature..}
-\draw [<-,line width=3pt,draw=black!60] (660d452.north east) -- (731857d.south west);
-\branch{below = 1cm of 731857d}{Feature} 
+\commit{above = 3cm of 2d77cf6}{ed6fbf7}{color_inactive}{ed6fbf7}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (b3cbe27.north east) -- (ed6fbf7.south west);
+\branch{below = 1cm of ed6fbf7}{Feature} 
 
-\master{below = 1cm of f2f2aa7} 
+\master{below = 1cm of 2d77cf6} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
