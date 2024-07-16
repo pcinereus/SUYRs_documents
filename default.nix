@@ -1,4 +1,3 @@
-
 let
  pkgs = import (fetchTarball "https://github.com/NixOS/nixpkgs/archive/019f5c29c5afeb215587e17bf1ec31dc1913595b.tar.gz") {};
  
@@ -8,11 +7,13 @@ let
       rstan
       brms
       emmeans
-      cmdstanr;
+      quarto;
   };
     
   system_packages = builtins.attrValues {
     inherit (pkgs) 
+      quarto
+      cmdstan
       R
       glibcLocales
       nix;
