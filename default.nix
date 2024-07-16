@@ -4,7 +4,7 @@ with pkgs;
 
 let
   my-pkgs = rWrapper.override {
-    packages = with rPackages; [ dplyr ggplot2 R];
+    packages = with rPackages; [ tidyverse cmdstanr dplyr ggplot2 R];
   };
 in
 mkShell {
