@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2024-07-15">
+<meta name="dcterms.date" content="2024-07-16">
 
 <title>Introduction to R</title>
 <style>
@@ -3203,7 +3203,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 15, 2024</p>
+      <p class="date">July 16, 2024</p>
     </div>
   </div>
   
@@ -5400,23 +5400,23 @@ Q10   E2      Q10  full       15.90</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb346"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb346-1"><a href="#cb346-1"></a><span class="fu">rep</span>(<span class="fu">runif</span>(<span class="dv">1</span>), <span class="at">times =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9763246 0.9763246 0.9763246 0.9763246 0.9763246</code></pre>
+<pre><code>[1] 0.8825497 0.8825497 0.8825497 0.8825497 0.8825497</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb348"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.01787043 0.25583908 0.32905634 0.01150998 0.83639579</code></pre>
+<pre><code>[1] 0.4527540 0.3014697 0.9448989 0.1525034 0.4741565</code></pre>
 </div>
 </div>
 <p>When the function being run within <code>runif()</code> itself produces a vector of length &gt; 1, the <code>runif()</code> function combines each of the vectors together as separate columns in a matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb350"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb350-1"><a href="#cb350-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]      [,2]       [,3]      [,4]      [,5]
-[1,] 0.59435310 0.1835988 0.37624459 0.9654190 0.2383339
-[2,] 0.41950346 0.9722103 0.26306599 0.4061502 0.6956501
-[3,] 0.96500017 0.3767028 0.43142224 0.1255858 0.5910425
-[4,] 0.99170026 0.1354966 0.02523368 0.7404491 0.3254772
-[5,] 0.07153679 0.1189697 0.65700727 0.3326440 0.1349074</code></pre>
+<pre><code>          [,1]       [,2]       [,3]      [,4]       [,5]
+[1,] 0.3631847 0.01012738 0.91019117 0.3865966 0.66121655
+[2,] 0.5116107 0.87595831 0.19024321 0.7775234 0.71462138
+[3,] 0.1523369 0.50495966 0.84983981 0.5724216 0.82388557
+[4,] 0.9203789 0.12681814 0.82345621 0.4974397 0.02801728
+[5,] 0.8909944 0.74709364 0.02116957 0.2688944 0.33614913</code></pre>
 </div>
 </div>
 <section id="apply-functions-along-matrix-margins" class="level3" data-number="5.7.1">
