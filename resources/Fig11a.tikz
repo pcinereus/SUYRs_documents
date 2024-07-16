@@ -13,25 +13,25 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{a57b9ea}{color_inactive}{a57b9ea}{Initial re..}
-\commit{right = 1.5cm of a57b9ea}{ff5ade1}{color_inactive}{ff5ade1}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (a57b9ea) -- (ff5ade1.west);
+\commit{}{69d4ad0}{color_inactive}{69d4ad0}{Initial re..}
+\commit{right = 1.5cm of 69d4ad0}{50584b8}{color_inactive}{50584b8}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (69d4ad0) -- (50584b8.west);
 
-\commit{right = 1.5cm of ff5ade1}{7cb28ca}{color_inactive}{7cb28ca}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (ff5ade1.east) -- (7cb28ca.west);
+\commit{right = 1.5cm of 50584b8}{424d35a}{color_inactive}{424d35a}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (50584b8.east) -- (424d35a.west);
 
 % new commit on main
-\commit{right = 1.5cm of 7cb28ca}{81aaabc}{color_commit}{81aaabc}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (7cb28ca.east) -- (81aaabc.west);
+\commit{right = 1.5cm of 424d35a}{2ac622e}{color_commit}{2ac622e}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (424d35a.east) -- (2ac622e.west);
 
-\commit{above = 3cm of 81aaabc}{8b44d52}{color_inactive}{8b44d52}{Bug fix in..}
-\draw [<-,line width=3pt,draw=black!60] (7cb28ca.north east) -- (8b44d52.south west);
+\commit{above = 3cm of 2ac622e}{5b4e54e}{color_inactive}{5b4e54e}{Bug fix in..}
+\draw [<-,line width=3pt,draw=black!60] (424d35a.north east) -- (5b4e54e.south west);
 
-%\commit{right = 1.5cm of 8b44d52}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
-%\draw [<-,line width=3pt,draw=black!60] (8b44d52.east) -- (commitshash6.west);
-\branch{below = 1cm of 8b44d52}{Feature} 
+%\commit{right = 1.5cm of 5b4e54e}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
+%\draw [<-,line width=3pt,draw=black!60] (5b4e54e.east) -- (commitshash6.west);
+\branch{below = 1cm of 5b4e54e}{Feature} 
 
-\master{below = 1cm of 81aaabc} 
+\master{below = 1cm of 2ac622e} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 
