@@ -517,7 +517,7 @@ and confirm that it indicates that there is a hidden password.
      library(cmdstanr)
      library(brms)
      dat <- data.frame(y = rnorm(10), x = rnorm(10))
-     brm(y ~ x, data = dat, backend ="cmdstanr")
+     brm(y ~ x, data = dat, backend = "cmdstanr", silent = 0)
      ```
 
      Again, if you get output similar to that above, then the complete
