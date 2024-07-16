@@ -3474,40 +3474,35 @@ Important
 <pre><code>- CmdStanR documentation and vignettes: mc-stan.org/cmdstanr</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>- CmdStan path: /home/runner/.cmdstan/cmdstan-2.34.1</code></pre>
+<pre><code>- CmdStan path: /home/runner/.cmdstan/cmdstan-2.35.0</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>- CmdStan version: 2.34.1</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-A newer version of CmdStan is available. See ?install_cmdstan() to install it.
-To disable this check set option or environment variable cmdstanr_no_ver_check=TRUE.</code></pre>
+<pre><code>- CmdStan version: 2.35.0</code></pre>
 </div>
 </div></li>
 <li><p>ensure that the c++ toolchain (from Rtools) is correctly installed and configured</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>if the toolchain is correctly configured, install cmdstan</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul></li>
 </ul></li>
 <li><p>Ensure that cmdstan is properly configured by compiling a built in example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
-<span id="cb21-2"><a href="#cb21-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
-<span id="cb21-3"><a href="#cb21-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb21-4"><a href="#cb21-4"></a></span>
-<span id="cb21-5"><a href="#cb21-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
-<span id="cb21-6"><a href="#cb21-6"></a>  <span class="at">data =</span> data_list,</span>
-<span id="cb21-7"><a href="#cb21-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
-<span id="cb21-8"><a href="#cb21-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb21-9"><a href="#cb21-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
-<span id="cb21-10"><a href="#cb21-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
-<span id="cb21-11"><a href="#cb21-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
+<span id="cb20-3"><a href="#cb20-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
+<span id="cb20-6"><a href="#cb20-6"></a>  <span class="at">data =</span> data_list,</span>
+<span id="cb20-7"><a href="#cb20-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb20-9"><a href="#cb20-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
+<span id="cb20-10"><a href="#cb20-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Running MCMC with 4 parallel chains...
 
@@ -3550,12 +3545,12 @@ Total execution time: 0.3 seconds.</code></pre>
 <ul>
 <li><p>install the package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>test whether the whole tool chain works</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(cmdstanr)</span>
-<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: Rcpp</code></pre>
 </div>
@@ -3573,8 +3568,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 
     ar</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Compiling Stan program...</code></pre>
 </div>
@@ -3585,8 +3580,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 <pre><code>
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 8e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+Chain 1: Gradient evaluation took 9e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -3604,8 +3599,8 @@ Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 1:                0.012 seconds (Sampling)
-Chain 1:                0.025 seconds (Total)
+Chain 1:                0.013 seconds (Sampling)
+Chain 1:                0.026 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
@@ -3629,8 +3624,8 @@ Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 2:                0.014 seconds (Sampling)
-Chain 2:                0.027 seconds (Total)
+Chain 2:                0.012 seconds (Sampling)
+Chain 2:                0.025 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
@@ -3654,8 +3649,8 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 3:                0.013 seconds (Sampling)
-Chain 3:                0.026 seconds (Total)
+Chain 3:                0.014 seconds (Sampling)
+Chain 3:                0.027 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
@@ -3678,9 +3673,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.014 seconds (Warm-up)
-Chain 4:                0.014 seconds (Sampling)
-Chain 4:                0.028 seconds (Total)
+Chain 4:  Elapsed Time: 0.013 seconds (Warm-up)
+Chain 4:                0.013 seconds (Sampling)
+Chain 4:                0.026 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -3693,12 +3688,12 @@ Formula: y ~ x
 
 Regression Coefficients:
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.50      0.47    -1.44     0.42 1.00     2578     2158
-x             1.09      0.59    -0.10     2.26 1.00     2720     2138
+Intercept     0.57      0.32    -0.09     1.20 1.00     2520     2080
+x            -0.09      0.35    -0.76     0.60 1.00     2980     2157
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.11      0.33     0.66     1.92 1.00     1897     2033
+sigma     0.98      0.29     0.59     1.73 1.00     2089     2097
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -3716,7 +3711,7 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <li>open a terminal and enter</li>
 </ul>
 <div class="cell bash">
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb33-1"><a href="#cb33-1"></a><span class="ex">xcode-select</span> <span class="at">--install</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>Install <strong>cmdstan</strong> (an implementation of the STAN language)</p>
 <ul>
@@ -3724,35 +3719,35 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <ul>
 <li><p>open a new R session and issue the following</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;cmdstanr&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;https://mc-stan.org/r-packages/&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;cmdstanr&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;https://mc-stan.org/r-packages/&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>make sure the package loads</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">library</span>(cmdstanr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">library</span>(cmdstanr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>ensure that the c++ toolchain (from Rtools) is correctly installed and configured</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>if the toolchain is correctly configured, install cmdstan</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul></li>
 </ul></li>
 <li><p>Ensure that cmdstan is properly configured by compiling a built in example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
-<span id="cb39-3"><a href="#cb39-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb39-4"><a href="#cb39-4"></a></span>
-<span id="cb39-5"><a href="#cb39-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
-<span id="cb39-6"><a href="#cb39-6"></a>  <span class="at">data =</span> data_list,</span>
-<span id="cb39-7"><a href="#cb39-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
-<span id="cb39-8"><a href="#cb39-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb39-9"><a href="#cb39-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
-<span id="cb39-10"><a href="#cb39-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
-<span id="cb39-11"><a href="#cb39-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
+<span id="cb38-2"><a href="#cb38-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
+<span id="cb38-3"><a href="#cb38-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb38-4"><a href="#cb38-4"></a></span>
+<span id="cb38-5"><a href="#cb38-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
+<span id="cb38-6"><a href="#cb38-6"></a>  <span class="at">data =</span> data_list,</span>
+<span id="cb38-7"><a href="#cb38-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb38-8"><a href="#cb38-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb38-9"><a href="#cb38-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
+<span id="cb38-10"><a href="#cb38-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
+<span id="cb38-11"><a href="#cb38-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Running MCMC with 4 parallel chains...
 
@@ -3795,12 +3790,12 @@ Total execution time: 0.3 seconds.</code></pre>
 <ul>
 <li><p>install the package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>test whether the whole tool chain works</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">library</span>(cmdstanr)</span>
-<span id="cb42-2"><a href="#cb42-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: Rcpp</code></pre>
 </div>
@@ -3818,8 +3813,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 
     ar</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Compiling Stan program...</code></pre>
 </div>
@@ -3830,8 +3825,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 <pre><code>
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 8e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+Chain 1: Gradient evaluation took 9e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -3849,8 +3844,8 @@ Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 1:                0.012 seconds (Sampling)
-Chain 1:                0.025 seconds (Total)
+Chain 1:                0.013 seconds (Sampling)
+Chain 1:                0.026 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
@@ -3874,8 +3869,8 @@ Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 2:                0.014 seconds (Sampling)
-Chain 2:                0.027 seconds (Total)
+Chain 2:                0.012 seconds (Sampling)
+Chain 2:                0.025 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
@@ -3899,8 +3894,8 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 3:                0.013 seconds (Sampling)
-Chain 3:                0.026 seconds (Total)
+Chain 3:                0.014 seconds (Sampling)
+Chain 3:                0.027 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
@@ -3923,9 +3918,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.014 seconds (Warm-up)
-Chain 4:                0.014 seconds (Sampling)
-Chain 4:                0.028 seconds (Total)
+Chain 4:  Elapsed Time: 0.013 seconds (Warm-up)
+Chain 4:                0.013 seconds (Sampling)
+Chain 4:                0.026 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -3938,12 +3933,12 @@ Formula: y ~ x
 
 Regression Coefficients:
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.50      0.47    -1.44     0.42 1.00     2578     2158
-x             1.09      0.59    -0.10     2.26 1.00     2720     2138
+Intercept     0.57      0.32    -0.09     1.20 1.00     2520     2080
+x            -0.09      0.35    -0.76     0.60 1.00     2980     2157
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.11      0.33     0.66     1.92 1.00     1897     2033
+sigma     0.98      0.29     0.59     1.73 1.00     2089     2097
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -3970,35 +3965,35 @@ scale reduction factor on split chains (at convergence, Rhat = 1).</code></pre>
 <ul>
 <li><p>open a new R session and issue the following</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;cmdstanr&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;https://mc-stan.org/r-packages/&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;cmdstanr&quot;</span>, <span class="at">repos =</span> <span class="fu">c</span>(<span class="st">&quot;https://mc-stan.org/r-packages/&quot;</span>, <span class="fu">getOption</span>(<span class="st">&quot;repos&quot;</span>)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>make sure the package loads</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">library</span>(cmdstanr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a><span class="fu">library</span>(cmdstanr)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>ensure that the c++ toolchain (from Rtools) is correctly installed and configured</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>if the toolchain is correctly configured, install cmdstan</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 </ul></li>
 </ul></li>
 <li><p>Ensure that cmdstan is properly configured by compiling a built in example</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
-<span id="cb56-2"><a href="#cb56-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
-<span id="cb56-3"><a href="#cb56-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
-<span id="cb56-4"><a href="#cb56-4"></a></span>
-<span id="cb56-5"><a href="#cb56-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
-<span id="cb56-6"><a href="#cb56-6"></a>  <span class="at">data =</span> data_list,</span>
-<span id="cb56-7"><a href="#cb56-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
-<span id="cb56-8"><a href="#cb56-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
-<span id="cb56-9"><a href="#cb56-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
-<span id="cb56-10"><a href="#cb56-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
-<span id="cb56-11"><a href="#cb56-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
+<span id="cb55-2"><a href="#cb55-2"></a>mod <span class="ot">&lt;-</span> <span class="fu">cmdstan_model</span>(file)</span>
+<span id="cb55-3"><a href="#cb55-3"></a>data_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">N =</span> <span class="dv">10</span>, <span class="at">y =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">1</span>))</span>
+<span id="cb55-4"><a href="#cb55-4"></a></span>
+<span id="cb55-5"><a href="#cb55-5"></a>fit <span class="ot">&lt;-</span> mod<span class="sc">$</span><span class="fu">sample</span>(</span>
+<span id="cb55-6"><a href="#cb55-6"></a>  <span class="at">data =</span> data_list,</span>
+<span id="cb55-7"><a href="#cb55-7"></a>  <span class="at">seed =</span> <span class="dv">123</span>,</span>
+<span id="cb55-8"><a href="#cb55-8"></a>  <span class="at">chains =</span> <span class="dv">4</span>,</span>
+<span id="cb55-9"><a href="#cb55-9"></a>  <span class="at">parallel_chains =</span> <span class="dv">4</span>,</span>
+<span id="cb55-10"><a href="#cb55-10"></a>  <span class="at">refresh =</span> <span class="dv">500</span> <span class="co"># print update every 500 iters</span></span>
+<span id="cb55-11"><a href="#cb55-11"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Running MCMC with 4 parallel chains...
 
@@ -4041,12 +4036,12 @@ Total execution time: 0.3 seconds.</code></pre>
 <ul>
 <li><p>install the package</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;brms&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
 <li><p>test whether the whole tool chain works</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">library</span>(cmdstanr)</span>
-<span id="cb59-2"><a href="#cb59-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a><span class="fu">library</span>(cmdstanr)</span>
+<span id="cb58-2"><a href="#cb58-2"></a><span class="fu">library</span>(brms)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Loading required package: Rcpp</code></pre>
 </div>
@@ -4064,8 +4059,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 
     ar</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb64-1"><a href="#cb64-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
-<span id="cb64-2"><a href="#cb64-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">y =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>), <span class="at">x =</span> <span class="fu">rnorm</span>(<span class="dv">10</span>))</span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="fu">brm</span>(y <span class="sc">~</span> x, <span class="at">data =</span> dat)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Compiling Stan program...</code></pre>
 </div>
@@ -4076,8 +4071,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 <pre><code>
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 8e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.08 seconds.
+Chain 1: Gradient evaluation took 9e-06 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.09 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -4095,8 +4090,8 @@ Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 1:                0.012 seconds (Sampling)
-Chain 1:                0.025 seconds (Total)
+Chain 1:                0.013 seconds (Sampling)
+Chain 1:                0.026 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
@@ -4120,8 +4115,8 @@ Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
 Chain 2:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 2:                0.014 seconds (Sampling)
-Chain 2:                0.027 seconds (Total)
+Chain 2:                0.012 seconds (Sampling)
+Chain 2:                0.025 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
@@ -4145,8 +4140,8 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.013 seconds (Warm-up)
-Chain 3:                0.013 seconds (Sampling)
-Chain 3:                0.026 seconds (Total)
+Chain 3:                0.014 seconds (Sampling)
+Chain 3:                0.027 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
@@ -4169,9 +4164,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.014 seconds (Warm-up)
-Chain 4:                0.014 seconds (Sampling)
-Chain 4:                0.028 seconds (Total)
+Chain 4:  Elapsed Time: 0.013 seconds (Warm-up)
+Chain 4:                0.013 seconds (Sampling)
+Chain 4:                0.026 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -4184,12 +4179,12 @@ Formula: y ~ x
 
 Regression Coefficients:
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.50      0.47    -1.44     0.42 1.00     2578     2158
-x             1.09      0.59    -0.10     2.26 1.00     2720     2138
+Intercept     0.57      0.32    -0.09     1.20 1.00     2520     2080
+x            -0.09      0.35    -0.76     0.60 1.00     2980     2157
 
 Further Distributional Parameters:
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     1.11      0.33     0.66     1.92 1.00     1897     2033
+sigma     0.98      0.29     0.59     1.73 1.00     2089     2097
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -4679,643 +4674,643 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb69" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb69-1"><a href="#cb69-1"></a><span class="co">---</span></span>
-<span id="cb69-2"><a href="#cb69-2"></a><span class="an">title:</span><span class="co"> Setup instructions </span></span>
-<span id="cb69-3"><a href="#cb69-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
-<span id="cb69-4"><a href="#cb69-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb69-5"><a href="#cb69-5"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb69-6"><a href="#cb69-6"></a><span class="co">  html:</span></span>
-<span id="cb69-7"><a href="#cb69-7"></a><span class="co">    toc: true</span></span>
-<span id="cb69-8"><a href="#cb69-8"></a><span class="co">    toc-float: true</span></span>
-<span id="cb69-9"><a href="#cb69-9"></a><span class="co">    page-layout: full</span></span>
-<span id="cb69-10"><a href="#cb69-10"></a><span class="co">    number-sections: true</span></span>
-<span id="cb69-11"><a href="#cb69-11"></a><span class="co">    number-depth: 3</span></span>
-<span id="cb69-12"><a href="#cb69-12"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb69-13"><a href="#cb69-13"></a><span class="co">    code-fold: false</span></span>
-<span id="cb69-14"><a href="#cb69-14"></a><span class="co">    code-tools: true</span></span>
-<span id="cb69-15"><a href="#cb69-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
-<span id="cb69-16"><a href="#cb69-16"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb69-17"><a href="#cb69-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
-<span id="cb69-18"><a href="#cb69-18"></a><span class="co">    code-copy: true</span></span>
-<span id="cb69-19"><a href="#cb69-19"></a><span class="co">    highlight-style: atom-one</span></span>
-<span id="cb69-20"><a href="#cb69-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
-<span id="cb69-21"><a href="#cb69-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
-<span id="cb69-22"><a href="#cb69-22"></a><span class="an">crossref:</span></span>
-<span id="cb69-23"><a href="#cb69-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
-<span id="cb69-24"><a href="#cb69-24"></a><span class="co">  fig-labels: arabic</span></span>
-<span id="cb69-25"><a href="#cb69-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
-<span id="cb69-26"><a href="#cb69-26"></a><span class="co">  tbl-labels: arabic</span></span>
-<span id="cb69-27"><a href="#cb69-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
-<span id="cb69-28"><a href="#cb69-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
-<span id="cb69-29"><a href="#cb69-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
-<span id="cb69-30"><a href="#cb69-30"></a><span class="co">---</span></span>
-<span id="cb69-31"><a href="#cb69-31"></a></span>
-<span id="cb69-32"><a href="#cb69-32"></a></span>
-<span id="cb69-33"><a href="#cb69-33"></a><span class="fu"># Installing R</span></span>
-<span id="cb69-34"><a href="#cb69-34"></a></span>
-<span id="cb69-35"><a href="#cb69-35"></a>The latest version of an R installation binary (or source code) can be</span>
-<span id="cb69-36"><a href="#cb69-36"></a>downloaded from one of the [Comprehensive R Archive Network (or CRAN)</span>
-<span id="cb69-37"><a href="#cb69-37"></a>mirrors](https://cran.r-project.org/mirrors.html). Having selected one</span>
-<span id="cb69-38"><a href="#cb69-38"></a>of the (Australian) mirrors, follow one of the sets of instructions</span>
-<span id="cb69-39"><a href="#cb69-39"></a>below (depending on your operating system).</span>
-<span id="cb69-40"><a href="#cb69-40"></a></span>
-<span id="cb69-41"><a href="#cb69-41"></a>::: panel-tabset </span>
-<span id="cb69-42"><a href="#cb69-42"></a></span>
-<span id="cb69-43"><a href="#cb69-43"></a><span class="fu">## Windows</span></span>
-<span id="cb69-44"><a href="#cb69-44"></a></span>
-<span id="cb69-45"><a href="#cb69-45"></a><span class="ss">- </span>**Download R:** </span>
-<span id="cb69-46"><a href="#cb69-46"></a><span class="ss">  - </span>Go to the CRAN R-project website <span class="ot">&lt;https://cran.r-project.org/&gt;</span> and</span>
-<span id="cb69-47"><a href="#cb69-47"></a>  click on &quot;Download R for Windows&quot;.</span>
-<span id="cb69-48"><a href="#cb69-48"></a><span class="ss">  - </span>Select the &quot;base&quot; subdirectory</span>
-<span id="cb69-49"><a href="#cb69-49"></a><span class="ss">  - </span>Select the &quot;Download R-X.X.X for Windows&quot; option (where X.X.X are</span>
-<span id="cb69-50"><a href="#cb69-50"></a>  a series of version and release numbers) to download.</span>
-<span id="cb69-51"><a href="#cb69-51"></a></span>
-<span id="cb69-52"><a href="#cb69-52"></a><span class="ss">- </span>**Run the installer:** Double-click the downloaded .exe file and</span>
-<span id="cb69-53"><a href="#cb69-53"></a>  follow the installation wizard. Accept the default settings unless</span>
-<span id="cb69-54"><a href="#cb69-54"></a>  you have specific needs.</span>
-<span id="cb69-55"><a href="#cb69-55"></a></span>
-<span id="cb69-56"><a href="#cb69-56"></a><span class="ss">- </span>**Optional:** Set R as the default: Check the checkbox to set R as</span>
-<span id="cb69-57"><a href="#cb69-57"></a>  the default for R scripts during installation. This allows you to</span>
-<span id="cb69-58"><a href="#cb69-58"></a>  run R scripts by double-clicking them.</span>
-<span id="cb69-59"><a href="#cb69-59"></a></span>
-<span id="cb69-60"><a href="#cb69-60"></a><span class="ss">- </span>**Verify installation:** </span>
-<span id="cb69-61"><a href="#cb69-61"></a><span class="ss">  - </span>Open a new command prompt (Start &gt; Run &gt; cmd) and type <span class="in">`R`</span>. If the R</span>
-<span id="cb69-62"><a href="#cb69-62"></a>  console opens, the installation was successful.</span>
-<span id="cb69-63"><a href="#cb69-63"></a><span class="ss">  - </span>Alternatively, search for R in the Start menu</span>
-<span id="cb69-64"><a href="#cb69-64"></a></span>
-<span id="cb69-65"><a href="#cb69-65"></a><span class="fu">## MacOSx</span></span>
-<span id="cb69-66"><a href="#cb69-66"></a></span>
-<span id="cb69-67"><a href="#cb69-67"></a><span class="ss">- </span>**Download R:** </span>
-<span id="cb69-68"><a href="#cb69-68"></a><span class="ss">  - </span>Go to the CRAN R-project website (https://cran.r-project.org/) and</span>
-<span id="cb69-69"><a href="#cb69-69"></a>    click on &quot;Download R for macOS&quot;.</span>
-<span id="cb69-70"><a href="#cb69-70"></a><span class="ss">  - </span>Choose the latest stable version that is appropriate for your</span>
-<span id="cb69-71"><a href="#cb69-71"></a>    architecture.</span>
-<span id="cb69-72"><a href="#cb69-72"></a><span class="ss">- </span>**Open the disk image:** Double-click the downloaded .pkg file and</span>
-<span id="cb69-73"><a href="#cb69-73"></a>  drag the R application icon to your Applications folder.</span>
-<span id="cb69-74"><a href="#cb69-74"></a>  </span>
-<span id="cb69-75"><a href="#cb69-75"></a><span class="ss">- </span>**Verify installation:**</span>
-<span id="cb69-76"><a href="#cb69-76"></a><span class="ss">  - </span>Open Terminal: Go to Applications &gt; Utilities and open Terminal.</span>
-<span id="cb69-77"><a href="#cb69-77"></a><span class="ss">  - </span>Type <span class="in">`R`</span> in the Terminal window. If the R console opens, the</span>
-<span id="cb69-78"><a href="#cb69-78"></a>  installation was successful.</span>
-<span id="cb69-79"><a href="#cb69-79"></a></span>
-<span id="cb69-80"><a href="#cb69-80"></a><span class="fu">## Linux</span></span>
-<span id="cb69-81"><a href="#cb69-81"></a></span>
-<span id="cb69-82"><a href="#cb69-82"></a><span class="ss">- </span>**Open Terminal:** You can access Terminal through your application</span>
-<span id="cb69-83"><a href="#cb69-83"></a>  launcher or search bar.</span>
-<span id="cb69-84"><a href="#cb69-84"></a></span>
-<span id="cb69-85"><a href="#cb69-85"></a><span class="ss">- </span>**Install R:** The commands vary slightly depending on your Linux distribution. Here are common examples:</span>
-<span id="cb69-86"><a href="#cb69-86"></a><span class="ss">  - </span>Debian/Ubuntu: <span class="in">`sudo apt install r-base`</span></span>
-<span id="cb69-87"><a href="#cb69-87"></a><span class="ss">  - </span>Fedora/CentOS: <span class="in">`sudo yum install R`</span></span>
-<span id="cb69-88"><a href="#cb69-88"></a><span class="ss">  - </span>Arch Linux: <span class="in">`sudo pacman -S R`</span></span>
-<span id="cb69-89"><a href="#cb69-89"></a></span>
-<span id="cb69-90"><a href="#cb69-90"></a><span class="ss">- </span>**Verify installation:** Type <span class="in">`R`</span> in the Terminal window. If the R</span>
-<span id="cb69-91"><a href="#cb69-91"></a>  console opens, the installation was successful.</span>
-<span id="cb69-92"><a href="#cb69-92"></a></span>
-<span id="cb69-93"><a href="#cb69-93"></a>:::</span>
-<span id="cb69-94"><a href="#cb69-94"></a></span>
-<span id="cb69-95"><a href="#cb69-95"></a><span class="fu"># Installing Rstudio</span></span>
-<span id="cb69-96"><a href="#cb69-96"></a></span>
-<span id="cb69-97"><a href="#cb69-97"></a>:::: panel-tabset</span>
-<span id="cb69-98"><a href="#cb69-98"></a></span>
-<span id="cb69-99"><a href="#cb69-99"></a><span class="fu">#### Installing RStudio on Windows:</span></span>
-<span id="cb69-100"><a href="#cb69-100"></a></span>
-<span id="cb69-101"><a href="#cb69-101"></a><span class="ss">1. </span>**Download R:** </span>
-<span id="cb69-102"><a href="#cb69-102"></a><span class="ss">    - </span>RStudio requires R to be installed. If you have not already done</span>
-<span id="cb69-103"><a href="#cb69-103"></a>      so, download and install R from the official CRAN website.</span>
-<span id="cb69-104"><a href="#cb69-104"></a></span>
-<span id="cb69-105"><a href="#cb69-105"></a><span class="ss">2. </span>**Download RStudio:** </span>
-<span id="cb69-106"><a href="#cb69-106"></a><span class="ss">    - </span>Visit the [RStudio Download</span>
-<span id="cb69-107"><a href="#cb69-107"></a>    page](https://www.rstudio.com/products/rstudio/download/) and</span>
-<span id="cb69-108"><a href="#cb69-108"></a>    select the &quot;RStudio Desktop&quot; version compatible with your Windows</span>
-<span id="cb69-109"><a href="#cb69-109"></a>    operating system.</span>
-<span id="cb69-110"><a href="#cb69-110"></a></span>
-<span id="cb69-111"><a href="#cb69-111"></a><span class="ss">3. </span>**Install RStudio:** </span>
-<span id="cb69-112"><a href="#cb69-112"></a><span class="ss">    - </span>Run the downloaded RStudio installer and follow the installation</span>
-<span id="cb69-113"><a href="#cb69-113"></a>      wizard. </span>
-<span id="cb69-114"><a href="#cb69-114"></a><span class="ss">    - </span>Accept the default settings unless you have specific</span>
-<span id="cb69-115"><a href="#cb69-115"></a>      preferences. </span>
-<span id="cb69-116"><a href="#cb69-116"></a></span>
-<span id="cb69-117"><a href="#cb69-117"></a><span class="ss">4. </span>**Launch RStudio:**</span>
-<span id="cb69-118"><a href="#cb69-118"></a><span class="ss">    - </span>After installation, launch RStudio from the Start menu or</span>
-<span id="cb69-119"><a href="#cb69-119"></a>      desktop shortcut.</span>
-<span id="cb69-120"><a href="#cb69-120"></a></span>
-<span id="cb69-121"><a href="#cb69-121"></a><span class="fu">#### Installing RStudio on macOS:</span></span>
-<span id="cb69-122"><a href="#cb69-122"></a></span>
-<span id="cb69-123"><a href="#cb69-123"></a><span class="ss">1. </span>**Download R:**</span>
-<span id="cb69-124"><a href="#cb69-124"></a><span class="ss">    - </span>If you have not already done so, download and install R on macOS</span>
-<span id="cb69-125"><a href="#cb69-125"></a>      from the official CRAN website.</span>
-<span id="cb69-126"><a href="#cb69-126"></a></span>
-<span id="cb69-127"><a href="#cb69-127"></a><span class="ss">2. </span>**Download RStudio:**</span>
-<span id="cb69-128"><a href="#cb69-128"></a><span class="ss">    - </span>Navigate to the [RStudio Download</span>
-<span id="cb69-129"><a href="#cb69-129"></a>      page](https://www.rstudio.com/products/rstudio/download/) and</span>
-<span id="cb69-130"><a href="#cb69-130"></a>      choose the &quot;RStudio Desktop&quot; version for macOS.</span>
-<span id="cb69-131"><a href="#cb69-131"></a></span>
-<span id="cb69-132"><a href="#cb69-132"></a><span class="ss">3. </span>**Install RStudio:**</span>
-<span id="cb69-133"><a href="#cb69-133"></a><span class="ss">    - </span>Run the downloaded RStudio package, and macOS will guide you</span>
-<span id="cb69-134"><a href="#cb69-134"></a>      through the installation process.</span>
-<span id="cb69-135"><a href="#cb69-135"></a></span>
-<span id="cb69-136"><a href="#cb69-136"></a><span class="ss">4. </span>**Launch RStudio:**</span>
-<span id="cb69-137"><a href="#cb69-137"></a><span class="ss">    - </span>Open RStudio from the Applications folder or use Spotlight to</span>
-<span id="cb69-138"><a href="#cb69-138"></a>      search for it.</span>
-<span id="cb69-139"><a href="#cb69-139"></a>      </span>
-<span id="cb69-140"><a href="#cb69-140"></a><span class="fu">#### Installing RStudio on Linux:</span></span>
-<span id="cb69-141"><a href="#cb69-141"></a></span>
-<span id="cb69-142"><a href="#cb69-142"></a><span class="ss">1. </span>**Download R:**</span>
-<span id="cb69-143"><a href="#cb69-143"></a><span class="ss">    - </span>If you have not already done so, install R on your Linux</span>
-<span id="cb69-144"><a href="#cb69-144"></a>      distribution using the package manager. For example, on Ubuntu,</span>
-<span id="cb69-145"><a href="#cb69-145"></a>      run:</span>
-<span id="cb69-146"><a href="#cb69-146"></a></span>
-<span id="cb69-149"><a href="#cb69-149"></a><span class="in">```{bash}</span></span>
-<span id="cb69-150"><a href="#cb69-150"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-151"><a href="#cb69-151"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-152"><a href="#cb69-152"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-153"><a href="#cb69-153"></a><span class="fu">sudo</span> apt-get install r-base</span>
-<span id="cb69-154"><a href="#cb69-154"></a><span class="in">```</span></span>
-<span id="cb69-155"><a href="#cb69-155"></a></span>
-<span id="cb69-156"><a href="#cb69-156"></a><span class="ss">2. </span>**Download RStudio:**</span>
-<span id="cb69-157"><a href="#cb69-157"></a><span class="ss">    - </span>Visit the RStudio Download page and choose the appropriate</span>
-<span id="cb69-158"><a href="#cb69-158"></a>      RStudio Desktop version for your Linux distribution.</span>
-<span id="cb69-159"><a href="#cb69-159"></a></span>
-<span id="cb69-160"><a href="#cb69-160"></a><span class="ss">3. </span>**Install RStudio:**</span>
-<span id="cb69-161"><a href="#cb69-161"></a><span class="ss">    - </span>Run the downloaded RStudio package, and follow any additional instructions based on your Linux distribution.</span>
-<span id="cb69-162"><a href="#cb69-162"></a></span>
-<span id="cb69-163"><a href="#cb69-163"></a><span class="ss">4. </span>**Launch RStudio:**</span>
-<span id="cb69-164"><a href="#cb69-164"></a><span class="ss">    - </span>Open a terminal and type rstudio to launch RStudio.</span>
-<span id="cb69-165"><a href="#cb69-165"></a></span>
-<span id="cb69-166"><a href="#cb69-166"></a>::::</span>
-<span id="cb69-167"><a href="#cb69-167"></a></span>
-<span id="cb69-168"><a href="#cb69-168"></a></span>
-<span id="cb69-169"><a href="#cb69-169"></a><span class="fu"># Installating git</span></span>
-<span id="cb69-170"><a href="#cb69-170"></a></span>
-<span id="cb69-171"><a href="#cb69-171"></a>::: panel-tabset </span>
-<span id="cb69-172"><a href="#cb69-172"></a></span>
-<span id="cb69-173"><a href="#cb69-173"></a><span class="fu">## Windows</span></span>
-<span id="cb69-174"><a href="#cb69-174"></a></span>
-<span id="cb69-175"><a href="#cb69-175"></a>Git Bash (Command Line Version):</span>
-<span id="cb69-176"><a href="#cb69-176"></a></span>
-<span id="cb69-177"><a href="#cb69-177"></a><span class="ss">1. </span>Download the Git for Windows installer from <span class="co">[</span><span class="ot">Git for Windows</span><span class="co">](https://gitforwindows.org/)</span></span>
-<span id="cb69-178"><a href="#cb69-178"></a><span class="ss">   - </span>Click the Download button</span>
-<span id="cb69-179"><a href="#cb69-179"></a><span class="ss">   - </span>Select the latest version from the list of <span class="in">`Assets`</span></span>
-<span id="cb69-180"><a href="#cb69-180"></a><span class="ss">2. </span>Run the installer and follow the installation prompts.</span>
-<span id="cb69-181"><a href="#cb69-181"></a><span class="ss">3. </span>Choose the default options unless you have specific preferences.</span>
-<span id="cb69-182"><a href="#cb69-182"></a><span class="ss">4. </span>Select the default text editor (usually Vim) or choose another</span>
-<span id="cb69-183"><a href="#cb69-183"></a>   editor like Nano or Notepad++.</span>
-<span id="cb69-184"><a href="#cb69-184"></a><span class="ss">5. </span>Choose to use Git from the Windows Command Prompt (recommended).</span>
-<span id="cb69-185"><a href="#cb69-185"></a><span class="ss">6. </span>Complete the installation.</span>
-<span id="cb69-186"><a href="#cb69-186"></a></span>
-<span id="cb69-187"><a href="#cb69-187"></a><span class="fu">## MacOSx</span></span>
-<span id="cb69-188"><a href="#cb69-188"></a></span>
-<span id="cb69-189"><a href="#cb69-189"></a>Using Homebrew:</span>
-<span id="cb69-190"><a href="#cb69-190"></a></span>
-<span id="cb69-191"><a href="#cb69-191"></a><span class="ss">1. </span>Open Terminal.</span>
-<span id="cb69-192"><a href="#cb69-192"></a><span class="ss">2. </span>Install Homebrew if not installed:</span>
-<span id="cb69-193"><a href="#cb69-193"></a></span>
-<span id="cb69-194"><a href="#cb69-194"></a>:::: {.indented}</span>
-<span id="cb69-197"><a href="#cb69-197"></a><span class="in">```{bash}</span></span>
-<span id="cb69-198"><a href="#cb69-198"></a><span class="co">#| label: install1</span></span>
-<span id="cb69-199"><a href="#cb69-199"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-200"><a href="#cb69-200"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-201"><a href="#cb69-201"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-202"><a href="#cb69-202"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-203"><a href="#cb69-203"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-204"><a href="#cb69-204"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span>
-<span id="cb69-205"><a href="#cb69-205"></a><span class="in">```</span></span>
-<span id="cb69-206"><a href="#cb69-206"></a>:::</span>
-<span id="cb69-207"><a href="#cb69-207"></a></span>
-<span id="cb69-208"><a href="#cb69-208"></a><span class="ss">3. </span>Install Git using Homebrew:</span>
-<span id="cb69-209"><a href="#cb69-209"></a></span>
-<span id="cb69-210"><a href="#cb69-210"></a>:::: {.indented}</span>
-<span id="cb69-211"><a href="#cb69-211"></a></span>
-<span id="cb69-214"><a href="#cb69-214"></a><span class="in">```{bash}</span></span>
-<span id="cb69-215"><a href="#cb69-215"></a><span class="co">#| label: install2</span></span>
-<span id="cb69-216"><a href="#cb69-216"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-217"><a href="#cb69-217"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-218"><a href="#cb69-218"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-219"><a href="#cb69-219"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-220"><a href="#cb69-220"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-221"><a href="#cb69-221"></a><span class="ex">brew</span> install git</span>
-<span id="cb69-222"><a href="#cb69-222"></a><span class="in">```</span></span>
-<span id="cb69-223"><a href="#cb69-223"></a>::::</span>
-<span id="cb69-224"><a href="#cb69-224"></a></span>
-<span id="cb69-225"><a href="#cb69-225"></a><span class="fu">## Linux</span></span>
-<span id="cb69-226"><a href="#cb69-226"></a></span>
-<span id="cb69-227"><a href="#cb69-227"></a><span class="ss">1. </span>Open Terminal.</span>
-<span id="cb69-228"><a href="#cb69-228"></a></span>
-<span id="cb69-229"><a href="#cb69-229"></a>:::: {.indented}</span>
-<span id="cb69-230"><a href="#cb69-230"></a>Ubuntu/Debian:</span>
-<span id="cb69-231"><a href="#cb69-231"></a></span>
-<span id="cb69-234"><a href="#cb69-234"></a><span class="in">```{bash}</span></span>
-<span id="cb69-235"><a href="#cb69-235"></a><span class="co">#| label: install3a</span></span>
-<span id="cb69-236"><a href="#cb69-236"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-237"><a href="#cb69-237"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-238"><a href="#cb69-238"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-239"><a href="#cb69-239"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-240"><a href="#cb69-240"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-241"><a href="#cb69-241"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb69-242"><a href="#cb69-242"></a><span class="fu">sudo</span> apt install git</span>
-<span id="cb69-243"><a href="#cb69-243"></a><span class="in">```</span></span>
-<span id="cb69-244"><a href="#cb69-244"></a>::::</span>
-<span id="cb69-245"><a href="#cb69-245"></a></span>
-<span id="cb69-246"><a href="#cb69-246"></a>:::: {.indented}</span>
-<span id="cb69-247"><a href="#cb69-247"></a>Fedora:</span>
-<span id="cb69-248"><a href="#cb69-248"></a></span>
-<span id="cb69-251"><a href="#cb69-251"></a><span class="in">```{bash}</span></span>
-<span id="cb69-252"><a href="#cb69-252"></a><span class="co">#| label: install3b</span></span>
-<span id="cb69-253"><a href="#cb69-253"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-254"><a href="#cb69-254"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-255"><a href="#cb69-255"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-256"><a href="#cb69-256"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-257"><a href="#cb69-257"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-258"><a href="#cb69-258"></a><span class="fu">sudo</span> dnf install git</span>
-<span id="cb69-259"><a href="#cb69-259"></a><span class="in">```</span></span>
-<span id="cb69-260"><a href="#cb69-260"></a>::::</span>
-<span id="cb69-261"><a href="#cb69-261"></a></span>
-<span id="cb69-262"><a href="#cb69-262"></a>:::: {.indented}</span>
-<span id="cb69-263"><a href="#cb69-263"></a>Arch Linux:</span>
-<span id="cb69-264"><a href="#cb69-264"></a></span>
-<span id="cb69-267"><a href="#cb69-267"></a><span class="in">```{bash}</span></span>
-<span id="cb69-268"><a href="#cb69-268"></a><span class="co">#| label: install3c</span></span>
-<span id="cb69-269"><a href="#cb69-269"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-270"><a href="#cb69-270"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-271"><a href="#cb69-271"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-272"><a href="#cb69-272"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-273"><a href="#cb69-273"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-274"><a href="#cb69-274"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> git</span>
-<span id="cb69-275"><a href="#cb69-275"></a><span class="in">```</span></span>
-<span id="cb69-276"><a href="#cb69-276"></a>::::</span>
-<span id="cb69-277"><a href="#cb69-277"></a></span>
-<span id="cb69-278"><a href="#cb69-278"></a>:::: {.indented}</span>
-<span id="cb69-279"><a href="#cb69-279"></a>Linux (Red Hat/CentOS):</span>
-<span id="cb69-280"><a href="#cb69-280"></a></span>
-<span id="cb69-283"><a href="#cb69-283"></a><span class="in">```{bash}</span></span>
-<span id="cb69-284"><a href="#cb69-284"></a><span class="co">#| label: install3d</span></span>
-<span id="cb69-285"><a href="#cb69-285"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-286"><a href="#cb69-286"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-287"><a href="#cb69-287"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-288"><a href="#cb69-288"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-289"><a href="#cb69-289"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-290"><a href="#cb69-290"></a><span class="fu">sudo</span> yum install git</span>
-<span id="cb69-291"><a href="#cb69-291"></a><span class="in">```</span></span>
-<span id="cb69-292"><a href="#cb69-292"></a>::::</span>
-<span id="cb69-293"><a href="#cb69-293"></a>:::</span>
-<span id="cb69-294"><a href="#cb69-294"></a></span>
-<span id="cb69-295"><a href="#cb69-295"></a></span>
-<span id="cb69-296"><a href="#cb69-296"></a>To verify that the software is installed and accessible, open a</span>
-<span id="cb69-297"><a href="#cb69-297"></a>terminal and issue the following:</span>
-<span id="cb69-298"><a href="#cb69-298"></a></span>
-<span id="cb69-301"><a href="#cb69-301"></a><span class="in">```{bash}</span></span>
-<span id="cb69-302"><a href="#cb69-302"></a><span class="co">#| label: install4a</span></span>
-<span id="cb69-303"><a href="#cb69-303"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-304"><a href="#cb69-304"></a><span class="co">#| eval: true</span></span>
-<span id="cb69-305"><a href="#cb69-305"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-306"><a href="#cb69-306"></a><span class="co">#| engine: bash</span></span>
-<span id="cb69-307"><a href="#cb69-307"></a><span class="co">#| classes: bash</span></span>
-<span id="cb69-308"><a href="#cb69-308"></a><span class="fu">git</span> <span class="at">--version</span></span>
-<span id="cb69-309"><a href="#cb69-309"></a><span class="in">```</span></span>
-<span id="cb69-310"><a href="#cb69-310"></a></span>
-<span id="cb69-311"><a href="#cb69-311"></a>::: {.callout-tip collapse=&quot;true&quot;}</span>
-<span id="cb69-312"><a href="#cb69-312"></a><span class="fu">## Unsure how to open a terminal?</span></span>
-<span id="cb69-313"><a href="#cb69-313"></a></span>
-<span id="cb69-314"><a href="#cb69-314"></a>**Windows:**</span>
-<span id="cb69-315"><a href="#cb69-315"></a></span>
-<span id="cb69-316"><a href="#cb69-316"></a>On Windows, you can access a terminal via one of the following: </span>
-<span id="cb69-317"><a href="#cb69-317"></a></span>
-<span id="cb69-318"><a href="#cb69-318"></a><span class="ss">- </span>via the command Prompt:</span>
-<span id="cb69-319"><a href="#cb69-319"></a><span class="ss">  - </span>Press <span class="in">`Win + R`</span> to open the Run dialog.</span>
-<span id="cb69-320"><a href="#cb69-320"></a><span class="ss">  - </span>Type <span class="in">`cmd`</span> and press <span class="in">`Enter`</span>.</span>
-<span id="cb69-321"><a href="#cb69-321"></a></span>
-<span id="cb69-322"><a href="#cb69-322"></a><span class="ss">- </span>via PowerShell:</span>
-<span id="cb69-323"><a href="#cb69-323"></a><span class="ss">  - </span>Press <span class="in">`Win + X`</span> and select &quot;Windows PowerShell.&quot;</span>
-<span id="cb69-324"><a href="#cb69-324"></a></span>
-<span id="cb69-325"><a href="#cb69-325"></a><span class="ss">- </span>Git Bash (Optional):</span>
-<span id="cb69-326"><a href="#cb69-326"></a><span class="ss">  - </span>if Git is installed (which we are hoping it is!), open &quot;Git Bash&quot; for a Unix-like terminal experience.</span>
-<span id="cb69-327"><a href="#cb69-327"></a></span>
-<span id="cb69-328"><a href="#cb69-328"></a>**MacOS:**</span>
-<span id="cb69-329"><a href="#cb69-329"></a></span>
-<span id="cb69-330"><a href="#cb69-330"></a><span class="ss">- </span>via Terminal:</span>
-<span id="cb69-331"><a href="#cb69-331"></a><span class="ss">  - </span>Press <span class="in">`Cmd + Space`</span> to open Spotlight.</span>
-<span id="cb69-332"><a href="#cb69-332"></a><span class="ss">  - </span>Type <span class="in">`terminal`</span> and press <span class="in">`Enter`</span>.</span>
-<span id="cb69-333"><a href="#cb69-333"></a></span>
-<span id="cb69-334"><a href="#cb69-334"></a>**Linux:**</span>
-<span id="cb69-335"><a href="#cb69-335"></a></span>
-<span id="cb69-336"><a href="#cb69-336"></a>Oh please. You cannot seriously tell me that you are using Linux and</span>
-<span id="cb69-337"><a href="#cb69-337"></a>don&#39;t know how to access a terminal.</span>
-<span id="cb69-338"><a href="#cb69-338"></a>:::</span>
-<span id="cb69-339"><a href="#cb69-339"></a></span>
-<span id="cb69-340"><a href="#cb69-340"></a>In the command above, pay particular attention to the number of</span>
-<span id="cb69-341"><a href="#cb69-341"></a>hyphens in the above command - there are two in a row and no spaces</span>
-<span id="cb69-342"><a href="#cb69-342"></a>between the <span class="in">`--`</span> and the word <span class="in">`version`</span>.</span>
-<span id="cb69-343"><a href="#cb69-343"></a></span>
-<span id="cb69-344"><a href="#cb69-344"></a>If you get output similar to above (an indication of what version of</span>
-<span id="cb69-345"><a href="#cb69-345"></a>git you have on your system), then it is likely to be properly</span>
-<span id="cb69-346"><a href="#cb69-346"></a>installed. If instead you get an error message, then it is likely that</span>
-<span id="cb69-347"><a href="#cb69-347"></a>git is not properly installed and you should try again.</span>
-<span id="cb69-348"><a href="#cb69-348"></a></span>
-<span id="cb69-349"><a href="#cb69-349"></a></span>
-<span id="cb69-350"><a href="#cb69-350"></a><span class="fu"># Setup a free github account</span></span>
-<span id="cb69-351"><a href="#cb69-351"></a></span>
-<span id="cb69-352"><a href="#cb69-352"></a>To create a **free** github account:</span>
-<span id="cb69-353"><a href="#cb69-353"></a></span>
-<span id="cb69-354"><a href="#cb69-354"></a><span class="ss">1. </span>visit <span class="ot">&lt;https://github.com&gt;</span> and click &quot;Sign up for github&quot;</span>
-<span id="cb69-355"><a href="#cb69-355"></a><span class="ss">2. </span>register by providing your prefered email address, a username and</span>
-<span id="cb69-356"><a href="#cb69-356"></a>   a password when prompted</span>
-<span id="cb69-357"><a href="#cb69-357"></a><span class="ss">3. </span>to complete the account activation, you will need to verify your </span>
-<span id="cb69-358"><a href="#cb69-358"></a>   details via an email sent to your nominated email address</span>
-<span id="cb69-359"><a href="#cb69-359"></a></span>
-<span id="cb69-360"><a href="#cb69-360"></a>As of the start of 2024, github now requires Two-Factor Authentication</span>
-<span id="cb69-361"><a href="#cb69-361"></a>(2FA) for enhanced security.  Whenever you login to github (or are</span>
-<span id="cb69-362"><a href="#cb69-362"></a>prompted for a password, you will also need to use 2FA. To setup 2FA:</span>
-<span id="cb69-363"><a href="#cb69-363"></a></span>
-<span id="cb69-364"><a href="#cb69-364"></a><span class="ss">1. </span>click on your profile picture in the top right corner.</span>
-<span id="cb69-365"><a href="#cb69-365"></a><span class="ss">2. </span>select &quot;Settings&quot; from the dropdown menu.</span>
-<span id="cb69-366"><a href="#cb69-366"></a><span class="ss">3. </span>select &quot;Password and authentication&quot; in the left sidebar.</span>
-<span id="cb69-367"><a href="#cb69-367"></a><span class="ss">4. </span>under &quot;Two-factor authentication&quot; section, click &quot;Enable&quot;.</span>
-<span id="cb69-368"><a href="#cb69-368"></a><span class="ss">5. </span>choose your preferred method (authenticator app or SMS) and follow </span>
-<span id="cb69-369"><a href="#cb69-369"></a>   the prompts to set it up.</span>
-<span id="cb69-370"><a href="#cb69-370"></a></span>
-<span id="cb69-371"><a href="#cb69-371"></a>Passwords and Two-Factor Authentication (2FA) are used when you (as a</span>
-<span id="cb69-372"><a href="#cb69-372"></a>human) securely login and interact directly with the GitHub website.</span>
-<span id="cb69-373"><a href="#cb69-373"></a>However, it is also possible to have other tools (such as <span class="in">`git`</span>)</span>
-<span id="cb69-374"><a href="#cb69-374"></a>interact with Github on your behalf via an Application Programming</span>
-<span id="cb69-375"><a href="#cb69-375"></a>Interfacet (API).  Passwords/2FA are not appropriate to authenticate </span>
-<span id="cb69-376"><a href="#cb69-376"></a>these machine to machine communications.  Instead, Github requires the</span>
-<span id="cb69-377"><a href="#cb69-377"></a>use of a Personal Access Token (PAT). PATs offer a more secure and granular </span>
-<span id="cb69-378"><a href="#cb69-378"></a>approach, allowing users to control access without exposing their</span>
-<span id="cb69-379"><a href="#cb69-379"></a>account password.</span>
-<span id="cb69-380"><a href="#cb69-380"></a></span>
-<span id="cb69-381"><a href="#cb69-381"></a>To generate a Personal Access Token (PAT):</span>
-<span id="cb69-382"><a href="#cb69-382"></a></span>
-<span id="cb69-383"><a href="#cb69-383"></a><span class="ss">1. </span>click on your profile picture in the top right corner.</span>
-<span id="cb69-384"><a href="#cb69-384"></a><span class="ss">2. </span>select &quot;Settings&quot; from the dropdown menu.</span>
-<span id="cb69-385"><a href="#cb69-385"></a><span class="ss">3. </span>select &quot;Developer settings&quot; from the bottom of the left sidebar.</span>
-<span id="cb69-386"><a href="#cb69-386"></a><span class="ss">4. </span>select &quot;Personal access tokens&quot; from the left sidebar.</span>
-<span id="cb69-387"><a href="#cb69-387"></a><span class="ss">5. </span>select &quot;Tokens (classic)&quot; from the dropdown menu</span>
-<span id="cb69-388"><a href="#cb69-388"></a><span class="ss">6. </span>click &quot;Generate new token&quot;</span>
-<span id="cb69-389"><a href="#cb69-389"></a><span class="ss">7. </span>select &quot;Generate new token (classic)&quot; from the dropdown menu</span>
-<span id="cb69-390"><a href="#cb69-390"></a><span class="ss">8. </span>at this point you will likely be prompted for your password</span>
-<span id="cb69-391"><a href="#cb69-391"></a><span class="ss">9. </span>provide a &quot;note&quot; - this is more of a short description of what the</span>
-<span id="cb69-392"><a href="#cb69-392"></a>   token is to be used for (in the example below, I have entered &quot;git push/pull&quot;</span>
-<span id="cb69-393"><a href="#cb69-393"></a>   to remind me that this is a simple token for regular push/pull interaction</span>
-<span id="cb69-394"><a href="#cb69-394"></a>   between my local and remote repositories).</span>
-<span id="cb69-395"><a href="#cb69-395"></a></span>
-<span id="cb69-396"><a href="#cb69-396"></a>    <span class="al">![](../resources/rstudio_githubtoken1.png)</span></span>
-<span id="cb69-397"><a href="#cb69-397"></a></span>
-<span id="cb69-398"><a href="#cb69-398"></a>   You also need to provide an expiration. Although not secure or recommended,</span>
-<span id="cb69-399"><a href="#cb69-399"></a>   I have selected &quot;No expiration&quot; as I don&#39;t want to have to re-do my PAT</span>
-<span id="cb69-400"><a href="#cb69-400"></a>   across multiple machines too regularly.</span>
-<span id="cb69-401"><a href="#cb69-401"></a></span>
-<span id="cb69-402"><a href="#cb69-402"></a>   Finally, you also need to indicate **scope** (what activities you are granting permission</span>
-<span id="cb69-403"><a href="#cb69-403"></a>   for the tools to be able to perform).  In this case, I have ticked the </span>
-<span id="cb69-404"><a href="#cb69-404"></a>   &quot;repo&quot; box.  This grants general rea/write access to my repositories.  I have </span>
-<span id="cb69-405"><a href="#cb69-405"></a>   not granted permission for more administration like activities such as </span>
-<span id="cb69-406"><a href="#cb69-406"></a>   managing teams, deleting repositories, etc - these activities I am happy to </span>
-<span id="cb69-407"><a href="#cb69-407"></a>   perform myself via the website.</span>
-<span id="cb69-408"><a href="#cb69-408"></a><span class="ss">10. </span>click &quot;Generate token&quot; and securely copy the generated token.  Until this is stored</span>
-<span id="cb69-409"><a href="#cb69-409"></a>    safely (see below) do not close the page, because Github will never show you this</span>
-<span id="cb69-410"><a href="#cb69-410"></a>    PAT again.</span>
-<span id="cb69-411"><a href="#cb69-411"></a></span>
-<span id="cb69-412"><a href="#cb69-412"></a>:::: {.indented}</span>
-<span id="cb69-413"><a href="#cb69-413"></a>::: {.callout-important collapse=&quot;false&quot;}</span>
-<span id="cb69-414"><a href="#cb69-414"></a></span>
-<span id="cb69-415"><a href="#cb69-415"></a>Important: Store your PAT safely as you won&#39;t be able to see it again!</span>
-<span id="cb69-416"><a href="#cb69-416"></a>Ideally, you should store this PAT in a digital wallet. Digital</span>
-<span id="cb69-417"><a href="#cb69-417"></a>wallets vary according to operating systems. R users might like to use</span>
-<span id="cb69-418"><a href="#cb69-418"></a>the <span class="in">`r`</span> function from the <span class="in">`asdf`</span> package (which you will need to</span>
-<span id="cb69-419"><a href="#cb69-419"></a>install prior) as follows in order to store the PAT.</span>
-<span id="cb69-420"><a href="#cb69-420"></a></span>
-<span id="cb69-421"><a href="#cb69-421"></a>**In an R console, enter:**</span>
-<span id="cb69-422"><a href="#cb69-422"></a></span>
-<span id="cb69-425"><a href="#cb69-425"></a><span class="in">```{r}</span></span>
-<span id="cb69-426"><a href="#cb69-426"></a><span class="co">#| label: PAT</span></span>
-<span id="cb69-427"><a href="#cb69-427"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-428"><a href="#cb69-428"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-429"><a href="#cb69-429"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-430"><a href="#cb69-430"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span>
-<span id="cb69-431"><a href="#cb69-431"></a><span class="in">```</span></span>
-<span id="cb69-432"><a href="#cb69-432"></a></span>
-<span id="cb69-433"><a href="#cb69-433"></a>When propted for a password, paste in the copied PAT that hopefully is still in your</span>
-<span id="cb69-434"><a href="#cb69-434"></a>clipboard - else you might need to re-copy it.</span>
-<span id="cb69-435"><a href="#cb69-435"></a></span>
-<span id="cb69-436"><a href="#cb69-436"></a>To confirm that you have successfully stored your PAT in your wallet, you can:</span>
-<span id="cb69-439"><a href="#cb69-439"></a><span class="in">```{r}</span></span>
-<span id="cb69-440"><a href="#cb69-440"></a><span class="co">#| label: PAT2</span></span>
-<span id="cb69-441"><a href="#cb69-441"></a><span class="co">#| cache: false</span></span>
-<span id="cb69-442"><a href="#cb69-442"></a><span class="co">#| echo: true</span></span>
-<span id="cb69-443"><a href="#cb69-443"></a><span class="co">#| eval: false</span></span>
-<span id="cb69-444"><a href="#cb69-444"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_get</span>()</span>
-<span id="cb69-445"><a href="#cb69-445"></a><span class="in">```</span></span>
-<span id="cb69-446"><a href="#cb69-446"></a></span>
-<span id="cb69-447"><a href="#cb69-447"></a>and confirm that it indicates that there is a hidden password.</span>
-<span id="cb69-448"><a href="#cb69-448"></a></span>
-<span id="cb69-449"><a href="#cb69-449"></a></span>
-<span id="cb69-450"><a href="#cb69-450"></a>:::</span>
-<span id="cb69-451"><a href="#cb69-451"></a>::::</span>
-<span id="cb69-452"><a href="#cb69-452"></a></span>
-<span id="cb69-453"><a href="#cb69-453"></a></span>
-<span id="cb69-454"><a href="#cb69-454"></a><span class="fu"># Installing stan (for Bayesian modelling)</span></span>
-<span id="cb69-455"><a href="#cb69-455"></a></span>
-<span id="cb69-456"><a href="#cb69-456"></a>::: panel-tabset </span>
-<span id="cb69-457"><a href="#cb69-457"></a></span>
-<span id="cb69-458"><a href="#cb69-458"></a><span class="fu">## Windows</span></span>
-<span id="cb69-459"><a href="#cb69-459"></a></span>
-<span id="cb69-460"><a href="#cb69-460"></a><span class="ss">1. </span>Install and setup **Rtools** (a collection of R focused build tools</span>
-<span id="cb69-461"><a href="#cb69-461"></a>   for windows)</span>
-<span id="cb69-462"><a href="#cb69-462"></a><span class="ss">   - </span>go to CRAN Rtools website</span>
-<span id="cb69-463"><a href="#cb69-463"></a>     <span class="ot">&lt;https://cran.r-project.org/bin/windows/Rtools/&gt;</span></span>
-<span id="cb69-464"><a href="#cb69-464"></a><span class="ss">   - </span>click on the Rtools version that matches the major version of R</span>
-<span id="cb69-465"><a href="#cb69-465"></a>     you are using.</span>
-<span id="cb69-466"><a href="#cb69-466"></a><span class="ss">   - </span>click on the installer link (midway down the page) to download the installer</span>
-<span id="cb69-467"><a href="#cb69-467"></a><span class="ss">   - </span>run the installer</span>
-<span id="cb69-468"><a href="#cb69-468"></a><span class="ss">   - </span>follow all defaults during the installation process</span>
-<span id="cb69-469"><a href="#cb69-469"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
-<span id="cb69-470"><a href="#cb69-470"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
-<span id="cb69-471"><a href="#cb69-471"></a><span class="ss">     - </span>open a new R session and issue the following</span>
-<span id="cb69-472"><a href="#cb69-472"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-473"><a href="#cb69-473"></a><span class="in">       #| label: install_cmdstan1</span></span>
-<span id="cb69-474"><a href="#cb69-474"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-475"><a href="#cb69-475"></a><span class="in">       install.packages(&quot;cmdstanr&quot;, repos = c(&quot;https://mc-stan.org/r-packages/&quot;, getOption(&quot;repos&quot;)))</span></span>
-<span id="cb69-476"><a href="#cb69-476"></a><span class="in">       ```</span></span>
-<span id="cb69-477"><a href="#cb69-477"></a><span class="ss">     - </span>make sure the package loads</span>
-<span id="cb69-478"><a href="#cb69-478"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-479"><a href="#cb69-479"></a><span class="in">       #| label: install_cmdstan2</span></span>
-<span id="cb69-480"><a href="#cb69-480"></a><span class="in">       #| eval: true</span></span>
-<span id="cb69-481"><a href="#cb69-481"></a><span class="in">       library(cmdstanr)</span></span>
-<span id="cb69-482"><a href="#cb69-482"></a><span class="in">       ```</span></span>
-<span id="cb69-483"><a href="#cb69-483"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
-<span id="cb69-484"><a href="#cb69-484"></a>       installed and configured</span>
-<span id="cb69-485"><a href="#cb69-485"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-486"><a href="#cb69-486"></a><span class="in">       #| label: install_cmdstan3</span></span>
-<span id="cb69-487"><a href="#cb69-487"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-488"><a href="#cb69-488"></a><span class="in">       check_cmdstan_toolchain()</span></span>
-<span id="cb69-489"><a href="#cb69-489"></a><span class="in">       ```</span></span>
-<span id="cb69-490"><a href="#cb69-490"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb69-491"><a href="#cb69-491"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-492"><a href="#cb69-492"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb69-493"><a href="#cb69-493"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-494"><a href="#cb69-494"></a><span class="in">       install_cmdstan(cores = 2)</span></span>
-<span id="cb69-495"><a href="#cb69-495"></a><span class="in">       ```</span></span>
-<span id="cb69-496"><a href="#cb69-496"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb69-497"><a href="#cb69-497"></a>   <span class="in">```{r}</span></span>
-<span id="cb69-498"><a href="#cb69-498"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb69-499"><a href="#cb69-499"></a><span class="in">   #| eval: true</span></span>
-<span id="cb69-500"><a href="#cb69-500"></a><span class="in">   #| cache: true</span></span>
-<span id="cb69-501"><a href="#cb69-501"></a><span class="in">   file &lt;- file.path(cmdstan_path(), &quot;examples&quot;, &quot;bernoulli&quot;, &quot;bernoulli.stan&quot;)</span></span>
-<span id="cb69-502"><a href="#cb69-502"></a><span class="in">   mod &lt;- cmdstan_model(file)</span></span>
-<span id="cb69-503"><a href="#cb69-503"></a><span class="in">   data_list &lt;- list(N = 10, y = c(0,1,0,0,0,0,0,0,0,1))</span></span>
-<span id="cb69-504"><a href="#cb69-504"></a></span>
-<span id="cb69-505"><a href="#cb69-505"></a><span class="in">   fit &lt;- mod$sample(</span></span>
-<span id="cb69-506"><a href="#cb69-506"></a><span class="in">     data = data_list,</span></span>
-<span id="cb69-507"><a href="#cb69-507"></a><span class="in">     seed = 123,</span></span>
-<span id="cb69-508"><a href="#cb69-508"></a><span class="in">     chains = 4,</span></span>
-<span id="cb69-509"><a href="#cb69-509"></a><span class="in">     parallel_chains = 4,</span></span>
-<span id="cb69-510"><a href="#cb69-510"></a><span class="in">     refresh = 500 # print update every 500 iters</span></span>
-<span id="cb69-511"><a href="#cb69-511"></a><span class="in">   )</span></span>
-<span id="cb69-512"><a href="#cb69-512"></a><span class="in">   ```</span></span>
-<span id="cb69-513"><a href="#cb69-513"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb69-514"><a href="#cb69-514"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb69-515"><a href="#cb69-515"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb69-516"><a href="#cb69-516"></a><span class="ss">   - </span>install the package</span>
-<span id="cb69-517"><a href="#cb69-517"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-518"><a href="#cb69-518"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb69-519"><a href="#cb69-519"></a><span class="in">     #| eval: false</span></span>
-<span id="cb69-520"><a href="#cb69-520"></a><span class="in">     install.packages(&quot;brms&quot;)</span></span>
-<span id="cb69-521"><a href="#cb69-521"></a><span class="in">     ```</span></span>
-<span id="cb69-522"><a href="#cb69-522"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb69-523"><a href="#cb69-523"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-524"><a href="#cb69-524"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb69-525"><a href="#cb69-525"></a><span class="in">     #| eval: true</span></span>
-<span id="cb69-526"><a href="#cb69-526"></a><span class="in">     #| cache: true</span></span>
-<span id="cb69-527"><a href="#cb69-527"></a><span class="in">     library(cmdstanr)</span></span>
-<span id="cb69-528"><a href="#cb69-528"></a><span class="in">     library(brms)</span></span>
-<span id="cb69-529"><a href="#cb69-529"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
-<span id="cb69-530"><a href="#cb69-530"></a><span class="in">     brm(y ~ x, data = dat)</span></span>
-<span id="cb69-531"><a href="#cb69-531"></a><span class="in">     ```</span></span>
-<span id="cb69-532"><a href="#cb69-532"></a></span>
-<span id="cb69-533"><a href="#cb69-533"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb69-534"><a href="#cb69-534"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb69-535"><a href="#cb69-535"></a></span>
-<span id="cb69-536"><a href="#cb69-536"></a><span class="fu">## MacOSx</span></span>
-<span id="cb69-537"><a href="#cb69-537"></a></span>
-<span id="cb69-538"><a href="#cb69-538"></a><span class="ss">1. </span>Install and setup **Xcode** (a collection of build tools for</span>
-<span id="cb69-539"><a href="#cb69-539"></a>   MacOSX)</span>
-<span id="cb69-540"><a href="#cb69-540"></a><span class="ss">   - </span>open a terminal and enter</span>
-<span id="cb69-541"><a href="#cb69-541"></a>   <span class="in">```{bash}</span></span>
-<span id="cb69-542"><a href="#cb69-542"></a><span class="in">   #| label: install_xcode</span></span>
-<span id="cb69-543"><a href="#cb69-543"></a><span class="in">   #| eval: false</span></span>
-<span id="cb69-544"><a href="#cb69-544"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb69-545"><a href="#cb69-545"></a><span class="in">   #| classes: bash</span></span>
-<span id="cb69-546"><a href="#cb69-546"></a><span class="in">   xcode-select --install</span></span>
-<span id="cb69-547"><a href="#cb69-547"></a><span class="in">   ```</span></span>
-<span id="cb69-548"><a href="#cb69-548"></a></span>
-<span id="cb69-549"><a href="#cb69-549"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
-<span id="cb69-550"><a href="#cb69-550"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
-<span id="cb69-551"><a href="#cb69-551"></a><span class="ss">     - </span>open a new R session and issue the following</span>
-<span id="cb69-552"><a href="#cb69-552"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-553"><a href="#cb69-553"></a><span class="in">       #| label: install_cmdstan1</span></span>
-<span id="cb69-554"><a href="#cb69-554"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-555"><a href="#cb69-555"></a><span class="in">       #| cache: true</span></span>
-<span id="cb69-556"><a href="#cb69-556"></a><span class="in">       ```</span></span>
-<span id="cb69-557"><a href="#cb69-557"></a><span class="ss">     - </span>make sure the package loads</span>
-<span id="cb69-558"><a href="#cb69-558"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-559"><a href="#cb69-559"></a><span class="in">       #| label: install_cmdstan2</span></span>
-<span id="cb69-560"><a href="#cb69-560"></a><span class="in">       #| eval: true</span></span>
-<span id="cb69-561"><a href="#cb69-561"></a><span class="in">       #| cache: true</span></span>
-<span id="cb69-562"><a href="#cb69-562"></a><span class="in">       ```</span></span>
-<span id="cb69-563"><a href="#cb69-563"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
-<span id="cb69-564"><a href="#cb69-564"></a>       installed and configured</span>
-<span id="cb69-565"><a href="#cb69-565"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-566"><a href="#cb69-566"></a><span class="in">       #| label: install_cmdstan3</span></span>
-<span id="cb69-567"><a href="#cb69-567"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-568"><a href="#cb69-568"></a><span class="in">       ```</span></span>
-<span id="cb69-569"><a href="#cb69-569"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb69-570"><a href="#cb69-570"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-571"><a href="#cb69-571"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb69-572"><a href="#cb69-572"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-573"><a href="#cb69-573"></a><span class="in">       ```</span></span>
-<span id="cb69-574"><a href="#cb69-574"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb69-575"><a href="#cb69-575"></a>   <span class="in">```{r}</span></span>
-<span id="cb69-576"><a href="#cb69-576"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb69-577"><a href="#cb69-577"></a><span class="in">   #| eval: true</span></span>
-<span id="cb69-578"><a href="#cb69-578"></a><span class="in">   #| cache: true</span></span>
-<span id="cb69-579"><a href="#cb69-579"></a><span class="in">   ```</span></span>
-<span id="cb69-580"><a href="#cb69-580"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb69-581"><a href="#cb69-581"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb69-582"><a href="#cb69-582"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb69-583"><a href="#cb69-583"></a><span class="ss">   - </span>install the package</span>
-<span id="cb69-584"><a href="#cb69-584"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-585"><a href="#cb69-585"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb69-586"><a href="#cb69-586"></a><span class="in">     #| eval: false</span></span>
-<span id="cb69-587"><a href="#cb69-587"></a><span class="in">     ```</span></span>
-<span id="cb69-588"><a href="#cb69-588"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb69-589"><a href="#cb69-589"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-590"><a href="#cb69-590"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb69-591"><a href="#cb69-591"></a><span class="in">     #| eval: true</span></span>
-<span id="cb69-592"><a href="#cb69-592"></a><span class="in">     #| cache: true</span></span>
-<span id="cb69-593"><a href="#cb69-593"></a><span class="in">     ```</span></span>
-<span id="cb69-594"><a href="#cb69-594"></a></span>
-<span id="cb69-595"><a href="#cb69-595"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb69-596"><a href="#cb69-596"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb69-597"><a href="#cb69-597"></a>     </span>
-<span id="cb69-598"><a href="#cb69-598"></a><span class="fu">## Linux</span></span>
-<span id="cb69-599"><a href="#cb69-599"></a></span>
-<span id="cb69-600"><a href="#cb69-600"></a><span class="ss">1. </span>Ensure that you have installed (via your package manager) the</span>
-<span id="cb69-601"><a href="#cb69-601"></a>   following dependencies:</span>
-<span id="cb69-602"><a href="#cb69-602"></a><span class="ss">   - </span>build-essential</span>
-<span id="cb69-603"><a href="#cb69-603"></a><span class="ss">   - </span>g++</span>
-<span id="cb69-604"><a href="#cb69-604"></a><span class="ss">   - </span>gcc</span>
-<span id="cb69-605"><a href="#cb69-605"></a><span class="ss">   - </span>curl</span>
-<span id="cb69-606"><a href="#cb69-606"></a><span class="ss">   - </span>libcurl4-openssl-dev</span>
-<span id="cb69-607"><a href="#cb69-607"></a></span>
-<span id="cb69-608"><a href="#cb69-608"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
-<span id="cb69-609"><a href="#cb69-609"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
-<span id="cb69-610"><a href="#cb69-610"></a><span class="ss">     - </span>open a new R session and issue the following</span>
-<span id="cb69-611"><a href="#cb69-611"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-612"><a href="#cb69-612"></a><span class="in">       #| label: install_cmdstan1</span></span>
-<span id="cb69-613"><a href="#cb69-613"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-614"><a href="#cb69-614"></a><span class="in">       ```</span></span>
-<span id="cb69-615"><a href="#cb69-615"></a><span class="ss">     - </span>make sure the package loads</span>
-<span id="cb69-616"><a href="#cb69-616"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-617"><a href="#cb69-617"></a><span class="in">       #| label: install_cmdstan2</span></span>
-<span id="cb69-618"><a href="#cb69-618"></a><span class="in">       #| eval: true</span></span>
-<span id="cb69-619"><a href="#cb69-619"></a><span class="in">       #| cache: true</span></span>
-<span id="cb69-620"><a href="#cb69-620"></a><span class="in">       ```</span></span>
-<span id="cb69-621"><a href="#cb69-621"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
-<span id="cb69-622"><a href="#cb69-622"></a>       installed and configured</span>
-<span id="cb69-623"><a href="#cb69-623"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-624"><a href="#cb69-624"></a><span class="in">       #| label: install_cmdstan3</span></span>
-<span id="cb69-625"><a href="#cb69-625"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-626"><a href="#cb69-626"></a><span class="in">       ```</span></span>
-<span id="cb69-627"><a href="#cb69-627"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb69-628"><a href="#cb69-628"></a>       <span class="in">```{r}</span></span>
-<span id="cb69-629"><a href="#cb69-629"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb69-630"><a href="#cb69-630"></a><span class="in">       #| eval: false</span></span>
-<span id="cb69-631"><a href="#cb69-631"></a><span class="in">       ```</span></span>
-<span id="cb69-632"><a href="#cb69-632"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb69-633"><a href="#cb69-633"></a>   <span class="in">```{r}</span></span>
-<span id="cb69-634"><a href="#cb69-634"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb69-635"><a href="#cb69-635"></a><span class="in">   #| eval: true</span></span>
-<span id="cb69-636"><a href="#cb69-636"></a><span class="in">   #| cache: true</span></span>
-<span id="cb69-637"><a href="#cb69-637"></a><span class="in">   ```</span></span>
-<span id="cb69-638"><a href="#cb69-638"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb69-639"><a href="#cb69-639"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb69-640"><a href="#cb69-640"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb69-641"><a href="#cb69-641"></a><span class="ss">   - </span>install the package</span>
-<span id="cb69-642"><a href="#cb69-642"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-643"><a href="#cb69-643"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb69-644"><a href="#cb69-644"></a><span class="in">     #| eval: false</span></span>
-<span id="cb69-645"><a href="#cb69-645"></a><span class="in">     ```</span></span>
-<span id="cb69-646"><a href="#cb69-646"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb69-647"><a href="#cb69-647"></a>     <span class="in">```{r}</span></span>
-<span id="cb69-648"><a href="#cb69-648"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb69-649"><a href="#cb69-649"></a><span class="in">     #| eval: true</span></span>
-<span id="cb69-650"><a href="#cb69-650"></a><span class="in">     #| cache: true</span></span>
-<span id="cb69-651"><a href="#cb69-651"></a><span class="in">     ```</span></span>
-<span id="cb69-652"><a href="#cb69-652"></a></span>
-<span id="cb69-653"><a href="#cb69-653"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb69-654"><a href="#cb69-654"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb69-655"><a href="#cb69-655"></a>:::</span>
-<span id="cb69-656"><a href="#cb69-656"></a></span>
-<span id="cb69-657"><a href="#cb69-657"></a></span>
+<div class="sourceCode" id="cb68" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb68-1"><a href="#cb68-1"></a><span class="co">---</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a><span class="an">title:</span><span class="co"> Setup instructions </span></span>
+<span id="cb68-3"><a href="#cb68-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
+<span id="cb68-4"><a href="#cb68-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb68-5"><a href="#cb68-5"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb68-6"><a href="#cb68-6"></a><span class="co">  html:</span></span>
+<span id="cb68-7"><a href="#cb68-7"></a><span class="co">    toc: true</span></span>
+<span id="cb68-8"><a href="#cb68-8"></a><span class="co">    toc-float: true</span></span>
+<span id="cb68-9"><a href="#cb68-9"></a><span class="co">    page-layout: full</span></span>
+<span id="cb68-10"><a href="#cb68-10"></a><span class="co">    number-sections: true</span></span>
+<span id="cb68-11"><a href="#cb68-11"></a><span class="co">    number-depth: 3</span></span>
+<span id="cb68-12"><a href="#cb68-12"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb68-13"><a href="#cb68-13"></a><span class="co">    code-fold: false</span></span>
+<span id="cb68-14"><a href="#cb68-14"></a><span class="co">    code-tools: true</span></span>
+<span id="cb68-15"><a href="#cb68-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
+<span id="cb68-16"><a href="#cb68-16"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb68-17"><a href="#cb68-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
+<span id="cb68-18"><a href="#cb68-18"></a><span class="co">    code-copy: true</span></span>
+<span id="cb68-19"><a href="#cb68-19"></a><span class="co">    highlight-style: atom-one</span></span>
+<span id="cb68-20"><a href="#cb68-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
+<span id="cb68-21"><a href="#cb68-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
+<span id="cb68-22"><a href="#cb68-22"></a><span class="an">crossref:</span></span>
+<span id="cb68-23"><a href="#cb68-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
+<span id="cb68-24"><a href="#cb68-24"></a><span class="co">  fig-labels: arabic</span></span>
+<span id="cb68-25"><a href="#cb68-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
+<span id="cb68-26"><a href="#cb68-26"></a><span class="co">  tbl-labels: arabic</span></span>
+<span id="cb68-27"><a href="#cb68-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb68-28"><a href="#cb68-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
+<span id="cb68-29"><a href="#cb68-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
+<span id="cb68-30"><a href="#cb68-30"></a><span class="co">---</span></span>
+<span id="cb68-31"><a href="#cb68-31"></a></span>
+<span id="cb68-32"><a href="#cb68-32"></a></span>
+<span id="cb68-33"><a href="#cb68-33"></a><span class="fu"># Installing R</span></span>
+<span id="cb68-34"><a href="#cb68-34"></a></span>
+<span id="cb68-35"><a href="#cb68-35"></a>The latest version of an R installation binary (or source code) can be</span>
+<span id="cb68-36"><a href="#cb68-36"></a>downloaded from one of the [Comprehensive R Archive Network (or CRAN)</span>
+<span id="cb68-37"><a href="#cb68-37"></a>mirrors](https://cran.r-project.org/mirrors.html). Having selected one</span>
+<span id="cb68-38"><a href="#cb68-38"></a>of the (Australian) mirrors, follow one of the sets of instructions</span>
+<span id="cb68-39"><a href="#cb68-39"></a>below (depending on your operating system).</span>
+<span id="cb68-40"><a href="#cb68-40"></a></span>
+<span id="cb68-41"><a href="#cb68-41"></a>::: panel-tabset </span>
+<span id="cb68-42"><a href="#cb68-42"></a></span>
+<span id="cb68-43"><a href="#cb68-43"></a><span class="fu">## Windows</span></span>
+<span id="cb68-44"><a href="#cb68-44"></a></span>
+<span id="cb68-45"><a href="#cb68-45"></a><span class="ss">- </span>**Download R:** </span>
+<span id="cb68-46"><a href="#cb68-46"></a><span class="ss">  - </span>Go to the CRAN R-project website <span class="ot">&lt;https://cran.r-project.org/&gt;</span> and</span>
+<span id="cb68-47"><a href="#cb68-47"></a>  click on &quot;Download R for Windows&quot;.</span>
+<span id="cb68-48"><a href="#cb68-48"></a><span class="ss">  - </span>Select the &quot;base&quot; subdirectory</span>
+<span id="cb68-49"><a href="#cb68-49"></a><span class="ss">  - </span>Select the &quot;Download R-X.X.X for Windows&quot; option (where X.X.X are</span>
+<span id="cb68-50"><a href="#cb68-50"></a>  a series of version and release numbers) to download.</span>
+<span id="cb68-51"><a href="#cb68-51"></a></span>
+<span id="cb68-52"><a href="#cb68-52"></a><span class="ss">- </span>**Run the installer:** Double-click the downloaded .exe file and</span>
+<span id="cb68-53"><a href="#cb68-53"></a>  follow the installation wizard. Accept the default settings unless</span>
+<span id="cb68-54"><a href="#cb68-54"></a>  you have specific needs.</span>
+<span id="cb68-55"><a href="#cb68-55"></a></span>
+<span id="cb68-56"><a href="#cb68-56"></a><span class="ss">- </span>**Optional:** Set R as the default: Check the checkbox to set R as</span>
+<span id="cb68-57"><a href="#cb68-57"></a>  the default for R scripts during installation. This allows you to</span>
+<span id="cb68-58"><a href="#cb68-58"></a>  run R scripts by double-clicking them.</span>
+<span id="cb68-59"><a href="#cb68-59"></a></span>
+<span id="cb68-60"><a href="#cb68-60"></a><span class="ss">- </span>**Verify installation:** </span>
+<span id="cb68-61"><a href="#cb68-61"></a><span class="ss">  - </span>Open a new command prompt (Start &gt; Run &gt; cmd) and type <span class="in">`R`</span>. If the R</span>
+<span id="cb68-62"><a href="#cb68-62"></a>  console opens, the installation was successful.</span>
+<span id="cb68-63"><a href="#cb68-63"></a><span class="ss">  - </span>Alternatively, search for R in the Start menu</span>
+<span id="cb68-64"><a href="#cb68-64"></a></span>
+<span id="cb68-65"><a href="#cb68-65"></a><span class="fu">## MacOSx</span></span>
+<span id="cb68-66"><a href="#cb68-66"></a></span>
+<span id="cb68-67"><a href="#cb68-67"></a><span class="ss">- </span>**Download R:** </span>
+<span id="cb68-68"><a href="#cb68-68"></a><span class="ss">  - </span>Go to the CRAN R-project website (https://cran.r-project.org/) and</span>
+<span id="cb68-69"><a href="#cb68-69"></a>    click on &quot;Download R for macOS&quot;.</span>
+<span id="cb68-70"><a href="#cb68-70"></a><span class="ss">  - </span>Choose the latest stable version that is appropriate for your</span>
+<span id="cb68-71"><a href="#cb68-71"></a>    architecture.</span>
+<span id="cb68-72"><a href="#cb68-72"></a><span class="ss">- </span>**Open the disk image:** Double-click the downloaded .pkg file and</span>
+<span id="cb68-73"><a href="#cb68-73"></a>  drag the R application icon to your Applications folder.</span>
+<span id="cb68-74"><a href="#cb68-74"></a>  </span>
+<span id="cb68-75"><a href="#cb68-75"></a><span class="ss">- </span>**Verify installation:**</span>
+<span id="cb68-76"><a href="#cb68-76"></a><span class="ss">  - </span>Open Terminal: Go to Applications &gt; Utilities and open Terminal.</span>
+<span id="cb68-77"><a href="#cb68-77"></a><span class="ss">  - </span>Type <span class="in">`R`</span> in the Terminal window. If the R console opens, the</span>
+<span id="cb68-78"><a href="#cb68-78"></a>  installation was successful.</span>
+<span id="cb68-79"><a href="#cb68-79"></a></span>
+<span id="cb68-80"><a href="#cb68-80"></a><span class="fu">## Linux</span></span>
+<span id="cb68-81"><a href="#cb68-81"></a></span>
+<span id="cb68-82"><a href="#cb68-82"></a><span class="ss">- </span>**Open Terminal:** You can access Terminal through your application</span>
+<span id="cb68-83"><a href="#cb68-83"></a>  launcher or search bar.</span>
+<span id="cb68-84"><a href="#cb68-84"></a></span>
+<span id="cb68-85"><a href="#cb68-85"></a><span class="ss">- </span>**Install R:** The commands vary slightly depending on your Linux distribution. Here are common examples:</span>
+<span id="cb68-86"><a href="#cb68-86"></a><span class="ss">  - </span>Debian/Ubuntu: <span class="in">`sudo apt install r-base`</span></span>
+<span id="cb68-87"><a href="#cb68-87"></a><span class="ss">  - </span>Fedora/CentOS: <span class="in">`sudo yum install R`</span></span>
+<span id="cb68-88"><a href="#cb68-88"></a><span class="ss">  - </span>Arch Linux: <span class="in">`sudo pacman -S R`</span></span>
+<span id="cb68-89"><a href="#cb68-89"></a></span>
+<span id="cb68-90"><a href="#cb68-90"></a><span class="ss">- </span>**Verify installation:** Type <span class="in">`R`</span> in the Terminal window. If the R</span>
+<span id="cb68-91"><a href="#cb68-91"></a>  console opens, the installation was successful.</span>
+<span id="cb68-92"><a href="#cb68-92"></a></span>
+<span id="cb68-93"><a href="#cb68-93"></a>:::</span>
+<span id="cb68-94"><a href="#cb68-94"></a></span>
+<span id="cb68-95"><a href="#cb68-95"></a><span class="fu"># Installing Rstudio</span></span>
+<span id="cb68-96"><a href="#cb68-96"></a></span>
+<span id="cb68-97"><a href="#cb68-97"></a>:::: panel-tabset</span>
+<span id="cb68-98"><a href="#cb68-98"></a></span>
+<span id="cb68-99"><a href="#cb68-99"></a><span class="fu">#### Installing RStudio on Windows:</span></span>
+<span id="cb68-100"><a href="#cb68-100"></a></span>
+<span id="cb68-101"><a href="#cb68-101"></a><span class="ss">1. </span>**Download R:** </span>
+<span id="cb68-102"><a href="#cb68-102"></a><span class="ss">    - </span>RStudio requires R to be installed. If you have not already done</span>
+<span id="cb68-103"><a href="#cb68-103"></a>      so, download and install R from the official CRAN website.</span>
+<span id="cb68-104"><a href="#cb68-104"></a></span>
+<span id="cb68-105"><a href="#cb68-105"></a><span class="ss">2. </span>**Download RStudio:** </span>
+<span id="cb68-106"><a href="#cb68-106"></a><span class="ss">    - </span>Visit the [RStudio Download</span>
+<span id="cb68-107"><a href="#cb68-107"></a>    page](https://www.rstudio.com/products/rstudio/download/) and</span>
+<span id="cb68-108"><a href="#cb68-108"></a>    select the &quot;RStudio Desktop&quot; version compatible with your Windows</span>
+<span id="cb68-109"><a href="#cb68-109"></a>    operating system.</span>
+<span id="cb68-110"><a href="#cb68-110"></a></span>
+<span id="cb68-111"><a href="#cb68-111"></a><span class="ss">3. </span>**Install RStudio:** </span>
+<span id="cb68-112"><a href="#cb68-112"></a><span class="ss">    - </span>Run the downloaded RStudio installer and follow the installation</span>
+<span id="cb68-113"><a href="#cb68-113"></a>      wizard. </span>
+<span id="cb68-114"><a href="#cb68-114"></a><span class="ss">    - </span>Accept the default settings unless you have specific</span>
+<span id="cb68-115"><a href="#cb68-115"></a>      preferences. </span>
+<span id="cb68-116"><a href="#cb68-116"></a></span>
+<span id="cb68-117"><a href="#cb68-117"></a><span class="ss">4. </span>**Launch RStudio:**</span>
+<span id="cb68-118"><a href="#cb68-118"></a><span class="ss">    - </span>After installation, launch RStudio from the Start menu or</span>
+<span id="cb68-119"><a href="#cb68-119"></a>      desktop shortcut.</span>
+<span id="cb68-120"><a href="#cb68-120"></a></span>
+<span id="cb68-121"><a href="#cb68-121"></a><span class="fu">#### Installing RStudio on macOS:</span></span>
+<span id="cb68-122"><a href="#cb68-122"></a></span>
+<span id="cb68-123"><a href="#cb68-123"></a><span class="ss">1. </span>**Download R:**</span>
+<span id="cb68-124"><a href="#cb68-124"></a><span class="ss">    - </span>If you have not already done so, download and install R on macOS</span>
+<span id="cb68-125"><a href="#cb68-125"></a>      from the official CRAN website.</span>
+<span id="cb68-126"><a href="#cb68-126"></a></span>
+<span id="cb68-127"><a href="#cb68-127"></a><span class="ss">2. </span>**Download RStudio:**</span>
+<span id="cb68-128"><a href="#cb68-128"></a><span class="ss">    - </span>Navigate to the [RStudio Download</span>
+<span id="cb68-129"><a href="#cb68-129"></a>      page](https://www.rstudio.com/products/rstudio/download/) and</span>
+<span id="cb68-130"><a href="#cb68-130"></a>      choose the &quot;RStudio Desktop&quot; version for macOS.</span>
+<span id="cb68-131"><a href="#cb68-131"></a></span>
+<span id="cb68-132"><a href="#cb68-132"></a><span class="ss">3. </span>**Install RStudio:**</span>
+<span id="cb68-133"><a href="#cb68-133"></a><span class="ss">    - </span>Run the downloaded RStudio package, and macOS will guide you</span>
+<span id="cb68-134"><a href="#cb68-134"></a>      through the installation process.</span>
+<span id="cb68-135"><a href="#cb68-135"></a></span>
+<span id="cb68-136"><a href="#cb68-136"></a><span class="ss">4. </span>**Launch RStudio:**</span>
+<span id="cb68-137"><a href="#cb68-137"></a><span class="ss">    - </span>Open RStudio from the Applications folder or use Spotlight to</span>
+<span id="cb68-138"><a href="#cb68-138"></a>      search for it.</span>
+<span id="cb68-139"><a href="#cb68-139"></a>      </span>
+<span id="cb68-140"><a href="#cb68-140"></a><span class="fu">#### Installing RStudio on Linux:</span></span>
+<span id="cb68-141"><a href="#cb68-141"></a></span>
+<span id="cb68-142"><a href="#cb68-142"></a><span class="ss">1. </span>**Download R:**</span>
+<span id="cb68-143"><a href="#cb68-143"></a><span class="ss">    - </span>If you have not already done so, install R on your Linux</span>
+<span id="cb68-144"><a href="#cb68-144"></a>      distribution using the package manager. For example, on Ubuntu,</span>
+<span id="cb68-145"><a href="#cb68-145"></a>      run:</span>
+<span id="cb68-146"><a href="#cb68-146"></a></span>
+<span id="cb68-149"><a href="#cb68-149"></a><span class="in">```{bash}</span></span>
+<span id="cb68-150"><a href="#cb68-150"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-151"><a href="#cb68-151"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-152"><a href="#cb68-152"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-153"><a href="#cb68-153"></a><span class="fu">sudo</span> apt-get install r-base</span>
+<span id="cb68-154"><a href="#cb68-154"></a><span class="in">```</span></span>
+<span id="cb68-155"><a href="#cb68-155"></a></span>
+<span id="cb68-156"><a href="#cb68-156"></a><span class="ss">2. </span>**Download RStudio:**</span>
+<span id="cb68-157"><a href="#cb68-157"></a><span class="ss">    - </span>Visit the RStudio Download page and choose the appropriate</span>
+<span id="cb68-158"><a href="#cb68-158"></a>      RStudio Desktop version for your Linux distribution.</span>
+<span id="cb68-159"><a href="#cb68-159"></a></span>
+<span id="cb68-160"><a href="#cb68-160"></a><span class="ss">3. </span>**Install RStudio:**</span>
+<span id="cb68-161"><a href="#cb68-161"></a><span class="ss">    - </span>Run the downloaded RStudio package, and follow any additional instructions based on your Linux distribution.</span>
+<span id="cb68-162"><a href="#cb68-162"></a></span>
+<span id="cb68-163"><a href="#cb68-163"></a><span class="ss">4. </span>**Launch RStudio:**</span>
+<span id="cb68-164"><a href="#cb68-164"></a><span class="ss">    - </span>Open a terminal and type rstudio to launch RStudio.</span>
+<span id="cb68-165"><a href="#cb68-165"></a></span>
+<span id="cb68-166"><a href="#cb68-166"></a>::::</span>
+<span id="cb68-167"><a href="#cb68-167"></a></span>
+<span id="cb68-168"><a href="#cb68-168"></a></span>
+<span id="cb68-169"><a href="#cb68-169"></a><span class="fu"># Installating git</span></span>
+<span id="cb68-170"><a href="#cb68-170"></a></span>
+<span id="cb68-171"><a href="#cb68-171"></a>::: panel-tabset </span>
+<span id="cb68-172"><a href="#cb68-172"></a></span>
+<span id="cb68-173"><a href="#cb68-173"></a><span class="fu">## Windows</span></span>
+<span id="cb68-174"><a href="#cb68-174"></a></span>
+<span id="cb68-175"><a href="#cb68-175"></a>Git Bash (Command Line Version):</span>
+<span id="cb68-176"><a href="#cb68-176"></a></span>
+<span id="cb68-177"><a href="#cb68-177"></a><span class="ss">1. </span>Download the Git for Windows installer from <span class="co">[</span><span class="ot">Git for Windows</span><span class="co">](https://gitforwindows.org/)</span></span>
+<span id="cb68-178"><a href="#cb68-178"></a><span class="ss">   - </span>Click the Download button</span>
+<span id="cb68-179"><a href="#cb68-179"></a><span class="ss">   - </span>Select the latest version from the list of <span class="in">`Assets`</span></span>
+<span id="cb68-180"><a href="#cb68-180"></a><span class="ss">2. </span>Run the installer and follow the installation prompts.</span>
+<span id="cb68-181"><a href="#cb68-181"></a><span class="ss">3. </span>Choose the default options unless you have specific preferences.</span>
+<span id="cb68-182"><a href="#cb68-182"></a><span class="ss">4. </span>Select the default text editor (usually Vim) or choose another</span>
+<span id="cb68-183"><a href="#cb68-183"></a>   editor like Nano or Notepad++.</span>
+<span id="cb68-184"><a href="#cb68-184"></a><span class="ss">5. </span>Choose to use Git from the Windows Command Prompt (recommended).</span>
+<span id="cb68-185"><a href="#cb68-185"></a><span class="ss">6. </span>Complete the installation.</span>
+<span id="cb68-186"><a href="#cb68-186"></a></span>
+<span id="cb68-187"><a href="#cb68-187"></a><span class="fu">## MacOSx</span></span>
+<span id="cb68-188"><a href="#cb68-188"></a></span>
+<span id="cb68-189"><a href="#cb68-189"></a>Using Homebrew:</span>
+<span id="cb68-190"><a href="#cb68-190"></a></span>
+<span id="cb68-191"><a href="#cb68-191"></a><span class="ss">1. </span>Open Terminal.</span>
+<span id="cb68-192"><a href="#cb68-192"></a><span class="ss">2. </span>Install Homebrew if not installed:</span>
+<span id="cb68-193"><a href="#cb68-193"></a></span>
+<span id="cb68-194"><a href="#cb68-194"></a>:::: {.indented}</span>
+<span id="cb68-197"><a href="#cb68-197"></a><span class="in">```{bash}</span></span>
+<span id="cb68-198"><a href="#cb68-198"></a><span class="co">#| label: install1</span></span>
+<span id="cb68-199"><a href="#cb68-199"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-200"><a href="#cb68-200"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-201"><a href="#cb68-201"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-202"><a href="#cb68-202"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-203"><a href="#cb68-203"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-204"><a href="#cb68-204"></a><span class="ex">/bin/bash</span> <span class="at">-c</span> <span class="st">&quot;</span><span class="va">$(</span><span class="ex">curl</span> <span class="at">-fsSL</span> https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh<span class="va">)</span><span class="st">&quot;</span></span>
+<span id="cb68-205"><a href="#cb68-205"></a><span class="in">```</span></span>
+<span id="cb68-206"><a href="#cb68-206"></a>:::</span>
+<span id="cb68-207"><a href="#cb68-207"></a></span>
+<span id="cb68-208"><a href="#cb68-208"></a><span class="ss">3. </span>Install Git using Homebrew:</span>
+<span id="cb68-209"><a href="#cb68-209"></a></span>
+<span id="cb68-210"><a href="#cb68-210"></a>:::: {.indented}</span>
+<span id="cb68-211"><a href="#cb68-211"></a></span>
+<span id="cb68-214"><a href="#cb68-214"></a><span class="in">```{bash}</span></span>
+<span id="cb68-215"><a href="#cb68-215"></a><span class="co">#| label: install2</span></span>
+<span id="cb68-216"><a href="#cb68-216"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-217"><a href="#cb68-217"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-218"><a href="#cb68-218"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-219"><a href="#cb68-219"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-220"><a href="#cb68-220"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-221"><a href="#cb68-221"></a><span class="ex">brew</span> install git</span>
+<span id="cb68-222"><a href="#cb68-222"></a><span class="in">```</span></span>
+<span id="cb68-223"><a href="#cb68-223"></a>::::</span>
+<span id="cb68-224"><a href="#cb68-224"></a></span>
+<span id="cb68-225"><a href="#cb68-225"></a><span class="fu">## Linux</span></span>
+<span id="cb68-226"><a href="#cb68-226"></a></span>
+<span id="cb68-227"><a href="#cb68-227"></a><span class="ss">1. </span>Open Terminal.</span>
+<span id="cb68-228"><a href="#cb68-228"></a></span>
+<span id="cb68-229"><a href="#cb68-229"></a>:::: {.indented}</span>
+<span id="cb68-230"><a href="#cb68-230"></a>Ubuntu/Debian:</span>
+<span id="cb68-231"><a href="#cb68-231"></a></span>
+<span id="cb68-234"><a href="#cb68-234"></a><span class="in">```{bash}</span></span>
+<span id="cb68-235"><a href="#cb68-235"></a><span class="co">#| label: install3a</span></span>
+<span id="cb68-236"><a href="#cb68-236"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-237"><a href="#cb68-237"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-238"><a href="#cb68-238"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-239"><a href="#cb68-239"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-240"><a href="#cb68-240"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-241"><a href="#cb68-241"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb68-242"><a href="#cb68-242"></a><span class="fu">sudo</span> apt install git</span>
+<span id="cb68-243"><a href="#cb68-243"></a><span class="in">```</span></span>
+<span id="cb68-244"><a href="#cb68-244"></a>::::</span>
+<span id="cb68-245"><a href="#cb68-245"></a></span>
+<span id="cb68-246"><a href="#cb68-246"></a>:::: {.indented}</span>
+<span id="cb68-247"><a href="#cb68-247"></a>Fedora:</span>
+<span id="cb68-248"><a href="#cb68-248"></a></span>
+<span id="cb68-251"><a href="#cb68-251"></a><span class="in">```{bash}</span></span>
+<span id="cb68-252"><a href="#cb68-252"></a><span class="co">#| label: install3b</span></span>
+<span id="cb68-253"><a href="#cb68-253"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-254"><a href="#cb68-254"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-255"><a href="#cb68-255"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-256"><a href="#cb68-256"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-257"><a href="#cb68-257"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-258"><a href="#cb68-258"></a><span class="fu">sudo</span> dnf install git</span>
+<span id="cb68-259"><a href="#cb68-259"></a><span class="in">```</span></span>
+<span id="cb68-260"><a href="#cb68-260"></a>::::</span>
+<span id="cb68-261"><a href="#cb68-261"></a></span>
+<span id="cb68-262"><a href="#cb68-262"></a>:::: {.indented}</span>
+<span id="cb68-263"><a href="#cb68-263"></a>Arch Linux:</span>
+<span id="cb68-264"><a href="#cb68-264"></a></span>
+<span id="cb68-267"><a href="#cb68-267"></a><span class="in">```{bash}</span></span>
+<span id="cb68-268"><a href="#cb68-268"></a><span class="co">#| label: install3c</span></span>
+<span id="cb68-269"><a href="#cb68-269"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-270"><a href="#cb68-270"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-271"><a href="#cb68-271"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-272"><a href="#cb68-272"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-273"><a href="#cb68-273"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-274"><a href="#cb68-274"></a><span class="fu">sudo</span> pacman <span class="at">-S</span> git</span>
+<span id="cb68-275"><a href="#cb68-275"></a><span class="in">```</span></span>
+<span id="cb68-276"><a href="#cb68-276"></a>::::</span>
+<span id="cb68-277"><a href="#cb68-277"></a></span>
+<span id="cb68-278"><a href="#cb68-278"></a>:::: {.indented}</span>
+<span id="cb68-279"><a href="#cb68-279"></a>Linux (Red Hat/CentOS):</span>
+<span id="cb68-280"><a href="#cb68-280"></a></span>
+<span id="cb68-283"><a href="#cb68-283"></a><span class="in">```{bash}</span></span>
+<span id="cb68-284"><a href="#cb68-284"></a><span class="co">#| label: install3d</span></span>
+<span id="cb68-285"><a href="#cb68-285"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-286"><a href="#cb68-286"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-287"><a href="#cb68-287"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-288"><a href="#cb68-288"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-289"><a href="#cb68-289"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-290"><a href="#cb68-290"></a><span class="fu">sudo</span> yum install git</span>
+<span id="cb68-291"><a href="#cb68-291"></a><span class="in">```</span></span>
+<span id="cb68-292"><a href="#cb68-292"></a>::::</span>
+<span id="cb68-293"><a href="#cb68-293"></a>:::</span>
+<span id="cb68-294"><a href="#cb68-294"></a></span>
+<span id="cb68-295"><a href="#cb68-295"></a></span>
+<span id="cb68-296"><a href="#cb68-296"></a>To verify that the software is installed and accessible, open a</span>
+<span id="cb68-297"><a href="#cb68-297"></a>terminal and issue the following:</span>
+<span id="cb68-298"><a href="#cb68-298"></a></span>
+<span id="cb68-301"><a href="#cb68-301"></a><span class="in">```{bash}</span></span>
+<span id="cb68-302"><a href="#cb68-302"></a><span class="co">#| label: install4a</span></span>
+<span id="cb68-303"><a href="#cb68-303"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-304"><a href="#cb68-304"></a><span class="co">#| eval: true</span></span>
+<span id="cb68-305"><a href="#cb68-305"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-306"><a href="#cb68-306"></a><span class="co">#| engine: bash</span></span>
+<span id="cb68-307"><a href="#cb68-307"></a><span class="co">#| classes: bash</span></span>
+<span id="cb68-308"><a href="#cb68-308"></a><span class="fu">git</span> <span class="at">--version</span></span>
+<span id="cb68-309"><a href="#cb68-309"></a><span class="in">```</span></span>
+<span id="cb68-310"><a href="#cb68-310"></a></span>
+<span id="cb68-311"><a href="#cb68-311"></a>::: {.callout-tip collapse=&quot;true&quot;}</span>
+<span id="cb68-312"><a href="#cb68-312"></a><span class="fu">## Unsure how to open a terminal?</span></span>
+<span id="cb68-313"><a href="#cb68-313"></a></span>
+<span id="cb68-314"><a href="#cb68-314"></a>**Windows:**</span>
+<span id="cb68-315"><a href="#cb68-315"></a></span>
+<span id="cb68-316"><a href="#cb68-316"></a>On Windows, you can access a terminal via one of the following: </span>
+<span id="cb68-317"><a href="#cb68-317"></a></span>
+<span id="cb68-318"><a href="#cb68-318"></a><span class="ss">- </span>via the command Prompt:</span>
+<span id="cb68-319"><a href="#cb68-319"></a><span class="ss">  - </span>Press <span class="in">`Win + R`</span> to open the Run dialog.</span>
+<span id="cb68-320"><a href="#cb68-320"></a><span class="ss">  - </span>Type <span class="in">`cmd`</span> and press <span class="in">`Enter`</span>.</span>
+<span id="cb68-321"><a href="#cb68-321"></a></span>
+<span id="cb68-322"><a href="#cb68-322"></a><span class="ss">- </span>via PowerShell:</span>
+<span id="cb68-323"><a href="#cb68-323"></a><span class="ss">  - </span>Press <span class="in">`Win + X`</span> and select &quot;Windows PowerShell.&quot;</span>
+<span id="cb68-324"><a href="#cb68-324"></a></span>
+<span id="cb68-325"><a href="#cb68-325"></a><span class="ss">- </span>Git Bash (Optional):</span>
+<span id="cb68-326"><a href="#cb68-326"></a><span class="ss">  - </span>if Git is installed (which we are hoping it is!), open &quot;Git Bash&quot; for a Unix-like terminal experience.</span>
+<span id="cb68-327"><a href="#cb68-327"></a></span>
+<span id="cb68-328"><a href="#cb68-328"></a>**MacOS:**</span>
+<span id="cb68-329"><a href="#cb68-329"></a></span>
+<span id="cb68-330"><a href="#cb68-330"></a><span class="ss">- </span>via Terminal:</span>
+<span id="cb68-331"><a href="#cb68-331"></a><span class="ss">  - </span>Press <span class="in">`Cmd + Space`</span> to open Spotlight.</span>
+<span id="cb68-332"><a href="#cb68-332"></a><span class="ss">  - </span>Type <span class="in">`terminal`</span> and press <span class="in">`Enter`</span>.</span>
+<span id="cb68-333"><a href="#cb68-333"></a></span>
+<span id="cb68-334"><a href="#cb68-334"></a>**Linux:**</span>
+<span id="cb68-335"><a href="#cb68-335"></a></span>
+<span id="cb68-336"><a href="#cb68-336"></a>Oh please. You cannot seriously tell me that you are using Linux and</span>
+<span id="cb68-337"><a href="#cb68-337"></a>don&#39;t know how to access a terminal.</span>
+<span id="cb68-338"><a href="#cb68-338"></a>:::</span>
+<span id="cb68-339"><a href="#cb68-339"></a></span>
+<span id="cb68-340"><a href="#cb68-340"></a>In the command above, pay particular attention to the number of</span>
+<span id="cb68-341"><a href="#cb68-341"></a>hyphens in the above command - there are two in a row and no spaces</span>
+<span id="cb68-342"><a href="#cb68-342"></a>between the <span class="in">`--`</span> and the word <span class="in">`version`</span>.</span>
+<span id="cb68-343"><a href="#cb68-343"></a></span>
+<span id="cb68-344"><a href="#cb68-344"></a>If you get output similar to above (an indication of what version of</span>
+<span id="cb68-345"><a href="#cb68-345"></a>git you have on your system), then it is likely to be properly</span>
+<span id="cb68-346"><a href="#cb68-346"></a>installed. If instead you get an error message, then it is likely that</span>
+<span id="cb68-347"><a href="#cb68-347"></a>git is not properly installed and you should try again.</span>
+<span id="cb68-348"><a href="#cb68-348"></a></span>
+<span id="cb68-349"><a href="#cb68-349"></a></span>
+<span id="cb68-350"><a href="#cb68-350"></a><span class="fu"># Setup a free github account</span></span>
+<span id="cb68-351"><a href="#cb68-351"></a></span>
+<span id="cb68-352"><a href="#cb68-352"></a>To create a **free** github account:</span>
+<span id="cb68-353"><a href="#cb68-353"></a></span>
+<span id="cb68-354"><a href="#cb68-354"></a><span class="ss">1. </span>visit <span class="ot">&lt;https://github.com&gt;</span> and click &quot;Sign up for github&quot;</span>
+<span id="cb68-355"><a href="#cb68-355"></a><span class="ss">2. </span>register by providing your prefered email address, a username and</span>
+<span id="cb68-356"><a href="#cb68-356"></a>   a password when prompted</span>
+<span id="cb68-357"><a href="#cb68-357"></a><span class="ss">3. </span>to complete the account activation, you will need to verify your </span>
+<span id="cb68-358"><a href="#cb68-358"></a>   details via an email sent to your nominated email address</span>
+<span id="cb68-359"><a href="#cb68-359"></a></span>
+<span id="cb68-360"><a href="#cb68-360"></a>As of the start of 2024, github now requires Two-Factor Authentication</span>
+<span id="cb68-361"><a href="#cb68-361"></a>(2FA) for enhanced security.  Whenever you login to github (or are</span>
+<span id="cb68-362"><a href="#cb68-362"></a>prompted for a password, you will also need to use 2FA. To setup 2FA:</span>
+<span id="cb68-363"><a href="#cb68-363"></a></span>
+<span id="cb68-364"><a href="#cb68-364"></a><span class="ss">1. </span>click on your profile picture in the top right corner.</span>
+<span id="cb68-365"><a href="#cb68-365"></a><span class="ss">2. </span>select &quot;Settings&quot; from the dropdown menu.</span>
+<span id="cb68-366"><a href="#cb68-366"></a><span class="ss">3. </span>select &quot;Password and authentication&quot; in the left sidebar.</span>
+<span id="cb68-367"><a href="#cb68-367"></a><span class="ss">4. </span>under &quot;Two-factor authentication&quot; section, click &quot;Enable&quot;.</span>
+<span id="cb68-368"><a href="#cb68-368"></a><span class="ss">5. </span>choose your preferred method (authenticator app or SMS) and follow </span>
+<span id="cb68-369"><a href="#cb68-369"></a>   the prompts to set it up.</span>
+<span id="cb68-370"><a href="#cb68-370"></a></span>
+<span id="cb68-371"><a href="#cb68-371"></a>Passwords and Two-Factor Authentication (2FA) are used when you (as a</span>
+<span id="cb68-372"><a href="#cb68-372"></a>human) securely login and interact directly with the GitHub website.</span>
+<span id="cb68-373"><a href="#cb68-373"></a>However, it is also possible to have other tools (such as <span class="in">`git`</span>)</span>
+<span id="cb68-374"><a href="#cb68-374"></a>interact with Github on your behalf via an Application Programming</span>
+<span id="cb68-375"><a href="#cb68-375"></a>Interfacet (API).  Passwords/2FA are not appropriate to authenticate </span>
+<span id="cb68-376"><a href="#cb68-376"></a>these machine to machine communications.  Instead, Github requires the</span>
+<span id="cb68-377"><a href="#cb68-377"></a>use of a Personal Access Token (PAT). PATs offer a more secure and granular </span>
+<span id="cb68-378"><a href="#cb68-378"></a>approach, allowing users to control access without exposing their</span>
+<span id="cb68-379"><a href="#cb68-379"></a>account password.</span>
+<span id="cb68-380"><a href="#cb68-380"></a></span>
+<span id="cb68-381"><a href="#cb68-381"></a>To generate a Personal Access Token (PAT):</span>
+<span id="cb68-382"><a href="#cb68-382"></a></span>
+<span id="cb68-383"><a href="#cb68-383"></a><span class="ss">1. </span>click on your profile picture in the top right corner.</span>
+<span id="cb68-384"><a href="#cb68-384"></a><span class="ss">2. </span>select &quot;Settings&quot; from the dropdown menu.</span>
+<span id="cb68-385"><a href="#cb68-385"></a><span class="ss">3. </span>select &quot;Developer settings&quot; from the bottom of the left sidebar.</span>
+<span id="cb68-386"><a href="#cb68-386"></a><span class="ss">4. </span>select &quot;Personal access tokens&quot; from the left sidebar.</span>
+<span id="cb68-387"><a href="#cb68-387"></a><span class="ss">5. </span>select &quot;Tokens (classic)&quot; from the dropdown menu</span>
+<span id="cb68-388"><a href="#cb68-388"></a><span class="ss">6. </span>click &quot;Generate new token&quot;</span>
+<span id="cb68-389"><a href="#cb68-389"></a><span class="ss">7. </span>select &quot;Generate new token (classic)&quot; from the dropdown menu</span>
+<span id="cb68-390"><a href="#cb68-390"></a><span class="ss">8. </span>at this point you will likely be prompted for your password</span>
+<span id="cb68-391"><a href="#cb68-391"></a><span class="ss">9. </span>provide a &quot;note&quot; - this is more of a short description of what the</span>
+<span id="cb68-392"><a href="#cb68-392"></a>   token is to be used for (in the example below, I have entered &quot;git push/pull&quot;</span>
+<span id="cb68-393"><a href="#cb68-393"></a>   to remind me that this is a simple token for regular push/pull interaction</span>
+<span id="cb68-394"><a href="#cb68-394"></a>   between my local and remote repositories).</span>
+<span id="cb68-395"><a href="#cb68-395"></a></span>
+<span id="cb68-396"><a href="#cb68-396"></a>    <span class="al">![](../resources/rstudio_githubtoken1.png)</span></span>
+<span id="cb68-397"><a href="#cb68-397"></a></span>
+<span id="cb68-398"><a href="#cb68-398"></a>   You also need to provide an expiration. Although not secure or recommended,</span>
+<span id="cb68-399"><a href="#cb68-399"></a>   I have selected &quot;No expiration&quot; as I don&#39;t want to have to re-do my PAT</span>
+<span id="cb68-400"><a href="#cb68-400"></a>   across multiple machines too regularly.</span>
+<span id="cb68-401"><a href="#cb68-401"></a></span>
+<span id="cb68-402"><a href="#cb68-402"></a>   Finally, you also need to indicate **scope** (what activities you are granting permission</span>
+<span id="cb68-403"><a href="#cb68-403"></a>   for the tools to be able to perform).  In this case, I have ticked the </span>
+<span id="cb68-404"><a href="#cb68-404"></a>   &quot;repo&quot; box.  This grants general rea/write access to my repositories.  I have </span>
+<span id="cb68-405"><a href="#cb68-405"></a>   not granted permission for more administration like activities such as </span>
+<span id="cb68-406"><a href="#cb68-406"></a>   managing teams, deleting repositories, etc - these activities I am happy to </span>
+<span id="cb68-407"><a href="#cb68-407"></a>   perform myself via the website.</span>
+<span id="cb68-408"><a href="#cb68-408"></a><span class="ss">10. </span>click &quot;Generate token&quot; and securely copy the generated token.  Until this is stored</span>
+<span id="cb68-409"><a href="#cb68-409"></a>    safely (see below) do not close the page, because Github will never show you this</span>
+<span id="cb68-410"><a href="#cb68-410"></a>    PAT again.</span>
+<span id="cb68-411"><a href="#cb68-411"></a></span>
+<span id="cb68-412"><a href="#cb68-412"></a>:::: {.indented}</span>
+<span id="cb68-413"><a href="#cb68-413"></a>::: {.callout-important collapse=&quot;false&quot;}</span>
+<span id="cb68-414"><a href="#cb68-414"></a></span>
+<span id="cb68-415"><a href="#cb68-415"></a>Important: Store your PAT safely as you won&#39;t be able to see it again!</span>
+<span id="cb68-416"><a href="#cb68-416"></a>Ideally, you should store this PAT in a digital wallet. Digital</span>
+<span id="cb68-417"><a href="#cb68-417"></a>wallets vary according to operating systems. R users might like to use</span>
+<span id="cb68-418"><a href="#cb68-418"></a>the <span class="in">`r`</span> function from the <span class="in">`asdf`</span> package (which you will need to</span>
+<span id="cb68-419"><a href="#cb68-419"></a>install prior) as follows in order to store the PAT.</span>
+<span id="cb68-420"><a href="#cb68-420"></a></span>
+<span id="cb68-421"><a href="#cb68-421"></a>**In an R console, enter:**</span>
+<span id="cb68-422"><a href="#cb68-422"></a></span>
+<span id="cb68-425"><a href="#cb68-425"></a><span class="in">```{r}</span></span>
+<span id="cb68-426"><a href="#cb68-426"></a><span class="co">#| label: PAT</span></span>
+<span id="cb68-427"><a href="#cb68-427"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-428"><a href="#cb68-428"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-429"><a href="#cb68-429"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-430"><a href="#cb68-430"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_set</span>()</span>
+<span id="cb68-431"><a href="#cb68-431"></a><span class="in">```</span></span>
+<span id="cb68-432"><a href="#cb68-432"></a></span>
+<span id="cb68-433"><a href="#cb68-433"></a>When propted for a password, paste in the copied PAT that hopefully is still in your</span>
+<span id="cb68-434"><a href="#cb68-434"></a>clipboard - else you might need to re-copy it.</span>
+<span id="cb68-435"><a href="#cb68-435"></a></span>
+<span id="cb68-436"><a href="#cb68-436"></a>To confirm that you have successfully stored your PAT in your wallet, you can:</span>
+<span id="cb68-439"><a href="#cb68-439"></a><span class="in">```{r}</span></span>
+<span id="cb68-440"><a href="#cb68-440"></a><span class="co">#| label: PAT2</span></span>
+<span id="cb68-441"><a href="#cb68-441"></a><span class="co">#| cache: false</span></span>
+<span id="cb68-442"><a href="#cb68-442"></a><span class="co">#| echo: true</span></span>
+<span id="cb68-443"><a href="#cb68-443"></a><span class="co">#| eval: false</span></span>
+<span id="cb68-444"><a href="#cb68-444"></a>gitcreds<span class="sc">::</span><span class="fu">gitcreds_get</span>()</span>
+<span id="cb68-445"><a href="#cb68-445"></a><span class="in">```</span></span>
+<span id="cb68-446"><a href="#cb68-446"></a></span>
+<span id="cb68-447"><a href="#cb68-447"></a>and confirm that it indicates that there is a hidden password.</span>
+<span id="cb68-448"><a href="#cb68-448"></a></span>
+<span id="cb68-449"><a href="#cb68-449"></a></span>
+<span id="cb68-450"><a href="#cb68-450"></a>:::</span>
+<span id="cb68-451"><a href="#cb68-451"></a>::::</span>
+<span id="cb68-452"><a href="#cb68-452"></a></span>
+<span id="cb68-453"><a href="#cb68-453"></a></span>
+<span id="cb68-454"><a href="#cb68-454"></a><span class="fu"># Installing stan (for Bayesian modelling)</span></span>
+<span id="cb68-455"><a href="#cb68-455"></a></span>
+<span id="cb68-456"><a href="#cb68-456"></a>::: panel-tabset </span>
+<span id="cb68-457"><a href="#cb68-457"></a></span>
+<span id="cb68-458"><a href="#cb68-458"></a><span class="fu">## Windows</span></span>
+<span id="cb68-459"><a href="#cb68-459"></a></span>
+<span id="cb68-460"><a href="#cb68-460"></a><span class="ss">1. </span>Install and setup **Rtools** (a collection of R focused build tools</span>
+<span id="cb68-461"><a href="#cb68-461"></a>   for windows)</span>
+<span id="cb68-462"><a href="#cb68-462"></a><span class="ss">   - </span>go to CRAN Rtools website</span>
+<span id="cb68-463"><a href="#cb68-463"></a>     <span class="ot">&lt;https://cran.r-project.org/bin/windows/Rtools/&gt;</span></span>
+<span id="cb68-464"><a href="#cb68-464"></a><span class="ss">   - </span>click on the Rtools version that matches the major version of R</span>
+<span id="cb68-465"><a href="#cb68-465"></a>     you are using.</span>
+<span id="cb68-466"><a href="#cb68-466"></a><span class="ss">   - </span>click on the installer link (midway down the page) to download the installer</span>
+<span id="cb68-467"><a href="#cb68-467"></a><span class="ss">   - </span>run the installer</span>
+<span id="cb68-468"><a href="#cb68-468"></a><span class="ss">   - </span>follow all defaults during the installation process</span>
+<span id="cb68-469"><a href="#cb68-469"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
+<span id="cb68-470"><a href="#cb68-470"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
+<span id="cb68-471"><a href="#cb68-471"></a><span class="ss">     - </span>open a new R session and issue the following</span>
+<span id="cb68-472"><a href="#cb68-472"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-473"><a href="#cb68-473"></a><span class="in">       #| label: install_cmdstan1</span></span>
+<span id="cb68-474"><a href="#cb68-474"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-475"><a href="#cb68-475"></a><span class="in">       install.packages(&quot;cmdstanr&quot;, repos = c(&quot;https://mc-stan.org/r-packages/&quot;, getOption(&quot;repos&quot;)))</span></span>
+<span id="cb68-476"><a href="#cb68-476"></a><span class="in">       ```</span></span>
+<span id="cb68-477"><a href="#cb68-477"></a><span class="ss">     - </span>make sure the package loads</span>
+<span id="cb68-478"><a href="#cb68-478"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-479"><a href="#cb68-479"></a><span class="in">       #| label: install_cmdstan2</span></span>
+<span id="cb68-480"><a href="#cb68-480"></a><span class="in">       #| eval: true</span></span>
+<span id="cb68-481"><a href="#cb68-481"></a><span class="in">       library(cmdstanr)</span></span>
+<span id="cb68-482"><a href="#cb68-482"></a><span class="in">       ```</span></span>
+<span id="cb68-483"><a href="#cb68-483"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
+<span id="cb68-484"><a href="#cb68-484"></a>       installed and configured</span>
+<span id="cb68-485"><a href="#cb68-485"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-486"><a href="#cb68-486"></a><span class="in">       #| label: install_cmdstan3</span></span>
+<span id="cb68-487"><a href="#cb68-487"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-488"><a href="#cb68-488"></a><span class="in">       check_cmdstan_toolchain()</span></span>
+<span id="cb68-489"><a href="#cb68-489"></a><span class="in">       ```</span></span>
+<span id="cb68-490"><a href="#cb68-490"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
+<span id="cb68-491"><a href="#cb68-491"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-492"><a href="#cb68-492"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb68-493"><a href="#cb68-493"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-494"><a href="#cb68-494"></a><span class="in">       install_cmdstan(cores = 2)</span></span>
+<span id="cb68-495"><a href="#cb68-495"></a><span class="in">       ```</span></span>
+<span id="cb68-496"><a href="#cb68-496"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb68-497"><a href="#cb68-497"></a>   <span class="in">```{r}</span></span>
+<span id="cb68-498"><a href="#cb68-498"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb68-499"><a href="#cb68-499"></a><span class="in">   #| eval: true</span></span>
+<span id="cb68-500"><a href="#cb68-500"></a><span class="in">   #| cache: true</span></span>
+<span id="cb68-501"><a href="#cb68-501"></a><span class="in">   file &lt;- file.path(cmdstan_path(), &quot;examples&quot;, &quot;bernoulli&quot;, &quot;bernoulli.stan&quot;)</span></span>
+<span id="cb68-502"><a href="#cb68-502"></a><span class="in">   mod &lt;- cmdstan_model(file)</span></span>
+<span id="cb68-503"><a href="#cb68-503"></a><span class="in">   data_list &lt;- list(N = 10, y = c(0,1,0,0,0,0,0,0,0,1))</span></span>
+<span id="cb68-504"><a href="#cb68-504"></a></span>
+<span id="cb68-505"><a href="#cb68-505"></a><span class="in">   fit &lt;- mod$sample(</span></span>
+<span id="cb68-506"><a href="#cb68-506"></a><span class="in">     data = data_list,</span></span>
+<span id="cb68-507"><a href="#cb68-507"></a><span class="in">     seed = 123,</span></span>
+<span id="cb68-508"><a href="#cb68-508"></a><span class="in">     chains = 4,</span></span>
+<span id="cb68-509"><a href="#cb68-509"></a><span class="in">     parallel_chains = 4,</span></span>
+<span id="cb68-510"><a href="#cb68-510"></a><span class="in">     refresh = 500 # print update every 500 iters</span></span>
+<span id="cb68-511"><a href="#cb68-511"></a><span class="in">   )</span></span>
+<span id="cb68-512"><a href="#cb68-512"></a><span class="in">   ```</span></span>
+<span id="cb68-513"><a href="#cb68-513"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb68-514"><a href="#cb68-514"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb68-515"><a href="#cb68-515"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb68-516"><a href="#cb68-516"></a><span class="ss">   - </span>install the package</span>
+<span id="cb68-517"><a href="#cb68-517"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-518"><a href="#cb68-518"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb68-519"><a href="#cb68-519"></a><span class="in">     #| eval: false</span></span>
+<span id="cb68-520"><a href="#cb68-520"></a><span class="in">     install.packages(&quot;brms&quot;)</span></span>
+<span id="cb68-521"><a href="#cb68-521"></a><span class="in">     ```</span></span>
+<span id="cb68-522"><a href="#cb68-522"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb68-523"><a href="#cb68-523"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-524"><a href="#cb68-524"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb68-525"><a href="#cb68-525"></a><span class="in">     #| eval: true</span></span>
+<span id="cb68-526"><a href="#cb68-526"></a><span class="in">     #| cache: true</span></span>
+<span id="cb68-527"><a href="#cb68-527"></a><span class="in">     library(cmdstanr)</span></span>
+<span id="cb68-528"><a href="#cb68-528"></a><span class="in">     library(brms)</span></span>
+<span id="cb68-529"><a href="#cb68-529"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
+<span id="cb68-530"><a href="#cb68-530"></a><span class="in">     brm(y ~ x, data = dat)</span></span>
+<span id="cb68-531"><a href="#cb68-531"></a><span class="in">     ```</span></span>
+<span id="cb68-532"><a href="#cb68-532"></a></span>
+<span id="cb68-533"><a href="#cb68-533"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb68-534"><a href="#cb68-534"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb68-535"><a href="#cb68-535"></a></span>
+<span id="cb68-536"><a href="#cb68-536"></a><span class="fu">## MacOSx</span></span>
+<span id="cb68-537"><a href="#cb68-537"></a></span>
+<span id="cb68-538"><a href="#cb68-538"></a><span class="ss">1. </span>Install and setup **Xcode** (a collection of build tools for</span>
+<span id="cb68-539"><a href="#cb68-539"></a>   MacOSX)</span>
+<span id="cb68-540"><a href="#cb68-540"></a><span class="ss">   - </span>open a terminal and enter</span>
+<span id="cb68-541"><a href="#cb68-541"></a>   <span class="in">```{bash}</span></span>
+<span id="cb68-542"><a href="#cb68-542"></a><span class="in">   #| label: install_xcode</span></span>
+<span id="cb68-543"><a href="#cb68-543"></a><span class="in">   #| eval: false</span></span>
+<span id="cb68-544"><a href="#cb68-544"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb68-545"><a href="#cb68-545"></a><span class="in">   #| classes: bash</span></span>
+<span id="cb68-546"><a href="#cb68-546"></a><span class="in">   xcode-select --install</span></span>
+<span id="cb68-547"><a href="#cb68-547"></a><span class="in">   ```</span></span>
+<span id="cb68-548"><a href="#cb68-548"></a></span>
+<span id="cb68-549"><a href="#cb68-549"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
+<span id="cb68-550"><a href="#cb68-550"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
+<span id="cb68-551"><a href="#cb68-551"></a><span class="ss">     - </span>open a new R session and issue the following</span>
+<span id="cb68-552"><a href="#cb68-552"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-553"><a href="#cb68-553"></a><span class="in">       #| label: install_cmdstan1</span></span>
+<span id="cb68-554"><a href="#cb68-554"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-555"><a href="#cb68-555"></a><span class="in">       #| cache: true</span></span>
+<span id="cb68-556"><a href="#cb68-556"></a><span class="in">       ```</span></span>
+<span id="cb68-557"><a href="#cb68-557"></a><span class="ss">     - </span>make sure the package loads</span>
+<span id="cb68-558"><a href="#cb68-558"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-559"><a href="#cb68-559"></a><span class="in">       #| label: install_cmdstan2</span></span>
+<span id="cb68-560"><a href="#cb68-560"></a><span class="in">       #| eval: true</span></span>
+<span id="cb68-561"><a href="#cb68-561"></a><span class="in">       #| cache: true</span></span>
+<span id="cb68-562"><a href="#cb68-562"></a><span class="in">       ```</span></span>
+<span id="cb68-563"><a href="#cb68-563"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
+<span id="cb68-564"><a href="#cb68-564"></a>       installed and configured</span>
+<span id="cb68-565"><a href="#cb68-565"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-566"><a href="#cb68-566"></a><span class="in">       #| label: install_cmdstan3</span></span>
+<span id="cb68-567"><a href="#cb68-567"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-568"><a href="#cb68-568"></a><span class="in">       ```</span></span>
+<span id="cb68-569"><a href="#cb68-569"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
+<span id="cb68-570"><a href="#cb68-570"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-571"><a href="#cb68-571"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb68-572"><a href="#cb68-572"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-573"><a href="#cb68-573"></a><span class="in">       ```</span></span>
+<span id="cb68-574"><a href="#cb68-574"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb68-575"><a href="#cb68-575"></a>   <span class="in">```{r}</span></span>
+<span id="cb68-576"><a href="#cb68-576"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb68-577"><a href="#cb68-577"></a><span class="in">   #| eval: true</span></span>
+<span id="cb68-578"><a href="#cb68-578"></a><span class="in">   #| cache: true</span></span>
+<span id="cb68-579"><a href="#cb68-579"></a><span class="in">   ```</span></span>
+<span id="cb68-580"><a href="#cb68-580"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb68-581"><a href="#cb68-581"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb68-582"><a href="#cb68-582"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb68-583"><a href="#cb68-583"></a><span class="ss">   - </span>install the package</span>
+<span id="cb68-584"><a href="#cb68-584"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-585"><a href="#cb68-585"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb68-586"><a href="#cb68-586"></a><span class="in">     #| eval: false</span></span>
+<span id="cb68-587"><a href="#cb68-587"></a><span class="in">     ```</span></span>
+<span id="cb68-588"><a href="#cb68-588"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb68-589"><a href="#cb68-589"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-590"><a href="#cb68-590"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb68-591"><a href="#cb68-591"></a><span class="in">     #| eval: true</span></span>
+<span id="cb68-592"><a href="#cb68-592"></a><span class="in">     #| cache: true</span></span>
+<span id="cb68-593"><a href="#cb68-593"></a><span class="in">     ```</span></span>
+<span id="cb68-594"><a href="#cb68-594"></a></span>
+<span id="cb68-595"><a href="#cb68-595"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb68-596"><a href="#cb68-596"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb68-597"><a href="#cb68-597"></a>     </span>
+<span id="cb68-598"><a href="#cb68-598"></a><span class="fu">## Linux</span></span>
+<span id="cb68-599"><a href="#cb68-599"></a></span>
+<span id="cb68-600"><a href="#cb68-600"></a><span class="ss">1. </span>Ensure that you have installed (via your package manager) the</span>
+<span id="cb68-601"><a href="#cb68-601"></a>   following dependencies:</span>
+<span id="cb68-602"><a href="#cb68-602"></a><span class="ss">   - </span>build-essential</span>
+<span id="cb68-603"><a href="#cb68-603"></a><span class="ss">   - </span>g++</span>
+<span id="cb68-604"><a href="#cb68-604"></a><span class="ss">   - </span>gcc</span>
+<span id="cb68-605"><a href="#cb68-605"></a><span class="ss">   - </span>curl</span>
+<span id="cb68-606"><a href="#cb68-606"></a><span class="ss">   - </span>libcurl4-openssl-dev</span>
+<span id="cb68-607"><a href="#cb68-607"></a></span>
+<span id="cb68-608"><a href="#cb68-608"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
+<span id="cb68-609"><a href="#cb68-609"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
+<span id="cb68-610"><a href="#cb68-610"></a><span class="ss">     - </span>open a new R session and issue the following</span>
+<span id="cb68-611"><a href="#cb68-611"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-612"><a href="#cb68-612"></a><span class="in">       #| label: install_cmdstan1</span></span>
+<span id="cb68-613"><a href="#cb68-613"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-614"><a href="#cb68-614"></a><span class="in">       ```</span></span>
+<span id="cb68-615"><a href="#cb68-615"></a><span class="ss">     - </span>make sure the package loads</span>
+<span id="cb68-616"><a href="#cb68-616"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-617"><a href="#cb68-617"></a><span class="in">       #| label: install_cmdstan2</span></span>
+<span id="cb68-618"><a href="#cb68-618"></a><span class="in">       #| eval: true</span></span>
+<span id="cb68-619"><a href="#cb68-619"></a><span class="in">       #| cache: true</span></span>
+<span id="cb68-620"><a href="#cb68-620"></a><span class="in">       ```</span></span>
+<span id="cb68-621"><a href="#cb68-621"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
+<span id="cb68-622"><a href="#cb68-622"></a>       installed and configured</span>
+<span id="cb68-623"><a href="#cb68-623"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-624"><a href="#cb68-624"></a><span class="in">       #| label: install_cmdstan3</span></span>
+<span id="cb68-625"><a href="#cb68-625"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-626"><a href="#cb68-626"></a><span class="in">       ```</span></span>
+<span id="cb68-627"><a href="#cb68-627"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
+<span id="cb68-628"><a href="#cb68-628"></a>       <span class="in">```{r}</span></span>
+<span id="cb68-629"><a href="#cb68-629"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb68-630"><a href="#cb68-630"></a><span class="in">       #| eval: false</span></span>
+<span id="cb68-631"><a href="#cb68-631"></a><span class="in">       ```</span></span>
+<span id="cb68-632"><a href="#cb68-632"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb68-633"><a href="#cb68-633"></a>   <span class="in">```{r}</span></span>
+<span id="cb68-634"><a href="#cb68-634"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb68-635"><a href="#cb68-635"></a><span class="in">   #| eval: true</span></span>
+<span id="cb68-636"><a href="#cb68-636"></a><span class="in">   #| cache: true</span></span>
+<span id="cb68-637"><a href="#cb68-637"></a><span class="in">   ```</span></span>
+<span id="cb68-638"><a href="#cb68-638"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb68-639"><a href="#cb68-639"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb68-640"><a href="#cb68-640"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb68-641"><a href="#cb68-641"></a><span class="ss">   - </span>install the package</span>
+<span id="cb68-642"><a href="#cb68-642"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-643"><a href="#cb68-643"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb68-644"><a href="#cb68-644"></a><span class="in">     #| eval: false</span></span>
+<span id="cb68-645"><a href="#cb68-645"></a><span class="in">     ```</span></span>
+<span id="cb68-646"><a href="#cb68-646"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb68-647"><a href="#cb68-647"></a>     <span class="in">```{r}</span></span>
+<span id="cb68-648"><a href="#cb68-648"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb68-649"><a href="#cb68-649"></a><span class="in">     #| eval: true</span></span>
+<span id="cb68-650"><a href="#cb68-650"></a><span class="in">     #| cache: true</span></span>
+<span id="cb68-651"><a href="#cb68-651"></a><span class="in">     ```</span></span>
+<span id="cb68-652"><a href="#cb68-652"></a></span>
+<span id="cb68-653"><a href="#cb68-653"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb68-654"><a href="#cb68-654"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb68-655"><a href="#cb68-655"></a>:::</span>
+<span id="cb68-656"><a href="#cb68-656"></a></span>
+<span id="cb68-657"><a href="#cb68-657"></a></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

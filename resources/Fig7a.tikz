@@ -14,15 +14,15 @@
 \tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
 
 \begin{tikzpicture}
-\commit{}{0aa2fd2}{color_inactive}{0aa2fd2}{ Initial repo a..}
+\commit{}{3018de7}{color_inactive}{3018de7}{ Initial repo a..}
     
-\commit{right = 1.5cm of 0aa2fd2}{ca65b9f}{color_inactive}{ca65b9f}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (0aa2fd2) -- (ca65b9f.west);
+\commit{right = 1.5cm of 3018de7}{f36e47f}{color_inactive}{f36e47f}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (3018de7) -- (f36e47f.west);
     
-\commit{right = 1.5cm of ca65b9f}{10a102c}{color_commit}{10a102c}{Modified file2,..}
-\master{below = 1cm of 10a102c} 
+\commit{right = 1.5cm of f36e47f}{1cbafc5}{color_commit}{1cbafc5}{Modified file2,..}
+\master{below = 1cm of 1cbafc5} 
 \HEAD{below = 0.1cm of master} 
-\draw [<-,line width=3pt,draw=black!60] (ca65b9f.east) -- (10a102c.west);
+\draw [<-,line width=3pt,draw=black!60] (f36e47f.east) -- (1cbafc5.west);
 \branch{below = 0.1cm of HEAD}{Feature} 
 \end{tikzpicture}
 \end{preview}
