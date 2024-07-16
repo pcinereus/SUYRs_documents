@@ -3647,7 +3647,8 @@ Note
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">setwd</span>(<span class="st">&quot;../&quot;</span>)               <span class="co">#change to the parent directory of the current working directory</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="fu">list.files</span>(<span class="at">path =</span> <span class="fu">getwd</span>()) <span class="co">#list all files (and directories) in the current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;data&quot;      &quot;docs&quot;      &quot;Makefile&quot;  &quot;resources&quot; &quot;tut&quot;      </code></pre>
+<pre><code>[1] &quot;data&quot;        &quot;default.nix&quot; &quot;docs&quot;        &quot;Makefile&quot;    &quot;resources&quot;  
+[6] &quot;tut&quot;        </code></pre>
 </div>
 </div>
 </section>
@@ -5400,23 +5401,23 @@ Q10   E2      Q10  full       15.90</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb346"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb346-1"><a href="#cb346-1"></a><span class="fu">rep</span>(<span class="fu">runif</span>(<span class="dv">1</span>), <span class="at">times =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.9458475 0.9458475 0.9458475 0.9458475 0.9458475</code></pre>
+<pre><code>[1] 0.8564524 0.8564524 0.8564524 0.8564524 0.8564524</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb348"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.5250212 0.3685890 0.4576018 0.7022586 0.6725221</code></pre>
+<pre><code>[1] 0.29191520 0.03893473 0.55039448 0.43161378 0.16454629</code></pre>
 </div>
 </div>
 <p>When the function being run within <code>runif()</code> itself produces a vector of length &gt; 1, the <code>runif()</code> function combines each of the vectors together as separate columns in a matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb350"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb350-1"><a href="#cb350-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]      [,2]      [,3]      [,4]      [,5]
-[1,] 0.47177366 0.7630087 0.1715144 0.2283701 0.5587883
-[2,] 0.04830149 0.6914195 0.5059087 0.5695025 0.4756927
-[3,] 0.10171678 0.6188929 0.7426900 0.6375667 0.2236168
-[4,] 0.18979356 0.4300264 0.1335369 0.2998961 0.4113701
-[5,] 0.14693282 0.6505941 0.7233454 0.7895954 0.5415339</code></pre>
+<pre><code>          [,1]       [,2]        [,3]       [,4]       [,5]
+[1,] 0.6673775 0.09800231 0.238681291 0.08448281 0.50586137
+[2,] 0.5697508 0.79905357 0.174959660 0.54693382 0.74309470
+[3,] 0.7058812 0.19471721 0.082264475 0.75080692 0.08878933
+[4,] 0.2511384 0.89186886 0.718473083 0.99643803 0.32216087
+[5,] 0.1661078 0.77481072 0.003258142 0.25870356 0.93324016</code></pre>
 </div>
 </div>
 <section id="apply-functions-along-matrix-margins" class="level3" data-number="5.7.1">

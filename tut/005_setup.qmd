@@ -499,6 +499,16 @@ and confirm that it indicates that there is a hidden password.
      #| eval: false
      install.packages("brms")
      ```
+     ```{r}
+     #| label: test
+     #| results: markup
+     #| eval: true
+     #| echo: true
+     #| cache: false
+     cmdstanr:::get_cmdstan_flags("STANCFLAGS")
+     ```
+
+     
    - test whether the whole tool chain works
      ```{r}
      #| label: install_cmdstan7
@@ -507,7 +517,7 @@ and confirm that it indicates that there is a hidden password.
      library(cmdstanr)
      library(brms)
      dat <- data.frame(y = rnorm(10), x = rnorm(10))
-     brm(y ~ x, data = dat)
+     brm(y ~ x, data = dat, backend ="cmdstanr")
      ```
 
      Again, if you get output similar to that above, then the complete
