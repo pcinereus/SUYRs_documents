@@ -86,6 +86,7 @@ jobs:
             any::gridGraphics
             any::HDInterval
             any::bayestestR
+            any::emmeans
             github::jmgirard/standist
 
       - name: Install other R packages
