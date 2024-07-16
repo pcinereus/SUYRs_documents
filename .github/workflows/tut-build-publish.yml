@@ -101,9 +101,11 @@ jobs:
       - name: Install CmdStan
         shell: Rscript {0}
         run: |
-          version <- "2.34.1"
-          url <- sprintf("https://github.com/stan-dev/cmdstan/releases/download/v%s/cmdstan-%s.tar.gz", version, version)
-          cmdstanr::install_cmdstan(cores = 2, release_url = url)        
+          cmdstanr::check_cmdstan_toolchain(fix = TRUE)
+          cmdstanr::install_cmdstan(cores = 2)
+          #version <- "2.34.1"
+          #url <- sprintf("https://github.com/stan-dev/cmdstan/releases/download/v%s/cmdstan-%s.tar.gz", version, version)
+          #cmdstanr::install_cmdstan(cores = 2, release_url = url)        
           #cmdstanr::check_cmdstan_toolchain(fix = TRUE)
           #cmdstanr::install_cmdstan(cores = 2)
           #cmdstan <- file.path(Sys.getenv("RUNNER_TEMP"), "cmdstan")
