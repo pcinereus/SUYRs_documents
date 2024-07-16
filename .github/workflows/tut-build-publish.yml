@@ -29,6 +29,12 @@ jobs:
       - name: Restore Timestamps
         uses: chetan/git-restore-mtime-action@v1
 
+      # Install system dependencies
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libcurl4-openssl-dev libssl-dev libxml2-dev make
+          
       # install graphviz
       - name: Install Graphviz
         run: sudo apt-get install graphviz
