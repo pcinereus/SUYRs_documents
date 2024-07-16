@@ -2492,6 +2492,18 @@ $$
 1. start by fitting the model and sampling from the priors only
 
 ::: {.indented}
+    
+```{r}
+#| label: junk
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+dat <- data.frame(y = rnorm(10), x = rnorm(10))
+brm(y ~ x, data = dat)
+```
+
+
 
 ```{r}
 #| label: brms1a
