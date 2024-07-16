@@ -13,17 +13,17 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{d2896b1}{color_inactive}{d2896b1}{ Initial repo a..}
-\commit{right = 1.5cm of d2896b1}{1edaa72}{color_commit!20}{1edaa72}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (d2896b1) -- (1edaa72.west);
+\commit{}{dc40b25}{color_inactive}{dc40b25}{ Initial repo a..}
+\commit{right = 1.5cm of dc40b25}{3223b3f}{color_commit!20}{3223b3f}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (dc40b25) -- (3223b3f.west);
 
-\commit{right = 1.5cm of 1edaa72}{e0fec98}{color_inactive}{e0fec98}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (1edaa72) -- (e0fec98.west);
+\commit{right = 1.5cm of 3223b3f}{cf91345}{color_inactive}{cf91345}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (3223b3f) -- (cf91345.west);
 
-\commit{right = 1.5cm of e0fec98}{38e36dc}{color_commit}{38e36dc}{Revert Modified..}
-\draw [<-,line width=3pt,draw=black!60] (e0fec98.east) -- (38e36dc.west);
+\commit{right = 1.5cm of cf91345}{5871e2d}{color_commit}{5871e2d}{Revert Modified..}
+\draw [<-,line width=3pt,draw=black!60] (cf91345.east) -- (5871e2d.west);
 
-\master{below = 1cm of 38e36dc} 
+\master{below = 1cm of 5871e2d} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
