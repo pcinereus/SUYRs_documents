@@ -499,6 +499,16 @@ and confirm that it indicates that there is a hidden password.
      #| eval: false
      install.packages("brms")
      ```
+     ```{r}
+     #| label: test
+     #| results: markup
+     #| eval: true
+     #| echo: true
+     #| cache: false
+     cmdstanr:::get_cmdstan_flags("STANCFLAGS")
+     ```
+
+     
    - test whether the whole tool chain works
      ```{r}
      #| label: install_cmdstan7
