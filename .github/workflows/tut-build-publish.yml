@@ -113,6 +113,7 @@ jobs:
           file.rename(cmdstanr::cmdstan_path(), cmdstan)
           lines <- paste0("\nCMDSTAN=", cmdstan, "\n")
           cat(lines, file = "~/.Renviron", append = TRUE)
+          cmdstanr:::get_cmdstan_flags("STANCFLAGS")
           
       - name: install tinytex
         uses: r-lib/actions/setup-tinytex@v2
