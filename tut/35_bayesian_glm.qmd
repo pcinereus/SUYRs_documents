@@ -2506,7 +2506,7 @@ dat1a.brm <- brm(bf(y ~ x),
                 warmup = 1000,
                 chains = 3, cores = 3,
                 thin = 5,
-                backend = 'cmdstan',
+                backend = 'cmdstanr',
                 refresh = 0)
 ```
 
