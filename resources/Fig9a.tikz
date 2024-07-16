@@ -13,14 +13,14 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{dc40b25}{color_inactive}{dc40b25}{Initial re..}
-\commit{right = 1.5cm of dc40b25}{3223b3f}{color_inactive}{3223b3f}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (dc40b25) -- (3223b3f.west);
+\commit{}{e3294bd}{color_inactive}{e3294bd}{Initial re..}
+\commit{right = 1.5cm of e3294bd}{6a68a6e}{color_inactive}{6a68a6e}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (e3294bd) -- (6a68a6e.west);
 
-\commit{right = 1.5cm of 3223b3f}{cf91345}{color_inactive}{cf91345}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (3223b3f.east) -- (cf91345.west);
+\commit{right = 1.5cm of 6a68a6e}{fa619e7}{color_inactive}{fa619e7}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (6a68a6e.east) -- (fa619e7.west);
 
-\master{below = 1cm of cf91345} 
+\master{below = 1cm of fa619e7} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}

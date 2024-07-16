@@ -14,15 +14,15 @@
 \tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
 
 \begin{tikzpicture}
-\commit{}{4bb7b9c}{color_inactive}{4bb7b9c}{ Initial repo a..}
+\commit{}{7886892}{color_inactive}{7886892}{ Initial repo a..}
     
-\commit{right = 1.5cm of 4bb7b9c}{d8cf063}{color_inactive}{d8cf063}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (4bb7b9c) -- (d8cf063.west);
+\commit{right = 1.5cm of 7886892}{4cc3d61}{color_inactive}{4cc3d61}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (7886892) -- (4cc3d61.west);
     
-\commit{right = 1.5cm of d8cf063}{9146379}{color_commit}{9146379}{Modified file2,..}
-\master{below = 1cm of 9146379} 
+\commit{right = 1.5cm of 4cc3d61}{e57f74a}{color_commit}{e57f74a}{Modified file2,..}
+\master{below = 1cm of e57f74a} 
 \HEAD{below = 0.1cm of master} 
-\draw [<-,line width=3pt,draw=black!60] (d8cf063.east) -- (9146379.west);
+\draw [<-,line width=3pt,draw=black!60] (4cc3d61.east) -- (e57f74a.west);
 \branch{below = 0.1cm of HEAD}{Feature} 
 \end{tikzpicture}
 \end{preview}
