@@ -13,25 +13,25 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{5293b56}{color_inactive}{5293b56}{Initial re..}
-\commit{right = 1.5cm of 5293b56}{d83ce26}{color_inactive}{d83ce26}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (5293b56) -- (d83ce26.west);
+\commit{}{580bec4}{color_inactive}{580bec4}{Initial re..}
+\commit{right = 1.5cm of 580bec4}{f9e8c8f}{color_inactive}{f9e8c8f}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (580bec4) -- (f9e8c8f.west);
 
-\commit{right = 1.5cm of d83ce26}{42e0bf5}{color_inactive}{42e0bf5}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (d83ce26.east) -- (42e0bf5.west);
+\commit{right = 1.5cm of f9e8c8f}{40abc88}{color_inactive}{40abc88}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (f9e8c8f.east) -- (40abc88.west);
 
 % new commit on main
-\commit{right = 1.5cm of 42e0bf5}{e7a727e}{color_commit}{e7a727e}{Bug fix in..}
-\draw [<-,line width=3pt,draw=black!60] (42e0bf5.east) -- (e7a727e.west);
+\commit{right = 1.5cm of 40abc88}{9cd923d}{color_commit}{9cd923d}{Bug fix in..}
+\draw [<-,line width=3pt,draw=black!60] (40abc88.east) -- (9cd923d.west);
 
-\commit{above = 3cm of e7a727e}{ab984f6}{color_inactive}{ab984f6}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (42e0bf5.north east) -- (ab984f6.south west);
+\commit{above = 3cm of 9cd923d}{16fb046}{color_inactive}{16fb046}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (40abc88.north east) -- (16fb046.south west);
 
-\commit{right = 1.5cm of ab984f6}{9d9c373}{color_inactive}{9d9c373}{Feature co..}
-\draw [<-,line width=3pt,draw=black!60] (ab984f6.east) -- (9d9c373.west);
-\branch{below = 1cm of 9d9c373}{Feature} 
+\commit{right = 1.5cm of 16fb046}{92e1044}{color_inactive}{92e1044}{Feature co..}
+\draw [<-,line width=3pt,draw=black!60] (16fb046.east) -- (92e1044.west);
+\branch{below = 1cm of 92e1044}{Feature} 
 
-\master{below = 1cm of e7a727e} 
+\master{below = 1cm of 9cd923d} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 
