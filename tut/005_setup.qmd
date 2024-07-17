@@ -513,7 +513,7 @@ and confirm that it indicates that there is a hidden password.
        c("HOME" = Sys.getenv("HOME")),
      flags <- cmdstanr:::wsl_compatible_run(
       command = "make",
-      args = c("-s", paste0("print-", flag_name)),
+      args = c("-s", paste0("print-", STANCFLAGS)),
       wd = cmdstan_path
      )$stdout
      )
