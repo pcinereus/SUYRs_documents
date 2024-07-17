@@ -506,6 +506,8 @@ and confirm that it indicates that there is a hidden password.
      #| echo: true
      #| cache: false
      cmdstanr:::get_cmdstan_flags("STANCFLAGS")
+     cmdstanr:::cmdstan_path()
+     Sys.getenv("HOME")
      ```
 
      
