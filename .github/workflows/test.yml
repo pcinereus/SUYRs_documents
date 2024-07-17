@@ -29,3 +29,8 @@ jobs:
       - name: Build development environment
         run: |
           nix-build
+          - name: Make tutorials
+          
+      - name: Test    
+        run: |
+          echo "library(brms); dat <- data.frame(y = rnorm(10), x = rnorm(10)); brm(y ~ x, data = dat, backend = "cmdstanr");" | R --no-save --no-restore;
