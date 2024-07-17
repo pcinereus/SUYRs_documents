@@ -522,6 +522,9 @@ and confirm that it indicates that there is a hidden password.
      print(flags)
      flags_vec <- strsplit(x = flags, split = " ", fixed = TRUE)[[1]]
      print(flags_vec)
+
+     list.files(cmdstanr:::cmdstan_path())
+     system(paste0("cat ", cmdstanr:::cmdstan_path(), "/makefile"))
      ```
 
      

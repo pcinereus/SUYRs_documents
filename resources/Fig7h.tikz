@@ -13,28 +13,28 @@
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
-\commit{}{601c1d0}{color_inactive}{601c1d0}{ Initial repo a..}
-\commit{right = 1.5cm of 601c1d0}{0018c50}{color_inactive}{0018c50}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (601c1d0) -- (0018c50.west);
+\commit{}{d1e1030}{color_inactive}{d1e1030}{ Initial repo a..}
+\commit{right = 1.5cm of d1e1030}{1a44c20}{color_inactive}{1a44c20}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (d1e1030) -- (1a44c20.west);
 
-\commit{right = 1.5cm of 0018c50}{e65e70c}{color_inactive}{e65e70c}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (0018c50.east) -- (e65e70c.west);
+\commit{right = 1.5cm of 1a44c20}{c8d3541}{color_inactive}{c8d3541}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (1a44c20.east) -- (c8d3541.west);
 
 % new commit on main
-\commit{right = 1.5cm of e65e70c}{ab3e7c2}{color_inactive}{ab3e7c2}{Bug fix in file..}
-\draw [<-,line width=3pt,draw=black!60] (e65e70c.east) -- (ab3e7c2.west);
+\commit{right = 1.5cm of c8d3541}{a23a2c2}{color_inactive}{a23a2c2}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (c8d3541.east) -- (a23a2c2.west);
 
-\commit{above = 3cm of ab3e7c2}{456b559}{color_inactive}{456b559}{New feature..}
-\draw [<-,line width=3pt,draw=black!60] (e65e70c.north east) -- (456b559.south west);
+\commit{above = 3cm of a23a2c2}{7489f12}{color_inactive}{7489f12}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (c8d3541.north east) -- (7489f12.south west);
 
-\commit{right = 1.5cm of 456b559}{cee35c7}{color_inactive}{cee35c7}{Feature complet..}
-\draw [<-,line width=3pt,draw=black!60] (456b559.east) -- (cee35c7.west);
+\commit{right = 1.5cm of 7489f12}{f2bd789}{color_inactive}{f2bd789}{Feature complet..}
+\draw [<-,line width=3pt,draw=black!60] (7489f12.east) -- (f2bd789.west);
 
-\commit{right = 5cm of ab3e7c2}{aab13b0}{color_commit}{aab13b0}{ Merge made by ..}
-\draw [<-,line width=3pt,draw=black!60] (cee35c7.south east) -- (aab13b0.north west);
-\draw [<-,line width=3pt,draw=black!60] (ab3e7c2.east) -- (aab13b0.west);
+\commit{right = 5cm of a23a2c2}{a6c68e8}{color_commit}{a6c68e8}{ Merge made by ..}
+\draw [<-,line width=3pt,draw=black!60] (f2bd789.south east) -- (a6c68e8.north west);
+\draw [<-,line width=3pt,draw=black!60] (a23a2c2.east) -- (a6c68e8.west);
 
-\master{below = 1cm of aab13b0} 
+\master{below = 1cm of a6c68e8} 
 \HEAD{below = 0.1cm of master} 
 
 \end{tikzpicture}
