@@ -520,6 +520,8 @@ and confirm that it indicates that there is a hidden password.
 
      flags <- gsub("\n", "", flags, fixed = TRUE)
      print(flags)
+     flags_vec <- strsplit(x = flags, split = " ", fixed = TRUE)[[1]]
+     print(flags_vec)
      ```
 
      

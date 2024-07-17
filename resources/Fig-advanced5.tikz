@@ -97,8 +97,8 @@
 \file{$($(blob2.west) !0.5! (blob3.west)$) +(5.75,0)$}{\textcolor{black}{2b61e}}{tree3}{color_tree}
                
 %commits
-\file{$(tree1.west) +(3,0)$}{\textcolor{black}{74d73}}{commit1}{color_commit}
-\file{$(tree3.west) +(2.75,0)$}{\textcolor{black}{3e906}}{commit2}{color_commit}
+\file{$(tree1.west) +(3,0)$}{\textcolor{black}{981a0}}{commit1}{color_commit}
+\file{$(tree3.west) +(2.75,0)$}{\textcolor{black}{48651}}{commit2}{color_commit}
 
 %arrows
 \draw[->,very thick] ($(HEAD) +(-1,0)$) -- ($(master) +(1.2,0)$);

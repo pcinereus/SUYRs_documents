@@ -13,17 +13,17 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{97f95fc}{color_inactive}{97f95fc}{ Initial repo a..}
-\commit{right = 1.5cm of 97f95fc}{643211e}{color_inactive}{643211e}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (97f95fc) -- (643211e.west);
+\commit{}{f4f56a3}{color_inactive}{f4f56a3}{ Initial repo a..}
+\commit{right = 1.5cm of f4f56a3}{60893f7}{color_inactive}{60893f7}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (f4f56a3) -- (60893f7.west);
 
-\commit{right = 1.5cm of 643211e}{1d39d11}{color_commit}{1d39d11}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (643211e) -- (1d39d11.west);
+\commit{right = 1.5cm of 60893f7}{03ee5ff}{color_commit}{03ee5ff}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (60893f7) -- (03ee5ff.west);
 
-\commitz{below = 3cm of 1d39d11}{1b5b00d}{color_zombie}{1b5b00d}{Modified file2,..}{black!20!white}
-\draw [<-,line width=3pt,draw=black!20] (643211e.east) -- (1b5b00d.west);
+\commitz{below = 3cm of 03ee5ff}{3389717}{color_zombie}{3389717}{Modified file2,..}{black!20!white}
+\draw [<-,line width=3pt,draw=black!20] (60893f7.east) -- (3389717.west);
 
-\master{below = 1cm of 1d39d11} 
+\master{below = 1cm of 03ee5ff} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
