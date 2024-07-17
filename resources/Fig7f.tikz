@@ -13,25 +13,25 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{f496284}{color_inactive}{f496284}{ Initial repo a..}
-\commit{right = 1.5cm of f496284}{a2ea119}{color_inactive}{a2ea119}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (f496284) -- (a2ea119.west);
+\commit{}{7868f40}{color_inactive}{7868f40}{ Initial repo a..}
+\commit{right = 1.5cm of 7868f40}{ec74fd3}{color_inactive}{ec74fd3}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (7868f40) -- (ec74fd3.west);
 
-\commit{right = 1.5cm of a2ea119}{4b0e7de}{color_inactive}{4b0e7de}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (a2ea119.east) -- (4b0e7de.west);
+\commit{right = 1.5cm of ec74fd3}{88f2c45}{color_inactive}{88f2c45}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (ec74fd3.east) -- (88f2c45.west);
 
-\commit{right = 1.5cm of 4b0e7de}{0c7e321}{color_commit}{0c7e321}{Bug fix in file..}
-\draw [<-,line width=3pt,draw=black!60] (4b0e7de.east) -- (0c7e321.west);
+\commit{right = 1.5cm of 88f2c45}{ea0c700}{color_commit}{ea0c700}{Bug fix in file..}
+\draw [<-,line width=3pt,draw=black!60] (88f2c45.east) -- (ea0c700.west);
 
-\commit{above = 3cm of 0c7e321}{8982e79}{color_inactive}{8982e79}{New feature..}
-\draw [<-,line width=3pt,draw=black!60] (4b0e7de.north east) -- (8982e79.south west);
+\commit{above = 3cm of ea0c700}{eab404d}{color_inactive}{eab404d}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (88f2c45.north east) -- (eab404d.south west);
 
-\master{below = 1cm of 0c7e321} 
+\master{below = 1cm of ea0c700} 
 
-\commit{right = 1.5cm of 8982e79}{f121187}{color_commit}{f121187}{Feature complet..}
-\draw [<-,line width=3pt,draw=black!60] (8982e79.east) -- (f121187.west);
+\commit{right = 1.5cm of eab404d}{eee5994}{color_commit}{eee5994}{Feature complet..}
+\draw [<-,line width=3pt,draw=black!60] (eab404d.east) -- (eee5994.west);
 
-\branch{below = 1cm of f121187}{Feature} 
+\branch{below = 1cm of eee5994}{Feature} 
 \HEAD{below = 0.1cm of Feature} 
 \end{tikzpicture}
 \end{preview}
