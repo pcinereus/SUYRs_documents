@@ -508,6 +508,18 @@ and confirm that it indicates that there is a hidden password.
      cmdstanr:::get_cmdstan_flags("STANCFLAGS")
      cmdstanr:::cmdstan_path()
      Sys.getenv("HOME")
+     cmdstan_path <- cmdstanr:::cmdstan_path()
+     withr::with_envvar(
+       c("HOME" = Sys.getenv("HOME")),
+     flags <- cmdstanr:::wsl_compatible_run(
+      command = "make",
+      args = c("-s", paste0("print-", flag_name)),
+      wd = cmdstan_path
+     )$stdout
+     )
+
+     flags <- gsub("\n", "", flags, fixed = TRUE)
+     print(flags)
      ```
 
      
