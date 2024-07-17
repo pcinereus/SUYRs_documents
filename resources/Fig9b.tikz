@@ -13,14 +13,14 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{a098aac}{color_inactive}{a098aac}{ Initial repo a..}
-\commit{right = 1.5cm of a098aac}{4807815}{color_commit}{4807815}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (a098aac) -- (4807815.west);
+\commit{}{97f95fc}{color_inactive}{97f95fc}{ Initial repo a..}
+\commit{right = 1.5cm of 97f95fc}{643211e}{color_commit}{643211e}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (97f95fc) -- (643211e.west);
 
-\commitz{right = 1.5cm of 4807815}{b3590ef}{color_zombie}{b3590ef}{Modified file2,..}{black!20!white}
-\draw [<-,line width=3pt,draw=black!20] (4807815.east) -- (b3590ef.west);
+\commitz{right = 1.5cm of 643211e}{1b5b00d}{color_zombie}{1b5b00d}{Modified file2,..}{black!20!white}
+\draw [<-,line width=3pt,draw=black!20] (643211e.east) -- (1b5b00d.west);
 
-\master{below = 1cm of 4807815} 
+\master{below = 1cm of 643211e} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
