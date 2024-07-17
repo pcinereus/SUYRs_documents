@@ -524,7 +524,10 @@ and confirm that it indicates that there is a hidden password.
      print(flags_vec)
 
      list.files(cmdstanr:::cmdstan_path())
-     system(paste0("cat ", cmdstanr:::cmdstan_path(), "/makefile"))
+
+     cmdstanr::cmdstanr_example()
+
+     #system(paste0("cat ", cmdstanr:::cmdstan_path(), "/makefile"))
      ```
 
      
