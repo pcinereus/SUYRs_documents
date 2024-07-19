@@ -534,7 +534,7 @@ and confirm that it indicates that there is a hidden password.
      
    - test whether the whole tool chain works
      ```{r}
-     #| label: install_cmdstan7
+     #| label: install_cmdstan7_print
      #| eval: false
      library(cmdstanr)
      library(brms)

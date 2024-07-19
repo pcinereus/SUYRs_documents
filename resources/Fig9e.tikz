@@ -13,17 +13,17 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{437633e}{color_commit!20}{437633e}{ Initial repo a..}
-\commit{right = 1.5cm of 437633e}{3d007af}{color_inactive}{3d007af}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (437633e) -- (3d007af.west);
+\commit{}{a4fb5d5}{color_commit!20}{a4fb5d5}{ Initial repo a..}
+\commit{right = 1.5cm of a4fb5d5}{ce27531}{color_inactive}{ce27531}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (a4fb5d5) -- (ce27531.west);
 
-\commit{right = 1.5cm of 3d007af}{001d2bb}{color_inactive}{001d2bb}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (3d007af) -- (001d2bb.west);
+\commit{right = 1.5cm of ce27531}{ca3792e}{color_inactive}{ca3792e}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (ce27531) -- (ca3792e.west);
 
-\commit{right = 1.5cm of 001d2bb}{1e6469b}{color_commit}{1e6469b}{Rolled back..}
-\draw [<-,line width=3pt,draw=black!60] (001d2bb.east) -- (1e6469b.west);
+\commit{right = 1.5cm of ca3792e}{a33f2e4}{color_commit}{a33f2e4}{Rolled back..}
+\draw [<-,line width=3pt,draw=black!60] (ca3792e.east) -- (a33f2e4.west);
 
-\master{below = 1cm of 1e6469b} 
+\master{below = 1cm of a33f2e4} 
 \HEAD{below = 0.1cm of master} 
 \end{tikzpicture}
 \end{preview}
