@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.54">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2024-07-18">
+<meta name="dcterms.date" content="2024-07-19">
 
 <title>Introduction to R</title>
 <style>
@@ -3203,7 +3203,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 18, 2024</p>
+      <p class="date">July 19, 2024</p>
     </div>
   </div>
   
@@ -5401,23 +5401,23 @@ Q10   E2      Q10  full       15.90</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb346"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb346-1"><a href="#cb346-1"></a><span class="fu">rep</span>(<span class="fu">runif</span>(<span class="dv">1</span>), <span class="at">times =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2525762 0.2525762 0.2525762 0.2525762 0.2525762</code></pre>
+<pre><code>[1] 0.9744685 0.9744685 0.9744685 0.9744685 0.9744685</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb348"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.2710001 0.3296170 0.1594074 0.7940537 0.8706569</code></pre>
+<pre><code>[1] 0.7595855 0.3016536 0.4666650 0.6945191 0.3722172</code></pre>
 </div>
 </div>
 <p>When the function being run within <code>runif()</code> itself produces a vector of length &gt; 1, the <code>runif()</code> function combines each of the vectors together as separate columns in a matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb350"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb350-1"><a href="#cb350-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>            [,1]      [,2]      [,3]       [,4]      [,5]
-[1,] 0.004522382 0.8770914 0.8105555 0.13489407 0.8393099
-[2,] 0.063775982 0.3074106 0.1942227 0.36232825 0.7526290
-[3,] 0.540639529 0.1624695 0.6439212 0.13547828 0.4400755
-[4,] 0.531733976 0.7691996 0.7821103 0.06248031 0.4634931
-[5,] 0.100296276 0.8579191 0.6629441 0.29136142 0.3136848</code></pre>
+<pre><code>          [,1]      [,2]      [,3]        [,4]      [,5]
+[1,] 0.4104047 0.8269786 0.1489020 0.019396226 0.5582698
+[2,] 0.6980344 0.1631989 0.3760933 0.623026450 0.6886142
+[3,] 0.7912374 0.7058841 0.3198523 0.404102795 0.4505947
+[4,] 0.7543862 0.2239829 0.5964529 0.008321862 0.4836753
+[5,] 0.7196006 0.3894584 0.4065060 0.656618306 0.7920972</code></pre>
 </div>
 </div>
 <section id="apply-functions-along-matrix-margins" class="level3" data-number="5.7.1">

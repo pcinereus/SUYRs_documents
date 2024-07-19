@@ -535,9 +535,18 @@ and confirm that it indicates that there is a hidden password.
    - test whether the whole tool chain works
      ```{r}
      #| label: install_cmdstan7
-     #| eval: true
-     #| cache: true
+     #| eval: false
      library(cmdstanr)
+     library(brms)
+     dat <- data.frame(y = rnorm(10), x = rnorm(10))
+     brm(y ~ x, data = dat, backend = "cmdstanr")
+     ```
+     ```{r}
+     #| label: install_cmdstan7
+     #| eval: true
+     #| echo: false
+     #| cache: true
+     library(rstan)
      library(brms)
      dat <- data.frame(y = rnorm(10), x = rnorm(10))
      brm(y ~ x, data = dat, backend = "rstan")
