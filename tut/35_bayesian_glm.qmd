@@ -58,6 +58,7 @@ library(HDInterval)  #for HPD intervals
 library(bayestestR)  #for ROPE
 library(emmeans)     #for estimated marginal means
 library(standist)    #for plotting distributions
+library(cmdstanr)    #for the backend
 source("helperfunctions.R")
 ```
 
@@ -2500,7 +2501,7 @@ $$
 #| echo: true
 #| cache: false
 dat <- data.frame(y = rnorm(10), x = rnorm(10))
-brm(y ~ x, data = dat, backend = "cmdstanr")
+brm(y ~ x, data = dat, backend = "rstan")
 ```
 
 
@@ -2518,7 +2519,7 @@ dat1a.brm <- brm(bf(y ~ x),
                 warmup = 1000,
                 chains = 3, cores = 3,
                 thin = 5,
-                backend = 'cmdstanr',
+                backend = "rstan",
                 refresh = 0)
 ```
 
