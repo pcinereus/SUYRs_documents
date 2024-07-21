@@ -13,15 +13,15 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{a4fb5d5}{color_commit!20}{a4fb5d5}{ Initial repo a..}
-\commit{right = 1.5cm of a4fb5d5}{ce27531}{color_commit}{ce27531}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (a4fb5d5) -- (ce27531.west);
+\commit{}{5dccb26}{color_commit!20}{5dccb26}{ Initial repo a..}
+\commit{right = 1.5cm of 5dccb26}{f68289e}{color_commit}{f68289e}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (5dccb26) -- (f68289e.west);
 
-\commit{right = 1.5cm of ce27531}{ca3792e}{color_inactive}{ca3792e}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (ce27531) -- (ca3792e.west);
+\commit{right = 1.5cm of f68289e}{fb686d0}{color_inactive}{fb686d0}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (f68289e) -- (fb686d0.west);
 
-\master{below = 1cm of ca3792e} 
-\HEAD{below = 1cm of ce27531} 
+\master{below = 1cm of fb686d0} 
+\HEAD{below = 1cm of f68289e} 
 \end{tikzpicture}
 \end{preview}
 \end{document}

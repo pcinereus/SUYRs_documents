@@ -13,27 +13,27 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{7cb7a4a}{color_inactive}{7cb7a4a}{Initial re..}
-\commit{right = 1.5cm of 7cb7a4a}{90cb0f5}{color_inactive}{90cb0f5}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (7cb7a4a) -- (90cb0f5.west);
+\commit{}{aa80968}{color_inactive}{aa80968}{Initial re..}
+\commit{right = 1.5cm of aa80968}{cb5825e}{color_inactive}{cb5825e}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (aa80968) -- (cb5825e.west);
 
-\commit{right = 1.5cm of 90cb0f5}{9e525ca}{color_inactive}{9e525ca}{Modified f..}
-\draw [<-,line width=3pt,draw=black!60] (90cb0f5.east) -- (9e525ca.west);
+\commit{right = 1.5cm of cb5825e}{b8caea6}{color_inactive}{b8caea6}{Modified f..}
+\draw [<-,line width=3pt,draw=black!60] (cb5825e.east) -- (b8caea6.west);
 
 %Bug fix
-\commit{right = 1.5cm of 9e525ca}{e81c970}{color_inactive}{e81c970}{Bug fix in..}
-\draw [<-,line width=3pt,draw=black!60] (9e525ca.east) -- (e81c970.west);
+\commit{right = 1.5cm of b8caea6}{b7e55b3}{color_inactive}{b7e55b3}{Bug fix in..}
+\draw [<-,line width=3pt,draw=black!60] (b8caea6.east) -- (b7e55b3.west);
 
 %New feature
-\commit{right = 1.5cm of e81c970}{8b33dab}{color_inactive}{8b33dab}{New featur..}
-\draw [<-,line width=3pt,draw=black!60] (e81c970.east) -- (8b33dab.west);
+\commit{right = 1.5cm of b7e55b3}{9ad86ca}{color_inactive}{9ad86ca}{New featur..}
+\draw [<-,line width=3pt,draw=black!60] (b7e55b3.east) -- (9ad86ca.west);
 
 %Feature complete
-\commit{right = 1.5cm of 8b33dab}{2006a4c}{color_commit}{2006a4c}{Feature co..}
-\draw [<-,line width=3pt,draw=black!60] (8b33dab.east) -- (2006a4c.west);
+\commit{right = 1.5cm of 9ad86ca}{787865a}{color_commit}{787865a}{Feature co..}
+\draw [<-,line width=3pt,draw=black!60] (9ad86ca.east) -- (787865a.west);
 
-\master{below = 1cm of e81c970} 
-\branch{below = 1cm of 2006a4c}{Feature} 
+\master{below = 1cm of b7e55b3} 
+\branch{below = 1cm of 787865a}{Feature} 
 \HEAD{below = 0.1cm of Feature} 
 \end{tikzpicture}
 \end{preview}
