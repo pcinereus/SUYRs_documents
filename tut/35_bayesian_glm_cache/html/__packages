@@ -24,3 +24,5 @@ bayestestR
 emmeans
 standist
 cmdstanr
+mvtnorm
+coda

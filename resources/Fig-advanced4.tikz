@@ -99,7 +99,7 @@
 \file{$(blob1.west) +(5,0)$}{\textcolor{black}{07a94}}{tree1}{color_tree}
     
 %commits
-\file{$(tree1.west) +(3,0)$}{\textcolor{black}{cea4c}}{commit1}{color_commit}
+\file{$(tree1.west) +(3,0)$}{\textcolor{black}{aadf5}}{commit1}{color_commit}
 
 
 %arrows
