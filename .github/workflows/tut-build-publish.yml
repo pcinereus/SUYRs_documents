@@ -207,6 +207,7 @@ jobs:
         run: |
           echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
           make -i tut
+          make -i pres
         #run: |
         #  echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
         #  echo "library(quarto); quarto_render(\"tut/10_git.qmd\")" | R --no-save --no-restore;
