@@ -3647,8 +3647,8 @@ Note
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">setwd</span>(<span class="st">&quot;../&quot;</span>)               <span class="co">#change to the parent directory of the current working directory</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="fu">list.files</span>(<span class="at">path =</span> <span class="fu">getwd</span>()) <span class="co">#list all files (and directories) in the current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;data&quot;        &quot;default.nix&quot; &quot;docs&quot;        &quot;Makefile&quot;    &quot;resources&quot;  
-[6] &quot;tut&quot;        </code></pre>
+<pre><code> [1] &quot;data&quot;        &quot;default.nix&quot; &quot;docs&quot;        &quot;Him.ttf&quot;     &quot;in&quot;         
+ [6] &quot;Makefile&quot;    &quot;pres&quot;        &quot;resources&quot;   &quot;Tusj.ttf&quot;    &quot;tut&quot;        </code></pre>
 </div>
 </div>
 </section>
@@ -5401,23 +5401,23 @@ Q10   E2      Q10  full       15.90</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb346"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb346-1"><a href="#cb346-1"></a><span class="fu">rep</span>(<span class="fu">runif</span>(<span class="dv">1</span>), <span class="at">times =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.3525413 0.3525413 0.3525413 0.3525413 0.3525413</code></pre>
+<pre><code>[1] 0.4276756 0.4276756 0.4276756 0.4276756 0.4276756</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb348"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.02981668 0.97880127 0.24683872 0.12005325 0.27877454</code></pre>
+<pre><code>[1] 0.18338252 0.94049295 0.39800369 0.04062351 0.11484578</code></pre>
 </div>
 </div>
 <p>When the function being run within <code>runif()</code> itself produces a vector of length &gt; 1, the <code>runif()</code> function combines each of the vectors together as separate columns in a matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb350"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb350-1"><a href="#cb350-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]        [,2]      [,3]       [,4]      [,5]
-[1,] 0.04349686 0.177519709 0.1233560 0.16080986 0.6978395
-[2,] 0.28416341 0.599727280 0.5569499 0.44723106 0.9166665
-[3,] 0.58849632 0.705827142 0.8570249 0.99140369 0.8687813
-[4,] 0.52239838 0.085742984 0.3137488 0.49191222 0.2618757
-[5,] 0.85632348 0.001376758 0.3528481 0.03884827 0.8341141</code></pre>
+<pre><code>          [,1]      [,2]       [,3]      [,4]      [,5]
+[1,] 0.9974267 0.9141954 0.14394081 0.9200283 0.9101736
+[2,] 0.8107059 0.3468489 0.72676279 0.3269823 0.5943650
+[3,] 0.1517453 0.0641868 0.08785781 0.3259080 0.1453911
+[4,] 0.6026863 0.2470228 0.71176154 0.2069699 0.3969731
+[5,] 0.8018225 0.7223709 0.58577699 0.7044017 0.5940748</code></pre>
 </div>
 </div>
 <section id="apply-functions-along-matrix-margins" class="level3" data-number="5.7.1">

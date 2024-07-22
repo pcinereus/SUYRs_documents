@@ -1,0 +1,188 @@
+
+@font-face{  
+	font-family:'FFF';
+	src:  local("☺"),
+		  url("FFF Tusj.ttf") format('truetype'); 
+}
+@font-face{  
+	font-family:'CabinSketch';
+	src:  local("☺"),
+		  url("CabinSketch-Bold.ttf") format('truetype'); 
+}
+
+@font-face{  
+	font-family:'VeteranTypewriter';
+	src:  local("☺"),
+		  url("veteran_typewriter.ttf") format('truetype'); 
+}
+
+.reveal > .slides {
+	background-image: url(NotebookPaper.jpg) !important;
+	background-size:cover;
+	background-position:center;
+}
+
+.slides > #title-slide h1 {
+	font-family: FFF, Arial, serif;
+}
+
+.slides h1 {
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%
+}
+
+.quarto-title-author-name, .date {
+	font-family: CabinSketch, Arial, serif;
+}
+
+.reveal {
+    background: black;
+}
+
+.reveal > .slides {
+	padding-left:130px;
+	padding-top:20px;
+	padding-right:100px;
+	font-family: VeteranTypewriter,Arial, serif;
+	font-size:25pt;
+}
+
+.slides > .slide h2 {
+    font-size: 60px;
+    line-height: 65px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+.slides > .slide h3 {
+    font-size: 50px;
+    line-height: 35px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+/*Two tone blue*/
+table.simple-table  {
+    font-size:70%;
+    background:#e8f1f6;
+    text-align:left;
+    border:0;
+    border-spacing:0;
+    margin: 0;
+}
+table.simple-table th {
+    display:table-header;
+    color:white;
+    font-size:1em;
+    font-weight: bold;
+    border:1.0pt solid rgb(0,0,127);
+    padding:3.6pt 5pt;
+    background:rgb(0,120,230) none repeat scroll 0% 50%;
+}
+table.simple-table td {
+    font-size:0.8em;
+    padding:3pt;
+    border-left: 1.0pt solid rgb(0,0,127);
+    border-right: 1.0pt solid rgb(0,0,127);
+    border-bottom: 1.0pt solid rgb(0,0,127)
+}
+table.simple-table ul {
+    margin-left: 1.5em;
+    line-height: 1.2em;
+}  
+table.simple-table ul li {
+    padding: 0em;
+}
+table.simple-table ul li::marker {
+    vertical-align: top;
+    content: "-";
+    font-family:VeteranTypewriter ;
+    font-size: unset !important; 
+    letter-spacing: 10px;
+}
+
+
+.reveal ol, .reveal dl, .reveal ul {
+    display: block;
+    text-align: left;
+    margin: 0 0 0 1em;
+}
+.slides > .slide strong {
+    color: #e17727;
+}
+
+.cell{
+    width: calc(100% - 200px);
+}
+
+div.sourceCode {
+    margin-left: calc(calc(0em + -2px) + 2px);
+    background-color: #fff !important;
+}
+pre.sourceCode>code.sourceCode {
+    padding: 0;
+}
+
+.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
+    margin-bottom: 0.5em;
+    border: 1px solid #d6d6d6;
+}
+div.sourceCode:has(> .r, .bash, .bash1, .julia) {
+    margin: 0 0 0px;
+    padding: 0;
+    padding-left: 3px;
+    /* border: 1px solid #d6d6d6;  /\**\/ */
+    /* border-left: 5px solid #3E769A; */
+    /* background: #FFFFE4 !important; */
+    overflow: hidden;
+    width: auto;
+    color: var(--bs-body-color);
+    border-bottom:none;
+}
+pre.r {
+    color: var(--bs-body-color) !important;
+    border-radius: 0rem;
+    background: #FFFFE4 !important;
+    border-left: 5px solid #3E769A;
+    padding-top: 2px;
+}
+
+.reveal div.sourceCode {
+    /* margin: 0; */
+    overflow: unset !important;
+}
+.reveal pre.numberSource {
+    padding-left: 4px !important;
+    margin-left: 2em !important;
+}
+.reveal pre code {
+    background-color: unset !important;
+    /* color: #222; */
+    overflow: unset !important;
+}
+
+pre.numberSource code > span {
+    position: relative;
+    left: -4.5em !important;
+    counter-increment: source-line;
+}
