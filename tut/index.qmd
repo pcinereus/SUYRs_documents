@@ -40,3 +40,6 @@ output_dir: "docs"
 - [Generalised linear models](30_glm.html)
 - [Bayesian generalised linear models](35_bayesian_glm.html)
 
+## Presentations
+
+- [Course introduction](01_introduction.html)
