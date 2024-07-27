@@ -29,7 +29,7 @@ bibliography: ../resources/references.bib
 output_dir: "docs"
 ---
 
-```{r setup, include=FALSE,warning=FALSE, message=FALSE}
+```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}
 knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = "")
 options(tinytex.engine = 'xelatex')
 cleanRmdInput <- function(x) {
@@ -175,9 +175,10 @@ common actions and git 'verbs'.
 #| include: false
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png 
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png
+#magick -density 300 10_git_files/figure-html/Fig0-1.pdf -resize 20% -trim +repage 10_git_files/figure-htm/Fig0-1.png
 ```
-
+ 
 ```{tikz}
 %| label: Fig1
 %| engine: tikz
@@ -10157,4 +10158,3 @@ git log --graph --decorate --oneline --all
 ```
 :::
  
-

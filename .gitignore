@@ -14,7 +14,6 @@ tut/_freeze
 tut/site_libs
 *.md
 /resources/tidyr-1.png
-/resources/veteran_typewriter.ttf
 /resources/tidyr-0.png
 /resources/tidyeval-1.png
 /resources/tidyeval-0.png
