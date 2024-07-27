@@ -93,6 +93,8 @@ jobs:
             any::HDInterval
             any::bayestestR
             any::emmeans
+            any::gert
+            any::usethis
             github::jmgirard/standist
 
       - name: Install other R packages
