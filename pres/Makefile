@@ -34,5 +34,5 @@ $(DOCS_HTML_FILES): docs/%.html: pres/%.qmd
 	@echo $(notdir $@)
 	$(eval PUBLIC_DIR = $(DOCS_DIR))
 	echo "library(quarto); quarto_render(\"$<\", output_format = 'revealjs')" | R --no-save --no-restore;
-	echo ls -la
+	@echo ls -la
 	cp $(patsubst %.qmd, %.html, $<) $(patsubst %.qmd, %.html, $@)
