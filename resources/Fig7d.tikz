@@ -13,18 +13,18 @@
 \input{../resources/common1.tikz}
       
 \begin{tikzpicture}
-\commit{}{23f42bd}{color_inactive}{23f42bd}{ Initial repo a..}
-\commit{right = 1.5cm of 23f42bd}{cbe6586}{color_inactive}{cbe6586}{Modified file1 ..}
-\draw [<-,line width=3pt,draw=black!60] (23f42bd) -- (cbe6586.west);
+\commit{}{8791e41}{color_inactive}{8791e41}{ Initial repo a..}
+\commit{right = 1.5cm of 8791e41}{5368623}{color_inactive}{5368623}{Modified file1 ..}
+\draw [<-,line width=3pt,draw=black!60] (8791e41) -- (5368623.west);
 
-\commit{right = 1.5cm of cbe6586}{f826e1d}{color_commit}{f826e1d}{Modified file2,..}
-\draw [<-,line width=3pt,draw=black!60] (cbe6586.east) -- (f826e1d.west);
-\master{below = 1cm of f826e1d} 
+\commit{right = 1.5cm of 5368623}{9d494b5}{color_commit}{9d494b5}{Modified file2,..}
+\draw [<-,line width=3pt,draw=black!60] (5368623.east) -- (9d494b5.west);
+\master{below = 1cm of 9d494b5} 
 \HEAD{below = 0.1cm of master} 
 
-\commit{right = 1.5cm of f826e1d}{8555e3e}{color_inactive}{8555e3e}{New feature..}
-\draw [<-,line width=3pt,draw=black!60] (f826e1d.east) -- (8555e3e.west);
-\branch{below = 1cm of 8555e3e}{Feature} 
+\commit{right = 1.5cm of 9d494b5}{ba06ccf}{color_inactive}{ba06ccf}{New feature..}
+\draw [<-,line width=3pt,draw=black!60] (9d494b5.east) -- (ba06ccf.west);
+\branch{below = 1cm of ba06ccf}{Feature} 
 \end{tikzpicture}
 \end{preview}
 \end{document}
