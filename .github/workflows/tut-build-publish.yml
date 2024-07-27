@@ -156,6 +156,9 @@ jobs:
           unzip -d noto_sans/ resources/Noto_Sans.zip
           mv noto_sans /usr/share/fonts/
 
+          unzip -d ubuntu/ resources/Ubuntu.zip
+          mv ubuntu /usr/share/fonts/
+
           fc-cache -fv
           fc-list
           ##fc-list -v | grep -i archi
