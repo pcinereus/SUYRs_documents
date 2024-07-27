@@ -239,8 +239,8 @@ mean
 . . .
 
 ```{r polymorphism1, results='markdown', eval=TRUE}
-base:::mean.default
 ```
+base:::mean.default
 
 
 Reproducible research {.smaller}
