@@ -150,7 +150,7 @@ jobs:
           #wget -O inconsolata.zip https://fonts.google.com/download?family=Inconsolata
           unzip -d inconsolata/ resources/Inconsolata.zip
           mv inconsolata /usr/share/fonts/
-          mv resources/Inconsolata_Nerd_Font_Regular /usr/share/fonts/
+          mv resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
 
           #wget -O noto_sans.zip https://fonts.google.com/download?family=Noto%20Sans
           unzip -d noto_sans/ resources/Noto_Sans.zip
