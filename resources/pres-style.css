@@ -15,7 +15,10 @@
 	src:  local("☺"),
 		  url("veteran_typewriter.ttf") format('truetype'); 
 }
-
+.reveal div.sourceCode {
+    border: none !important;
+    border-radius: none !important;
+}
 .reveal > .slides {
 	background-image: url(NotebookPaper.jpg) !important;
 	background-size:cover;
@@ -32,9 +35,20 @@
     background-size: 100% 95%;
     padding: 8px 0;
     padding-left:20px;
-    background-position:0% 50%
+    background-position:0% 50%;
 }
 
+.slide h1 {
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    text-align: center;
+}
 .quarto-title-author-name, .date {
 	font-family: CabinSketch, Arial, serif;
 }
@@ -48,7 +62,8 @@
 	padding-top:20px;
 	padding-right:100px;
 	font-family: VeteranTypewriter,Arial, serif;
-	font-size:25pt;
+	font-size:30pt;
+  line-height: 15pt;
 }
 
 .slides > .slide h2 {
@@ -66,6 +81,20 @@
     display: table;
 }
 
+.slide > h2 {
+    font-size: 60px;
+    line-height: 65px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
 .slides > .slide h3 {
     font-size: 50px;
     line-height: 35px;
@@ -81,6 +110,32 @@
     display: table;
 }
 
+.slide > h3 {
+    font-size: 50px;
+    line-height: 35px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+.slide {
+    color: #797979;
+}
+
+.reveal .slide ul, .reveal .slide ol {
+    margin-bottom: 0.0em !important;
+}
+.reveal .slide ul li, .reveal .slide ol li {
+    margin-top: 0.0em !important;
+    margin-bottom: 0.0em !important;
+}
 /*Two tone blue*/
 table.simple-table  {
     font-size:70%;
@@ -127,13 +182,13 @@ table.simple-table ul li::marker {
     text-align: left;
     margin: 0 0 0 1em;
 }
-.slides > .slide strong {
-    color: #e17727;
+.slide strong {
+    color: #e17727 !important;
 }
 
-.cell{
-    width: calc(100% - 200px);
-}
+/* .cell{ */
+/*     width: calc(100% - 200px); */
+/* } */
 
 div.sourceCode {
     margin-left: calc(calc(0em + -2px) + 2px);
@@ -146,6 +201,7 @@ pre.sourceCode>code.sourceCode {
 .cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
     margin-bottom: 0.5em;
     border: 1px solid #d6d6d6;
+    /* width: calc(100% - 200px); */
 }
 div.sourceCode:has(> .r, .bash, .bash1, .julia) {
     margin: 0 0 0px;
@@ -171,6 +227,9 @@ pre.r {
     /* margin: 0; */
     overflow: unset !important;
 }
+.reveal pre {
+    width: inherit !important;
+}
 .reveal pre.numberSource {
     padding-left: 4px !important;
     margin-left: 2em !important;
@@ -185,4 +244,43 @@ pre.numberSource code > span {
     position: relative;
     left: -4.5em !important;
     counter-increment: source-line;
+}
+
+.reveal img {
+    max-width: none !important;
+    max-height: none !important;
+}
+
+section {
+    max-width: 85%;
+}
+
+
+.bash>div.cell-output>pre {
+    border-left: 3px;
+    border-left-style: solid;
+    border-left-color: #ccc;
+}
+
+pre.bash {
+    background-color: black !important;
+}
+div.bash>.cell-output {
+    background-color: black;
+}
+div.bash>.cell-output>pre code {
+    color: #c9c9c9;
+}
+
+pre.bash > code.sourceCode > span, pre.bash1 > code.sourceCode > span {
+    color: white;
+}
+
+p .bash code:not(.sourceCode), li .bash code:not(.sourceCode), td .bash code:not(.sourceCode) {
+    background-color: black;
+    padding: 0.2em;
+}
+
+.bash code span.fu, .bash code span.at, .bash code span.st , .bash code span.bu, .bash code span.ex, .bash code span.op  {
+    color: white;
 }

@@ -93,7 +93,7 @@ R studio {.smaller}
 system("convert -resize 650x ../resources/rstudio-ide.pdf ../resources/rstudio-ide.png")
 system("mv ../resources/rstudio-ide-0.png ../resources/rstudio-ide.png") 
 ```
-
+ 
 ![](../resources/rstudio-ide.png "rstudio-ide")
 
 R studio 
@@ -110,7 +110,7 @@ R studio
 2. Avoid installing packages via RStudio 
 3. Learn to use **Keybindings**: Cntl-Shift-K
  
-
+    
 Packages 
 ----------
 

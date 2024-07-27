@@ -1,0 +1,10 @@
+
+.reveal > .slides > .slide {
+	background-image: url(NotebookPaper.jpg) !important;
+	background-size:cover;
+	background-position:center;
+}
+
+.slides > #title-slide h1 {
+	font-family: FFF, Arial, serif;
+}

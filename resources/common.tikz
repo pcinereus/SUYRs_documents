@@ -1,8 +1,8 @@
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Noto Sans}}]
 
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata}}]
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_branch}{rgb}{1,0.8,0.4}
 \definecolor{color_head}{HTML}{6495ED} %
