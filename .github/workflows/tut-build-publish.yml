@@ -214,7 +214,7 @@ jobs:
         run: |
           mkdir ~/tmp
           echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
-          #make -i tut
+          make -i tut
           make -i pres
         #run: |
         #  echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
