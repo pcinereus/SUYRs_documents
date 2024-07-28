@@ -1538,9 +1538,29 @@ git status
 ```
 ```{r, engine='bash', prompt=FALSE,eval=TRUE, echo=FALSE}
 ../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo1.tex
-cp 10_pres_git_Test_repo1.log ../docs
-cp 10_pres_git_Test_repo1.tex ../docs
+#cp 10_pres_git_Test_repo1.log ../docs
+#cp 10_pres_git_Test_repo1.tex ../docs
 cp 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
 ```
+### RStudio
+
+<!--
+	IF FOLLOWING FAILS, IT MAY BE NECESSARY TO ALTER THE SECURITY POLICIES OF IMAGEMAGICK
+	comment out the following (towards the end):
+	<policy domain="delegate" rights="none" pattern="gs" />
+	to /etc/ImageMagick-7/policy.xml
+-->
+
+```{bash, echo=FALSE, eval=TRUE, include=FALSE}
+convert resources/RStudio_GitCommit.png -resize 400x resources/RStudio_GitCommit_small.png
+convert -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources/10_pres_git_Test_repo1.png
+```
+![](resources/RStudio_GitCommit_small.png)
+![](resources/10_pres_git_Test_repo1.png)
+   
+```{r gert_commit, results='markdown', eval=FALSE}
+gert::git_commit('Initial commit')
+```
+
 
 
