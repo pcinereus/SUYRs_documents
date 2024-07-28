@@ -1418,9 +1418,13 @@ git init
 
 ### RStudio
 
-```{bash, echo=FALSE, eval=TRUE}
-magick resources/RStudio_NewProject2a.png -resize 250x resources/RStudio_NewProject2a_small.png
-magick resources/RStudio_NewProject3a.png -resize 250x resources/RStudio_NewProject3a_small.png
+```{bash, echo=FALSE, eval=TRUE, include=FALSE}
+convert resources/RStudio_AddFile.png  -resize 400x resources/RStudio_AddFile_small.png
+```
+
+```{bash, echo=FALSE, eval=TRUE, inlude=FALSE}
+convert resources/RStudio_NewProject2a.png -resize 250x resources/RStudio_NewProject2a_small.png 
+convert resources/RStudio_NewProject3a.png -resize 250x resources/RStudio_NewProject3a_small.png
 ```
 
 ![](resources/RStudio_NewProject1.png)
@@ -1477,12 +1481,12 @@ git add analysis.R
 ```
 ### RStudio
 
-```{bash, echo=FALSE, eval=TRUE}
-magick resources/RStudio_AddFile.png  -resize 400x resources/RStudio_AddFile_small.png
-magick resources/RStudio_GitStatus.png -resize 300x resources/RStudio_GitStatus_small.png
-magick resources/RStudio_GitAdd.png -resize 300x resources/RStudio_GitAdd_small.png
+```{bash, echo=FALSE, eval=TRUE, include=FALSE}
+convert resources/RStudio_AddFile.png  -resize 400x resources/RStudio_AddFile_small.png
+convert resources/RStudio_GitStatus.png -resize 300x resources/RStudio_GitStatus_small.png
+convert resources/RStudio_GitAdd.png -resize 300x resources/RStudio_GitAdd_small.png
 
-magick resources/RStudio_GitStatus.png resources/RStudio_GitAdd.png -append resources/RStudio_GitAdd_combined.png
+convert resources/RStudio_GitStatus.png resources/RStudio_GitAdd.png -append resources/RStudio_GitAdd_combined.png
 ```
 
 ![](resources/RStudio_AddFile_small.png){width=40%}
@@ -1509,9 +1513,9 @@ Git - .gitignore
 
 ### RStudio
 
-```{bash, echo=FALSE, eval=TRUE}
-magick resources/RStudio_gitignore.png -resize 350x resources/RStudio_gitignore_small.png
-magick resources/Rstudio_gitignore2.png -resize 350x resources/RStudio_gitignore2_small.png
+```{bash, echo=FALSE, eval=TRUE, include=FALSE}
+convert resources/RStudio_gitignore.png -resize 350x resources/RStudio_gitignore_small.png
+convert resources/Rstudio_gitignore2.png -resize 350x resources/RStudio_gitignore2_small.png
 ```
 ![](resources/RStudio_gitignore_small.png)
 ![](resources/RStudio_gitignore2_small.png)
@@ -1545,9 +1549,9 @@ mv 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
 	to /etc/ImageMagick-7/policy.xml
 -->
 
-```{bash, echo=FALSE, eval=TRUE}
-magick resources/RStudio_GitCommit.png -resize 400x resources/RStudio_GitCommit_small.png
-magick -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources/10_pres_git_Test_repo1.png
+```{bash, echo=FALSE, eval=TRUE, include=FALSE}
+convert resources/RStudio_GitCommit.png -resize 400x resources/RStudio_GitCommit_small.png
+convert -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources/10_pres_git_Test_repo1.png
 ```
 ![](resources/RStudio_GitCommit_small.png)
 ![](resources/10_pres_git_Test_repo1.png)
