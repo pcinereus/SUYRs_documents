@@ -62,8 +62,8 @@
 	padding-top:20px;
 	padding-right:100px;
 	font-family: VeteranTypewriter,Arial, serif;
-	font-size:30pt;
-  line-height: 15pt;
+	font-size:22pt;
+  line-height: 13pt;
 }
 
 .slides > .slide h2 {
@@ -226,6 +226,10 @@ pre.r {
 .reveal div.sourceCode {
     /* margin: 0; */
     overflow: unset !important;
+}
+.reveal p {
+    padding-bottom: 2pt !important;
+    margin-bottom: 2pt !important;
 }
 .reveal pre {
     width: inherit !important;

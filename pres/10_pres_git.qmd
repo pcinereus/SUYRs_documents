@@ -8,6 +8,7 @@ format:
     embed-resources: true
     auto-stretch: false
     css: ../resources/pres-style.css
+    margin: 0
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -1426,4 +1427,132 @@ magick resources/RStudio_NewProject3a.png -resize 250x resources/RStudio_NewProj
 ![](resources/RStudio_NewProject2a_small.png)
 ![](resources/RStudio_NewProject3a_small.png)
 
+### R
+```{r create_package, results='markdown', eval=FALSE}
+library(usethis)
+create_project(path='~/path/project_name', rstudio=TRUE)
+use_git()
+```
+
+
+
+Git - adding content
+----------------------
+
+<br>
+
+Create a file (text, code etc) <br><br>
+
+- those using R, call it **analysis.R**
+
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+x=seq(1, 10, len = 1)
+y=40 * 2 + rnorm(10, 0, 5)
+plot(x, y)
+```
+
+<br><br>
+	
+Otherwise, create any kind of file (**in the folder we just created**)
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo 'x=seq(1, 10, len = 1)' > analysis.R
+echo 'y=40 * 2 + rnorm(10, 0, 5)' >> analysis.R
+echo 'plot(x, y)' >> analysis.R
+```
+ 
+Git - adding content
+----------------------
+
+Stage the changes (**add**)
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=TRUE}
+git add <file(s)>
+```
+For example:
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git add analysis.R
+```
+### RStudio
+
+```{bash, echo=FALSE, eval=TRUE}
+magick resources/RStudio_AddFile.png  -resize 400x resources/RStudio_AddFile_small.png
+magick resources/RStudio_GitStatus.png -resize 300x resources/RStudio_GitStatus_small.png
+magick resources/RStudio_GitAdd.png -resize 300x resources/RStudio_GitAdd_small.png
+
+magick resources/RStudio_GitStatus.png resources/RStudio_GitAdd.png -append resources/RStudio_GitAdd_combined.png
+```
+
+![](resources/RStudio_AddFile_small.png){width=40%}
+![](resources/RStudio_GitAdd_combined.png){width=30%}
+
+```{r gert_add, results='markdown', eval=FALSE}
+gert::git_add('analysis.R')
+```
+
+Git - adding content
+----------------------
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo0.png
+```
+
+```{tikz Fig0b, engine='tikz',cache=TRUE,fig.show='hide',eval=TRUE, echo=FALSE,engine.opts = list(template = "../resources/tikz.tex"), fig.width=6}
+```
+![](resources/Test_repo0.png)
+
+
+Git - .gitignore
+------------------
+
+### RStudio
+
+```{bash, echo=FALSE, eval=TRUE}
+magick resources/RStudio_gitignore.png -resize 350x resources/RStudio_gitignore_small.png
+magick resources/Rstudio_gitignore2.png -resize 350x resources/RStudio_gitignore2_small.png
+```
+![](resources/RStudio_gitignore_small.png)
+![](resources/RStudio_gitignore2_small.png)
+
+Examples
+
+- `.RData` all files ending in .RData 
+- `.pdf` all files ending in .pdf
+- `data/` the entire folder called data
+
+
+
+Git - committing
+----------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=-1}
+cd ~/tmp/Test_repo
+git commit -m 'Initial commit'
+```
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo1.tex
+mv 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
+```
+ 
+### RStudio
+
+<!--
+	IF FOLLOWING FAILS, IT MAY BE NECESSARY TO ALTER THE SECURITY POLICIES OF IMAGEMAGICK
+	comment out the following (towards the end):
+	<policy domain="delegate" rights="none" pattern="gs" />
+	to /etc/ImageMagick-7/policy.xml
+-->
+
+```{bash, echo=FALSE, eval=TRUE}
+magick resources/RStudio_GitCommit.png -resize 400x resources/RStudio_GitCommit_small.png
+magick -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources/10_pres_git_Test_repo1.png
+```
+![](resources/RStudio_GitCommit_small.png)
+![](resources/10_pres_git_Test_repo1.png)
+   
+```{r gert_commit, results='markdown', eval=FALSE}
+gert::git_commit('Initial commit')
+```
 
