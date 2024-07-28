@@ -198,7 +198,7 @@ pre.sourceCode>code.sourceCode {
     padding: 0;
 }
 
-.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash1), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
+.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
     margin-bottom: 0.5em;
     border: 1px solid #d6d6d6;
     /* width: calc(100% - 200px); */
@@ -286,5 +286,34 @@ p .bash code:not(.sourceCode), li .bash code:not(.sourceCode), td .bash code:not
 }
 
 .bash code span.fu, .bash code span.at, .bash code span.st , .bash code span.bu, .bash code span.ex, .bash code span.op  {
+    color: white;
+}
+
+.bash1>div.cell-output>pre {
+    border-left: 3px;
+    border-left-style: solid;
+    border-left-color: #ccc;
+}
+
+pre.bash1 {
+    background-color: black !important;
+}
+div.bash1>.cell-output {
+    background-color: black;
+}
+div.bash1>.cell-output>pre code {
+    color: #c9c9c9;
+}
+
+pre.bash1 > code.sourceCode > span, pre.bash11 > code.sourceCode > span {
+    color: white;
+}
+
+p .bash1 code:not(.sourceCode), li .bash1 code:not(.sourceCode), td .bash1 code:not(.sourceCode) {
+    background-color: black;
+    padding: 0.2em;
+}
+
+.bash1 code span.fu, .bash1 code span.at, .bash1 code span.st , .bash1 code span.bu, .bash1 code span.ex, .bash1 code span.op  {
     color: white;
 }

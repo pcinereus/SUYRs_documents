@@ -1748,7 +1748,7 @@ knit_engines$set(bash1=function(options) {
 git checkout #
 ```
 \# is a commit or tag name
- 
+
 ```{r, engine='bash1',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
 cd ~/tmp/Test_repo
 git checkout #
@@ -1799,3 +1799,639 @@ convert  -density 300 -resize 350x resources/Rstudio_GitCheckout1.png resources/
 
 ![](resources/RStudio_GitTag_small.png)
 ![](resources/RStudio_GitCheckout1_small.png)
+
+Git - checkout
+------------------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo6.png
+convert  -density 300 -resize 500x resources/Test_repo6.png resources/Test_repo6.png
+```
+![](resources/Test_repo6.png)
+![](resources/10_pres_git_Test_repo6.png)
+
+
+Git - checkout
+------------------
+
+Restore the HEAD to the tip of main
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git checkout main
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo7.tex
+mv 10_pres_git_Test_repo7.pdf resources/10_pres_git_Test_repo7.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo7.pdf resources/10_pres_git_Test_repo7.png
+rm 10_pres_git_Test_repo7.tex 
+```
+
+![](resources/10_pres_git_Test_repo6.png)
+![](resources/10_pres_git_Test_repo7.png)
+
+R/Rstudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/Rstudio_GitBranch_change.png resources/RStudio_GitBranch_change_small.png
+```
+
+![](resources/RStudio_GitBranch_change_small.png)
+
+```{r gert_checkout2, engine='r', results='markdown', eval=FALSE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_branch_checkout(branch = 'main')
+setwd(oldwd)
+```
+
+
+Git - checkout
+------------------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo7.png
+convert  -density 300 -resize 500x resources/Test_repo7.png resources/Test_repo7.png
+```
+![](resources/Test_repo7.png)
+![](resources/10_pres_git_Test_repo7.png)
+
+Git - reset
+---------------------
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+hash = read.fwf('~/tmp/Test_repo/.git/logs/HEAD', widths=c(40,40))
+hash_commit = gsub(' ', '', strtrim(hash$V2[2], width=5))
+knit_engines$set(bash1=function(options) {
+    engine=options$engine
+    options$code = gsub('#',hash_commit,options$code)
+    code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
+    code = paste(options$engine_opts,code)
+    out = system(code,intern=TRUE)
+    engine_output(options,options$code,out) 
+})
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git reset --hard #
+```
+\# is a commit or tag name
+```{r, engine='bash1',results="hide", prompt=FALSE,eval=TRUE,echo==-1}
+cd ~/tmp/Test_repo
+git reset --hard #
+```
+  
+![](resources/10_pres_git_Test_repo3.png)
+![](resources/10_pres_git_Test_repo4.png)
+
+### R/RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/Rstudio_GitReset1.png resources/RStudio_GitReset1_small.png
+```
+
+:::: {.columns}
+
+::: {.column .center style="width:45%;"}
+```{r, results='markdown', eval=TRUE, echo=FALSE}
+knit_hooks$set(source = sub_hook)
+```
+```{r gert_reset_hard, results='markdown', eval=FALSE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_reset_hard(ref='#')
+setwd(oldwd)
+```
+```{r, results='markdown', eval=TRUE, echo=FALSE}
+knit_hooks$set(source = old_hook)
+```
+
+:::
+::: {.column .center width='49%'}
+<!--![](resources/RStudio_GitTag_small.png)-->
+![](resources/RStudio_GitReset1_small.png)
+:::
+
+::::
+
+Git - reset
+---------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo4.png
+convert  -density 300 -resize 500x resources/Test_repo4.png resources/Test_repo4.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo4.tex
+mv 10_pres_git_Test_repo4.pdf resources/10_pres_git_Test_repo4.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo4.pdf resources/10_pres_git_Test_repo4.png
+```
+![](resources/Test_repo4.png)
+![](resources/10_pres_git_Test_repo4.png)
+
+Git - reset
+---------------------
+
+Restore HEAD to the tag V.1
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git reset --hard V.1
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo8.tex
+mv 10_pres_git_Test_repo8.pdf resources/10_pres_git_Test_repo8.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo8.pdf resources/10_pres_git_Test_repo8.png
+```
+
+![](resources/10_pres_git_Test_repo4.png)
+![](resources/10_pres_git_Test_repo8.png)
+
+### R
+
+```{r gert_reset_hard1, results='markdown', eval=FALSE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_reset_hard(ref='V.1')
+setwd(oldwd)
+```
+
+Git - reset
+---------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo8.png
+convert  -density 300 -resize 400x resources/Test_repo8.png resources/Test_repo8.png
+```
+
+![](resources/Test_repo8.png)
+![](resources/10_pres_git_Test_repo8.png)
+
+Git - revert
+-------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=-1}
+cd ~/tmp/Test_repo
+git revert HEAD --no-edit
+```
+
+![](resources/10_pres_git_Test_repo8.png)
+![](resources/10_pres_git_Test_repo5.png)
+
+### RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/Rstudio_GitRevert1.png resources/RStudio_GitRevert1_small.png
+```
+![](resources/RStudio_GitTag_small.png)
+![](resources/RStudio_GitRevert1_small.png)
+
+
+Git - revert
+---------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo5.png
+convert  -density 300 -resize 500x resources/Test_repo5.png resources/Test_repo5.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo5.tex
+mv 10_pres_git_Test_repo5.pdf resources/10_pres_git_Test_repo5.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo5.pdf resources/10_pres_git_Test_repo5.png
+```
+![](resources/Test_repo5.png)
+![](resources/10_pres_git_Test_repo5.png)
+
+Git - revert multiples
+------------------------------
+
+### command line
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git revert --no-commit HEAD
+git revert --no-commit HEAD~1
+git commit -m 'Rolled back'
+```
+
+### RStudio
+
+![](resources/RStudio_GitTag_small.png)
+![](resources/RStudio_GitRevert1_small.png)
+
+Branching
+=============
+
+Git - new branch
+------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=TRUE}
+git checkout -b <Name>
+```
+For example
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git checkout -b Experimental
+```
+
+![](resources/10_pres_git_Test_repo5.png)
+![](resources/10_pres_git_Test_repo9.png)
+
+### RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/Rstudio_GitBranch.png resources/RStudio_GitBranch_small.png
+convert  -density 300 -resize 350x resources/Rstudio_GitBranch1.png resources/RStudio_GitBranch1_small.png
+```
+![](resources/RStudio_GitBranch_small.png)
+![](resources/RStudio_GitBranch1_small.png)
+
+Git - new branch
+------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo9.png
+convert  -density 300 -resize 500x resources/Test_repo9.png resources/Test_repo9.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo9.tex
+mv 10_pres_git_Test_repo9.pdf resources/10_pres_git_Test_repo9.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo9.pdf resources/10_pres_git_Test_repo9.png
+```
+
+![](resources/Test_repo9.png)
+![](resources/10_pres_git_Test_repo9.png)
+ 
+Git - branch
+---------------
+
+We are on the new branch
+
+- add or edit some content
+    - **stage** and **commit**
+	
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+x=seq(1, 10, len=1)
+y=40*2 + rnorm(10,0,5)
+plot(x,y)
+summary(x)
+mean(x)
+```
+
+Otherwise, create any kind of file (**in the folder we just created**)
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo 'mean(x)' >> analysis.R
+git add analysis.R
+git commit -m 'Added mean of x'
+```
+
+Git - branch
+---------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo10.png
+convert  -density 300 -resize 500x resources/Test_repo10.png resources/Test_repo10.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo10.tex
+mv 10_pres_git_Test_repo10.pdf resources/10_pres_git_Test_repo10.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo10.pdf resources/10_pres_git_Test_repo10.png
+```
+
+![](resources/Test_repo10.png)
+![](resources/10_pres_git_Test_repo10.png)
+
+
+Git - switch branch
+------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git checkout <Name>
+```
+For example:
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git checkout main
+```
+
+![](resources/10_pres_git_Test_repo10.png)
+![](resources/10_pres_git_Test_repo11.png)
+
+
+### RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 400x resources/RStudio_GitBranch3.png resources/RStudio_GitBranch3_small.png
+```
+![](resources/RStudio_GitBranch3_small.png)
+
+Git - switch branch
+------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo11.png
+convert  -density 300 -resize 500x resources/Test_repo11.png resources/Test_repo11.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo11.tex
+mv 10_pres_git_Test_repo11.pdf resources/10_pres_git_Test_repo11.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo11.pdf resources/10_pres_git_Test_repo11.png
+```
+![](resources/Test_repo11.png)
+![](resources/10_pres_git_Test_repo11.png)
+
+Git - branch
+---------------
+
+We are on the main branch
+
+- add another file (test.R)
+    - **stage** and **commit**
+	
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+mean(c(1,2,3))
+```
+
+Otherwise, create any kind of file 
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo 'mean(c(1,2,3))' > test.R
+git add test.R
+git commit -m 'Added test.R'
+```
+
+![](resources/10_pres_git_Test_repo11.png)
+![](resources/10_pres_git_Test_repo12.png)
+
+
+Git - branch
+---------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo12.png
+convert  -density 300 -resize 500x resources/Test_repo11.png resources/Test_repo12.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo12.tex
+mv 10_pres_git_Test_repo12.pdf resources/10_pres_git_Test_repo12.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo12.pdf resources/10_pres_git_Test_repo12.png
+```
+
+![](resources/Test_repo12.png)
+![](resources/10_pres_git_Test_repo12.png)
+
+Git - branch log
+------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git log --online --graph --decorate --all
+```
+
+### RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 400x resources/Rstudio_GitBranch5.png resources/RStudio_GitBranch5_small.png
+```
+![](resources/RStudio_GitBranch5_small.png)
+
+
+Git - diff
+-------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE, echo=TRUE}
+git diff main <branch>
+```
+For example:
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=-1}
+cd ~/tmp/Test_repo
+git diff main Experimental
+```
+
+
+Git - merge branches
+----------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git merge <Name>
+```
+For example:
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo==1}
+cd ~/tmp/Test_repo
+git merge Experimental -m 'Merge main and Experimental'
+```
+
+![](resources/10_pres_git_Test_repo12.png)
+![](resources/10_pres_git_Test_repo13.png)
+
+
+### RStudio
+
+```{r gert_merge, results='markdown', eval=FALSE, echo=2:3}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_branch_checkout('main') # ensure on main branch
+gert::git_merge(ref='Experimental')
+setwd(oldwd)
+```
+
+Git - merge branches
+----------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo13.png
+convert  -density 300 -resize 500x resources/Test_repo13.png resources/Test_repo13.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo13.tex
+mv 10_pres_git_Test_repo13.pdf resources/10_pres_git_Test_repo13.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo13.pdf resources/10_pres_git_Test_repo13.png
+```
+![](resources/Test_repo12.png)
+![](resources/10_pres_git_Test_repo12.png)
+
+Remote repositories and github
+===============================
+
+## Github
+
+- Step 1. get a github account and verify email address<br>
+
+- Step 2. create one (or more) Personal Access Tokens (**PAT**)<br>
+  - more nuanced than a single password
+
+- Step 3. create a **remote repository** on github<br>
+
+- Step 4. push/pull between remote and local
+
+
+## Personal Access Token
+
+- [Github docs instructions](https://docs.github.com/en/github/authenticating-to-github/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
+### R
+
+- Generate token in github
+```{r create_github_token, results='markdown', eval=FALSE}
+usethis::create_github_token()
+```
+- copy token
+- store token in manager (Keychain etc)
+```{r gitcreds_set, results='markdown', eval=FALSE}
+gitcreds::gitcreds_set()
+```
+- confirm
+```{r gitcreds_get, results='markdown', eval=FALSE}
+gitcreds::gitcreds_get()
+#gh::gh_whoami()
+```
+
+
+New remote repo
+----------------
+
+From exising git and Rstudio project
+```{r use_git_hub, results='markdown', eval=FALSE}
+usethis::use_github()
+```
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 500x resources/Github1.png resources/Github1_small.png
+convert  -density 300 -resize 500x resources/Github2.png resources/Github2_small.png
+```
+
+![](resources/Github1_small.png)
+
+New remote repo
+----------------
+ 
+If not using `use_github()`...
+
+![](resources/Github2_small.png)
+
+Set remote
+------------
+ 
+If not using `use_github()`...
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=TRUE}
+cd ~/tmp/Test_repo
+git remote add origin https://github.com/pcinereus/Test.git
+git push -u origin main
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=FALSE}
+cd ~/tmp/Test_repo
+git remote add origin git@github.com:pcinereus/Test.git
+#git push -u origin main
+```
+  
+### R 
+```{r git_remote_add, results='markdown', eval=FALSE}
+gert::git_remote_add(url='https://github.com/pcinereus/Test.git')
+gert::git_remote_list()
+```
+
+
+ 
+Set remote
+------------
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 500x resources/Github3.png resources/Github3_small.png
+```
+![](resources/Github3_small.png)
+
+
+Github - collaborate
+-----------------------
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 500x resources/Github4.png resources/Github4_small.png
+```
+![](resources/Github4_small.png)
+
+
+Git - another commit
+---------------------
+
+Lets make a small change to one of the files..
+
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+mean(c(1,2,3))
+sd(c(1,2,3))
+```
+<br><br>
+
+Otherwise, create any kind of file 
+ 
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo 'sd(c(1,2,3))' >> test.R
+git add test.R
+git commit -m 'Modified test.R'
+```
+
+Git - another commit
+---------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo14.png
+convert  -density 300 -resize 500x resources/Test_repo14.png resources/Test_repo14.png
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo14.tex
+mv 10_pres_git_Test_repo14.pdf resources/10_pres_git_Test_repo14.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo14.pdf resources/10_pres_git_Test_repo14.png
+```
+![](resources/Test_repo14.png)
+![](resources/10_pres_git_Test_repo14.png)
+
+
+Git - push to repo
+---------------------
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=FALSE, echo=-1}
+cd ~/tmp/Test_repo
+git push -u origin main
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 300x resources/Rstudio_Gitpullpush.png resources/RStudio_Gitpullpush_small.png
+convert  -density 300 -resize 300x resources/Rstudio_Gitpushpull1.png resources/RStudio_Gitpushpull1_small.png
+```
+![](resources/RStudio_Gitpullpush_small.png)
+![](resources/RStudio_Gitpushpull1_small.png)
+
+
+Clone a repo
+--------------
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=FALSE, echo=-1}
+cd ~/tmp/Test_repo
+git clone <git name> <local name>
+```
+
+### RStudio
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 200x resources/RStudio_NewProject1.png resources/RStudio_NewProject1_small.png
+convert  -density 300 -resize 200x resources/RStudio_NewProject2.png resources/RStudio_NewProject2_small.png
+convert  -density 300 -resize 200x resources/RStudio_NewProject3.png resources/RStudio_NewProject3_small.png
+```
+![](resources/RStudio_NewProject1_small.png)
+![](resources/RStudio_NewProject2_small.png)
+![](resources/RStudio_NewProject3_small.png)
+
+Git - pull
+-------------
+
+Before making any changes that you intend to push, it is advisable that you pull to get the latest
+from the remote
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=FALSE, echo=-1}
+cd ~/tmp/Test_repo
+git pull -v origin main
+```
+
+![](resources/RStudio_Gitpullpush_small.png)
+![](resources/RStudio_Gitpushpull1_small.png)
+
+Playtime
+---------------
+
+- Clone the Test repo of the person next to you
+- Make a change, commit, push
+- Pull the changes of your neighbour
+
+- Try making a branch
+
+
+Resources
+============
+
+Useful resources {.smaller}
+-----------------
+
+- [My online tutorial](http://www.flutterbys.com.au/stats/tut/tut19.1.html)
+- [git online resources](https://git-scm.com/docs/gittutorial)
+- [git online manual](https://git-scm.com/book/en/v2)
+- [Atlassian git tutorials](https://www.atlassian.com/git/tutorials)
+- [A visual git tutorial](https://marklodato.github.io/visual-git-guide/index-en.html)
+- [Visualizing git online tool](http://git-school.github.io/visualizing-git/)
+- [Another git visualizing tool](https://onlywei.github.io/explain-git-with-d3/)
+- [github online resources](https://try.github.io/levels/1/challenges/1)
+- [bit-booster](http://bit-booster.com/graph.html)
+- [Version control with Rstudio and github](https://aberdeenstudygroup.github.io/studyGroup/lessons/SG-T1-GitHubVersionControl/VersionControl/)
+<!--https://www.git-tower.com/learn/git/ebook/en/command-line/advanced-topics/undoing-things-->
+<!--https://github.com/sensorflo/git-draw/blob/master/git-draw-->
