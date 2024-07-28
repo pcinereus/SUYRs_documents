@@ -135,6 +135,7 @@ jobs:
       - name: Install additional LaTeX packages
         run: |
           tlmgr install titlesec
+          tlmgr install forest
           tlmgr list --only-installed
 
       - name: Install Google Fonts
