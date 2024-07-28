@@ -1,0 +1,519 @@
+---
+title: "Introduction to Bayesian Statistics"
+author: "Murray Logan"
+date: today
+date-format: "D MMMM YYYY"
+format:
+  revealjs:
+    embed-resources: true
+    auto-stretch: false
+    css: ../resources/pres-style.css
+    margin: 0
+output_dir: "docs"
+bibliography: ../resources/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.engine = "xelatex")
+
+```
+            
+
+
+Frequentist vs Bayesian
+=======================================
+
+Frequentist
+-------------
+
+>- P(D|H)
+>- long-run frequency
+>- relatively simple analytical methods to solve roots
+>- conclusions pertain to data, not parameters or hypotheses
+>- compared to theoretical distribution when NULL hypothesis is true
+>- probability of obtaining observed data or MORE EXTREME data
+
+   
+Frequentist
+-------------
+
+- P-value
+    * probabulity of rejecting NULL
+	* NOT a measure of the magnitude of an effect or degree of significance!
+    * measure of whether the sample size is large enough
+
+- 95% CI
+    * NOT about the parameter it is about the interval
+    * does not tell you the range of values likely to contain the true mean
+
+Frequentist vs Bayesian
+-----------------------
+
+~~~~
+-----------------------------------------------------
+                Frequentist			 Bayesian  
+--------------  ------------  		 ----------------
+Probability		Long-run frequency	 Degree of belief
+                $P(D|H)$             $P(H|D)$
+
+Parameters		Fixed, true	  		 Random, 
+					   				 distribution
+
+Obs. data   	One possible		 Fixed, true
+
+Inferences		Data   		  		 Parameters
+
+-----------------------------------------------------
+~~~~
+
+Frequentist vs Bayesian
+------------------------
+
+```{r Pops, echo=FALSE, fig.width=10, fig.height=4, results='hide'}
+for (n in 1:1000) {
+set.seed(n)
+x <- 1:10
+b <- -0.1
+a <- 200
+sigma <- 0.38
+mm <- model.matrix(~x)
+y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
+(popA <- data.frame(y,x))
+
+set.seed(n)
+x <- 1:10
+b <- -10
+a <- 200
+sigma <- 40
+mm <- model.matrix(~x)
+y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
+(popB <- data.frame(y,x))
+
+set.seed(n)
+x <- seq(1,10,l=100)
+b <- -10
+a <- 200
+sigma <- 40
+mm <- model.matrix(~x)
+y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
+popC <- data.frame(y,x)
+
+aa<-popA.lm <- lm(y~x,popA)
+bb<-popB.lm <- lm(y~x,popB)
+cc<-popC.lm <- lm(y~x,popC)
+AA<-summary(popA.lm)$coef
+BB<-summary(popB.lm)$coef
+CC<-summary(popC.lm)$coef
+
+if(AA[2,4]<0.05 & BB[2,4]>0.05 & abs(BB[2,1]-CC[2,1])<1) break
+}
+
+```
+
+::: {columns}
+
+::: {.column width="30%"}
+
+```{r PopA, echo=FALSE, fig.width=3, fig.height=3, fig.cap="",out.width="200px", out.height="200px"}
+par(mar=c(3,3,0,0))
+plot(y~x,popA, ylim=c(0,250), axes=F, ann=F, pch=16)
+abline(lm(y~x,popA))
+axis(1)
+axis(2, las=1)
+mtext("x",1,line=2, cex=1.5)
+box(bty="l")
+popA.lm <- lm(y~x,popA)
+popA.sum<-summary(popA.lm)$coef
+```
+
+<p style="margin-left:30pt;font-size:50%;">
+  n: `r nrow(popA)`<br>
+  Slope: `r round(coef(popA.lm)[2],4)`<br>
+  <i>t</i>: `r round(popA.sum[2,3],4)`<br>
+  <i>p</i>: `r round(popA.sum[2,4],4)`<br>
+</p>
+
+:::
+::: {.column width="30%"}
+```{r PopB, echo=FALSE, fig.width=3, fig.height=3, fig.cap="",out.width="200px", out.height="200px"}
+par(mar=c(3,3,0,0))
+plot(y~x,popB, ylim=c(0,250), axes=F, ann=F, pch=16)
+abline(lm(y~x,popB))
+axis(1)
+axis(2, las=1)
+mtext("x",1,line=2, cex=1.5)
+box(bty="l")
+popB.lm <- lm(y~x,popB)
+popB.sum<-summary(popB.lm)$coef
+```
+<p style="margin-left:30pt;font-size:50%;">
+n: `r nrow(popB)`<br>
+Slope: `r round(coef(popB.lm)[2],4)`<br>
+<i>t</i>: `r round(popB.sum[2,3],4)`<br>
+<i>p</i>: `r round(popB.sum[2,4],4)`<br>
+</p>
+:::
+::: {.column width="30%"}
+```{r PopC, echo=FALSE, fig.width=3, fig.height=3, fig.cap="",out.width="200px", out.height="200px"}
+par(mar=c(3,3,0,0))
+plot(y~x,popC, ylim=c(0,250), axes=F, ann=F, pch=16)
+abline(lm(y~x,popC))
+axis(1)
+axis(2, las=1)
+mtext("x",1,line=2, cex=1.5)
+box(bty="l")
+popC.lm <- lm(y~x,popC)
+popC.sum<-summary(popC.lm)$coef
+```
+
+<p style="margin-left:30pt;font-size:50%;">
+n: `r nrow(popC)`<br>
+Slope: `r round(coef(popC.lm)[2],4)`<br>
+<i>t</i>: `r round(popC.sum[2,3],4)`<br>
+<i>p</i>: `r popC.sum[2,4]`<br>
+</p>
+:::
+:::
+
+ 
+<img src="resources/graphics-tut7_2b-tut7.2bS1.1a.png" width="70%"/>
+ 
+Frequentist vs Bayesian
+------------------------
+
+::: {columns}
+::: {.column width="30%"}
+```{r PopA, echo=FALSE, fig.width=3, fig.height=3, fig.cap="",out.width="150px", out.height="150px"}
+```
+:::
+::: {.column width="30%"}
+```{r PopB, echo=FALSE, fig.width=3, fig.height=3, fig.cap="",out.width="150px", out.height="150px"}
+```
+:::
+:::
+<img src="resources/graphics-tut7_2b-tut7.2bS1.1a.png" width="45%"/>
+
+------------------------------------------------
+                    Population A  Population B
+------------------  ------------- --------------
+Percentage change   0.46          45.46
+
+Prob. >5% decline   0             0.86
+------------------------------------------------
+
+: {tbl-colwidths="[40, 30, 30]"}
+
+
+Bayesian Statistics
+=====================
+
+Bayesian
+-----------
+
+### Bayes rule
+
+<div style="font-size:18pt">
+$$
+\begin{aligned}
+P(H\mid D) &= \frac{P(D\mid H) \times P(H)}{P(D)}\\[1em]
+\mathsf{posterior\\belief\\(probability)} &= \frac{likelihood \times \mathsf{prior~probability}}{\mathsf{normalizing~constant}}
+\end{aligned}
+$$
+</div>
+
+Bayesian
+-----------
+
+### Bayes rule
+
+<div style="font-size:18pt">
+$$
+\begin{aligned}
+P(H\mid D) &= \frac{P(D\mid H) \times P(H)}{P(D)}\\
+\mathsf{posterior\\belief\\(probability)} &= \frac{likelihood \times \mathsf{prior~probability}}{\mathsf{normalizing~constant}}
+\end{aligned}
+$$
+</div>
+
+The normalizing constant is required for probability - turn a frequency distribution into a probability distribution
+
+ 
+Estimation: Likelihood
+-------------
+<table class='plainTable'>
+<tr>
+<td>
+<img src="resources/graphics-tut4.3ML.png"/>
+</td>
+<td>
+$P(D\mid H)$
+</td>
+</tr>
+</table>
+
+Bayesian
+-----------
+>- conclusions pertain to hypotheses
+>- computationally robust (sample size,balance,collinearity)
+>- inferential flexibility - derive any number of inferences
+
+Bayesian
+-----------
+- subjectivity?
+- intractable
+    $$P(H\mid D) = \frac{P(D\mid H) \times P(H)}{P(D)}$$
+
+    $P(D)$ - probability of data from all possible hypotheses
+
+
+MCMC sampling
+----------------
+
+Marchov Chain Monte Carlo sampling
+
+- draw samples proportional to likelihood
+ 
+![](resources/graphics-tut4.3LDF.png)
+
+<div role="note">
+<ul>
+<li>two parameters $\alpha$ and $\beta$</li>
+<li>infinitely vague priors - posterior likelihood only</li>
+<li>likelihood multivariate normal</li>
+</ul>
+</div>
+
+MCMC sampling
+----------------
+
+Marchov Chain Monte Carlo sampling
+
+- draw samples proportional to likelihood
+
+![](resources/graphics-tut4.3sim1.png)
+
+
+MCMC sampling
+----------------
+
+Marchov Chain Monte Carlo sampling
+
+- draw samples proportional to likelihood
+
+![](resources/graphics-tut4.3sim2.png)
+ 
+
+MCMC sampling
+----------------
+
+Marchov Chain Monte Carlo sampling
+
+- chain of samples
+
+![](resources/graphics-tut4.3sim3.png)
+
+MCMC sampling
+----------------
+
+Marchov Chain Monte Carlo sampling
+
+- 1000 samples
+
+![](resources/graphics-tut4.3sim4.png)
+
+MCMC sampling
+----------------
+Marchov Chain Monte Carlo sampling
+
+- 10,000 samples
+
+![](resources/graphics-tut4.3sim6.png)
+
+MCMC sampling
+----------------
+Marchov Chain Monte Carlo sampling
+
+>- Aim: samples reflect posterior frequency distribution
+>- samples used to construct posterior prob. dist.
+>- the sharper the multidimensional "features" - more samples
+>- chain should have traversed entire posterior
+>- inital location should not influence
+
+MCMC diagnostics
+-------------------------
+### Trace plots
+![](resources/graphics-tut4.3sim7.png)
+
+MCMC diagnostics
+-------------------------
+### Autocorrelation
+
+* Summary stats on non-independent values are biased
+* Thinning factor = 1
+
+![](resources/graphics-tut4.3sim8.png)
+
+MCMC diagnostics
+-------------------------
+### Autocorrelation
+
+* Summary stats on non-independent values are biased
+* Thinning factor = 10
+
+![](resources/graphics-tut4.3sim8b.png)
+
+MCMC diagnostics
+-------------------------
+### Autocorrelation
+
+* Summary stats on non-independent values are biased
+* Thinning factor = 10, n=10,000
+
+![](resources/graphics-tut4.3sim9.png)
+
+
+MCMC diagnostics
+-------------------------
+### Plot of Distributions
+
+![](resources/graphics-tut4.3sim10.png)
+
+
+Sampler types
+-----------------
+
+```{r samplerData, echo=FALSE}
+set.seed(1)
+n=200
+b0=1
+b1=2
+x <- seq(0,1,len=n)
+y=b0 + b1*x + rnorm(n,0,0.5)
+data = data.frame(x=x,y=y)
+```
+
+Metropolis-Hastings
+```{r samplerMH, cache=TRUE, eval=FALSE, echo=FALSE, results='hide'}
+library(MCMCpack)
+library(ggplot2)
+library(cowplot)
+library(gridExtra)
+library(animation)
+samples.mcmc <- MCMCregress(y~x, data=data, burnin=0)
+ 
+animation:::saveMovie({
+    for (i in c(2:10,20,50,100,200,500,1000,2000)) {
+        g1<-ggplot(data.frame(samples.mcmc[1:i,1:2]), aes(y=X.Intercept.,x=x)) +
+            geom_point(color='blue', alpha=0.5) + geom_path(color='blue',alpha=0.4) + coord_cartesian(ylim=c(0.7,1.4),xlim=c(1.4,2.4)) + theme_classic() +
+                scale_x_continuous('Slope') + scale_y_continuous('Intercept')
+        data.acf <- acf(samples.mcmc[1:i,1],plot=FALSE)
+        data.acf <- data.frame(Lag=data.acf$lag, ACF=data.acf$acf)
+        g2<- ggplot(data.acf, aes(y=ACF, x=Lag)) + geom_hline(yintercept=0)+geom_segment(aes(yend=0, xend=Lag))+theme_classic() + ggtitle('Intercept')
+        data.acf <- acf(samples.mcmc[1:i,2],plot=FALSE)
+        data.acf <- data.frame(Lag=data.acf$lag, ACF=data.acf$acf)
+        g3<- ggplot(data.acf, aes(y=ACF, x=Lag)) + geom_hline(yintercept=0)+geom_segment(aes(yend=0, xend=Lag))+theme_classic() + ggtitle('Slope')
+        data.trace <- data.frame(Intercept=samples.mcmc[1:i,1], Iter=1:length(samples.mcmc[1:i,1]))
+        g4 <- ggplot(data.trace, aes(y=Intercept, x=Iter)) + geom_line() + theme_classic()
+        data.trace <- data.frame(Slope=samples.mcmc[1:i,2], Iter=1:length(samples.mcmc[1:i,2]))
+        g5 <- ggplot(data.trace, aes(y=Slope, x=Iter)) + geom_line() + theme_classic()
+        grid.arrange(g1,arrangeGrob(g2,g3,nrow=2),g4,g5,nrow=2)
+    }
+}, interval=1, movie.name='samples.mh.gif', ani.width=600, ani.height=500)
+## This does not seem to want to save the gif where I have asked.  It puts it in /tmp
+# So I have manually copied it across
+```
+  
+<video controls autoplay name='media' width='900' height='450'>
+<source src='resources/sampler.mh.mp4'  type='video/mp4'></source>
+</video>
+http://twiecki.github.io/blog/2014/01/02/visualizing-mcmc/
+
+<!-- ![](resources/samples.mh.gif) -->
+ 
+https://chi-feng.github.io/mcmc-demo/app.html?algorithm=GibbsSampling&target=banana
+
+Sampler types
+-----------------
+
+Gibbs
+```{r samplerGibbs, cache=TRUE, echo=FALSE, results='hide', eval=FALSE}
+library(R2jags)
+library(ggplot2)
+library(cowplot)
+library(gridExtra)
+library(animation)
+
+modelString = "
+model{
+for (i in 1:n) {
+ y[i] ~ dnorm(eta[i],tau)
+ eta[i] <- b0 + b1*x[i]
+}
+b0 ~ dnorm(0, 1.0E-06)
+b1 ~ dnorm(0, 1.0E-06)
+sigma ~ dunif(0,100)
+tau <- pow(sigma,-2)
+}
+"
+data.list <- list(y=data$y, x=data$x, n=nrow(data))
+data.jags <- jags(data=data.list, model.file=textConnection(modelString),inits=NULL, param=c('b0','b1'),n.chains=1, n.iter=10000, n.burnin=0, n.thin=1)
+
+samples.mcmc <- data.jags$BUGSoutput$sims.matrix[,1:2]
+colnames(samples.mcmc) <- c('Intercept','Slope')
+animation:::saveMovie({
+    for (i in c(2:10,20,50,100,200,500,1000,2000)) {
+        g1<-ggplot(data.frame(samples.mcmc[1:i,1:2]), aes(y=Intercept,x=Slope)) +
+            geom_point(color='blue', alpha=0.5) + geom_path(color='blue',alpha=0.4) + coord_cartesian(ylim=c(0.7,1.4),xlim=c(1.4,2.4)) + theme_classic() +
+                scale_x_continuous('Slope') + scale_y_continuous('Intercept')
+        data.acf <- acf(samples.mcmc[1:i,1],plot=FALSE)
+        data.acf <- data.frame(Lag=data.acf$lag, ACF=data.acf$acf)
+        g2<- ggplot(data.acf, aes(y=ACF, x=Lag)) + geom_hline(yintercept=0)+geom_segment(aes(yend=0, xend=Lag))+theme_classic() + ggtitle('Intercept')
+        data.acf <- acf(samples.mcmc[1:i,2],plot=FALSE)
+        data.acf <- data.frame(Lag=data.acf$lag, ACF=data.acf$acf)
+        g3<- ggplot(data.acf, aes(y=ACF, x=Lag)) + geom_hline(yintercept=0)+geom_segment(aes(yend=0, xend=Lag))+theme_classic() + ggtitle('Slope')
+        data.trace <- data.frame(Intercept=samples.mcmc[1:i,1], Iter=1:length(samples.mcmc[1:i,1]))
+        g4 <- ggplot(data.trace, aes(y=Intercept, x=Iter)) + geom_line() + theme_classic()
+        data.trace <- data.frame(Slope=samples.mcmc[1:i,2], Iter=1:length(samples.mcmc[1:i,2]))
+        g5 <- ggplot(data.trace, aes(y=Slope, x=Iter)) + geom_line() + theme_classic()
+        grid.arrange(g1,arrangeGrob(g2,g3,nrow=2),g4,g5,nrow=2)
+    }
+}, interval=1, movie.name='samples.gibbs.gif', ani.width=600, ani.height=500)
+
+```
+  
+<video controls autoplay name='media' width='900' height='450'>
+<source src='resources/sampler.gibbs.mp4'  type='video/mp4'></source>
+</video>
+
+<!-- ![](resources/samples.gibbs.gif) -->
+
+Sampler types
+-----------------
+
+NUTS
+
+<video controls autoplay name='media' width='900' height='450'>
+<source src='resources/sampler.nuts.mp4'  type='video/mp4'></source>
+</video>
+
+Sampling
+-------------
+
+>- thinning
+>- burnin (warmup)
+>- chains
+
+Bayesian software (for R)
+---------------------------
+
+>- MCMCpack
+>- winbugs (R2winbugs)
+>- jags (R2jags)
+>- stan (rstan, rstanarm, brms)
+
+Bayesian software (for R)
+----------------------------
+
+>- https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started
+>- https://learnb4ss.github.io/learnB4SS/articles/install-brms.html
