@@ -50,7 +50,6 @@ Frequentist
 Frequentist vs Bayesian
 -----------------------
 
-~~~~
 -----------------------------------------------------
                 Frequentist			 Bayesian  
 --------------  ------------  		 ----------------
@@ -65,7 +64,8 @@ Obs. data   	One possible		 Fixed, true
 Inferences		Data   		  		 Parameters
 
 -----------------------------------------------------
-~~~~
+
+: {.striped .hover .simple-table}
 
 Frequentist vs Bayesian
 ------------------------
@@ -177,7 +177,7 @@ Slope: `r round(coef(popC.lm)[2],4)`<br>
 :::
 
  
-<img src="resources/graphics-tut7_2b-tut7.2bS1.1a.png" width="70%"/>
+<img src="resources/graphics-tut7_2b-tut7.2bS1.1a.png" width="60%"/>
  
 Frequentist vs Bayesian
 ------------------------
@@ -202,7 +202,7 @@ Percentage change   0.46          45.46
 Prob. >5% decline   0             0.86
 ------------------------------------------------
 
-: {tbl-colwidths="[40, 30, 30]"}
+: {.striped .hover .simple-table tbl-colwidths="[40, 30, 30]"}
 
 
 Bayesian Statistics
