@@ -3,10 +3,10 @@
 \usepackage{fontspec}
 \usepackage{tikz}
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Cantarell-Regular}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata}}]
-\tikzstyle{commitText} = [font={\fontspec[Scale=0.5]{Inconsolata}}]
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{commitText} = [font={\fontspec[Scale=0.5]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 \definecolor{color_branch}{rgb}{1,0.8,0.4}
 \definecolor{color_head}{HTML}{6495ED} %
 \definecolor{color_HEAD}{rgb}{0.26,0.65,0.91}
@@ -19,6 +19,6 @@
 \definecolor{color_tag}{rgb}{1,0.55,0.15}
 \begin{document}
 \begin{forest}
-[491ed, name=491ed, for tree={commentText,circle,grow=0, s sep=3em,l sep=2em,edge={<-,color=black!60,line width=2pt}, line width=2pt, fill=color_inactive,draw=black!40!color_inactive, minimum width={1cm}}, label={[commentText]below:{\parbox{2cm}{\centering \scriptsize\textcolor{gray}{Initial co...}}}}[main,fill=color_branch,rectangle,edge={<-,color=black!60,line width=1pt},[HEAD,fill=color_head,rectangle,edge={<-,color=black!60,line width=1pt},anchor=south,before computing xy={s=6ex,l=0em}]]]
+[6820e, name=6820e, for tree={commentText,circle,grow=0, s sep=3em,l sep=2em,edge={<-,color=black!60,line width=2pt}, line width=2pt, fill=color_inactive,draw=black!40!color_inactive, minimum width={1cm}}, label={[commentText]below:{\parbox{2cm}{\centering \scriptsize\textcolor{gray}{Initial co...}}}}[main,fill=color_branch,rectangle,edge={<-,color=black!60,line width=1pt},[HEAD,fill=color_head,rectangle,edge={<-,color=black!60,line width=1pt},anchor=south,before computing xy={s=6ex,l=0em}]]]
 \end{forest}
 \end{document} 
