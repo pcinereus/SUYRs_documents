@@ -1538,7 +1538,11 @@ git status
 ```
 ```{r, engine='bash', prompt=FALSE,eval=TRUE}
 ../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo1.tex
-ls -la 
 #mv 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
 ```
 
+Git
+----
+```{r, engine='bash', prompt=FALSE,eval=TRUE}
+cp 10_pres_git_Test_repo1.log ../docs
+```
