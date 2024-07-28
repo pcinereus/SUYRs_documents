@@ -1419,10 +1419,6 @@ git init
 ### RStudio
 
 ```{bash, echo=FALSE, eval=TRUE, include=FALSE}
-convert resources/RStudio_AddFile.png  -resize 400x resources/RStudio_AddFile_small.png
-```
-
-```{bash, echo=FALSE, eval=TRUE, inlude=FALSE}
 convert resources/RStudio_NewProject2a.png -resize 250x resources/RStudio_NewProject2a_small.png 
 convert resources/RStudio_NewProject3a.png -resize 250x resources/RStudio_NewProject3a_small.png
 ```
@@ -1560,3 +1556,246 @@ convert -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources
 gert::git_commit('Initial commit')
 ```
 
+
+Git - committing
+----------------------
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo1.png
+convert -resize 400x resources/Test_repo1.png resources/Test_repo1_small.png
+```
+![](resources/Test_repo1_small.png)
+![](resources/10_pres_git_Test_repo1.png)
+
+
+Git - additional edits
+-----------------------
+
+- Make some changes to the file, stage (**add**) and **commit**
+
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+x=seq(1, 10, len=1)
+y=40*2 + rnorm(10,0,5)
+plot(x,y)
+summary(x)
+```
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo 'summary(x)' >> analysis.R
+git add analysis.R
+git commit -m 'Added summary for x'
+```
+
+Git - additional edits
+-----------------------
+
+- Lets remove the summary(x) and add it to another file, stage (**add**) and **commit**
+
+analysis.R
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+x=seq(1, 10, len=1)
+y=40*2 + rnorm(10,0,5)
+plot(x,y)
+```
+summary.R
+```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
+summary(x)
+summary(y)
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+echo -e 'x=seq(1, 10, len=1)\ny=40*2 + rnorm(10,0,5)\nplot(x,y)' > analysis.R
+echo -e 'summary(x)\nsummary(y)' > summary.R
+git add analysis.R summary.R
+git commit -m 'Added summaries for x and y'
+```
+
+
+Git - additional edits
+-----------------------
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo2.tex
+mv 10_pres_git_Test_repo2.pdf resources/10_pres_git_Test_repo2.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo2.pdf resources/10_pres_git_Test_repo2.png
+rm 10_pres_git_Test_repo2.tex
+```
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo2.png
+convert  -density 300 -resize 500x resources/Test_repo2.png resources/Test_repo2.png
+```
+
+![](resources/Test_repo2.png)
+![](resources/10_pres_git_Test_repo2.png)
+ 
+
+Git - history (logs)
+---------------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=-1}
+cd ~/tmp/Test_repo
+git log --oneline --graph --decorate
+```
+
+### RStudio
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 450x resources/Rstudio_GitLog.png resources/Rstudio_GitLog_small.png
+```
+
+![](resources/Rstudio_GitLog_small.png)
+![](resources/10_pres_git_Test_repo2.png)
+
+Git - history (logs)
+---------------------
+
+```{r gert_log, results='markdown', eval=TRUE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_log(max=10)
+setwd(oldwd)
+```
+
+A listing (data.frame) of tracked files 
+```{r gert_ls, results='markdown', eval=TRUE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_ls()
+setwd(oldwd)
+```
+
+Git - tags
+-------------
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=TRUE}
+git tag -a <tag> -m <message>
+```
+For example:
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git tag -a 'V.1' -m 'Version 1'
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo3.tex
+mv 10_pres_git_Test_repo3.pdf resources/10_pres_git_Test_repo3.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo3.pdf resources/10_pres_git_Test_repo3.png
+rm 10_pres_git_Test_repo3.tex
+```  
+
+![](resources/10_pres_git_Test_repo2.png)
+![](resources/10_pres_git_Test_repo3.png)
+
+### R/RStudio
+
+```{r gert_tag, results='markdown', eval=FALSE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_tag_create(name='V1', message='Version 1')
+setwd(oldwd)
+```
+
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/RStudio_GitTag.png resources/RStudio_GitTag_small.png
+convert  -density 300 -resize 350x resources/Rstudio_GitTag1.png resources/RStudio_GitTag1_small.png
+```
+<!--![](resources/RStudio_GitTag_small.png)--><br>
+![](resources/RStudio_GitTag1_small.png)
+
+Git - tags
+----------------------
+ 
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo3.png
+convert  -density 300 -resize 500x resources/Test_repo3.png resources/Test_repo3.png
+```
+![](resources/Test_repo3.png)
+![](resources/10_pres_git_Test_repo3.png)
+
+
+Rolling back to previous snapshots
+====================================
+ 
+Git - rolling back
+---------------------
+
+![](resources/10_pres_git_Test_repo3.png)
+
+1. **checkout**
+![](resources/10_pres_git_Test_repo6.png)
+
+2. **reset**
+![](resources/10_pres_git_Test_repo4.png)
+
+3. **revert**
+![](resources/10_pres_git_Test_repo5.png)
+
+
+Git - checkout
+------------------------------
+
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+hash = read.fwf('~/tmp/Test_repo/.git/logs/HEAD', widths=c(40,40))
+hash_commit = strtrim(hash$V2[2], width=5)
+knit_engines$set(bash1=function(options) {
+    engine=options$engine
+    options$code = gsub('#',hash_commit,options$code)
+    code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
+    code = paste(options$engine_opts,code)
+    out = system(code,intern=TRUE)
+    engine_output(options,options$code,out) 
+})
+```
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
+git checkout #
+```
+\# is a commit or tag name
+ 
+```{r, engine='bash1',results="markup", prompt=FALSE,eval=TRUE,echo=-1}
+cd ~/tmp/Test_repo
+git checkout #
+```
+ 
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo6.tex
+mv 10_pres_git_Test_repo6.pdf resources/10_pres_git_Test_repo6.pdf
+convert  -density 300 -resize 250x resources/10_pres_git_Test_repo6.pdf resources/10_pres_git_Test_repo6.png
+rm 10_pres_git_Test_repo6.tex 
+```
+
+![](resources/10_pres_git_Test_repo3.png)
+![](resources/10_pres_git_Test_repo6.png)
+
+### R/RStudio
+ 
+```{r, echo=FALSE, results='asis'}
+library(knitr)
+hash = read.fwf('~/tmp/Test_repo/.git/logs/HEAD', widths=c(40,40))
+hash_commit = gsub(' ', '', strtrim(hash$V2[2], width=5))
+
+old_hook = knit_hooks$get('source')
+
+default_source_hook <- knit_hooks$get('source')
+knit_hooks$set(source = function(x, options) {
+  x <- gsub('#',hash_commit,x)
+  default_source_hook(x, options)
+})
+sub_hook = knit_hooks$get('source')
+```
+ 
+```{r gert_checkout, engine='r', results='markdown', eval=FALSE, echo=2}
+oldwd=setwd('~/tmp/Test_repo')
+gert::git_branch_create(branch = 'temp', ref = '#', checkout = TRUE)
+setwd(oldwd)
+```
+
+```{r, results='markdown', eval=TRUE, echo=FALSE}
+knit_hooks$set(source = old_hook)
+```
+
+
+ 
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
+convert  -density 300 -resize 350x resources/Rstudio_GitCheckout1.png resources/RStudio_GitCheckout1_small.png
+```
+
+![](resources/RStudio_GitTag_small.png)
+![](resources/RStudio_GitCheckout1_small.png)

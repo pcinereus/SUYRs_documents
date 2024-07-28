@@ -198,7 +198,7 @@ pre.sourceCode>code.sourceCode {
     padding: 0;
 }
 
-.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
+.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash1), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
     margin-bottom: 0.5em;
     border: 1px solid #d6d6d6;
     /* width: calc(100% - 200px); */
