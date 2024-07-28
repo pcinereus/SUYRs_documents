@@ -21,7 +21,7 @@ options(tinytex.engine = "xelatex")
             
 
 # Background
-            
+
 Required
 --------------
 
@@ -1531,11 +1531,17 @@ Git - committing
 cd ~/tmp/Test_repo
 git commit -m 'Initial commit'
 ```
-```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
-../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo1.tex
-mv 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
+
+```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE}
+cd ~/tmp/Test_repo
+git status
 ```
- 
+```{r, engine='bash', prompt=FALSE,eval=TRUE, echo=FALSE}
+../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo1.tex
+#cp 10_pres_git_Test_repo1.log ../docs
+#cp 10_pres_git_Test_repo1.tex ../docs
+cp 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
+```
 ### RStudio
 
 <!--
@@ -1555,8 +1561,6 @@ convert -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources
 ```{r gert_commit, results='markdown', eval=FALSE}
 gert::git_commit('Initial commit')
 ```
-
-
 Git - committing
 ----------------------
 
@@ -1708,7 +1712,6 @@ convert  -density 300 -resize 500x resources/Test_repo3.png resources/Test_repo3
 ```
 ![](resources/Test_repo3.png)
 ![](resources/10_pres_git_Test_repo3.png)
-
 
 Rolling back to previous snapshots
 ====================================
@@ -2296,7 +2299,7 @@ cd ~/tmp/Test_repo
 git remote add origin https://github.com/pcinereus/Test.git
 git push -u origin main
 ```
-```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE,echo=FALSE}
+```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=FALSE}
 cd ~/tmp/Test_repo
 git remote add origin git@github.com:pcinereus/Test.git
 #git push -u origin main
