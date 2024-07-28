@@ -1531,4 +1531,8 @@ Git - committing
 cd ~/tmp/Test_repo
 git commit -m 'Initial commit'
 ```
+```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
+cd ~/tmp/Test_repo
+git status
+```
 
