@@ -95,6 +95,10 @@ jobs:
             any::emmeans
             any::gert
             any::usethis
+            any::splines
+            any::ggeffects
+            any::mgcv
+            any::gratia
             github::jmgirard/standist
 
       - name: Install other R packages

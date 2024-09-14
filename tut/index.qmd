@@ -46,3 +46,5 @@ output_dir: "docs"
 - [git and github](10_pres_git.html)
 - [Introduction to Bayesian analyses](20_pres_bayesian.html)
 - [Introduction to hierarchical models](30_pres_hierarchical.html)
+- [Introduction to Generalised Additive Models](40_pres_gams.html)
+ 

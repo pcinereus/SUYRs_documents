@@ -1,0 +1,444 @@
+---
+title: "Introduction to hierarchical models"
+author: "Murray Logan"
+date: today
+date-format: "D MMMM YYYY"
+format:
+  revealjs:
+    embed-resources: true
+    auto-stretch: false
+    css: ../resources/pres-style.css
+    margin: 0
+output_dir: "docs"
+bibliography: ../resources/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.engine = "xelatex")
+library(splines)
+library(ggfortify)
+library(ggeffects)
+library(mgcv)
+library(gratia)
+library(emmeans)
+library(gridExtra)
+library(tidyverse)
+
+```
+Motivating example
+====================
+
+Motivating example
+--------------------
+
+Fabricated data:
+
+1. a sine wave
+2. a declining linear trend with sine wave overlayed
+
+```{r Intro1, results='markdown', eval=TRUE, echo=FALSE,fig.width=6, fig.height=3}
+set.seed(123)
+x = seq(0,2*pi, len=50)
+yp=sin(x)
+y = sin(x) + rnorm(length(x), mean=0, sd=0.5)
+dat = data.frame(yp=yp, y=y, x=x)
+g1=ggplot(dat, aes(y=y, x=x)) + geom_point() +
+    geom_line(aes(y=yp), linetype='dashed') + ggtitle('Example 1')
+
+set.seed(123)
+x = seq(0,3*pi, len=50)
+yp = 2 - 0.5*x + sin(x)
+y = 2 - 0.5*x + sin(x) + rnorm(length(x), mean=0, sd=0.5)
+dat2 = data.frame(yp=yp, y=y, x=x)
+g2=ggplot(dat2, aes(y=y, x=x)) + geom_point() +
+    geom_line(aes(y=yp), linetype='dashed') + ggtitle('Example 2')
+
+grid.arrange(g1,g2, nrow=1)
+```
+
+- dashed lines represent **TRUE** process
+
+Simple GLM
+----------------------------------
+
+$$
+g(E(y)) = \beta_0 + x_1\beta_1
+$$
+
+```{r mod1, results='markdown', eval=TRUE, fig.height=3, fig.width=6}
+dat.lm = lm(y~x, data=dat)
+dat2.lm = lm(y~x, data=dat2)
+autoplot(list(dat.lm, dat2.lm), which=1)
+```
+
+Simple GLM
+----------------------------------
+
+$$
+g(E(y)) = \beta_0 + x_1\beta_1
+$$
+
+```{r modPartial1, results='markdown', eval=TRUE, fig.width=6, fig.height=3}
+grid.arrange(
+    ggpredict(dat.lm, ~x) %>% plot(rawdata=TRUE),
+    ggpredict(dat2.lm, ~x) %>% plot(rawdata=TRUE),
+    nrow=1
+    )
+```
+
+Polynomials
+--------------
+
+$$g(E(y)) = \beta_0 + x_1\beta_1 + x_1^2\beta_2 + x_1^3\beta_3 $$
+
+```{r mod2, results='markdown', eval=TRUE, fig.height=3, fig.width=6}
+dat.lm2 = lm(y~x+I(x^2)+I(x^3), data=dat)
+dat2.lm2 = lm(y~x+I(x^2)+I(x^3), data=dat2)
+autoplot(list(dat.lm2,dat2.lm2), which=1)
+```
+
+Polynomials
+--------------
+
+$$g(E(y)) = \beta_0 + x_1\beta_1 + x_1^2\beta_2 + x_1^3\beta_3 $$
+
+```{r modPartial2, results='markdown', eval=TRUE, fig.width=6, fig.height=3}
+grid.arrange(
+    ggpredict(dat.lm2, ~x) %>% plot(rawdata=TRUE),
+    ggpredict(dat2.lm2, ~x) %>% plot(rawdata=TRUE),
+    nrow=1)
+```
+
+Piecewise regression
+----------------------
+
+- nominate breakpoint(s) (e.g. 4.2)
+- two separate models
+
+```{r mod3b, results='markdown', eval=TRUE, fig.width=3, fig.height=3, echo=FALSE}
+mid=mean(dat2$x)-0.5
+dat3 = dat2 %>% mutate(x2=ifelse(x-mid > 0, x, 0))
+dat3.lm = lm(y~poly(x,3) + poly(x2,3), data=dat3)
+newdata=with(dat2, data.frame(x=seq(min(x), max(x), len=1000))) %>%
+    mutate(x2=ifelse(x-mid > 0, x, 0))
+
+dat3 = newdata %>% cbind(predict(dat3.lm, newdata=newdata, interval='confidence')) %>%
+    mutate(Part=ifelse(x2==0, '1', '2'))
+
+ggplot(dat3, aes(y=fit, x=x)) +
+    geom_ribbon(aes(ymin=lwr, ymax=upr, fill=Part), alpha=0.3, show.legend=FALSE) +
+    geom_line(aes(color=Part), show.legend=FALSE) +
+    geom_point(data=dat2, aes(y=y, x=x))
+```
+
+- abrupt change
+    - trajectory
+	- uncertainty
+
+Piecewise regression
+----------------------
+
+```{r mod3b, results='markdown', eval=TRUE, fig.width=3, fig.height=3, echo=FALSE}
+```
+
+Can we:
+
+- force 1st and 2nd derivatives to be the same at breakpoint
+- have multiple breakpoints
+
+Splines
+---------
+
+Splines defined by **basis** functions.
+
+<div style="font-size:50%;">
+$$
+g(E(y)) = \beta_0 + \sum^k_{j=1} b_j(x_1)\beta_j
+$$
+</div>
+
+```{r splineBasis1, results='markdown', eval=TRUE, fig.width=10, fig.height=8, out.width=500, out.height=400, echo=FALSE}
+basis = with(dat2, data.frame(x=x, bs(x, knots=NULL, degree = 1))) %>%
+    gather(key=Basis, value=Value, -x)
+g1=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 9.4], Degree=1')
+
+m1 = lm(y~bs(x,knots=NULL,degree=1), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=NULL, degree=1))
+basis = sweep(basis, MARGIN=2, coef(m1), '*')
+fit = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g1a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g1a = ggpredict(m1, ~x) %>% plot(rawdata=TRUE)
+
+basis = with(dat2, data.frame(x=x, bs(x, knots=mid, degree = 1))) %>%
+    gather(key=Basis, value=Value, -x)
+g2=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 4,2, 9.4], Degree=1')
+
+m2 = lm(y~bs(x,knots=mid,degree=1), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=mid, degree=1))
+basis = sweep(basis, MARGIN=2, coef(m2), '*')
+fit2 = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g2a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit2, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g2a = ggpredict(m2, ~x) %>% plot(rawdata=TRUE)
+
+grid.arrange(g1,g1a, g2,g2a,ncol=2, widths=c(0.5,0.5))
+
+```
+
+
+Splines
+---------
+
+<div style="font-size:50%;">
+$$
+g(E(y)) = \beta_0 + \sum^k_{j=1} b_j(x_1)\beta_j
+$$
+</div>
+
+```{r splineBasis1a, results='markdown', eval=TRUE, fig.width=10, fig.height=8, out.width=500, out.height=400, echo=FALSE}
+basis = with(dat2, data.frame(x=x, bs(x, knots=NULL, degree = 2))) %>%
+    gather(key=Basis, value=Value, -x)
+g3=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 9.4], Degree=2')
+m3 = lm(y~bs(x,knots=NULL,degree=2), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=NULL, degree=2))
+basis = sweep(basis, MARGIN=2, coef(m3), '*')
+fit3 = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g3a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit3, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g3a = ggpredict(m3, ~x) %>% plot(rawdata=TRUE)
+
+basis = with(dat2, data.frame(x=x, bs(x, knots=mid, degree = 2))) %>%
+    gather(key=Basis, value=Value, -x)
+g4=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 4.2, 9.4], Degree=2')
+m4 = lm(y~bs(x,knots=mid,degree=2), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=mid, degree=2))
+basis = sweep(basis, MARGIN=2, coef(m4), '*')
+fit4 = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g4a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit4, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g4a = ggpredict(m4, ~x) %>% plot(rawdata=TRUE)
+
+grid.arrange(g3,g3a, g4,g4a,ncol=2, widths=c(0.55,0.45))
+```
+
+Splines
+---------
+
+<div style="font-size:50%;">
+$$
+g(E(y)) = \beta_0 + \sum^k_{j=1} b_j(x_1)\beta_j
+$$
+</div>
+
+```{r splineBasis1b, results='markdown', eval=TRUE, fig.width=10, fig.height=8, out.width=500, out.height=400, echo=FALSE}
+basis = with(dat2, data.frame(x=x, bs(x, knots=NULL, degree = 3))) %>%
+    gather(key=Basis, value=Value, -x)
+g5=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 9.4], Degree=3')
+m5 = lm(y~bs(x,knots=NULL,degree=3), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=NULL, degree=3))
+basis = sweep(basis, MARGIN=2, coef(m5), '*')
+fit5 = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g5a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit5, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g5a = ggpredict(m5, ~x) %>% plot(rawdata=TRUE)
+
+basis = with(dat2, data.frame(x=x, bs(x, knots=mid, degree = 3))) %>%
+    gather(key=Basis, value=Value, -x)
+g6=basis %>% ggplot(aes(y=Value, x=x, color=Basis)) + geom_line() + ggtitle('Knots=[0, 4.2, 9.4], Degree=3')
+m6 = lm(y~bs(x,knots=mid,degree=3), data=dat2)
+basis = cbind(1,bs(dat2$x, knots=mid, degree=3))
+basis = sweep(basis, MARGIN=2, coef(m6), '*')
+fit6 = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+g6a=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit6, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+#g6a = ggpredict(m6, ~x) %>% plot(rawdata=TRUE)
+
+grid.arrange(g5,g5a, g6,g6a,ncol=2, widths=c(0.55,0.45))
+```
+
+Splines
+-----------
+
+```{r splineBasis2, results='markdown', eval=TRUE, fig.width=8, fig.height=3, echo=FALSE}
+k=mid
+dat2.lm4 = lm(y~bs(x, knots=k, degree=3), data=dat2)
+
+basis = cbind(1,bs(dat2$x, knots=k, degree=3))
+basis = sweep(basis, MARGIN=2, coef(dat2.lm4), '*')
+#basis = basis + coef(dat2.lm4)[1]
+fit = rowSums(basis)
+basis = basis %>% as.data.frame %>% 
+    gather(key=Basis, value=Value) %>%
+    cbind(x=dat2$x)
+
+g1=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
+    geom_line(data=NULL, aes(y=fit, x=dat2$x)) +
+    geom_point(data=dat2, aes(y=y, x=x))
+g2=ggpredict(dat2.lm4, ~x) %>% plot(rawdata=TRUE)
+grid.arrange(g1,g2, nrow=1)
+```
+
+```{r splineBasis2a, results='markdown', eval=TRUE,echo=FALSE}
+broom::tidy(dat2.lm4)
+```
+
+Splines
+------------
+
+```{r mod5a, results='markdown', eval=TRUE, fig.width=6, fig.height=6, echo=FALSE}
+dat2.lm5a = lm(y~bs(x, knots=NULL, degree=3), data=dat2)
+
+k=with(dat2, seq(min(x), max(x), len=5))
+k=k[c(-1,-length(k))]
+dat2.lm5b = lm(y~bs(x, knots=k, degree=3), data=dat2)
+
+k=with(dat2, seq(min(x), max(x), len=12))
+k=k[c(-1,-length(k))]
+dat2.lm5 = lm(y~bs(x, knots=k, degree=3), data=dat2)
+
+k=with(dat2, seq(min(x), max(x), len=22))
+k=k[c(-1,-length(k))]
+dat2.lm6 = lm(y~bs(x, knots=k, degree=3), data=dat2)
+
+grid.arrange(
+    ggpredict(dat2.lm5a, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=0'),
+    ggpredict(dat2.lm5b, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=3'),
+    ggpredict(dat2.lm5, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=10'),
+    ggpredict(dat2.lm6, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=20'), 
+    nrow=2)
+```
+
+Splines
+--------------
+
+- underfitting vs overfitting
+
+### Balance
+
+- explaining (min RSS)
+- reduce bias (prediction error)
+
+### Penalise for wiggliness
+
+- cross validation
+- REML
+
+Generalized Additive Models
+=============================
+
+GAM
+-----
+
+<div style="font-size:50%;">
+$$
+g(E(y)) = \beta_0 + \sum^k_{j=1}{b_j(x_1)\beta_j}
+$$
+</div>
+
+```{r Intro2, results='markdown', eval=TRUE, echo=FALSE}
+bs = smoothCon(s(x, bs='cr'), absorb.cons=TRUE, data=dat2)
+B=bs[[1]]$X
+B = cbind(x=dat2$x, B) %>%
+    as.data.frame %>%
+    gather(key=Basis, value=y, -x) %>%
+    mutate(Basis = factor(Basis, levels=unique(Basis)))
+```
+
+```{r Intro2b, results='markdown', eval=TRUE, fig.height=3, fig.width=6, out.height=250, out.width=500, echo=FALSE}
+ggplot(B, aes(y=y, x=x)) + geom_line(aes(color=Basis))
+```
+
+GAM
+-----
+
+<div style="font-size:50%;">
+$$
+g(E(y)) = \beta_0 + \sum^k_{j=1}{b_j(x_1)\beta_j}
+$$
+</div>
+
+Smoothing penalty (maximize penalized likelihood):
+$$
+2L(\boldsymbol{\beta}) - \boldsymbol{\lambda} (\boldsymbol{\beta^T}\boldsymbol{S}\boldsymbol{\beta})
+$$
+
+```{r Intro3, results='markdown', eval=TRUE,fig.height=3, fig.width=6, out.height=250, out.width=500, echo=FALSE}
+dat2.gam = gam(y ~ s(x, bs='cr'), data=dat2)
+coefs=coef(dat2.gam)
+newdata = data.frame(x=seq(0,3*pi, len=100))
+Xmat = predict(dat2.gam, type='lpmatrix', newdata=newdata)
+fits = sweep(Xmat,MARGIN=2,coefs,'*')
+newdata = newdata %>% mutate(fit=rowSums(fits))
+fits %>% as.data.frame %>% 
+    bind_cols(newdata) %>% 
+    gather(key=Basis, value=y, -x,-fit) %>%
+    ggplot(aes(y=y, x=x)) + geom_line(aes(color=Basis)) +
+    geom_line(aes(y=fit)) +
+    geom_point(data=dat2) +
+    geom_line(data=dat2, aes(y=yp), linetype='dashed')
+```
+
+Basis functions available in `mgcv` {.smaller}
+------------------------------------
+
+| Basis function | Name                           | Properties                                                                                                                                                         |
+|----------------+--------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `tp`           | Thin plate spline              | Low rank (far fewer parameters than data), isotropic (equal smoothing in any direction) regression splines                                                         |
+| `ts`           | Thin plate spline              | Thin plate spline with penalties on the null space such that it can be shrunk to zero.  Useful in combination with `by=` as this does not penalize the null space. |
+| `cr`           | Cubic regression spline        | Splines with knots spread evenly throughout the covariate domain                                                                                                   |
+| `cc`           | Cyclic cubic regression spline | Cubic regression splines with ends that meet (have the same second order derivatives)                                                                              |
+| `ps`           | Penalized B-spline             | Allow the distribution of knots to be based on data distribution                                                                                                   |
+| `cp`           | Cyclic penalized B-spline      | Penalized B-splines with ends that meet                                                                                                                            |
+| `gp`           | Gaussian process               | Gaussian process smooths with five sets of correlation structures                                                                                                  |
+| `mrf()`        | Markov random fields           | Useful for modelling of discrete space.  Uses penalties based on neighbourhood matrices (pairwise distances between discrete locations)                            |
+
+
+Basis functions available in `mgcv` {.smaller}
+------------------------------------
+
+| Basis function | Name                           | Properties                                                                                                                                                         |
+|----------------+--------------------------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `re`           | Random effects                 | Parametric terms penalized via identity matrices.  Equivalent to i.i.d in mixed effects models                                                                     |
+| `fs`           | Factor smooth interaction      | For single dimension smoothers. Duplicates the basis functions for each level of the categorical covariate, yet uses a single smoothing parameter across all.      |
+| `sos`          | Splines on the sphere          | Isotropic 2D splines in spherical space.  Useful for large spatial domains.                                                                                        |
+| `so`           | Soap film smooths              | Smooths within polygon boundaries.  These are useful for modelling complex spatial areas.                                                                          |
+
+Smoother functions available in `mgcv` {.smaller}
+------------------------------------
+
+| Smoother definition functions | Type                                                       | Properties                                                                                                                                          |
+|-------------------------------+------------------------------------------------------------+-----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `s()`                         | General spline smoothers                                   | - for multidimensional smooths, assumes that each component are on the same scale as there is only a single smoothing parameter for the smooth      |
+| `te()`                        | Tensor product smooth                                      | - smooth functions of numerous covariates that are built as the tensor product of the comprising smooths (and penalties)                            |
+|                               |                                                            | - the interaction between numerous terms, each with their own smoothing parameter that penalizes the average wiggliness of that term.               |
+| `ti()`                        | Tensor product interaction smooth                          | - smooths that include only the highest order interactions (exclude the basis functions associated with the main effects of the comprising smooths) |
+| `t2()`                        | Alternative tensor product smooth with non-overlapping ... | - creates basis functions and penalties for paired combinations of separate penalized and unpenalized components of each term                       |
+
+
+         
