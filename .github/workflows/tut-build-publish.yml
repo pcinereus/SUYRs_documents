@@ -99,6 +99,9 @@ jobs:
             any::ggeffects
             any::mgcv
             any::gratia
+            any::tree
+            any::gbm
+            any::car
             github::jmgirard/standist
 
       - name: Install other R packages

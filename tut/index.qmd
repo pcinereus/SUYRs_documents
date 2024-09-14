@@ -47,4 +47,6 @@ output_dir: "docs"
 - [Introduction to Bayesian analyses](20_pres_bayesian.html)
 - [Introduction to hierarchical models](30_pres_hierarchical.html)
 - [Introduction to Generalised Additive Models](40_pres_gams.html)
+- [Introduction to regression trees](50_pres_trees.html)
+- [Introduction to multivariate analyses](60_pres_multivariate.html)
  

@@ -1,5 +1,5 @@
 ---
-title: "Introduction to hierarchical models"
+title: "Introduction to Generalised Additive Models"
 author: "Murray Logan"
 date: today
 date-format: "D MMMM YYYY"
