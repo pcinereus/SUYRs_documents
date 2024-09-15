@@ -94,7 +94,7 @@ jobs:
             any::emmeans
             any::gert
             any::usethis
-            any::splines
+            any::mgcv
             any::ggeffects
             any::mgcv
             any::gratia
