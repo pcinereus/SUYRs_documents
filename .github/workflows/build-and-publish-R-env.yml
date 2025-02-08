@@ -5,7 +5,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: ${{ github.repository.toLowerCase() }}
+  IMAGE_NAME: suyrs_documents
 
 jobs:
   build-and-publish:
