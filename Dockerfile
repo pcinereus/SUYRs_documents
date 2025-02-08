@@ -41,6 +41,23 @@ RUN R -e "options(repos = \
 
 RUN R -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
 
+RUN Rscript -e 'tinytex::install_tinytex()'
+
+ENV PATH="${PATH}:/root/bin"
+
+RUN tlmgr update --self
+RUN tlmgr update --all
+RUN tlmgr install \
+        titlesec \
+        forest \
+        koma-script \
+        caption \
+        pgf \
+        environ \
+        tikzfill \
+        tcolorbox \
+        pdfcol
+
 ARG QUARTO_VERSION="1.6.40"
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
 RUN gdebi --non-interactive quarto-linux-amd64.deb
