@@ -31,3 +31,4 @@ RUN R -e "cmdstanr::check_cmdstan_toolchain(fix = TRUE); \
 WORKDIR /workspace
 
 COPY Makefile /workspace
+COPY tut/*.qmd /workspace/tut
