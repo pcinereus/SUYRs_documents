@@ -29,20 +29,15 @@ RUN R -e "cmdstanr::check_cmdstan_toolchain(fix = TRUE); \
 
 RUN R -e "options(repos = \
     list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \
-  pak::pkg_install(c('magick', 'pdftools', 'GGally')); \
-  pak::pkg_install(c('gmodels', 'mvtnorm', 'coda', 'gganimate')); \
+  pak::pkg_install(c('magick', 'pdftools', 'GGally', 'PBSmapping')); \
+  pak::pkg_install(c('gmodels', 'mvtnorm', 'coda', 'gganimate', 'gridExtra')); \
+  pak::pkg_install(c('ggfortify', 'DHARMa', 'glmmTMB', 'performance', 'see')); \
+  pak::pkg_install(c('brms', 'knitr', 'simstudy', 'stars', 'gstat', 'patchwork')); \
+  pak::pkg_install(c('remotes', 'inlabru', 'Hmisc', 'igraph', 'easystats')); \
+  pak::pkg_install(c('gridGraphics', 'HDInterval', 'bayestestR', 'emmeans')); \
+  pak::pkg_install(c('gert', 'usethis', 'mgcv', 'ggeffects', 'gratia', 'tree')); \
+  pak::pkg_install(c('gbm', 'car', 'jmgirard/standist', 'tidybayes')); \
 "
-
-
-# PBSmapping
-# pak::pkg_install(c('gmodels', 'mvtnorm', 'coda', 'gganimate', 'gridExtra')); \
-# pak::pkg_install(c('ggfortify', 'DHARMa', 'glmmTMB', 'performance', 'see')); \
-# pak::pkg_install(c('brms', 'knitr', 'simstudy', 'stars', 'gstat', 'patchwork')); \
-# pak::pkg_install(c('remotes', 'inlabru', 'Hmisc', 'igraph', 'easystats')); \
-# pak::pkg_install(c('gridGraphics', 'HDInterval', 'bayestestR', 'emmeans')); \
-# pak::pkg_install(c('gert', 'usethis', 'mgcv', 'ggeffects', 'gratia', 'tree')); \
-# pak::pkg_install(c('gbm', 'car', 'jmgirard/standist', 'tidybayes')); \
-
 
 RUN R -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
 
