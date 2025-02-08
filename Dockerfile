@@ -32,3 +32,4 @@ WORKDIR /workspace
 
 COPY Makefile /workspace
 COPY tut/*.qmd /workspace/tut
+COPY resources/*.* /workspace/resources
