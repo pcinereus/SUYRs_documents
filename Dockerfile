@@ -1,9 +1,14 @@
 FROM rocker/r-ver:4.3.3
 
 # Install system dependencies
-RUN apt-get update && apt-get install -y \
-    libcurl4-openssl-dev libssl-dev libxml2-dev \
-    make graphviz quarto pandoc && \
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+    libcurl4-openssl-dev \
+    libssl-dev \
+    libxml2-dev \
+    make \
+    graphviz \
+    pandoc && \
     rm -rf /var/lib/apt/lists/*
 
 # Install R packages
