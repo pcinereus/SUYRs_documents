@@ -29,7 +29,7 @@ RUN R -e "cmdstanr::check_cmdstan_toolchain(fix = TRUE); \
 
 RUN R -e "options(repos = \
     list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \
-  pak::pkg_install(c('magick', 'pdftools', 'panda', 'GGally')); \
+  pak::pkg_install(c('magick', 'pdftools', 'pandas', 'GGally')); \
   pak::pkg_install(c('gmodels', 'mvtnorm', 'coda', 'gganimate')); \
 "
 
