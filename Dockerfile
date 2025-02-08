@@ -29,3 +29,5 @@ RUN R -e "cmdstanr::check_cmdstan_toolchain(fix = TRUE); \
 
 # Set work directory
 WORKDIR /workspace
+
+COPY Makefile /workspace
