@@ -28,6 +28,7 @@ output_dir: "docs"
 ### Reproducible research
 
 - [Git and version control](10_git.html)
+- [Containerisation - docker and singularity](12_docker.html)
 
 ### Statistical principles
 

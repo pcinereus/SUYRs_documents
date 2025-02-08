@@ -1,0 +1,75 @@
+---
+title: Containerisation - docker and singularity
+author: "Murray Logan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format: 
+  html:
+    toc: true
+    toc-float: true
+    page-layout: full
+    number-sections: true
+    number-depth: 3
+    embed-resources: true
+    code-fold: false
+    code-tools: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-block-border-left: "#ccc"
+    code-copy: true
+    highlight-style: atom-one
+    theme: [default, ../resources/tut-style.scss]
+    css: ../resources/tut-style.css
+crossref:
+  fig-title: '**Figure**'
+  fig-labels: arabic
+  tbl-title: '**Table**'
+  tbl-labels: arabic
+engine: knitr
+bibliography: ../resources/references.bib
+output_dir: "docs"
+---
+
+```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = "")
+options(tinytex.engine = 'xelatex')
+cleanRmdInput <- function(x) {
+#x <- gsub("```\\{r","```markdown\n`r ''```\\{r",x)
+x <- gsub("^```$","`` `",x)  # the Makefile will then change this back to ``` after pandoc
+x
+}
+library(tidyverse)
+library(pander)
+FIG_PATH <- '12_docker_files/figure-html/'
+
+# save the built-in output hook
+hook_output <- knitr::knit_hooks$get("output")
+
+# set a new output hook to truncate text output
+knitr::knit_hooks$set(output = function(x, options) {
+  if (!is.null(n <- options$out.lines)) {
+    x <- xfun::split_lines(x)
+    more <- "..."
+    n <- eval(parse(text=n))
+    if (length(n) == 1) {
+      if (length(x) > n) {
+        # truncate the output
+        x <- c(head(x, n), "....\n")
+        }
+    } else {
+        x <- c(more, x[n], more)
+    }    
+    x <- paste(x, collapse = "\n")
+  }
+  hook_output(x, options)
+})
+```
+
+# Background information
+
+In the previous tutorial, we discussed why it is important that your
+codebase is under version control and backed up to help ensure that
+your analyses can be evaluated and replicated by you and others both
+now and into the future.  However, having access to the code (and
+data) does not always guarantee full reproducibility - this can also
+be effected by the exact software environment in which the code is
+run.

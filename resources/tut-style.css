@@ -69,12 +69,12 @@ border-top: solid 2px black;
   margin-left: 30px;
 }
 
-#quarto-sidebar {
-    background-image: url(https://reefcloud.ai/static/media/mainAimsLogo.0b1e652909de41753d95ec26946b582c.svg);
-    background-repeat: no-repeat;
-    background-position: bottom;
-    //background-image: ../tut/resources/partner-logo-ausgvt-aims.png
-}
+/* #quarto-sidebar { */
+/*     background-image: url(https://reefcloud.ai/static/media/mainAimsLogo.0b1e652909de41753d95ec26946b582c.svg); */
+/*     background-repeat: no-repeat; */
+/*     background-position: bottom; */
+/*     //background-image: ../tut/resources/partner-logo-ausgvt-aims.png */
+/* } */
 #quarto-document-content {
     background-color: white;
     box-shadow: 0px 3px 20px #333;
@@ -197,6 +197,9 @@ pre.numberSource {
     border-radius: 0px;
 }
 div.bash>div.sourceCode {
+    background-color: black !important;
+}
+div.terminal>div.sourceCode {
     background-color: black !important;
 }
 div.bash>.cell-output {
@@ -837,4 +840,112 @@ font-style: inherit;
 }
 .prevent-inlining {
 content: "</";
+}
+
+.callout.callout-style-default {
+    /* padding: .4em .7em; */
+    border-left: 5px solid;
+    border-right: 1px solid #dee2e6;
+    border-top: 1px solid #dee2e6;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.dockerfile {
+    padding: 2.5px;
+    color: #333333;
+    background-color: #f5f5f5;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+.dockerfile .sourceCode  {
+    margin-top: 1px;
+    margin-bottom: 1px;
+    background-color: #f5f5f5 !important;
+}
+
+.head {
+   background: -webkit-linear-gradient(top, #4d4c47 0%, #3c3b37 100%);
+    background: -moz-linear-gradient(top, #4d4c47 0%, #3c3b37 100%);
+    background: -o-linear-gradient(top, #4d4c47 0%, #3c3b37 100%);
+    box-shadow: 0px 2px 0px #575757 inset;
+    height: 25px;
+    padding: 5px;
+    border-radius: 8px 8px 0px 0px; 
+}
+.mbtn {
+    background: -webkit-linear-gradient(top, #f79477 0%, #d94c1b 100%);
+    background: -moz-linear-gradient(top, #f79477 0%, #d94c1b 100%);
+    background: -o-linear-gradient(top, #f79477 0%, #d94c1b 100%);
+    width: 15px;
+    height: 15px;
+    display: block;
+    border-radius: 100px;
+    box-shadow: 0px 0px 1px 0px #41403A, 0px 1px 1px 0px #474642;
+    color: #3e3d39;
+    text-decoration: none;
+    text-shadow: 0px 1px 0px rgba(255, 255, 255, 0.2);
+    font-size: 11px;
+    text-align: center;
+    float: left;
+    margin: 0px 1px;
+    line-height: 13px;
+}
+.stnd {
+    background: -webkit-linear-gradient(top, #908f8a 0%, #595953 100%);
+    background: -moz-linear-gradient(top, #908f8a 0%, #595953 100%);
+    background: -o-linear-gradient(top, #908f8a 0%, #595953 100%);
+}
+.head span {
+    font-size: 11px;
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 0px -1px 0px #333;
+    margin-left: 10px;
+    position:absolute
+}
+
+.cell:has(>div> .terminal) {
+    border: 0px;
+}
+.sourceCode.terminal {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    border-left: 0px;
+}
+div.cell-code>pre.terminal code>span::before {
+    content: "murray@arch:~$ ";
+    padding-left: 3px;
+    color: #fff;
+}
+div.cell-code>pre.terminal-docker code::before {
+    content: "~# ";
+    padding-left: 3px;
+    color: #fff;
+}
+div.cell-code>pre.terminal-docker code::before {
+    content: "~# ";
+    padding-left: 3px;
+    color: #fff;
+}
+.sourceCode:has(> pre.terminal) {
+    margin:0px !important;
+    background-color: #000 !important;
+    padding-left: 6px;
+}
+pre.terminal {
+    background-color: #000;
+    color: #fff;
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
+}
+
+div.terminal>div.cell-output {
+    padding: 0px;
+    /* padding-left: 6px; */
+    border: 0px;
+}
+pre.terminal>code>span {
+    color: #c9c9c9;
 }
