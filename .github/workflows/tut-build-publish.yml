@@ -53,6 +53,7 @@ jobs:
       - name: install R packages
         uses: r-lib/actions/setup-r-dependencies@v2
         with:
+          cache-version: 2
           packages: |
             any::rmarkdown
             any::magick
