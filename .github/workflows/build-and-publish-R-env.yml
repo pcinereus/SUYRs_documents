@@ -20,4 +20,4 @@ jobs:
 
       - name: Push Docker Image
         run: |
-          docker push ghcr.io/${{ github.repository }}/r-quarto-env:latest
+          docker push ghcr.io/r-quarto-env:latest
