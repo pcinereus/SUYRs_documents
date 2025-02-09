@@ -313,7 +313,8 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| eval: true
    #| echo: false
    cd ~/tmp/docker_tests
-   docker build . --tag minideb -f Dockerfile
+   whereis docker
+   # docker build . --tag minideb -f Dockerfile
    ```
    ```{bash}
    #| label: dockerBuild
