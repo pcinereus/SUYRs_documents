@@ -79,3 +79,13 @@ as well as the various packages that you have elected to use in
 support your analyses can (and do) evolve over time.  Some functions
 get modified and some even get depreciated.  Hence, over time, code
 that once worked perfectly (or at least adequately) can become _broken_.
+
+Early solutions to this facet of reproducibility focused on **virtual
+machines**.  Virtual machines (VM) build entire software environments on
+top of a software layer that mimics a physical computer such that each
+VM runs on a _host_ computer is a completely separate self-contained
+entity.  Whilst VMs do permit great flexibility (as virtually any
+operating system can be installed on a VM), they are considerably
+slower and less efficient than physical machines.  Moreover, it is
+typically necessary to allocate a fixed amount of computer resources
+(particularly CPU) to the VM in advance.
