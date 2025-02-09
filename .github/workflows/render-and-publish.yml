@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with: 
-          fetch-depth: 0  # Ensure git history is available
+          fetch-depth: 1  # Ensure git history is available
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
@@ -28,7 +28,7 @@ jobs:
       - name: Run Container and Render Updated Files
         run: |
           docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
-          bash ls -la
+          bash -c "ls -la"
           #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
 
       - name: Deploy to GitHub Pages
