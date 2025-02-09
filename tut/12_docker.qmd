@@ -271,8 +271,10 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| classes: dockerfile
    #| class-output: dockerfile
    #| cache: false
-   #| file: ~/tmp/docker_tests/Dockerfile
-   #| eval: false
+   #| eval: true
+   list.files()
+   list.files("~/tmp")
+   list.files("~/tmp/docker_tests")
    ```
 
    In the above `Dockerfile`:
