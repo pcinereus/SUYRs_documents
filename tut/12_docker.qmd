@@ -215,3 +215,98 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 \node [draw,fit=(Docker.south west)(Docker.south east), anchor=north,inner sep=0pt,fill=OS, minimum height=2em, label={center:Host OS}] (OS)  {};
 \end{tikzpicture}
 ```
+
+## Simple overview
+
+1. **Create a Docker definition file.**
+
+   The `Dockerfile` contains a set of instructions that Docker uses to
+   build your container with the correct specifications. For now you
+   do not need to know all the bits and pieces here (though please see
+   this
+   [link](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)
+   for a more in-depth understanding of what the Dockerfile is capable
+   of).
+
+   Lets start with a very simple `Dockerfile` (which should be a plain
+   text file located in the root of a project directory).  This first
+   example will be a very minimal example and much of the rest of the
+   Docker section of this tutorial will then progressively build on
+   this example to introduce more and more complexity.
+   
+   The image we will build will start with a very minimal Debian Linux
+   base called [minidep](https://hub.docker.com/r/bitnami/minideb)
+   sourced from Dockerhub.  This provides a fully functioning Linux
+   operating system complete with the typical terminal power tools.
+   
+   To then extend the image by updating the package lists (location of
+   repositories) before adding (installing) a small fun terminal
+   application
+   ([cowsay](https://github.com/tnalpgge/rank-amateur-cowsay)) that
+   generates ASCII art of a cow (or other animals) along with a speech
+   bubble. 
+
+   ```{bash}
+   #| label: createDockerfile
+   #| echo: false
+   #| eval: true
+   #| cache: false
+   #| engine: bash
+   cd ~/tmp/docker_tests
+   echo 'FROM bitnami/minideb:bookworm' > Dockerfile
+   echo 'LABEL maintainer="Author"' >> Dockerfile
+   echo 'LABEL email="author_email@email.com"' >> Dockerfile
+   echo '' >> Dockerfile
+   echo '## Install the os packages' >> Dockerfile
+   echo 'RUN apt-get update \' >> Dockerfile
+   echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile
+   echo '    cowsay \' >> Dockerfile
+   echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile
+   ```
+
+   ```{r}
+   #| label: Text
+   #| engine: text
+   #| results: asis
+   #| classes: dockerfile
+   #| class-output: dockerfile
+   #| cache: false
+   #| file: ~/tmp/docker_tests/Dockerfile
+   #| eval: false
+   ```
+
+   In the above `Dockerfile`:
+
+   - the three first rows in contain information on the base image on
+     which to construct your docker container image (in this case
+     bitnami/minideb:stretch container freely provided by the bitnami
+     team), as well as information about yourself. `minideb` is a
+     minimal debian operating system.
+
+   - the **FROM** command points to a parent image.  Typically, this
+     will point to a specific image within a registry on Docker hub.
+     This generates the base layer of the container image.
+
+   - the **LABEL** command is one of numerous _environmental
+     variables_ and is used to add metadata to an image.  In this
+     case, there are two entries to specify information about the
+     maintainer and their contact details.  Note, entries must be
+     key-value pairs and values must be enclosed in double quotes.
+
+   - the **RUN** command runs shell commands in a new layer on top of
+     the current image and commits the result.  Each RUN generates a
+     new layer.  The above example, first updates the packages list 
+     and then installs an additional package (`cowsay`).
+
+
+
+::: {.raw} 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function () {
+$('div.terminal').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>murray@arch:~</span></div>");
+$('div.terminal-docker').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>#</span></div>");
+});
+</script>
+
+:::
