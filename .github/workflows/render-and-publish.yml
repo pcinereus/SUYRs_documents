@@ -19,10 +19,42 @@ jobs:
         with: 
           fetch-depth: 1  # Ensure git history is available
 
-      - name: Fetch gh-pages branch
+      # - name: Fetch gh-pages branch
+      #   run: |
+      #     git fetch origin gh-pages
+      #     git worktree add gh-pages-folder gh-pages
+
+      - name: List files in gh-pages with timestamps
         run: |
-          git fetch origin gh-pages
-          git worktree add gh-pages-folder gh-pages
+          git ls-tree -r --name-only origin/gh-pages | while read file; do
+            last_modified=$(git log -1 --format="%ci" origin/gh-pages -- "$file")
+            echo "$last_modified $file"
+          done | sort -r > gh-pages-file-list.txt
+          
+          echo "Files in gh-pages branch:"
+          cat gh-pages-file-list.txt
+          
+          # List all .qmd files in main with timestamps
+          git ls-tree -r --name-only origin/main | grep '\.qmd$' | while read file; do
+            last_modified=$(git log -1 --format="%ci" origin/main -- "$file")
+            echo "$last_modified $file"
+          done | sort -r > main-qmd-file-list.txt
+
+          echo "Files in main branch (qmd):"
+          cat main-qmd-file-list.txt
+
+          # Compare timestamps and filter only updated .qmd files
+          echo "Files needing rendering:" > files-to-render.txt
+          while read qmd_date qmd_file; do
+            html_file="docs/${qmd_file%.qmd}.html"
+            html_date=$(grep "$html_file" gh-pages-file-list.txt | awk '{print $1, $2}')
+      
+            if [[ -z "$html_date" || "$qmd_date" > "$html_date" ]]; then
+              echo "$qmd_file" >> files-to-render.txt
+            fi
+          done < main-qmd-file-list.txt
+          echo "Final list of files needing rendering:"
+          cat files-to-render.txt
 
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
