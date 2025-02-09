@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2025-02-08">
+<meta name="dcterms.date" content="2025-02-09">
 
 <title>Containerisation - docker and singularity</title>
 <style>
@@ -3091,6 +3091,7 @@ vertical-align: -.125em;
    
   <ul>
   <li><a href="#background-information" id="toc-background-information" class="nav-link active" data-scroll-target="#background-information"><span class="header-section-number">1</span> Background information</a></li>
+  <li><a href="#preparations" id="toc-preparations" class="nav-link" data-scroll-target="#preparations"><span class="header-section-number">2</span> Preparations</a></li>
   </ul>
 </nav>
 </div>
@@ -3115,7 +3116,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 8, 2025</p>
+      <p class="date">February 9, 2025</p>
     </div>
   </div>
   
@@ -3130,6 +3131,21 @@ vertical-align: -.125em;
 <section id="background-information" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Background information</h1>
 <p>In the previous tutorial, we discussed why it is important that your codebase is under version control and backed up to help ensure that your analyses can be evaluated and replicated by you and others both now and into the future. However, having access to the code (and data) does not always guarantee full reproducibility - this can also be effected by the exact software environment in which the code is run.</p>
+<p>In the context of statistical analyses performed in R for example, R as well as the various packages that you have elected to use in support your analyses can (and do) evolve over time. Some functions get modified and some even get depreciated. Hence, over time, code that once worked perfectly (or at least adequately) can become <em>broken</em>.</p>
+<p>Early solutions to this facet of reproducibility focused on <strong>virtual machines</strong>. Virtual machines (VM) build entire software environments on top of a software layer that mimics a physical computer such that each VM runs on a <em>host</em> computer is a completely separate self-contained entity. Whilst VMs do permit great flexibility (as virtually any operating system can be installed on a VM), they are considerably slower and less efficient than physical machines. Moreover, it is typically necessary to allocate a fixed amount of computer resources (particularly CPU) to the VM in advance.</p>
+<p>More modern solutions focus instead on <strong>Containers</strong>. In contrast to VMs, containers do not mimic a physical computer, rather they only virtualise layers on top of the host operating system. Indeed, containers share (read only) the host OS kernel and binaries/libraries and thus containers and the applications contained therein can be very “light” and are typically are almost as performant as applications run natively on the host.</p>
+<p>Time for some container terminology:</p>
+<ul>
+<li><p><strong>Container image</strong> is a static (unchangeable) file (or collection of files) that bundles code and all its dependencies (such as the necessary system libraries, code, runtime and system tools). Essentially, the image has all the information required to reproduce an software environment on any compatible machine. However, an image is just a snapshot which serves as a template to build a <strong>container</strong>. In other words, a container is a running image, and cannot exist without the image, whereas an image can exist without a container.</p></li>
+<li><p><strong>Container</strong> is a standard (linux) process whose software environment is defined by the contents of a container image and that runs on top of the host’s OS.</p></li>
+</ul>
+</section>
+<section id="preparations" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Preparations</h1>
+<p>If you intend to follow along with this tutorial, you may like to:</p>
+<ul>
+<li>create a new folder (hereafter referred to as the <em>sandpit folder</em>) in which to create some files. On my local machine, I have a folder (<code>tmp</code>) in my home folder into which I will place a folder (called <code>docker_tests</code>) for this very purpose. On Linux and MacOSX that would be achieved via the following:</li>
+</ul>
 <!-- -->
 
 </section>
@@ -3678,7 +3694,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb1-72"><a href="#cb1-72"></a>now and into the future.  However, having access to the code (and</span>
 <span id="cb1-73"><a href="#cb1-73"></a>data) does not always guarantee full reproducibility - this can also</span>
 <span id="cb1-74"><a href="#cb1-74"></a>be effected by the exact software environment in which the code is</span>
-<span id="cb1-75"><a href="#cb1-75"></a>run.</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
+<span id="cb1-75"><a href="#cb1-75"></a>run.</span>
+<span id="cb1-76"><a href="#cb1-76"></a></span>
+<span id="cb1-77"><a href="#cb1-77"></a>In the context of statistical analyses performed in R for example, R</span>
+<span id="cb1-78"><a href="#cb1-78"></a>as well as the various packages that you have elected to use in</span>
+<span id="cb1-79"><a href="#cb1-79"></a>support your analyses can (and do) evolve over time.  Some functions</span>
+<span id="cb1-80"><a href="#cb1-80"></a>get modified and some even get depreciated.  Hence, over time, code</span>
+<span id="cb1-81"><a href="#cb1-81"></a>that once worked perfectly (or at least adequately) can become _broken_.</span>
+<span id="cb1-82"><a href="#cb1-82"></a></span>
+<span id="cb1-83"><a href="#cb1-83"></a>Early solutions to this facet of reproducibility focused on **virtual</span>
+<span id="cb1-84"><a href="#cb1-84"></a>machines**.  Virtual machines (VM) build entire software environments on</span>
+<span id="cb1-85"><a href="#cb1-85"></a>top of a software layer that mimics a physical computer such that each</span>
+<span id="cb1-86"><a href="#cb1-86"></a>VM runs on a _host_ computer is a completely separate self-contained</span>
+<span id="cb1-87"><a href="#cb1-87"></a>entity.  Whilst VMs do permit great flexibility (as virtually any</span>
+<span id="cb1-88"><a href="#cb1-88"></a>operating system can be installed on a VM), they are considerably</span>
+<span id="cb1-89"><a href="#cb1-89"></a>slower and less efficient than physical machines.  Moreover, it is</span>
+<span id="cb1-90"><a href="#cb1-90"></a>typically necessary to allocate a fixed amount of computer resources</span>
+<span id="cb1-91"><a href="#cb1-91"></a>(particularly CPU) to the VM in advance.</span>
+<span id="cb1-92"><a href="#cb1-92"></a></span>
+<span id="cb1-93"><a href="#cb1-93"></a>More modern solutions focus instead on **Containers**.  In contrast to</span>
+<span id="cb1-94"><a href="#cb1-94"></a>VMs, containers do not mimic a physical computer, rather they only</span>
+<span id="cb1-95"><a href="#cb1-95"></a>virtualise layers on top of the host operating system.  Indeed,</span>
+<span id="cb1-96"><a href="#cb1-96"></a>containers share (read only) the host OS kernel and binaries/libraries</span>
+<span id="cb1-97"><a href="#cb1-97"></a>and thus containers and the applications contained therein can be very</span>
+<span id="cb1-98"><a href="#cb1-98"></a>&quot;light&quot; and are typically are almost as performant as applications run</span>
+<span id="cb1-99"><a href="#cb1-99"></a>natively on the host.</span>
+<span id="cb1-100"><a href="#cb1-100"></a></span>
+<span id="cb1-101"><a href="#cb1-101"></a>Time for some container terminology:</span>
+<span id="cb1-102"><a href="#cb1-102"></a></span>
+<span id="cb1-103"><a href="#cb1-103"></a><span class="ss">- </span>**Container image** is a static (unchangeable) file (or collection of</span>
+<span id="cb1-104"><a href="#cb1-104"></a>  files) that bundles code and all its dependencies (such as the</span>
+<span id="cb1-105"><a href="#cb1-105"></a>  necessary system libraries, code, runtime and system</span>
+<span id="cb1-106"><a href="#cb1-106"></a>  tools). Essentially, the image has all the information required to</span>
+<span id="cb1-107"><a href="#cb1-107"></a>  reproduce an software environment on any compatible machine.</span>
+<span id="cb1-108"><a href="#cb1-108"></a>  However, an image is just a snapshot which serves as a template to</span>
+<span id="cb1-109"><a href="#cb1-109"></a>  build a **container**. In other words, a container is a running image,</span>
+<span id="cb1-110"><a href="#cb1-110"></a>  and cannot exist without the image, whereas an image can exist</span>
+<span id="cb1-111"><a href="#cb1-111"></a>  without a container.</span>
+<span id="cb1-112"><a href="#cb1-112"></a></span>
+<span id="cb1-113"><a href="#cb1-113"></a><span class="ss">- </span>**Container** is a standard (linux) process whose software environment</span>
+<span id="cb1-114"><a href="#cb1-114"></a>  is defined by the contents of a container image and that runs on top</span>
+<span id="cb1-115"><a href="#cb1-115"></a>  of the host&#39;s OS.</span>
+<span id="cb1-116"><a href="#cb1-116"></a></span>
+<span id="cb1-117"><a href="#cb1-117"></a><span class="fu"># Preparations</span></span>
+<span id="cb1-118"><a href="#cb1-118"></a></span>
+<span id="cb1-119"><a href="#cb1-119"></a>If you intend to follow along with this tutorial, you may like to:</span>
+<span id="cb1-120"><a href="#cb1-120"></a> </span>
+<span id="cb1-121"><a href="#cb1-121"></a><span class="ss">- </span>create a new folder (hereafter referred to as the _sandpit folder_)</span>
+<span id="cb1-122"><a href="#cb1-122"></a>  in which to create some files. On my local machine, I have a folder</span>
+<span id="cb1-123"><a href="#cb1-123"></a>  (<span class="in">`tmp`</span>) in my home folder into which I will place a folder (called</span>
+<span id="cb1-124"><a href="#cb1-124"></a>  <span class="in">`docker_tests`</span>) for this very purpose.  On Linux and MacOSX that</span>
+<span id="cb1-125"><a href="#cb1-125"></a>  would be achieved via the following:</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
