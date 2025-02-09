@@ -89,3 +89,11 @@ operating system can be installed on a VM), they are considerably
 slower and less efficient than physical machines.  Moreover, it is
 typically necessary to allocate a fixed amount of computer resources
 (particularly CPU) to the VM in advance.
+
+More modern solutions focus instead on **Containers**.  In contrast to
+VMs, containers do not mimic a physical computer, rather they only
+virtualise layers on top of the host operating system.  Indeed,
+containers share (read only) the host OS kernel and binaries/libraries
+and thus containers and the applications contained therein can be very
+"light" and are typically are almost as performant as applications run
+natively on the host.
