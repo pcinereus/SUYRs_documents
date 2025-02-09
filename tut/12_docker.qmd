@@ -130,6 +130,7 @@ If you intend to follow along with this tutorial, you may like to:
   #| eval: true
   #| echo: false
   unlink('~/tmp/docker_tests', recursive=TRUE, force=TRUE)
+  if (!dir.exists('~/tmp')) dir.create('~/tmp')
   ```
   ```{bash}
   #| label: prepareFolder
@@ -139,7 +140,6 @@ If you intend to follow along with this tutorial, you may like to:
   #| class-source: terminal
   #| code-line-numbers: false
   #| highlight-style: zenburn
-  [ -d ~/tmp ] || mkdir -p ~/tmp
   mkdir ~/tmp/docker_tests
   ```
  </br>
