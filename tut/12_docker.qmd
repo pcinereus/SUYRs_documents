@@ -123,3 +123,95 @@ If you intend to follow along with this tutorial, you may like to:
   (`tmp`) in my home folder into which I will place a folder (called
   `docker_tests`) for this very purpose.  On Linux and MacOSX that
   would be achieved via the following:
+
+  ```{r}
+  #| label: prepareFolder1
+  #| results: hide
+  #| eval: true
+  #| echo: false
+  unlink('~/tmp/docker_tests', recursive=TRUE, force=TRUE)
+  ```
+  ```{bash}
+  #| label: prepareFolder
+  #| echo: true
+  #| eval: false
+  #| classes: terminal
+  #| class-source: terminal
+  #| code-line-numbers: false
+  #| highlight-style: zenburn
+  mkdir ~/tmp/docker_tests
+  ```
+ </br>
+
+- install [Docker](www.docker.com)
+
+- install [apptainer/singularity](https://apptainer.org/) (if you
+intend to follow along with containers on a HPC).
+
+# Docker
+
+Currently, the most popular container engine in use today is [Docker](www.docker.com).
+Docker is easy to install on most operating systems and comes with
+tools to build, manage, run and distribute container images (the later
+of which is supported via the [DockerHub](https://hub.docker.com) container ecosystem.
+
+
+```{tikz}
+%| label: DockerOverviewFig1
+%| engine: tikz
+%| echo: false
+%| cache: true
+%| dependson: common
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-commit.tex"
+\usetikzlibrary{positioning,shapes.callouts}
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\newcommand{\file}[3] {
+ \coordinate (#3) at (#1);
+ \draw[thick,anchor=top left](#1) -- ++(2,0) -- ++(0.5,-0.5) -- ++(0,-3) -- ++(-2.5,0) -- ++(0,3.5);
+ \draw[thick,anchor=top left]($(#1) +(2,0)$) -- ++(0,-0.5) -- ++(0.5,0); 	 
+ \node [anchor=north west,fileText] at ($(#1) +(0,-0.1)$) {#2};
+}
+
+\usetikzlibrary{calc,fit,positioning}
+\definecolor{OS}{rgb}{1,0.8,0.4}%
+\definecolor{Docker}{rgb}{0.26,0.65,0.91}%
+\definecolor{Bin}{rgb}{0.9,0.9,0.2}%
+\definecolor{Container}{rgb}{0.90,0.9,0.9}%
+\sf
+
+\begin{tikzpicture}
+\node [draw, anchor=south west,fill=Container] at (0,0) (Container1) {
+ \begin{tikzpicture}
+   \node [anchor=west] (title) at (0,0) {\textbf{Container 1}};
+   \node [draw, anchor=west, fill=white] at ($(title.west) + (0,-1.5)$) (App) {
+   \scalebox{0.5}{\begin{tikzpicture}
+     \node (Code) {\huge Apps, Code etc};
+     \commit{below = 1.5cm of Code}{A}{color_inactive}{}{}
+     \commit{right = 1cm of A}{B}{color_inactive}{}{}
+     \commit{right = 1cm of B}{C}{color_commit}{}{}
+     \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
+     \draw [-,line width=3pt,draw=black!60] (B) -- (A);
+     \draw [-,line width=3pt,draw=black!60] (C) -- (B);
+     \commit{above = 0.5cm of B}{D}{color_inactive}{}{}
+     \draw [-,line width=3pt,draw=black!60] (A.east) to[out=0,in=180] (D);
+     \main{right = 0.5cm of C}\draw[->,line width=3pt,draw=black!60] (main) -- (C);
+     \HEAD{right = 0.5cm of main}\draw[->,line width=3pt,draw=black!60] (HEAD) -- (main);
+     \branch{right = 0.5cm of D}{Feature}\draw[->,line width=3pt,draw=black!60] (Feature) -- (D);
+     \end{tikzpicture}}};
+     \node [draw,anchor=north,inner sep=0pt, fit=(App.south west)(App.south east), fill=Bin, minimum height = 1.75em, label={center:Bins/libs}] {};
+ \end{tikzpicture}
+};
+\node [draw, anchor=south west,fill=Container] at ($(Container1.south east) + (0.2,0)$) (Container2) {
+ \begin{tikzpicture}
+   \node [anchor=west] (title) at (0,0) {\textbf{Container 2}};
+   \node [draw, anchor=west, fill=white,minimum width=4cm] at ($(title.west) + (0,-1)$) (App) {Apps, Code etc};
+   \node [draw, anchor=north west, fill=Bin, minimum width=4cm] at ($(App.south west) + (0,-0)$) {Bins/libs};
+ \end{tikzpicture}
+};
+
+\node [draw,fit=(Container1.south west)(Container2.south east), anchor=north,inner sep=0pt,fill=Docker, minimum height=2em, label={center:Docker Engine}] (Docker)  {};
+\node [draw,fit=(Docker.south west)(Docker.south east), anchor=north,inner sep=0pt,fill=OS, minimum height=2em, label={center:Host OS}] (OS)  {};
+\end{tikzpicture}
+```
