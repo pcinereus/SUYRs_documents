@@ -92,7 +92,7 @@ RUN R -e "options(repos = \
 # RUN unzip -d noto_sans/ resources/Noto_Sans.zip
 # COPY noto_sans /usr/share/fonts/
 
-COPY resouces/Ubuntu.zip /tmp/Ubuntu.zip
+COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
 RUN mkdir -p /usr/share/fonts/ubuntu && \
   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
 RUN fc-cache -fv && fc-list
