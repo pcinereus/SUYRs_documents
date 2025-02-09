@@ -139,6 +139,7 @@ If you intend to follow along with this tutorial, you may like to:
   #| class-source: terminal
   #| code-line-numbers: false
   #| highlight-style: zenburn
+  [ -d ~/tmp ] || mkdir -p ~/tmp
   mkdir ~/tmp/docker_tests
   ```
  </br>
