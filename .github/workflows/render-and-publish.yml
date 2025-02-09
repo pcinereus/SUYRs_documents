@@ -29,8 +29,8 @@ jobs:
 
       - name: Find modified .qmd files
         run: |
-          git ls-tree -r --name-only HEAD | grep '\.qmd$' | while read file; do
-            MODIFIED_TIME=$(git log -1 --format="%ci" HEAD -- "$file")
+          git ls-tree -r --name-only origin/main | grep '\.qmd$' | while read file; do
+            MODIFIED_TIME=$(git log -1 --format="%ci" -- "$file")
             echo "$MODIFIED_TIME"
             if [[ "$MODIFIED_TIME" > "$DEPLOY_TIME" ]]; then
               echo "$file was modified after last deployment."
@@ -47,12 +47,19 @@ jobs:
       - name: Pull Docker Image
         run: docker pull ghcr.io/${{ env.IMAGE_NAME }}:latest
 
-      - name: Run Container and Render Updated Files
+      #- name: Run Container and Render Updated Files
+      #  run: |
+      #    docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
+      #    bash -c "cp gh-pages-folder/*.html tut/ && make tut"
+      #    #bash -c "cp gh-pages-folder/*.html tut/ && ls -la tut"
+      #    #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
+      - name: Render Updated Quarto Files
         run: |
-          docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
-          bash -c "cp gh-pages-folder/*.html tut/ && make tut"
-          #bash -c "cp gh-pages-folder/*.html tut/ && ls -la tut"
-          #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
+          if [ -s changed_files.txt ]; then
+            cat changed_files.txt | xargs -I {} quarto render {}
+          else
+            echo "No updated files to render."
+          fi
 
       # - name: Deploy to GitHub Pages
       #   uses: JamesIves/github-pages-deploy-action@4.1.4
