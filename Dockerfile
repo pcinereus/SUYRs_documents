@@ -76,8 +76,8 @@ RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/r
 RUN gdebi --non-interactive quarto-linux-amd64.deb
 
 RUN R -e "options(repos = \
-    list(CRAN = \"https://packagemanager.posit.co/cran/2022-01-10/\")); \
-  pak::pkg_install(c('pander')); \
+    list(CRAN = \"https://packagemanager.posit.co/cran/2021-02-10/\")); \
+  pak::pkg_install(c('pander', 'mvabund')); \
 "
 
 # Set work directory
