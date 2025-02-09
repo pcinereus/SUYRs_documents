@@ -113,3 +113,5 @@ Time for some container terminology:
 - **Container** is a standard (linux) process whose software environment
   is defined by the contents of a container image and that runs on top
   of the host's OS.
+
+# Preparations

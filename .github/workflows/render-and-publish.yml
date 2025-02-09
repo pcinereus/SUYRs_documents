@@ -61,7 +61,12 @@ jobs:
           else
             echo "No updated files to render."
           fi
-
+      - name: Examine
+        run: |
+          echo ${{ github.workspace  }}
+          echo ${{ github.repository }}
+          echo ${{ env.IMAGE_NAME }}
+          
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
