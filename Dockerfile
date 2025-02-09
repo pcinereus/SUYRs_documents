@@ -91,6 +91,9 @@ RUN R -e "options(repos = \
 #
 # RUN unzip -d noto_sans/ resources/Noto_Sans.zip
 # COPY noto_sans /usr/share/fonts/
+
+RUN mkdir -p /usr/share/fonts
+
 COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
 RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
 
