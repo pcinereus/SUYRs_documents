@@ -42,23 +42,32 @@ RUN R -e "options(repos = \
 RUN R -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
 
 RUN Rscript -e 'tinytex::install_tinytex()'
+RUN Rscript -e 'tinytex::tlmgr_install("titlesec")'
+RUN Rscript -e 'tinytex::tlmgr_install("forest")'
+RUN Rscript -e 'tinytex::tlmgr_install("komo-script")'
+RUN Rscript -e 'tinytex::tlmgr_install("caption")'
+RUN Rscript -e 'tinytex::tlmgr_install("pgf")'
+RUN Rscript -e 'tinytex::tlmgr_install("environ")'
+RUN Rscript -e 'tinytex::tlmgr_install("tikzfill")'
+RUN Rscript -e 'tinytex::tlmgr_install("tcolorbox")'
+RUN Rscript -e 'tinytex::tlmgr_install("pdfcol")'
 
 ENV PATH="${PATH}:/root/bin"
 
 ##RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
-RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/tlnet && \
-  tlmgr update --self && \
-  tlmgr update --all && \
-  tlmgr install \
-        titlesec \
-        forest \
-        koma-script \
-        caption \
-        pgf \
-        environ \
-        tikzfill \
-        tcolorbox \
-        pdfcol
+# RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/tlnet && \
+#   tlmgr update --self && \
+#   tlmgr update --all && \
+#   tlmgr install \
+#         titlesec \
+#         forest \
+#         koma-script \
+#         caption \
+#         pgf \
+#         environ \
+#         tikzfill \
+#         tcolorbox \
+#         pdfcol
 
 ARG QUARTO_VERSION="1.6.40"
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
