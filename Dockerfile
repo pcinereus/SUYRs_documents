@@ -105,7 +105,8 @@ RUN mkdir -p /usr/share/fonts/Inconsolata && \
   unzip /tmp/Inconsolata.zip -d /usr/share/fonts/Inconsolata
 
 COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
-RUN unzip /tmp/Noto-Sans.zip -d /usr/share/fonts
+RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
+  unzip /tmp/Noto-Sans.zip -d /usr/share/fonts/Noto-Sans
 
 COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
 RUN mkdir -p /usr/share/fonts/ubuntu && \
