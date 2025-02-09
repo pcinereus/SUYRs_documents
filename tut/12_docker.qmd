@@ -109,3 +109,7 @@ Time for some container terminology:
   build a **container**. In other words, a container is a running image,
   and cannot exist without the image, whereas an image can exist
   without a container.
+
+- **Container** is a standard (linux) process whose software environment
+  is defined by the contents of a container image and that runs on top
+  of the host's OS.
