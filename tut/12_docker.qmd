@@ -74,3 +74,8 @@ data) does not always guarantee full reproducibility - this can also
 be effected by the exact software environment in which the code is
 run.
 
+In the context of statistical analyses performed in R for example, R
+as well as the various packages that you have elected to use in
+support your analyses can (and do) evolve over time.  Some functions
+get modified and some even get depreciated.  Hence, over time, code
+that once worked perfectly (or at least adequately) can become _broken_.

@@ -56,7 +56,8 @@ jobs:
       - name: Render Updated Quarto Files
         run: |
           if [ -s changed_files.txt ]; then
-            cat changed_files.txt | xargs -I {} quarto render {}
+            docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
+            bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
           else
             echo "No updated files to render."
           fi
