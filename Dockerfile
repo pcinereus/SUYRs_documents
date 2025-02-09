@@ -4,6 +4,7 @@ FROM rocker/r-ver:4.3.3
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
     curl \
+    gdebi-core \
     libcurl4-openssl-dev \
     libssl-dev \
     libxml2-dev \
