@@ -161,6 +161,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 %| engine: tikz
 %| echo: false
 %| cache: true
+%| eval: false
 %| dependson: common
 %| class: tikz
 %| engine-opts:
@@ -266,13 +267,10 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
    ```{r}
    #| label: Text
-   #| engine: text
-   #| results: asis
-   #| classes: dockerfile
-   #| class-output: dockerfile
    #| cache: false
    #| eval: true
    list.files()
+   list.files("~")
    list.files("~/tmp")
    list.files("~/tmp/docker_tests")
    ```
