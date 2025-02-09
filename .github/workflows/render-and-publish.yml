@@ -17,7 +17,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with: 
-          fetch-depth: 1  # Ensure git history is available
+          fetch-depth: 0  # Ensure git history is available
 
       - name: Get last GitHub Pages deployment timestamp
         run: |
