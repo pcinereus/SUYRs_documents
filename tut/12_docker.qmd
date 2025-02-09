@@ -162,7 +162,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 %| engine: tikz
 %| echo: false
 %| cache: true
-%| eval: false
+%| eval: true
 %| dependson: common
 %| class: tikz
 %| engine-opts:
