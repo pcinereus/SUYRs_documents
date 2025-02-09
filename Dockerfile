@@ -75,6 +75,11 @@ ARG QUARTO_VERSION="1.6.40"
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
 RUN gdebi --non-interactive quarto-linux-amd64.deb
 
+RUN R -e "options(repos = \
+    list(CRAN = \"https://packagemanager.posit.co/cran/2022-01-10/\")); \
+  pak::pkg_install(c('pander')); \
+"
+
 # Set work directory
 WORKDIR /workspace
 #
