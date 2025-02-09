@@ -31,6 +31,7 @@ jobs:
         run: |
           git ls-tree -r --name-only HEAD | grep '\.qmd$' | while read file; do
             MODIFIED_TIME=$(git log -1 --format="%ci" HEAD -- "$file")
+            echo "$MODIFIED_TIME"
             if [[ "$MODIFIED_TIME" > "$DEPLOY_TIME" ]]; then
               echo "$file was modified after last deployment."
               echo "$file" >> changed_files.txt
