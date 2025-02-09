@@ -99,3 +99,13 @@ and thus containers and the applications contained therein can be very
 natively on the host.
 
 Time for some container terminology:
+
+- **Container image** is a static (unchangeable) file (or collection of
+  files) that bundles code and all its dependencies (such as the
+  necessary system libraries, code, runtime and system
+  tools). Essentially, the image has all the information required to
+  reproduce an software environment on any compatible machine.
+  However, an image is just a snapshot which serves as a template to
+  build a **container**. In other words, a container is a running image,
+  and cannot exist without the image, whereas an image can exist
+  without a container.
