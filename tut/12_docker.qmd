@@ -301,6 +301,32 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
      and then installs an additional package (`cowsay`).
 
 
+2. **Build the docker image**
+
+   In a terminal in the same location as the `Dockerfile` (i.e. your
+   _sandpit folder_), enter something the following:
+   
+   ```{bash}
+   #| label: dockerBuildReal
+   #| engine: bash
+   #| results: hide
+   #| eval: true
+   #| echo: false
+   cd ~/tmp/docker_tests
+   docker build . --tag minideb -f Dockerfile
+   ```
+   ```{bash}
+   #| label: dockerBuild
+   #| engine: bash
+   #| results: hide
+   #| classes: terminal
+   #| class-source: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| eval: false
+   docker build . --tag minideb
+   ```
+
 
 ::: {.raw} 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
