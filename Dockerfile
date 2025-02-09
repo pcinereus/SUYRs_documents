@@ -45,9 +45,10 @@ RUN Rscript -e 'tinytex::install_tinytex()'
 
 ENV PATH="${PATH}:/root/bin"
 
-RUN tlmgr update --self
-RUN tlmgr update --all
-RUN tlmgr install \
+RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
+  tlmgr update --self && \
+  tlmgr update --all && \
+  tlmgr install \
         titlesec \
         forest \
         koma-script \
