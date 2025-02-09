@@ -62,7 +62,7 @@ jobs:
           else
             echo "No updated files to render."
           fi
-          echo ls -lat
+          ls -lat
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
