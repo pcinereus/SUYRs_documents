@@ -45,7 +45,8 @@ RUN Rscript -e 'tinytex::install_tinytex()'
 
 ENV PATH="${PATH}:/root/bin"
 
-RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
+##RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
+RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/tlnet && \
   tlmgr update --self && \
   tlmgr update --all && \
   tlmgr install \
