@@ -97,3 +97,5 @@ containers share (read only) the host OS kernel and binaries/libraries
 and thus containers and the applications contained therein can be very
 "light" and are typically are almost as performant as applications run
 natively on the host.
+
+Time for some container terminology:
