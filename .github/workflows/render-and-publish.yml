@@ -55,20 +55,17 @@ jobs:
       #    #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
       - name: Render Updated Quarto Files
         run: |
+          mkdir ~/tmp
           if [ -s changed_files.txt ]; then
             docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
           else
             echo "No updated files to render."
           fi
-      - name: Examine
-        run: |
-          echo ${{ github.workspace  }}
-          echo ${{ github.repository }}
-          echo ${{ env.IMAGE_NAME }}
-          
+          echo ls -lat
+
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
-          folder: ~/${{ github.repository }}/docs
+          folder: docs

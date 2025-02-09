@@ -115,3 +115,5 @@ Time for some container terminology:
   of the host's OS.
 
 # Preparations
+
+If you intend to follow along with this tutorial, you may like to:
