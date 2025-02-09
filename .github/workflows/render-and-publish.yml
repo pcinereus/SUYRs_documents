@@ -1,0 +1,37 @@
+
+name: Render and Publish Tutorials
+
+on:
+  workflow_dispatch:
+#  push:
+#    branches: ['main']
+
+env:
+  IMAGE_NAME: pcinereus/suyrs_documents
+
+jobs:
+  render-tutorials:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with: 
+          fetch-depth: 0  # Ensure git history is available
+
+      - name: Log in to GitHub Container Registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
+
+      - name: Pull Docker Image
+        run: docker pull ghcr.io/${{ env.IMAGE_NAME }}:latest
+
+      - name: Run Container and Render Updated Files
+        run: |
+          docker run --rm -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
+          bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          branch: gh-pages
+          folder: docs
