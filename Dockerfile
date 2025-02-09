@@ -80,6 +80,17 @@ RUN R -e "options(repos = \
   pak::pkg_install(c('pander', 'mvabund')); \
 "
 
+RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
+COPY architects_daughter /usr/share/fonts/
+RUN unzip -d inconsolata/ resources/Inconsolata.zip
+COPY inconsolata /usr/share/fonts/
+COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
+RUN unzip -d noto_sans/ resources/Noto_Sans.zip
+COPY noto_sans /usr/share/fonts/
+RUN unzip -d ubuntu/ resources/Ubuntu.zip
+COPY ubuntu /usr/share/fonts/
+RUN fc-cache -fv && fc-list
+
 # Set work directory
 WORKDIR /workspace
 #
