@@ -94,7 +94,7 @@ RUN R -e "options(repos = \
 COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
 RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
 
-COPY resources/Inconsolata_Nerd_Font_Regular.zip /usr/share/fonts
+COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts
 # RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
 
 COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
