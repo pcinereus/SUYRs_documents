@@ -134,7 +134,7 @@ If you intend to follow along with this tutorial, you may like to:
   ```{bash}
   #| label: prepareFolder
   #| echo: true
-  #| eval: false
+  #| eval: true
   #| classes: terminal
   #| class-source: terminal
   #| code-line-numbers: false
