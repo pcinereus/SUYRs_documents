@@ -87,8 +87,8 @@ COPY inconsolata /usr/share/fonts/
 COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
 RUN unzip -d noto_sans/ resources/Noto_Sans.zip
 COPY noto_sans /usr/share/fonts/
-RUN unzip -d ubuntu/ resources/Ubuntu.zip
-COPY ubuntu /usr/share/fonts/
+# RUN unzip -d ubuntu/ resources/Ubuntu.zip
+# COPY ubuntu /usr/share/fonts/
 RUN fc-cache -fv && fc-list
 
 # Set work directory
