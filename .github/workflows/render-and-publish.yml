@@ -19,6 +19,11 @@ jobs:
         with: 
           fetch-depth: 1  # Ensure git history is available
 
+      - name: Fetch gh-pages branch
+        run: |
+          git fetch origin gh-pages
+          #git worktree add gh-pages-folder gh-pages
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
@@ -31,8 +36,8 @@ jobs:
           bash -c "ls -la"
           #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
 
-      - name: Deploy to GitHub Pages
-        uses: JamesIves/github-pages-deploy-action@4.1.4
-        with:
-          branch: gh-pages
-          folder: docs
+      # - name: Deploy to GitHub Pages
+      #   uses: JamesIves/github-pages-deploy-action@4.1.4
+      #   with:
+      #     branch: gh-pages
+      #     folder: docs
