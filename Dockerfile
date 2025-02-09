@@ -97,7 +97,7 @@ RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
 COPY resources/Inconsolata_Nerd_Font_Regular.zip /usr/share/fonts
 # RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
 
-COPY resources/Insonsolata.zip /tmp/Inconsolata.zip
+COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
 RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
 
 COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
