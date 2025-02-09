@@ -63,6 +63,9 @@ jobs:
             echo "No updated files to render."
           fi
           ls -lat
+          ls -lat tut
+          mkdir docs
+          cp tut/*.html docs
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4

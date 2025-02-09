@@ -118,3 +118,8 @@ Time for some container terminology:
 
 If you intend to follow along with this tutorial, you may like to:
  
+- create a new folder (hereafter referred to as the _sandpit folder_)
+  in which to create some files. On my local machine, I have a folder
+  (`tmp`) in my home folder into which I will place a folder (called
+  `docker_tests`) for this very purpose.  On Linux and MacOSX that
+  would be achieved via the following:
