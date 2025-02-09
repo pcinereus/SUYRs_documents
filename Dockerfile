@@ -91,6 +91,17 @@ RUN R -e "options(repos = \
 #
 # RUN unzip -d noto_sans/ resources/Noto_Sans.zip
 # COPY noto_sans /usr/share/fonts/
+COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
+RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
+
+COPY resources/Inconsolata_Nerd_Font_Regular.zip /usr/share/fonts
+# RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
+
+COPY resources/Insonsolata.zip /tmp/Inconsolata.zip
+RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
+
+COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
+RUN unzip /tmp/Noto-Sans.zip -d /usr/share/fonts
 
 COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
 RUN mkdir -p /usr/share/fonts/ubuntu && \
