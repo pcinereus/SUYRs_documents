@@ -10,6 +10,8 @@ RUN apt-get update \
     libxml2-dev \
     make \
     graphviz \
+    unzip \
+    fontconfig \
     pandoc && \
     rm -rf /var/lib/apt/lists/*
 
@@ -80,15 +82,19 @@ RUN R -e "options(repos = \
   pak::pkg_install(c('pander', 'mvabund')); \
 "
 
-RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
-COPY architects_daughter /usr/share/fonts/
-RUN unzip -d inconsolata/ resources/Inconsolata.zip
-COPY inconsolata /usr/share/fonts/
-COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
-RUN unzip -d noto_sans/ resources/Noto_Sans.zip
-COPY noto_sans /usr/share/fonts/
-# RUN unzip -d ubuntu/ resources/Ubuntu.zip
-# COPY ubuntu /usr/share/fonts/
+# RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
+# COPY architects_daughter /usr/share/fonts/
+# RUN unzip -d inconsolata/ resources/Inconsolata.zip
+#
+# COPY inconsolata /usr/share/fonts/
+# COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
+#
+# RUN unzip -d noto_sans/ resources/Noto_Sans.zip
+# COPY noto_sans /usr/share/fonts/
+
+COPY resouces/Ubuntu.zip /tmp/Ubuntu.zip
+RUN mkdir -p /usr/share/fonts/ubuntu && \
+  unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
 RUN fc-cache -fv && fc-list
 
 # Set work directory
