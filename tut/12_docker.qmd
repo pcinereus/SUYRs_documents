@@ -327,7 +327,8 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    docker build . --tag minideb
    ```
 
- 
+   <br> where:
+
 ::: {.raw} 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type='text/javascript'>
