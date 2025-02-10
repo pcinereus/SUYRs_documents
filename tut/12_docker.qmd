@@ -972,8 +972,7 @@ the container.
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-#docker run --rm -v `pwd`:/home/ r:2
-docker run --entrypoint bash --rm -v `pwd`:/home/ r:2 ls -lat
+docker run --rm -v `pwd`:/home/Project r:2
 ```
 
 :::
