@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2025-02-09">
+<meta name="dcterms.date" content="2025-02-10">
 
 <title>Containerisation - docker and singularity</title>
 <style>
@@ -3120,7 +3120,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 9, 2025</p>
+      <p class="date">February 10, 2025</p>
     </div>
   </div>
   
@@ -3204,12 +3204,13 @@ vertical-align: -.125em;
 <span id="cb3-2"><a href="#cb3-2"></a><span class="fu">whereis</span> docker</span>
 <span id="cb3-3"><a href="#cb3-3"></a><span class="co"># docker build . --tag minideb -f Dockerfile</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>docker:</code></pre>
+<pre><code>docker: /usr/bin/docker /etc/docker</code></pre>
 </div>
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">--tag</span> minideb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
+</div>
+<p><br> where:</p></li>
 </ol>
 <div class="raw">
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -4026,17 +4027,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-329"><a href="#cb6-329"></a><span class="in">   docker build . --tag minideb</span></span>
 <span id="cb6-330"><a href="#cb6-330"></a><span class="in">   ```</span></span>
 <span id="cb6-331"><a href="#cb6-331"></a></span>
-<span id="cb6-332"><a href="#cb6-332"></a></span>
-<span id="cb6-333"><a href="#cb6-333"></a>::: {.raw} </span>
-<span id="cb6-334"><a href="#cb6-334"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb6-335"><a href="#cb6-335"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb6-336"><a href="#cb6-336"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb6-337"><a href="#cb6-337"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb6-338"><a href="#cb6-338"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb6-339"><a href="#cb6-339"></a>})<span class="op">;</span></span>
-<span id="cb6-340"><a href="#cb6-340"></a>&lt;/script&gt;</span>
-<span id="cb6-341"><a href="#cb6-341"></a></span>
-<span id="cb6-342"><a href="#cb6-342"></a>:::</span>
+<span id="cb6-332"><a href="#cb6-332"></a>   &lt;br&gt; where:</span>
+<span id="cb6-333"><a href="#cb6-333"></a></span>
+<span id="cb6-334"><a href="#cb6-334"></a>::: {.raw} </span>
+<span id="cb6-335"><a href="#cb6-335"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb6-336"><a href="#cb6-336"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb6-337"><a href="#cb6-337"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb6-338"><a href="#cb6-338"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-339"><a href="#cb6-339"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-340"><a href="#cb6-340"></a>})<span class="op">;</span></span>
+<span id="cb6-341"><a href="#cb6-341"></a>&lt;/script&gt;</span>
+<span id="cb6-342"><a href="#cb6-342"></a></span>
+<span id="cb6-343"><a href="#cb6-343"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
