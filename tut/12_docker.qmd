@@ -668,57 +668,55 @@ echo 'CMD ["Grunt"]' >> Dockerfile2
    two additional intermediate images and the `latest` image has been
    updated.
     
-```{bash}
-#| label: dockerImages2
-#| engine: bash
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| out.lines: c(1, 21:26)
-#| highlight-style: zenburn
-#| eval: true
-#| comment: ""
-#| cache: true
-docker images -a   
-```
+   ```{bash}
+   #| label: dockerImages2
+   #| engine: bash
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   docker images -a   
+   ```
   
    We can now run the container as:
   
-```{bash}
-#| label: dockerRun20
-#| engine: bash
-#| results: markup
-#| eval: true
-#| comment: ""
-#| cache: true
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| highlight-style: zenburn
-docker run --rm minideb     
-```
+   ```{bash}
+   #| label: dockerRun20
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --rm minideb     
+   ```
 
    To override the default arguments (**CMD**) we baked into the
    docker image, we can issue an alternative as a command line
    argument.
    
-```{bash}
-#| label: dockerRun20a
-#| engine: bash
-#| results: markup
-#| eval: true
-#| comment: ""
-#| cache: true
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| highlight-style: zenburn
-docker run --rm minideb Meow     
-```
-
+   ```{bash}
+   #| label: dockerRun20a
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --rm minideb Meow     
+   ```
 
 ### Copy and mountpoints
 
@@ -743,8 +741,9 @@ examples.
 #### Copy
 
 For the first example, we will add instructions to the `Dockerfile` to
-copy a small R script into the container so that the code can be run
-within the container environment.  Lets create two files:
+copy a small R script (lets call it `analysis.R`) into the container
+so that the code can be run within the container environment. Lets
+create two files:
 
 ```{bash}
 #| label: createanalysis
