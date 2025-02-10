@@ -389,21 +389,21 @@ docker image ls
    Note, the above simply lists all named images in your local
    registry.  To get a more complete list of all images:
 
-   ```{bash}
-   #| label: dockerImages
-   #| engine: bash
-   #| results: markdown
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| out.lines: c(1, 21:26)
-   #| highlight-style: zenburn
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   docker images -a  
-   ```
+```{bash}
+#| label: dockerImages
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: c(1, 21:26)
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a  
+```
 
    The `-a` switch indicates all images (including unnamed and hanging images).
 
@@ -419,21 +419,21 @@ docker image ls
    have any running containers.  We can demonstrate this by listing
    all existing containers:
 
-   ```{bash}
-   #| label: dockerPs
-   #| engine: bash
-   #| results: markdown
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| out.lines: 1
-   #| highlight-style: zenburn
-   docker ps -a  
-   ```
+```{bash}
+#| label: dockerPs
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 1
+#| highlight-style: zenburn
+docker ps -a  
+```
    
 
    The output is empty (assuming you have not previously generated any
