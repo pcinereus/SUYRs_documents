@@ -973,7 +973,7 @@ the container.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -lat
-#docker run --rm -v `pwd`:/home/Project r:2
+docker run --rm -v $PWD:/home/Project r:2
 ```
 
 :::
