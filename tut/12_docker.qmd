@@ -373,7 +373,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 ```{bash}
 #| label: dockerImage
 #| engine: bash
-#| results: markdown
+#| results: markup
 #| classes: terminal
 #| class-source: terminal
 #| class-output: terminal
