@@ -975,6 +975,22 @@ cd ~/tmp/docker_tests/
 ls -lat
 # docker run --rm -v /root/tmp/docker_tests:/home/Project r:2
 docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "ls -lat"
+```
+
+```{bash}
+#| label: dockerRun40a
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+ls -lat
 docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "$PWD"
 ```
 
