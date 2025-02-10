@@ -501,7 +501,88 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    context, `-f` points to were alternative animal definitions are
    located.
 
+5. **Test the docker image interactively**
+
+	Rather than fire up a container, run some command and then
+    immediately terminate, it is possible to run a container in
+    _interactive mode_.  In this mode, after the container starts up,
+    you will be placed in a terminal where you can issue any available
+    command you like.  Once you have finished the interactive session,
+    simply enter `exit` and the container will then terminate.
+
+    Try the following (within the container):
+
+   ```{bash} 
+   #| label: dockerRun2
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --rm -it minideb   
+   ```
+
+   Once the prompt appears try entering the following:
+
+   - list the files and folders in the current working directory
+
+   ```{bash} 
+   #| label: dockerRun3
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   ls -la
+   ```
   
+   - run the cowsay application
+
+   ```{bash}
+   #| label: dockerRun4
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   ./usr/games/cowsay Moo
+   ```
+
+   - exit the container
+
+   ```{bash}
+   #| label: dockerRun5
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   exit
+   ```
+
+	Running in interactive mode is very useful when
+    developing/debugging code on a container.
+	
+ 
 
 
 ::: {.raw} 
