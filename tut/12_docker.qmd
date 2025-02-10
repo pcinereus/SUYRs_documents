@@ -419,21 +419,21 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    have any running containers.  We can demonstrate this by listing
    all existing containers:
 
-```{bash}
-#| label: dockerPs
-#| engine: bash
-#| results: markup
-#| eval: true
-#| comment: ""
-#| cache: true
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| out.lines: 1
-#| highlight-style: zenburn
-docker ps -a  
-```
+   ```{bash}
+   #| label: dockerPs
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| out.lines: 1
+   #| highlight-style: zenburn
+   docker ps -a  
+   ```
    
 
    The output is empty (assuming you have not previously generated any
