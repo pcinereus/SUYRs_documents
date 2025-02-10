@@ -334,6 +334,47 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
      Any files within this path can be copied into the image or used
      in the build context (for example, a `Dockerfile`).
 
+   - `--tag minideb` provides a name (and optionally, a tag) for the
+   image (in this case `minideb`).  The name (and tag) can be
+   anything, yet should be descriptive enough to help you distinguish
+   this container image from other container images that you might
+   construct on your system.
+
+   This will build a series of docker container images (each of the
+   layers built upon the layer before) in a local registry
+
+	<details>
+	<summary>More details</summary>
+	Usage: `docker build [OPTIONS] PATH | URL | -`
+	<br>
+	Common options:
+	
+	| Name         | Description                                  | Default      |
+	|--------------|----------------------------------------------|--------------|
+	| `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |
+	| `--no-cache` | Do not use cache when building image         |              |
+	| `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |
+	
+	Typical files in context:<br>
+	
+	- `Dockerfile`: a build recipe file<br>
+	- `.dockerignore`: similar to a `.gitignore`, this file lists
+      files to be ignored in collating the files that form the build context.<br>
+	
+	As an alternative to providing build instructions in the form of a
+    `Dockerfile`, build can accept a `URL` to a (remote) docker
+    repository.<br><br>
+	More info:<br>
+	https://docs.docker.com/engine/reference/commandline/build/
+	</details>
+
+
+
+
+
+
+
+
 ::: {.raw} 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type='text/javascript'>
