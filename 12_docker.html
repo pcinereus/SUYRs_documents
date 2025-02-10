@@ -3204,8 +3204,53 @@ vertical-align: -.125em;
 </div>
 <p><br> where:</p>
 <ul>
-<li><code>.</code> indicates that the path used for the build context (in this case the current working directory - <code>.</code> means current location). Any files within this path can be copied into the image or used in the build context (for example, a <code>Dockerfile</code>).</li>
-</ul></li>
+<li><p><code>.</code> indicates that the path used for the build context (in this case the current working directory - <code>.</code> means current location). Any files within this path can be copied into the image or used in the build context (for example, a <code>Dockerfile</code>).</p></li>
+<li><p><code>--tag minideb</code> provides a name (and optionally, a tag) for the image (in this case <code>minideb</code>). The name (and tag) can be anything, yet should be descriptive enough to help you distinguish this container image from other container images that you might construct on your system.</p></li>
+</ul>
+<p>This will build a series of docker container images (each of the layers built upon the layer before) in a local registry</p>
+<details>
+<summary>
+<p>More details</p>
+</summary>
+<p>Usage: <code>docker build [OPTIONS] PATH | URL | -</code> <br> Common options:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 62%">
+<col style="width: 18%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Description</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>--file, -f</code></td>
+<td>Path and name of <code>Dockerfile</code></td>
+<td><code>Dockerfile</code></td>
+</tr>
+<tr class="even">
+<td><code>--no-cache</code></td>
+<td>Do not use cache when building image</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><code>--tag, -t</code></td>
+<td>Name (and optional tag) in <code>name:tag</code> format</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>Typical files in context:<br></p>
+<ul>
+<li><code>Dockerfile</code>: a build recipe file<br></li>
+<li><code>.dockerignore</code>: similar to a <code>.gitignore</code>, this file lists files to be ignored in collating the files that form the build context.<br></li>
+</ul>
+<p>As an alternative to providing build instructions in the form of a <code>Dockerfile</code>, build can accept a <code>URL</code> to a (remote) docker repository.<br><br> More info:<br> https://docs.docker.com/engine/reference/commandline/build/</p>
+</details></li>
 </ol>
 <div class="raw">
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -4029,16 +4074,57 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb4-336"><a href="#cb4-336"></a>     Any files within this path can be copied into the image or used</span>
 <span id="cb4-337"><a href="#cb4-337"></a>     in the build context (for example, a <span class="in">`Dockerfile`</span>).</span>
 <span id="cb4-338"><a href="#cb4-338"></a></span>
-<span id="cb4-339"><a href="#cb4-339"></a>::: {.raw} </span>
-<span id="cb4-340"><a href="#cb4-340"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb4-341"><a href="#cb4-341"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb4-342"><a href="#cb4-342"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb4-343"><a href="#cb4-343"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb4-344"><a href="#cb4-344"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb4-345"><a href="#cb4-345"></a>})<span class="op">;</span></span>
-<span id="cb4-346"><a href="#cb4-346"></a>&lt;/script&gt;</span>
+<span id="cb4-339"><a href="#cb4-339"></a><span class="ss">   - </span><span class="in">`--tag minideb`</span> provides a name (and optionally, a tag) for the</span>
+<span id="cb4-340"><a href="#cb4-340"></a>   image (in this case <span class="in">`minideb`</span>).  The name (and tag) can be</span>
+<span id="cb4-341"><a href="#cb4-341"></a>   anything, yet should be descriptive enough to help you distinguish</span>
+<span id="cb4-342"><a href="#cb4-342"></a>   this container image from other container images that you might</span>
+<span id="cb4-343"><a href="#cb4-343"></a>   construct on your system.</span>
+<span id="cb4-344"><a href="#cb4-344"></a></span>
+<span id="cb4-345"><a href="#cb4-345"></a>   This will build a series of docker container images (each of the</span>
+<span id="cb4-346"><a href="#cb4-346"></a>   layers built upon the layer before) in a local registry</span>
 <span id="cb4-347"><a href="#cb4-347"></a></span>
-<span id="cb4-348"><a href="#cb4-348"></a>:::</span>
+<span id="cb4-348"><a href="#cb4-348"></a><span class="in">    &lt;details&gt;</span></span>
+<span id="cb4-349"><a href="#cb4-349"></a><span class="in">    &lt;summary&gt;More details&lt;/summary&gt;</span></span>
+<span id="cb4-350"><a href="#cb4-350"></a><span class="in">    Usage: `docker build [OPTIONS] PATH | URL | -`</span></span>
+<span id="cb4-351"><a href="#cb4-351"></a><span class="in">    &lt;br&gt;</span></span>
+<span id="cb4-352"><a href="#cb4-352"></a><span class="in">    Common options:</span></span>
+<span id="cb4-353"><a href="#cb4-353"></a><span class="in">    </span></span>
+<span id="cb4-354"><a href="#cb4-354"></a><span class="in">    | Name         | Description                                  | Default      |</span></span>
+<span id="cb4-355"><a href="#cb4-355"></a><span class="in">    |--------------|----------------------------------------------|--------------|</span></span>
+<span id="cb4-356"><a href="#cb4-356"></a><span class="in">    | `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |</span></span>
+<span id="cb4-357"><a href="#cb4-357"></a><span class="in">    | `--no-cache` | Do not use cache when building image         |              |</span></span>
+<span id="cb4-358"><a href="#cb4-358"></a><span class="in">    | `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |</span></span>
+<span id="cb4-359"><a href="#cb4-359"></a><span class="in">    </span></span>
+<span id="cb4-360"><a href="#cb4-360"></a><span class="in">    Typical files in context:&lt;br&gt;</span></span>
+<span id="cb4-361"><a href="#cb4-361"></a><span class="in">    </span></span>
+<span id="cb4-362"><a href="#cb4-362"></a><span class="in">    - `Dockerfile`: a build recipe file&lt;br&gt;</span></span>
+<span id="cb4-363"><a href="#cb4-363"></a><span class="in">    - `.dockerignore`: similar to a `.gitignore`, this file lists</span></span>
+<span id="cb4-364"><a href="#cb4-364"></a><span class="in">      files to be ignored in collating the files that form the build context.&lt;br&gt;</span></span>
+<span id="cb4-365"><a href="#cb4-365"></a><span class="in">    </span></span>
+<span id="cb4-366"><a href="#cb4-366"></a><span class="in">    As an alternative to providing build instructions in the form of a</span></span>
+<span id="cb4-367"><a href="#cb4-367"></a><span class="in">    `Dockerfile`, build can accept a `URL` to a (remote) docker</span></span>
+<span id="cb4-368"><a href="#cb4-368"></a><span class="in">    repository.&lt;br&gt;&lt;br&gt;</span></span>
+<span id="cb4-369"><a href="#cb4-369"></a><span class="in">    More info:&lt;br&gt;</span></span>
+<span id="cb4-370"><a href="#cb4-370"></a><span class="in">    https://docs.docker.com/engine/reference/commandline/build/</span></span>
+<span id="cb4-371"><a href="#cb4-371"></a><span class="in">    &lt;/details&gt;</span></span>
+<span id="cb4-372"><a href="#cb4-372"></a></span>
+<span id="cb4-373"><a href="#cb4-373"></a></span>
+<span id="cb4-374"><a href="#cb4-374"></a></span>
+<span id="cb4-375"><a href="#cb4-375"></a></span>
+<span id="cb4-376"><a href="#cb4-376"></a></span>
+<span id="cb4-377"><a href="#cb4-377"></a></span>
+<span id="cb4-378"><a href="#cb4-378"></a></span>
+<span id="cb4-379"><a href="#cb4-379"></a></span>
+<span id="cb4-380"><a href="#cb4-380"></a>::: {.raw} </span>
+<span id="cb4-381"><a href="#cb4-381"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb4-382"><a href="#cb4-382"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb4-383"><a href="#cb4-383"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb4-384"><a href="#cb4-384"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb4-385"><a href="#cb4-385"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb4-386"><a href="#cb4-386"></a>})<span class="op">;</span></span>
+<span id="cb4-387"><a href="#cb4-387"></a>&lt;/script&gt;</span>
+<span id="cb4-388"><a href="#cb4-388"></a></span>
+<span id="cb4-389"><a href="#cb4-389"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
