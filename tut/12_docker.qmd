@@ -1023,7 +1023,7 @@ docker run --entrypoint /bin/bash --rm -v $PWD:/home/Project r:2 -c "pwd"
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 "-e list.files()"
+docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "list.files()"
 ```
 
 :::
