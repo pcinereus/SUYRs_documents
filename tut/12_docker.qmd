@@ -641,27 +641,28 @@ echo 'CMD ["Grunt"]' >> Dockerfile2
 	 
    If we now build our container image using this `Dockerfile2`:
    
-```{bash}
-#| label: dockerBuildReal2
-#| engine: bash
-#| results: hide
-#| eval: true
-#| echo: false
-cd ~/tmp/docker_tests
-docker build . --tag minideb -f Dockerfile2
-```
-```{bash} 
-#| label: dockerBuild2
-#| engine: bash
-#| results: hide
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| highlight-style: zenburn
-#| eval: false
-docker build . --tag minideb -f Dockerfile2 
-```
+   ```{bash}
+   #| label: dockerBuildReal2
+   #| engine: bash
+   #| results: hide
+   #| eval: true
+   #| echo: false
+   cd ~/tmp/docker_tests
+   docker build . --tag minideb -f Dockerfile2
+   ```
+
+   ```{bash} 
+   #| label: dockerBuild2
+   #| engine: bash
+   #| results: hide
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| eval: false
+   docker build . --tag minideb -f Dockerfile2 
+   ```
     
    If we again review the list of images, we see that there are now
    two additional intermediate images and the `latest` image has been
