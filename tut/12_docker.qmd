@@ -1007,7 +1007,7 @@ docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --rm -v $PWD:/home/Project r:2 -c "pwd"
+docker run --entrypoint /bin/bash --rm -v $PWD:/home/Project r:2 -c "pwd"
 ```
 
 :::
