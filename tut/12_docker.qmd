@@ -370,6 +370,8 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
 3. **Check that the image(s) have been created**
 
+   A list of images in your registry is obtained by:
+   
 ```{bash}
 #| label: dockerImage
 #| engine: bash
@@ -379,11 +381,10 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-#| out.lines: c(1, 6:7)
 #| eval: true
 #| comment: ""
 #| cache: true
-docker image ls  
+docker image ls
 ```
            
    Note, the above simply lists all named images in your local
