@@ -370,21 +370,21 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
 3. **Check that the image(s) have been created**
 
-   ```{bash}
-   #| label: dockerImage
-   #| engine: bash
-   #| results: markdown
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| highlight-style: zenburn
-   #| out.lines: c(1, 6:7)
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   docker image ls  
-   ```
+```{bash}
+#| label: dockerImage
+#| engine: bash
+#| results: markdown
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| out.lines: c(1, 6:7)
+#| eval: true
+#| comment: ""
+#| cache: true
+docker image ls  
+```
            
    Note, the above simply lists all named images in your local
    registry.  To get a more complete list of all images:
