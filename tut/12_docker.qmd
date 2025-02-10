@@ -992,7 +992,7 @@ docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r
 cd ~/tmp/docker_tests/
 ls -lat
 docker run --entrypoint /bin/bash --rm -v
-/root/tmp/docker_tests:/home/Project r:2 -c "pwd & lat"
+/root/tmp/docker_tests:/home/Project r:2 -c "pwd"
 ```
 
 :::
