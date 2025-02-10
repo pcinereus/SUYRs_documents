@@ -441,6 +441,66 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    containers.
 
 
+4. **Test the docker image (fire up an ephemeral container)**
+
+   We will now test the image by generating and running a container
+   from our container image.  Once the container has started, the
+   `cowsay` terminal application will display an ASCII cow saying
+   'Moo" before quietly terminating.  The container will be
+   automatically stopped and removed.
+   
+   ```{bash} 
+   #| label: dockerRun
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --entrypoint ./usr/games/cowsay --rm minideb Moo
+   ```
+
+   where: 
+   
+   - `--entrypoint ./usr/games/cowsay` defines the base command that
+     will be run once the container has started.  In this case, it
+     specifies the full path to the `cowsay` executable file.
+
+   - `--rm` indicates that the container should be removed after it
+     has finished running.
+	 
+   - `minideb` is the name of our docker container image
+
+   - `Moo` is the string passed on to `cowsay` to display in the
+     speech bubble.  Feel free to experiment with other strings here.
+
+	To further appreciate the way arguments are passed on to
+    applications within a container, lets alter the `cowsay` animal.
+
+   ```{bash}
+   #| label: dockerRun1
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt 
+   ```
+   
+   In the above example, we passed `-f
+   /usr/share/cowsay/cows/koala.cow Grunt` on to `cowsay`.  In this
+   context, `-f` points to were alternative animal definitions are
+   located.
+
  
 
 
