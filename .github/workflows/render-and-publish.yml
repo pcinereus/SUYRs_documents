@@ -30,8 +30,11 @@ jobs:
       - name: Find modified .qmd files
         run: |
           git ls-tree -r --name-only origin/main | grep '\.qmd$' | while read file; do
-            MODIFIED_TIME=$(git log -1 --format="%ci" -- "$file")
-            echo "$MODIFIED_TIME"
+          #MODIFIED_TIME=$(git log -1 --format="%ci" -- "$file")
+            MODIFIED_TIME_RAW=$(git log -1 --format="%ci" -- "$file")
+            MODIFIED_TIME=$(date -d "$MODIFIED_TIME_RAW" +%s)
+          #echo "$MODIFIED_TIME"
+            echo "File: $file | Modified: $MODIFIED_TIME_RAW ($MODIFIED_TIME)"
             if [[ "$MODIFIED_TIME" > "$DEPLOY_TIME" ]]; then
               echo "$file was modified after last deployment."
               echo "$file" >> changed_files.txt
