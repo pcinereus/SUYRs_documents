@@ -81,6 +81,10 @@ RUN R -e "options(repos = \
     list(CRAN = \"https://packagemanager.posit.co/cran/2021-02-10/\")); \
   pak::pkg_install(c('pander', 'mvabund')); \
 "
+# Install Docker
+RUN apt-get update && apt-get install -y \
+    docker.io \
+    && rm -rf /var/lib/apt/lists/*
 
 # RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
 # COPY architects_daughter /usr/share/fonts/
