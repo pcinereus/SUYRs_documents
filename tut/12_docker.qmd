@@ -372,38 +372,38 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
    A list of images in your registry is obtained by:
    
-```{bash}
-#| label: dockerImage
-#| engine: bash
-#| results: markup
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| highlight-style: zenburn
-#| eval: true
-#| comment: ""
-#| cache: true
-docker image ls
-```
+   ```{bash}
+   #| label: dockerImage
+   #| engine: bash
+   #| results: markup
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   docker image ls
+   ```
            
    Note, the above simply lists all named images in your local
    registry.  To get a more complete list of all images:
 
-```{bash}
-#| label: dockerImages
-#| engine: bash
-#| results: markup
-#| classes: terminal
-#| class-source: terminal
-#| class-output: terminal
-#| code-line-numbers: false
-#| highlight-style: zenburn
-#| eval: true
-#| comment: ""
-#| cache: true
-docker images -a  
-```
+   ```{bash}
+   #| label: dockerImages
+   #| engine: bash
+   #| results: markup
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   docker images -a  
+   ```
 
    The `-a` switch indicates all images (including unnamed and hanging images).
 
