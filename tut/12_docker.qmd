@@ -1026,6 +1026,22 @@ cd ~/tmp/docker_tests/
 docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "getwd()"
 ```
 
+```{bash}
+#| label: dockerRun40d
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "Sys.info()['user']"
+```
+
 :::
 
 
