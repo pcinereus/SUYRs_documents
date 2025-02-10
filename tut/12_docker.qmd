@@ -398,7 +398,6 @@ docker image ls
 #| class-source: terminal
 #| class-output: terminal
 #| code-line-numbers: false
-#| out.lines: c(1, 21:26)
 #| highlight-style: zenburn
 #| eval: true
 #| comment: ""
