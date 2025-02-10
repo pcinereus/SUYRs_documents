@@ -629,94 +629,92 @@ echo 'CMD ["Grunt"]' >> Dockerfile2
 #| eval: false
 ```
 
-   In the above `Dockerfile`:
+In the above `Dockerfile`:
 
-   - `ENTRYPOINT` provides a default command to run within the
-     container.  This specification is in _JSON_ format.
-	 
-   - `CMD` provides default extra parameters that are passed on to the
-     command (also in _JSON_ format).  This can be overridden by
-     passing an alternative when running the `docker run` command (see
-     below).
-	 
-   If we now build our container image using this `Dockerfile2`:
-   
-   ```{bash}
-   #| label: dockerBuildReal2
-   #| engine: bash
-   #| results: hide
-   #| eval: true
-   #| echo: false
-   cd ~/tmp/docker_tests
-   docker build . --tag minideb -f Dockerfile2
-   ```
+- `ENTRYPOINT` provides a default command to run within the container.
+  This specification is in _JSON_ format.
+ 
+- `CMD` provides default extra parameters that are passed on to the
+  command (also in _JSON_ format). This can be overridden by passing
+  an alternative when running the `docker run` command (see below).
 
-   ```{bash} 
-   #| label: dockerBuild2
-   #| engine: bash
-   #| results: hide
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| highlight-style: zenburn
-   #| eval: false
-   docker build . --tag minideb -f Dockerfile2 
-   ```
-    
-   If we again review the list of images, we see that there are now
-   two additional intermediate images and the `latest` image has been
-   updated.
-    
-   ```{bash}
-   #| label: dockerImages2
-   #| engine: bash
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| highlight-style: zenburn
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   docker images -a   
-   ```
-  
-   We can now run the container as:
-  
-   ```{bash}
-   #| label: dockerRun20
-   #| engine: bash
-   #| results: markup
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| highlight-style: zenburn
-   docker run --rm minideb     
-   ```
+If we now build our container image using this `Dockerfile2`:
 
-   To override the default arguments (**CMD**) we baked into the
-   docker image, we can issue an alternative as a command line
-   argument.
-   
-   ```{bash}
-   #| label: dockerRun20a
-   #| engine: bash
-   #| results: markup
-   #| eval: true
-   #| comment: ""
-   #| cache: true
-   #| classes: terminal
-   #| class-source: terminal
-   #| class-output: terminal
-   #| code-line-numbers: false
-   #| highlight-style: zenburn
-   docker run --rm minideb Meow     
-   ```
+```{bash}
+#| label: dockerBuildReal2
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag minideb -f Dockerfile2
+```
+
+```{bash} 
+#| label: dockerBuild2
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag minideb -f Dockerfile2 
+```
+
+If we again review the list of images, we see that there are now two
+additional intermediate images and the `latest` image has been
+updated.
+
+```{bash}
+#| label: dockerImages2
+#| engine: bash
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a
+```
+
+We can now run the container as:
+
+```{bash}
+#| label: dockerRun20
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb
+```
+
+To override the default arguments (**CMD**) we baked into the docker
+image, we can issue an alternative as a command line argument.
+
+```{bash}
+#| label: dockerRun20a
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb Meow
+```
 
 ### Copy and mountpoints
 
