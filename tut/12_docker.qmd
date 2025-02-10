@@ -994,6 +994,22 @@ ls -lat
 docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "pwd"
 ```
 
+```{bash}
+#| label: dockerRun40b
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+docker run --rm -v $PWD:/home/Project r:2 -c "pwd"
+```
+
 :::
 
 
