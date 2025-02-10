@@ -583,6 +583,445 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
     developing/debugging code on a container.
 	
  
+## Some Dockerfile goodness
+
+
+::: {.panel-tabset}
+
+### Incorporate default commands
+
+Lets now step this up a bit and add some more information to the build
+recipe.  Rather than alter the previous `Dockerfile`, we will instead
+make a different file (`Dockerfile2`) and inform `docker` to build with this
+alternative `Dockerfile`.
+
+```{bash}
+#| label: createDockerfile2
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile2
+echo 'LABEL maintainer="Author"' >> Dockerfile2
+echo 'LABEL email="author_email@email.com"' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Install the os packages' >> Dockerfile2
+echo 'RUN apt-get update \' >> Dockerfile2
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile2
+echo '    cowsay \' >> Dockerfile2
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Default command to run' >> Dockerfile2
+echo 'ENTRYPOINT ["/usr/games/cowsay","-f","/usr/share/cowsay/cows/koala.cow"]' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Default extra parameters passed to the command' >> Dockerfile2
+echo 'CMD ["Grunt"]' >> Dockerfile2
+```
+
+```{r}
+#| label: Text2
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/Dockerfile2
+#| eval: false
+```
+
+   In the above `Dockerfile`:
+
+   - `ENTRYPOINT` provides a default command to run within the
+     container.  This specification is in _JSON_ format.
+	 
+   - `CMD` provides default extra parameters that are passed on to the
+     command (also in _JSON_ format).  This can be overridden by
+     passing an alternative when running the `docker run` command (see
+     below).
+	 
+   If we now build our container image using this `Dockerfile2`:
+   
+```{bash}
+#| label: dockerBuildReal2
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag minideb -f Dockerfile2
+```
+```{bash} 
+#| label: dockerBuild2
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag minideb -f Dockerfile2 
+```
+    
+   If we again review the list of images, we see that there are now
+   two additional intermediate images and the `latest` image has been
+   updated.
+    
+```{bash}
+#| label: dockerImages2
+#| engine: bash
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: c(1, 21:26)
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a   
+```
+  
+   We can now run the container as:
+  
+```{bash}
+#| label: dockerRun20
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb     
+```
+
+   To override the default arguments (**CMD**) we baked into the
+   docker image, we can issue an alternative as a command line
+   argument.
+   
+```{bash}
+#| label: dockerRun20a
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb Meow     
+```
+
+
+### Copy and mountpoints
+
+So far, we have used the docker container to display an ASCII art cow
+(or koala) in the terminal and then exit.  Whilst, this might have
+some utility as a simple example of interacting with containers, it
+hardly represents typical work.
+
+In the context of reproducible research, containers are useful for
+providing a consistent environment in which to run code.  Thus in order
+to be useful, a container should have:
+
+1. access (or a copy) of the code within the container
+
+2. the ability to store the results on the host where they can be
+   viewed and disseminated.
+  
+To illustrate these, we will add the R Statistical and Graphical
+Environment to our container image and use this in two further
+examples.  
+
+#### Copy
+
+For the first example, we will add instructions to the `Dockerfile` to
+copy a small R script into the container so that the code can be run
+within the container environment.  Lets create two files:
+
+```{bash}
+#| label: createanalysis
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'dat <- data.frame(y = rnorm(10))' > analysis.R
+echo 'dat' >> analysis.R
+echo 'write.csv(dat, file = "dat.csv", row.names = FALSE)' >> analysis.R
+```
+```{r}
+#| label: Rcode3
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/analysis.R
+#| eval: false
+```
+
+- a `Dockerfile` called `Dockerfile3`
+
+```{bash}
+#| label: createDockerfile3
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile3
+echo 'LABEL maintainer="Author"' >> Dockerfile3
+echo 'LABEL email="author_email@email.com"' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Install the os packages' >> Dockerfile3
+echo 'RUN apt-get update \' >> Dockerfile3
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile3
+echo '    r-base \' >> Dockerfile3
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile3
+echo '' >> Dockerfile3
+echo 'COPY analysis.R ~/' >> Dockerfile3
+echo 'WORKDIR ~/' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Default command to run' >> Dockerfile3
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Default command parameters' >> Dockerfile3
+echo 'CMD ["analysis.R"]' >> Dockerfile3
+```
+
+```{r}
+#| label: Text3
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/Dockerfile3
+#| eval: false
+```
+
+This `Dockerfile` includes instructions to:
+	
+	- install R (`r-base`)
+	
+	- copy our R script from the current working directory to the home
+      folder in the container (`COPY analysis.R ~/`)
+ 
+    - set the working directory within the container to be the home
+      folder (`WORKDIR ~/`)
+
+    - specify that once the container has started, the `Rscript`
+      command should be run (`ENTRYPOINT ["Rscript"]`)
+
+    - specify that once the container has started, the `Rscript`
+      command should be run using the `analysis.R` script 
+	  (`CMD ["analysis.R"]`)
+
+Great.  This time when we build the container image, we will provide
+both a name and tag for the image (via `--tag r:1`).  This will result
+in an image called `r` with a tag of `1`.
+
+```{bash}
+#| label: dockerBuildReal3
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag r:1 -f Dockerfile3
+```
+```{bash}
+#| label: dockerBuild3
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag r:1 -f Dockerfile3
+```
+</br>
+  
+When we run this new image, we see that a data frame of 10 values is
+returned to the terminal. 
+
+```{bash}
+#| label: dockerRun30
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm r:1
+```
+
+#### Mount points
+
+R did indeed run the `analysis.R` script inside the container.
+However, what happened to the file containing the exported data
+(`dat.csv`)?  Although this file was created inside the container, it
+was completely lost when the container terminated.  Obviously that is
+not that useful.
+
+For the second example, rather than copy the R script to the
+container, we will instead mount a local folder to a point within the
+container.  That way we can access select host files and folders
+within the container, thereby enabling us to both read the R script
+directly and write out any output files.
+
+To support this, we will create another `Dockerfile` (`Dockerfile4`).
+
+```{bash}
+#| label: createDockerfile4
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile4
+echo 'LABEL maintainer="Author"' >> Dockerfile4
+echo 'LABEL email="author_email@email.com"' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Install the os packages' >> Dockerfile4
+echo 'RUN apt-get update \' >> Dockerfile4
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile4
+echo '    r-base \' >> Dockerfile4
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile4
+echo '' >> Dockerfile4
+echo 'WORKDIR /home/Project' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Default command to run' >> Dockerfile4
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Default command parameters' >> Dockerfile4
+echo 'CMD ["analysis.R"]' >> Dockerfile4
+```
+   
+The changes from the previous `Dockerfile`:
+
+   - remove the `COPY` statement as we will not need to work on a copy
+     of the R code, we can work on it directly.
+	 
+   - change the container working directory to `/home/Project` - Note,
+     this path will not exist and will be created.
+
+```{r}
+#| label: text4
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/Dockerfile3
+#| eval: false
+```
+
+We will now build the container image with the name:tag of `r:2`
+
+```{bash}
+#| label: dockerBuildReal4
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag r:2 -f Dockerfile4
+```
+```{bash}
+#| label: dockerBuild4
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag r:2 -f Dockerfile4 
+```
+</br>
+	
+This time, when we run the container image, we will indicate a volume
+to mount (and a folder to mount this volume to).  This will define
+which host folder to mount (map) and the path to mount this to within
+the container.
+
+```{bash}
+#| label: dockerRun40
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+docker run --rm -v `pwd`:/home/Project r:2
+```
+where:
+
+- `-v pwd:/home/Project` defines the mounting of the current working
+  directory on the host machine to the `/home/Project' (which the
+  `Dockerfile` defined as the working directory) folder inside the
+  container
+	
+If we list the contents of our local folder, we see that the output
+file (`dat.csv`) has been created on the host filesystem.
+
+```{bash}
+#| label: dockerRun41
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+ls -la  
+```
+
+Of course, it is possible to define a combination of the above two
+examples - one in which a copy of the codebase is packaged up into the
+container image (to ensure that a specific codebase is always
+applied), yet a moutpoint is also specified at run time to enable the
+output(s) to be obtained by the host.
+
+
+### .dockerignore
+
+The `.dockerignore` file is similar in structure to a `.gitignore`
+file in that they both define files (or patterns) to ignore.  The
+purpose of a `dockerignore` is to indicate which files and folders
+should be **excluded** from the docker build context.  Excluding 
+certain files and directories:
+
+- reduce image size by preventing unnecessary files from being copied
+  (e.g., logs, temporary files).
+- speed up builds by avoiding sending large or irrelevant files to the
+  Docker daemon.
+- improve security by excluding sensitive files like `.env` or
+  credentials
+  
+
+:::
+
+
 
 
 ::: {.raw} 
