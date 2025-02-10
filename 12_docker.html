@@ -3252,14 +3252,13 @@ vertical-align: -.125em;
 <p>As an alternative to providing build instructions in the form of a <code>Dockerfile</code>, build can accept a <code>URL</code> to a (remote) docker repository.<br><br> More info:<br> https://docs.docker.com/engine/reference/commandline/build/</p>
 </details></li>
 <li><p><strong>Check that the image(s) have been created</strong></p>
-<p>A list of images in your registry is obtained by:</p></li>
-</ol>
+<p>A list of images in your registry is obtained by:</p>
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     5be94c0d4ca5   1 second ago   121MB</span>
-<span id="cb5-3"><a href="#cb5-3"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   4 hours ago    9.33GB</span>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     81ab75c9b588   1 second ago   121MB</span>
+<span id="cb5-3"><a href="#cb5-3"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   5 hours ago    9.33GB</span>
 <span id="cb5-4"><a href="#cb5-4"></a>bitnami/minideb                     bookworm   7aaf5a56478d   2 weeks ago    120MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -3268,16 +3267,17 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     5be94c0d4ca5   1 second ago    121MB</span>
-<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     8589cd9c95fb   4 seconds ago   120MB</span>
-<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     6ebe0dccd481   5 seconds ago   120MB</span>
-<span id="cb7-5"><a href="#cb7-5"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   4 hours ago     9.33GB</span>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     81ab75c9b588   1 second ago    121MB</span>
+<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     60aff8b41d37   4 seconds ago   120MB</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     058a74766668   5 seconds ago   120MB</span>
+<span id="cb7-5"><a href="#cb7-5"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   5 hours ago     9.33GB</span>
 <span id="cb7-6"><a href="#cb7-6"></a>bitnami/minideb                     bookworm   7aaf5a56478d   2 weeks ago     120MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The <code>-a</code> switch indicates all images (including unnamed and hanging images).</p>
 <p>This list appears chronologically from bottom to top. Hence, the Dockerhub image (<code>bitnami/minideb</code>) appears at the bottom of this list and above this there is a succession of intermediate images that correspond to each of the layers defined in the <code>Dockerfile</code>. Note, each successive image is progressively larger in size as the layer incorporates the layer below. At the top of the list is the full container image (with <code>latest</code> tag).</p>
-<p>Importantly, while we have built a container image, we do not yet have any running containers. We can demonstrate this by listing all existing containers:</p>
+<p>Importantly, while we have built a container image, we do not yet have any running containers. We can demonstrate this by listing all existing containers:</p></li>
+</ol>
 <div class="cell terminal" data-out.lines="1" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> ps <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -4146,88 +4146,88 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb10-374"><a href="#cb10-374"></a></span>
 <span id="cb10-375"><a href="#cb10-375"></a>   A list of images in your registry is obtained by:</span>
 <span id="cb10-376"><a href="#cb10-376"></a>   </span>
-<span id="cb10-379"><a href="#cb10-379"></a><span class="in">```{bash}</span></span>
-<span id="cb10-380"><a href="#cb10-380"></a><span class="co">#| label: dockerImage</span></span>
-<span id="cb10-381"><a href="#cb10-381"></a><span class="co">#| engine: bash</span></span>
-<span id="cb10-382"><a href="#cb10-382"></a><span class="co">#| results: markup</span></span>
-<span id="cb10-383"><a href="#cb10-383"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb10-384"><a href="#cb10-384"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb10-385"><a href="#cb10-385"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb10-386"><a href="#cb10-386"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb10-387"><a href="#cb10-387"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb10-388"><a href="#cb10-388"></a><span class="co">#| eval: true</span></span>
-<span id="cb10-389"><a href="#cb10-389"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb10-390"><a href="#cb10-390"></a><span class="co">#| cache: true</span></span>
-<span id="cb10-391"><a href="#cb10-391"></a><span class="ex">docker</span> image ls</span>
-<span id="cb10-392"><a href="#cb10-392"></a><span class="in">```</span></span>
-<span id="cb10-393"><a href="#cb10-393"></a>           </span>
-<span id="cb10-394"><a href="#cb10-394"></a>   Note, the above simply lists all named images in your local</span>
-<span id="cb10-395"><a href="#cb10-395"></a>   registry.  To get a more complete list of all images:</span>
-<span id="cb10-396"><a href="#cb10-396"></a></span>
-<span id="cb10-399"><a href="#cb10-399"></a><span class="in">```{bash}</span></span>
-<span id="cb10-400"><a href="#cb10-400"></a><span class="co">#| label: dockerImages</span></span>
-<span id="cb10-401"><a href="#cb10-401"></a><span class="co">#| engine: bash</span></span>
-<span id="cb10-402"><a href="#cb10-402"></a><span class="co">#| results: markup</span></span>
-<span id="cb10-403"><a href="#cb10-403"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb10-404"><a href="#cb10-404"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb10-405"><a href="#cb10-405"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb10-406"><a href="#cb10-406"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb10-407"><a href="#cb10-407"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb10-408"><a href="#cb10-408"></a><span class="co">#| eval: true</span></span>
-<span id="cb10-409"><a href="#cb10-409"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb10-410"><a href="#cb10-410"></a><span class="co">#| cache: true</span></span>
-<span id="cb10-411"><a href="#cb10-411"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span>
-<span id="cb10-412"><a href="#cb10-412"></a><span class="in">```</span></span>
-<span id="cb10-413"><a href="#cb10-413"></a></span>
-<span id="cb10-414"><a href="#cb10-414"></a>   The <span class="in">`-a`</span> switch indicates all images (including unnamed and hanging images).</span>
-<span id="cb10-415"><a href="#cb10-415"></a></span>
-<span id="cb10-416"><a href="#cb10-416"></a>   This list appears chronologically from bottom to top.  Hence, the</span>
-<span id="cb10-417"><a href="#cb10-417"></a>   Dockerhub image (<span class="in">`bitnami/minideb`</span>) appears at the bottom of this</span>
-<span id="cb10-418"><a href="#cb10-418"></a>   list and above this there is a succession of intermediate images</span>
-<span id="cb10-419"><a href="#cb10-419"></a>   that correspond to each of the layers defined in the <span class="in">`Dockerfile`</span>.</span>
-<span id="cb10-420"><a href="#cb10-420"></a>   Note, each successive image is progressively larger in size as the</span>
-<span id="cb10-421"><a href="#cb10-421"></a>   layer incorporates the layer below.  At the top of the list is the</span>
-<span id="cb10-422"><a href="#cb10-422"></a>   full container image (with <span class="in">`latest`</span> tag).</span>
+<span id="cb10-377"><a href="#cb10-377"></a>   <span class="in">```{bash}</span></span>
+<span id="cb10-378"><a href="#cb10-378"></a><span class="in">   #| label: dockerImage</span></span>
+<span id="cb10-379"><a href="#cb10-379"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb10-380"><a href="#cb10-380"></a><span class="in">   #| results: markup</span></span>
+<span id="cb10-381"><a href="#cb10-381"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb10-382"><a href="#cb10-382"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb10-383"><a href="#cb10-383"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb10-384"><a href="#cb10-384"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb10-385"><a href="#cb10-385"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb10-386"><a href="#cb10-386"></a><span class="in">   #| eval: true</span></span>
+<span id="cb10-387"><a href="#cb10-387"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb10-388"><a href="#cb10-388"></a><span class="in">   #| cache: true</span></span>
+<span id="cb10-389"><a href="#cb10-389"></a><span class="in">   docker image ls</span></span>
+<span id="cb10-390"><a href="#cb10-390"></a><span class="in">   ```</span></span>
+<span id="cb10-391"><a href="#cb10-391"></a>           </span>
+<span id="cb10-392"><a href="#cb10-392"></a>   Note, the above simply lists all named images in your local</span>
+<span id="cb10-393"><a href="#cb10-393"></a>   registry.  To get a more complete list of all images:</span>
+<span id="cb10-394"><a href="#cb10-394"></a></span>
+<span id="cb10-395"><a href="#cb10-395"></a>   <span class="in">```{bash}</span></span>
+<span id="cb10-396"><a href="#cb10-396"></a><span class="in">   #| label: dockerImages</span></span>
+<span id="cb10-397"><a href="#cb10-397"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb10-398"><a href="#cb10-398"></a><span class="in">   #| results: markup</span></span>
+<span id="cb10-399"><a href="#cb10-399"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb10-400"><a href="#cb10-400"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb10-401"><a href="#cb10-401"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb10-402"><a href="#cb10-402"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb10-403"><a href="#cb10-403"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb10-404"><a href="#cb10-404"></a><span class="in">   #| eval: true</span></span>
+<span id="cb10-405"><a href="#cb10-405"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb10-406"><a href="#cb10-406"></a><span class="in">   #| cache: true</span></span>
+<span id="cb10-407"><a href="#cb10-407"></a><span class="in">   docker images -a  </span></span>
+<span id="cb10-408"><a href="#cb10-408"></a><span class="in">   ```</span></span>
+<span id="cb10-409"><a href="#cb10-409"></a></span>
+<span id="cb10-410"><a href="#cb10-410"></a>   The <span class="in">`-a`</span> switch indicates all images (including unnamed and hanging images).</span>
+<span id="cb10-411"><a href="#cb10-411"></a></span>
+<span id="cb10-412"><a href="#cb10-412"></a>   This list appears chronologically from bottom to top.  Hence, the</span>
+<span id="cb10-413"><a href="#cb10-413"></a>   Dockerhub image (<span class="in">`bitnami/minideb`</span>) appears at the bottom of this</span>
+<span id="cb10-414"><a href="#cb10-414"></a>   list and above this there is a succession of intermediate images</span>
+<span id="cb10-415"><a href="#cb10-415"></a>   that correspond to each of the layers defined in the <span class="in">`Dockerfile`</span>.</span>
+<span id="cb10-416"><a href="#cb10-416"></a>   Note, each successive image is progressively larger in size as the</span>
+<span id="cb10-417"><a href="#cb10-417"></a>   layer incorporates the layer below.  At the top of the list is the</span>
+<span id="cb10-418"><a href="#cb10-418"></a>   full container image (with <span class="in">`latest`</span> tag).</span>
+<span id="cb10-419"><a href="#cb10-419"></a></span>
+<span id="cb10-420"><a href="#cb10-420"></a>   Importantly, while we have built a container image, we do not yet</span>
+<span id="cb10-421"><a href="#cb10-421"></a>   have any running containers.  We can demonstrate this by listing</span>
+<span id="cb10-422"><a href="#cb10-422"></a>   all existing containers:</span>
 <span id="cb10-423"><a href="#cb10-423"></a></span>
-<span id="cb10-424"><a href="#cb10-424"></a>   Importantly, while we have built a container image, we do not yet</span>
-<span id="cb10-425"><a href="#cb10-425"></a>   have any running containers.  We can demonstrate this by listing</span>
-<span id="cb10-426"><a href="#cb10-426"></a>   all existing containers:</span>
-<span id="cb10-427"><a href="#cb10-427"></a></span>
-<span id="cb10-430"><a href="#cb10-430"></a><span class="in">```{bash}</span></span>
-<span id="cb10-431"><a href="#cb10-431"></a><span class="co">#| label: dockerPs</span></span>
-<span id="cb10-432"><a href="#cb10-432"></a><span class="co">#| engine: bash</span></span>
-<span id="cb10-433"><a href="#cb10-433"></a><span class="co">#| results: markup</span></span>
-<span id="cb10-434"><a href="#cb10-434"></a><span class="co">#| eval: true</span></span>
-<span id="cb10-435"><a href="#cb10-435"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb10-436"><a href="#cb10-436"></a><span class="co">#| cache: true</span></span>
-<span id="cb10-437"><a href="#cb10-437"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb10-438"><a href="#cb10-438"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb10-439"><a href="#cb10-439"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb10-440"><a href="#cb10-440"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb10-441"><a href="#cb10-441"></a><span class="co">#| out.lines: 1</span></span>
-<span id="cb10-442"><a href="#cb10-442"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb10-443"><a href="#cb10-443"></a><span class="ex">docker</span> ps <span class="at">-a</span>  </span>
-<span id="cb10-444"><a href="#cb10-444"></a><span class="in">```</span></span>
-<span id="cb10-445"><a href="#cb10-445"></a>   </span>
+<span id="cb10-426"><a href="#cb10-426"></a><span class="in">```{bash}</span></span>
+<span id="cb10-427"><a href="#cb10-427"></a><span class="co">#| label: dockerPs</span></span>
+<span id="cb10-428"><a href="#cb10-428"></a><span class="co">#| engine: bash</span></span>
+<span id="cb10-429"><a href="#cb10-429"></a><span class="co">#| results: markup</span></span>
+<span id="cb10-430"><a href="#cb10-430"></a><span class="co">#| eval: true</span></span>
+<span id="cb10-431"><a href="#cb10-431"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb10-432"><a href="#cb10-432"></a><span class="co">#| cache: true</span></span>
+<span id="cb10-433"><a href="#cb10-433"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb10-434"><a href="#cb10-434"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb10-435"><a href="#cb10-435"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb10-436"><a href="#cb10-436"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb10-437"><a href="#cb10-437"></a><span class="co">#| out.lines: 1</span></span>
+<span id="cb10-438"><a href="#cb10-438"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb10-439"><a href="#cb10-439"></a><span class="ex">docker</span> ps <span class="at">-a</span>  </span>
+<span id="cb10-440"><a href="#cb10-440"></a><span class="in">```</span></span>
+<span id="cb10-441"><a href="#cb10-441"></a>   </span>
+<span id="cb10-442"><a href="#cb10-442"></a></span>
+<span id="cb10-443"><a href="#cb10-443"></a>   The output is empty (assuming you have not previously generated any</span>
+<span id="cb10-444"><a href="#cb10-444"></a>   containers), indicating that there are currently no running</span>
+<span id="cb10-445"><a href="#cb10-445"></a>   containers.</span>
 <span id="cb10-446"><a href="#cb10-446"></a></span>
-<span id="cb10-447"><a href="#cb10-447"></a>   The output is empty (assuming you have not previously generated any</span>
-<span id="cb10-448"><a href="#cb10-448"></a>   containers), indicating that there are currently no running</span>
-<span id="cb10-449"><a href="#cb10-449"></a>   containers.</span>
+<span id="cb10-447"><a href="#cb10-447"></a></span>
+<span id="cb10-448"><a href="#cb10-448"></a> </span>
+<span id="cb10-449"><a href="#cb10-449"></a></span>
 <span id="cb10-450"><a href="#cb10-450"></a></span>
-<span id="cb10-451"><a href="#cb10-451"></a></span>
-<span id="cb10-452"><a href="#cb10-452"></a> </span>
-<span id="cb10-453"><a href="#cb10-453"></a></span>
-<span id="cb10-454"><a href="#cb10-454"></a></span>
-<span id="cb10-455"><a href="#cb10-455"></a>::: {.raw} </span>
-<span id="cb10-456"><a href="#cb10-456"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb10-457"><a href="#cb10-457"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb10-458"><a href="#cb10-458"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb10-459"><a href="#cb10-459"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-460"><a href="#cb10-460"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb10-461"><a href="#cb10-461"></a>})<span class="op">;</span></span>
-<span id="cb10-462"><a href="#cb10-462"></a>&lt;/script&gt;</span>
-<span id="cb10-463"><a href="#cb10-463"></a></span>
-<span id="cb10-464"><a href="#cb10-464"></a>:::</span>
+<span id="cb10-451"><a href="#cb10-451"></a>::: {.raw} </span>
+<span id="cb10-452"><a href="#cb10-452"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb10-453"><a href="#cb10-453"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb10-454"><a href="#cb10-454"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb10-455"><a href="#cb10-455"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-456"><a href="#cb10-456"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb10-457"><a href="#cb10-457"></a>})<span class="op">;</span></span>
+<span id="cb10-458"><a href="#cb10-458"></a>&lt;/script&gt;</span>
+<span id="cb10-459"><a href="#cb10-459"></a></span>
+<span id="cb10-460"><a href="#cb10-460"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
