@@ -368,8 +368,77 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 	https://docs.docker.com/engine/reference/commandline/build/
 	</details>
 
+3. **Check that the image(s) have been created**
 
+   ```{bash}
+   #| label: dockerImage
+   #| engine: bash
+   #| results: markdown
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   #| out.lines: c(1, 6:7)
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   docker image ls  
+   ```
+           
+   Note, the above simply lists all named images in your local
+   registry.  To get a more complete list of all images:
 
+   ```{bash}
+   #| label: dockerImages
+   #| engine: bash
+   #| results: markdown
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| out.lines: c(1, 21:26)
+   #| highlight-style: zenburn
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   docker images -a  
+   ```
+
+   The `-a` switch indicates all images (including unnamed and hanging images).
+
+   This list appears chronologically from bottom to top.  Hence, the
+   Dockerhub image (`bitnami/minideb`) appears at the bottom of this
+   list and above this there is a succession of intermediate images
+   that correspond to each of the layers defined in the `Dockerfile`.
+   Note, each successive image is progressively larger in size as the
+   layer incorporates the layer below.  At the top of the list is the
+   full container image (with `latest` tag).
+
+   Importantly, while we have built a container image, we do not yet
+   have any running containers.  We can demonstrate this by listing
+   all existing containers:
+
+   ```{bash}
+   #| label: dockerPs
+   #| engine: bash
+   #| results: markdown
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| out.lines: 1
+   #| highlight-style: zenburn
+   docker ps -a  
+   ```
+   
+
+   The output is empty (assuming you have not previously generated any
+   containers), indicating that there are currently no running
+   containers.
 
 
 
