@@ -916,7 +916,7 @@ echo 'CMD ["analysis.R"]' >> Dockerfile4
 #| results: asis
 #| classes: dockerfile
 #| class-output: dockerfile
-#| file: ~/tmp/docker_tests/Dockerfile3
+#| file: ~/tmp/docker_tests/Dockerfile4
 #| eval: false
 ```
 
@@ -972,7 +972,8 @@ the container.
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --rm -v `pwd`:/home/Project r:2
+ls -lat
+#docker run --rm -v `pwd`:/home/Project r:2
 ```
 
 :::
