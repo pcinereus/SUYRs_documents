@@ -3258,7 +3258,7 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     b75b4740084f   1 second ago   121MB</span>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     1d0b1436e62e   1 second ago   121MB</span>
 <span id="cb5-3"><a href="#cb5-3"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   8 hours ago    9.33GB</span>
 <span id="cb5-4"><a href="#cb5-4"></a>bitnami/minideb                     bookworm   7aaf5a56478d   2 weeks ago    120MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3268,9 +3268,9 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     b75b4740084f   1 second ago    121MB</span>
-<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     5af14b1ef5bb   4 seconds ago   120MB</span>
-<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     497d13137165   4 seconds ago   120MB</span>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     1d0b1436e62e   1 second ago    121MB</span>
+<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     7e61cda35864   4 seconds ago   120MB</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     b422d4437cf2   5 seconds ago   120MB</span>
 <span id="cb7-5"><a href="#cb7-5"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   8 hours ago     9.33GB</span>
 <span id="cb7-6"><a href="#cb7-6"></a>bitnami/minideb                     bookworm   7aaf5a56478d   2 weeks ago     120MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -3356,7 +3356,7 @@ vertical-align: -.125em;
 <section id="some-dockerfile-goodness" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="some-dockerfile-goodness"><span class="header-section-number">3.2</span> Some Dockerfile goodness</h2>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
-<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Incorporate default commands</a></li></ul>
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href>Incorporate default commands</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href>Copy and mountpoints</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <p>Lets now step this up a bit and add some more information to the build recipe. Rather than alter the previous <code>Dockerfile</code>, we will instead make a different file (<code>Dockerfile2</code>) and inform <code>docker</code> to build with this alternative <code>Dockerfile</code>.</p>
@@ -3392,64 +3392,50 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">--tag</span> minideb <span class="at">-f</span> Dockerfile2 </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>:::</p>
 <p>If we again review the list of images, we see that there are now two additional intermediate images and the <code>latest</code> image has been updated.</p>
-<div class="cell terminal" data-out.lines="c(1, 21:26)" data-highlight-style="zenburn">
+<p>::: {.cell .terminal highlight-style=‘zenburn’}</p>
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>...</span>
-<span id="cb21-2"><a href="#cb21-2"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb21-3"><a href="#cb21-3"></a>NA</span>
-<span id="cb21-4"><a href="#cb21-4"></a>NA</span>
-<span id="cb21-5"><a href="#cb21-5"></a>NA</span>
-<span id="cb21-6"><a href="#cb21-6"></a>NA</span>
-<span id="cb21-7"><a href="#cb21-7"></a>NA</span>
-<span id="cb21-8"><a href="#cb21-8"></a>NA</span>
-<span id="cb21-9"><a href="#cb21-9"></a>...```</span>
-<span id="cb21-10"><a href="#cb21-10"></a></span>
-<span id="cb21-11"><a href="#cb21-11"></a></span>
-<span id="cb21-12"><a href="#cb21-12"></a>:::</span>
-<span id="cb21-13"><a href="#cb21-13"></a>:::</span>
-<span id="cb21-14"><a href="#cb21-14"></a></span>
-<span id="cb21-15"><a href="#cb21-15"></a></span>
-<span id="cb21-16"><a href="#cb21-16"></a>  </span>
-<span id="cb21-17"><a href="#cb21-17"></a>   We can now run the container as:</span>
-<span id="cb21-18"><a href="#cb21-18"></a>  </span>
-<span id="cb21-19"><a href="#cb21-19"></a></span>
-<span id="cb21-20"><a href="#cb21-20"></a></span>
-<span id="cb21-21"><a href="#cb21-21"></a>::: {.cell .terminal highlight-style=&#39;zenburn&#39;}</span>
-<span id="cb21-22"><a href="#cb21-22"></a></span>
-<span id="cb21-23"><a href="#cb21-23"></a>```{.bash .terminal .cell-code  code-line-numbers=&quot;false&quot;}</span>
-<span id="cb21-24"><a href="#cb21-24"></a>docker run --rm minideb     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb22-1"><a href="#cb22-1"></a> _______</span>
-<span id="cb22-2"><a href="#cb22-2"></a>&lt; Grunt &gt;</span>
-<span id="cb22-3"><a href="#cb22-3"></a> -------</span>
-<span id="cb22-4"><a href="#cb22-4"></a>  \</span>
-<span id="cb22-5"><a href="#cb22-5"></a>   \</span>
-<span id="cb22-6"><a href="#cb22-6"></a>       ___  </span>
-<span id="cb22-7"><a href="#cb22-7"></a>     {~._.~}</span>
-<span id="cb22-8"><a href="#cb22-8"></a>      ( Y )</span>
-<span id="cb22-9"><a href="#cb22-9"></a>     ()~*~()   </span>
-<span id="cb22-10"><a href="#cb22-10"></a>     (_)-(_)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
+<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
+<span id="cb21-2"><a href="#cb21-2"></a>minideb                             latest     2c6499a76548   1 second ago    121MB</span>
+<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                              &lt;none&gt;     55b44e6f2ef9   2 seconds ago   121MB</span>
+<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                              &lt;none&gt;     1d0b1436e62e   3 seconds ago   121MB</span>
+<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                              &lt;none&gt;     7e61cda35864   6 seconds ago   120MB</span>
+<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                              &lt;none&gt;     b422d4437cf2   7 seconds ago   120MB</span>
+<span id="cb21-7"><a href="#cb21-7"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   8 hours ago     9.33GB</span>
+<span id="cb21-8"><a href="#cb21-8"></a>bitnami/minideb                     bookworm   7aaf5a56478d   2 weeks ago     120MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: :::</p>
+<p>We can now run the container as:</p>
+<p>::: {.cell .terminal highlight-style=‘zenburn’}</p>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> minideb     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb23-1"><a href="#cb23-1"></a> _______</span>
+<span id="cb23-2"><a href="#cb23-2"></a>&lt; Grunt &gt;</span>
+<span id="cb23-3"><a href="#cb23-3"></a> -------</span>
+<span id="cb23-4"><a href="#cb23-4"></a>  \</span>
+<span id="cb23-5"><a href="#cb23-5"></a>   \</span>
+<span id="cb23-6"><a href="#cb23-6"></a>       ___  </span>
+<span id="cb23-7"><a href="#cb23-7"></a>     {~._.~}</span>
+<span id="cb23-8"><a href="#cb23-8"></a>      ( Y )</span>
+<span id="cb23-9"><a href="#cb23-9"></a>     ()~*~()   </span>
+<span id="cb23-10"><a href="#cb23-10"></a>     (_)-(_)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: :::</p>
 <p>To override the default arguments (<strong>CMD</strong>) we baked into the docker image, we can issue an alternative as a command line argument.</p>
-<div class="cell terminal" data-highlight-style="zenburn">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> minideb Meow     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb24-1"><a href="#cb24-1"></a> ______</span>
-<span id="cb24-2"><a href="#cb24-2"></a>&lt; Meow &gt;</span>
-<span id="cb24-3"><a href="#cb24-3"></a> ------</span>
-<span id="cb24-4"><a href="#cb24-4"></a>  \</span>
-<span id="cb24-5"><a href="#cb24-5"></a>   \</span>
-<span id="cb24-6"><a href="#cb24-6"></a>       ___  </span>
-<span id="cb24-7"><a href="#cb24-7"></a>     {~._.~}</span>
-<span id="cb24-8"><a href="#cb24-8"></a>      ( Y )</span>
-<span id="cb24-9"><a href="#cb24-9"></a>     ()~*~()   </span>
-<span id="cb24-10"><a href="#cb24-10"></a>     (_)-(_)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell .terminal highlight-style=‘zenburn’}</p>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> minideb Meow     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: {.cell-output .cell-output-stdout}</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a> ______</span>
+<span id="cb25-2"><a href="#cb25-2"></a>&lt; Meow &gt;</span>
+<span id="cb25-3"><a href="#cb25-3"></a> ------</span>
+<span id="cb25-4"><a href="#cb25-4"></a>  \</span>
+<span id="cb25-5"><a href="#cb25-5"></a>   \</span>
+<span id="cb25-6"><a href="#cb25-6"></a>       ___  </span>
+<span id="cb25-7"><a href="#cb25-7"></a>     {~._.~}</span>
+<span id="cb25-8"><a href="#cb25-8"></a>      ( Y )</span>
+<span id="cb25-9"><a href="#cb25-9"></a>     ()~*~()   </span>
+<span id="cb25-10"><a href="#cb25-10"></a>     (_)-(_)   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>::: :::</p>
 </div>
-</div>
-<section id="copy-and-mountpoints" class="level3" data-number="3.2.1">
-<h3 data-number="3.2.1" class="anchored" data-anchor-id="copy-and-mountpoints"><span class="header-section-number">3.2.1</span> Copy and mountpoints</h3>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
 <p>So far, we have used the docker container to display an ASCII art cow (or koala) in the terminal and then exit. Whilst, this might have some utility as a simple example of interacting with containers, it hardly represents typical work.</p>
 <p>In the context of reproducible research, containers are useful for providing a consistent environment in which to run code. Thus in order to be useful, a container should have:</p>
 <ol type="1">
@@ -3459,17 +3445,64 @@ vertical-align: -.125em;
 <p>To illustrate these, we will add the R Statistical and Graphical Environment to our container image and use this in two further examples.</p>
 <section id="copy" class="level4">
 <h4 class="anchored" data-anchor-id="copy">Copy</h4>
-<p>For the first example, we will add instructions to the <code>Dockerfile</code> to copy a small R script into the container so that the code can be run within the container environment. Lets create two files:</p>
+<p>For the first example, we will add instructions to the <code>Dockerfile</code> to copy a small R script (lets call it <code>analysis.R</code>) into the container so that the code can be run within the container environment. Lets create two files:</p>
 <div class="cell bash">
 
 </div>
 <div class="cell dockerfile">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb25-1"><a href="#cb25-1"></a>dat &lt;- data.frame(y = rnorm(10))</span>
-<span id="cb25-2"><a href="#cb25-2"></a>dat</span>
-<span id="cb25-3"><a href="#cb25-3"></a>write.csv(dat, file = &quot;dat.csv&quot;, row.names = FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb26-1"><a href="#cb26-1"></a>dat &lt;- data.frame(y = rnorm(10))</span>
+<span id="cb26-2"><a href="#cb26-2"></a>dat</span>
+<span id="cb26-3"><a href="#cb26-3"></a>write.csv(dat, file = &quot;dat.csv&quot;, row.names = FALSE)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>a <code>Dockerfile</code> called <code>Dockerfile3</code></li>
+</ul>
+<div class="cell bash">
+
+</div>
+<div class="cell dockerfile">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb27-1"><a href="#cb27-1"></a>FROM bitnami/minideb:bookworm</span>
+<span id="cb27-2"><a href="#cb27-2"></a>LABEL maintainer=&quot;Author&quot;</span>
+<span id="cb27-3"><a href="#cb27-3"></a>LABEL email=&quot;author_email@email.com&quot;</span>
+<span id="cb27-4"><a href="#cb27-4"></a></span>
+<span id="cb27-5"><a href="#cb27-5"></a>## Install the os packages</span>
+<span id="cb27-6"><a href="#cb27-6"></a>RUN apt-get update \</span>
+<span id="cb27-7"><a href="#cb27-7"></a>  &amp;&amp; apt-get install -y --no-install-recommends \</span>
+<span id="cb27-8"><a href="#cb27-8"></a>    r-base \</span>
+<span id="cb27-9"><a href="#cb27-9"></a>  &amp;&amp; rm -rf /var/lib/apt/lists/*</span>
+<span id="cb27-10"><a href="#cb27-10"></a></span>
+<span id="cb27-11"><a href="#cb27-11"></a>COPY analysis.R ~/</span>
+<span id="cb27-12"><a href="#cb27-12"></a>WORKDIR ~/</span>
+<span id="cb27-13"><a href="#cb27-13"></a></span>
+<span id="cb27-14"><a href="#cb27-14"></a>## Default command to run</span>
+<span id="cb27-15"><a href="#cb27-15"></a>ENTRYPOINT [&quot;Rscript&quot;]</span>
+<span id="cb27-16"><a href="#cb27-16"></a></span>
+<span id="cb27-17"><a href="#cb27-17"></a>## Default command parameters</span>
+<span id="cb27-18"><a href="#cb27-18"></a>CMD [&quot;analysis.R&quot;]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>This <code>Dockerfile</code> includes instructions to:</p>
+<pre><code>- install R (`r-base`)
+
+- copy our R script from the current working directory to the home
+  folder in the container (`COPY analysis.R ~/`)
+
+- set the working directory within the container to be the home
+  folder (`WORKDIR ~/`)
+
+- specify that once the container has started, the `Rscript`
+  command should be run (`ENTRYPOINT [&quot;Rscript&quot;]`)
+
+- specify that once the container has started, the `Rscript`
+  command should be run using the `analysis.R` script 
+  (`CMD [&quot;analysis.R&quot;]`)</code></pre>
+<p>Great. This time when we build the container image, we will provide both a name and tag for the image (via <code>--tag r:1</code>). This will result in an image called <code>r</code> with a tag of <code>1</code>.</p>
+<div class="cell terminal" data-highlight-style="zenburn">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:1 <span class="at">-f</span> Dockerfile3</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
 </section>
-</section>
+</div>
+</div>
 </div>
 <div class="raw">
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -3484,9 +3517,6 @@ $('div.terminal-docker').prepend("<div class='head'><a href='#' class='mbtn'>&#1
 </div>
 <!-- -->
 
-</div>
-</div>
-</div>
 </section>
 </section>
 
@@ -3960,791 +3990,876 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb26" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb26-1"><a href="#cb26-1"></a><span class="co">---</span></span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="an">title:</span><span class="co"> Containerisation - docker and singularity</span></span>
-<span id="cb26-3"><a href="#cb26-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
-<span id="cb26-4"><a href="#cb26-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb26-5"><a href="#cb26-5"></a><span class="an">format:</span><span class="co"> </span></span>
-<span id="cb26-6"><a href="#cb26-6"></a><span class="co">  html:</span></span>
-<span id="cb26-7"><a href="#cb26-7"></a><span class="co">    toc: true</span></span>
-<span id="cb26-8"><a href="#cb26-8"></a><span class="co">    toc-float: true</span></span>
-<span id="cb26-9"><a href="#cb26-9"></a><span class="co">    page-layout: full</span></span>
-<span id="cb26-10"><a href="#cb26-10"></a><span class="co">    number-sections: true</span></span>
-<span id="cb26-11"><a href="#cb26-11"></a><span class="co">    number-depth: 3</span></span>
-<span id="cb26-12"><a href="#cb26-12"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb26-13"><a href="#cb26-13"></a><span class="co">    code-fold: false</span></span>
-<span id="cb26-14"><a href="#cb26-14"></a><span class="co">    code-tools: true</span></span>
-<span id="cb26-15"><a href="#cb26-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
-<span id="cb26-16"><a href="#cb26-16"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb26-17"><a href="#cb26-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
-<span id="cb26-18"><a href="#cb26-18"></a><span class="co">    code-copy: true</span></span>
-<span id="cb26-19"><a href="#cb26-19"></a><span class="co">    highlight-style: atom-one</span></span>
-<span id="cb26-20"><a href="#cb26-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
-<span id="cb26-21"><a href="#cb26-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
-<span id="cb26-22"><a href="#cb26-22"></a><span class="an">crossref:</span></span>
-<span id="cb26-23"><a href="#cb26-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
-<span id="cb26-24"><a href="#cb26-24"></a><span class="co">  fig-labels: arabic</span></span>
-<span id="cb26-25"><a href="#cb26-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
-<span id="cb26-26"><a href="#cb26-26"></a><span class="co">  tbl-labels: arabic</span></span>
-<span id="cb26-27"><a href="#cb26-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
-<span id="cb26-28"><a href="#cb26-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
-<span id="cb26-29"><a href="#cb26-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
-<span id="cb26-30"><a href="#cb26-30"></a><span class="co">---</span></span>
-<span id="cb26-31"><a href="#cb26-31"></a></span>
-<span id="cb26-32"><a href="#cb26-32"></a><span class="in">```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}</span></span>
-<span id="cb26-33"><a href="#cb26-33"></a><span class="in">knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = &quot;&quot;)</span></span>
-<span id="cb26-34"><a href="#cb26-34"></a><span class="in">options(tinytex.engine = &#39;xelatex&#39;)</span></span>
-<span id="cb26-35"><a href="#cb26-35"></a><span class="in">cleanRmdInput &lt;- function(x) {</span></span>
-<span id="cb26-36"><a href="#cb26-36"></a><span class="in">#x &lt;- gsub(&quot;```\\{r&quot;,&quot;```markdown\n`r &#39;&#39;```\\{r&quot;,x)</span></span>
-<span id="cb26-37"><a href="#cb26-37"></a><span class="in">x &lt;- gsub(&quot;^```$&quot;,&quot;`` `&quot;,x)  # the Makefile will then change this back to ``` after pandoc</span></span>
-<span id="cb26-38"><a href="#cb26-38"></a><span class="in">x</span></span>
-<span id="cb26-39"><a href="#cb26-39"></a><span class="in">}</span></span>
-<span id="cb26-40"><a href="#cb26-40"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb26-41"><a href="#cb26-41"></a><span class="in">library(pander)</span></span>
-<span id="cb26-42"><a href="#cb26-42"></a><span class="in">FIG_PATH &lt;- &#39;12_docker_files/figure-html/&#39;</span></span>
-<span id="cb26-43"><a href="#cb26-43"></a></span>
-<span id="cb26-44"><a href="#cb26-44"></a><span class="in"># save the built-in output hook</span></span>
-<span id="cb26-45"><a href="#cb26-45"></a><span class="in">hook_output &lt;- knitr::knit_hooks$get(&quot;output&quot;)</span></span>
-<span id="cb26-46"><a href="#cb26-46"></a></span>
-<span id="cb26-47"><a href="#cb26-47"></a><span class="in"># set a new output hook to truncate text output</span></span>
-<span id="cb26-48"><a href="#cb26-48"></a><span class="in">knitr::knit_hooks$set(output = function(x, options) {</span></span>
-<span id="cb26-49"><a href="#cb26-49"></a><span class="in">  if (!is.null(n &lt;- options$out.lines)) {</span></span>
-<span id="cb26-50"><a href="#cb26-50"></a><span class="in">    x &lt;- xfun::split_lines(x)</span></span>
-<span id="cb26-51"><a href="#cb26-51"></a><span class="in">    more &lt;- &quot;...&quot;</span></span>
-<span id="cb26-52"><a href="#cb26-52"></a><span class="in">    n &lt;- eval(parse(text=n))</span></span>
-<span id="cb26-53"><a href="#cb26-53"></a><span class="in">    if (length(n) == 1) {</span></span>
-<span id="cb26-54"><a href="#cb26-54"></a><span class="in">      if (length(x) &gt; n) {</span></span>
-<span id="cb26-55"><a href="#cb26-55"></a><span class="in">        # truncate the output</span></span>
-<span id="cb26-56"><a href="#cb26-56"></a><span class="in">        x &lt;- c(head(x, n), &quot;....\n&quot;)</span></span>
-<span id="cb26-57"><a href="#cb26-57"></a><span class="in">        }</span></span>
-<span id="cb26-58"><a href="#cb26-58"></a><span class="in">    } else {</span></span>
-<span id="cb26-59"><a href="#cb26-59"></a><span class="in">        x &lt;- c(more, x[n], more)</span></span>
-<span id="cb26-60"><a href="#cb26-60"></a><span class="in">    }    </span></span>
-<span id="cb26-61"><a href="#cb26-61"></a><span class="in">    x &lt;- paste(x, collapse = &quot;\n&quot;)</span></span>
-<span id="cb26-62"><a href="#cb26-62"></a><span class="in">  }</span></span>
-<span id="cb26-63"><a href="#cb26-63"></a><span class="in">  hook_output(x, options)</span></span>
-<span id="cb26-64"><a href="#cb26-64"></a><span class="in">})</span></span>
-<span id="cb26-65"><a href="#cb26-65"></a><span class="in">```</span></span>
-<span id="cb26-66"><a href="#cb26-66"></a></span>
-<span id="cb26-67"><a href="#cb26-67"></a><span class="fu"># Background information</span></span>
-<span id="cb26-68"><a href="#cb26-68"></a></span>
-<span id="cb26-69"><a href="#cb26-69"></a>In the previous tutorial, we discussed why it is important that your</span>
-<span id="cb26-70"><a href="#cb26-70"></a>codebase is under version control and backed up to help ensure that</span>
-<span id="cb26-71"><a href="#cb26-71"></a>your analyses can be evaluated and replicated by you and others both</span>
-<span id="cb26-72"><a href="#cb26-72"></a>now and into the future.  However, having access to the code (and</span>
-<span id="cb26-73"><a href="#cb26-73"></a>data) does not always guarantee full reproducibility - this can also</span>
-<span id="cb26-74"><a href="#cb26-74"></a>be effected by the exact software environment in which the code is</span>
-<span id="cb26-75"><a href="#cb26-75"></a>run.</span>
-<span id="cb26-76"><a href="#cb26-76"></a></span>
-<span id="cb26-77"><a href="#cb26-77"></a>In the context of statistical analyses performed in R for example, R</span>
-<span id="cb26-78"><a href="#cb26-78"></a>as well as the various packages that you have elected to use in</span>
-<span id="cb26-79"><a href="#cb26-79"></a>support your analyses can (and do) evolve over time.  Some functions</span>
-<span id="cb26-80"><a href="#cb26-80"></a>get modified and some even get depreciated.  Hence, over time, code</span>
-<span id="cb26-81"><a href="#cb26-81"></a>that once worked perfectly (or at least adequately) can become _broken_.</span>
-<span id="cb26-82"><a href="#cb26-82"></a></span>
-<span id="cb26-83"><a href="#cb26-83"></a>Early solutions to this facet of reproducibility focused on **virtual</span>
-<span id="cb26-84"><a href="#cb26-84"></a>machines**.  Virtual machines (VM) build entire software environments on</span>
-<span id="cb26-85"><a href="#cb26-85"></a>top of a software layer that mimics a physical computer such that each</span>
-<span id="cb26-86"><a href="#cb26-86"></a>VM runs on a _host_ computer is a completely separate self-contained</span>
-<span id="cb26-87"><a href="#cb26-87"></a>entity.  Whilst VMs do permit great flexibility (as virtually any</span>
-<span id="cb26-88"><a href="#cb26-88"></a>operating system can be installed on a VM), they are considerably</span>
-<span id="cb26-89"><a href="#cb26-89"></a>slower and less efficient than physical machines.  Moreover, it is</span>
-<span id="cb26-90"><a href="#cb26-90"></a>typically necessary to allocate a fixed amount of computer resources</span>
-<span id="cb26-91"><a href="#cb26-91"></a>(particularly CPU) to the VM in advance.</span>
-<span id="cb26-92"><a href="#cb26-92"></a></span>
-<span id="cb26-93"><a href="#cb26-93"></a>More modern solutions focus instead on **Containers**.  In contrast to</span>
-<span id="cb26-94"><a href="#cb26-94"></a>VMs, containers do not mimic a physical computer, rather they only</span>
-<span id="cb26-95"><a href="#cb26-95"></a>virtualise layers on top of the host operating system.  Indeed,</span>
-<span id="cb26-96"><a href="#cb26-96"></a>containers share (read only) the host OS kernel and binaries/libraries</span>
-<span id="cb26-97"><a href="#cb26-97"></a>and thus containers and the applications contained therein can be very</span>
-<span id="cb26-98"><a href="#cb26-98"></a>&quot;light&quot; and are typically are almost as performant as applications run</span>
-<span id="cb26-99"><a href="#cb26-99"></a>natively on the host.</span>
-<span id="cb26-100"><a href="#cb26-100"></a></span>
-<span id="cb26-101"><a href="#cb26-101"></a>Time for some container terminology:</span>
-<span id="cb26-102"><a href="#cb26-102"></a></span>
-<span id="cb26-103"><a href="#cb26-103"></a><span class="ss">- </span>**Container image** is a static (unchangeable) file (or collection of</span>
-<span id="cb26-104"><a href="#cb26-104"></a>  files) that bundles code and all its dependencies (such as the</span>
-<span id="cb26-105"><a href="#cb26-105"></a>  necessary system libraries, code, runtime and system</span>
-<span id="cb26-106"><a href="#cb26-106"></a>  tools). Essentially, the image has all the information required to</span>
-<span id="cb26-107"><a href="#cb26-107"></a>  reproduce an software environment on any compatible machine.</span>
-<span id="cb26-108"><a href="#cb26-108"></a>  However, an image is just a snapshot which serves as a template to</span>
-<span id="cb26-109"><a href="#cb26-109"></a>  build a **container**. In other words, a container is a running image,</span>
-<span id="cb26-110"><a href="#cb26-110"></a>  and cannot exist without the image, whereas an image can exist</span>
-<span id="cb26-111"><a href="#cb26-111"></a>  without a container.</span>
-<span id="cb26-112"><a href="#cb26-112"></a></span>
-<span id="cb26-113"><a href="#cb26-113"></a><span class="ss">- </span>**Container** is a standard (linux) process whose software environment</span>
-<span id="cb26-114"><a href="#cb26-114"></a>  is defined by the contents of a container image and that runs on top</span>
-<span id="cb26-115"><a href="#cb26-115"></a>  of the host&#39;s OS.</span>
-<span id="cb26-116"><a href="#cb26-116"></a></span>
-<span id="cb26-117"><a href="#cb26-117"></a><span class="fu"># Preparations</span></span>
-<span id="cb26-118"><a href="#cb26-118"></a></span>
-<span id="cb26-119"><a href="#cb26-119"></a>If you intend to follow along with this tutorial, you may like to:</span>
-<span id="cb26-120"><a href="#cb26-120"></a> </span>
-<span id="cb26-121"><a href="#cb26-121"></a><span class="ss">- </span>create a new folder (hereafter referred to as the _sandpit folder_)</span>
-<span id="cb26-122"><a href="#cb26-122"></a>  in which to create some files. On my local machine, I have a folder</span>
-<span id="cb26-123"><a href="#cb26-123"></a>  (<span class="in">`tmp`</span>) in my home folder into which I will place a folder (called</span>
-<span id="cb26-124"><a href="#cb26-124"></a>  <span class="in">`docker_tests`</span>) for this very purpose.  On Linux and MacOSX that</span>
-<span id="cb26-125"><a href="#cb26-125"></a>  would be achieved via the following:</span>
-<span id="cb26-126"><a href="#cb26-126"></a></span>
-<span id="cb26-127"><a href="#cb26-127"></a>  <span class="in">```{r}</span></span>
-<span id="cb26-128"><a href="#cb26-128"></a><span class="in">  #| label: prepareFolder1</span></span>
-<span id="cb26-129"><a href="#cb26-129"></a><span class="in">  #| results: hide</span></span>
-<span id="cb26-130"><a href="#cb26-130"></a><span class="in">  #| eval: true</span></span>
-<span id="cb26-131"><a href="#cb26-131"></a><span class="in">  #| echo: false</span></span>
-<span id="cb26-132"><a href="#cb26-132"></a><span class="in">  unlink(&#39;~/tmp/docker_tests&#39;, recursive=TRUE, force=TRUE)</span></span>
-<span id="cb26-133"><a href="#cb26-133"></a><span class="in">  if (!dir.exists(&#39;~/tmp&#39;)) dir.create(&#39;~/tmp&#39;)</span></span>
-<span id="cb26-134"><a href="#cb26-134"></a><span class="in">  ```</span></span>
-<span id="cb26-135"><a href="#cb26-135"></a>  <span class="in">```{bash}</span></span>
-<span id="cb26-136"><a href="#cb26-136"></a><span class="in">  #| label: prepareFolder</span></span>
-<span id="cb26-137"><a href="#cb26-137"></a><span class="in">  #| echo: true</span></span>
-<span id="cb26-138"><a href="#cb26-138"></a><span class="in">  #| eval: true</span></span>
-<span id="cb26-139"><a href="#cb26-139"></a><span class="in">  #| classes: terminal</span></span>
-<span id="cb26-140"><a href="#cb26-140"></a><span class="in">  #| class-source: terminal</span></span>
-<span id="cb26-141"><a href="#cb26-141"></a><span class="in">  #| code-line-numbers: false</span></span>
-<span id="cb26-142"><a href="#cb26-142"></a><span class="in">  #| highlight-style: zenburn</span></span>
-<span id="cb26-143"><a href="#cb26-143"></a><span class="in">  mkdir ~/tmp/docker_tests</span></span>
-<span id="cb26-144"><a href="#cb26-144"></a><span class="in">  ```</span></span>
-<span id="cb26-145"><a href="#cb26-145"></a> &lt;/br&gt;</span>
-<span id="cb26-146"><a href="#cb26-146"></a></span>
-<span id="cb26-147"><a href="#cb26-147"></a><span class="ss">- </span>install <span class="co">[</span><span class="ot">Docker</span><span class="co">](www.docker.com)</span></span>
-<span id="cb26-148"><a href="#cb26-148"></a></span>
-<span id="cb26-149"><a href="#cb26-149"></a><span class="ss">- </span>install <span class="co">[</span><span class="ot">apptainer/singularity</span><span class="co">](https://apptainer.org/)</span> (if you</span>
-<span id="cb26-150"><a href="#cb26-150"></a>intend to follow along with containers on a HPC).</span>
-<span id="cb26-151"><a href="#cb26-151"></a></span>
-<span id="cb26-152"><a href="#cb26-152"></a><span class="fu"># Docker</span></span>
-<span id="cb26-153"><a href="#cb26-153"></a></span>
-<span id="cb26-154"><a href="#cb26-154"></a>Currently, the most popular container engine in use today is <span class="co">[</span><span class="ot">Docker</span><span class="co">](www.docker.com)</span>.</span>
-<span id="cb26-155"><a href="#cb26-155"></a>Docker is easy to install on most operating systems and comes with</span>
-<span id="cb26-156"><a href="#cb26-156"></a>tools to build, manage, run and distribute container images (the later</span>
-<span id="cb26-157"><a href="#cb26-157"></a>of which is supported via the <span class="co">[</span><span class="ot">DockerHub</span><span class="co">](https://hub.docker.com)</span> container ecosystem.</span>
-<span id="cb26-158"><a href="#cb26-158"></a></span>
-<span id="cb26-159"><a href="#cb26-159"></a></span>
-<span id="cb26-162"><a href="#cb26-162"></a><span class="in">```{tikz}</span></span>
-<span id="cb26-163"><a href="#cb26-163"></a><span class="in">%| label: DockerOverviewFig1</span></span>
-<span id="cb26-164"><a href="#cb26-164"></a><span class="in">%| engine: tikz</span></span>
-<span id="cb26-165"><a href="#cb26-165"></a><span class="in">%| echo: false</span></span>
-<span id="cb26-166"><a href="#cb26-166"></a><span class="in">%| cache: true</span></span>
-<span id="cb26-167"><a href="#cb26-167"></a><span class="in">%| eval: true</span></span>
-<span id="cb26-168"><a href="#cb26-168"></a><span class="in">%| dependson: common</span></span>
-<span id="cb26-169"><a href="#cb26-169"></a><span class="in">%| class: tikz</span></span>
-<span id="cb26-170"><a href="#cb26-170"></a><span class="in">%| engine-opts:</span></span>
-<span id="cb26-171"><a href="#cb26-171"></a><span class="in">%|   template: &quot;../resources/tikz-commit.tex&quot;</span></span>
-<span id="cb26-172"><a href="#cb26-172"></a><span class="in">\usetikzlibrary{positioning,shapes.callouts}</span></span>
-<span id="cb26-173"><a href="#cb26-173"></a><span class="in">\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] </span></span>
-<span id="cb26-174"><a href="#cb26-174"></a><span class="in">\newcommand{\file}[3] {</span></span>
-<span id="cb26-175"><a href="#cb26-175"></a><span class="in"> \coordinate (#3) at (#1);</span></span>
-<span id="cb26-176"><a href="#cb26-176"></a><span class="in"> \draw[thick,anchor=top left](#1) -- ++(2,0) -- ++(0.5,-0.5) -- ++(0,-3) -- ++(-2.5,0) -- ++(0,3.5);</span></span>
-<span id="cb26-177"><a href="#cb26-177"></a><span class="in"> \draw[thick,anchor=top left]($(#1) +(2,0)$) -- ++(0,-0.5) -- ++(0.5,0);     </span></span>
-<span id="cb26-178"><a href="#cb26-178"></a><span class="in"> \node [anchor=north west,fileText] at ($(#1) +(0,-0.1)$) {#2};</span></span>
-<span id="cb26-179"><a href="#cb26-179"></a><span class="in">}</span></span>
-<span id="cb26-180"><a href="#cb26-180"></a></span>
-<span id="cb26-181"><a href="#cb26-181"></a><span class="in">\usetikzlibrary{calc,fit,positioning}</span></span>
-<span id="cb26-182"><a href="#cb26-182"></a><span class="in">\definecolor{OS}{rgb}{1,0.8,0.4}%</span></span>
-<span id="cb26-183"><a href="#cb26-183"></a><span class="in">\definecolor{Docker}{rgb}{0.26,0.65,0.91}%</span></span>
-<span id="cb26-184"><a href="#cb26-184"></a><span class="in">\definecolor{Bin}{rgb}{0.9,0.9,0.2}%</span></span>
-<span id="cb26-185"><a href="#cb26-185"></a><span class="in">\definecolor{Container}{rgb}{0.90,0.9,0.9}%</span></span>
-<span id="cb26-186"><a href="#cb26-186"></a><span class="in">\sf</span></span>
-<span id="cb26-187"><a href="#cb26-187"></a></span>
-<span id="cb26-188"><a href="#cb26-188"></a><span class="in">\begin{tikzpicture}</span></span>
-<span id="cb26-189"><a href="#cb26-189"></a><span class="in">\node [draw, anchor=south west,fill=Container] at (0,0) (Container1) {</span></span>
-<span id="cb26-190"><a href="#cb26-190"></a><span class="in"> \begin{tikzpicture}</span></span>
-<span id="cb26-191"><a href="#cb26-191"></a><span class="in">   \node [anchor=west] (title) at (0,0) {\textbf{Container 1}};</span></span>
-<span id="cb26-192"><a href="#cb26-192"></a><span class="in">   \node [draw, anchor=west, fill=white] at ($(title.west) + (0,-1.5)$) (App) {</span></span>
-<span id="cb26-193"><a href="#cb26-193"></a><span class="in">   \scalebox{0.5}{\begin{tikzpicture}</span></span>
-<span id="cb26-194"><a href="#cb26-194"></a><span class="in">     \node (Code) {\huge Apps, Code etc};</span></span>
-<span id="cb26-195"><a href="#cb26-195"></a><span class="in">     \commit{below = 1.5cm of Code}{A}{color_inactive}{}{}</span></span>
-<span id="cb26-196"><a href="#cb26-196"></a><span class="in">     \commit{right = 1cm of A}{B}{color_inactive}{}{}</span></span>
-<span id="cb26-197"><a href="#cb26-197"></a><span class="in">     \commit{right = 1cm of B}{C}{color_commit}{}{}</span></span>
-<span id="cb26-198"><a href="#cb26-198"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);</span></span>
-<span id="cb26-199"><a href="#cb26-199"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (B) -- (A);</span></span>
-<span id="cb26-200"><a href="#cb26-200"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (C) -- (B);</span></span>
-<span id="cb26-201"><a href="#cb26-201"></a><span class="in">     \commit{above = 0.5cm of B}{D}{color_inactive}{}{}</span></span>
-<span id="cb26-202"><a href="#cb26-202"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (A.east) to[out=0,in=180] (D);</span></span>
-<span id="cb26-203"><a href="#cb26-203"></a><span class="in">     \main{right = 0.5cm of C}\draw[-&gt;,line width=3pt,draw=black!60] (main) -- (C);</span></span>
-<span id="cb26-204"><a href="#cb26-204"></a><span class="in">     \HEAD{right = 0.5cm of main}\draw[-&gt;,line width=3pt,draw=black!60] (HEAD) -- (main);</span></span>
-<span id="cb26-205"><a href="#cb26-205"></a><span class="in">     \branch{right = 0.5cm of D}{Feature}\draw[-&gt;,line width=3pt,draw=black!60] (Feature) -- (D);</span></span>
-<span id="cb26-206"><a href="#cb26-206"></a><span class="in">     \end{tikzpicture}}};</span></span>
-<span id="cb26-207"><a href="#cb26-207"></a><span class="in">     \node [draw,anchor=north,inner sep=0pt, fit=(App.south west)(App.south east), fill=Bin, minimum height = 1.75em, label={center:Bins/libs}] {};</span></span>
-<span id="cb26-208"><a href="#cb26-208"></a><span class="in"> \end{tikzpicture}</span></span>
-<span id="cb26-209"><a href="#cb26-209"></a><span class="in">};</span></span>
-<span id="cb26-210"><a href="#cb26-210"></a><span class="in">\node [draw, anchor=south west,fill=Container] at ($(Container1.south east) + (0.2,0)$) (Container2) {</span></span>
-<span id="cb26-211"><a href="#cb26-211"></a><span class="in"> \begin{tikzpicture}</span></span>
-<span id="cb26-212"><a href="#cb26-212"></a><span class="in">   \node [anchor=west] (title) at (0,0) {\textbf{Container 2}};</span></span>
-<span id="cb26-213"><a href="#cb26-213"></a><span class="in">   \node [draw, anchor=west, fill=white,minimum width=4cm] at ($(title.west) + (0,-1)$) (App) {Apps, Code etc};</span></span>
-<span id="cb26-214"><a href="#cb26-214"></a><span class="in">   \node [draw, anchor=north west, fill=Bin, minimum width=4cm] at ($(App.south west) + (0,-0)$) {Bins/libs};</span></span>
-<span id="cb26-215"><a href="#cb26-215"></a><span class="in"> \end{tikzpicture}</span></span>
-<span id="cb26-216"><a href="#cb26-216"></a><span class="in">};</span></span>
-<span id="cb26-217"><a href="#cb26-217"></a></span>
-<span id="cb26-218"><a href="#cb26-218"></a><span class="in">\node [draw,fit=(Container1.south west)(Container2.south east), anchor=north,inner sep=0pt,fill=Docker, minimum height=2em, label={center:Docker Engine}] (Docker)  {};</span></span>
-<span id="cb26-219"><a href="#cb26-219"></a><span class="in">\node [draw,fit=(Docker.south west)(Docker.south east), anchor=north,inner sep=0pt,fill=OS, minimum height=2em, label={center:Host OS}] (OS)  {};</span></span>
-<span id="cb26-220"><a href="#cb26-220"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb26-221"><a href="#cb26-221"></a><span class="in">```</span></span>
-<span id="cb26-222"><a href="#cb26-222"></a></span>
-<span id="cb26-223"><a href="#cb26-223"></a><span class="fu">## Simple overview</span></span>
-<span id="cb26-224"><a href="#cb26-224"></a></span>
-<span id="cb26-225"><a href="#cb26-225"></a><span class="ss">1. </span>**Create a Docker definition file.**</span>
-<span id="cb26-226"><a href="#cb26-226"></a></span>
-<span id="cb26-227"><a href="#cb26-227"></a>   The <span class="in">`Dockerfile`</span> contains a set of instructions that Docker uses to</span>
-<span id="cb26-228"><a href="#cb26-228"></a>   build your container with the correct specifications. For now you</span>
-<span id="cb26-229"><a href="#cb26-229"></a>   do not need to know all the bits and pieces here (though please see</span>
-<span id="cb26-230"><a href="#cb26-230"></a>   this</span>
-<span id="cb26-231"><a href="#cb26-231"></a>   <span class="co">[</span><span class="ot">link</span><span class="co">](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)</span></span>
-<span id="cb26-232"><a href="#cb26-232"></a>   for a more in-depth understanding of what the Dockerfile is capable</span>
-<span id="cb26-233"><a href="#cb26-233"></a>   of).</span>
-<span id="cb26-234"><a href="#cb26-234"></a></span>
-<span id="cb26-235"><a href="#cb26-235"></a>   Lets start with a very simple <span class="in">`Dockerfile`</span> (which should be a plain</span>
-<span id="cb26-236"><a href="#cb26-236"></a>   text file located in the root of a project directory).  This first</span>
-<span id="cb26-237"><a href="#cb26-237"></a>   example will be a very minimal example and much of the rest of the</span>
-<span id="cb26-238"><a href="#cb26-238"></a>   Docker section of this tutorial will then progressively build on</span>
-<span id="cb26-239"><a href="#cb26-239"></a>   this example to introduce more and more complexity.</span>
-<span id="cb26-240"><a href="#cb26-240"></a>   </span>
-<span id="cb26-241"><a href="#cb26-241"></a>   The image we will build will start with a very minimal Debian Linux</span>
-<span id="cb26-242"><a href="#cb26-242"></a>   base called <span class="co">[</span><span class="ot">minidep</span><span class="co">](https://hub.docker.com/r/bitnami/minideb)</span></span>
-<span id="cb26-243"><a href="#cb26-243"></a>   sourced from Dockerhub.  This provides a fully functioning Linux</span>
-<span id="cb26-244"><a href="#cb26-244"></a>   operating system complete with the typical terminal power tools.</span>
-<span id="cb26-245"><a href="#cb26-245"></a>   </span>
-<span id="cb26-246"><a href="#cb26-246"></a>   To then extend the image by updating the package lists (location of</span>
-<span id="cb26-247"><a href="#cb26-247"></a>   repositories) before adding (installing) a small fun terminal</span>
-<span id="cb26-248"><a href="#cb26-248"></a>   application</span>
-<span id="cb26-249"><a href="#cb26-249"></a>   (<span class="co">[</span><span class="ot">cowsay</span><span class="co">](https://github.com/tnalpgge/rank-amateur-cowsay)</span>) that</span>
-<span id="cb26-250"><a href="#cb26-250"></a>   generates ASCII art of a cow (or other animals) along with a speech</span>
-<span id="cb26-251"><a href="#cb26-251"></a>   bubble. </span>
-<span id="cb26-252"><a href="#cb26-252"></a></span>
-<span id="cb26-253"><a href="#cb26-253"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-254"><a href="#cb26-254"></a><span class="in">   #| label: createDockerfile</span></span>
-<span id="cb26-255"><a href="#cb26-255"></a><span class="in">   #| echo: false</span></span>
-<span id="cb26-256"><a href="#cb26-256"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-257"><a href="#cb26-257"></a><span class="in">   #| cache: false</span></span>
-<span id="cb26-258"><a href="#cb26-258"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-259"><a href="#cb26-259"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
-<span id="cb26-260"><a href="#cb26-260"></a><span class="in">   echo &#39;FROM bitnami/minideb:bookworm&#39; &gt; Dockerfile</span></span>
-<span id="cb26-261"><a href="#cb26-261"></a><span class="in">   echo &#39;LABEL maintainer=&quot;Author&quot;&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-262"><a href="#cb26-262"></a><span class="in">   echo &#39;LABEL email=&quot;author_email@email.com&quot;&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-263"><a href="#cb26-263"></a><span class="in">   echo &#39;&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-264"><a href="#cb26-264"></a><span class="in">   echo &#39;## Install the os packages&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-265"><a href="#cb26-265"></a><span class="in">   echo &#39;RUN apt-get update \&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-266"><a href="#cb26-266"></a><span class="in">   echo &#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-267"><a href="#cb26-267"></a><span class="in">   echo &#39;    cowsay \&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-268"><a href="#cb26-268"></a><span class="in">   echo &#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39; &gt;&gt; Dockerfile</span></span>
-<span id="cb26-269"><a href="#cb26-269"></a><span class="in">   ```</span></span>
-<span id="cb26-270"><a href="#cb26-270"></a></span>
-<span id="cb26-271"><a href="#cb26-271"></a>   <span class="in">```{r}</span></span>
-<span id="cb26-272"><a href="#cb26-272"></a><span class="in">   #| label: Text</span></span>
-<span id="cb26-273"><a href="#cb26-273"></a><span class="in">   #| engine: text</span></span>
-<span id="cb26-274"><a href="#cb26-274"></a><span class="in">   #| results: asis</span></span>
-<span id="cb26-275"><a href="#cb26-275"></a><span class="in">   #| classes: dockerfile</span></span>
-<span id="cb26-276"><a href="#cb26-276"></a><span class="in">   #| class-output: dockerfile</span></span>
-<span id="cb26-277"><a href="#cb26-277"></a><span class="in">   #| cache: false</span></span>
-<span id="cb26-278"><a href="#cb26-278"></a><span class="in">   #| file: ~/tmp/docker_tests/Dockerfile</span></span>
-<span id="cb26-279"><a href="#cb26-279"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-280"><a href="#cb26-280"></a><span class="in">   ```</span></span>
-<span id="cb26-281"><a href="#cb26-281"></a></span>
-<span id="cb26-282"><a href="#cb26-282"></a>   In the above <span class="in">`Dockerfile`</span>:</span>
-<span id="cb26-283"><a href="#cb26-283"></a></span>
-<span id="cb26-284"><a href="#cb26-284"></a><span class="ss">   - </span>the three first rows in contain information on the base image on</span>
-<span id="cb26-285"><a href="#cb26-285"></a>     which to construct your docker container image (in this case</span>
-<span id="cb26-286"><a href="#cb26-286"></a>     bitnami/minideb:stretch container freely provided by the bitnami</span>
-<span id="cb26-287"><a href="#cb26-287"></a>     team), as well as information about yourself. <span class="in">`minideb`</span> is a</span>
-<span id="cb26-288"><a href="#cb26-288"></a>     minimal debian operating system.</span>
-<span id="cb26-289"><a href="#cb26-289"></a></span>
-<span id="cb26-290"><a href="#cb26-290"></a><span class="ss">   - </span>the **FROM** command points to a parent image.  Typically, this</span>
-<span id="cb26-291"><a href="#cb26-291"></a>     will point to a specific image within a registry on Docker hub.</span>
-<span id="cb26-292"><a href="#cb26-292"></a>     This generates the base layer of the container image.</span>
-<span id="cb26-293"><a href="#cb26-293"></a></span>
-<span id="cb26-294"><a href="#cb26-294"></a><span class="ss">   - </span>the **LABEL** command is one of numerous _environmental</span>
-<span id="cb26-295"><a href="#cb26-295"></a>     variables_ and is used to add metadata to an image.  In this</span>
-<span id="cb26-296"><a href="#cb26-296"></a>     case, there are two entries to specify information about the</span>
-<span id="cb26-297"><a href="#cb26-297"></a>     maintainer and their contact details.  Note, entries must be</span>
-<span id="cb26-298"><a href="#cb26-298"></a>     key-value pairs and values must be enclosed in double quotes.</span>
-<span id="cb26-299"><a href="#cb26-299"></a></span>
-<span id="cb26-300"><a href="#cb26-300"></a><span class="ss">   - </span>the **RUN** command runs shell commands in a new layer on top of</span>
-<span id="cb26-301"><a href="#cb26-301"></a>     the current image and commits the result.  Each RUN generates a</span>
-<span id="cb26-302"><a href="#cb26-302"></a>     new layer.  The above example, first updates the packages list </span>
-<span id="cb26-303"><a href="#cb26-303"></a>     and then installs an additional package (<span class="in">`cowsay`</span>).</span>
-<span id="cb26-304"><a href="#cb26-304"></a></span>
-<span id="cb26-305"><a href="#cb26-305"></a></span>
-<span id="cb26-306"><a href="#cb26-306"></a><span class="ss">2. </span>**Build the docker image**</span>
-<span id="cb26-307"><a href="#cb26-307"></a></span>
-<span id="cb26-308"><a href="#cb26-308"></a>   In a terminal in the same location as the <span class="in">`Dockerfile`</span> (i.e. your</span>
-<span id="cb26-309"><a href="#cb26-309"></a>   _sandpit folder_), enter something the following:</span>
-<span id="cb26-310"><a href="#cb26-310"></a>   </span>
-<span id="cb26-311"><a href="#cb26-311"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-312"><a href="#cb26-312"></a><span class="in">   #| label: dockerBuildReal</span></span>
-<span id="cb26-313"><a href="#cb26-313"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-314"><a href="#cb26-314"></a><span class="in">   #| results: hide</span></span>
-<span id="cb26-315"><a href="#cb26-315"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-316"><a href="#cb26-316"></a><span class="in">   #| echo: false</span></span>
-<span id="cb26-317"><a href="#cb26-317"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
-<span id="cb26-318"><a href="#cb26-318"></a><span class="in">   docker build . --tag minideb -f Dockerfile</span></span>
-<span id="cb26-319"><a href="#cb26-319"></a><span class="in">   ```</span></span>
-<span id="cb26-320"><a href="#cb26-320"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-321"><a href="#cb26-321"></a><span class="in">   #| label: dockerBuild</span></span>
-<span id="cb26-322"><a href="#cb26-322"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-323"><a href="#cb26-323"></a><span class="in">   #| results: hide</span></span>
-<span id="cb26-324"><a href="#cb26-324"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-325"><a href="#cb26-325"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-326"><a href="#cb26-326"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-327"><a href="#cb26-327"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-328"><a href="#cb26-328"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-329"><a href="#cb26-329"></a><span class="in">   docker build . --tag minideb</span></span>
-<span id="cb26-330"><a href="#cb26-330"></a><span class="in">   ```</span></span>
-<span id="cb26-331"><a href="#cb26-331"></a></span>
-<span id="cb26-332"><a href="#cb26-332"></a>   &lt;br&gt; where:</span>
-<span id="cb26-333"><a href="#cb26-333"></a></span>
-<span id="cb26-334"><a href="#cb26-334"></a><span class="ss">   - </span><span class="in">`.`</span> indicates that the path used for the build context (in this</span>
-<span id="cb26-335"><a href="#cb26-335"></a>     case the current working directory - <span class="in">`.`</span> means current location).</span>
-<span id="cb26-336"><a href="#cb26-336"></a>     Any files within this path can be copied into the image or used</span>
-<span id="cb26-337"><a href="#cb26-337"></a>     in the build context (for example, a <span class="in">`Dockerfile`</span>).</span>
-<span id="cb26-338"><a href="#cb26-338"></a></span>
-<span id="cb26-339"><a href="#cb26-339"></a><span class="ss">   - </span><span class="in">`--tag minideb`</span> provides a name (and optionally, a tag) for the</span>
-<span id="cb26-340"><a href="#cb26-340"></a>   image (in this case <span class="in">`minideb`</span>).  The name (and tag) can be</span>
-<span id="cb26-341"><a href="#cb26-341"></a>   anything, yet should be descriptive enough to help you distinguish</span>
-<span id="cb26-342"><a href="#cb26-342"></a>   this container image from other container images that you might</span>
-<span id="cb26-343"><a href="#cb26-343"></a>   construct on your system.</span>
-<span id="cb26-344"><a href="#cb26-344"></a></span>
-<span id="cb26-345"><a href="#cb26-345"></a>   This will build a series of docker container images (each of the</span>
-<span id="cb26-346"><a href="#cb26-346"></a>   layers built upon the layer before) in a local registry</span>
-<span id="cb26-347"><a href="#cb26-347"></a></span>
-<span id="cb26-348"><a href="#cb26-348"></a><span class="in">    &lt;details&gt;</span></span>
-<span id="cb26-349"><a href="#cb26-349"></a><span class="in">    &lt;summary&gt;More details&lt;/summary&gt;</span></span>
-<span id="cb26-350"><a href="#cb26-350"></a><span class="in">    Usage: `docker build [OPTIONS] PATH | URL | -`</span></span>
-<span id="cb26-351"><a href="#cb26-351"></a><span class="in">    &lt;br&gt;</span></span>
-<span id="cb26-352"><a href="#cb26-352"></a><span class="in">    Common options:</span></span>
-<span id="cb26-353"><a href="#cb26-353"></a><span class="in">    </span></span>
-<span id="cb26-354"><a href="#cb26-354"></a><span class="in">    | Name         | Description                                  | Default      |</span></span>
-<span id="cb26-355"><a href="#cb26-355"></a><span class="in">    |--------------|----------------------------------------------|--------------|</span></span>
-<span id="cb26-356"><a href="#cb26-356"></a><span class="in">    | `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |</span></span>
-<span id="cb26-357"><a href="#cb26-357"></a><span class="in">    | `--no-cache` | Do not use cache when building image         |              |</span></span>
-<span id="cb26-358"><a href="#cb26-358"></a><span class="in">    | `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |</span></span>
-<span id="cb26-359"><a href="#cb26-359"></a><span class="in">    </span></span>
-<span id="cb26-360"><a href="#cb26-360"></a><span class="in">    Typical files in context:&lt;br&gt;</span></span>
-<span id="cb26-361"><a href="#cb26-361"></a><span class="in">    </span></span>
-<span id="cb26-362"><a href="#cb26-362"></a><span class="in">    - `Dockerfile`: a build recipe file&lt;br&gt;</span></span>
-<span id="cb26-363"><a href="#cb26-363"></a><span class="in">    - `.dockerignore`: similar to a `.gitignore`, this file lists</span></span>
-<span id="cb26-364"><a href="#cb26-364"></a><span class="in">      files to be ignored in collating the files that form the build context.&lt;br&gt;</span></span>
-<span id="cb26-365"><a href="#cb26-365"></a><span class="in">    </span></span>
-<span id="cb26-366"><a href="#cb26-366"></a><span class="in">    As an alternative to providing build instructions in the form of a</span></span>
-<span id="cb26-367"><a href="#cb26-367"></a><span class="in">    `Dockerfile`, build can accept a `URL` to a (remote) docker</span></span>
-<span id="cb26-368"><a href="#cb26-368"></a><span class="in">    repository.&lt;br&gt;&lt;br&gt;</span></span>
-<span id="cb26-369"><a href="#cb26-369"></a><span class="in">    More info:&lt;br&gt;</span></span>
-<span id="cb26-370"><a href="#cb26-370"></a><span class="in">    https://docs.docker.com/engine/reference/commandline/build/</span></span>
-<span id="cb26-371"><a href="#cb26-371"></a><span class="in">    &lt;/details&gt;</span></span>
-<span id="cb26-372"><a href="#cb26-372"></a></span>
-<span id="cb26-373"><a href="#cb26-373"></a><span class="ss">3. </span>**Check that the image(s) have been created**</span>
-<span id="cb26-374"><a href="#cb26-374"></a></span>
-<span id="cb26-375"><a href="#cb26-375"></a>   A list of images in your registry is obtained by:</span>
-<span id="cb26-376"><a href="#cb26-376"></a>   </span>
-<span id="cb26-377"><a href="#cb26-377"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-378"><a href="#cb26-378"></a><span class="in">   #| label: dockerImage</span></span>
-<span id="cb26-379"><a href="#cb26-379"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-380"><a href="#cb26-380"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-381"><a href="#cb26-381"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-382"><a href="#cb26-382"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-383"><a href="#cb26-383"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-384"><a href="#cb26-384"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-385"><a href="#cb26-385"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-386"><a href="#cb26-386"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-387"><a href="#cb26-387"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-388"><a href="#cb26-388"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-389"><a href="#cb26-389"></a><span class="in">   docker image ls</span></span>
-<span id="cb26-390"><a href="#cb26-390"></a><span class="in">   ```</span></span>
-<span id="cb26-391"><a href="#cb26-391"></a>           </span>
-<span id="cb26-392"><a href="#cb26-392"></a>   Note, the above simply lists all named images in your local</span>
-<span id="cb26-393"><a href="#cb26-393"></a>   registry.  To get a more complete list of all images:</span>
-<span id="cb26-394"><a href="#cb26-394"></a></span>
-<span id="cb26-395"><a href="#cb26-395"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-396"><a href="#cb26-396"></a><span class="in">   #| label: dockerImages</span></span>
-<span id="cb26-397"><a href="#cb26-397"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-398"><a href="#cb26-398"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-399"><a href="#cb26-399"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-400"><a href="#cb26-400"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-401"><a href="#cb26-401"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-402"><a href="#cb26-402"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-403"><a href="#cb26-403"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-404"><a href="#cb26-404"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-405"><a href="#cb26-405"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-406"><a href="#cb26-406"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-407"><a href="#cb26-407"></a><span class="in">   docker images -a  </span></span>
-<span id="cb26-408"><a href="#cb26-408"></a><span class="in">   ```</span></span>
-<span id="cb26-409"><a href="#cb26-409"></a></span>
-<span id="cb26-410"><a href="#cb26-410"></a>   The <span class="in">`-a`</span> switch indicates all images (including unnamed and hanging images).</span>
-<span id="cb26-411"><a href="#cb26-411"></a></span>
-<span id="cb26-412"><a href="#cb26-412"></a>   This list appears chronologically from bottom to top.  Hence, the</span>
-<span id="cb26-413"><a href="#cb26-413"></a>   Dockerhub image (<span class="in">`bitnami/minideb`</span>) appears at the bottom of this</span>
-<span id="cb26-414"><a href="#cb26-414"></a>   list and above this there is a succession of intermediate images</span>
-<span id="cb26-415"><a href="#cb26-415"></a>   that correspond to each of the layers defined in the <span class="in">`Dockerfile`</span>.</span>
-<span id="cb26-416"><a href="#cb26-416"></a>   Note, each successive image is progressively larger in size as the</span>
-<span id="cb26-417"><a href="#cb26-417"></a>   layer incorporates the layer below.  At the top of the list is the</span>
-<span id="cb26-418"><a href="#cb26-418"></a>   full container image (with <span class="in">`latest`</span> tag).</span>
-<span id="cb26-419"><a href="#cb26-419"></a></span>
-<span id="cb26-420"><a href="#cb26-420"></a>   Importantly, while we have built a container image, we do not yet</span>
-<span id="cb26-421"><a href="#cb26-421"></a>   have any running containers.  We can demonstrate this by listing</span>
-<span id="cb26-422"><a href="#cb26-422"></a>   all existing containers:</span>
-<span id="cb26-423"><a href="#cb26-423"></a></span>
-<span id="cb26-424"><a href="#cb26-424"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-425"><a href="#cb26-425"></a><span class="in">   #| label: dockerPs</span></span>
-<span id="cb26-426"><a href="#cb26-426"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-427"><a href="#cb26-427"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-428"><a href="#cb26-428"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-429"><a href="#cb26-429"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-430"><a href="#cb26-430"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-431"><a href="#cb26-431"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-432"><a href="#cb26-432"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-433"><a href="#cb26-433"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-434"><a href="#cb26-434"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-435"><a href="#cb26-435"></a><span class="in">   #| out.lines: 1</span></span>
-<span id="cb26-436"><a href="#cb26-436"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-437"><a href="#cb26-437"></a><span class="in">   docker ps -a  </span></span>
-<span id="cb26-438"><a href="#cb26-438"></a><span class="in">   ```</span></span>
-<span id="cb26-439"><a href="#cb26-439"></a>   </span>
-<span id="cb26-440"><a href="#cb26-440"></a></span>
-<span id="cb26-441"><a href="#cb26-441"></a>   The output is empty (assuming you have not previously generated any</span>
-<span id="cb26-442"><a href="#cb26-442"></a>   containers), indicating that there are currently no running</span>
-<span id="cb26-443"><a href="#cb26-443"></a>   containers.</span>
-<span id="cb26-444"><a href="#cb26-444"></a></span>
-<span id="cb26-445"><a href="#cb26-445"></a></span>
-<span id="cb26-446"><a href="#cb26-446"></a><span class="ss">4. </span>**Test the docker image (fire up an ephemeral container)**</span>
-<span id="cb26-447"><a href="#cb26-447"></a></span>
-<span id="cb26-448"><a href="#cb26-448"></a>   We will now test the image by generating and running a container</span>
-<span id="cb26-449"><a href="#cb26-449"></a>   from our container image.  Once the container has started, the</span>
-<span id="cb26-450"><a href="#cb26-450"></a>   <span class="in">`cowsay`</span> terminal application will display an ASCII cow saying</span>
-<span id="cb26-451"><a href="#cb26-451"></a>   &#39;Moo&quot; before quietly terminating.  The container will be</span>
-<span id="cb26-452"><a href="#cb26-452"></a>   automatically stopped and removed.</span>
-<span id="cb26-453"><a href="#cb26-453"></a>   </span>
-<span id="cb26-454"><a href="#cb26-454"></a>   <span class="in">```{bash} </span></span>
-<span id="cb26-455"><a href="#cb26-455"></a><span class="in">   #| label: dockerRun</span></span>
-<span id="cb26-456"><a href="#cb26-456"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-457"><a href="#cb26-457"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-458"><a href="#cb26-458"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-459"><a href="#cb26-459"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-460"><a href="#cb26-460"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-461"><a href="#cb26-461"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-462"><a href="#cb26-462"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-463"><a href="#cb26-463"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-464"><a href="#cb26-464"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-465"><a href="#cb26-465"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-466"><a href="#cb26-466"></a><span class="in">   docker run --entrypoint ./usr/games/cowsay --rm minideb Moo</span></span>
-<span id="cb26-467"><a href="#cb26-467"></a><span class="in">   ```</span></span>
-<span id="cb26-468"><a href="#cb26-468"></a></span>
-<span id="cb26-469"><a href="#cb26-469"></a>   where: </span>
-<span id="cb26-470"><a href="#cb26-470"></a>   </span>
-<span id="cb26-471"><a href="#cb26-471"></a><span class="ss">   - </span><span class="in">`--entrypoint ./usr/games/cowsay`</span> defines the base command that</span>
-<span id="cb26-472"><a href="#cb26-472"></a>     will be run once the container has started.  In this case, it</span>
-<span id="cb26-473"><a href="#cb26-473"></a>     specifies the full path to the <span class="in">`cowsay`</span> executable file.</span>
-<span id="cb26-474"><a href="#cb26-474"></a></span>
-<span id="cb26-475"><a href="#cb26-475"></a><span class="ss">   - </span><span class="in">`--rm`</span> indicates that the container should be removed after it</span>
-<span id="cb26-476"><a href="#cb26-476"></a>     has finished running.</span>
-<span id="cb26-477"><a href="#cb26-477"></a>     </span>
-<span id="cb26-478"><a href="#cb26-478"></a><span class="ss">   - </span><span class="in">`minideb`</span> is the name of our docker container image</span>
-<span id="cb26-479"><a href="#cb26-479"></a></span>
-<span id="cb26-480"><a href="#cb26-480"></a><span class="ss">   - </span><span class="in">`Moo`</span> is the string passed on to <span class="in">`cowsay`</span> to display in the</span>
-<span id="cb26-481"><a href="#cb26-481"></a>     speech bubble.  Feel free to experiment with other strings here.</span>
-<span id="cb26-482"><a href="#cb26-482"></a></span>
-<span id="cb26-483"><a href="#cb26-483"></a>    To further appreciate the way arguments are passed on to</span>
-<span id="cb26-484"><a href="#cb26-484"></a>    applications within a container, lets alter the <span class="in">`cowsay`</span> animal.</span>
-<span id="cb26-485"><a href="#cb26-485"></a></span>
-<span id="cb26-486"><a href="#cb26-486"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-487"><a href="#cb26-487"></a><span class="in">   #| label: dockerRun1</span></span>
-<span id="cb26-488"><a href="#cb26-488"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-489"><a href="#cb26-489"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-490"><a href="#cb26-490"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-491"><a href="#cb26-491"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-492"><a href="#cb26-492"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-493"><a href="#cb26-493"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-494"><a href="#cb26-494"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-495"><a href="#cb26-495"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-496"><a href="#cb26-496"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-497"><a href="#cb26-497"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-498"><a href="#cb26-498"></a><span class="in">   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt </span></span>
-<span id="cb26-499"><a href="#cb26-499"></a><span class="in">   ```</span></span>
-<span id="cb26-500"><a href="#cb26-500"></a>   </span>
-<span id="cb26-501"><a href="#cb26-501"></a>   In the above example, we passed `-f</span>
-<span id="cb26-502"><a href="#cb26-502"></a>   /usr/share/cowsay/cows/koala.cow Grunt<span class="in">` on to `</span>cowsay`.  In this</span>
-<span id="cb26-503"><a href="#cb26-503"></a>   context, <span class="in">`-f`</span> points to were alternative animal definitions are</span>
-<span id="cb26-504"><a href="#cb26-504"></a>   located.</span>
-<span id="cb26-505"><a href="#cb26-505"></a></span>
-<span id="cb26-506"><a href="#cb26-506"></a><span class="ss">5. </span>**Test the docker image interactively**</span>
-<span id="cb26-507"><a href="#cb26-507"></a></span>
-<span id="cb26-508"><a href="#cb26-508"></a>    Rather than fire up a container, run some command and then</span>
-<span id="cb26-509"><a href="#cb26-509"></a>    immediately terminate, it is possible to run a container in</span>
-<span id="cb26-510"><a href="#cb26-510"></a>    _interactive mode_.  In this mode, after the container starts up,</span>
-<span id="cb26-511"><a href="#cb26-511"></a>    you will be placed in a terminal where you can issue any available</span>
-<span id="cb26-512"><a href="#cb26-512"></a>    command you like.  Once you have finished the interactive session,</span>
-<span id="cb26-513"><a href="#cb26-513"></a>    simply enter <span class="in">`exit`</span> and the container will then terminate.</span>
-<span id="cb26-514"><a href="#cb26-514"></a></span>
-<span id="cb26-515"><a href="#cb26-515"></a>    Try the following (within the container):</span>
-<span id="cb26-516"><a href="#cb26-516"></a></span>
-<span id="cb26-517"><a href="#cb26-517"></a>   <span class="in">```{bash} </span></span>
-<span id="cb26-518"><a href="#cb26-518"></a><span class="in">   #| label: dockerRun2</span></span>
-<span id="cb26-519"><a href="#cb26-519"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-520"><a href="#cb26-520"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-521"><a href="#cb26-521"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-522"><a href="#cb26-522"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-523"><a href="#cb26-523"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-524"><a href="#cb26-524"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-525"><a href="#cb26-525"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-526"><a href="#cb26-526"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-527"><a href="#cb26-527"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-528"><a href="#cb26-528"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-529"><a href="#cb26-529"></a><span class="in">   docker run --rm -it minideb   </span></span>
-<span id="cb26-530"><a href="#cb26-530"></a><span class="in">   ```</span></span>
-<span id="cb26-531"><a href="#cb26-531"></a></span>
-<span id="cb26-532"><a href="#cb26-532"></a>   Once the prompt appears try entering the following:</span>
-<span id="cb26-533"><a href="#cb26-533"></a></span>
-<span id="cb26-534"><a href="#cb26-534"></a><span class="ss">   - </span>list the files and folders in the current working directory</span>
-<span id="cb26-535"><a href="#cb26-535"></a></span>
-<span id="cb26-536"><a href="#cb26-536"></a>   <span class="in">```{bash} </span></span>
-<span id="cb26-537"><a href="#cb26-537"></a><span class="in">   #| label: dockerRun3</span></span>
-<span id="cb26-538"><a href="#cb26-538"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-539"><a href="#cb26-539"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-540"><a href="#cb26-540"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-541"><a href="#cb26-541"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-542"><a href="#cb26-542"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-543"><a href="#cb26-543"></a><span class="in">   #| classes: terminal-docker</span></span>
-<span id="cb26-544"><a href="#cb26-544"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
-<span id="cb26-545"><a href="#cb26-545"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-546"><a href="#cb26-546"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-547"><a href="#cb26-547"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-548"><a href="#cb26-548"></a><span class="in">   ls -la</span></span>
-<span id="cb26-549"><a href="#cb26-549"></a><span class="in">   ```</span></span>
-<span id="cb26-550"><a href="#cb26-550"></a>  </span>
-<span id="cb26-551"><a href="#cb26-551"></a><span class="ss">   - </span>run the cowsay application</span>
-<span id="cb26-552"><a href="#cb26-552"></a></span>
-<span id="cb26-553"><a href="#cb26-553"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-554"><a href="#cb26-554"></a><span class="in">   #| label: dockerRun4</span></span>
-<span id="cb26-555"><a href="#cb26-555"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-556"><a href="#cb26-556"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-557"><a href="#cb26-557"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-558"><a href="#cb26-558"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-559"><a href="#cb26-559"></a><span class="in">   #| cache: true</span></span>
-<span id="cb26-560"><a href="#cb26-560"></a><span class="in">   #| classes: terminal-docker</span></span>
-<span id="cb26-561"><a href="#cb26-561"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
-<span id="cb26-562"><a href="#cb26-562"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-563"><a href="#cb26-563"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-564"><a href="#cb26-564"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-565"><a href="#cb26-565"></a><span class="in">   ./usr/games/cowsay Moo</span></span>
-<span id="cb26-566"><a href="#cb26-566"></a><span class="in">   ```</span></span>
-<span id="cb26-567"><a href="#cb26-567"></a></span>
-<span id="cb26-568"><a href="#cb26-568"></a><span class="ss">   - </span>exit the container</span>
-<span id="cb26-569"><a href="#cb26-569"></a></span>
-<span id="cb26-570"><a href="#cb26-570"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-571"><a href="#cb26-571"></a><span class="in">   #| label: dockerRun5</span></span>
-<span id="cb26-572"><a href="#cb26-572"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-573"><a href="#cb26-573"></a><span class="in">   #| results: markup</span></span>
-<span id="cb26-574"><a href="#cb26-574"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-575"><a href="#cb26-575"></a><span class="in">   #| comment: &quot;&quot;</span></span>
-<span id="cb26-576"><a href="#cb26-576"></a><span class="in">   #| classes: terminal-docker</span></span>
-<span id="cb26-577"><a href="#cb26-577"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
-<span id="cb26-578"><a href="#cb26-578"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-579"><a href="#cb26-579"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-580"><a href="#cb26-580"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-581"><a href="#cb26-581"></a><span class="in">   exit</span></span>
-<span id="cb26-582"><a href="#cb26-582"></a><span class="in">   ```</span></span>
-<span id="cb26-583"><a href="#cb26-583"></a></span>
-<span id="cb26-584"><a href="#cb26-584"></a><span class="in">    Running in interactive mode is very useful when</span></span>
-<span id="cb26-585"><a href="#cb26-585"></a><span class="in">    developing/debugging code on a container.</span></span>
-<span id="cb26-586"><a href="#cb26-586"></a><span class="in">    </span></span>
-<span id="cb26-587"><a href="#cb26-587"></a> </span>
-<span id="cb26-588"><a href="#cb26-588"></a><span class="fu">## Some Dockerfile goodness</span></span>
-<span id="cb26-589"><a href="#cb26-589"></a></span>
-<span id="cb26-590"><a href="#cb26-590"></a></span>
-<span id="cb26-591"><a href="#cb26-591"></a>::: {.panel-tabset}</span>
-<span id="cb26-592"><a href="#cb26-592"></a></span>
-<span id="cb26-593"><a href="#cb26-593"></a><span class="fu">### Incorporate default commands</span></span>
-<span id="cb26-594"><a href="#cb26-594"></a></span>
-<span id="cb26-595"><a href="#cb26-595"></a>Lets now step this up a bit and add some more information to the build</span>
-<span id="cb26-596"><a href="#cb26-596"></a>recipe.  Rather than alter the previous <span class="in">`Dockerfile`</span>, we will instead</span>
-<span id="cb26-597"><a href="#cb26-597"></a>make a different file (<span class="in">`Dockerfile2`</span>) and inform <span class="in">`docker`</span> to build with this</span>
-<span id="cb26-598"><a href="#cb26-598"></a>alternative <span class="in">`Dockerfile`</span>.</span>
-<span id="cb26-599"><a href="#cb26-599"></a></span>
-<span id="cb26-602"><a href="#cb26-602"></a><span class="in">```{bash}</span></span>
-<span id="cb26-603"><a href="#cb26-603"></a><span class="co">#| label: createDockerfile2</span></span>
-<span id="cb26-604"><a href="#cb26-604"></a><span class="co">#| echo: false</span></span>
-<span id="cb26-605"><a href="#cb26-605"></a><span class="co">#| eval: true</span></span>
-<span id="cb26-606"><a href="#cb26-606"></a><span class="co">#| classes: bash</span></span>
-<span id="cb26-607"><a href="#cb26-607"></a><span class="co">#| engine: bash</span></span>
-<span id="cb26-608"><a href="#cb26-608"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
-<span id="cb26-609"><a href="#cb26-609"></a><span class="bu">echo</span> <span class="st">&#39;FROM bitnami/minideb:bookworm&#39;</span> <span class="op">&gt;</span> Dockerfile2</span>
-<span id="cb26-610"><a href="#cb26-610"></a><span class="bu">echo</span> <span class="st">&#39;LABEL maintainer=&quot;Author&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-611"><a href="#cb26-611"></a><span class="bu">echo</span> <span class="st">&#39;LABEL email=&quot;author_email@email.com&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-612"><a href="#cb26-612"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-613"><a href="#cb26-613"></a><span class="bu">echo</span> <span class="st">&#39;## Install the os packages&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-614"><a href="#cb26-614"></a><span class="bu">echo</span> <span class="st">&#39;RUN apt-get update \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-615"><a href="#cb26-615"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-616"><a href="#cb26-616"></a><span class="bu">echo</span> <span class="st">&#39;    cowsay \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-617"><a href="#cb26-617"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-618"><a href="#cb26-618"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-619"><a href="#cb26-619"></a><span class="bu">echo</span> <span class="st">&#39;## Default command to run&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-620"><a href="#cb26-620"></a><span class="bu">echo</span> <span class="st">&#39;ENTRYPOINT [&quot;/usr/games/cowsay&quot;,&quot;-f&quot;,&quot;/usr/share/cowsay/cows/koala.cow&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-621"><a href="#cb26-621"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-622"><a href="#cb26-622"></a><span class="bu">echo</span> <span class="st">&#39;## Default extra parameters passed to the command&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-623"><a href="#cb26-623"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;Grunt&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
-<span id="cb26-624"><a href="#cb26-624"></a><span class="in">```</span></span>
-<span id="cb26-625"><a href="#cb26-625"></a></span>
-<span id="cb26-628"><a href="#cb26-628"></a><span class="in">```{r}</span></span>
-<span id="cb26-629"><a href="#cb26-629"></a><span class="co">#| label: Text2</span></span>
-<span id="cb26-630"><a href="#cb26-630"></a><span class="co">#| engine: text</span></span>
-<span id="cb26-631"><a href="#cb26-631"></a><span class="co">#| results: asis</span></span>
-<span id="cb26-632"><a href="#cb26-632"></a><span class="co">#| classes: dockerfile</span></span>
-<span id="cb26-633"><a href="#cb26-633"></a><span class="co">#| class-output: dockerfile</span></span>
-<span id="cb26-634"><a href="#cb26-634"></a><span class="co">#| file: ~/tmp/docker_tests/Dockerfile2</span></span>
-<span id="cb26-635"><a href="#cb26-635"></a><span class="co">#| eval: false</span></span>
-<span id="cb26-636"><a href="#cb26-636"></a><span class="in">```</span></span>
-<span id="cb26-637"><a href="#cb26-637"></a></span>
-<span id="cb26-638"><a href="#cb26-638"></a>   In the above <span class="in">`Dockerfile`</span>:</span>
-<span id="cb26-639"><a href="#cb26-639"></a></span>
-<span id="cb26-640"><a href="#cb26-640"></a><span class="ss">   - </span><span class="in">`ENTRYPOINT`</span> provides a default command to run within the</span>
-<span id="cb26-641"><a href="#cb26-641"></a>     container.  This specification is in _JSON_ format.</span>
-<span id="cb26-642"><a href="#cb26-642"></a>     </span>
-<span id="cb26-643"><a href="#cb26-643"></a><span class="ss">   - </span><span class="in">`CMD`</span> provides default extra parameters that are passed on to the</span>
-<span id="cb26-644"><a href="#cb26-644"></a>     command (also in _JSON_ format).  This can be overridden by</span>
-<span id="cb26-645"><a href="#cb26-645"></a>     passing an alternative when running the <span class="in">`docker run`</span> command (see</span>
-<span id="cb26-646"><a href="#cb26-646"></a>     below).</span>
-<span id="cb26-647"><a href="#cb26-647"></a>     </span>
-<span id="cb26-648"><a href="#cb26-648"></a>   If we now build our container image using this <span class="in">`Dockerfile2`</span>:</span>
-<span id="cb26-649"><a href="#cb26-649"></a>   </span>
-<span id="cb26-650"><a href="#cb26-650"></a>   <span class="in">```{bash}</span></span>
-<span id="cb26-651"><a href="#cb26-651"></a><span class="in">   #| label: dockerBuildReal2</span></span>
-<span id="cb26-652"><a href="#cb26-652"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-653"><a href="#cb26-653"></a><span class="in">   #| results: hide</span></span>
-<span id="cb26-654"><a href="#cb26-654"></a><span class="in">   #| eval: true</span></span>
-<span id="cb26-655"><a href="#cb26-655"></a><span class="in">   #| echo: false</span></span>
-<span id="cb26-656"><a href="#cb26-656"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
-<span id="cb26-657"><a href="#cb26-657"></a><span class="in">   docker build . --tag minideb -f Dockerfile2</span></span>
-<span id="cb26-658"><a href="#cb26-658"></a><span class="in">   ```</span></span>
-<span id="cb26-659"><a href="#cb26-659"></a></span>
-<span id="cb26-660"><a href="#cb26-660"></a>   <span class="in">```{bash} </span></span>
-<span id="cb26-661"><a href="#cb26-661"></a><span class="in">   #| label: dockerBuild2</span></span>
-<span id="cb26-662"><a href="#cb26-662"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb26-663"><a href="#cb26-663"></a><span class="in">   #| results: hide</span></span>
-<span id="cb26-664"><a href="#cb26-664"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb26-665"><a href="#cb26-665"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb26-666"><a href="#cb26-666"></a><span class="in">   #| class-output: terminal</span></span>
-<span id="cb26-667"><a href="#cb26-667"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb26-668"><a href="#cb26-668"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb26-669"><a href="#cb26-669"></a><span class="in">   #| eval: false</span></span>
-<span id="cb26-670"><a href="#cb26-670"></a><span class="in">   docker build . --tag minideb -f Dockerfile2 </span></span>
-<span id="cb26-671"><a href="#cb26-671"></a><span class="in">   ```</span></span>
-<span id="cb26-672"><a href="#cb26-672"></a>    </span>
-<span id="cb26-673"><a href="#cb26-673"></a>   If we again review the list of images, we see that there are now</span>
-<span id="cb26-674"><a href="#cb26-674"></a>   two additional intermediate images and the <span class="in">`latest`</span> image has been</span>
-<span id="cb26-675"><a href="#cb26-675"></a>   updated.</span>
-<span id="cb26-676"><a href="#cb26-676"></a>    </span>
-<span id="cb26-679"><a href="#cb26-679"></a><span class="in">```{bash}</span></span>
-<span id="cb26-680"><a href="#cb26-680"></a><span class="co">#| label: dockerImages2</span></span>
-<span id="cb26-681"><a href="#cb26-681"></a><span class="co">#| engine: bash</span></span>
-<span id="cb26-682"><a href="#cb26-682"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb26-683"><a href="#cb26-683"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb26-684"><a href="#cb26-684"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb26-685"><a href="#cb26-685"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb26-686"><a href="#cb26-686"></a><span class="co">#| out.lines: c(1, 21:26)</span></span>
-<span id="cb26-687"><a href="#cb26-687"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb26-688"><a href="#cb26-688"></a><span class="co">#| eval: true</span></span>
-<span id="cb26-689"><a href="#cb26-689"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb26-690"><a href="#cb26-690"></a><span class="co">#| cache: true</span></span>
-<span id="cb26-691"><a href="#cb26-691"></a><span class="ex">docker</span> images <span class="at">-a</span>   </span>
-<span id="cb26-692"><a href="#cb26-692"></a><span class="in">```</span></span>
-<span id="cb26-693"><a href="#cb26-693"></a>  </span>
-<span id="cb26-694"><a href="#cb26-694"></a>   We can now run the container as:</span>
-<span id="cb26-695"><a href="#cb26-695"></a>  </span>
-<span id="cb26-698"><a href="#cb26-698"></a><span class="in">```{bash}</span></span>
-<span id="cb26-699"><a href="#cb26-699"></a><span class="co">#| label: dockerRun20</span></span>
-<span id="cb26-700"><a href="#cb26-700"></a><span class="co">#| engine: bash</span></span>
-<span id="cb26-701"><a href="#cb26-701"></a><span class="co">#| results: markup</span></span>
-<span id="cb26-702"><a href="#cb26-702"></a><span class="co">#| eval: true</span></span>
-<span id="cb26-703"><a href="#cb26-703"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb26-704"><a href="#cb26-704"></a><span class="co">#| cache: true</span></span>
-<span id="cb26-705"><a href="#cb26-705"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb26-706"><a href="#cb26-706"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb26-707"><a href="#cb26-707"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb26-708"><a href="#cb26-708"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb26-709"><a href="#cb26-709"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb26-710"><a href="#cb26-710"></a><span class="ex">docker</span> run <span class="at">--rm</span> minideb     </span>
-<span id="cb26-711"><a href="#cb26-711"></a><span class="in">```</span></span>
-<span id="cb26-712"><a href="#cb26-712"></a></span>
-<span id="cb26-713"><a href="#cb26-713"></a>   To override the default arguments (**CMD**) we baked into the</span>
-<span id="cb26-714"><a href="#cb26-714"></a>   docker image, we can issue an alternative as a command line</span>
-<span id="cb26-715"><a href="#cb26-715"></a>   argument.</span>
-<span id="cb26-716"><a href="#cb26-716"></a>   </span>
-<span id="cb26-719"><a href="#cb26-719"></a><span class="in">```{bash}</span></span>
-<span id="cb26-720"><a href="#cb26-720"></a><span class="co">#| label: dockerRun20a</span></span>
-<span id="cb26-721"><a href="#cb26-721"></a><span class="co">#| engine: bash</span></span>
-<span id="cb26-722"><a href="#cb26-722"></a><span class="co">#| results: markup</span></span>
-<span id="cb26-723"><a href="#cb26-723"></a><span class="co">#| eval: true</span></span>
-<span id="cb26-724"><a href="#cb26-724"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb26-725"><a href="#cb26-725"></a><span class="co">#| cache: true</span></span>
-<span id="cb26-726"><a href="#cb26-726"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb26-727"><a href="#cb26-727"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb26-728"><a href="#cb26-728"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb26-729"><a href="#cb26-729"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb26-730"><a href="#cb26-730"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb26-731"><a href="#cb26-731"></a><span class="ex">docker</span> run <span class="at">--rm</span> minideb Meow     </span>
-<span id="cb26-732"><a href="#cb26-732"></a><span class="in">```</span></span>
-<span id="cb26-733"><a href="#cb26-733"></a></span>
-<span id="cb26-734"><a href="#cb26-734"></a></span>
-<span id="cb26-735"><a href="#cb26-735"></a><span class="fu">### Copy and mountpoints</span></span>
-<span id="cb26-736"><a href="#cb26-736"></a></span>
-<span id="cb26-737"><a href="#cb26-737"></a>So far, we have used the docker container to display an ASCII art cow</span>
-<span id="cb26-738"><a href="#cb26-738"></a>(or koala) in the terminal and then exit.  Whilst, this might have</span>
-<span id="cb26-739"><a href="#cb26-739"></a>some utility as a simple example of interacting with containers, it</span>
-<span id="cb26-740"><a href="#cb26-740"></a>hardly represents typical work.</span>
-<span id="cb26-741"><a href="#cb26-741"></a></span>
-<span id="cb26-742"><a href="#cb26-742"></a>In the context of reproducible research, containers are useful for</span>
-<span id="cb26-743"><a href="#cb26-743"></a>providing a consistent environment in which to run code.  Thus in order</span>
-<span id="cb26-744"><a href="#cb26-744"></a>to be useful, a container should have:</span>
-<span id="cb26-745"><a href="#cb26-745"></a></span>
-<span id="cb26-746"><a href="#cb26-746"></a><span class="ss">1. </span>access (or a copy) of the code within the container</span>
-<span id="cb26-747"><a href="#cb26-747"></a></span>
-<span id="cb26-748"><a href="#cb26-748"></a><span class="ss">2. </span>the ability to store the results on the host where they can be</span>
-<span id="cb26-749"><a href="#cb26-749"></a>   viewed and disseminated.</span>
-<span id="cb26-750"><a href="#cb26-750"></a>  </span>
-<span id="cb26-751"><a href="#cb26-751"></a>To illustrate these, we will add the R Statistical and Graphical</span>
-<span id="cb26-752"><a href="#cb26-752"></a>Environment to our container image and use this in two further</span>
-<span id="cb26-753"><a href="#cb26-753"></a>examples.  </span>
-<span id="cb26-754"><a href="#cb26-754"></a></span>
-<span id="cb26-755"><a href="#cb26-755"></a><span class="fu">#### Copy</span></span>
-<span id="cb26-756"><a href="#cb26-756"></a></span>
-<span id="cb26-757"><a href="#cb26-757"></a>For the first example, we will add instructions to the <span class="in">`Dockerfile`</span> to</span>
-<span id="cb26-758"><a href="#cb26-758"></a>copy a small R script into the container so that the code can be run</span>
-<span id="cb26-759"><a href="#cb26-759"></a>within the container environment.  Lets create two files:</span>
-<span id="cb26-760"><a href="#cb26-760"></a></span>
-<span id="cb26-763"><a href="#cb26-763"></a><span class="in">```{bash}</span></span>
-<span id="cb26-764"><a href="#cb26-764"></a><span class="co">#| label: createanalysis</span></span>
-<span id="cb26-765"><a href="#cb26-765"></a><span class="co">#| echo: false</span></span>
-<span id="cb26-766"><a href="#cb26-766"></a><span class="co">#| eval: true</span></span>
-<span id="cb26-767"><a href="#cb26-767"></a><span class="co">#| classes: bash</span></span>
-<span id="cb26-768"><a href="#cb26-768"></a><span class="co">#| engine: bash</span></span>
-<span id="cb26-769"><a href="#cb26-769"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
-<span id="cb26-770"><a href="#cb26-770"></a><span class="bu">echo</span> <span class="st">&#39;dat &lt;- data.frame(y = rnorm(10))&#39;</span> <span class="op">&gt;</span> analysis.R</span>
-<span id="cb26-771"><a href="#cb26-771"></a><span class="bu">echo</span> <span class="st">&#39;dat&#39;</span> <span class="op">&gt;&gt;</span> analysis.R</span>
-<span id="cb26-772"><a href="#cb26-772"></a><span class="bu">echo</span> <span class="st">&#39;write.csv(dat, file = &quot;dat.csv&quot;, row.names = FALSE)&#39;</span> <span class="op">&gt;&gt;</span> analysis.R</span>
-<span id="cb26-773"><a href="#cb26-773"></a><span class="in">```</span></span>
-<span id="cb26-776"><a href="#cb26-776"></a><span class="in">```{r}</span></span>
-<span id="cb26-777"><a href="#cb26-777"></a><span class="co">#| label: Rcode3</span></span>
-<span id="cb26-778"><a href="#cb26-778"></a><span class="co">#| engine: text</span></span>
-<span id="cb26-779"><a href="#cb26-779"></a><span class="co">#| results: asis</span></span>
-<span id="cb26-780"><a href="#cb26-780"></a><span class="co">#| classes: dockerfile</span></span>
-<span id="cb26-781"><a href="#cb26-781"></a><span class="co">#| class-output: dockerfile</span></span>
-<span id="cb26-782"><a href="#cb26-782"></a><span class="co">#| file: ~/tmp/docker_tests/analysis.R</span></span>
-<span id="cb26-783"><a href="#cb26-783"></a><span class="co">#| eval: false</span></span>
-<span id="cb26-784"><a href="#cb26-784"></a><span class="in">```</span></span>
-<span id="cb26-785"><a href="#cb26-785"></a></span>
-<span id="cb26-786"><a href="#cb26-786"></a></span>
-<span id="cb26-787"><a href="#cb26-787"></a>:::</span>
-<span id="cb26-788"><a href="#cb26-788"></a></span>
-<span id="cb26-789"><a href="#cb26-789"></a></span>
-<span id="cb26-790"><a href="#cb26-790"></a></span>
-<span id="cb26-791"><a href="#cb26-791"></a></span>
-<span id="cb26-792"><a href="#cb26-792"></a>::: {.raw} </span>
-<span id="cb26-793"><a href="#cb26-793"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb26-794"><a href="#cb26-794"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb26-795"><a href="#cb26-795"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb26-796"><a href="#cb26-796"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb26-797"><a href="#cb26-797"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb26-798"><a href="#cb26-798"></a>})<span class="op">;</span></span>
-<span id="cb26-799"><a href="#cb26-799"></a>&lt;/script&gt;</span>
-<span id="cb26-800"><a href="#cb26-800"></a></span>
-<span id="cb26-801"><a href="#cb26-801"></a>:::</span>
+<div class="sourceCode" id="cb30" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb30-1"><a href="#cb30-1"></a><span class="co">---</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="an">title:</span><span class="co"> Containerisation - docker and singularity</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
+<span id="cb30-4"><a href="#cb30-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="an">format:</span><span class="co"> </span></span>
+<span id="cb30-6"><a href="#cb30-6"></a><span class="co">  html:</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a><span class="co">    toc: true</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a><span class="co">    toc-float: true</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="co">    page-layout: full</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a><span class="co">    number-sections: true</span></span>
+<span id="cb30-11"><a href="#cb30-11"></a><span class="co">    number-depth: 3</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a><span class="co">    code-fold: false</span></span>
+<span id="cb30-14"><a href="#cb30-14"></a><span class="co">    code-tools: true</span></span>
+<span id="cb30-15"><a href="#cb30-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
+<span id="cb30-16"><a href="#cb30-16"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb30-17"><a href="#cb30-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
+<span id="cb30-18"><a href="#cb30-18"></a><span class="co">    code-copy: true</span></span>
+<span id="cb30-19"><a href="#cb30-19"></a><span class="co">    highlight-style: atom-one</span></span>
+<span id="cb30-20"><a href="#cb30-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
+<span id="cb30-21"><a href="#cb30-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
+<span id="cb30-22"><a href="#cb30-22"></a><span class="an">crossref:</span></span>
+<span id="cb30-23"><a href="#cb30-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
+<span id="cb30-24"><a href="#cb30-24"></a><span class="co">  fig-labels: arabic</span></span>
+<span id="cb30-25"><a href="#cb30-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
+<span id="cb30-26"><a href="#cb30-26"></a><span class="co">  tbl-labels: arabic</span></span>
+<span id="cb30-27"><a href="#cb30-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb30-28"><a href="#cb30-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
+<span id="cb30-29"><a href="#cb30-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
+<span id="cb30-30"><a href="#cb30-30"></a><span class="co">---</span></span>
+<span id="cb30-31"><a href="#cb30-31"></a></span>
+<span id="cb30-32"><a href="#cb30-32"></a><span class="in">```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}</span></span>
+<span id="cb30-33"><a href="#cb30-33"></a><span class="in">knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = &quot;&quot;)</span></span>
+<span id="cb30-34"><a href="#cb30-34"></a><span class="in">options(tinytex.engine = &#39;xelatex&#39;)</span></span>
+<span id="cb30-35"><a href="#cb30-35"></a><span class="in">cleanRmdInput &lt;- function(x) {</span></span>
+<span id="cb30-36"><a href="#cb30-36"></a><span class="in">#x &lt;- gsub(&quot;```\\{r&quot;,&quot;```markdown\n`r &#39;&#39;```\\{r&quot;,x)</span></span>
+<span id="cb30-37"><a href="#cb30-37"></a><span class="in">x &lt;- gsub(&quot;^```$&quot;,&quot;`` `&quot;,x)  # the Makefile will then change this back to ``` after pandoc</span></span>
+<span id="cb30-38"><a href="#cb30-38"></a><span class="in">x</span></span>
+<span id="cb30-39"><a href="#cb30-39"></a><span class="in">}</span></span>
+<span id="cb30-40"><a href="#cb30-40"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb30-41"><a href="#cb30-41"></a><span class="in">library(pander)</span></span>
+<span id="cb30-42"><a href="#cb30-42"></a><span class="in">FIG_PATH &lt;- &#39;12_docker_files/figure-html/&#39;</span></span>
+<span id="cb30-43"><a href="#cb30-43"></a></span>
+<span id="cb30-44"><a href="#cb30-44"></a><span class="in"># save the built-in output hook</span></span>
+<span id="cb30-45"><a href="#cb30-45"></a><span class="in">hook_output &lt;- knitr::knit_hooks$get(&quot;output&quot;)</span></span>
+<span id="cb30-46"><a href="#cb30-46"></a></span>
+<span id="cb30-47"><a href="#cb30-47"></a><span class="in"># set a new output hook to truncate text output</span></span>
+<span id="cb30-48"><a href="#cb30-48"></a><span class="in">knitr::knit_hooks$set(output = function(x, options) {</span></span>
+<span id="cb30-49"><a href="#cb30-49"></a><span class="in">  if (!is.null(n &lt;- options$out.lines)) {</span></span>
+<span id="cb30-50"><a href="#cb30-50"></a><span class="in">    x &lt;- xfun::split_lines(x)</span></span>
+<span id="cb30-51"><a href="#cb30-51"></a><span class="in">    more &lt;- &quot;...&quot;</span></span>
+<span id="cb30-52"><a href="#cb30-52"></a><span class="in">    n &lt;- eval(parse(text=n))</span></span>
+<span id="cb30-53"><a href="#cb30-53"></a><span class="in">    if (length(n) == 1) {</span></span>
+<span id="cb30-54"><a href="#cb30-54"></a><span class="in">      if (length(x) &gt; n) {</span></span>
+<span id="cb30-55"><a href="#cb30-55"></a><span class="in">        # truncate the output</span></span>
+<span id="cb30-56"><a href="#cb30-56"></a><span class="in">        x &lt;- c(head(x, n), &quot;....\n&quot;)</span></span>
+<span id="cb30-57"><a href="#cb30-57"></a><span class="in">        }</span></span>
+<span id="cb30-58"><a href="#cb30-58"></a><span class="in">    } else {</span></span>
+<span id="cb30-59"><a href="#cb30-59"></a><span class="in">        x &lt;- c(more, x[n], more)</span></span>
+<span id="cb30-60"><a href="#cb30-60"></a><span class="in">    }    </span></span>
+<span id="cb30-61"><a href="#cb30-61"></a><span class="in">    x &lt;- paste(x, collapse = &quot;\n&quot;)</span></span>
+<span id="cb30-62"><a href="#cb30-62"></a><span class="in">  }</span></span>
+<span id="cb30-63"><a href="#cb30-63"></a><span class="in">  hook_output(x, options)</span></span>
+<span id="cb30-64"><a href="#cb30-64"></a><span class="in">})</span></span>
+<span id="cb30-65"><a href="#cb30-65"></a><span class="in">```</span></span>
+<span id="cb30-66"><a href="#cb30-66"></a></span>
+<span id="cb30-67"><a href="#cb30-67"></a><span class="fu"># Background information</span></span>
+<span id="cb30-68"><a href="#cb30-68"></a></span>
+<span id="cb30-69"><a href="#cb30-69"></a>In the previous tutorial, we discussed why it is important that your</span>
+<span id="cb30-70"><a href="#cb30-70"></a>codebase is under version control and backed up to help ensure that</span>
+<span id="cb30-71"><a href="#cb30-71"></a>your analyses can be evaluated and replicated by you and others both</span>
+<span id="cb30-72"><a href="#cb30-72"></a>now and into the future.  However, having access to the code (and</span>
+<span id="cb30-73"><a href="#cb30-73"></a>data) does not always guarantee full reproducibility - this can also</span>
+<span id="cb30-74"><a href="#cb30-74"></a>be effected by the exact software environment in which the code is</span>
+<span id="cb30-75"><a href="#cb30-75"></a>run.</span>
+<span id="cb30-76"><a href="#cb30-76"></a></span>
+<span id="cb30-77"><a href="#cb30-77"></a>In the context of statistical analyses performed in R for example, R</span>
+<span id="cb30-78"><a href="#cb30-78"></a>as well as the various packages that you have elected to use in</span>
+<span id="cb30-79"><a href="#cb30-79"></a>support your analyses can (and do) evolve over time.  Some functions</span>
+<span id="cb30-80"><a href="#cb30-80"></a>get modified and some even get depreciated.  Hence, over time, code</span>
+<span id="cb30-81"><a href="#cb30-81"></a>that once worked perfectly (or at least adequately) can become _broken_.</span>
+<span id="cb30-82"><a href="#cb30-82"></a></span>
+<span id="cb30-83"><a href="#cb30-83"></a>Early solutions to this facet of reproducibility focused on **virtual</span>
+<span id="cb30-84"><a href="#cb30-84"></a>machines**.  Virtual machines (VM) build entire software environments on</span>
+<span id="cb30-85"><a href="#cb30-85"></a>top of a software layer that mimics a physical computer such that each</span>
+<span id="cb30-86"><a href="#cb30-86"></a>VM runs on a _host_ computer is a completely separate self-contained</span>
+<span id="cb30-87"><a href="#cb30-87"></a>entity.  Whilst VMs do permit great flexibility (as virtually any</span>
+<span id="cb30-88"><a href="#cb30-88"></a>operating system can be installed on a VM), they are considerably</span>
+<span id="cb30-89"><a href="#cb30-89"></a>slower and less efficient than physical machines.  Moreover, it is</span>
+<span id="cb30-90"><a href="#cb30-90"></a>typically necessary to allocate a fixed amount of computer resources</span>
+<span id="cb30-91"><a href="#cb30-91"></a>(particularly CPU) to the VM in advance.</span>
+<span id="cb30-92"><a href="#cb30-92"></a></span>
+<span id="cb30-93"><a href="#cb30-93"></a>More modern solutions focus instead on **Containers**.  In contrast to</span>
+<span id="cb30-94"><a href="#cb30-94"></a>VMs, containers do not mimic a physical computer, rather they only</span>
+<span id="cb30-95"><a href="#cb30-95"></a>virtualise layers on top of the host operating system.  Indeed,</span>
+<span id="cb30-96"><a href="#cb30-96"></a>containers share (read only) the host OS kernel and binaries/libraries</span>
+<span id="cb30-97"><a href="#cb30-97"></a>and thus containers and the applications contained therein can be very</span>
+<span id="cb30-98"><a href="#cb30-98"></a>&quot;light&quot; and are typically are almost as performant as applications run</span>
+<span id="cb30-99"><a href="#cb30-99"></a>natively on the host.</span>
+<span id="cb30-100"><a href="#cb30-100"></a></span>
+<span id="cb30-101"><a href="#cb30-101"></a>Time for some container terminology:</span>
+<span id="cb30-102"><a href="#cb30-102"></a></span>
+<span id="cb30-103"><a href="#cb30-103"></a><span class="ss">- </span>**Container image** is a static (unchangeable) file (or collection of</span>
+<span id="cb30-104"><a href="#cb30-104"></a>  files) that bundles code and all its dependencies (such as the</span>
+<span id="cb30-105"><a href="#cb30-105"></a>  necessary system libraries, code, runtime and system</span>
+<span id="cb30-106"><a href="#cb30-106"></a>  tools). Essentially, the image has all the information required to</span>
+<span id="cb30-107"><a href="#cb30-107"></a>  reproduce an software environment on any compatible machine.</span>
+<span id="cb30-108"><a href="#cb30-108"></a>  However, an image is just a snapshot which serves as a template to</span>
+<span id="cb30-109"><a href="#cb30-109"></a>  build a **container**. In other words, a container is a running image,</span>
+<span id="cb30-110"><a href="#cb30-110"></a>  and cannot exist without the image, whereas an image can exist</span>
+<span id="cb30-111"><a href="#cb30-111"></a>  without a container.</span>
+<span id="cb30-112"><a href="#cb30-112"></a></span>
+<span id="cb30-113"><a href="#cb30-113"></a><span class="ss">- </span>**Container** is a standard (linux) process whose software environment</span>
+<span id="cb30-114"><a href="#cb30-114"></a>  is defined by the contents of a container image and that runs on top</span>
+<span id="cb30-115"><a href="#cb30-115"></a>  of the host&#39;s OS.</span>
+<span id="cb30-116"><a href="#cb30-116"></a></span>
+<span id="cb30-117"><a href="#cb30-117"></a><span class="fu"># Preparations</span></span>
+<span id="cb30-118"><a href="#cb30-118"></a></span>
+<span id="cb30-119"><a href="#cb30-119"></a>If you intend to follow along with this tutorial, you may like to:</span>
+<span id="cb30-120"><a href="#cb30-120"></a> </span>
+<span id="cb30-121"><a href="#cb30-121"></a><span class="ss">- </span>create a new folder (hereafter referred to as the _sandpit folder_)</span>
+<span id="cb30-122"><a href="#cb30-122"></a>  in which to create some files. On my local machine, I have a folder</span>
+<span id="cb30-123"><a href="#cb30-123"></a>  (<span class="in">`tmp`</span>) in my home folder into which I will place a folder (called</span>
+<span id="cb30-124"><a href="#cb30-124"></a>  <span class="in">`docker_tests`</span>) for this very purpose.  On Linux and MacOSX that</span>
+<span id="cb30-125"><a href="#cb30-125"></a>  would be achieved via the following:</span>
+<span id="cb30-126"><a href="#cb30-126"></a></span>
+<span id="cb30-127"><a href="#cb30-127"></a>  <span class="in">```{r}</span></span>
+<span id="cb30-128"><a href="#cb30-128"></a><span class="in">  #| label: prepareFolder1</span></span>
+<span id="cb30-129"><a href="#cb30-129"></a><span class="in">  #| results: hide</span></span>
+<span id="cb30-130"><a href="#cb30-130"></a><span class="in">  #| eval: true</span></span>
+<span id="cb30-131"><a href="#cb30-131"></a><span class="in">  #| echo: false</span></span>
+<span id="cb30-132"><a href="#cb30-132"></a><span class="in">  unlink(&#39;~/tmp/docker_tests&#39;, recursive=TRUE, force=TRUE)</span></span>
+<span id="cb30-133"><a href="#cb30-133"></a><span class="in">  if (!dir.exists(&#39;~/tmp&#39;)) dir.create(&#39;~/tmp&#39;)</span></span>
+<span id="cb30-134"><a href="#cb30-134"></a><span class="in">  ```</span></span>
+<span id="cb30-135"><a href="#cb30-135"></a>  <span class="in">```{bash}</span></span>
+<span id="cb30-136"><a href="#cb30-136"></a><span class="in">  #| label: prepareFolder</span></span>
+<span id="cb30-137"><a href="#cb30-137"></a><span class="in">  #| echo: true</span></span>
+<span id="cb30-138"><a href="#cb30-138"></a><span class="in">  #| eval: true</span></span>
+<span id="cb30-139"><a href="#cb30-139"></a><span class="in">  #| classes: terminal</span></span>
+<span id="cb30-140"><a href="#cb30-140"></a><span class="in">  #| class-source: terminal</span></span>
+<span id="cb30-141"><a href="#cb30-141"></a><span class="in">  #| code-line-numbers: false</span></span>
+<span id="cb30-142"><a href="#cb30-142"></a><span class="in">  #| highlight-style: zenburn</span></span>
+<span id="cb30-143"><a href="#cb30-143"></a><span class="in">  mkdir ~/tmp/docker_tests</span></span>
+<span id="cb30-144"><a href="#cb30-144"></a><span class="in">  ```</span></span>
+<span id="cb30-145"><a href="#cb30-145"></a> &lt;/br&gt;</span>
+<span id="cb30-146"><a href="#cb30-146"></a></span>
+<span id="cb30-147"><a href="#cb30-147"></a><span class="ss">- </span>install <span class="co">[</span><span class="ot">Docker</span><span class="co">](www.docker.com)</span></span>
+<span id="cb30-148"><a href="#cb30-148"></a></span>
+<span id="cb30-149"><a href="#cb30-149"></a><span class="ss">- </span>install <span class="co">[</span><span class="ot">apptainer/singularity</span><span class="co">](https://apptainer.org/)</span> (if you</span>
+<span id="cb30-150"><a href="#cb30-150"></a>intend to follow along with containers on a HPC).</span>
+<span id="cb30-151"><a href="#cb30-151"></a></span>
+<span id="cb30-152"><a href="#cb30-152"></a><span class="fu"># Docker</span></span>
+<span id="cb30-153"><a href="#cb30-153"></a></span>
+<span id="cb30-154"><a href="#cb30-154"></a>Currently, the most popular container engine in use today is <span class="co">[</span><span class="ot">Docker</span><span class="co">](www.docker.com)</span>.</span>
+<span id="cb30-155"><a href="#cb30-155"></a>Docker is easy to install on most operating systems and comes with</span>
+<span id="cb30-156"><a href="#cb30-156"></a>tools to build, manage, run and distribute container images (the later</span>
+<span id="cb30-157"><a href="#cb30-157"></a>of which is supported via the <span class="co">[</span><span class="ot">DockerHub</span><span class="co">](https://hub.docker.com)</span> container ecosystem.</span>
+<span id="cb30-158"><a href="#cb30-158"></a></span>
+<span id="cb30-159"><a href="#cb30-159"></a></span>
+<span id="cb30-162"><a href="#cb30-162"></a><span class="in">```{tikz}</span></span>
+<span id="cb30-163"><a href="#cb30-163"></a><span class="in">%| label: DockerOverviewFig1</span></span>
+<span id="cb30-164"><a href="#cb30-164"></a><span class="in">%| engine: tikz</span></span>
+<span id="cb30-165"><a href="#cb30-165"></a><span class="in">%| echo: false</span></span>
+<span id="cb30-166"><a href="#cb30-166"></a><span class="in">%| cache: true</span></span>
+<span id="cb30-167"><a href="#cb30-167"></a><span class="in">%| eval: true</span></span>
+<span id="cb30-168"><a href="#cb30-168"></a><span class="in">%| dependson: common</span></span>
+<span id="cb30-169"><a href="#cb30-169"></a><span class="in">%| class: tikz</span></span>
+<span id="cb30-170"><a href="#cb30-170"></a><span class="in">%| engine-opts:</span></span>
+<span id="cb30-171"><a href="#cb30-171"></a><span class="in">%|   template: &quot;../resources/tikz-commit.tex&quot;</span></span>
+<span id="cb30-172"><a href="#cb30-172"></a><span class="in">\usetikzlibrary{positioning,shapes.callouts}</span></span>
+<span id="cb30-173"><a href="#cb30-173"></a><span class="in">\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] </span></span>
+<span id="cb30-174"><a href="#cb30-174"></a><span class="in">\newcommand{\file}[3] {</span></span>
+<span id="cb30-175"><a href="#cb30-175"></a><span class="in"> \coordinate (#3) at (#1);</span></span>
+<span id="cb30-176"><a href="#cb30-176"></a><span class="in"> \draw[thick,anchor=top left](#1) -- ++(2,0) -- ++(0.5,-0.5) -- ++(0,-3) -- ++(-2.5,0) -- ++(0,3.5);</span></span>
+<span id="cb30-177"><a href="#cb30-177"></a><span class="in"> \draw[thick,anchor=top left]($(#1) +(2,0)$) -- ++(0,-0.5) -- ++(0.5,0);     </span></span>
+<span id="cb30-178"><a href="#cb30-178"></a><span class="in"> \node [anchor=north west,fileText] at ($(#1) +(0,-0.1)$) {#2};</span></span>
+<span id="cb30-179"><a href="#cb30-179"></a><span class="in">}</span></span>
+<span id="cb30-180"><a href="#cb30-180"></a></span>
+<span id="cb30-181"><a href="#cb30-181"></a><span class="in">\usetikzlibrary{calc,fit,positioning}</span></span>
+<span id="cb30-182"><a href="#cb30-182"></a><span class="in">\definecolor{OS}{rgb}{1,0.8,0.4}%</span></span>
+<span id="cb30-183"><a href="#cb30-183"></a><span class="in">\definecolor{Docker}{rgb}{0.26,0.65,0.91}%</span></span>
+<span id="cb30-184"><a href="#cb30-184"></a><span class="in">\definecolor{Bin}{rgb}{0.9,0.9,0.2}%</span></span>
+<span id="cb30-185"><a href="#cb30-185"></a><span class="in">\definecolor{Container}{rgb}{0.90,0.9,0.9}%</span></span>
+<span id="cb30-186"><a href="#cb30-186"></a><span class="in">\sf</span></span>
+<span id="cb30-187"><a href="#cb30-187"></a></span>
+<span id="cb30-188"><a href="#cb30-188"></a><span class="in">\begin{tikzpicture}</span></span>
+<span id="cb30-189"><a href="#cb30-189"></a><span class="in">\node [draw, anchor=south west,fill=Container] at (0,0) (Container1) {</span></span>
+<span id="cb30-190"><a href="#cb30-190"></a><span class="in"> \begin{tikzpicture}</span></span>
+<span id="cb30-191"><a href="#cb30-191"></a><span class="in">   \node [anchor=west] (title) at (0,0) {\textbf{Container 1}};</span></span>
+<span id="cb30-192"><a href="#cb30-192"></a><span class="in">   \node [draw, anchor=west, fill=white] at ($(title.west) + (0,-1.5)$) (App) {</span></span>
+<span id="cb30-193"><a href="#cb30-193"></a><span class="in">   \scalebox{0.5}{\begin{tikzpicture}</span></span>
+<span id="cb30-194"><a href="#cb30-194"></a><span class="in">     \node (Code) {\huge Apps, Code etc};</span></span>
+<span id="cb30-195"><a href="#cb30-195"></a><span class="in">     \commit{below = 1.5cm of Code}{A}{color_inactive}{}{}</span></span>
+<span id="cb30-196"><a href="#cb30-196"></a><span class="in">     \commit{right = 1cm of A}{B}{color_inactive}{}{}</span></span>
+<span id="cb30-197"><a href="#cb30-197"></a><span class="in">     \commit{right = 1cm of B}{C}{color_commit}{}{}</span></span>
+<span id="cb30-198"><a href="#cb30-198"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);</span></span>
+<span id="cb30-199"><a href="#cb30-199"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (B) -- (A);</span></span>
+<span id="cb30-200"><a href="#cb30-200"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (C) -- (B);</span></span>
+<span id="cb30-201"><a href="#cb30-201"></a><span class="in">     \commit{above = 0.5cm of B}{D}{color_inactive}{}{}</span></span>
+<span id="cb30-202"><a href="#cb30-202"></a><span class="in">     \draw [-,line width=3pt,draw=black!60] (A.east) to[out=0,in=180] (D);</span></span>
+<span id="cb30-203"><a href="#cb30-203"></a><span class="in">     \main{right = 0.5cm of C}\draw[-&gt;,line width=3pt,draw=black!60] (main) -- (C);</span></span>
+<span id="cb30-204"><a href="#cb30-204"></a><span class="in">     \HEAD{right = 0.5cm of main}\draw[-&gt;,line width=3pt,draw=black!60] (HEAD) -- (main);</span></span>
+<span id="cb30-205"><a href="#cb30-205"></a><span class="in">     \branch{right = 0.5cm of D}{Feature}\draw[-&gt;,line width=3pt,draw=black!60] (Feature) -- (D);</span></span>
+<span id="cb30-206"><a href="#cb30-206"></a><span class="in">     \end{tikzpicture}}};</span></span>
+<span id="cb30-207"><a href="#cb30-207"></a><span class="in">     \node [draw,anchor=north,inner sep=0pt, fit=(App.south west)(App.south east), fill=Bin, minimum height = 1.75em, label={center:Bins/libs}] {};</span></span>
+<span id="cb30-208"><a href="#cb30-208"></a><span class="in"> \end{tikzpicture}</span></span>
+<span id="cb30-209"><a href="#cb30-209"></a><span class="in">};</span></span>
+<span id="cb30-210"><a href="#cb30-210"></a><span class="in">\node [draw, anchor=south west,fill=Container] at ($(Container1.south east) + (0.2,0)$) (Container2) {</span></span>
+<span id="cb30-211"><a href="#cb30-211"></a><span class="in"> \begin{tikzpicture}</span></span>
+<span id="cb30-212"><a href="#cb30-212"></a><span class="in">   \node [anchor=west] (title) at (0,0) {\textbf{Container 2}};</span></span>
+<span id="cb30-213"><a href="#cb30-213"></a><span class="in">   \node [draw, anchor=west, fill=white,minimum width=4cm] at ($(title.west) + (0,-1)$) (App) {Apps, Code etc};</span></span>
+<span id="cb30-214"><a href="#cb30-214"></a><span class="in">   \node [draw, anchor=north west, fill=Bin, minimum width=4cm] at ($(App.south west) + (0,-0)$) {Bins/libs};</span></span>
+<span id="cb30-215"><a href="#cb30-215"></a><span class="in"> \end{tikzpicture}</span></span>
+<span id="cb30-216"><a href="#cb30-216"></a><span class="in">};</span></span>
+<span id="cb30-217"><a href="#cb30-217"></a></span>
+<span id="cb30-218"><a href="#cb30-218"></a><span class="in">\node [draw,fit=(Container1.south west)(Container2.south east), anchor=north,inner sep=0pt,fill=Docker, minimum height=2em, label={center:Docker Engine}] (Docker)  {};</span></span>
+<span id="cb30-219"><a href="#cb30-219"></a><span class="in">\node [draw,fit=(Docker.south west)(Docker.south east), anchor=north,inner sep=0pt,fill=OS, minimum height=2em, label={center:Host OS}] (OS)  {};</span></span>
+<span id="cb30-220"><a href="#cb30-220"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb30-221"><a href="#cb30-221"></a><span class="in">```</span></span>
+<span id="cb30-222"><a href="#cb30-222"></a></span>
+<span id="cb30-223"><a href="#cb30-223"></a><span class="fu">## Simple overview</span></span>
+<span id="cb30-224"><a href="#cb30-224"></a></span>
+<span id="cb30-225"><a href="#cb30-225"></a><span class="ss">1. </span>**Create a Docker definition file.**</span>
+<span id="cb30-226"><a href="#cb30-226"></a></span>
+<span id="cb30-227"><a href="#cb30-227"></a>   The <span class="in">`Dockerfile`</span> contains a set of instructions that Docker uses to</span>
+<span id="cb30-228"><a href="#cb30-228"></a>   build your container with the correct specifications. For now you</span>
+<span id="cb30-229"><a href="#cb30-229"></a>   do not need to know all the bits and pieces here (though please see</span>
+<span id="cb30-230"><a href="#cb30-230"></a>   this</span>
+<span id="cb30-231"><a href="#cb30-231"></a>   <span class="co">[</span><span class="ot">link</span><span class="co">](https://docs.docker.com/develop/develop-images/dockerfile_best-practices/)</span></span>
+<span id="cb30-232"><a href="#cb30-232"></a>   for a more in-depth understanding of what the Dockerfile is capable</span>
+<span id="cb30-233"><a href="#cb30-233"></a>   of).</span>
+<span id="cb30-234"><a href="#cb30-234"></a></span>
+<span id="cb30-235"><a href="#cb30-235"></a>   Lets start with a very simple <span class="in">`Dockerfile`</span> (which should be a plain</span>
+<span id="cb30-236"><a href="#cb30-236"></a>   text file located in the root of a project directory).  This first</span>
+<span id="cb30-237"><a href="#cb30-237"></a>   example will be a very minimal example and much of the rest of the</span>
+<span id="cb30-238"><a href="#cb30-238"></a>   Docker section of this tutorial will then progressively build on</span>
+<span id="cb30-239"><a href="#cb30-239"></a>   this example to introduce more and more complexity.</span>
+<span id="cb30-240"><a href="#cb30-240"></a>   </span>
+<span id="cb30-241"><a href="#cb30-241"></a>   The image we will build will start with a very minimal Debian Linux</span>
+<span id="cb30-242"><a href="#cb30-242"></a>   base called <span class="co">[</span><span class="ot">minidep</span><span class="co">](https://hub.docker.com/r/bitnami/minideb)</span></span>
+<span id="cb30-243"><a href="#cb30-243"></a>   sourced from Dockerhub.  This provides a fully functioning Linux</span>
+<span id="cb30-244"><a href="#cb30-244"></a>   operating system complete with the typical terminal power tools.</span>
+<span id="cb30-245"><a href="#cb30-245"></a>   </span>
+<span id="cb30-246"><a href="#cb30-246"></a>   To then extend the image by updating the package lists (location of</span>
+<span id="cb30-247"><a href="#cb30-247"></a>   repositories) before adding (installing) a small fun terminal</span>
+<span id="cb30-248"><a href="#cb30-248"></a>   application</span>
+<span id="cb30-249"><a href="#cb30-249"></a>   (<span class="co">[</span><span class="ot">cowsay</span><span class="co">](https://github.com/tnalpgge/rank-amateur-cowsay)</span>) that</span>
+<span id="cb30-250"><a href="#cb30-250"></a>   generates ASCII art of a cow (or other animals) along with a speech</span>
+<span id="cb30-251"><a href="#cb30-251"></a>   bubble. </span>
+<span id="cb30-252"><a href="#cb30-252"></a></span>
+<span id="cb30-253"><a href="#cb30-253"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-254"><a href="#cb30-254"></a><span class="in">   #| label: createDockerfile</span></span>
+<span id="cb30-255"><a href="#cb30-255"></a><span class="in">   #| echo: false</span></span>
+<span id="cb30-256"><a href="#cb30-256"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-257"><a href="#cb30-257"></a><span class="in">   #| cache: false</span></span>
+<span id="cb30-258"><a href="#cb30-258"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-259"><a href="#cb30-259"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
+<span id="cb30-260"><a href="#cb30-260"></a><span class="in">   echo &#39;FROM bitnami/minideb:bookworm&#39; &gt; Dockerfile</span></span>
+<span id="cb30-261"><a href="#cb30-261"></a><span class="in">   echo &#39;LABEL maintainer=&quot;Author&quot;&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-262"><a href="#cb30-262"></a><span class="in">   echo &#39;LABEL email=&quot;author_email@email.com&quot;&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-263"><a href="#cb30-263"></a><span class="in">   echo &#39;&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-264"><a href="#cb30-264"></a><span class="in">   echo &#39;## Install the os packages&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-265"><a href="#cb30-265"></a><span class="in">   echo &#39;RUN apt-get update \&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-266"><a href="#cb30-266"></a><span class="in">   echo &#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-267"><a href="#cb30-267"></a><span class="in">   echo &#39;    cowsay \&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-268"><a href="#cb30-268"></a><span class="in">   echo &#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39; &gt;&gt; Dockerfile</span></span>
+<span id="cb30-269"><a href="#cb30-269"></a><span class="in">   ```</span></span>
+<span id="cb30-270"><a href="#cb30-270"></a></span>
+<span id="cb30-271"><a href="#cb30-271"></a>   <span class="in">```{r}</span></span>
+<span id="cb30-272"><a href="#cb30-272"></a><span class="in">   #| label: Text</span></span>
+<span id="cb30-273"><a href="#cb30-273"></a><span class="in">   #| engine: text</span></span>
+<span id="cb30-274"><a href="#cb30-274"></a><span class="in">   #| results: asis</span></span>
+<span id="cb30-275"><a href="#cb30-275"></a><span class="in">   #| classes: dockerfile</span></span>
+<span id="cb30-276"><a href="#cb30-276"></a><span class="in">   #| class-output: dockerfile</span></span>
+<span id="cb30-277"><a href="#cb30-277"></a><span class="in">   #| cache: false</span></span>
+<span id="cb30-278"><a href="#cb30-278"></a><span class="in">   #| file: ~/tmp/docker_tests/Dockerfile</span></span>
+<span id="cb30-279"><a href="#cb30-279"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-280"><a href="#cb30-280"></a><span class="in">   ```</span></span>
+<span id="cb30-281"><a href="#cb30-281"></a></span>
+<span id="cb30-282"><a href="#cb30-282"></a>   In the above <span class="in">`Dockerfile`</span>:</span>
+<span id="cb30-283"><a href="#cb30-283"></a></span>
+<span id="cb30-284"><a href="#cb30-284"></a><span class="ss">   - </span>the three first rows in contain information on the base image on</span>
+<span id="cb30-285"><a href="#cb30-285"></a>     which to construct your docker container image (in this case</span>
+<span id="cb30-286"><a href="#cb30-286"></a>     bitnami/minideb:stretch container freely provided by the bitnami</span>
+<span id="cb30-287"><a href="#cb30-287"></a>     team), as well as information about yourself. <span class="in">`minideb`</span> is a</span>
+<span id="cb30-288"><a href="#cb30-288"></a>     minimal debian operating system.</span>
+<span id="cb30-289"><a href="#cb30-289"></a></span>
+<span id="cb30-290"><a href="#cb30-290"></a><span class="ss">   - </span>the **FROM** command points to a parent image.  Typically, this</span>
+<span id="cb30-291"><a href="#cb30-291"></a>     will point to a specific image within a registry on Docker hub.</span>
+<span id="cb30-292"><a href="#cb30-292"></a>     This generates the base layer of the container image.</span>
+<span id="cb30-293"><a href="#cb30-293"></a></span>
+<span id="cb30-294"><a href="#cb30-294"></a><span class="ss">   - </span>the **LABEL** command is one of numerous _environmental</span>
+<span id="cb30-295"><a href="#cb30-295"></a>     variables_ and is used to add metadata to an image.  In this</span>
+<span id="cb30-296"><a href="#cb30-296"></a>     case, there are two entries to specify information about the</span>
+<span id="cb30-297"><a href="#cb30-297"></a>     maintainer and their contact details.  Note, entries must be</span>
+<span id="cb30-298"><a href="#cb30-298"></a>     key-value pairs and values must be enclosed in double quotes.</span>
+<span id="cb30-299"><a href="#cb30-299"></a></span>
+<span id="cb30-300"><a href="#cb30-300"></a><span class="ss">   - </span>the **RUN** command runs shell commands in a new layer on top of</span>
+<span id="cb30-301"><a href="#cb30-301"></a>     the current image and commits the result.  Each RUN generates a</span>
+<span id="cb30-302"><a href="#cb30-302"></a>     new layer.  The above example, first updates the packages list </span>
+<span id="cb30-303"><a href="#cb30-303"></a>     and then installs an additional package (<span class="in">`cowsay`</span>).</span>
+<span id="cb30-304"><a href="#cb30-304"></a></span>
+<span id="cb30-305"><a href="#cb30-305"></a></span>
+<span id="cb30-306"><a href="#cb30-306"></a><span class="ss">2. </span>**Build the docker image**</span>
+<span id="cb30-307"><a href="#cb30-307"></a></span>
+<span id="cb30-308"><a href="#cb30-308"></a>   In a terminal in the same location as the <span class="in">`Dockerfile`</span> (i.e. your</span>
+<span id="cb30-309"><a href="#cb30-309"></a>   _sandpit folder_), enter something the following:</span>
+<span id="cb30-310"><a href="#cb30-310"></a>   </span>
+<span id="cb30-311"><a href="#cb30-311"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-312"><a href="#cb30-312"></a><span class="in">   #| label: dockerBuildReal</span></span>
+<span id="cb30-313"><a href="#cb30-313"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-314"><a href="#cb30-314"></a><span class="in">   #| results: hide</span></span>
+<span id="cb30-315"><a href="#cb30-315"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-316"><a href="#cb30-316"></a><span class="in">   #| echo: false</span></span>
+<span id="cb30-317"><a href="#cb30-317"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
+<span id="cb30-318"><a href="#cb30-318"></a><span class="in">   docker build . --tag minideb -f Dockerfile</span></span>
+<span id="cb30-319"><a href="#cb30-319"></a><span class="in">   ```</span></span>
+<span id="cb30-320"><a href="#cb30-320"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-321"><a href="#cb30-321"></a><span class="in">   #| label: dockerBuild</span></span>
+<span id="cb30-322"><a href="#cb30-322"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-323"><a href="#cb30-323"></a><span class="in">   #| results: hide</span></span>
+<span id="cb30-324"><a href="#cb30-324"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-325"><a href="#cb30-325"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-326"><a href="#cb30-326"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-327"><a href="#cb30-327"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-328"><a href="#cb30-328"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-329"><a href="#cb30-329"></a><span class="in">   docker build . --tag minideb</span></span>
+<span id="cb30-330"><a href="#cb30-330"></a><span class="in">   ```</span></span>
+<span id="cb30-331"><a href="#cb30-331"></a></span>
+<span id="cb30-332"><a href="#cb30-332"></a>   &lt;br&gt; where:</span>
+<span id="cb30-333"><a href="#cb30-333"></a></span>
+<span id="cb30-334"><a href="#cb30-334"></a><span class="ss">   - </span><span class="in">`.`</span> indicates that the path used for the build context (in this</span>
+<span id="cb30-335"><a href="#cb30-335"></a>     case the current working directory - <span class="in">`.`</span> means current location).</span>
+<span id="cb30-336"><a href="#cb30-336"></a>     Any files within this path can be copied into the image or used</span>
+<span id="cb30-337"><a href="#cb30-337"></a>     in the build context (for example, a <span class="in">`Dockerfile`</span>).</span>
+<span id="cb30-338"><a href="#cb30-338"></a></span>
+<span id="cb30-339"><a href="#cb30-339"></a><span class="ss">   - </span><span class="in">`--tag minideb`</span> provides a name (and optionally, a tag) for the</span>
+<span id="cb30-340"><a href="#cb30-340"></a>   image (in this case <span class="in">`minideb`</span>).  The name (and tag) can be</span>
+<span id="cb30-341"><a href="#cb30-341"></a>   anything, yet should be descriptive enough to help you distinguish</span>
+<span id="cb30-342"><a href="#cb30-342"></a>   this container image from other container images that you might</span>
+<span id="cb30-343"><a href="#cb30-343"></a>   construct on your system.</span>
+<span id="cb30-344"><a href="#cb30-344"></a></span>
+<span id="cb30-345"><a href="#cb30-345"></a>   This will build a series of docker container images (each of the</span>
+<span id="cb30-346"><a href="#cb30-346"></a>   layers built upon the layer before) in a local registry</span>
+<span id="cb30-347"><a href="#cb30-347"></a></span>
+<span id="cb30-348"><a href="#cb30-348"></a><span class="in">    &lt;details&gt;</span></span>
+<span id="cb30-349"><a href="#cb30-349"></a><span class="in">    &lt;summary&gt;More details&lt;/summary&gt;</span></span>
+<span id="cb30-350"><a href="#cb30-350"></a><span class="in">    Usage: `docker build [OPTIONS] PATH | URL | -`</span></span>
+<span id="cb30-351"><a href="#cb30-351"></a><span class="in">    &lt;br&gt;</span></span>
+<span id="cb30-352"><a href="#cb30-352"></a><span class="in">    Common options:</span></span>
+<span id="cb30-353"><a href="#cb30-353"></a><span class="in">    </span></span>
+<span id="cb30-354"><a href="#cb30-354"></a><span class="in">    | Name         | Description                                  | Default      |</span></span>
+<span id="cb30-355"><a href="#cb30-355"></a><span class="in">    |--------------|----------------------------------------------|--------------|</span></span>
+<span id="cb30-356"><a href="#cb30-356"></a><span class="in">    | `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |</span></span>
+<span id="cb30-357"><a href="#cb30-357"></a><span class="in">    | `--no-cache` | Do not use cache when building image         |              |</span></span>
+<span id="cb30-358"><a href="#cb30-358"></a><span class="in">    | `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |</span></span>
+<span id="cb30-359"><a href="#cb30-359"></a><span class="in">    </span></span>
+<span id="cb30-360"><a href="#cb30-360"></a><span class="in">    Typical files in context:&lt;br&gt;</span></span>
+<span id="cb30-361"><a href="#cb30-361"></a><span class="in">    </span></span>
+<span id="cb30-362"><a href="#cb30-362"></a><span class="in">    - `Dockerfile`: a build recipe file&lt;br&gt;</span></span>
+<span id="cb30-363"><a href="#cb30-363"></a><span class="in">    - `.dockerignore`: similar to a `.gitignore`, this file lists</span></span>
+<span id="cb30-364"><a href="#cb30-364"></a><span class="in">      files to be ignored in collating the files that form the build context.&lt;br&gt;</span></span>
+<span id="cb30-365"><a href="#cb30-365"></a><span class="in">    </span></span>
+<span id="cb30-366"><a href="#cb30-366"></a><span class="in">    As an alternative to providing build instructions in the form of a</span></span>
+<span id="cb30-367"><a href="#cb30-367"></a><span class="in">    `Dockerfile`, build can accept a `URL` to a (remote) docker</span></span>
+<span id="cb30-368"><a href="#cb30-368"></a><span class="in">    repository.&lt;br&gt;&lt;br&gt;</span></span>
+<span id="cb30-369"><a href="#cb30-369"></a><span class="in">    More info:&lt;br&gt;</span></span>
+<span id="cb30-370"><a href="#cb30-370"></a><span class="in">    https://docs.docker.com/engine/reference/commandline/build/</span></span>
+<span id="cb30-371"><a href="#cb30-371"></a><span class="in">    &lt;/details&gt;</span></span>
+<span id="cb30-372"><a href="#cb30-372"></a></span>
+<span id="cb30-373"><a href="#cb30-373"></a><span class="ss">3. </span>**Check that the image(s) have been created**</span>
+<span id="cb30-374"><a href="#cb30-374"></a></span>
+<span id="cb30-375"><a href="#cb30-375"></a>   A list of images in your registry is obtained by:</span>
+<span id="cb30-376"><a href="#cb30-376"></a>   </span>
+<span id="cb30-377"><a href="#cb30-377"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-378"><a href="#cb30-378"></a><span class="in">   #| label: dockerImage</span></span>
+<span id="cb30-379"><a href="#cb30-379"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-380"><a href="#cb30-380"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-381"><a href="#cb30-381"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-382"><a href="#cb30-382"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-383"><a href="#cb30-383"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-384"><a href="#cb30-384"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-385"><a href="#cb30-385"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-386"><a href="#cb30-386"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-387"><a href="#cb30-387"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-388"><a href="#cb30-388"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-389"><a href="#cb30-389"></a><span class="in">   docker image ls</span></span>
+<span id="cb30-390"><a href="#cb30-390"></a><span class="in">   ```</span></span>
+<span id="cb30-391"><a href="#cb30-391"></a>           </span>
+<span id="cb30-392"><a href="#cb30-392"></a>   Note, the above simply lists all named images in your local</span>
+<span id="cb30-393"><a href="#cb30-393"></a>   registry.  To get a more complete list of all images:</span>
+<span id="cb30-394"><a href="#cb30-394"></a></span>
+<span id="cb30-395"><a href="#cb30-395"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-396"><a href="#cb30-396"></a><span class="in">   #| label: dockerImages</span></span>
+<span id="cb30-397"><a href="#cb30-397"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-398"><a href="#cb30-398"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-399"><a href="#cb30-399"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-400"><a href="#cb30-400"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-401"><a href="#cb30-401"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-402"><a href="#cb30-402"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-403"><a href="#cb30-403"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-404"><a href="#cb30-404"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-405"><a href="#cb30-405"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-406"><a href="#cb30-406"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-407"><a href="#cb30-407"></a><span class="in">   docker images -a  </span></span>
+<span id="cb30-408"><a href="#cb30-408"></a><span class="in">   ```</span></span>
+<span id="cb30-409"><a href="#cb30-409"></a></span>
+<span id="cb30-410"><a href="#cb30-410"></a>   The <span class="in">`-a`</span> switch indicates all images (including unnamed and hanging images).</span>
+<span id="cb30-411"><a href="#cb30-411"></a></span>
+<span id="cb30-412"><a href="#cb30-412"></a>   This list appears chronologically from bottom to top.  Hence, the</span>
+<span id="cb30-413"><a href="#cb30-413"></a>   Dockerhub image (<span class="in">`bitnami/minideb`</span>) appears at the bottom of this</span>
+<span id="cb30-414"><a href="#cb30-414"></a>   list and above this there is a succession of intermediate images</span>
+<span id="cb30-415"><a href="#cb30-415"></a>   that correspond to each of the layers defined in the <span class="in">`Dockerfile`</span>.</span>
+<span id="cb30-416"><a href="#cb30-416"></a>   Note, each successive image is progressively larger in size as the</span>
+<span id="cb30-417"><a href="#cb30-417"></a>   layer incorporates the layer below.  At the top of the list is the</span>
+<span id="cb30-418"><a href="#cb30-418"></a>   full container image (with <span class="in">`latest`</span> tag).</span>
+<span id="cb30-419"><a href="#cb30-419"></a></span>
+<span id="cb30-420"><a href="#cb30-420"></a>   Importantly, while we have built a container image, we do not yet</span>
+<span id="cb30-421"><a href="#cb30-421"></a>   have any running containers.  We can demonstrate this by listing</span>
+<span id="cb30-422"><a href="#cb30-422"></a>   all existing containers:</span>
+<span id="cb30-423"><a href="#cb30-423"></a></span>
+<span id="cb30-424"><a href="#cb30-424"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-425"><a href="#cb30-425"></a><span class="in">   #| label: dockerPs</span></span>
+<span id="cb30-426"><a href="#cb30-426"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-427"><a href="#cb30-427"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-428"><a href="#cb30-428"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-429"><a href="#cb30-429"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-430"><a href="#cb30-430"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-431"><a href="#cb30-431"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-432"><a href="#cb30-432"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-433"><a href="#cb30-433"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-434"><a href="#cb30-434"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-435"><a href="#cb30-435"></a><span class="in">   #| out.lines: 1</span></span>
+<span id="cb30-436"><a href="#cb30-436"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-437"><a href="#cb30-437"></a><span class="in">   docker ps -a  </span></span>
+<span id="cb30-438"><a href="#cb30-438"></a><span class="in">   ```</span></span>
+<span id="cb30-439"><a href="#cb30-439"></a>   </span>
+<span id="cb30-440"><a href="#cb30-440"></a></span>
+<span id="cb30-441"><a href="#cb30-441"></a>   The output is empty (assuming you have not previously generated any</span>
+<span id="cb30-442"><a href="#cb30-442"></a>   containers), indicating that there are currently no running</span>
+<span id="cb30-443"><a href="#cb30-443"></a>   containers.</span>
+<span id="cb30-444"><a href="#cb30-444"></a></span>
+<span id="cb30-445"><a href="#cb30-445"></a></span>
+<span id="cb30-446"><a href="#cb30-446"></a><span class="ss">4. </span>**Test the docker image (fire up an ephemeral container)**</span>
+<span id="cb30-447"><a href="#cb30-447"></a></span>
+<span id="cb30-448"><a href="#cb30-448"></a>   We will now test the image by generating and running a container</span>
+<span id="cb30-449"><a href="#cb30-449"></a>   from our container image.  Once the container has started, the</span>
+<span id="cb30-450"><a href="#cb30-450"></a>   <span class="in">`cowsay`</span> terminal application will display an ASCII cow saying</span>
+<span id="cb30-451"><a href="#cb30-451"></a>   &#39;Moo&quot; before quietly terminating.  The container will be</span>
+<span id="cb30-452"><a href="#cb30-452"></a>   automatically stopped and removed.</span>
+<span id="cb30-453"><a href="#cb30-453"></a>   </span>
+<span id="cb30-454"><a href="#cb30-454"></a>   <span class="in">```{bash} </span></span>
+<span id="cb30-455"><a href="#cb30-455"></a><span class="in">   #| label: dockerRun</span></span>
+<span id="cb30-456"><a href="#cb30-456"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-457"><a href="#cb30-457"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-458"><a href="#cb30-458"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-459"><a href="#cb30-459"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-460"><a href="#cb30-460"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-461"><a href="#cb30-461"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-462"><a href="#cb30-462"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-463"><a href="#cb30-463"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-464"><a href="#cb30-464"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-465"><a href="#cb30-465"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-466"><a href="#cb30-466"></a><span class="in">   docker run --entrypoint ./usr/games/cowsay --rm minideb Moo</span></span>
+<span id="cb30-467"><a href="#cb30-467"></a><span class="in">   ```</span></span>
+<span id="cb30-468"><a href="#cb30-468"></a></span>
+<span id="cb30-469"><a href="#cb30-469"></a>   where: </span>
+<span id="cb30-470"><a href="#cb30-470"></a>   </span>
+<span id="cb30-471"><a href="#cb30-471"></a><span class="ss">   - </span><span class="in">`--entrypoint ./usr/games/cowsay`</span> defines the base command that</span>
+<span id="cb30-472"><a href="#cb30-472"></a>     will be run once the container has started.  In this case, it</span>
+<span id="cb30-473"><a href="#cb30-473"></a>     specifies the full path to the <span class="in">`cowsay`</span> executable file.</span>
+<span id="cb30-474"><a href="#cb30-474"></a></span>
+<span id="cb30-475"><a href="#cb30-475"></a><span class="ss">   - </span><span class="in">`--rm`</span> indicates that the container should be removed after it</span>
+<span id="cb30-476"><a href="#cb30-476"></a>     has finished running.</span>
+<span id="cb30-477"><a href="#cb30-477"></a>     </span>
+<span id="cb30-478"><a href="#cb30-478"></a><span class="ss">   - </span><span class="in">`minideb`</span> is the name of our docker container image</span>
+<span id="cb30-479"><a href="#cb30-479"></a></span>
+<span id="cb30-480"><a href="#cb30-480"></a><span class="ss">   - </span><span class="in">`Moo`</span> is the string passed on to <span class="in">`cowsay`</span> to display in the</span>
+<span id="cb30-481"><a href="#cb30-481"></a>     speech bubble.  Feel free to experiment with other strings here.</span>
+<span id="cb30-482"><a href="#cb30-482"></a></span>
+<span id="cb30-483"><a href="#cb30-483"></a>    To further appreciate the way arguments are passed on to</span>
+<span id="cb30-484"><a href="#cb30-484"></a>    applications within a container, lets alter the <span class="in">`cowsay`</span> animal.</span>
+<span id="cb30-485"><a href="#cb30-485"></a></span>
+<span id="cb30-486"><a href="#cb30-486"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-487"><a href="#cb30-487"></a><span class="in">   #| label: dockerRun1</span></span>
+<span id="cb30-488"><a href="#cb30-488"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-489"><a href="#cb30-489"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-490"><a href="#cb30-490"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-491"><a href="#cb30-491"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-492"><a href="#cb30-492"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-493"><a href="#cb30-493"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-494"><a href="#cb30-494"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-495"><a href="#cb30-495"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-496"><a href="#cb30-496"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-497"><a href="#cb30-497"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-498"><a href="#cb30-498"></a><span class="in">   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt </span></span>
+<span id="cb30-499"><a href="#cb30-499"></a><span class="in">   ```</span></span>
+<span id="cb30-500"><a href="#cb30-500"></a>   </span>
+<span id="cb30-501"><a href="#cb30-501"></a>   In the above example, we passed `-f</span>
+<span id="cb30-502"><a href="#cb30-502"></a>   /usr/share/cowsay/cows/koala.cow Grunt<span class="in">` on to `</span>cowsay`.  In this</span>
+<span id="cb30-503"><a href="#cb30-503"></a>   context, <span class="in">`-f`</span> points to were alternative animal definitions are</span>
+<span id="cb30-504"><a href="#cb30-504"></a>   located.</span>
+<span id="cb30-505"><a href="#cb30-505"></a></span>
+<span id="cb30-506"><a href="#cb30-506"></a><span class="ss">5. </span>**Test the docker image interactively**</span>
+<span id="cb30-507"><a href="#cb30-507"></a></span>
+<span id="cb30-508"><a href="#cb30-508"></a>    Rather than fire up a container, run some command and then</span>
+<span id="cb30-509"><a href="#cb30-509"></a>    immediately terminate, it is possible to run a container in</span>
+<span id="cb30-510"><a href="#cb30-510"></a>    _interactive mode_.  In this mode, after the container starts up,</span>
+<span id="cb30-511"><a href="#cb30-511"></a>    you will be placed in a terminal where you can issue any available</span>
+<span id="cb30-512"><a href="#cb30-512"></a>    command you like.  Once you have finished the interactive session,</span>
+<span id="cb30-513"><a href="#cb30-513"></a>    simply enter <span class="in">`exit`</span> and the container will then terminate.</span>
+<span id="cb30-514"><a href="#cb30-514"></a></span>
+<span id="cb30-515"><a href="#cb30-515"></a>    Try the following (within the container):</span>
+<span id="cb30-516"><a href="#cb30-516"></a></span>
+<span id="cb30-517"><a href="#cb30-517"></a>   <span class="in">```{bash} </span></span>
+<span id="cb30-518"><a href="#cb30-518"></a><span class="in">   #| label: dockerRun2</span></span>
+<span id="cb30-519"><a href="#cb30-519"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-520"><a href="#cb30-520"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-521"><a href="#cb30-521"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-522"><a href="#cb30-522"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-523"><a href="#cb30-523"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-524"><a href="#cb30-524"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-525"><a href="#cb30-525"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-526"><a href="#cb30-526"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-527"><a href="#cb30-527"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-528"><a href="#cb30-528"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-529"><a href="#cb30-529"></a><span class="in">   docker run --rm -it minideb   </span></span>
+<span id="cb30-530"><a href="#cb30-530"></a><span class="in">   ```</span></span>
+<span id="cb30-531"><a href="#cb30-531"></a></span>
+<span id="cb30-532"><a href="#cb30-532"></a>   Once the prompt appears try entering the following:</span>
+<span id="cb30-533"><a href="#cb30-533"></a></span>
+<span id="cb30-534"><a href="#cb30-534"></a><span class="ss">   - </span>list the files and folders in the current working directory</span>
+<span id="cb30-535"><a href="#cb30-535"></a></span>
+<span id="cb30-536"><a href="#cb30-536"></a>   <span class="in">```{bash} </span></span>
+<span id="cb30-537"><a href="#cb30-537"></a><span class="in">   #| label: dockerRun3</span></span>
+<span id="cb30-538"><a href="#cb30-538"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-539"><a href="#cb30-539"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-540"><a href="#cb30-540"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-541"><a href="#cb30-541"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-542"><a href="#cb30-542"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-543"><a href="#cb30-543"></a><span class="in">   #| classes: terminal-docker</span></span>
+<span id="cb30-544"><a href="#cb30-544"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
+<span id="cb30-545"><a href="#cb30-545"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-546"><a href="#cb30-546"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-547"><a href="#cb30-547"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-548"><a href="#cb30-548"></a><span class="in">   ls -la</span></span>
+<span id="cb30-549"><a href="#cb30-549"></a><span class="in">   ```</span></span>
+<span id="cb30-550"><a href="#cb30-550"></a>  </span>
+<span id="cb30-551"><a href="#cb30-551"></a><span class="ss">   - </span>run the cowsay application</span>
+<span id="cb30-552"><a href="#cb30-552"></a></span>
+<span id="cb30-553"><a href="#cb30-553"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-554"><a href="#cb30-554"></a><span class="in">   #| label: dockerRun4</span></span>
+<span id="cb30-555"><a href="#cb30-555"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-556"><a href="#cb30-556"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-557"><a href="#cb30-557"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-558"><a href="#cb30-558"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-559"><a href="#cb30-559"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-560"><a href="#cb30-560"></a><span class="in">   #| classes: terminal-docker</span></span>
+<span id="cb30-561"><a href="#cb30-561"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
+<span id="cb30-562"><a href="#cb30-562"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-563"><a href="#cb30-563"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-564"><a href="#cb30-564"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-565"><a href="#cb30-565"></a><span class="in">   ./usr/games/cowsay Moo</span></span>
+<span id="cb30-566"><a href="#cb30-566"></a><span class="in">   ```</span></span>
+<span id="cb30-567"><a href="#cb30-567"></a></span>
+<span id="cb30-568"><a href="#cb30-568"></a><span class="ss">   - </span>exit the container</span>
+<span id="cb30-569"><a href="#cb30-569"></a></span>
+<span id="cb30-570"><a href="#cb30-570"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-571"><a href="#cb30-571"></a><span class="in">   #| label: dockerRun5</span></span>
+<span id="cb30-572"><a href="#cb30-572"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-573"><a href="#cb30-573"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-574"><a href="#cb30-574"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-575"><a href="#cb30-575"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-576"><a href="#cb30-576"></a><span class="in">   #| classes: terminal-docker</span></span>
+<span id="cb30-577"><a href="#cb30-577"></a><span class="in">   #| class-source: [terminal, terminal-docker]</span></span>
+<span id="cb30-578"><a href="#cb30-578"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-579"><a href="#cb30-579"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-580"><a href="#cb30-580"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-581"><a href="#cb30-581"></a><span class="in">   exit</span></span>
+<span id="cb30-582"><a href="#cb30-582"></a><span class="in">   ```</span></span>
+<span id="cb30-583"><a href="#cb30-583"></a></span>
+<span id="cb30-584"><a href="#cb30-584"></a><span class="in">    Running in interactive mode is very useful when</span></span>
+<span id="cb30-585"><a href="#cb30-585"></a><span class="in">    developing/debugging code on a container.</span></span>
+<span id="cb30-586"><a href="#cb30-586"></a><span class="in">    </span></span>
+<span id="cb30-587"><a href="#cb30-587"></a> </span>
+<span id="cb30-588"><a href="#cb30-588"></a><span class="fu">## Some Dockerfile goodness</span></span>
+<span id="cb30-589"><a href="#cb30-589"></a></span>
+<span id="cb30-590"><a href="#cb30-590"></a></span>
+<span id="cb30-591"><a href="#cb30-591"></a>::: {.panel-tabset}</span>
+<span id="cb30-592"><a href="#cb30-592"></a></span>
+<span id="cb30-593"><a href="#cb30-593"></a><span class="fu">### Incorporate default commands</span></span>
+<span id="cb30-594"><a href="#cb30-594"></a></span>
+<span id="cb30-595"><a href="#cb30-595"></a>Lets now step this up a bit and add some more information to the build</span>
+<span id="cb30-596"><a href="#cb30-596"></a>recipe.  Rather than alter the previous <span class="in">`Dockerfile`</span>, we will instead</span>
+<span id="cb30-597"><a href="#cb30-597"></a>make a different file (<span class="in">`Dockerfile2`</span>) and inform <span class="in">`docker`</span> to build with this</span>
+<span id="cb30-598"><a href="#cb30-598"></a>alternative <span class="in">`Dockerfile`</span>.</span>
+<span id="cb30-599"><a href="#cb30-599"></a></span>
+<span id="cb30-602"><a href="#cb30-602"></a><span class="in">```{bash}</span></span>
+<span id="cb30-603"><a href="#cb30-603"></a><span class="co">#| label: createDockerfile2</span></span>
+<span id="cb30-604"><a href="#cb30-604"></a><span class="co">#| echo: false</span></span>
+<span id="cb30-605"><a href="#cb30-605"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-606"><a href="#cb30-606"></a><span class="co">#| classes: bash</span></span>
+<span id="cb30-607"><a href="#cb30-607"></a><span class="co">#| engine: bash</span></span>
+<span id="cb30-608"><a href="#cb30-608"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb30-609"><a href="#cb30-609"></a><span class="bu">echo</span> <span class="st">&#39;FROM bitnami/minideb:bookworm&#39;</span> <span class="op">&gt;</span> Dockerfile2</span>
+<span id="cb30-610"><a href="#cb30-610"></a><span class="bu">echo</span> <span class="st">&#39;LABEL maintainer=&quot;Author&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-611"><a href="#cb30-611"></a><span class="bu">echo</span> <span class="st">&#39;LABEL email=&quot;author_email@email.com&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-612"><a href="#cb30-612"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-613"><a href="#cb30-613"></a><span class="bu">echo</span> <span class="st">&#39;## Install the os packages&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-614"><a href="#cb30-614"></a><span class="bu">echo</span> <span class="st">&#39;RUN apt-get update \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-615"><a href="#cb30-615"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-616"><a href="#cb30-616"></a><span class="bu">echo</span> <span class="st">&#39;    cowsay \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-617"><a href="#cb30-617"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-618"><a href="#cb30-618"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-619"><a href="#cb30-619"></a><span class="bu">echo</span> <span class="st">&#39;## Default command to run&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-620"><a href="#cb30-620"></a><span class="bu">echo</span> <span class="st">&#39;ENTRYPOINT [&quot;/usr/games/cowsay&quot;,&quot;-f&quot;,&quot;/usr/share/cowsay/cows/koala.cow&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-621"><a href="#cb30-621"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-622"><a href="#cb30-622"></a><span class="bu">echo</span> <span class="st">&#39;## Default extra parameters passed to the command&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-623"><a href="#cb30-623"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;Grunt&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile2</span>
+<span id="cb30-624"><a href="#cb30-624"></a><span class="in">```</span></span>
+<span id="cb30-625"><a href="#cb30-625"></a></span>
+<span id="cb30-628"><a href="#cb30-628"></a><span class="in">```{r}</span></span>
+<span id="cb30-629"><a href="#cb30-629"></a><span class="co">#| label: Text2</span></span>
+<span id="cb30-630"><a href="#cb30-630"></a><span class="co">#| engine: text</span></span>
+<span id="cb30-631"><a href="#cb30-631"></a><span class="co">#| results: asis</span></span>
+<span id="cb30-632"><a href="#cb30-632"></a><span class="co">#| classes: dockerfile</span></span>
+<span id="cb30-633"><a href="#cb30-633"></a><span class="co">#| class-output: dockerfile</span></span>
+<span id="cb30-634"><a href="#cb30-634"></a><span class="co">#| file: ~/tmp/docker_tests/Dockerfile2</span></span>
+<span id="cb30-635"><a href="#cb30-635"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-636"><a href="#cb30-636"></a><span class="in">```</span></span>
+<span id="cb30-637"><a href="#cb30-637"></a></span>
+<span id="cb30-638"><a href="#cb30-638"></a>   In the above <span class="in">`Dockerfile`</span>:</span>
+<span id="cb30-639"><a href="#cb30-639"></a></span>
+<span id="cb30-640"><a href="#cb30-640"></a><span class="ss">   - </span><span class="in">`ENTRYPOINT`</span> provides a default command to run within the</span>
+<span id="cb30-641"><a href="#cb30-641"></a>     container.  This specification is in _JSON_ format.</span>
+<span id="cb30-642"><a href="#cb30-642"></a>     </span>
+<span id="cb30-643"><a href="#cb30-643"></a><span class="ss">   - </span><span class="in">`CMD`</span> provides default extra parameters that are passed on to the</span>
+<span id="cb30-644"><a href="#cb30-644"></a>     command (also in _JSON_ format).  This can be overridden by</span>
+<span id="cb30-645"><a href="#cb30-645"></a>     passing an alternative when running the <span class="in">`docker run`</span> command (see</span>
+<span id="cb30-646"><a href="#cb30-646"></a>     below).</span>
+<span id="cb30-647"><a href="#cb30-647"></a>     </span>
+<span id="cb30-648"><a href="#cb30-648"></a>   If we now build our container image using this <span class="in">`Dockerfile2`</span>:</span>
+<span id="cb30-649"><a href="#cb30-649"></a>   </span>
+<span id="cb30-650"><a href="#cb30-650"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-651"><a href="#cb30-651"></a><span class="in">   #| label: dockerBuildReal2</span></span>
+<span id="cb30-652"><a href="#cb30-652"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-653"><a href="#cb30-653"></a><span class="in">   #| results: hide</span></span>
+<span id="cb30-654"><a href="#cb30-654"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-655"><a href="#cb30-655"></a><span class="in">   #| echo: false</span></span>
+<span id="cb30-656"><a href="#cb30-656"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
+<span id="cb30-657"><a href="#cb30-657"></a><span class="in">   docker build . --tag minideb -f Dockerfile2</span></span>
+<span id="cb30-658"><a href="#cb30-658"></a><span class="in">   ```</span></span>
+<span id="cb30-659"><a href="#cb30-659"></a></span>
+<span id="cb30-660"><a href="#cb30-660"></a>   <span class="in">```{bash} </span></span>
+<span id="cb30-661"><a href="#cb30-661"></a><span class="in">   #| label: dockerBuild2</span></span>
+<span id="cb30-662"><a href="#cb30-662"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-663"><a href="#cb30-663"></a><span class="in">   #| results: hide</span></span>
+<span id="cb30-664"><a href="#cb30-664"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-665"><a href="#cb30-665"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-666"><a href="#cb30-666"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-667"><a href="#cb30-667"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-668"><a href="#cb30-668"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-669"><a href="#cb30-669"></a><span class="in">   #| eval: false</span></span>
+<span id="cb30-670"><a href="#cb30-670"></a><span class="in">   docker build . --tag minideb -f Dockerfile2 </span></span>
+<span id="cb30-671"><a href="#cb30-671"></a><span class="in">   ```</span></span>
+<span id="cb30-672"><a href="#cb30-672"></a>    </span>
+<span id="cb30-673"><a href="#cb30-673"></a>   If we again review the list of images, we see that there are now</span>
+<span id="cb30-674"><a href="#cb30-674"></a>   two additional intermediate images and the <span class="in">`latest`</span> image has been</span>
+<span id="cb30-675"><a href="#cb30-675"></a>   updated.</span>
+<span id="cb30-676"><a href="#cb30-676"></a>    </span>
+<span id="cb30-677"><a href="#cb30-677"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-678"><a href="#cb30-678"></a><span class="in">   #| label: dockerImages2</span></span>
+<span id="cb30-679"><a href="#cb30-679"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-680"><a href="#cb30-680"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-681"><a href="#cb30-681"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-682"><a href="#cb30-682"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-683"><a href="#cb30-683"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-684"><a href="#cb30-684"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-685"><a href="#cb30-685"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-686"><a href="#cb30-686"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-687"><a href="#cb30-687"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-688"><a href="#cb30-688"></a><span class="in">   docker images -a   </span></span>
+<span id="cb30-689"><a href="#cb30-689"></a><span class="in">   ```</span></span>
+<span id="cb30-690"><a href="#cb30-690"></a>  </span>
+<span id="cb30-691"><a href="#cb30-691"></a>   We can now run the container as:</span>
+<span id="cb30-692"><a href="#cb30-692"></a>  </span>
+<span id="cb30-693"><a href="#cb30-693"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-694"><a href="#cb30-694"></a><span class="in">   #| label: dockerRun20</span></span>
+<span id="cb30-695"><a href="#cb30-695"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-696"><a href="#cb30-696"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-697"><a href="#cb30-697"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-698"><a href="#cb30-698"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-699"><a href="#cb30-699"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-700"><a href="#cb30-700"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-701"><a href="#cb30-701"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-702"><a href="#cb30-702"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-703"><a href="#cb30-703"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-704"><a href="#cb30-704"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-705"><a href="#cb30-705"></a><span class="in">   docker run --rm minideb     </span></span>
+<span id="cb30-706"><a href="#cb30-706"></a><span class="in">   ```</span></span>
+<span id="cb30-707"><a href="#cb30-707"></a></span>
+<span id="cb30-708"><a href="#cb30-708"></a>   To override the default arguments (**CMD**) we baked into the</span>
+<span id="cb30-709"><a href="#cb30-709"></a>   docker image, we can issue an alternative as a command line</span>
+<span id="cb30-710"><a href="#cb30-710"></a>   argument.</span>
+<span id="cb30-711"><a href="#cb30-711"></a>   </span>
+<span id="cb30-712"><a href="#cb30-712"></a>   <span class="in">```{bash}</span></span>
+<span id="cb30-713"><a href="#cb30-713"></a><span class="in">   #| label: dockerRun20a</span></span>
+<span id="cb30-714"><a href="#cb30-714"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb30-715"><a href="#cb30-715"></a><span class="in">   #| results: markup</span></span>
+<span id="cb30-716"><a href="#cb30-716"></a><span class="in">   #| eval: true</span></span>
+<span id="cb30-717"><a href="#cb30-717"></a><span class="in">   #| comment: &quot;&quot;</span></span>
+<span id="cb30-718"><a href="#cb30-718"></a><span class="in">   #| cache: true</span></span>
+<span id="cb30-719"><a href="#cb30-719"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb30-720"><a href="#cb30-720"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb30-721"><a href="#cb30-721"></a><span class="in">   #| class-output: terminal</span></span>
+<span id="cb30-722"><a href="#cb30-722"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb30-723"><a href="#cb30-723"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb30-724"><a href="#cb30-724"></a><span class="in">   docker run --rm minideb Meow     </span></span>
+<span id="cb30-725"><a href="#cb30-725"></a><span class="in">   ```</span></span>
+<span id="cb30-726"><a href="#cb30-726"></a></span>
+<span id="cb30-727"><a href="#cb30-727"></a><span class="fu">### Copy and mountpoints</span></span>
+<span id="cb30-728"><a href="#cb30-728"></a></span>
+<span id="cb30-729"><a href="#cb30-729"></a>So far, we have used the docker container to display an ASCII art cow</span>
+<span id="cb30-730"><a href="#cb30-730"></a>(or koala) in the terminal and then exit.  Whilst, this might have</span>
+<span id="cb30-731"><a href="#cb30-731"></a>some utility as a simple example of interacting with containers, it</span>
+<span id="cb30-732"><a href="#cb30-732"></a>hardly represents typical work.</span>
+<span id="cb30-733"><a href="#cb30-733"></a></span>
+<span id="cb30-734"><a href="#cb30-734"></a>In the context of reproducible research, containers are useful for</span>
+<span id="cb30-735"><a href="#cb30-735"></a>providing a consistent environment in which to run code.  Thus in order</span>
+<span id="cb30-736"><a href="#cb30-736"></a>to be useful, a container should have:</span>
+<span id="cb30-737"><a href="#cb30-737"></a></span>
+<span id="cb30-738"><a href="#cb30-738"></a><span class="ss">1. </span>access (or a copy) of the code within the container</span>
+<span id="cb30-739"><a href="#cb30-739"></a></span>
+<span id="cb30-740"><a href="#cb30-740"></a><span class="ss">2. </span>the ability to store the results on the host where they can be</span>
+<span id="cb30-741"><a href="#cb30-741"></a>   viewed and disseminated.</span>
+<span id="cb30-742"><a href="#cb30-742"></a>  </span>
+<span id="cb30-743"><a href="#cb30-743"></a>To illustrate these, we will add the R Statistical and Graphical</span>
+<span id="cb30-744"><a href="#cb30-744"></a>Environment to our container image and use this in two further</span>
+<span id="cb30-745"><a href="#cb30-745"></a>examples.  </span>
+<span id="cb30-746"><a href="#cb30-746"></a></span>
+<span id="cb30-747"><a href="#cb30-747"></a><span class="fu">#### Copy</span></span>
+<span id="cb30-748"><a href="#cb30-748"></a></span>
+<span id="cb30-749"><a href="#cb30-749"></a>For the first example, we will add instructions to the <span class="in">`Dockerfile`</span> to</span>
+<span id="cb30-750"><a href="#cb30-750"></a>copy a small R script (lets call it <span class="in">`analysis.R`</span>) into the container</span>
+<span id="cb30-751"><a href="#cb30-751"></a>so that the code can be run within the container environment. Lets</span>
+<span id="cb30-752"><a href="#cb30-752"></a>create two files:</span>
+<span id="cb30-753"><a href="#cb30-753"></a></span>
+<span id="cb30-756"><a href="#cb30-756"></a><span class="in">```{bash}</span></span>
+<span id="cb30-757"><a href="#cb30-757"></a><span class="co">#| label: createanalysis</span></span>
+<span id="cb30-758"><a href="#cb30-758"></a><span class="co">#| echo: false</span></span>
+<span id="cb30-759"><a href="#cb30-759"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-760"><a href="#cb30-760"></a><span class="co">#| classes: bash</span></span>
+<span id="cb30-761"><a href="#cb30-761"></a><span class="co">#| engine: bash</span></span>
+<span id="cb30-762"><a href="#cb30-762"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb30-763"><a href="#cb30-763"></a><span class="bu">echo</span> <span class="st">&#39;dat &lt;- data.frame(y = rnorm(10))&#39;</span> <span class="op">&gt;</span> analysis.R</span>
+<span id="cb30-764"><a href="#cb30-764"></a><span class="bu">echo</span> <span class="st">&#39;dat&#39;</span> <span class="op">&gt;&gt;</span> analysis.R</span>
+<span id="cb30-765"><a href="#cb30-765"></a><span class="bu">echo</span> <span class="st">&#39;write.csv(dat, file = &quot;dat.csv&quot;, row.names = FALSE)&#39;</span> <span class="op">&gt;&gt;</span> analysis.R</span>
+<span id="cb30-766"><a href="#cb30-766"></a><span class="in">```</span></span>
+<span id="cb30-767"><a href="#cb30-767"></a></span>
+<span id="cb30-770"><a href="#cb30-770"></a><span class="in">```{r}</span></span>
+<span id="cb30-771"><a href="#cb30-771"></a><span class="co">#| label: Rcode3</span></span>
+<span id="cb30-772"><a href="#cb30-772"></a><span class="co">#| engine: text</span></span>
+<span id="cb30-773"><a href="#cb30-773"></a><span class="co">#| results: asis</span></span>
+<span id="cb30-774"><a href="#cb30-774"></a><span class="co">#| classes: dockerfile</span></span>
+<span id="cb30-775"><a href="#cb30-775"></a><span class="co">#| class-output: dockerfile</span></span>
+<span id="cb30-776"><a href="#cb30-776"></a><span class="co">#| file: ~/tmp/docker_tests/analysis.R</span></span>
+<span id="cb30-777"><a href="#cb30-777"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-778"><a href="#cb30-778"></a><span class="in">```</span></span>
+<span id="cb30-779"><a href="#cb30-779"></a></span>
+<span id="cb30-780"><a href="#cb30-780"></a><span class="ss">- </span>a <span class="in">`Dockerfile`</span> called <span class="in">`Dockerfile3`</span></span>
+<span id="cb30-781"><a href="#cb30-781"></a></span>
+<span id="cb30-784"><a href="#cb30-784"></a><span class="in">```{bash}</span></span>
+<span id="cb30-785"><a href="#cb30-785"></a><span class="co">#| label: createDockerfile3</span></span>
+<span id="cb30-786"><a href="#cb30-786"></a><span class="co">#| echo: false</span></span>
+<span id="cb30-787"><a href="#cb30-787"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-788"><a href="#cb30-788"></a><span class="co">#| classes: bash</span></span>
+<span id="cb30-789"><a href="#cb30-789"></a><span class="co">#| engine: bash</span></span>
+<span id="cb30-790"><a href="#cb30-790"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb30-791"><a href="#cb30-791"></a><span class="bu">echo</span> <span class="st">&#39;FROM bitnami/minideb:bookworm&#39;</span> <span class="op">&gt;</span> Dockerfile3</span>
+<span id="cb30-792"><a href="#cb30-792"></a><span class="bu">echo</span> <span class="st">&#39;LABEL maintainer=&quot;Author&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-793"><a href="#cb30-793"></a><span class="bu">echo</span> <span class="st">&#39;LABEL email=&quot;author_email@email.com&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-794"><a href="#cb30-794"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-795"><a href="#cb30-795"></a><span class="bu">echo</span> <span class="st">&#39;## Install the os packages&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-796"><a href="#cb30-796"></a><span class="bu">echo</span> <span class="st">&#39;RUN apt-get update \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-797"><a href="#cb30-797"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-798"><a href="#cb30-798"></a><span class="bu">echo</span> <span class="st">&#39;    r-base \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-799"><a href="#cb30-799"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-800"><a href="#cb30-800"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-801"><a href="#cb30-801"></a><span class="bu">echo</span> <span class="st">&#39;COPY analysis.R ~/&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-802"><a href="#cb30-802"></a><span class="bu">echo</span> <span class="st">&#39;WORKDIR ~/&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-803"><a href="#cb30-803"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-804"><a href="#cb30-804"></a><span class="bu">echo</span> <span class="st">&#39;## Default command to run&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-805"><a href="#cb30-805"></a><span class="bu">echo</span> <span class="st">&#39;ENTRYPOINT [&quot;Rscript&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-806"><a href="#cb30-806"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-807"><a href="#cb30-807"></a><span class="bu">echo</span> <span class="st">&#39;## Default command parameters&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-808"><a href="#cb30-808"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;analysis.R&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile3</span>
+<span id="cb30-809"><a href="#cb30-809"></a><span class="in">```</span></span>
+<span id="cb30-810"><a href="#cb30-810"></a></span>
+<span id="cb30-813"><a href="#cb30-813"></a><span class="in">```{r}</span></span>
+<span id="cb30-814"><a href="#cb30-814"></a><span class="co">#| label: Text3</span></span>
+<span id="cb30-815"><a href="#cb30-815"></a><span class="co">#| engine: text</span></span>
+<span id="cb30-816"><a href="#cb30-816"></a><span class="co">#| results: asis</span></span>
+<span id="cb30-817"><a href="#cb30-817"></a><span class="co">#| classes: dockerfile</span></span>
+<span id="cb30-818"><a href="#cb30-818"></a><span class="co">#| class-output: dockerfile</span></span>
+<span id="cb30-819"><a href="#cb30-819"></a><span class="co">#| file: ~/tmp/docker_tests/Dockerfile3</span></span>
+<span id="cb30-820"><a href="#cb30-820"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-821"><a href="#cb30-821"></a><span class="in">```</span></span>
+<span id="cb30-822"><a href="#cb30-822"></a></span>
+<span id="cb30-823"><a href="#cb30-823"></a>This <span class="in">`Dockerfile`</span> includes instructions to:</span>
+<span id="cb30-824"><a href="#cb30-824"></a>    </span>
+<span id="cb30-825"><a href="#cb30-825"></a><span class="in">    - install R (`r-base`)</span></span>
+<span id="cb30-826"><a href="#cb30-826"></a><span class="in">    </span></span>
+<span id="cb30-827"><a href="#cb30-827"></a><span class="in">    - copy our R script from the current working directory to the home</span></span>
+<span id="cb30-828"><a href="#cb30-828"></a><span class="in">      folder in the container (`COPY analysis.R ~/`)</span></span>
+<span id="cb30-829"><a href="#cb30-829"></a> </span>
+<span id="cb30-830"><a href="#cb30-830"></a><span class="in">    - set the working directory within the container to be the home</span></span>
+<span id="cb30-831"><a href="#cb30-831"></a><span class="in">      folder (`WORKDIR ~/`)</span></span>
+<span id="cb30-832"><a href="#cb30-832"></a></span>
+<span id="cb30-833"><a href="#cb30-833"></a><span class="in">    - specify that once the container has started, the `Rscript`</span></span>
+<span id="cb30-834"><a href="#cb30-834"></a><span class="in">      command should be run (`ENTRYPOINT [&quot;Rscript&quot;]`)</span></span>
+<span id="cb30-835"><a href="#cb30-835"></a></span>
+<span id="cb30-836"><a href="#cb30-836"></a><span class="in">    - specify that once the container has started, the `Rscript`</span></span>
+<span id="cb30-837"><a href="#cb30-837"></a><span class="in">      command should be run using the `analysis.R` script </span></span>
+<span id="cb30-838"><a href="#cb30-838"></a><span class="in">      (`CMD [&quot;analysis.R&quot;]`)</span></span>
+<span id="cb30-839"><a href="#cb30-839"></a></span>
+<span id="cb30-840"><a href="#cb30-840"></a>Great.  This time when we build the container image, we will provide</span>
+<span id="cb30-841"><a href="#cb30-841"></a>both a name and tag for the image (via <span class="in">`--tag r:1`</span>).  This will result</span>
+<span id="cb30-842"><a href="#cb30-842"></a>in an image called <span class="in">`r`</span> with a tag of <span class="in">`1`</span>.</span>
+<span id="cb30-843"><a href="#cb30-843"></a></span>
+<span id="cb30-844"><a href="#cb30-844"></a></span>
+<span id="cb30-847"><a href="#cb30-847"></a><span class="in">```{bash}</span></span>
+<span id="cb30-848"><a href="#cb30-848"></a><span class="co">#| label: dockerBuildReal3</span></span>
+<span id="cb30-849"><a href="#cb30-849"></a><span class="co">#| engine: bash</span></span>
+<span id="cb30-850"><a href="#cb30-850"></a><span class="co">#| results: hide</span></span>
+<span id="cb30-851"><a href="#cb30-851"></a><span class="co">#| eval: true</span></span>
+<span id="cb30-852"><a href="#cb30-852"></a><span class="co">#| echo: false</span></span>
+<span id="cb30-853"><a href="#cb30-853"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb30-854"><a href="#cb30-854"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:1 <span class="at">-f</span> Dockerfile3</span>
+<span id="cb30-855"><a href="#cb30-855"></a><span class="in">```</span></span>
+<span id="cb30-856"><a href="#cb30-856"></a></span>
+<span id="cb30-859"><a href="#cb30-859"></a><span class="in">```{bash}</span></span>
+<span id="cb30-860"><a href="#cb30-860"></a><span class="co">#| label: dockerBuild3</span></span>
+<span id="cb30-861"><a href="#cb30-861"></a><span class="co">#| engine: bash</span></span>
+<span id="cb30-862"><a href="#cb30-862"></a><span class="co">#| results: hide</span></span>
+<span id="cb30-863"><a href="#cb30-863"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb30-864"><a href="#cb30-864"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb30-865"><a href="#cb30-865"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb30-866"><a href="#cb30-866"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb30-867"><a href="#cb30-867"></a><span class="co">#| eval: false</span></span>
+<span id="cb30-868"><a href="#cb30-868"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:1 <span class="at">-f</span> Dockerfile3</span>
+<span id="cb30-869"><a href="#cb30-869"></a><span class="in">```</span></span>
+<span id="cb30-870"><a href="#cb30-870"></a></span>
+<span id="cb30-871"><a href="#cb30-871"></a>&lt;/br&gt;</span>
+<span id="cb30-872"><a href="#cb30-872"></a></span>
+<span id="cb30-873"><a href="#cb30-873"></a></span>
+<span id="cb30-874"><a href="#cb30-874"></a>:::</span>
+<span id="cb30-875"><a href="#cb30-875"></a></span>
+<span id="cb30-876"><a href="#cb30-876"></a></span>
+<span id="cb30-877"><a href="#cb30-877"></a></span>
+<span id="cb30-878"><a href="#cb30-878"></a></span>
+<span id="cb30-879"><a href="#cb30-879"></a>::: {.raw} </span>
+<span id="cb30-880"><a href="#cb30-880"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb30-881"><a href="#cb30-881"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb30-882"><a href="#cb30-882"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb30-883"><a href="#cb30-883"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb30-884"><a href="#cb30-884"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb30-885"><a href="#cb30-885"></a>})<span class="op">;</span></span>
+<span id="cb30-886"><a href="#cb30-886"></a>&lt;/script&gt;</span>
+<span id="cb30-887"><a href="#cb30-887"></a></span>
+<span id="cb30-888"><a href="#cb30-888"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
