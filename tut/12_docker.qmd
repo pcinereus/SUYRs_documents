@@ -975,6 +975,7 @@ cd ~/tmp/docker_tests/
 ls -lat
 # docker run --rm -v /root/tmp/docker_tests:/home/Project r:2
 docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "ls -lat"
+docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "$PWD"
 ```
 
 :::
