@@ -756,6 +756,7 @@ echo 'dat <- data.frame(y = rnorm(10))' > analysis.R
 echo 'dat' >> analysis.R
 echo 'write.csv(dat, file = "dat.csv", row.names = FALSE)' >> analysis.R
 ```
+
 ```{r}
 #| label: Rcode3
 #| engine: text
@@ -765,6 +766,91 @@ echo 'write.csv(dat, file = "dat.csv", row.names = FALSE)' >> analysis.R
 #| file: ~/tmp/docker_tests/analysis.R
 #| eval: false
 ```
+
+- a `Dockerfile` called `Dockerfile3`
+
+```{bash}
+#| label: createDockerfile3
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile3
+echo 'LABEL maintainer="Author"' >> Dockerfile3
+echo 'LABEL email="author_email@email.com"' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Install the os packages' >> Dockerfile3
+echo 'RUN apt-get update \' >> Dockerfile3
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile3
+echo '    r-base \' >> Dockerfile3
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile3
+echo '' >> Dockerfile3
+echo 'COPY analysis.R ~/' >> Dockerfile3
+echo 'WORKDIR ~/' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Default command to run' >> Dockerfile3
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile3
+echo '' >> Dockerfile3
+echo '## Default command parameters' >> Dockerfile3
+echo 'CMD ["analysis.R"]' >> Dockerfile3
+```
+
+```{r}
+#| label: Text3
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/Dockerfile3
+#| eval: false
+```
+
+This `Dockerfile` includes instructions to:
+	
+	- install R (`r-base`)
+	
+	- copy our R script from the current working directory to the home
+      folder in the container (`COPY analysis.R ~/`)
+ 
+    - set the working directory within the container to be the home
+      folder (`WORKDIR ~/`)
+
+    - specify that once the container has started, the `Rscript`
+      command should be run (`ENTRYPOINT ["Rscript"]`)
+
+    - specify that once the container has started, the `Rscript`
+      command should be run using the `analysis.R` script 
+	  (`CMD ["analysis.R"]`)
+
+Great.  This time when we build the container image, we will provide
+both a name and tag for the image (via `--tag r:1`).  This will result
+in an image called `r` with a tag of `1`.
+
+
+```{bash}
+#| label: dockerBuildReal3
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag r:1 -f Dockerfile3
+```
+
+```{bash}
+#| label: dockerBuild3
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag r:1 -f Dockerfile3
+```
+
+</br>
 
 
 :::
