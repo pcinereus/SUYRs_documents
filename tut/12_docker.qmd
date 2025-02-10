@@ -909,14 +909,6 @@ echo '' >> Dockerfile4
 echo '## Default command parameters' >> Dockerfile4
 echo 'CMD ["analysis.R"]' >> Dockerfile4
 ```
-   
-The changes from the previous `Dockerfile`:
-
-   - remove the `COPY` statement as we will not need to work on a copy
-     of the R code, we can work on it directly.
-	 
-   - change the container working directory to `/home/Project` - Note,
-     this path will not exist and will be created.
 
 ```{r}
 #| label: text4
@@ -927,6 +919,14 @@ The changes from the previous `Dockerfile`:
 #| file: ~/tmp/docker_tests/Dockerfile3
 #| eval: false
 ```
+
+The changes from the previous `Dockerfile`:
+
+   - remove the `COPY` statement as we will not need to work on a copy
+     of the R code, we can work on it directly.
+
+   - change the container working directory to `/home/Project` - Note,
+     this path will not exist and will be created.
 
 We will now build the container image with the name:tag of `r:2`
 
@@ -953,7 +953,28 @@ docker build . --tag r:2 -f Dockerfile4
 ```
 
 </br>
-	
+
+This time, when we run the container image, we will indicate a volume
+to mount (and a folder to mount this volume to).  This will define
+which host folder to mount (map) and the path to mount this to within
+the container.
+
+```{bash}
+#| label: dockerRun40
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+docker run --rm -v `pwd`:/home/Project r:2
+```
+
 :::
 
 
