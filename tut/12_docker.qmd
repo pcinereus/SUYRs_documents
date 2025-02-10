@@ -328,6 +328,11 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
    <br> where:
 
+   - `.` indicates that the path used for the build context (in this
+     case the current working directory - `.` means current location).
+     Any files within this path can be copied into the image or used
+     in the build context (for example, a `Dockerfile`).
+
 ::: {.raw} 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type='text/javascript'>
