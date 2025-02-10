@@ -850,6 +850,23 @@ docker build . --tag r:1 -f Dockerfile3
 
 </br>
 
+When we run this new image, we see that a data frame of 10 values is
+returned to the terminal. 
+
+```{bash}
+#| label: dockerRun30
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm r:1
+```
 
 :::
 
