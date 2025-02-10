@@ -3201,16 +3201,99 @@ vertical-align: -.125em;
 <p>In a terminal in the same location as the <code>Dockerfile</code> (i.e. your <em>sandpit folder</em>), enter something the following:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="fu">whereis</span> docker</span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># docker build . --tag minideb -f Dockerfile</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="ex">docker</span> build . <span class="at">--tag</span> minideb <span class="at">-f</span> Dockerfile</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>docker: /usr/bin/docker /etc/docker</code></pre>
+<pre><code>DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  2.048kB
+
+
+Step 1/4 : FROM bitnami/minideb:bookworm
+bookworm: Pulling from bitnami/minideb
+2f80e341fa4e: Pulling fs layer
+2f80e341fa4e: Download complete
+2f80e341fa4e: Pull complete
+Digest: sha256:b015b8e2e65993176085695f2ad6f34db502e427141cd460a82894fe5763e36c
+Status: Downloaded newer image for bitnami/minideb:bookworm
+ ---&gt; 7aaf5a56478d
+Step 2/4 : LABEL maintainer=&quot;Author&quot;
+ ---&gt; Running in 767a0af15f47
+ ---&gt; Removed intermediate container 767a0af15f47
+ ---&gt; 3258049d2d58
+Step 3/4 : LABEL email=&quot;author_email@email.com&quot;
+ ---&gt; Running in 9b3d4235af89
+ ---&gt; Removed intermediate container 9b3d4235af89
+ ---&gt; e2f0ddd5e871
+Step 4/4 : RUN apt-get update   &amp;&amp; apt-get install -y --no-install-recommends     cowsay   &amp;&amp; rm -rf /var/lib/apt/lists/*
+ ---&gt; Running in 4903d375f9ff
+Get:1 http://deb.debian.org/debian bookworm InRelease [151 kB]
+Get:2 http://deb.debian.org/debian bookworm-updates InRelease [55.4 kB]
+Get:3 http://deb.debian.org/debian-security bookworm-security InRelease [48.0 kB]
+Get:4 http://deb.debian.org/debian bookworm/main amd64 Packages [12.1 MB]
+Get:5 http://deb.debian.org/debian bookworm-updates/main amd64 Packages [13.5 kB]
+Get:6 http://deb.debian.org/debian-security bookworm-security/main amd64 Packages [244 kB]
+Fetched 12.6 MB in 1s (19.9 MB/s)
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+The following additional packages will be installed:
+  libtext-charwidth-perl
+Suggested packages:
+  filters cowsay-off
+The following NEW packages will be installed:
+  cowsay libtext-charwidth-perl
+0 upgraded, 2 newly installed, 0 to remove and 0 not upgraded.
+Need to get 30.9 kB of archives.
+After this operation, 136 kB of additional disk space will be used.
+Get:1 http://deb.debian.org/debian bookworm/main amd64 libtext-charwidth-perl amd64 0.04-11 [9496 B]
+Get:2 http://deb.debian.org/debian bookworm/main amd64 cowsay all 3.03+dfsg2-8 [21.4 kB]
+[91mdebconf: delaying package configuration, since apt-utils is not installed
+[0mFetched 30.9 kB in 0s (975 kB/s)
+Selecting previously unselected package libtext-charwidth-perl:amd64.
+(Reading database ... 
+(Reading database ... 5%
+(Reading database ... 10%
+(Reading database ... 15%
+(Reading database ... 20%
+(Reading database ... 25%
+(Reading database ... 30%
+(Reading database ... 35%
+(Reading database ... 40%
+(Reading database ... 45%
+(Reading database ... 50%
+(Reading database ... 55%
+(Reading database ... 60%
+(Reading database ... 65%
+(Reading database ... 70%
+(Reading database ... 75%
+(Reading database ... 80%
+(Reading database ... 85%
+(Reading database ... 90%
+(Reading database ... 95%
+(Reading database ... 100%
+(Reading database ... 8056 files and directories currently installed.)
+Preparing to unpack .../libtext-charwidth-perl_0.04-11_amd64.deb ...
+Unpacking libtext-charwidth-perl:amd64 (0.04-11) ...
+Selecting previously unselected package cowsay.
+Preparing to unpack .../cowsay_3.03+dfsg2-8_all.deb ...
+Unpacking cowsay (3.03+dfsg2-8) ...
+Setting up libtext-charwidth-perl:amd64 (0.04-11) ...
+Setting up cowsay (3.03+dfsg2-8) ...
+ ---&gt; Removed intermediate container 4903d375f9ff
+ ---&gt; 26020ef4ace6
+Successfully built 26020ef4ace6
+Successfully tagged minideb:latest</code></pre>
 </div>
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> build . <span class="at">--tag</span> minideb</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br> where:</p></li>
+<p><br> where:</p>
+<ul>
+<li><code>.</code> indicates that the path used for the build context (in this case the current working directory - <code>.</code> means current location). Any files within this path can be copied into the image or used in the build context (for example, a <code>Dockerfile</code>).</li>
+</ul></li>
 </ol>
 <div class="raw">
 <script>/*! jQuery v3.6.0 | (c) OpenJS Foundation and other contributors | jquery.org/license */
@@ -4012,33 +4095,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb6-314"><a href="#cb6-314"></a><span class="in">   #| eval: true</span></span>
 <span id="cb6-315"><a href="#cb6-315"></a><span class="in">   #| echo: true</span></span>
 <span id="cb6-316"><a href="#cb6-316"></a><span class="in">   cd ~/tmp/docker_tests</span></span>
-<span id="cb6-317"><a href="#cb6-317"></a><span class="in">   whereis docker</span></span>
-<span id="cb6-318"><a href="#cb6-318"></a><span class="in">   # docker build . --tag minideb -f Dockerfile</span></span>
-<span id="cb6-319"><a href="#cb6-319"></a><span class="in">   ```</span></span>
-<span id="cb6-320"><a href="#cb6-320"></a>   <span class="in">```{bash}</span></span>
-<span id="cb6-321"><a href="#cb6-321"></a><span class="in">   #| label: dockerBuild</span></span>
-<span id="cb6-322"><a href="#cb6-322"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb6-323"><a href="#cb6-323"></a><span class="in">   #| results: hide</span></span>
-<span id="cb6-324"><a href="#cb6-324"></a><span class="in">   #| classes: terminal</span></span>
-<span id="cb6-325"><a href="#cb6-325"></a><span class="in">   #| class-source: terminal</span></span>
-<span id="cb6-326"><a href="#cb6-326"></a><span class="in">   #| code-line-numbers: false</span></span>
-<span id="cb6-327"><a href="#cb6-327"></a><span class="in">   #| highlight-style: zenburn</span></span>
-<span id="cb6-328"><a href="#cb6-328"></a><span class="in">   #| eval: false</span></span>
-<span id="cb6-329"><a href="#cb6-329"></a><span class="in">   docker build . --tag minideb</span></span>
-<span id="cb6-330"><a href="#cb6-330"></a><span class="in">   ```</span></span>
-<span id="cb6-331"><a href="#cb6-331"></a></span>
-<span id="cb6-332"><a href="#cb6-332"></a>   &lt;br&gt; where:</span>
-<span id="cb6-333"><a href="#cb6-333"></a></span>
-<span id="cb6-334"><a href="#cb6-334"></a>::: {.raw} </span>
-<span id="cb6-335"><a href="#cb6-335"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb6-336"><a href="#cb6-336"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb6-337"><a href="#cb6-337"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb6-338"><a href="#cb6-338"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb6-339"><a href="#cb6-339"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb6-340"><a href="#cb6-340"></a>})<span class="op">;</span></span>
-<span id="cb6-341"><a href="#cb6-341"></a>&lt;/script&gt;</span>
-<span id="cb6-342"><a href="#cb6-342"></a></span>
-<span id="cb6-343"><a href="#cb6-343"></a>:::</span>
+<span id="cb6-317"><a href="#cb6-317"></a><span class="in">   docker build . --tag minideb -f Dockerfile</span></span>
+<span id="cb6-318"><a href="#cb6-318"></a><span class="in">   ```</span></span>
+<span id="cb6-319"><a href="#cb6-319"></a>   <span class="in">```{bash}</span></span>
+<span id="cb6-320"><a href="#cb6-320"></a><span class="in">   #| label: dockerBuild</span></span>
+<span id="cb6-321"><a href="#cb6-321"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb6-322"><a href="#cb6-322"></a><span class="in">   #| results: hide</span></span>
+<span id="cb6-323"><a href="#cb6-323"></a><span class="in">   #| classes: terminal</span></span>
+<span id="cb6-324"><a href="#cb6-324"></a><span class="in">   #| class-source: terminal</span></span>
+<span id="cb6-325"><a href="#cb6-325"></a><span class="in">   #| code-line-numbers: false</span></span>
+<span id="cb6-326"><a href="#cb6-326"></a><span class="in">   #| highlight-style: zenburn</span></span>
+<span id="cb6-327"><a href="#cb6-327"></a><span class="in">   #| eval: false</span></span>
+<span id="cb6-328"><a href="#cb6-328"></a><span class="in">   docker build . --tag minideb</span></span>
+<span id="cb6-329"><a href="#cb6-329"></a><span class="in">   ```</span></span>
+<span id="cb6-330"><a href="#cb6-330"></a></span>
+<span id="cb6-331"><a href="#cb6-331"></a>   &lt;br&gt; where:</span>
+<span id="cb6-332"><a href="#cb6-332"></a></span>
+<span id="cb6-333"><a href="#cb6-333"></a><span class="ss">   - </span><span class="in">`.`</span> indicates that the path used for the build context (in this</span>
+<span id="cb6-334"><a href="#cb6-334"></a>     case the current working directory - <span class="in">`.`</span> means current location).</span>
+<span id="cb6-335"><a href="#cb6-335"></a>     Any files within this path can be copied into the image or used</span>
+<span id="cb6-336"><a href="#cb6-336"></a>     in the build context (for example, a <span class="in">`Dockerfile`</span>).</span>
+<span id="cb6-337"><a href="#cb6-337"></a></span>
+<span id="cb6-338"><a href="#cb6-338"></a>::: {.raw} </span>
+<span id="cb6-339"><a href="#cb6-339"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb6-340"><a href="#cb6-340"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb6-341"><a href="#cb6-341"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb6-342"><a href="#cb6-342"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-343"><a href="#cb6-343"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb6-344"><a href="#cb6-344"></a>})<span class="op">;</span></span>
+<span id="cb6-345"><a href="#cb6-345"></a>&lt;/script&gt;</span>
+<span id="cb6-346"><a href="#cb6-346"></a></span>
+<span id="cb6-347"><a href="#cb6-347"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
