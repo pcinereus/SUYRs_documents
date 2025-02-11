@@ -3258,9 +3258,9 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     7f40f95d2d97   1 second ago   121MB</span>
-<span id="cb5-3"><a href="#cb5-3"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago    120MB</span>
-<span id="cb5-4"><a href="#cb5-4"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago   9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     e2a1eb51579f   1 second ago   121MB</span>
+<span id="cb5-3"><a href="#cb5-3"></a>bitnami/minideb                     bookworm   5f7339906c3b   5 hours ago    120MB</span>
+<span id="cb5-4"><a href="#cb5-4"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   29 hours ago   9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Note, the above simply lists all named images in your local registry. To get a more complete list of all images:</p>
@@ -3268,11 +3268,11 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     7f40f95d2d97   1 second ago    121MB</span>
-<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     242c1b23edd4   4 seconds ago   120MB</span>
-<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     31e9091c62f4   5 seconds ago   120MB</span>
-<span id="cb7-5"><a href="#cb7-5"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago     120MB</span>
-<span id="cb7-6"><a href="#cb7-6"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     e2a1eb51579f   1 second ago    121MB</span>
+<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     2a429853bb78   4 seconds ago   120MB</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     4090d804fb3a   5 seconds ago   120MB</span>
+<span id="cb7-5"><a href="#cb7-5"></a>bitnami/minideb                     bookworm   5f7339906c3b   5 hours ago     120MB</span>
+<span id="cb7-6"><a href="#cb7-6"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   29 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The <code>-a</code> switch indicates all images (including unnamed and hanging images).</p>
@@ -3394,13 +3394,13 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb21-2"><a href="#cb21-2"></a>minideb                             latest     9126a785fe8f   1 second ago    121MB</span>
-<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                              &lt;none&gt;     cd6fa3e88e7e   2 seconds ago   121MB</span>
-<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                              &lt;none&gt;     7f40f95d2d97   3 seconds ago   121MB</span>
-<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                              &lt;none&gt;     242c1b23edd4   6 seconds ago   120MB</span>
-<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                              &lt;none&gt;     31e9091c62f4   7 seconds ago   120MB</span>
-<span id="cb21-7"><a href="#cb21-7"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago     120MB</span>
-<span id="cb21-8"><a href="#cb21-8"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2"></a>&lt;none&gt;                              &lt;none&gt;     942d3621c99e   1 second ago    121MB</span>
+<span id="cb21-3"><a href="#cb21-3"></a>minideb                             latest     8b994b2bdc5c   1 second ago    121MB</span>
+<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                              &lt;none&gt;     e2a1eb51579f   3 seconds ago   121MB</span>
+<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                              &lt;none&gt;     2a429853bb78   6 seconds ago   120MB</span>
+<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                              &lt;none&gt;     4090d804fb3a   7 seconds ago   120MB</span>
+<span id="cb21-7"><a href="#cb21-7"></a>bitnami/minideb                     bookworm   5f7339906c3b   5 hours ago     120MB</span>
+<span id="cb21-8"><a href="#cb21-8"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   29 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>We can now run the container as:</p>
@@ -3506,16 +3506,16 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> r:1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>             y</span>
-<span id="cb31-2"><a href="#cb31-2"></a>1  -0.88461301</span>
-<span id="cb31-3"><a href="#cb31-3"></a>2   1.21427050</span>
-<span id="cb31-4"><a href="#cb31-4"></a>3  -0.99598447</span>
-<span id="cb31-5"><a href="#cb31-5"></a>4  -0.89132516</span>
-<span id="cb31-6"><a href="#cb31-6"></a>5  -0.04931020</span>
-<span id="cb31-7"><a href="#cb31-7"></a>6   0.06047352</span>
-<span id="cb31-8"><a href="#cb31-8"></a>7   1.86484886</span>
-<span id="cb31-9"><a href="#cb31-9"></a>8   0.22940856</span>
-<span id="cb31-10"><a href="#cb31-10"></a>9   0.66701818</span>
-<span id="cb31-11"><a href="#cb31-11"></a>10  1.74605377</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-2"><a href="#cb31-2"></a>1  -0.94245585</span>
+<span id="cb31-3"><a href="#cb31-3"></a>2  -0.84826724</span>
+<span id="cb31-4"><a href="#cb31-4"></a>3  -0.19141155</span>
+<span id="cb31-5"><a href="#cb31-5"></a>4   0.01294048</span>
+<span id="cb31-6"><a href="#cb31-6"></a>5   0.70171939</span>
+<span id="cb31-7"><a href="#cb31-7"></a>6  -1.09801675</span>
+<span id="cb31-8"><a href="#cb31-8"></a>7  -0.31452719</span>
+<span id="cb31-9"><a href="#cb31-9"></a>8   0.86932021</span>
+<span id="cb31-10"><a href="#cb31-10"></a>9  -1.59921004</span>
+<span id="cb31-11"><a href="#cb31-11"></a>10 -0.23887110</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -3524,6 +3524,9 @@ vertical-align: -.125em;
 <p>R did indeed run the <code>analysis.R</code> script inside the container. However, what happened to the file containing the exported data (<code>dat.csv</code>)? Although this file was created inside the container, it was completely lost when the container terminated. Obviously that is not that useful.</p>
 <p>For the second example, rather than copy the R script to the container, we will instead mount a local folder to a point within the container. That way we can access select host files and folders within the container, thereby enabling us to both read the R script directly and write out any output files.</p>
 <p>To support this, we will create another <code>Dockerfile</code> (<code>Dockerfile4</code>).</p>
+<div class="cell bash">
+
+</div>
 <div class="cell bash">
 
 </div>
@@ -3544,7 +3547,7 @@ vertical-align: -.125em;
 <span id="cb32-14"><a href="#cb32-14"></a>ENTRYPOINT [&quot;Rscript&quot;]</span>
 <span id="cb32-15"><a href="#cb32-15"></a></span>
 <span id="cb32-16"><a href="#cb32-16"></a>## Default command parameters</span>
-<span id="cb32-17"><a href="#cb32-17"></a>CMD [&quot;/home/Project/analysis.R&quot;]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-17"><a href="#cb32-17"></a>CMD [&quot;analysis.R&quot;]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>The changes from the previous <code>Dockerfile</code>:</p>
 <ul>
@@ -3564,16 +3567,16 @@ vertical-align: -.125em;
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> /root/tmp/docker_tests:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;ls -lat&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>total 28</span>
-<span id="cb35-2"><a href="#cb35-2"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:54 .</span>
-<span id="cb35-3"><a href="#cb35-3"></a>-rw-r--r-- 1 root root  375 Feb 11 03:54 Dockerfile4</span>
-<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:53 Dockerfile3</span>
-<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:53 analysis.R</span>
-<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:53 Dockerfile2</span>
-<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:53 Dockerfile</span>
-<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:53 ..</span>
+<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 root root  361 Feb 11 05:07 Dockerfile4</span>
+<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 05:07 .</span>
+<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Feb 11 05:07 Dockerfile3</span>
+<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Feb 11 05:07 analysis.R</span>
+<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Feb 11 05:07 Dockerfile2</span>
+<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Feb 11 05:07 Dockerfile</span>
+<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 05:06 ..</span>
 <span id="cb35-9"><a href="#cb35-9"></a>total 8</span>
-<span id="cb35-10"><a href="#cb35-10"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:54 .</span>
-<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x 1 root root 4096 Feb 11 03:54 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-10"><a href="#cb35-10"></a>drwxr-xr-x 2 root root 4096 Feb 11 05:07 .</span>
+<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x 1 root root 4096 Feb 11 05:07 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
@@ -3582,13 +3585,13 @@ vertical-align: -.125em;
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>total 28</span>
-<span id="cb37-2"><a href="#cb37-2"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:54 .</span>
-<span id="cb37-3"><a href="#cb37-3"></a>-rw-r--r-- 1 root root  375 Feb 11 03:54 Dockerfile4</span>
-<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:53 Dockerfile3</span>
-<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:53 analysis.R</span>
-<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:53 Dockerfile2</span>
-<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:53 Dockerfile</span>
-<span id="cb37-8"><a href="#cb37-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:53 ..</span>
+<span id="cb37-2"><a href="#cb37-2"></a>-rw-r--r-- 1 root root  361 Feb 11 05:07 Dockerfile4</span>
+<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 05:07 .</span>
+<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root  369 Feb 11 05:07 Dockerfile3</span>
+<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root   89 Feb 11 05:07 analysis.R</span>
+<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Feb 11 05:07 Dockerfile2</span>
+<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  238 Feb 11 05:07 Dockerfile</span>
+<span id="cb37-8"><a href="#cb37-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 05:06 ..</span>
 <span id="cb37-9"><a href="#cb37-9"></a>/home/Project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -3608,19 +3611,20 @@ vertical-align: -.125em;
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">-w</span> /home/root/tmp/docker_tests r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);list.files(&#39;/home/root/&#39;);&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb43"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb43-1"><a href="#cb43-1"></a>  user </span>
 <span id="cb43-2"><a href="#cb43-2"></a>&quot;root&quot; </span>
 <span id="cb43-3"><a href="#cb43-3"></a>character(0)</span>
-<span id="cb43-4"><a href="#cb43-4"></a>[1] &quot;/home/root/tmp/docker_tests&quot;</span>
+<span id="cb43-4"><a href="#cb43-4"></a>[1] &quot;/home/Project&quot;</span>
 <span id="cb43-5"><a href="#cb43-5"></a> [1] &quot;bin&quot;   &quot;boot&quot;  &quot;dev&quot;   &quot;etc&quot;   &quot;home&quot;  &quot;lib&quot;   &quot;lib64&quot; &quot;media&quot; &quot;mnt&quot;  </span>
 <span id="cb43-6"><a href="#cb43-6"></a>[10] &quot;opt&quot;   &quot;proc&quot;  &quot;root&quot;  &quot;run&quot;   &quot;sbin&quot;  &quot;srv&quot;   &quot;sys&quot;   &quot;tmp&quot;   &quot;usr&quot;  </span>
 <span id="cb43-7"><a href="#cb43-7"></a>[19] &quot;var&quot;  </span>
 <span id="cb43-8"><a href="#cb43-8"></a>character(0)</span>
-<span id="cb43-9"><a href="#cb43-9"></a>[1] &quot;Project&quot; &quot;root&quot;   </span>
+<span id="cb43-9"><a href="#cb43-9"></a>[1] &quot;Project&quot;</span>
 <span id="cb43-10"><a href="#cb43-10"></a>character(0)</span>
-<span id="cb43-11"><a href="#cb43-11"></a>character(0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb43-11"><a href="#cb43-11"></a>character(0)</span>
+<span id="cb43-12"><a href="#cb43-12"></a>character(0)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
@@ -5026,172 +5030,198 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-939"><a href="#cb45-939"></a><span class="bu">echo</span> <span class="st">&#39;ENTRYPOINT [&quot;Rscript&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
 <span id="cb45-940"><a href="#cb45-940"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
 <span id="cb45-941"><a href="#cb45-941"></a><span class="bu">echo</span> <span class="st">&#39;## Default command parameters&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
-<span id="cb45-942"><a href="#cb45-942"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;/home/Project/analysis.R&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-942"><a href="#cb45-942"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;analysis.R&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
 <span id="cb45-943"><a href="#cb45-943"></a><span class="in">```</span></span>
 <span id="cb45-944"><a href="#cb45-944"></a></span>
-<span id="cb45-947"><a href="#cb45-947"></a><span class="in">```{r}</span></span>
-<span id="cb45-948"><a href="#cb45-948"></a><span class="co">#| label: text4</span></span>
-<span id="cb45-949"><a href="#cb45-949"></a><span class="co">#| engine: text</span></span>
-<span id="cb45-950"><a href="#cb45-950"></a><span class="co">#| results: asis</span></span>
-<span id="cb45-951"><a href="#cb45-951"></a><span class="co">#| classes: dockerfile</span></span>
-<span id="cb45-952"><a href="#cb45-952"></a><span class="co">#| class-output: dockerfile</span></span>
-<span id="cb45-953"><a href="#cb45-953"></a><span class="co">#| file: ~/tmp/docker_tests/Dockerfile4</span></span>
-<span id="cb45-954"><a href="#cb45-954"></a><span class="co">#| eval: false</span></span>
-<span id="cb45-955"><a href="#cb45-955"></a><span class="in">```</span></span>
-<span id="cb45-956"><a href="#cb45-956"></a></span>
-<span id="cb45-957"><a href="#cb45-957"></a>The changes from the previous <span class="in">`Dockerfile`</span>:</span>
-<span id="cb45-958"><a href="#cb45-958"></a></span>
-<span id="cb45-959"><a href="#cb45-959"></a><span class="ss">   - </span>remove the <span class="in">`COPY`</span> statement as we will not need to work on a copy</span>
-<span id="cb45-960"><a href="#cb45-960"></a>     of the R code, we can work on it directly.</span>
-<span id="cb45-961"><a href="#cb45-961"></a></span>
-<span id="cb45-962"><a href="#cb45-962"></a><span class="ss">   - </span>change the container working directory to <span class="in">`/home/Project`</span> - Note,</span>
-<span id="cb45-963"><a href="#cb45-963"></a>     this path will not exist and will be created.</span>
-<span id="cb45-964"><a href="#cb45-964"></a></span>
-<span id="cb45-965"><a href="#cb45-965"></a>We will now build the container image with the name:tag of <span class="in">`r:2`</span></span>
-<span id="cb45-966"><a href="#cb45-966"></a></span>
-<span id="cb45-969"><a href="#cb45-969"></a><span class="in">```{bash}</span></span>
-<span id="cb45-970"><a href="#cb45-970"></a><span class="co">#| label: dockerBuildReal4</span></span>
-<span id="cb45-971"><a href="#cb45-971"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-972"><a href="#cb45-972"></a><span class="co">#| results: hide</span></span>
-<span id="cb45-973"><a href="#cb45-973"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-974"><a href="#cb45-974"></a><span class="co">#| echo: false</span></span>
-<span id="cb45-975"><a href="#cb45-975"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
-<span id="cb45-976"><a href="#cb45-976"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:2 <span class="at">-f</span> Dockerfile4</span>
-<span id="cb45-977"><a href="#cb45-977"></a><span class="in">```</span></span>
-<span id="cb45-978"><a href="#cb45-978"></a></span>
-<span id="cb45-981"><a href="#cb45-981"></a><span class="in">```{bash}</span></span>
-<span id="cb45-982"><a href="#cb45-982"></a><span class="co">#| label: dockerBuild4</span></span>
-<span id="cb45-983"><a href="#cb45-983"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-984"><a href="#cb45-984"></a><span class="co">#| results: hide</span></span>
-<span id="cb45-985"><a href="#cb45-985"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-986"><a href="#cb45-986"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-987"><a href="#cb45-987"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-988"><a href="#cb45-988"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-989"><a href="#cb45-989"></a><span class="co">#| eval: false</span></span>
-<span id="cb45-990"><a href="#cb45-990"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:2 <span class="at">-f</span> Dockerfile4 </span>
-<span id="cb45-991"><a href="#cb45-991"></a><span class="in">```</span></span>
+<span id="cb45-947"><a href="#cb45-947"></a><span class="in">```{bash}</span></span>
+<span id="cb45-948"><a href="#cb45-948"></a><span class="co">#| label: createDockerfile4_old</span></span>
+<span id="cb45-949"><a href="#cb45-949"></a><span class="co">#| echo: false</span></span>
+<span id="cb45-950"><a href="#cb45-950"></a><span class="co">#| eval: false</span></span>
+<span id="cb45-951"><a href="#cb45-951"></a><span class="co">#| classes: bash</span></span>
+<span id="cb45-952"><a href="#cb45-952"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-953"><a href="#cb45-953"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb45-954"><a href="#cb45-954"></a><span class="bu">echo</span> <span class="st">&#39;FROM bitnami/minideb:bookworm&#39;</span> <span class="op">&gt;</span> Dockerfile4</span>
+<span id="cb45-955"><a href="#cb45-955"></a><span class="bu">echo</span> <span class="st">&#39;LABEL maintainer=&quot;Author&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-956"><a href="#cb45-956"></a><span class="bu">echo</span> <span class="st">&#39;LABEL email=&quot;author_email@email.com&quot;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-957"><a href="#cb45-957"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-958"><a href="#cb45-958"></a><span class="bu">echo</span> <span class="st">&#39;## Install the os packages&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-959"><a href="#cb45-959"></a><span class="bu">echo</span> <span class="st">&#39;RUN apt-get update \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-960"><a href="#cb45-960"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; apt-get install -y --no-install-recommends \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-961"><a href="#cb45-961"></a><span class="bu">echo</span> <span class="st">&#39;    r-base \&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-962"><a href="#cb45-962"></a><span class="bu">echo</span> <span class="st">&#39;  &amp;&amp; rm -rf /var/lib/apt/lists/*&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-963"><a href="#cb45-963"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-964"><a href="#cb45-964"></a><span class="bu">echo</span> <span class="st">&#39;WORKDIR /home/Project&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-965"><a href="#cb45-965"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-966"><a href="#cb45-966"></a><span class="bu">echo</span> <span class="st">&#39;## Default command to run&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-967"><a href="#cb45-967"></a><span class="bu">echo</span> <span class="st">&#39;ENTRYPOINT [&quot;Rscript&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-968"><a href="#cb45-968"></a><span class="bu">echo</span> <span class="st">&#39;&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-969"><a href="#cb45-969"></a><span class="bu">echo</span> <span class="st">&#39;## Default command parameters&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-970"><a href="#cb45-970"></a><span class="bu">echo</span> <span class="st">&#39;CMD [&quot;/home/Project/analysis.R&quot;]&#39;</span> <span class="op">&gt;&gt;</span> Dockerfile4</span>
+<span id="cb45-971"><a href="#cb45-971"></a><span class="in">```</span></span>
+<span id="cb45-972"><a href="#cb45-972"></a></span>
+<span id="cb45-975"><a href="#cb45-975"></a><span class="in">```{r}</span></span>
+<span id="cb45-976"><a href="#cb45-976"></a><span class="co">#| label: text4</span></span>
+<span id="cb45-977"><a href="#cb45-977"></a><span class="co">#| engine: text</span></span>
+<span id="cb45-978"><a href="#cb45-978"></a><span class="co">#| results: asis</span></span>
+<span id="cb45-979"><a href="#cb45-979"></a><span class="co">#| classes: dockerfile</span></span>
+<span id="cb45-980"><a href="#cb45-980"></a><span class="co">#| class-output: dockerfile</span></span>
+<span id="cb45-981"><a href="#cb45-981"></a><span class="co">#| file: ~/tmp/docker_tests/Dockerfile4</span></span>
+<span id="cb45-982"><a href="#cb45-982"></a><span class="co">#| eval: false</span></span>
+<span id="cb45-983"><a href="#cb45-983"></a><span class="in">```</span></span>
+<span id="cb45-984"><a href="#cb45-984"></a></span>
+<span id="cb45-985"><a href="#cb45-985"></a>The changes from the previous <span class="in">`Dockerfile`</span>:</span>
+<span id="cb45-986"><a href="#cb45-986"></a></span>
+<span id="cb45-987"><a href="#cb45-987"></a><span class="ss">   - </span>remove the <span class="in">`COPY`</span> statement as we will not need to work on a copy</span>
+<span id="cb45-988"><a href="#cb45-988"></a>     of the R code, we can work on it directly.</span>
+<span id="cb45-989"><a href="#cb45-989"></a></span>
+<span id="cb45-990"><a href="#cb45-990"></a><span class="ss">   - </span>change the container working directory to <span class="in">`/home/Project`</span> - Note,</span>
+<span id="cb45-991"><a href="#cb45-991"></a>     this path will not exist and will be created.</span>
 <span id="cb45-992"><a href="#cb45-992"></a></span>
-<span id="cb45-993"><a href="#cb45-993"></a>&lt;/br&gt;</span>
+<span id="cb45-993"><a href="#cb45-993"></a>We will now build the container image with the name:tag of <span class="in">`r:2`</span></span>
 <span id="cb45-994"><a href="#cb45-994"></a></span>
-<span id="cb45-995"><a href="#cb45-995"></a>This time, when we run the container image, we will indicate a volume</span>
-<span id="cb45-996"><a href="#cb45-996"></a>to mount (and a folder to mount this volume to).  This will define</span>
-<span id="cb45-997"><a href="#cb45-997"></a>which host folder to mount (map) and the path to mount this to within</span>
-<span id="cb45-998"><a href="#cb45-998"></a>the container.</span>
-<span id="cb45-999"><a href="#cb45-999"></a></span>
-<span id="cb45-1002"><a href="#cb45-1002"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1003"><a href="#cb45-1003"></a><span class="co">#| label: dockerRun40</span></span>
-<span id="cb45-1004"><a href="#cb45-1004"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1005"><a href="#cb45-1005"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1006"><a href="#cb45-1006"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-1007"><a href="#cb45-1007"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1008"><a href="#cb45-1008"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1009"><a href="#cb45-1009"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1010"><a href="#cb45-1010"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1011"><a href="#cb45-1011"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1012"><a href="#cb45-1012"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1013"><a href="#cb45-1013"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1014"><a href="#cb45-1014"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1015"><a href="#cb45-1015"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb45-1016"><a href="#cb45-1016"></a><span class="co"># docker run --rm -v /root/tmp/docker_tests:/home/Project r:2</span></span>
-<span id="cb45-1017"><a href="#cb45-1017"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> /root/tmp/docker_tests:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;ls -lat&quot;</span></span>
-<span id="cb45-1018"><a href="#cb45-1018"></a><span class="in">```</span></span>
-<span id="cb45-1019"><a href="#cb45-1019"></a></span>
-<span id="cb45-1022"><a href="#cb45-1022"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1023"><a href="#cb45-1023"></a><span class="co">#| label: dockerRun40a</span></span>
-<span id="cb45-1024"><a href="#cb45-1024"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1025"><a href="#cb45-1025"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1026"><a href="#cb45-1026"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-1027"><a href="#cb45-1027"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1028"><a href="#cb45-1028"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1029"><a href="#cb45-1029"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1030"><a href="#cb45-1030"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1031"><a href="#cb45-1031"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1032"><a href="#cb45-1032"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1033"><a href="#cb45-1033"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1034"><a href="#cb45-1034"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1035"><a href="#cb45-1035"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb45-1036"><a href="#cb45-1036"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span>
-<span id="cb45-1037"><a href="#cb45-1037"></a><span class="in">```</span></span>
-<span id="cb45-1038"><a href="#cb45-1038"></a></span>
-<span id="cb45-1041"><a href="#cb45-1041"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1042"><a href="#cb45-1042"></a><span class="co">#| label: dockerRun40b</span></span>
-<span id="cb45-1043"><a href="#cb45-1043"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1044"><a href="#cb45-1044"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1045"><a href="#cb45-1045"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-1046"><a href="#cb45-1046"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1047"><a href="#cb45-1047"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1048"><a href="#cb45-1048"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1049"><a href="#cb45-1049"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1050"><a href="#cb45-1050"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1051"><a href="#cb45-1051"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1052"><a href="#cb45-1052"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1053"><a href="#cb45-1053"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1054"><a href="#cb45-1054"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span>
-<span id="cb45-1055"><a href="#cb45-1055"></a><span class="in">```</span></span>
-<span id="cb45-1056"><a href="#cb45-1056"></a></span>
-<span id="cb45-1059"><a href="#cb45-1059"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1060"><a href="#cb45-1060"></a><span class="co">#| label: dockerRun40c</span></span>
-<span id="cb45-1061"><a href="#cb45-1061"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1062"><a href="#cb45-1062"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1063"><a href="#cb45-1063"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-1064"><a href="#cb45-1064"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1065"><a href="#cb45-1065"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1066"><a href="#cb45-1066"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1067"><a href="#cb45-1067"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1068"><a href="#cb45-1068"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1069"><a href="#cb45-1069"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1070"><a href="#cb45-1070"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1071"><a href="#cb45-1071"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1072"><a href="#cb45-1072"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;getwd()&quot;</span></span>
-<span id="cb45-1073"><a href="#cb45-1073"></a><span class="in">```</span></span>
-<span id="cb45-1074"><a href="#cb45-1074"></a></span>
-<span id="cb45-1077"><a href="#cb45-1077"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1078"><a href="#cb45-1078"></a><span class="co">#| label: dockerRun40d</span></span>
-<span id="cb45-1079"><a href="#cb45-1079"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1080"><a href="#cb45-1080"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1081"><a href="#cb45-1081"></a><span class="co">#| eval: true</span></span>
-<span id="cb45-1082"><a href="#cb45-1082"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1083"><a href="#cb45-1083"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1084"><a href="#cb45-1084"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1085"><a href="#cb45-1085"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1086"><a href="#cb45-1086"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1087"><a href="#cb45-1087"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1088"><a href="#cb45-1088"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1089"><a href="#cb45-1089"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1090"><a href="#cb45-1090"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">-w</span> /home/root/tmp/docker_tests r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span>
-<span id="cb45-1091"><a href="#cb45-1091"></a><span class="in">```</span></span>
-<span id="cb45-1092"><a href="#cb45-1092"></a></span>
-<span id="cb45-1095"><a href="#cb45-1095"></a><span class="in">```{bash}</span></span>
-<span id="cb45-1096"><a href="#cb45-1096"></a><span class="co">#| label: dockerRun40e</span></span>
-<span id="cb45-1097"><a href="#cb45-1097"></a><span class="co">#| engine: bash</span></span>
-<span id="cb45-1098"><a href="#cb45-1098"></a><span class="co">#| results: markup</span></span>
-<span id="cb45-1099"><a href="#cb45-1099"></a><span class="co">#| eval: false</span></span>
-<span id="cb45-1100"><a href="#cb45-1100"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb45-1101"><a href="#cb45-1101"></a><span class="co">#| cache: true</span></span>
-<span id="cb45-1102"><a href="#cb45-1102"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb45-1103"><a href="#cb45-1103"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb45-1104"><a href="#cb45-1104"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb45-1105"><a href="#cb45-1105"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb45-1106"><a href="#cb45-1106"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb45-1107"><a href="#cb45-1107"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1108"><a href="#cb45-1108"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2</span>
-<span id="cb45-1109"><a href="#cb45-1109"></a><span class="in">```</span></span>
-<span id="cb45-1110"><a href="#cb45-1110"></a> </span>
-<span id="cb45-1111"><a href="#cb45-1111"></a>:::</span>
-<span id="cb45-1112"><a href="#cb45-1112"></a></span>
-<span id="cb45-1113"><a href="#cb45-1113"></a> </span>
-<span id="cb45-1114"><a href="#cb45-1114"></a>  </span>
-<span id="cb45-1115"><a href="#cb45-1115"></a></span>
-<span id="cb45-1116"><a href="#cb45-1116"></a>::: {.raw} </span>
-<span id="cb45-1117"><a href="#cb45-1117"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
-<span id="cb45-1118"><a href="#cb45-1118"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
-<span id="cb45-1119"><a href="#cb45-1119"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
-<span id="cb45-1120"><a href="#cb45-1120"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb45-1121"><a href="#cb45-1121"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
-<span id="cb45-1122"><a href="#cb45-1122"></a>})<span class="op">;</span></span>
-<span id="cb45-1123"><a href="#cb45-1123"></a>&lt;/script&gt;</span>
-<span id="cb45-1124"><a href="#cb45-1124"></a></span>
-<span id="cb45-1125"><a href="#cb45-1125"></a>:::</span>
+<span id="cb45-997"><a href="#cb45-997"></a><span class="in">```{bash}</span></span>
+<span id="cb45-998"><a href="#cb45-998"></a><span class="co">#| label: dockerBuildReal4</span></span>
+<span id="cb45-999"><a href="#cb45-999"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1000"><a href="#cb45-1000"></a><span class="co">#| results: hide</span></span>
+<span id="cb45-1001"><a href="#cb45-1001"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1002"><a href="#cb45-1002"></a><span class="co">#| echo: false</span></span>
+<span id="cb45-1003"><a href="#cb45-1003"></a><span class="bu">cd</span> ~/tmp/docker_tests</span>
+<span id="cb45-1004"><a href="#cb45-1004"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:2 <span class="at">-f</span> Dockerfile4</span>
+<span id="cb45-1005"><a href="#cb45-1005"></a><span class="in">```</span></span>
+<span id="cb45-1006"><a href="#cb45-1006"></a></span>
+<span id="cb45-1009"><a href="#cb45-1009"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1010"><a href="#cb45-1010"></a><span class="co">#| label: dockerBuild4</span></span>
+<span id="cb45-1011"><a href="#cb45-1011"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1012"><a href="#cb45-1012"></a><span class="co">#| results: hide</span></span>
+<span id="cb45-1013"><a href="#cb45-1013"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1014"><a href="#cb45-1014"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1015"><a href="#cb45-1015"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1016"><a href="#cb45-1016"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1017"><a href="#cb45-1017"></a><span class="co">#| eval: false</span></span>
+<span id="cb45-1018"><a href="#cb45-1018"></a><span class="ex">docker</span> build . <span class="at">--tag</span> r:2 <span class="at">-f</span> Dockerfile4 </span>
+<span id="cb45-1019"><a href="#cb45-1019"></a><span class="in">```</span></span>
+<span id="cb45-1020"><a href="#cb45-1020"></a></span>
+<span id="cb45-1021"><a href="#cb45-1021"></a>&lt;/br&gt;</span>
+<span id="cb45-1022"><a href="#cb45-1022"></a></span>
+<span id="cb45-1023"><a href="#cb45-1023"></a>This time, when we run the container image, we will indicate a volume</span>
+<span id="cb45-1024"><a href="#cb45-1024"></a>to mount (and a folder to mount this volume to).  This will define</span>
+<span id="cb45-1025"><a href="#cb45-1025"></a>which host folder to mount (map) and the path to mount this to within</span>
+<span id="cb45-1026"><a href="#cb45-1026"></a>the container.</span>
+<span id="cb45-1027"><a href="#cb45-1027"></a></span>
+<span id="cb45-1030"><a href="#cb45-1030"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1031"><a href="#cb45-1031"></a><span class="co">#| label: dockerRun40</span></span>
+<span id="cb45-1032"><a href="#cb45-1032"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1033"><a href="#cb45-1033"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1034"><a href="#cb45-1034"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1035"><a href="#cb45-1035"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1036"><a href="#cb45-1036"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1037"><a href="#cb45-1037"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1038"><a href="#cb45-1038"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1039"><a href="#cb45-1039"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1040"><a href="#cb45-1040"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1041"><a href="#cb45-1041"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1042"><a href="#cb45-1042"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1043"><a href="#cb45-1043"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
+<span id="cb45-1044"><a href="#cb45-1044"></a><span class="co"># docker run --rm -v /root/tmp/docker_tests:/home/Project r:2</span></span>
+<span id="cb45-1045"><a href="#cb45-1045"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> /root/tmp/docker_tests:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;ls -lat&quot;</span></span>
+<span id="cb45-1046"><a href="#cb45-1046"></a><span class="in">```</span></span>
+<span id="cb45-1047"><a href="#cb45-1047"></a></span>
+<span id="cb45-1050"><a href="#cb45-1050"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1051"><a href="#cb45-1051"></a><span class="co">#| label: dockerRun40a</span></span>
+<span id="cb45-1052"><a href="#cb45-1052"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1053"><a href="#cb45-1053"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1054"><a href="#cb45-1054"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1055"><a href="#cb45-1055"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1056"><a href="#cb45-1056"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1057"><a href="#cb45-1057"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1058"><a href="#cb45-1058"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1059"><a href="#cb45-1059"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1060"><a href="#cb45-1060"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1061"><a href="#cb45-1061"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1062"><a href="#cb45-1062"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1063"><a href="#cb45-1063"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
+<span id="cb45-1064"><a href="#cb45-1064"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span>
+<span id="cb45-1065"><a href="#cb45-1065"></a><span class="in">```</span></span>
+<span id="cb45-1066"><a href="#cb45-1066"></a></span>
+<span id="cb45-1069"><a href="#cb45-1069"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1070"><a href="#cb45-1070"></a><span class="co">#| label: dockerRun40b</span></span>
+<span id="cb45-1071"><a href="#cb45-1071"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1072"><a href="#cb45-1072"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1073"><a href="#cb45-1073"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1074"><a href="#cb45-1074"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1075"><a href="#cb45-1075"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1076"><a href="#cb45-1076"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1077"><a href="#cb45-1077"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1078"><a href="#cb45-1078"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1079"><a href="#cb45-1079"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1080"><a href="#cb45-1080"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1081"><a href="#cb45-1081"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1082"><a href="#cb45-1082"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span>
+<span id="cb45-1083"><a href="#cb45-1083"></a><span class="in">```</span></span>
+<span id="cb45-1084"><a href="#cb45-1084"></a></span>
+<span id="cb45-1087"><a href="#cb45-1087"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1088"><a href="#cb45-1088"></a><span class="co">#| label: dockerRun40c</span></span>
+<span id="cb45-1089"><a href="#cb45-1089"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1090"><a href="#cb45-1090"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1091"><a href="#cb45-1091"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1092"><a href="#cb45-1092"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1093"><a href="#cb45-1093"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1094"><a href="#cb45-1094"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1095"><a href="#cb45-1095"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1096"><a href="#cb45-1096"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1097"><a href="#cb45-1097"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1098"><a href="#cb45-1098"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1099"><a href="#cb45-1099"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1100"><a href="#cb45-1100"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;getwd()&quot;</span></span>
+<span id="cb45-1101"><a href="#cb45-1101"></a><span class="in">```</span></span>
+<span id="cb45-1102"><a href="#cb45-1102"></a></span>
+<span id="cb45-1105"><a href="#cb45-1105"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1106"><a href="#cb45-1106"></a><span class="co">#| label: dockerRun40d</span></span>
+<span id="cb45-1107"><a href="#cb45-1107"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1108"><a href="#cb45-1108"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1109"><a href="#cb45-1109"></a><span class="co">#| eval: true</span></span>
+<span id="cb45-1110"><a href="#cb45-1110"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1111"><a href="#cb45-1111"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1112"><a href="#cb45-1112"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1113"><a href="#cb45-1113"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1114"><a href="#cb45-1114"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1115"><a href="#cb45-1115"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1116"><a href="#cb45-1116"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1117"><a href="#cb45-1117"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1118"><a href="#cb45-1118"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);list.files(&#39;/home/root/&#39;);&quot;</span></span>
+<span id="cb45-1119"><a href="#cb45-1119"></a><span class="in">```</span></span>
+<span id="cb45-1120"><a href="#cb45-1120"></a></span>
+<span id="cb45-1123"><a href="#cb45-1123"></a><span class="in">```{bash}</span></span>
+<span id="cb45-1124"><a href="#cb45-1124"></a><span class="co">#| label: dockerRun40e</span></span>
+<span id="cb45-1125"><a href="#cb45-1125"></a><span class="co">#| engine: bash</span></span>
+<span id="cb45-1126"><a href="#cb45-1126"></a><span class="co">#| results: markup</span></span>
+<span id="cb45-1127"><a href="#cb45-1127"></a><span class="co">#| eval: false</span></span>
+<span id="cb45-1128"><a href="#cb45-1128"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb45-1129"><a href="#cb45-1129"></a><span class="co">#| cache: true</span></span>
+<span id="cb45-1130"><a href="#cb45-1130"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb45-1131"><a href="#cb45-1131"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb45-1132"><a href="#cb45-1132"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb45-1133"><a href="#cb45-1133"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb45-1134"><a href="#cb45-1134"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb45-1135"><a href="#cb45-1135"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb45-1136"><a href="#cb45-1136"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2</span>
+<span id="cb45-1137"><a href="#cb45-1137"></a><span class="in">```</span></span>
+<span id="cb45-1138"><a href="#cb45-1138"></a> </span>
+<span id="cb45-1139"><a href="#cb45-1139"></a>:::</span>
+<span id="cb45-1140"><a href="#cb45-1140"></a></span>
+<span id="cb45-1141"><a href="#cb45-1141"></a> </span>
+<span id="cb45-1142"><a href="#cb45-1142"></a>  </span>
+<span id="cb45-1143"><a href="#cb45-1143"></a></span>
+<span id="cb45-1144"><a href="#cb45-1144"></a>::: {.raw} </span>
+<span id="cb45-1145"><a href="#cb45-1145"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
+<span id="cb45-1146"><a href="#cb45-1146"></a>&lt;script type=&#39;text/javascript&#39;&gt;</span>
+<span id="cb45-1147"><a href="#cb45-1147"></a><span class="fu">$</span>(<span class="bu">document</span>)<span class="op">.</span><span class="fu">ready</span>(<span class="kw">function</span> () {</span>
+<span id="cb45-1148"><a href="#cb45-1148"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;murray@arch:~&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb45-1149"><a href="#cb45-1149"></a><span class="fu">$</span>(<span class="st">&#39;div.terminal-docker&#39;</span>)<span class="op">.</span><span class="fu">prepend</span>(<span class="st">&quot;&lt;div class=&#39;head&#39;&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn&#39;&gt;&amp;#10005;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd&#39;&gt;&amp;#9472;&lt;/a&gt;&lt;a href=&#39;#&#39; class=&#39;mbtn stnd max&#39;&gt;&amp;#9723;&lt;/a&gt;&lt;span&gt;#&lt;/span&gt;&lt;/div&gt;&quot;</span>)<span class="op">;</span></span>
+<span id="cb45-1150"><a href="#cb45-1150"></a>})<span class="op">;</span></span>
+<span id="cb45-1151"><a href="#cb45-1151"></a>&lt;/script&gt;</span>
+<span id="cb45-1152"><a href="#cb45-1152"></a></span>
+<span id="cb45-1153"><a href="#cb45-1153"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
