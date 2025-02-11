@@ -1039,14 +1039,14 @@ docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "getwd()"
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "Sys.info()['user']"
+docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "Sys.info()['user']; list.files(); "
 ```
 
 ```{bash}
 #| label: dockerRun40e
 #| engine: bash
 #| results: markup
-#| eval: true
+#| eval: false
 #| comment: ""
 #| cache: true
 #| classes: terminal
@@ -1055,7 +1055,7 @@ docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "Sys.info()['u
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --rm -v /root/tmp/docker_tests:/home/Project r:2
+docker run --rm -v $PWD:/home/Project r:2
 ```
  
 :::
