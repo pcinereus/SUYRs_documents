@@ -3258,9 +3258,9 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     f65887b3e756   1 second ago   121MB</span>
-<span id="cb5-3"><a href="#cb5-3"></a>bitnami/minideb                     bookworm   5f7339906c3b   3 hours ago    120MB</span>
-<span id="cb5-4"><a href="#cb5-4"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   27 hours ago   9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb                             latest     57a7b893eef2   1 second ago   121MB</span>
+<span id="cb5-3"><a href="#cb5-3"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago    120MB</span>
+<span id="cb5-4"><a href="#cb5-4"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago   9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Note, the above simply lists all named images in your local registry. To get a more complete list of all images:</p>
@@ -3268,11 +3268,11 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     f65887b3e756   1 second ago    121MB</span>
-<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     7ca099aceb7a   4 seconds ago   120MB</span>
-<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     79143f0042aa   5 seconds ago   120MB</span>
-<span id="cb7-5"><a href="#cb7-5"></a>bitnami/minideb                     bookworm   5f7339906c3b   3 hours ago     120MB</span>
-<span id="cb7-6"><a href="#cb7-6"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   27 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb                             latest     57a7b893eef2   1 second ago    121MB</span>
+<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                              &lt;none&gt;     c7b8fe069911   4 seconds ago   120MB</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                              &lt;none&gt;     73a0761384c5   5 seconds ago   120MB</span>
+<span id="cb7-5"><a href="#cb7-5"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago     120MB</span>
+<span id="cb7-6"><a href="#cb7-6"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The <code>-a</code> switch indicates all images (including unnamed and hanging images).</p>
@@ -3394,13 +3394,13 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>REPOSITORY                          TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb21-2"><a href="#cb21-2"></a>minideb                             latest     78e2e2a3efc6   1 second ago    121MB</span>
-<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                              &lt;none&gt;     b6bbcce013ea   2 seconds ago   121MB</span>
-<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                              &lt;none&gt;     f65887b3e756   3 seconds ago   121MB</span>
-<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                              &lt;none&gt;     7ca099aceb7a   6 seconds ago   120MB</span>
-<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                              &lt;none&gt;     79143f0042aa   7 seconds ago   120MB</span>
-<span id="cb21-7"><a href="#cb21-7"></a>bitnami/minideb                     bookworm   5f7339906c3b   3 hours ago     120MB</span>
-<span id="cb21-8"><a href="#cb21-8"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   27 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2"></a>minideb                             latest     9a7817a59eed   1 second ago    121MB</span>
+<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                              &lt;none&gt;     4c827c34c6ea   2 seconds ago   121MB</span>
+<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                              &lt;none&gt;     57a7b893eef2   3 seconds ago   121MB</span>
+<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                              &lt;none&gt;     c7b8fe069911   6 seconds ago   120MB</span>
+<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                              &lt;none&gt;     73a0761384c5   7 seconds ago   120MB</span>
+<span id="cb21-7"><a href="#cb21-7"></a>bitnami/minideb                     bookworm   5f7339906c3b   4 hours ago     120MB</span>
+<span id="cb21-8"><a href="#cb21-8"></a>ghcr.io/pcinereus/suyrs_documents   latest     b19ae19b5b61   28 hours ago    9.33GB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>We can now run the container as:</p>
@@ -3505,17 +3505,17 @@ vertical-align: -.125em;
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> r:1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>            y</span>
-<span id="cb31-2"><a href="#cb31-2"></a>1  -1.2137254</span>
-<span id="cb31-3"><a href="#cb31-3"></a>2   0.7936253</span>
-<span id="cb31-4"><a href="#cb31-4"></a>3  -0.9212159</span>
-<span id="cb31-5"><a href="#cb31-5"></a>4  -0.1846060</span>
-<span id="cb31-6"><a href="#cb31-6"></a>5   1.8905959</span>
-<span id="cb31-7"><a href="#cb31-7"></a>6  -0.3161178</span>
-<span id="cb31-8"><a href="#cb31-8"></a>7  -1.4838811</span>
-<span id="cb31-9"><a href="#cb31-9"></a>8   1.1045825</span>
-<span id="cb31-10"><a href="#cb31-10"></a>9   1.0696101</span>
-<span id="cb31-11"><a href="#cb31-11"></a>10 -0.3818519</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>             y</span>
+<span id="cb31-2"><a href="#cb31-2"></a>1  -0.03508629</span>
+<span id="cb31-3"><a href="#cb31-3"></a>2   1.63146942</span>
+<span id="cb31-4"><a href="#cb31-4"></a>3   1.19313731</span>
+<span id="cb31-5"><a href="#cb31-5"></a>4  -0.37055455</span>
+<span id="cb31-6"><a href="#cb31-6"></a>5   0.03546832</span>
+<span id="cb31-7"><a href="#cb31-7"></a>6   0.85102707</span>
+<span id="cb31-8"><a href="#cb31-8"></a>7   0.69744237</span>
+<span id="cb31-9"><a href="#cb31-9"></a>8   0.28988593</span>
+<span id="cb31-10"><a href="#cb31-10"></a>9   0.56523973</span>
+<span id="cb31-11"><a href="#cb31-11"></a>10 -0.49540172</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -3564,16 +3564,16 @@ vertical-align: -.125em;
 <span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> /root/tmp/docker_tests:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;ls -lat&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>total 28</span>
-<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 root root  375 Feb 11 03:23 Dockerfile4</span>
-<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:23 .</span>
-<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:23 Dockerfile3</span>
-<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:23 analysis.R</span>
-<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:23 Dockerfile2</span>
-<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:23 Dockerfile</span>
-<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:23 ..</span>
+<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 root root  375 Feb 11 03:47 Dockerfile4</span>
+<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:47 .</span>
+<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:47 Dockerfile3</span>
+<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:47 analysis.R</span>
+<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:46 Dockerfile2</span>
+<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:46 Dockerfile</span>
+<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:46 ..</span>
 <span id="cb35-9"><a href="#cb35-9"></a>total 8</span>
-<span id="cb35-10"><a href="#cb35-10"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:23 .</span>
-<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x 1 root root 4096 Feb 11 03:23 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-10"><a href="#cb35-10"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:47 .</span>
+<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x 1 root root 4096 Feb 11 03:47 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
@@ -3582,13 +3582,13 @@ vertical-align: -.125em;
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--entrypoint</span> /bin/bash <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$PWD</span>:/home/Project r:2 <span class="at">-c</span> <span class="st">&quot;pwd&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>total 28</span>
-<span id="cb37-2"><a href="#cb37-2"></a>-rw-r--r-- 1 root root  375 Feb 11 03:23 Dockerfile4</span>
-<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:23 .</span>
-<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:23 Dockerfile3</span>
-<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:23 analysis.R</span>
-<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:23 Dockerfile2</span>
-<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:23 Dockerfile</span>
-<span id="cb37-8"><a href="#cb37-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:23 ..</span>
+<span id="cb37-2"><a href="#cb37-2"></a>-rw-r--r-- 1 root root  375 Feb 11 03:47 Dockerfile4</span>
+<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 2 root root 4096 Feb 11 03:47 .</span>
+<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root  369 Feb 11 03:47 Dockerfile3</span>
+<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root   89 Feb 11 03:47 analysis.R</span>
+<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Feb 11 03:46 Dockerfile2</span>
+<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  238 Feb 11 03:46 Dockerfile</span>
+<span id="cb37-8"><a href="#cb37-8"></a>drwxr-xr-x 3 root root 4096 Feb 11 03:46 ..</span>
 <span id="cb37-9"><a href="#cb37-9"></a>/home/Project</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -3608,7 +3608,7 @@ vertical-align: -.125em;
 </div>
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb42"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">-w</span> /home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb43"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb43-1"><a href="#cb43-1"></a>  user </span>
 <span id="cb43-2"><a href="#cb43-2"></a>&quot;root&quot; </span>
@@ -5158,7 +5158,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-1087"><a href="#cb45-1087"></a><span class="co">#| code-line-numbers: false</span></span>
 <span id="cb45-1088"><a href="#cb45-1088"></a><span class="co">#| highlight-style: zenburn</span></span>
 <span id="cb45-1089"><a href="#cb45-1089"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb45-1090"><a href="#cb45-1090"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span>
+<span id="cb45-1090"><a href="#cb45-1090"></a><span class="ex">docker</span> run <span class="at">--privileged</span> <span class="at">--entrypoint</span> Rscript <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">-w</span> /home/Project r:2 <span class="at">-e</span> <span class="st">&quot;Sys.info()[&#39;user&#39;]; list.files(); getwd(); list.files(&#39;/&#39;); list.files(&#39;~&#39;); list.files(&#39;/home&#39;);list.files(&#39;/home/Project&#39;);list.files(&#39;/workspace&#39;);&quot;</span></span>
 <span id="cb45-1091"><a href="#cb45-1091"></a><span class="in">```</span></span>
 <span id="cb45-1092"><a href="#cb45-1092"></a></span>
 <span id="cb45-1095"><a href="#cb45-1095"></a><span class="in">```{bash}</span></span>
@@ -5180,7 +5180,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb45-1111"><a href="#cb45-1111"></a>:::</span>
 <span id="cb45-1112"><a href="#cb45-1112"></a></span>
 <span id="cb45-1113"><a href="#cb45-1113"></a> </span>
-<span id="cb45-1114"><a href="#cb45-1114"></a> </span>
+<span id="cb45-1114"><a href="#cb45-1114"></a>  </span>
 <span id="cb45-1115"><a href="#cb45-1115"></a></span>
 <span id="cb45-1116"><a href="#cb45-1116"></a>::: {.raw} </span>
 <span id="cb45-1117"><a href="#cb45-1117"></a>&lt;script src=&quot;https://code.jquery.com/jquery-3.6.0.min.js&quot;&gt;&lt;/script&gt;</span>
