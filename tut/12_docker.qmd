@@ -907,7 +907,7 @@ echo '## Default command to run' >> Dockerfile4
 echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile4
 echo '' >> Dockerfile4
 echo '## Default command parameters' >> Dockerfile4
-echo 'CMD ["analysis.R"]' >> Dockerfile4
+echo 'CMD ["/home/Project/analysis.R"]' >> Dockerfile4
 ```
 
 ```{r}
