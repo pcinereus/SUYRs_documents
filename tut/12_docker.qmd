@@ -1065,7 +1065,7 @@ docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "getwd()"
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --privileged --entrypoint Rscript --rm -v $(pwd):/home/Project r:2 -e "Sys.info()['user']; list.files(); getwd(); list.files('/'); list.files('~'); list.files('/home');list.files('/home/Project');list.files('/workspace');list.files('/home/root/);"
+docker run --privileged --entrypoint Rscript --rm -v $(pwd):/home/Project r:2 -e "Sys.info()['user']; list.files(); getwd(); list.files('/'); list.files('~'); list.files('/home');list.files('/home/Project');list.files('/workspace');list.files('/home/root/');"
 ```
 
 ```{bash}
