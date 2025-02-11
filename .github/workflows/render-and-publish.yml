@@ -60,7 +60,8 @@ jobs:
         run: |
           mkdir ~/tmp
           if [ -s changed_files.txt ]; then
-            docker run --privileged  --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
+            ## docker run --privileged  --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
+            docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
           else
             echo "No updated files to render."
