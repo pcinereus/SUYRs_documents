@@ -58,7 +58,9 @@ jobs:
       #    #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
       - name: Render Updated Quarto Files
         run: |
-          mkdir ~/tmp
+          #mkdir ~/tmp
+          #mkdir ~/tmp/docker_test
+          
           if [ -s changed_files.txt ]; then
             docker run --privileged --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"

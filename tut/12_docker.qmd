@@ -910,32 +910,6 @@ echo '## Default command parameters' >> Dockerfile4
 echo 'CMD ["analysis.R"]' >> Dockerfile4
 ```
 
-```{bash}
-#| label: createDockerfile4_old
-#| echo: false
-#| eval: false
-#| classes: bash
-#| engine: bash
-cd ~/tmp/docker_tests
-echo 'FROM bitnami/minideb:bookworm' > Dockerfile4
-echo 'LABEL maintainer="Author"' >> Dockerfile4
-echo 'LABEL email="author_email@email.com"' >> Dockerfile4
-echo '' >> Dockerfile4
-echo '## Install the os packages' >> Dockerfile4
-echo 'RUN apt-get update \' >> Dockerfile4
-echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile4
-echo '    r-base \' >> Dockerfile4
-echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile4
-echo '' >> Dockerfile4
-echo 'WORKDIR /home/Project' >> Dockerfile4
-echo '' >> Dockerfile4
-echo '## Default command to run' >> Dockerfile4
-echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile4
-echo '' >> Dockerfile4
-echo '## Default command parameters' >> Dockerfile4
-echo 'CMD ["/home/Project/analysis.R"]' >> Dockerfile4
-```
-
 ```{r}
 #| label: text4
 #| engine: text
@@ -999,12 +973,21 @@ the container.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -lat
-# docker run --rm -v /root/tmp/docker_tests:/home/Project r:2
-docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r:2 -c "ls -lat"
+docker run --rm -v /root/tmp/docker_tests:/home/Project r:2
 ```
 
+where:
+
+- `-v pwd:/home/Project` defines the mounting of the current working
+  directory on the host machine to the `/home/Project' (which the
+  `Dockerfile` defined as the working directory) folder inside the
+  container
+	
+If we list the contents of our local folder, we see that the output
+file (`dat.csv`) has been created on the host filesystem.
+
 ```{bash}
-#| label: dockerRun40a
+#| label: dockerRun41
 #| engine: bash
 #| results: markup
 #| eval: true
@@ -1016,12 +999,266 @@ docker run --entrypoint /bin/bash --rm -v /root/tmp/docker_tests:/home/Project r
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-ls -lat
-docker run --entrypoint /bin/bash --rm -v $PWD:/home/Project r:2 -c "pwd"
+ls -la  
 ```
 
+Of course, it is possible to define a combination of the above two
+examples - one in which a copy of the codebase is packaged up into the
+container image (to ensure that a specific codebase is always
+applied), yet a moutpoint is also specified at run time to enable the
+output(s) to be obtained by the host.
+
+
+### .dockerignore
+
+The `.dockerignore` file is similar in structure to a `.gitignore`
+file in that they both define files (or patterns) to ignore.  The
+purpose of a `dockerignore` is to indicate which files and folders
+should be **excluded** from the docker build context.  Excluding 
+certain files and directories:
+
+- reduce image size by preventing unnecessary files from being copied
+  (e.g., logs, temporary files).
+- speed up builds by avoiding sending large or irrelevant files to the
+  Docker daemon.
+- improve security by excluding sensitive files like `.env` or
+  credentials
+  
+
+
+:::
+
+## Building a reproducible R environment
+
+Just as it might be important to be able to recreate the state of an
+operating system and software from a previous time (to maximise the
+potential for reproducibility), it might be equally important to
+ensure that the entire environment reflects this state back in time.
+In the case of R software, this means that all included _packages_
+should be the same versions that were available at that previous time.
+
+Posit (the developers of Rstudio) provide daily snapshots of CRAN
+([Posit package manager](https://packagemanager.posit.co/)).  We can
+therefore nominate a date when providing package installation
+instructions in a `Dockerfile`.
+
+On UNIX based systems, such as linux and MacOSX, many R packages need
+to be compiled from source during their installation.  As such, they
+sometimes have additional external system dependencies.  Normally, it
+it is necessary to install these external dependencies prior to
+attempting to install the R packages.  This is done via the `apt-get
+install` (debian) instructions in the Dockerfile.  Unfortunately, this
+can turn into a very iterative process or attempting to install an R
+package, examine the progress and look out for any errors about
+missing dependencies and going back to the Dockerfile and adding the
+appropriate dependencies before trying again.
+
+The R package called `pak` is designed to install R packages and if
+necessary handle the installation of any additional external
+dependencies as well.  This makes `pak` a very useful addition in
+Dockerfiles. 
+
+Some R packages have system dependencies that usually must be
+installed before attempting to install R packages.
+
+For this example, we will start from an image that already has a
+version of R (4.2.2) built in (`rocker/r-ver:4.2.2`).  Although this
+image is substantially larger than the mini debian we used earlier, it
+does come with all the build tools and R, each of which would
+otherwise require additional downloads and compilation.  The net
+result is that the `rocker/r-ver:4.2.2` image requires less overall
+download traffic than the individual parts.
+
+::: {.callout-note}
+Note, this image will take substantially longer to make as it not only
+has to pull down a larger base, it then has to compile the entire
+tidyverse from source.
+:::
+
+
+```{bash} 
+#| label: createDockerfile5
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM rocker/r-ver:4.2.2' > Dockerfile5
+echo 'LABEL maintainer="Author"' >> Dockerfile5
+echo 'LABEL email="author_email@email.com"' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'RUN apt-get update \' >> Dockerfile5
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile5
+echo '  libxml2-dev \' >> Dockerfile5
+echo '  libcurl4-openssl-dev  \' >> Dockerfile5
+echo '  libssl-dev \' >> Dockerfile5
+echo '  zlib1g-dev \' >> Dockerfile5
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile5
+echo '' >> Dockerfile5
+echo '## Install R package versions from Posit package manager (based on a date - YYYY-MM-DD)' >> Dockerfile5
+echo 'RUN R -e "options(repos = \' >> Dockerfile5
+echo '    list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \' >> Dockerfile5
+echo '  install.packages(\"pak\"); \' >> Dockerfile5
+echo '"' >> Dockerfile5
+echo 'RUN R -e "options(repos = \' >> Dockerfile5
+echo '    list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \' >> Dockerfile5
+echo '  pak::pkg_install(c(\"tidyverse\")); \' >> Dockerfile5
+echo '"' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'WORKDIR /home/Project' >> Dockerfile5
+echo '' >> Dockerfile5
+echo '## Default command to run' >> Dockerfile5
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'CMD ["analysis.R"]' >> Dockerfile5
+```
+   
+The changes from the previous `Dockerfile`:
+
+- switch the base image to `rocker:r-ver:4.2.2`
+- add numerous `-dev` developer package dependencies
+- install the `tidyverse` collection of packages from a dated snapshot
+
+```{r}
+#| label: Text5
+#| file: ~/tmp/docker_tests/Dockerfile5
+#| eval: false
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+In the above `Dockerfile`
+
+- the three first rows in contain information on the base image on
+  which to construct your docker container image (in this case
+  rocker/r-ver:4.2.1 container freely provided by the rocker team), as
+  well as information about yourself.
+
+- the **FROM** command points to a parent image.  Typically, this will
+  point to a specific image within a registry on Docker hub.  This
+  generates the base layer of the container image.
+
+- the **LABEL** command is one of numerous _environmental variables_
+  and is used to add metadata to an image.  In this case, there are
+  two entries to specify information about the maintainer and their
+  contact details.  Note, entries must be key-value pairs and values
+  must be enclosed in double quotes.
+
+- the **RUN** command runs shell commands in a new layer on top of the
+  current image and commits the result.  Each RUN generates a new
+  layer.  In the above example, there are two RUN commands.
+  - the first `RUN` command updates the underlying Ubuntu linux
+    distribution and installs some necessary dependencies
+  - the second `RUN` adds the R package (`tidyverse` - which is
+    technically a large collection of packages) from the
+    [Posit package manager](https://packagemanager.posit.co/)) snapshot
+    repository (base on the 4th of October 2022).  This repository
+    stores daily snapshots of all the packages on CRAN and thus allows
+    us to obtain the set of packages in the state they existed on a
+    nominated day.
+
+- the **WORKDIR** command sets the working directory for software
+  within the container.  In this case, we are creating a dedicated
+  directory (`/home/Project`)
+
+- the **ENTRYPOINT** command defines the default command/application
+  to run within the container if the user does not provide a command.
+  This is in JSON format.  In this case, we are indicating that by
+  default the container should run the `Rscript` application.  The
+  `Rscript` application runs a non-interactive `R` session on a
+  nominated R script file.  That is, it will run the nominated R
+  script and then terminate on completion.
+  
+- the **CMD** command defined the default arguments to provide to the
+  **ENTRYPOINT** command.  In this case, we have indicated which R
+  script to run `Rscript` on.
+ 
+**Note**, many of the large collection of R packages targeted for
+install as part of the `tidyverse` ecosystem (or its dependencies)
+require full compilations.  Whilst this does help ensure that the
+underlying package routines are optimised for your system, the entire
+install process may take up to an hour.  This installation can be sped
+up substantially by instead installing a pre-bundled version of the
+`tidyverse` packages (and dependencies) directly from the Ubuntu
+repositories.  The associated alternative `Dockerfile` is provided in
+the following expandable section.
+
+<details> <summary>Alternative Dockerfile</summary> 
+
+As an alternative, we could instead install tidyverse from the ubuntu
+r-cran repository.  This install will be far faster, yet likely not as
+up-to-date and we would have a little less control over exactly which
+version we were installing...
+
 ```{bash}
-#| label: dockerRun40b
+#| label: createDockerfile5a
+#| echo: false
+#| eval: false
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM rocker/r-ver:4.2.2' > Dockerfile5a
+echo 'LABEL maintainer="Author"' >> Dockerfile5a
+echo 'LABEL email="author_email@email.com"' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'RUN apt-get update \' >> Dockerfile5a
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile5a
+echo '  r-cran-tidyverse \' >> Dockerfile5a
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'WORKDIR /home/Project' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo '## Default command to run' >> Dockerfile5a
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'CMD ["analysis.R"]' >> Dockerfile5a
+```
+   
+```{r}
+#| label: Text5a
+#| engine: verbatim
+#| results: asis
+#| file: ~/tmp/docker_tests/Dockerfile5a
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+</details></br>
+ 
+We will now build the container image with the name:tag of `r-tidyverse:1`
+Note, this will take some time to complete.
+
+```{bash}
+#| label: dockerBuildReal5
+#| engine: bash
+#| results: hide
+#| eval: false
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag r-tidyverse:1 -f Dockerfile5
+```
+```{bash}
+#| label: dockerBuild5
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag r-tidyverse:1 -f Dockerfile5 
+```
+</br>
+
+If we now run `docker` with this image, the resulting container will
+automatically run a non-interactive session using the `analysis.R`
+script.
+
+```{bash}
+#| label: dockerRun50a
 #| engine: bash
 #| results: markup
 #| eval: true
@@ -1032,59 +1269,453 @@ docker run --entrypoint /bin/bash --rm -v $PWD:/home/Project r:2 -c "pwd"
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-cd ~/tmp/docker_tests/
-docker run --entrypoint /bin/bash --rm -v $PWD:/home/Project r:2 -c "pwd"
+cd ~/tmp/docker_tests/  
+docker run --rm -v `pwd`:/home/Project r-tidyverse:1
 ```
 
+where:
+
+- `-v pwd:/home/Project` defines the mounting of the current working
+  directory on the host machine to the `/home/Project' (which the
+  `Dockerfile` defined as the working directory) folder inside the
+  container
+
+Conveniently, we can override the **CMD** command when we run `docker
+run`.  In the current context, perhaps we would like to run the R
+session on an different R script.  Lets try this by creating a new R
+script - this time, one that makes use of the `tidyverse` ecosystem.
+
+
 ```{bash}
-#| label: dockerRun40c
+#| label: createanalysis5
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'library(tidyverse)' > analysis5.R
+echo 'dat <- data.frame(y = rnorm(10))' >> analysis5.R
+echo 'dat' >> analysis5.R
+echo 'dat %>% summarise(Mean = mean(y), Median = median(y))' >> analysis5.R
+```
+```{r}
+#| label: Rcode5
+#| engine: text
+#| results: asis
+#| file: ~/tmp/docker_tests/analysis5.R
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+Now we can nominate this alternative R script as the argument to the
+`Rscript` command.
+
+```{bash}
+#| label: dockerRun50
 #| engine: bash
 #| results: markup
 #| eval: true
 #| comment: ""
 #| cache: true
+#| highlight-style: zenburn
 #| classes: terminal
 #| class-source: terminal
 #| class-output: terminal
 #| code-line-numbers: false
-#| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "getwd()"
+docker run --rm -v `pwd`:/home/Project r-tidyverse:1 analysis5.R
 ```
 
+## Managing Docker images
+
+::: {.panel-tabset}
+
+### Listing images
+
+To list the most recently created images.  
+
 ```{bash}
-#| label: dockerRun40d
+#| label: docker ls
 #| engine: bash
 #| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
 #| eval: true
 #| comment: ""
 #| cache: true
+docker images
+```
+
+The output will include all created images along with the base images
+that they are derived from (those sourced from Dockerhub for example).
+
+The images (`REPOSITORY`) entries that are `<none>` are _dangling_
+images.  That is, they are intermediate images that were previously
+used in the building of an image and are no longer used (because the
+`Dockerfile` layer that they were associated with is no longer used in
+the latest version of that `Dockerfile`).
+
+We can exclude them from the output, by defining a filter that
+excludes dangling images.
+
+```{bash}
+#| label: docker f dangling
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -f "dangling=false"
+```
+
+If instead of `dangling=false`, you indicate `dangling=true`, only
+dangling images are displayed.  This can be useful for identifying
+redundant images.
+
+Another useful filter is to predicate on time relative to an image.
+For example, to display all images that were created _since_
+`minideb`:
+
+```{bash}
+#| label: docker f after
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -f "since=minideb" 
+```
+
+There is also a _before_ version.
+
+Note, the above examples will exclude the intermediate images that are
+associated with build layers.  If we want to see all images (including
+the intermediate images), use the `-a` switch.
+
+```{bash}
+#| label: docker ls a
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a 
+```
+
+### Removing images 
+
+::: {.panel-tabset}
+
+#### Removing all **unused** images
+
+This will also remove unused (dangling) containers, volumes and caches.
+
+```{bash}
+#| label: docker system prune
+#| engine: bash
+#| results: markup
 #| classes: terminal
 #| class-source: terminal
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-cd ~/tmp/docker_tests/
-docker run --privileged --entrypoint Rscript --rm -v $(pwd):/home/Project r:2 -e "Sys.info()['user']; list.files(); getwd(); list.files('/'); list.files('~'); list.files('/home');list.files('/home/Project');list.files('/workspace');list.files('/home/root/');"
-```
-
-```{bash}
-#| label: dockerRun40e
-#| engine: bash
-#| results: markup
 #| eval: false
 #| comment: ""
 #| cache: true
+docker system prune 
+```
+
+#### Removing **all** images
+
+```{bash}
+#| label: docker system prune a
+#| engine: bash
+#| results: markup
 #| classes: terminal
 #| class-source: terminal
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-cd ~/tmp/docker_tests/
-docker run --rm -v $PWD:/home/Project r:2
+#| eval: false
+#| comment: ""
+#| cache: true
+docker system prune -a 
 ```
- 
+
+#### Removing **specific** images
+
+```{bash}
+#| label: docker rmi
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker rmi <ID> 
+```
+
+where `<ID>` is the `IMAGE ID` from `docker images -a`
+
+#### Removing images (**regex**)
+
+```{bash}
+#| label: docker rmi grep
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker images -a | grep <"pattern"> | awk '{print $3}' | xargs docker rmi
+```
+
+where `<"pattern">` is a regular expression for isolating the name of
+the image(s) to remove.
+
 :::
+
+### remove dangling images
+
+```{bash}
+#| label: docker remove dangling
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker rmi -f $(docker images -f "dangling=true" -q).
+```
+
+:::
+
+
+# Generating docker images on github
+
+Up to now, the docker images we have created have been housed in a
+registry locally on the machine that we are building them on.  In the
+spirit of reproducibility, we ideally want these images to be
+available to others (as well as our future selves).  There are
+numerous options for making images available:
+
+- each user (or your future self) can build the image from the
+  `Dockerfile`.  In many cases, this will be a lengthy (yet automated)
+  process.  For this to be a viable option, each party will need to
+  have the ability and resources to be able to build docker images
+  from a Dockerfile.
+- the docker image could be hosted on a remote repository (such as
+  [dockerhub](hub.docker.com)).  This option requires that the
+  original author of the docker image has a dockerhub account so that
+  they can push the image that they created locally up to the remote
+  registry.
+- build and host the docker image on github.  This option requires the
+  original author/authors to have a github account.
+
+Building Docker images on GitHub via GitHub Actions is useful because
+it enables automated, consistent, and reproducible builds directly
+from your remote repository. As such, it is possible to trigger a
+fresh image build every time there is a change to the repo itself.
+This reduces manual effort and minimizing deployment errors. With
+GitHub Actions, you can integrate CI/CD workflows, automatically test
+images, and push them to container registries (e.g., GitHub Container
+Registry or Docker Hub). It also enhances collaboration, as team
+members can track build logs, detect failures early, and enforce
+security best practices through automated vulnerability scanning.
+Finally, it also means that the one platform can be used to host both
+code and the environment in which to run the code.
+
+To have Github Actions build and publish a docker image, we start by
+creating a github actions workflow file.  This file is in yaml format
+and should be placed a directory called `.github/workflows` within
+your git repository.
+
+```{r}
+#| label: prepareCIFolder1
+#| results: hide
+#| eval: true
+#| echo: false
+#| cache: false
+setwd("~/tmp/docker_tests")
+unlink('.github/workflows', recursive=TRUE, force=TRUE)
+unlink('.github', recursive=TRUE, force=TRUE)
+```
+```{bash}
+#| label: CI1
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+#| cache: false
+mkdir ~/tmp/docker_tests/.github
+mkdir ~/tmp/docker_tests/.github/workflows
+cd ~/tmp/docker_tests/.github/workflows
+echo 'name: Create and publish the Docker image' > Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'on:' >> Docker-build-publish.yml
+echo ' worflow_dispatch:' >> Docker-build-publish.yml
+echo ' push:' >> Docker-build-publish.yml
+echo '   branches: [ "main" ]' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'env:' >> Docker-build-publish.yml
+echo '  REGISTRY: ghcr.io' >> Docker-build-publish.yml
+echo '  IMAGE_NAME: ${{ github.repository }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'jobs:' >> Docker-build-publish.yml
+echo '  build-image:' >> Docker-build-publish.yml
+echo '    runs-on: ubuntu-latest' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    if: "!contains(github.event.head_commit.message, '[ci skip]')"' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    permissions:' >> Docker-build-publish.yml
+echo '      contents: read' >> Docker-build-publish.yml
+echo '      packages: write' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    name: ${{ matrix.config.r }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    strategy:' >> Docker-build-publish.yml
+echo '      fail-fast: false' >> Docker-build-publish.yml
+echo '      matrix:' >> Docker-build-publish.yml
+echo '        config:' >> Docker-build-publish.yml
+echo '        #- { r: 'devel' }' >> Docker-build-publish.yml
+echo '        #- { r: 'next'  }' >> Docker-build-publish.yml
+echo '        - { r: '4.4.1' }' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    steps:' >> Docker-build-publish.yml
+echo '      - name: Checkout repository' >> Docker-build-publish.yml
+echo '        uses: actions/checkout@v4' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '      - name: Login to GitHub Container Registry' >> Docker-build-publish.yml
+echo '        uses: docker/login-action@v1' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          registry: ${{ env.REGISTRY }}' >> Docker-build-publish.yml
+echo '          username: ${{ github.repository_owner }}  #' >> Docker-build-publish.yml
+echo '          password: ${{ secrets.GITHUB_TOKEN }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '      - name: Extract metadata (tags, labels) for Docker' >> Docker-build-publish.yml
+echo '        id: meta' >> Docker-build-publish.yml
+echo '        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}' >> Docker-build-publish.yml 
+echo '' >> Docker-build-publish.yml
+echo '      - name: Build and push Docker image' >> Docker-build-publish.yml
+echo '        uses: docker/build-push-action@v5' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          context: .' >> Docker-build-publish.yml
+echo '          push: true' >> Docker-build-publish.yml
+echo '          tags: ${{ steps.meta.outputs.tags }}' >> Docker-build-publish.yml
+echo '          labels: ${{ steps.meta.outputs.labels }}' >> Docker-build-publish.yml
+```
+```{r}
+#| label: CIcode1
+#| engine: text
+#| results: asis
+#| file: ~/tmp/docker_tests/.github/workflows/Docker-build-publish.yml
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+In the above `.github/workflow`:
+
+- **name** give a name to the workflow and is how it will be referred
+  to within the Actions user interface
+
+- **on: workflow_dispatch:** specifies that this workflow can runs
+  when manually triggered from the GitHub Actions UI.
+  
+- **on: push: branches [ "main" ]:** specifies that this workflow will
+  be triggered whenever there is a pushed change to the "main" branch
+
+- **env: REGISTRY:** sets the container registry to GitHub Container
+  Registry (ghcr.io).
+  
+- **env: IMAGE_NAME:** sets the repository name (in this case to the
+  name of the github repository).
+
+- **jobs: build-image:** runs-on: defines a job (build-image) that
+  runs on the latest version of Ubuntu
+
+- **if:** provides a way of defining exclusion rules.  In this case it
+  prevents execution if the latest commit message contains either "ci"
+  or "skip". This is useful for avoiding unnecessary builds.
+
+- **permissions: contents: read:** allows the workflow to read the repository contents.
+
+- **packages: write:** grants permission to push Docker images to
+  Github Container Registry.
+
+- **strategy: fail-fast:** 
+
+- **strategy: matrix: config:** defines a build matrix for testing
+  against multiple R versions (only 4.4.1 is active). Commented-out
+  lines suggest that devel and next versions were once considered.
+
+- **steps:** the actions to perform:
+
+  - **users: actions/checkout@v4** clones the repository so that the workflow can access
+  files like the Dockerfile and any other code in the repository.  It
+  is using version four of this routine
+  
+  - **users: docker/login-action@v1 ...** uses GitHub's built-in token
+  (`GITHUB_TOKEN`) to authenticate with Github Container Registry.
+  Ensures that pushing images to Github Container Registry is authorized.
+
+  - **users: docker/metadata-actions@...** generates metadata (tags,
+     labels) based on the repository and commit details. The specific
+     commit hash (in this case 9ec57ed1...) ensures a fixed version of
+     docker/metadata-action.
+  
+  - **users: docker/build-push-action@v5 ..** builds the Docker image
+    from the repository. Pushes the image to Github Container Registry
+    with the metadata-generated tags and labels.
+
+
+Now any time there is a change to the main branch, the image will be
+rebuilt and published to Github Container Registry. To access the
+built image:
+
+- navigate to the `Code` panel of the repositories Github page.
+- click on the item under the heading `Packages`.
+
+The displayed panel will provide information on the versions of the
+package available as well as instructions on how to obtain (pull) the
+image to a local repository from where it can be run. 
 
  
   
