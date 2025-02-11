@@ -907,6 +907,32 @@ echo '## Default command to run' >> Dockerfile4
 echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile4
 echo '' >> Dockerfile4
 echo '## Default command parameters' >> Dockerfile4
+echo 'CMD ["analysis.R"]' >> Dockerfile4
+```
+
+```{bash}
+#| label: createDockerfile4_old
+#| echo: false
+#| eval: false
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile4
+echo 'LABEL maintainer="Author"' >> Dockerfile4
+echo 'LABEL email="author_email@email.com"' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Install the os packages' >> Dockerfile4
+echo 'RUN apt-get update \' >> Dockerfile4
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile4
+echo '    r-base \' >> Dockerfile4
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile4
+echo '' >> Dockerfile4
+echo 'WORKDIR /home/Project' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Default command to run' >> Dockerfile4
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile4
+echo '' >> Dockerfile4
+echo '## Default command parameters' >> Dockerfile4
 echo 'CMD ["/home/Project/analysis.R"]' >> Dockerfile4
 ```
 
@@ -1039,7 +1065,7 @@ docker run --entrypoint Rscript --rm -v $PWD:/home/Project r:2 -e "getwd()"
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-docker run --privileged --entrypoint Rscript --rm -v $(pwd):/home/Project -w /home/root/tmp/docker_tests r:2 -e "Sys.info()['user']; list.files(); getwd(); list.files('/'); list.files('~'); list.files('/home');list.files('/home/Project');list.files('/workspace');"
+docker run --privileged --entrypoint Rscript --rm -v $(pwd):/home/Project r:2 -e "Sys.info()['user']; list.files(); getwd(); list.files('/'); list.files('~'); list.files('/home');list.files('/home/Project');list.files('/workspace');list.files('/home/root/);"
 ```
 
 ```{bash}
