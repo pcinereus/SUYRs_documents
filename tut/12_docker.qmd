@@ -1195,7 +1195,7 @@ version we were installing...
 ```{bash}
 #| label: createDockerfile5a
 #| echo: false
-#| eval: false
+#| eval: true
 #| classes: bash
 #| engine: bash
 cd ~/tmp/docker_tests
@@ -1234,7 +1234,7 @@ Note, this will take some time to complete.
 #| label: dockerBuildReal5
 #| engine: bash
 #| results: hide
-#| eval: false
+#| eval: true
 #| echo: false
 cd ~/tmp/docker_tests
 docker build . --tag r-tidyverse:1 -f Dockerfile5
