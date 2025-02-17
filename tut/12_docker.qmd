@@ -601,6 +601,7 @@ alternative `Dockerfile`.
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'FROM bitnami/minideb:bookworm' > Dockerfile2
 echo 'LABEL maintainer="Author"' >> Dockerfile2
@@ -749,6 +750,7 @@ create two files:
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'dat <- data.frame(y = rnorm(10))' > analysis.R
 echo 'dat' >> analysis.R
@@ -773,6 +775,7 @@ echo 'write.csv(dat, file = "dat.csv", row.names = FALSE)' >> analysis.R
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'FROM bitnami/minideb:bookworm' > Dockerfile3
 echo 'LABEL maintainer="Author"' >> Dockerfile3
@@ -890,6 +893,7 @@ To support this, we will create another `Dockerfile` (`Dockerfile4`).
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'FROM bitnami/minideb:bookworm' > Dockerfile4
 echo 'LABEL maintainer="Author"' >> Dockerfile4
@@ -1082,6 +1086,7 @@ tidyverse from source.
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'FROM rocker/r-ver:4.2.2' > Dockerfile5
 echo 'LABEL maintainer="Author"' >> Dockerfile5
@@ -1292,6 +1297,7 @@ script - this time, one that makes use of the `tidyverse` ecosystem.
 #| eval: true
 #| classes: bash
 #| engine: bash
+#| cache: false
 cd ~/tmp/docker_tests
 echo 'library(tidyverse)' > analysis5.R
 echo 'dat <- data.frame(y = rnorm(10))' >> analysis5.R
@@ -1707,11 +1713,14 @@ In the above `.github/workflow`:
 
 
 Now any time there is a change to the main branch, the image will be
-rebuilt and published to Github Container Registry. To access the
-built image:
+rebuilt and published to Github Container Registry. 
+
+To access the built image:
 
 - navigate to the `Code` panel of the repositories Github page.
 - click on the item under the heading `Packages`.
+
+  ![](../resources/git_packages1.png)
 
 The displayed panel will provide information on the versions of the
 package available as well as instructions on how to obtain (pull) the
