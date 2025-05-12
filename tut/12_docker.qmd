@@ -1594,7 +1594,7 @@ cd ~/tmp/docker_tests/.github/workflows
 echo 'name: Create and publish the Docker image' > Docker-build-publish.yml
 echo '' >> Docker-build-publish.yml
 echo 'on:' >> Docker-build-publish.yml
-echo ' worflow_dispatch:' >> Docker-build-publish.yml
+echo ' workflow_dispatch:' >> Docker-build-publish.yml
 echo ' push:' >> Docker-build-publish.yml
 echo '   branches: [ "main" ]' >> Docker-build-publish.yml
 echo '' >> Docker-build-publish.yml
@@ -1606,7 +1606,7 @@ echo 'jobs:' >> Docker-build-publish.yml
 echo '  build-image:' >> Docker-build-publish.yml
 echo '    runs-on: ubuntu-latest' >> Docker-build-publish.yml
 echo '' >> Docker-build-publish.yml
-echo '    if: "!contains(github.event.head_commit.message, '[ci skip]')"' >> Docker-build-publish.yml
+echo '    if: "!contains(github.event.head_commit.message, \'[ci skip]\')"' >> Docker-build-publish.yml
 echo '' >> Docker-build-publish.yml
 echo '    permissions:' >> Docker-build-publish.yml
 echo '      contents: read' >> Docker-build-publish.yml
