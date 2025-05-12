@@ -1,0 +1,29 @@
+name: Test imagemagick
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install system dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y imagemagick libmagick++-dev
+
+      - name: Verify ImageMagick installation
+        run: |
+          magick --version
+          which magick
+
+      - name: Test magick command
+        run: |
+          magick -size 100x100 xc:white test.png
+
