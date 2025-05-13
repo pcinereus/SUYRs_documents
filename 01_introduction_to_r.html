@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.7.30">
+<meta name="generator" content="quarto-1.7.31">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -2741,8 +2741,10 @@ Note
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">setwd</span>(<span class="st">&quot;../&quot;</span>)               <span class="co">#change to the parent directory of the current working directory</span></span>
 <span id="cb32-2"><a href="#cb32-2"></a><span class="fu">list.files</span>(<span class="at">path =</span> <span class="fu">getwd</span>()) <span class="co">#list all files (and directories) in the current working directory</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;data&quot;        &quot;default.nix&quot; &quot;Dockerfile&quot;  &quot;docs&quot;        &quot;Makefile&quot;   
-[6] &quot;pres&quot;        &quot;resources&quot;   &quot;tut&quot;        </code></pre>
+<pre><code> [1] &quot;data&quot;                 &quot;default.nix&quot;          &quot;Dockerfile&quot;          
+ [4] &quot;docs&quot;                 &quot;ImageMagick-7.1.1-47&quot; &quot;ImageMagick.tar.gz&quot;  
+ [7] &quot;Makefile&quot;             &quot;pres&quot;                 &quot;resources&quot;           
+[10] &quot;tut&quot;                 </code></pre>
 </div>
 </div>
 </section>
@@ -4495,23 +4497,23 @@ Q10   E2      Q10  full       15.90</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb346"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb346-1"><a href="#cb346-1"></a><span class="fu">rep</span>(<span class="fu">runif</span>(<span class="dv">1</span>), <span class="at">times =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.48711 0.48711 0.48711 0.48711 0.48711</code></pre>
+<pre><code>[1] 0.02536914 0.02536914 0.02536914 0.02536914 0.02536914</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb348"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb348-1"><a href="#cb348-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.81260740 0.08849918 0.99346479 0.93749958 0.46231980</code></pre>
+<pre><code>[1] 0.5164036 0.9036446 0.7266327 0.1300624 0.7388962</code></pre>
 </div>
 </div>
 <p>When the function being run within <code>runif()</code> itself produces a vector of length &gt; 1, the <code>runif()</code> function combines each of the vectors together as separate columns in a matrix:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb350"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb350-1"><a href="#cb350-1"></a><span class="fu">replicate</span>(<span class="at">n =</span> <span class="dv">5</span>, <span class="fu">runif</span>(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>           [,1]      [,2]      [,3]      [,4]       [,5]
-[1,] 0.25934810 0.9899475 0.4032432 0.3796918 0.31140782
-[2,] 0.31346108 0.2116657 0.5391213 0.4494109 0.05387018
-[3,] 0.01371581 0.6774694 0.2772453 0.1358792 0.79166599
-[4,] 0.44459145 0.6462227 0.9682941 0.6898085 0.72308588
-[5,] 0.62789560 0.2996611 0.8783397 0.7708958 0.69193030</code></pre>
+<pre><code>           [,1]      [,2]        [,3]      [,4]      [,5]
+[1,] 0.02344115 0.4302162 0.546420800 0.1777728 0.3985708
+[2,] 0.99832517 0.4180642 0.679860693 0.3335394 0.6055238
+[3,] 0.05665103 0.1190355 0.825560402 0.8950481 0.2430611
+[4,] 0.17276036 0.5274351 0.003232632 0.1685238 0.1684647
+[5,] 0.90200782 0.6836298 0.768135522 0.5306074 0.5842433</code></pre>
 </div>
 </div>
 <section id="apply-functions-along-matrix-margins" class="level3" data-number="5.7.1">
