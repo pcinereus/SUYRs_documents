@@ -178,8 +178,9 @@ areas (MPAs) on reef fish biomass.
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
-\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
 \begin{tikzpicture}
@@ -546,7 +547,8 @@ respectively within the following four relational structures:
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -574,7 +576,8 @@ respectively within the following four relational structures:
 %| include: false
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -602,7 +605,8 @@ respectively within the following four relational structures:
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -630,7 +634,8 @@ respectively within the following four relational structures:
 %| include: false
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -657,7 +662,8 @@ respectively within the following four relational structures:
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -685,7 +691,8 @@ respectively within the following four relational structures:
 %| include: false
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
@@ -712,7 +719,8 @@ respectively within the following four relational structures:
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
 \tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
 %\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
