@@ -2352,7 +2352,7 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb      latest    2883bad47465   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb      latest    fd52043829f4   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Note, the above simply lists all named images in your local registry. To get a more complete list of all images:</p>
@@ -2360,7 +2360,7 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb      latest    2883bad47465   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb      latest    fd52043829f4   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The <code>-a</code> switch indicates all images (including unnamed and hanging images).</p>
@@ -2482,8 +2482,8 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>REPOSITORY   TAG       IMAGE ID       CREATED        SIZE</span>
-<span id="cb21-2"><a href="#cb21-2"></a>minideb      latest    9bb45241da0f   1 second ago   121MB</span>
-<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;       &lt;none&gt;    2883bad47465   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2"></a>&lt;none&gt;       &lt;none&gt;    fd52043829f4   1 second ago   121MB</span>
+<span id="cb21-3"><a href="#cb21-3"></a>minideb      latest    afc8d553485a   1 second ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>We can now run the container as:</p>
@@ -2588,17 +2588,17 @@ vertical-align: -.125em;
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> r:1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>             y</span>
-<span id="cb31-2"><a href="#cb31-2"></a>1   2.06771784</span>
-<span id="cb31-3"><a href="#cb31-3"></a>2  -0.04124808</span>
-<span id="cb31-4"><a href="#cb31-4"></a>3  -0.93361164</span>
-<span id="cb31-5"><a href="#cb31-5"></a>4   0.92378403</span>
-<span id="cb31-6"><a href="#cb31-6"></a>5  -1.44367384</span>
-<span id="cb31-7"><a href="#cb31-7"></a>6  -1.14715114</span>
-<span id="cb31-8"><a href="#cb31-8"></a>7  -1.03413522</span>
-<span id="cb31-9"><a href="#cb31-9"></a>8   0.45739642</span>
-<span id="cb31-10"><a href="#cb31-10"></a>9  -1.19547001</span>
-<span id="cb31-11"><a href="#cb31-11"></a>10 -0.71759099</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>            y</span>
+<span id="cb31-2"><a href="#cb31-2"></a>1   1.0150530</span>
+<span id="cb31-3"><a href="#cb31-3"></a>2   0.1252187</span>
+<span id="cb31-4"><a href="#cb31-4"></a>3  -1.4837174</span>
+<span id="cb31-5"><a href="#cb31-5"></a>4   0.7892348</span>
+<span id="cb31-6"><a href="#cb31-6"></a>5   1.0813052</span>
+<span id="cb31-7"><a href="#cb31-7"></a>6   2.4476851</span>
+<span id="cb31-8"><a href="#cb31-8"></a>7  -0.7447563</span>
+<span id="cb31-9"><a href="#cb31-9"></a>8  -1.2812928</span>
+<span id="cb31-10"><a href="#cb31-10"></a>9   1.3248032</span>
+<span id="cb31-11"><a href="#cb31-11"></a>10  1.1563653</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -2646,24 +2646,24 @@ vertical-align: -.125em;
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project r:2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>total 28</span>
-<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 runner docker  361 Jun 13 03:44 Dockerfile4</span>
-<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 runner docker 4096 Jun 13 03:44 .</span>
-<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 runner docker  369 Jun 13 03:44 Dockerfile3</span>
-<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 runner docker   89 Jun 13 03:44 analysis.R</span>
-<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 runner docker  403 Jun 13 03:44 Dockerfile2</span>
-<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 runner docker  238 Jun 13 03:44 Dockerfile</span>
-<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 6 runner docker 4096 Jun 13 03:44 ..</span>
-<span id="cb35-9"><a href="#cb35-9"></a>            y</span>
-<span id="cb35-10"><a href="#cb35-10"></a>1  -0.9309475</span>
-<span id="cb35-11"><a href="#cb35-11"></a>2   0.1441184</span>
-<span id="cb35-12"><a href="#cb35-12"></a>3  -0.2366176</span>
-<span id="cb35-13"><a href="#cb35-13"></a>4  -1.7879912</span>
-<span id="cb35-14"><a href="#cb35-14"></a>5   1.7164835</span>
-<span id="cb35-15"><a href="#cb35-15"></a>6  -1.3536394</span>
-<span id="cb35-16"><a href="#cb35-16"></a>7  -0.6337019</span>
-<span id="cb35-17"><a href="#cb35-17"></a>8  -0.8584650</span>
-<span id="cb35-18"><a href="#cb35-18"></a>9   0.4660004</span>
-<span id="cb35-19"><a href="#cb35-19"></a>10 -0.6681266</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2"></a>drwxr-xr-x 2 runner docker 4096 Jun 13 08:46 .</span>
+<span id="cb35-3"><a href="#cb35-3"></a>-rw-r--r-- 1 runner docker  361 Jun 13 08:46 Dockerfile4</span>
+<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 runner docker  369 Jun 13 08:46 Dockerfile3</span>
+<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 runner docker   89 Jun 13 08:46 analysis.R</span>
+<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 runner docker  403 Jun 13 08:46 Dockerfile2</span>
+<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 runner docker  238 Jun 13 08:46 Dockerfile</span>
+<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 6 runner docker 4096 Jun 13 08:45 ..</span>
+<span id="cb35-9"><a href="#cb35-9"></a>             y</span>
+<span id="cb35-10"><a href="#cb35-10"></a>1  -0.49595167</span>
+<span id="cb35-11"><a href="#cb35-11"></a>2   0.63784781</span>
+<span id="cb35-12"><a href="#cb35-12"></a>3   1.36680821</span>
+<span id="cb35-13"><a href="#cb35-13"></a>4  -0.01117162</span>
+<span id="cb35-14"><a href="#cb35-14"></a>5  -0.47339353</span>
+<span id="cb35-15"><a href="#cb35-15"></a>6  -0.11221351</span>
+<span id="cb35-16"><a href="#cb35-16"></a>7  -1.73210272</span>
+<span id="cb35-17"><a href="#cb35-17"></a>8   0.36817602</span>
+<span id="cb35-18"><a href="#cb35-18"></a>9  -1.62602830</span>
+<span id="cb35-19"><a href="#cb35-19"></a>10  1.96629850</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>where:</p>
@@ -2676,14 +2676,14 @@ vertical-align: -.125em;
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>total 32</span>
-<span id="cb37-2"><a href="#cb37-2"></a>drwxr-xr-x 2 runner docker 4096 Jun 13 03:44 .</span>
-<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 6 runner docker 4096 Jun 13 03:44 ..</span>
-<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 runner docker  238 Jun 13 03:44 Dockerfile</span>
-<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 runner docker  403 Jun 13 03:44 Dockerfile2</span>
-<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 runner docker  369 Jun 13 03:44 Dockerfile3</span>
-<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 runner docker  361 Jun 13 03:44 Dockerfile4</span>
-<span id="cb37-8"><a href="#cb37-8"></a>-rw-r--r-- 1 runner docker   89 Jun 13 03:44 analysis.R</span>
-<span id="cb37-9"><a href="#cb37-9"></a>-rw-r--r-- 1 root   root    185 Jun 13 03:44 dat.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-2"><a href="#cb37-2"></a>drwxr-xr-x 2 runner docker 4096 Jun 13 08:46 .</span>
+<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 6 runner docker 4096 Jun 13 08:45 ..</span>
+<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 runner docker  238 Jun 13 08:46 Dockerfile</span>
+<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 runner docker  403 Jun 13 08:46 Dockerfile2</span>
+<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 runner docker  369 Jun 13 08:46 Dockerfile3</span>
+<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 runner docker  361 Jun 13 08:46 Dockerfile4</span>
+<span id="cb37-8"><a href="#cb37-8"></a>-rw-r--r-- 1 runner docker   89 Jun 13 08:46 analysis.R</span>
+<span id="cb37-9"><a href="#cb37-9"></a>-rw-r--r-- 1 root   root    186 Jun 13 08:46 dat.csv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Of course, it is possible to define a combination of the above two examples - one in which a copy of the codebase is packaged up into the container image (to ensure that a specific codebase is always applied), yet a moutpoint is also specified at run time to enable the output(s) to be obtained by the host.</p>
@@ -2811,16 +2811,16 @@ Alternative Dockerfile
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="kw">`</span><span class="bu">pwd</span><span class="kw">`</span>:/home/Project r-tidyverse:1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb42"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb42-1"><a href="#cb42-1"></a>             y</span>
-<span id="cb42-2"><a href="#cb42-2"></a>1   0.52145569</span>
-<span id="cb42-3"><a href="#cb42-3"></a>2   0.04191956</span>
-<span id="cb42-4"><a href="#cb42-4"></a>3  -0.93238176</span>
-<span id="cb42-5"><a href="#cb42-5"></a>4   0.64300090</span>
-<span id="cb42-6"><a href="#cb42-6"></a>5   2.10924589</span>
-<span id="cb42-7"><a href="#cb42-7"></a>6  -0.70075200</span>
-<span id="cb42-8"><a href="#cb42-8"></a>7   0.92399962</span>
-<span id="cb42-9"><a href="#cb42-9"></a>8   1.33313485</span>
-<span id="cb42-10"><a href="#cb42-10"></a>9   1.51397003</span>
-<span id="cb42-11"><a href="#cb42-11"></a>10  0.65159668</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-2"><a href="#cb42-2"></a>1   0.52015593</span>
+<span id="cb42-3"><a href="#cb42-3"></a>2  -0.69819588</span>
+<span id="cb42-4"><a href="#cb42-4"></a>3   0.04152569</span>
+<span id="cb42-5"><a href="#cb42-5"></a>4  -0.30182504</span>
+<span id="cb42-6"><a href="#cb42-6"></a>5   0.20846858</span>
+<span id="cb42-7"><a href="#cb42-7"></a>6   1.90059906</span>
+<span id="cb42-8"><a href="#cb42-8"></a>7  -1.24007143</span>
+<span id="cb42-9"><a href="#cb42-9"></a>8  -1.54487612</span>
+<span id="cb42-10"><a href="#cb42-10"></a>9  -0.36045725</span>
+<span id="cb42-11"><a href="#cb42-11"></a>10  0.12698401</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>where:</p>
@@ -2852,19 +2852,19 @@ Alternative Dockerfile
 <span id="cb45-8"><a href="#cb45-8"></a>✖ dplyr::filter() masks stats::filter()</span>
 <span id="cb45-9"><a href="#cb45-9"></a>✖ dplyr::lag()    masks stats::lag()</span>
 <span id="cb45-10"><a href="#cb45-10"></a>ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</span>
-<span id="cb45-11"><a href="#cb45-11"></a>             y</span>
-<span id="cb45-12"><a href="#cb45-12"></a>1   1.44572859</span>
-<span id="cb45-13"><a href="#cb45-13"></a>2  -0.06507025</span>
-<span id="cb45-14"><a href="#cb45-14"></a>3  -0.11536780</span>
-<span id="cb45-15"><a href="#cb45-15"></a>4  -0.57994302</span>
-<span id="cb45-16"><a href="#cb45-16"></a>5   1.50162577</span>
-<span id="cb45-17"><a href="#cb45-17"></a>6  -1.68490282</span>
-<span id="cb45-18"><a href="#cb45-18"></a>7   1.29936741</span>
-<span id="cb45-19"><a href="#cb45-19"></a>8  -0.97231476</span>
-<span id="cb45-20"><a href="#cb45-20"></a>9   0.75403253</span>
-<span id="cb45-21"><a href="#cb45-21"></a>10 -0.52905508</span>
-<span id="cb45-22"><a href="#cb45-22"></a>       Mean      Median</span>
-<span id="cb45-23"><a href="#cb45-23"></a>1 0.1054101 -0.09021903</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-11"><a href="#cb45-11"></a>            y</span>
+<span id="cb45-12"><a href="#cb45-12"></a>1   0.3018669</span>
+<span id="cb45-13"><a href="#cb45-13"></a>2  -0.4083470</span>
+<span id="cb45-14"><a href="#cb45-14"></a>3  -0.8453427</span>
+<span id="cb45-15"><a href="#cb45-15"></a>4  -1.6836036</span>
+<span id="cb45-16"><a href="#cb45-16"></a>5  -0.2776030</span>
+<span id="cb45-17"><a href="#cb45-17"></a>6  -1.0489842</span>
+<span id="cb45-18"><a href="#cb45-18"></a>7   0.5938640</span>
+<span id="cb45-19"><a href="#cb45-19"></a>8  -0.8890709</span>
+<span id="cb45-20"><a href="#cb45-20"></a>9   1.6209440</span>
+<span id="cb45-21"><a href="#cb45-21"></a>10  0.6553044</span>
+<span id="cb45-22"><a href="#cb45-22"></a>        Mean    Median</span>
+<span id="cb45-23"><a href="#cb45-23"></a>1 -0.1980972 -0.342975</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -2879,11 +2879,11 @@ Alternative Dockerfile
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb47"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb47-1"><a href="#cb47-1"></a>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE</span>
-<span id="cb47-2"><a href="#cb47-2"></a>r-tidyverse   1         61625430e306   6 seconds ago   2.09GB</span>
-<span id="cb47-3"><a href="#cb47-3"></a>r             2         f265845069c0   7 minutes ago   289MB</span>
-<span id="cb47-4"><a href="#cb47-4"></a>r             1         86f4a6aa4a39   7 minutes ago   289MB</span>
-<span id="cb47-5"><a href="#cb47-5"></a>&lt;none&gt;        &lt;none&gt;    2883bad47465   7 minutes ago   121MB</span>
-<span id="cb47-6"><a href="#cb47-6"></a>minideb       latest    9bb45241da0f   7 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb47-2"><a href="#cb47-2"></a>r-tidyverse   1         86bfcf0476d0   7 seconds ago   2.09GB</span>
+<span id="cb47-3"><a href="#cb47-3"></a>r             2         0e24e29272fe   8 minutes ago   289MB</span>
+<span id="cb47-4"><a href="#cb47-4"></a>r             1         5ca046dbd655   8 minutes ago   289MB</span>
+<span id="cb47-5"><a href="#cb47-5"></a>&lt;none&gt;        &lt;none&gt;    fd52043829f4   8 minutes ago   121MB</span>
+<span id="cb47-6"><a href="#cb47-6"></a>minideb       latest    afc8d553485a   8 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The output will include all created images along with the base images that they are derived from (those sourced from Dockerhub for example).</p>
@@ -2893,10 +2893,10 @@ Alternative Dockerfile
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-f</span> <span class="st">&quot;dangling=false&quot;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb49"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb49-1"><a href="#cb49-1"></a>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE</span>
-<span id="cb49-2"><a href="#cb49-2"></a>r-tidyverse   1         61625430e306   6 seconds ago   2.09GB</span>
-<span id="cb49-3"><a href="#cb49-3"></a>r             2         f265845069c0   7 minutes ago   289MB</span>
-<span id="cb49-4"><a href="#cb49-4"></a>r             1         86f4a6aa4a39   7 minutes ago   289MB</span>
-<span id="cb49-5"><a href="#cb49-5"></a>minideb       latest    9bb45241da0f   7 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb49-2"><a href="#cb49-2"></a>r-tidyverse   1         86bfcf0476d0   7 seconds ago   2.09GB</span>
+<span id="cb49-3"><a href="#cb49-3"></a>r             2         0e24e29272fe   8 minutes ago   289MB</span>
+<span id="cb49-4"><a href="#cb49-4"></a>r             1         5ca046dbd655   8 minutes ago   289MB</span>
+<span id="cb49-5"><a href="#cb49-5"></a>minideb       latest    afc8d553485a   8 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>If instead of <code>dangling=false</code>, you indicate <code>dangling=true</code>, only dangling images are displayed. This can be useful for identifying redundant images.</p>
@@ -2905,9 +2905,9 @@ Alternative Dockerfile
 <div class="sourceCode cell-code" id="cb50"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-f</span> <span class="st">&quot;since=minideb&quot;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb51"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb51-1"><a href="#cb51-1"></a>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE</span>
-<span id="cb51-2"><a href="#cb51-2"></a>r-tidyverse   1         61625430e306   6 seconds ago   2.09GB</span>
-<span id="cb51-3"><a href="#cb51-3"></a>r             2         f265845069c0   7 minutes ago   289MB</span>
-<span id="cb51-4"><a href="#cb51-4"></a>r             1         86f4a6aa4a39   7 minutes ago   289MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb51-2"><a href="#cb51-2"></a>r-tidyverse   1         86bfcf0476d0   7 seconds ago   2.09GB</span>
+<span id="cb51-3"><a href="#cb51-3"></a>r             2         0e24e29272fe   8 minutes ago   289MB</span>
+<span id="cb51-4"><a href="#cb51-4"></a>r             1         5ca046dbd655   8 minutes ago   289MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>There is also a <em>before</em> version.</p>
@@ -2916,11 +2916,11 @@ Alternative Dockerfile
 <div class="sourceCode cell-code" id="cb52"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb53"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb53-1"><a href="#cb53-1"></a>REPOSITORY    TAG       IMAGE ID       CREATED         SIZE</span>
-<span id="cb53-2"><a href="#cb53-2"></a>r-tidyverse   1         61625430e306   6 seconds ago   2.09GB</span>
-<span id="cb53-3"><a href="#cb53-3"></a>r             2         f265845069c0   7 minutes ago   289MB</span>
-<span id="cb53-4"><a href="#cb53-4"></a>r             1         86f4a6aa4a39   7 minutes ago   289MB</span>
-<span id="cb53-5"><a href="#cb53-5"></a>&lt;none&gt;        &lt;none&gt;    2883bad47465   7 minutes ago   121MB</span>
-<span id="cb53-6"><a href="#cb53-6"></a>minideb       latest    9bb45241da0f   7 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb53-2"><a href="#cb53-2"></a>r-tidyverse   1         86bfcf0476d0   7 seconds ago   2.09GB</span>
+<span id="cb53-3"><a href="#cb53-3"></a>r             2         0e24e29272fe   8 minutes ago   289MB</span>
+<span id="cb53-4"><a href="#cb53-4"></a>r             1         5ca046dbd655   8 minutes ago   289MB</span>
+<span id="cb53-5"><a href="#cb53-5"></a>&lt;none&gt;        &lt;none&gt;    fd52043829f4   8 minutes ago   121MB</span>
+<span id="cb53-6"><a href="#cb53-6"></a>minideb       latest    afc8d553485a   8 minutes ago   121MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
