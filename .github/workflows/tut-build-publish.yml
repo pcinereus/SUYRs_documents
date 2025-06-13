@@ -115,6 +115,8 @@ jobs:
             any::tree
             any::gbm
             any::car
+            any::dagitty
+            any::ggdag
             github::jmgirard/standist
 
       - name: Install other R packages
