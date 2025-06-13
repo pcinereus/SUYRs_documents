@@ -1005,7 +1005,8 @@ mod_brms1a <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
@@ -1049,7 +1050,8 @@ mod_brms1b <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
@@ -1099,7 +1101,8 @@ mod_brms1c <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
@@ -1149,7 +1152,8 @@ mod_brms1d <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
@@ -1249,7 +1253,8 @@ mod_brms2a <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
@@ -1298,7 +1303,8 @@ mod_brms2b <- brm(
   prior = priors,
   data = dat,
   refresh = 0,
-  backend = "cmdstanr"
+  ## backend = "cmdstanr"
+  backend = "rstan"
 )
 ```
 
