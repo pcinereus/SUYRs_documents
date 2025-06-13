@@ -35,6 +35,7 @@ output_dir: "docs"
 - [Basic statistical principles](20_basic_principles.html)
 - [Statistical philosophies](21_statistical_philosophies.html)
 - [Estimation](22_estimation.html)
+- [Causal inference](25_causation.html)
 
 ### Introduction to linear modelling
 

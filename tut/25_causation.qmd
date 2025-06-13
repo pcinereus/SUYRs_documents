@@ -507,7 +507,7 @@ thoroughly and potentially even either reconsider our conceptual model
 or otherwise attempt to diagnose why the conceptual model was
 seemingly inconsistent with the data.
 
-## Step 4 - Indentify and adjust for biases
+## Step 4 - Identify and adjust for biases
 
 We now need to determine what covariates must (and must not) be added
 to a statistical model in order to estimate the causal inference of
