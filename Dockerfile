@@ -41,6 +41,7 @@ RUN R -e "options(repos = \
   pak::pkg_install(c('gridGraphics', 'HDInterval', 'bayestestR', 'emmeans')); \
   pak::pkg_install(c('gert', 'usethis', 'mgcv', 'ggeffects', 'gratia', 'tree')); \
   pak::pkg_install(c('gbm', 'car', 'jmgirard/standist', 'tidybayes')); \
+  pak::pkg_install(c('dagitty', 'ggdag')); \
 "
 
 RUN R -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
