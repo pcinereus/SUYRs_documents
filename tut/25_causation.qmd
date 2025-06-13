@@ -1,0 +1,1345 @@
+---
+title: Causal inference
+author: "Murray Logan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format: 
+  html:
+    toc: true
+    toc-float: true
+    page-layout: full
+    number-sections: true
+    number-depth: 3
+    embed-resources: true
+    code-fold: false
+    code-tools: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-block-border-left: "#ccc"
+    code-copy: true
+    highlight-style: atom-one
+    theme: [default, ../resources/tut-style.scss]
+    css: ../resources/tut-style.css
+crossref:
+  fig-title: '**Figure**'
+  fig-labels: arabic
+  tbl-title: '**Table**'
+  tbl-labels: arabic
+engine: knitr
+bibliography: ../resources/references.bib
+output_dir: "docs"
+---
+    
+```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = "")
+options(tinytex.engine = 'xelatex')
+cleanRmdInput <- function(x) {
+                                        #x <- gsub("```\\{r","```markdown\n`r ''```\\{r",x)
+  x <- gsub("^```$","`` `",x)  # the Makefile will then change this back to ``` after pandoc
+  x
+}
+  library(tidyverse)
+  library(pander)
+  FIG_PATH <- '10_git_files/figure-html/'
+```
+
+
+
+
+::: {.newsbox}
+
+**Other useful tutorials or resources**
+
+- [Statistical Rethinking 2023 -05 - Elemental Confounds](https://www.youtube.com/watch?v=mBEA7PKDmiY&list=PLDcUM9US4XdPz-KxHM4XHt7uUVGWWVSus&index=6)
+- [Applying the structural causal model framework for observational causal inference in ecology](https://esajournals.onlinelibrary.wiley.com/doi/10.1002/ecm.1554)
+:::
+
+
+# Preparations
+
+This tutorial makes use of a couple of specialist R packages
+(`dagitty` and `ggdag`) in addition to the `tidyverse` and Bayesian
+modelling package (`brms`). So we will start by loading the necessary
+libraries
+
+```{r}
+#| label: libraries
+#| output: false
+#| eval: true
+#| warning: false
+#| message: false
+#| cache: false
+library(tidyverse)
+library(brms)
+library(dagitty)
+library(ggdag)
+library(patchwork)
+```
+
+
+# Background
+
+Understanding the relationships between variables is a fundamental
+aspect of ecological research. However, interpreting these
+relationships requires careful consideration of statistical principles
+and study design. Carefully controlled experimental designs have
+traditionally been the gold standard for inferring causation. However,
+observational studies are becoming increasingly important to answer
+large-scale ecological questions for which experiments are not
+feasible or suitable. Whilst most studies aim to answer causal
+questions, doing so can be challenging and requires careful
+consideration of causal relationships if we are to avoid confounding
+and other biases - hence the phrase "correlation does not imply
+causation".
+
+Moreover, there is often an urge to measure as many variables as
+possible just in case they might turn out to be useful in statistical
+analyses - particularly in observational studies, or surveys. Then
+when it comes to performing the statistical analyses, there is a
+temptation to put everything in the model under the false belief that
+the model will be "better". Blindly doing so will often result in the
+models behaving quite differently to what you might expect and produce
+spurious and missleading estimates.
+
+This tutorial introduces the concepts of correlation, confounding, and
+causation, emphasizing their importance in ecological studies as well
+as how we can identify and adjust models for causal inference.
+
+# Structural Causal Modelling (SCM) framework
+
+Structural Causal Modelling (SCM) is a useful and robust logic-based
+framework for identifying cause and effect relationships and thus
+supporting causal inference from observational data. The framework
+comprises the following seven steps (the details each step will be
+covered below):
+
+1. Create a conceptual model of the system of interest
+
+2. Choose a statistical test
+
+3. Test the consistency of your conceptual model with the data
+
+4. Identify biases (confounding, overcontrol, collider) that you need
+   to adjust for when testing the cause of interest
+
+5. Test for causality with the appropriate statistical test
+
+6. Repeat steps 3-5 for each cause of interest
+
+7. Repeat steps 1-6 for other conceptual models
+
+
+## Step 1 - create the conceptual model
+
+The conceptual model represents the researchers' understanding of the
+system of interest as well as their assumptions about the causal
+structure between variables. This structure should be based on domain
+knowledge, prior research, and expert opinion.
+
+For example, a conceptual model might indicate that `X` effects `Y`
+(`X -> Y`), or perhaps `X` and `Y` might both be effected by `Z` and
+thus `Z` is a confounder of the relationship between `X` and `Y` (`X
+<- Z -> Y`).
+
+The conceptual model may include both observed and unobserved
+variables. Essentially, the conceptual model encodes our structural
+assumptions about the relationships in the system. Importantly, they
+do not impose the manner in which those relationships are
+investigated. That is, they are agnostic to the kinds of statistical
+models you use - they could be linear/additive/non-linear,
+frequentist/Bayesian, hierarchical etc.
+
+The conceptual model is visually represented as a **Directed Acyclic
+Graph** (**DAG**) where nodes (dots) represent variables and arrows
+represent assumed causal relationships. Following are some important
+properties of a DAG:
+
+- the direction of an arrow indicates the direction of causality, e.g.
+  `X -> Y` means that `X` causes `Y`.
+- it is _acyclic_, meaning that there are no cycles or loops in the
+  graph, i.e. you cannot go from `X` to `Y` and then back to `X`.
+- the presence of an arrow implies a possible relationship
+- the absence of an arrow encodes an explicit assumption of no
+  relationship
+
+To help describe DAGs, I think it would be useful to provide some
+examples with real variables. So lets consider a hypothetical example
+presented in @Arif_2022 that explored the effects of marine protected
+areas (MPAs) on reef fish biomass.
+
+
+```{tikz}
+%| label: dag_1
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| out-width: 500px
+%| cache: true
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, 0cm)$) (fishing){Fishing pressure};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(fishing.east) + (1cm, 0cm)$) (biomass){Fish biomass};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(mpa.north) + (0cm, 0.75cm)$) (depth){Depth};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(fishing.north) + (0cm, 0.75cm)$) (complex){Structural complexity};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(biomass.north) + (0cm, 0.75cm)$) (human){Human gravity};
+\node[Messy, HandLabel, draw, align=left, anchor=north] at ($(fishing.south) + (0cm, -0.75cm)$) (coral){Coral cover};
+\draw[-latex, Messy] (mpa.east) to (fishing);
+\draw[-latex, Messy] ($(fishing.east) +(0cm, 0cm)$) to (biomass);
+\draw[latex-, Messy] ($(mpa.north) +(0cm, 0cm)$) to (depth);
+\draw[latex-, Messy] ($(fishing.north) +(0cm, 0cm)$) to (depth);
+\draw[-latex, Messy] (complex) to (mpa);
+\draw[-latex, Messy] (complex) to (biomass);
+\draw[-latex, Messy] (human) to (fishing);
+\draw[-latex, Messy] (human) to (biomass);
+\draw[-latex, Messy] (mpa) to (coral);
+\draw[-latex, Messy] (biomass) to (coral);
+\end{tikzpicture}
+```
+
+There is an R package (**dagitty**) to help with the construction and
+interrogation of DAGs. For constructing the DAG, we can use either the
+`dagitty()` function or the `dagify()` function.
+
+::: {.panel-tabset}
+## `dagitty()`
+
+```{r}
+#| label: dag_1a
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+dag <- dagitty("
+dag {
+  depth -> mpa
+  depth -> fishing
+  mpa -> fishing
+  fishing -> biomass
+  complexity -> mpa
+  complexity -> biomass
+  human -> fishing
+  human -> biomass
+  mpa -> coral
+  biomass -> coral
+}
+")
+ggdag(dag, text = TRUE, text_size = 2.5) +
+  theme_dag_blank()
+```
+
+If the coordinates of the nodes are not specified (which they are not
+in the above example), they are determined by the "spring" layout
+algorithm. This algorithm attempts to position the nodes in a way that
+minimizes the overall energy of the system, similar to how physical
+systems tend to settle into stable configurations. Importantly, it is
+a stoichastic algorithm, meaning that the positions of the nodes will
+change each time the code is run. This can be useful for visualizing
+complex relationships, but it can also make it difficult to reproduce
+specific layouts. If you want to ensure that the layout remains
+consistent across runs, you can specify the coordinates of the nodes
+manually.
+
+Furthermore, we have an opportunity to tag our response (outcome) and
+main predictor(s) (exposure).
+
+```{r}
+#| label: dag_1b
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+dag <- dagitty('
+dag {
+  depth -> mpa
+  depth -> fishing
+  mpa -> fishing
+  fishing -> biomass
+  complexity -> mpa
+  complexity -> biomass
+  human -> fishing
+  human -> biomass
+  mpa -> coral
+  biomass -> coral
+  biomass[outcome, pos="3, 1"]
+  fishing[pos = "2, 1"]
+  mpa[exposure, pos = "1, 1"]
+  depth[pos = "1, 2"]
+  complexity[pos = "2, 2"]
+  human[pos = "3, 2"]
+  coral[pos = "2, 0"]
+}
+')
+ggdag(dag, text = TRUE, text_size = 2.5) +
+  theme_dag_blank()
+```
+
+
+
+## `dagify()`
+
+```{r}
+#| label: dag_1c
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+dag <- dagify(
+  biomass ~ fishing + complexity + human,
+  fishing ~ mpa + depth + human,
+  mpa ~ depth + complexity,
+  coral ~ mpa + biomass
+)
+ggdag(dag, text = TRUE, text_size = 2.5) +
+  theme_dag_blank()
+```
+
+If the coordinates of the nodes are not specified (which they are not
+in the above example), they are determined by the "spring" layout
+algorithm. This algorithm attempts to position the nodes in a way that
+minimizes the overall energy of the system, similar to how physical
+systems tend to settle into stable configurations. Importantly, it is
+a stoichastic algorithm, meaning that the positions of the nodes will
+change each time the code is run. This can be useful for visualizing
+complex relationships, but it can also make it difficult to reproduce
+specific layouts. If you want to ensure that the layout remains
+consistent across runs, you can specify the coordinates of the nodes
+manually.
+
+Furthermore, we have an opportunity to tag our response (outcome) and
+main predictor(s) (exposure).
+
+```{r}
+#| label: dag_1d
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+coords <- list(
+    x = c(
+        biomass = 3, fishing = 2, mpa = 1, depth = 1,
+        complexity = 2, human = 3, coral = 2
+    ),
+    y = c(
+        biomass = 1, fishing = 1, mpa = 1, depth = 2,
+        complexity = 2, human = 2, coral = 0
+    )
+)
+dag <- dagify(
+  biomass ~ fishing + complexity + human,
+  fishing ~ mpa + depth + human,
+  mpa ~ depth + complexity,
+  coral ~ mpa + biomass,
+  exposure = "mpa",
+  outcome = "biomass",
+  coords = coords
+)
+ggdag(dag, text = TRUE, text_size = 2.5) +
+  theme_dag_blank()
+```
+:::
+
+
+## Step 2 - choose a statistical test
+
+This step is largely independent of the first step, but will have
+consequences for Step 5. As always, the decisions about what sort of
+statistical analyses to use should be informed by the nature of the
+questions being asked as well as exploratory data analyses. For the
+purpose of Step 5, this tutorial will use frequentist linear models,
+yet for the specific causal inferences we will use Bayesian models.
+
+## Step 3
+
+As indicated above, a DAG encodes all our structural relationship
+assumptions. For example, in our hypothetical reef observation study,
+we make numerous assumptions. Some of the more obvious assumptions
+include:
+
+- depth and human gravity are independent 
+- complexity and depth are independent 
+- MPA and human gravity are independent
+
+In each of these cases, there are no paths in which arrows can be
+followed from one of these variables to the other (even via other
+variables).
+
+Others are a more complex and less obvious, such as:
+
+- fishing and structural complexity are independent if we condition on
+  MPA and depth. There is a path (`complexity -> mpa -> fishing`)
+  unless we include `mpa` in which case, this path is blocked.
+  Similarly, since `depth` is a determinant of `mpa`, we also need to block
+  this path.
+- coral cover and fishing are independent if we condition on biomass
+  and MPA. There is a path (`fishing -> biomass -> coral`) unless we
+  block this path by including `biomass`. There is also a path
+  (`fishing <- mpa -> coral`) where `fishing` and `coral` are linked
+  because they have a common cause (`mpa`) and are thus only
+  independent once we condition on `mpa`.
+
+There are also many more assumptions like those above, most of which
+are very difficult to identify without knowing all the complex rules
+and having a lot practice. Fortunately, once we have a DAG, we can
+then check to see which variables are **conditionally independent** of
+one another via the `dagitty::impliedConditionalIndependencies()`
+function. Conditionally independent means that two variables are
+independent (not correlated) once we condition on (similar to
+controlling for - e.g. adding to a model) another variable. This
+provides a set of the explicit assumptions that are encapsulated
+within our conceptual model.
+
+```{r}
+#| label: dag_1_conditional_independencies
+#| results: markup
+#| eval: true
+#| echo: true
+dagitty::impliedConditionalIndependencies(dag) 
+```
+```{r}
+#| label: dag_1_conditional_independencies_2
+#| results: markup
+#| eval: false
+#| echo: false
+dagitty::impliedConditionalIndependencies(dag, type = "basis.set")
+dagitty::impliedConditionalIndependencies(dag, type = "all.pairs")
+```
+
+The above function abbreviates variables and uses the following notation devices:
+
+- $\perp\!\!\!\perp$ is indendent of
+- $|$ is conditional on
+
+Lets go through how to interpret some of these:
+
+- `dpth _||_ humn` ($Depth\perp\!\!\!\perp Human~gravity$), depth is
+  independent of human gravity
+- `corl _||_ fshn | bmss, mpa` ($Coral~cover\perp\!\!\!\perp
+  Fishing~pressure | Fish~biomass, MPA$), coral cover is independent
+  of fishing pressure conditional on fish biomass and MPA status.
+
+Graphically, if two variables are independent (there is no path
+between them), then they are **d-separated** (blocked) by the
+conditioning set.
+
+Once we have the set of assumptions, we should systematically go
+through and test each of them against our data. For example, from
+above, we should fit a model of depth against human gravity. If any of
+the assumptions are violated, then we need to revise the DAG (but this
+should always be informed by domain knowledge)
+
+The example, as presented in @Arif_2022 is intentionally fictitious.
+This allows us to simulate data and in so doing be in the otherwise
+impossible situation of knowing the "truth". This means that we can
+analyse the data and see how well the estimates align with the true
+values. So lets simulate data similar to that used by @Arif_2022.
+Note, the observations generated in this simulation are completely
+unrealistic as they are simply generated from standard normal
+distributions. Nevertheless, the principles that follow are still
+valid.
+
+```{r}
+#| label: simulated_data
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+set.seed(123)
+N <- 10000
+depth <- rnorm(N, mean = 0, sd = 1)
+human <- rnorm(N, mean = 0, sd = 1)
+complexity <- rnorm(N, mean = 0, sd = 1)
+mpa <- rbinom(N, 1, prob = plogis(0.2 * depth + 2.8 * complexity))
+fishing <- rnorm(N, mean = -0.99 * mpa + -0.2 * depth + 0.3 * human, sd = 1)
+biomass <- rnorm(N, -1.1 * fishing + -0.4 * human + 1.65 * complexity, sd = 1)
+coral <- rnorm(N, mean = 0.5 * mpa + 2.5 * biomass, sd = 1)
+dat <- data.frame(depth, human, complexity, mpa, fishing, coral, biomass)
+head(dat)
+```
+
+For illustrative purposes, there is a function in the `dagitty`
+package that systematically goes through the set of conditional
+independences and tests each one (`localTests()`). Although we should
+perform the usual exploratory data analyses and carefully consider
+each of the individual analyses (e.g. the model structure, error
+distribution etc), in the interest of brevity, we will use the
+`localTests()` function on this occasion.
+
+By default, the `localTests()` function performs a series of
+correlation tests.
+
+```{r}
+#| label: local_tests
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+tests <- localTests(x = dag, data = dat)
+tests
+plotLocalTestResults(tests)
+```
+
+Interestingly, although the DAG assumptions are broadly consistent
+with the data, there are three conditional independencies
+(assumptions) that are unsupported by the data. This is curious given
+that these data were simulated and these correlations were not baked
+into the data. That said, if we used a cut off of 0.05, then we are
+accepting that there is a 5% chance of a false rejection and we did
+not adjust for multiple tests - if we did, there would definitely not
+be any p-values less than 0.05 given the number of tests performed.
+
+With real data, we would scrutinise the outcomes of these tests more
+thoroughly and potentially even either reconsider our conceptual model
+or otherwise attempt to diagnose why the conceptual model was
+seemingly inconsistent with the data.
+
+## Step 4 - Indentify and adjust for biases
+
+We now need to determine what covariates must (and must not) be added
+to a statistical model in order to estimate the causal inference of
+our main predictor (**exposure**: MPA) on the response (**outcome**:
+fish biomass). That is, what combination of covariates must be added
+in order to avoid biases. This is largely achieved via two
+rules/criterion:
+
+- **Backdoor criterion**: rules used to identify a set of (covariates)
+  variables that blocks all backdoor (non-causal) paths from the
+  predictor (exposure) to the response (outcome) while leaving all
+  causal paths open. A **backdoor path** is a path that starts with an
+  arrow pointing into the exposure variable (MPA in this case).
+  
+- **Frontdoor criterion**: rules used to identify a set of variables
+  that blocks all frontdoor paths from the exposure to the outcome. A
+  frontdoor path blocks all non-causal paths from exposure to outcome
+  as well as from Z to Y (e.g. it blocks all confounding). A frontdoor
+  path is a path that starts with an arrow pointing from X and into Y
+  via intermediate variables, i.e. X -> Z -> Y, d-separation The
+  fontdoor criterion is useful if the backdoor criterion nominates a
+  variable that is missing from the data - it provides an alternative.
+
+There are three biases that we need to be aware of that operate
+respectively within the following four relational structures:
+
+```{tikz}
+%| label: dag_pipe
+%| engine: tikz
+%| echo: false
+%| fig-cap: Sampling design for the norin data set
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (pipe_title) {The pipe};
+\node[Messy, HandLabel, anchor=west] at ($(pipe_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (M){M};
+\node[Messy, HandLabel, align=left, right=1cm of M] (Y){Y};
+\draw[-latex, Messy] (X) to (M);
+\draw[-latex, Messy] (M) to (Y);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(M) + (0, -0.4cm)$) (m_label){(Mediator)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_pipe1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (fishing){Fishing pressure};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(fishing.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[-latex, Messy] (mpa.east) to (fishing);
+\draw[-latex, Messy] (fishing) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(fishing) + (0, -0.4cm)$) (x_label){(Predictor 2 / Mediator)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+
+```{tikz}
+%| label: dag_fork
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (fork_title) {The fork};
+\node[Messy, HandLabel, anchor=west] at ($(fork_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\draw[-latex, Messy] (C) to (X);
+\draw[-latex, Messy] (C) to (Y);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Confounder)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_fork1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (complexity){Structural complexity};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(complexity.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[latex-, Messy] (mpa.east) to (complexity);
+\draw[-latex, Messy] (complexity) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(complexity) + (0, -0.4cm)$) (x_label){(Predictor 2 / Confounder)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_collider
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (collider_title) {The collider};
+\node[Messy, HandLabel, anchor=west] at ($(collider_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\draw[-latex, Messy] (X) to (C);
+\draw[-latex, Messy] (Y) to (C);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Collider)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_collider1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (coral){Coral cover};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(coral.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[-latex, Messy] (mpa.east) to (coral);
+\draw[latex-, Messy] (coral) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(coral) + (0, -0.4cm)$) (x_label){(Predictor 2 / Confounder)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_descendant
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (descendent_title) {The descendent};
+\node[Messy, HandLabel, anchor=west] at ($(descendent_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\node[Messy, HandLabel, align=center] at ($(C) +(0cm, -0.75cm)$) (D){D};
+\draw[-latex, Messy] (X) to (C);
+\draw[-latex, Messy] (Y) to (C);
+\draw[-latex, Messy] (C) to (D);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+%\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Collider)};
+\node[Title] at ($(D) + (0, -0.4cm)$) (d_label){(Descendent)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| Relation type / DAG                                                       | Description                                                                |
++===========================================================================+============================================================================+
+| ![](25_causation_files/figure-html/dag_pipe-1.png){width="400px"}         | - X indirectly effects Y through a mediator, M                             |
+| ![](25_causation_files/figure-html/dag_pipe1-1.png){width="400px"}        | - Conditioning on M blocks the path, resulting in **overcontrol bias**     |
+|                                                                           | - The backdoor criterion would instruct **not to** condition on M, unless  |
+|                                                                           |   we want to estimate the _direct_ effects of X on Y                       |
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| ![](25_causation_files/figure-html/dag_fork-1.png){width="400px"}         | - C (confounder) is a common cause of both X and Y                         |
+| ![](25_causation_files/figure-html/dag_fork1-1.png){width="400px"}        | - Not conditioning on C results in **confounding bias**                    |
+|                                                                           | - Conditioning on C blocks the path                                        |
+|                                                                           | - The backdoor criterion would instruct **to** condition on C              |
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| ![](25_causation_files/figure-html/dag_collider-1.png){width="400px"}     | - C (collider) is a common effect of both X and Y                          |
+| ![](25_causation_files/figure-html/dag_collider1-1.png){width="400px"}    | - Conditioning on C results in **collider bias**                           |
+|                                                                           | - X and Y are independent **unless** we condition on C                     |
+|                                                                           | - The backdoor criterion would instruct **not to** condition on C          |
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+| ![](25_causation_files/figure-html/dag_descendant-1.png){width="400px"}   | - acts as a weaker form of either of the other relation types              |
++---------------------------------------------------------------------------+----------------------------------------------------------------------------+
+
+- **Overcontrol bias**: is caused when we condition on a mediator
+thereby blocking the path from the exposure to the outcome.
+
+- **Confounding bias**: is caused when a variable that is a common
+  cause of both the exposure and the outcome (i.e. it is a backdoor
+  path) is not included in a model.
+
+- **Collider bias**: is caused when a variable that is a common effect
+  of the exposure and the outcome (i.e. it is a frontdoor path) is
+  included in a model.
+
+So many rules. If this all seems confusing, it is because it is!
+Fortunately, yet again, there are tools in the `dagitty` package to
+help identify what **adjustment sets** (covariates required to allow
+unbiased estimates of causal inferences).
+
+Firstly, we could explore the open paths that exist between the
+exposure (MPA) and the outcome (Fish biomass).
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 9
+#| fig-height: 2
+ggdag_paths(dag, from = "mpa", to = "biomass", text_col = "black") +
+    coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
+    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+It appears that there are three open paths between MPA and fish
+biomass:
+
+- path 1 is a _pipe_ and thus the backdoor criterion would suggest we
+  **do not** condition on fishing pressure if we wish to avoid
+  _overcontrol bias_ and estimate the total effect of mpa on fish
+  biomass
+- path 2 is a _fork_ and thus the backdoor criterion would suggest we
+  **do** condition on structural complexity if we wish to avoid
+  _confounding bias_ and estimate the total effect of MPA on fish
+  biomass
+- path 3 has a _fork_ on top of a _pipe_. In order to open the flow of
+  information between MPA and fishing (and thus complete the _pipe_)
+  the backdoor criterion would suggest we **do** need to condition on
+  depth, but **do not** condition on fishing pressure.
+
+Even more help comes in the form of the `adjustmentSets()` function
+which will identify these adjustments for us such that we do not need
+to concern ourselves with pipes, forks and colliders.
+
+Now we will inquire about the adjustment sets when seeking to explore
+the total effect of MPA on fish biomass.
+
+```{r}
+#| label: adjustment_sets
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "mpa",
+                        outcome = "biomass",
+                        effect = "total"
+                        )
+set.seed(123)
+ggdag_adjustment_set(dag,
+                     exposure = "mpa",
+                     outcome = "biomass",
+                     effect = "total",
+                     shadow = TRUE, text_col = "black"
+                     ) +
+  theme_dag_blank()
+
+```
+
+This confirms that in addition to MPA, a statistical model would need
+to include both structural complexity and depth, yet should not
+include fishing pressure, human gravity or coral cover.
+
+So what if we also wanted to estimate the effects of structural
+complexity on fish biomass?  We can follow the same steps.
+
+```{r}
+#| label: dag_paths_2
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 9
+#| fig-height: 2
+ggdag_paths(dag, from = "complexity", to = "biomass", text_col = "black") +
+    coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
+    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+There are two paths, the first of which is a direct path and the
+second is a pipe flowing through two mediators (MPA and fishing). In
+both cases, the backdoor criterion would suggest that we do not add
+any other covariates to a model containing structural complexity.
+
+```{r}
+#| label: adjustment_sets_2
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "complexity",
+                        outcome = "biomass",
+                        effect = "total"
+                        )
+set.seed(123)
+ggdag_adjustment_set(dag,
+                     exposure = "complexity",
+                     outcome = "biomass",
+                     effect = "total",
+                     shadow = TRUE, text_col = "black"
+                     ) +
+  theme_dag_blank()
+
+```
+
+For this last exploration (effect of structural complexity on fish
+biomass), we noted that there were two paths. When we inquired about
+the adjustment sets required to estimate the total effects, the
+backdoor criterion suggested the model should not include any other
+covariates. But can we distinguish between the direct effects of
+structural complexity (pathway `complexity -> biomass`) and the
+indirect effects (pathway `complexity -> mpa -> fishing -> biomass`)?
+
+```{r}
+#| label: adjustment_sets_3
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "complexity",
+                        outcome = "biomass",
+                        effect = "direct"
+                        )
+set.seed(123)
+ggdag_adjustment_set(dag,
+                     exposure = "complexity",
+                     outcome = "biomass",
+                     effect = "direct",
+                     shadow = TRUE, text_col = "black"
+                     ) +
+  theme_dag_blank()
+
+```
+
+In order to estimate the direct causal effects of structural
+complexity on fish biomass, we need to condition on either:
+
+- fishing pressure and human gravity or
+- depth and MPA
+
+## Step 5 - test for causality
+
+::: {.panel-tabset}
+
+### MPA -> fish biomass
+
+To get more of a feel for these data, lets plot some of the
+relationships.
+
+```{r}
+#| label: tests 1a
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 9
+#| fig-height: 3
+#| cache: false
+g1 <-
+  dat |>
+  ggplot(aes(y = biomass, x = factor(mpa))) +
+  geom_boxplot()
+g2 <-
+  dat |>
+  ggplot(aes(y = biomass, x = fishing)) +
+  geom_point()
+g3 <-
+  dat |>
+  ggplot(aes(y = fishing, x = factor(mpa))) +
+  geom_boxplot()
+
+g1 + g2 + g3 & theme_bw()
+```
+
+Before we attempt to estimate the total causal effects of MPA on fish
+biomass, lets calculate what it should be based on the parameters used
+to simulated the data. We can do this by decomposing the simulation
+formulas into their parts. To do so, we just need to focus on the `mpa
+-> fishing -> biomass` pathway.
+
+- biomass was drawn from a normal distribution with a mean of
+  $-1.1\times fishing + -0.4\times human + 1.65\times complexity$ of
+  which only the fishing component (-1.1) is relevant
+- fishing was drawn from a normal distribution with a mean of
+  $-0.99\times mpa + -0.2\times depth + 0.3\times human$ of which only
+  the MPA component (-0.99) is relevant.
+
+Hence the effect of MPA on fish biomass should be approximately
+$-1.1\times -0.99 = 1.098$.
+
+::: {.panel-tabset}
+
+#### Correct analysis
+
+Step 4 above indicated that to yield unbiased causal effects of MPA on
+fish biomass, the model would need to condition on both depth and
+structural complexity.
+
+```{r}
+#| label: tests_brm_1a
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ factor(mpa) + depth + complexity)
+## summarise data to help inform priors
+dat |>
+    group_by(mpa) |>
+    summarise(median(biomass), sd(biomass),
+        depth_sd = sd(biomass) / sd(depth),
+        complexity_sd = sd(biomass) / sd(complexity)
+    )
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms1a <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_1a_sum
+#| eval: true
+#| echo: true
+#| cache: true
+summary(mod_brms1a)
+```
+
+The estimate for the effect of MPA on fish biomass is
+`{r} round(summary(mod_brms1a)$fixed[2,1], 3)` 
+(`{r} round(summary(mod_brms1a)$fixed[2,3], 3)` - `{r} round(summary(mod_brms1a)$fixed[2,4], 3)`) 
+which is consistent with the true value of $1.089$.
+
+#### Confounded analysis
+
+If we fail to condition on both structural complexity and depth, a
+_fork_ structure will exist resulting in confounding bias.
+
+```{r}
+#| label: tests_brm_1b
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ factor(mpa))
+## summarise data to help inform priors
+dat |>
+  group_by(mpa) |>
+  summarise(median(biomass), sd(biomass))
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms1b <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_1b_sum
+#| eval: true
+#| echo: true
+#| cache: false
+summary(mod_brms1b) 
+```
+
+The estimate for the effect of MPA on fish biomass is
+`{r} round(summary(mod_brms1b)$fixed[2,1], 3)` 
+(`{r} round(summary(mod_brms1b)$fixed[2,3], 3)` - `{r} round(summary(mod_brms1b)$fixed[2,4], 3)`) 
+which **is not** consistent with the true value of $1.089$.
+
+#### Overcontrol biased analysis
+
+If we correctly recognised that we need to condition on depth and
+structural complexity (leaving just a _pipe_ structure), yet we
+erroneously also conditioned on fishing pressure, we would create a
+overcontrol bias.
+
+```{r}
+#| label: tests_brm_1c
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ factor(mpa) + depth + complexity + fishing)
+## summarise data to help inform priors
+dat |>
+    group_by(mpa) |>
+    summarise(median(biomass), sd(biomass),
+        depth_sd = sd(biomass) / sd(depth),
+        complexity_sd = sd(biomass) / sd(complexity),
+        fishing_sd = sd(biomass) / sd(fishing)
+    )
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms1c <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_1c_sum
+#| eval: true
+#| echo: true
+#| cache: false
+summary(mod_brms1c) 
+```
+
+The estimate for the effect of MPA on fish biomass is
+`{r} round(summary(mod_brms1c)$fixed[2,1], 3)` 
+(`{r} round(summary(mod_brms1c)$fixed[2,3], 3)` - `{r} round(summary(mod_brms1c)$fixed[2,4], 3)`) 
+which **is not** consistent with the true value of $1.089$.
+
+#### Collider biased analysis
+
+If we correctly recognised that we need to condition on depth and
+structural complexity (leaving just a _pipe_ structure), yet we
+erroneously also conditioned on coral cover, we would create a
+collider bias.
+
+```{r}
+#| label: tests_brm_1d
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ factor(mpa) + depth + complexity + coral)
+## summarise data to help inform priors
+dat |>
+    group_by(mpa) |>
+    summarise(median(biomass), sd(biomass),
+        depth_sd = sd(biomass) / sd(depth),
+        complexity_sd = sd(biomass) / sd(complexity),
+        coral_sd = sd(biomass) / sd(coral)
+    )
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms1d <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_1d_sum
+#| eval: true
+#| echo: true
+#| cache: false
+summary(mod_brms1d) 
+```
+
+The estimate for the effect of MPA on fish biomass is
+`{r} round(summary(mod_brms1d)$fixed[2,1], 3)` 
+(`{r} round(summary(mod_brms1d)$fixed[2,3], 3)` - `{r} round(summary(mod_brms1d)$fixed[2,4], 3)`) 
+which **is not** consistent with the true value of $1.089$.
+
+:::
+
+### structural complexity -> fish biomass
+
+To get more of a feel for these data, lets plot some of the
+relationships.
+
+```{r}
+#| label: tests 2a
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 5
+#| fig-height: 5
+#| cache: false
+g1 <-
+  dat |>
+  ggplot(aes(y = biomass, x = complexity)) +
+  geom_point()
+g2 <-
+  dat |>
+  ggplot(aes(y = biomass, x = fishing)) +
+  geom_point()
+g3 <-
+  dat |>
+  ggplot(aes(y = fishing, x = factor(mpa))) +
+  geom_boxplot()
+g4 <-
+  dat |>
+  ggplot(aes(y = mpa, x = complexity)) +
+  geom_point()
+
+g1 + g2 + g3 + g4 & theme_bw()
+```
+
+Recall that there are two pathways between structural complexity and
+biomass and one of these pathways is a direct pathway (`complexity ->
+biomass`). Hence, we can calculate the direct effects, indirect
+effects and total effects of structural complexity on fish biomass.
+
+Before we attempt to estimate each of these effects, lets calculate
+what they should be based on the parameters used to simulated the
+data. We can do this by decomposing the simulation formulas into their
+parts.
+
+::: {.panel-tabset}
+
+#### Direct effects `complexity -> biomass`.
+
+- biomass was drawn from a normal distribution with a mean of
+  $-1.1\times fishing + -0.4\times human + 1.65\times complexity$ of
+  which only the complexity component (1.65) is relevant
+
+According to the adjusted sets we explored earlier, the direct effects
+of structural complexity on fish biomass can be achieved by
+conditioning on either MPA and depth (which we did when modelling `MPA
+-> biomass`) or fishing pressure and human gravity.
+
+```{r}
+#| label: tests_brm_2a
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ complexity + fishing + human)
+## summarise data to help inform priors
+dat |>
+    summarise(median(biomass), sd(biomass),
+        complexity_sd = sd(biomass) / sd(complexity),
+        fishing_sd = sd(biomass) / sd(fishing),
+        human_sd = sd(biomass) / sd(human)
+    )
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms2a <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_2a_sum
+#| eval: true
+#| echo: true
+#| cache: true
+summary(mod_brms2a)
+```
+
+The estimate for the effect of MPA on fish biomass is
+`{r} round(summary(mod_brms2a)$fixed[2,1], 3)` 
+(`{r} round(summary(mod_brms2a)$fixed[2,3], 3)` - `{r} round(summary(mod_brms2a)$fixed[2,4], 3)`) 
+which is consistent with the true value of $1.65$.
+
+```{r}
+#| label: tests_brm_1a_sum
+#| eval: true
+#| echo: true
+#| cache: true
+```
+
+#### Total effects (all pathways)
+
+```{r}
+#| label: tests_brm_2b
+#| results: hide
+#| eval: true
+#| echo: true
+#| cache: true
+
+form <- bf(biomass ~ complexity)
+## summarise data to help inform priors
+dat |>
+    summarise(median(biomass), sd(biomass),
+        complexity_sd = sd(biomass) / sd(complexity)
+    )
+## define priors
+priors <- prior(normal(-1, 4), class = "Intercept") +
+  prior(normal(0, 5), class = "b") +
+  prior(student_t(3, 0, 4), class = "sigma")
+## fit the model
+mod_brms2b <- brm(
+  form,
+  prior = priors,
+  data = dat,
+  refresh = 0,
+  backend = "cmdstanr"
+)
+```
+
+```{r}
+#| label: tests_brm_2b_sum
+#| eval: true
+#| echo: true
+#| cache: true
+summary(mod_brms2b)
+```
+
+#### Indirect effects `complexity -> mpa -> fishing -> biomass`
+
+- biomass was drawn from a normal distribution with a mean of
+  $-1.1\times fishing + -0.4\times human + 1.65\times complexity$ of
+  which only the fishing component (-1.1) is relevant
+  
+- fishing was drawn from a normal distribution with a mean of
+  $-0.99\times mpa + -0.2\times depth + 0.3\times human$ of which only
+  the MPA component (-0.99) is relevant.
+
+- MPA was drawn from a binomial distribution with a probability of
+  $0.2\times depth + 2.8\times complexity$ (on the logit scale) of
+  which only the complexity component (2.8) is relevant. Since 2.8 is
+  on the logit scale, it does not represent a constant slope (unlike
+  the other Gaussian parameters). We can approximate the linear slope
+  by calculating the average slope. 
+  
+  $$ \frac{dp}{dx} = p(1-p) \cdot
+  \beta 
+  $$ 
+  where $p = \frac{1}{1 + e^{-\beta\times X}}$ and $X$ is a
+  vector of the predictor values.
+
+```{r}
+#| label: tests_brm_2b_sum_2
+#| eval: true
+#| echo: true
+#| cache: true
+p <- plogis(2.8 * dat$complexity)
+dp_dx <- 2.8 * p * (1 - p)
+mean(dp_dx)
+```
+
+Hence the indirect effect of complexity on fish biomass should be
+approximately $(-1.1\times -0.99)\times 0.335 = 0.365$
+
+:::
+
+:::
+
+
