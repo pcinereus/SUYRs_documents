@@ -5256,8 +5256,8 @@ g <- base.plot +
   transition_manual(Iter) + 
   shadow_trail(distance = 0.1, alpha = 0.4, color = 'grey40', fill = NA) + 
   labs(title = 'Iter: {current_frame}')
-ga <- animate(g, fps = 20, duration = 15)
-#ga=animate(g, renderer=av_renderer())
+#ga <- animate(g, fps = 20, duration = 15)
+##ga=animate(g, renderer=av_renderer())
 #anim_save('simplexAnim.gif', animation = ga, path = '../resources/',  renderer =av_renderer()) 
 ```
 
@@ -5408,8 +5408,8 @@ g <- ggplot() + geom_line(data = dat1, aes(y = y, x = x)) +
     geom_text(data = gdat, aes(x = -4, y = 140, label = paste0("Iter == ", Iter)), parse = TRUE, hjust = 0) +
     geom_text(data = gdat, aes(x = -4, y = 120, label = paste0("x[1] == ", round(x1, 3))), parse = TRUE, hjust = 0) +
     transition_manual(Iter)
-ga <- animate(g, fps = 20, duration = 5)
-anim_save('NMAnim1.gif', animation = ga, path = '../resources')
+#ga <- animate(g, fps = 20, duration = 5)
+#anim_save('NMAnim1.gif', animation = ga, path = '../resources')
 ```
 ::::
 
@@ -5488,8 +5488,8 @@ g2 <- ggplot() +
     parse = TRUE, hjust = 0) +
   geom_text(data = gdat, aes(x = -0, y = 1, label = paste0("x[1] == ", round(x1, 3))), parse = TRUE, hjust = 0) +
   transition_manual(Iter)
-ga <- animate(g2, fps = 20, duration = 6)
-anim_save('NMAnim2.gif', animation = ga, path='../resources')
+#ga <- animate(g2, fps = 20, duration = 6)
+#anim_save('NMAnim2.gif', animation = ga, path='../resources')
 ```
 
 ::::
@@ -5668,9 +5668,9 @@ g <- base.plot +
     geom_path(data = newdata, aes(y = mu, x = sigma), color = 'black') +
     transition_reveal(nIter) +
     labs(title = "Iteration: {frame_along}")
-ga=animate(g, nframes = 10, fps = 1)
+#ga=animate(g, nframes = 10, fps = 1)
 
-anim_save('NMAnim3.gif', animation = ga, path = '../resources')
+#anim_save('NMAnim3.gif', animation = ga, path = '../resources')
 ```
 ::::
 
@@ -5822,9 +5822,9 @@ g <- base.plot +
     geom_point(data = newdata, aes(y = bestmu, x = bestsigma), color = 'red') + 
     transition_reveal(nIter) +
     labs(title = "Iteration: {2^frame_along}")
-ga <- animate(g, nframes = 12, fps = 1)
-#ga
-anim_save('SANNAnim1.gif', animation = ga, path = '../resources')
+#ga <- animate(g, nframes = 12, fps = 1)
+##ga
+#anim_save('SANNAnim1.gif', animation = ga, path = '../resources')
 ```
 
 ::::
