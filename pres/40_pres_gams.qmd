@@ -81,8 +81,8 @@ $$
 
 ```{r modPartial1, results='markdown', eval=TRUE, fig.width=6, fig.height=3}
 grid.arrange(
-    ggpredict(dat.lm, ~x) %>% plot(rawdata=TRUE),
-    ggpredict(dat2.lm, ~x) %>% plot(rawdata=TRUE),
+    ggpredict(dat.lm, ~x) %>% plot(show_data = TRUE),
+    ggpredict(dat2.lm, ~x) %>% plot(show_data = TRUE),
     nrow=1
     )
 ```
@@ -105,8 +105,8 @@ $$g(E(y)) = \beta_0 + x_1\beta_1 + x_1^2\beta_2 + x_1^3\beta_3 $$
 
 ```{r modPartial2, results='markdown', eval=TRUE, fig.width=6, fig.height=3}
 grid.arrange(
-    ggpredict(dat.lm2, ~x) %>% plot(rawdata=TRUE),
-    ggpredict(dat2.lm2, ~x) %>% plot(rawdata=TRUE),
+    ggpredict(dat.lm2, ~x) %>% plot(show_data = TRUE),
+    ggpredict(dat2.lm2, ~x) %>% plot(show_data = TRUE),
     nrow=1)
 ```
 
@@ -300,7 +300,7 @@ basis = basis %>% as.data.frame %>%
 g1=ggplot() + geom_line(data=basis, aes(y=Value, x=x,color=Basis)) +
     geom_line(data=NULL, aes(y=fit, x=dat2$x)) +
     geom_point(data=dat2, aes(y=y, x=x))
-g2=ggpredict(dat2.lm4, ~x) %>% plot(rawdata=TRUE)
+g2=ggpredict(dat2.lm4, ~x) %>% plot(show_data = TRUE)
 grid.arrange(g1,g2, nrow=1)
 ```
 
@@ -327,10 +327,10 @@ k=k[c(-1,-length(k))]
 dat2.lm6 = lm(y~bs(x, knots=k, degree=3), data=dat2)
 
 grid.arrange(
-    ggpredict(dat2.lm5a, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=0'),
-    ggpredict(dat2.lm5b, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=3'),
-    ggpredict(dat2.lm5, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=10'),
-    ggpredict(dat2.lm6, ~x) %>% plot(rawdata=TRUE) + ggtitle('Knots=20'), 
+    ggpredict(dat2.lm5a, ~x) %>% plot(show_data=TRUE) + ggtitle('Knots=0'),
+    ggpredict(dat2.lm5b, ~x) %>% plot(show_data=TRUE) + ggtitle('Knots=3'),
+    ggpredict(dat2.lm5, ~x) %>% plot(show_data=TRUE) + ggtitle('Knots=10'),
+    ggpredict(dat2.lm6, ~x) %>% plot(show_data=TRUE) + ggtitle('Knots=20'), 
     nrow=2)
 ```
 
