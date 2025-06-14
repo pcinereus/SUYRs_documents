@@ -5256,9 +5256,9 @@ g <- base.plot +
   transition_manual(Iter) + 
   shadow_trail(distance = 0.1, alpha = 0.4, color = 'grey40', fill = NA) + 
   labs(title = 'Iter: {current_frame}')
-ga <- animate(g, fps = 20, duration = 15)
+#ga <- animate(g, fps = 20, duration = 15)
 #ga=animate(g, renderer=av_renderer())
-anim_save('simplexAnim.gif', animation = ga, path = '../resources/',  renderer =av_renderer()) 
+#anim_save('simplexAnim.gif', animation = ga, path = '../resources/',  renderer =av_renderer()) 
 ```
 
 
