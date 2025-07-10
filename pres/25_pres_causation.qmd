@@ -1,0 +1,959 @@
+---
+title: "Causal inference"
+author: "Murray Logan"
+date: today
+date-format: "D MMMM YYYY"
+format:
+  revealjs:
+    embed-resources: true
+    auto-stretch: false
+    css: ../resources/pres-style.css
+    margin: 0
+output_dir: "docs"
+bibliography: ../resources/references.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+options(tinytex.engine = "xelatex")
+
+```
+            
+
+
+```{r}
+#| label: libraries
+#| results: hide
+#| eval: true
+#| echo: false
+#| warnings: false
+#| message: false
+#| cache: false
+library(tidyverse)
+library(dagitty)
+library(ggdag)
+library(patchwork)
+```
+
+
+# Background
+
+
+Background
+------------------
+
+<div style="font-size: 60pt; text-align: center;">
+"Correlation does not imply causation"
+</div>
+
+<br><br>
+
+<div style="font-size: 50pt; text-align: center;">
+Karl Pearson (1900)
+</div>
+
+# Structural Causal Modelling (SCM)
+
+Structural Causal Modelling (SCM)
+-----------------------------------------------
+
+<br>
+
+Step 1. Create a **conceptual model** of the system of interest
+
+Step 2. Choose a **statistical test**
+
+Step 3. **Test the consistency** of your conceptual model with the data
+
+Step 4. **Identify biases** (confounding, overcontrol, collider)
+
+Step 5. **Test for causality** with the appropriate statistical test
+
+Step 6. Repeat steps 3-5 for each cause of interest
+
+Step 7. Repeat steps 1-6 for other conceptual models
+
+# Step 1 - create the conceptual model
+
+Conceptual model - DAGs
+------------------------------------------
+
+**DAG** - Directed Acyclical Graph
+
+<br>
+
+```{tikz}
+%| label: dag_1
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| out-width: 900px
+%| cache: true
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, 0cm)$) (fishing){Fishing pressure};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=orange!20] at ($(fishing.east) + (1cm, 0cm)$) (biomass){Fish biomass};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(mpa.north) + (0cm, 0.75cm)$) (depth){Depth};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(fishing.north) + (0cm, 0.75cm)$) (complex){Structural complexity};
+\node[Messy, HandLabel, draw, align=left, anchor=south] at ($(biomass.north) + (0cm, 0.75cm)$) (human){Human gravity};
+\node[Messy, HandLabel, draw, align=left, anchor=north] at ($(fishing.south) + (0cm, -0.75cm)$) (coral){Coral cover};
+\draw[-latex, Messy] (mpa.east) to (fishing);
+\draw[-latex, Messy] ($(fishing.east) +(0cm, 0cm)$) to (biomass);
+\draw[latex-, Messy] ($(mpa.north) +(0cm, 0cm)$) to (depth);
+\draw[latex-, Messy] ($(fishing.north) +(0cm, 0cm)$) to (depth);
+\draw[-latex, Messy] (complex) to (mpa);
+\draw[-latex, Messy] (complex) to (biomass);
+\draw[-latex, Messy] (human) to (fishing);
+\draw[-latex, Messy] (human) to (biomass);
+\draw[-latex, Messy] (mpa) to (coral);
+\draw[-latex, Messy] (biomass) to (coral);
+\end{tikzpicture}
+```
+
+from:
+Arif and MacNeil (2022). “Utilizing Causal Diagrams Across Quasi‐experimental Approaches.” Ecosphere 13 (4)
+
+
+Conceptual model - DAGs
+------------------------------------------
+
+Via R packages `dagitty` and `ggdag` 
+
+
+::: {.columns}
+:::: {.column width="50%"}
+
+```{r}
+#| label: dag_1b
+#| results: hide
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+dag <- dagitty('
+dag {
+  depth -> mpa
+  depth -> fishing
+  mpa -> fishing
+  fishing -> biomass
+  complexity -> mpa
+  complexity -> biomass
+  human -> fishing
+  human -> biomass
+  mpa -> coral
+  biomass -> coral
+  biomass[outcome, pos="3, 1"]
+  fishing[pos = "2, 1"]
+  mpa[exposure, pos = "1, 1"]
+  depth[pos = "1, 2"]
+  complexity[pos = "2, 2"]
+  human[pos = "3, 2"]
+  coral[pos = "2, 0"]
+}
+')
+```
+::::
+:::: {.column width="50%"}
+
+```{r}
+#| label: dag_1b_plot
+#| results: hide
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 450px
+#| echo: true
+#| cache: false
+ggdag(dag) +
+  geom_dag_point(color = "orange") +
+  geom_dag_text(color = "black") +
+  theme_dag_blank()
+```
+
+
+::::
+:::
+
+# Step 2 - choose statistical test
+
+# Step 3 - test consistency of conceptual model
+
+Test conceptual model
+----------------------------------------------------
+
+::: {.columns}
+:::: {.column width="50%"}
+
+```{r}
+#| label: dag_1b_plot
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 450px
+#| echo: false
+#| cache: false
+```
+
+::::
+:::: {.column width="50%"}
+
+Assumptions:
+
+- depth $\perp\!\!\!\perp$ human
+- complexity $\perp\!\!\!\perp$ depth
+- mpa $\perp\!\!\!\perp$ human
+
+::::
+:::
+
+Test conceptual model
+----------------------------------------------------
+
+::: {.columns}
+:::: {.column width="50%"}
+
+```{r}
+#| label: dag_1b_plot
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 450px
+#| echo: false
+#| cache: false
+```
+
+::::
+:::: {.column width="50%"}
+
+Assumptions:
+
+- depth $\perp\!\!\!\perp$ human
+- complexity $\perp\!\!\!\perp$ depth
+- mpa $\perp\!\!\!\perp$ human
+- fishing $\perp\!\!\!\perp$ complexity $|$ mpa, depth
+- coral $\perp\!\!\!\perp$ fishing $|$ biomass, mpa
+
+- many more
+::::
+:::
+ 
+Test conceptual model
+----------------------------------------------------
+
+::: {.columns}
+:::: {.column width="50%"}
+
+```{r}
+#| label: dag_1b_plot
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 450px
+#| echo: false
+#| cache: false
+```
+```{r}
+#| label: dag_1_conditional_independencies
+#| results: markup
+#| eval: true
+#| echo: true
+dagitty::impliedConditionalIndependencies(dag) 
+```
+
+::::
+:::: {.column width="50%"}
+
+Assumptions:
+
+- depth $\perp\!\!\!\perp$ human
+- complexity $\perp\!\!\!\perp$ depth
+- mpa $\perp\!\!\!\perp$ human
+- fishing $\perp\!\!\!\perp$ complexity $|$ mpa, depth
+- coral $\perp\!\!\!\perp$ fishing $|$ biomass, mpa
+
+- many more
+
+::::
+:::
+
+Test conceptual model
+----------------------------------------------------
+
+Simulated data
+
+
+```{r}
+#| label: simulated_data
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+set.seed(123)
+N <- 10000
+depth <- rnorm(N, mean = 0, sd = 1)
+human <- rnorm(N, mean = 0, sd = 1)
+complexity <- rnorm(N, mean = 0, sd = 1)
+mpa <- rbinom(N, 1, prob = plogis(0.2 * depth + 2.8 * complexity))
+fishing <- rnorm(N, mean = -0.99 * mpa + -0.2 * depth + 0.3 * human, sd = 1)
+biomass <- rnorm(N, -1.1 * fishing + -0.4 * human + 1.65 * complexity, sd = 1)
+coral <- rnorm(N, mean = 0.5 * mpa + 2.5 * biomass, sd = 1)
+dat <- data.frame(depth, human, complexity, mpa, fishing, coral, biomass)
+head(dat)
+```
+
+Test conceptual model
+----------------------------------------------------
+
+```{r}
+#| label: output width
+#| results: markup
+#| eval: true
+#| echo: false
+#| cache: false
+options(width = 200)
+```
+
+```{r}
+#| label: local_tests
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+tests <- localTests(x = dag, data = dat)
+tests
+```
+
+Test conceptual model
+----------------------------------------------------
+
+```{r}
+#| label: local_tests_plot
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+plotLocalTestResults(tests)
+```
+
+# Step 4 - identify and adjust for biases
+
+## All paths
+
+Three open paths between mpa and fish biomass
+
+```{r}
+#| label: dag_paths_all
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 12
+#| fig-height: 3
+#| out-width: 900px
+dag |> 
+  ggdag_paths(text_col = "black", shadow = TRUE) +
+  coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
+  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+Path 1. **frontdoor** path (via a **mediator**, fishing)
+
+Path 2. **backdoor** path (via a **confounder**, complexity)
+
+Path 3. **backdoor** path (via a **confounder**, complexity)
+
+No direct paths
+
+Multiple closed paths
+
+## Biases
+
+Criterion for avoiding biases:
+
+- **Backdoor criterion**: rules to block all (backdoor) paths
+  - those that start with an arrow pointing into the exposue variable
+  (MPA)
+
+
+```{r}
+#| label: dag_paths_backdoor
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 12
+#| fig-height: 4
+#| out-width: 700px
+dag |> backDoorGraph() |> 
+  ggdag_paths(text_col = "black", shadow = TRUE) +
+  coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
+  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+
+## Biases
+
+Criterion for avoiding biases:
+
+- **Backdoor criterion**: rules to block all (backdoor) paths that start with an
+  arrow pointing into the exposue variable (MPA)
+
+
+- **Frontdoor criterion**: rules that enable us to go from the
+  exposure to the outcome via a mediator in a way that avoids
+  backdoors. 
+  
+```{r}
+#| label: dag_paths_frontdoor
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 12
+#| fig-height: 4
+#| out-width: 700px
+g1 <-
+  dag |>
+  ggdag_paths(text_col = "black", shadow = TRUE,
+    to = "fishing", adjust_for=c("depth", "complexity", "human")) +
+  coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
+  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+g2 <-
+  dag |>
+  ggdag_paths(text_col = "black", shadow = TRUE,
+    from = "fishing", adjust_for=c("depth", "complexity", "human")) +
+  coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
+  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+g1 + g2 + patchwork::plot_layout(guides = "collect")
+```
+
+  - Use two paths (`mpa -> fishing` and then `fishing -> biomass`).
+  - Multiple coefficients together.
+  - useful when backdoor paths cannot be blocked.
+
+
+## Relation types
+
+```{tikz}
+%| label: dag_pipe
+%| engine: tikz
+%| echo: false
+%| fig-cap: Sampling design for the norin data set
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (pipe_title) {The pipe};
+\node[Messy, HandLabel, anchor=west] at ($(pipe_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (M){M};
+\node[Messy, HandLabel, align=left, right=1cm of M] (Y){Y};
+\draw[-latex, Messy] (X) to (M);
+\draw[-latex, Messy] (M) to (Y);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(M) + (0, -0.4cm)$) (m_label){(Mediator)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_pipe1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (fishing){Fishing pressure};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(fishing.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[-latex, Messy] (mpa.east) to (fishing);
+\draw[-latex, Messy] (fishing) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(fishing) + (0, -0.4cm)$) (x_label){(Predictor 2 / Mediator)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+![](25_pres_causation_files/figure-revealjs/dag_pipe-1.png){width="700px"}
+![](25_pres_causation_files/figure-revealjs/dag_pipe1-1.png){width="700px"}  
+
+- X indirectly effects Y through a mediator, M
+- Conditioning on M blocks the path, resulting in **overcontrol bias**
+- Backdoor criterion 
+  - **not to** condition on M
+  - unless we want to estimate the _direct_ effects of X on Y
+
+
+## Relation types
+
+```{tikz}
+%| label: dag_fork
+%| engine: tikz
+%| echo: false
+%| fig-width: 20
+%| fig-height: 10
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (fork_title) {The fork};
+\node[Messy, HandLabel, anchor=west] at ($(fork_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\draw[-latex, Messy] (C) to (X);
+\draw[-latex, Messy] (C) to (Y);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Confounder)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_fork1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (complexity){Structural complexity};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(complexity.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[latex-, Messy] (mpa.east) to (complexity);
+\draw[-latex, Messy] (complexity) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(complexity) + (0, -0.4cm)$) (x_label){(Predictor 2 / Confounder)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+![](25_pres_causation_files/figure-revealjs/dag_fork-1.png){width="700px"}
+![](25_pres_causation_files/figure-revealjs/dag_fork1-1.png){width="700px"}
+
+- C (confounder) is a common cause of both X and Y
+- Not conditioning on C results in **confounding bias**
+- Conditioning on C blocks the path
+- Backdoor criterion
+  - **to** condition on C
+
+
+## Relation types
+
+
+```{tikz}
+%| label: dag_collider
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (collider_title) {The collider};
+\node[Messy, HandLabel, anchor=west] at ($(collider_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\draw[-latex, Messy] (X) to (C);
+\draw[-latex, Messy] (Y) to (C);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Collider)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+```{tikz}
+%| label: dag_collider1
+%| engine: tikz
+%| echo: false
+%| fig-width: 6
+%| fig-height: 6
+%| cache: true
+%| class: tikz
+%| include: false
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, draw, anchor=west, fill=orange!20] (mpa){MPA};
+\node[Messy, HandLabel, draw, align=left, anchor=west] at ($(mpa.east) + (1cm, -0cm)$) (coral){Coral cover};
+\node[Messy, HandLabel, draw, align=left, anchor=west, fill=black!20] at ($(coral.east) + (1cm, -0cm)$) (biomass){Fish biomass};
+\draw[-latex, Messy] (mpa.east) to (coral);
+\draw[latex-, Messy] (coral) to (biomass);
+\node[Title] at ($(mpa) + (0, -0.4cm)$) (x_label){(Predictor 1)};
+\node[Title] at ($(coral) + (0, -0.4cm)$) (x_label){(Predictor 2 / Confounder)};
+\node[Title] at ($(biomass) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+![](25_pres_causation_files/figure-revealjs/dag_collider-1.png){width="700px"}
+![](25_pres_causation_files/figure-revealjs/dag_collider1-1.png){width="700px"}
+
+- C (collider) is a common effect of both X and Y
+- Conditioning on C results in **collider bias**
+- X and Y are independent **unless** we condition on C
+- Backdoor criterion
+  - **not to** condition on C
+
+## Relation types
+
+```{tikz}
+%| label: dag_descendant
+%| engine: tikz
+%| echo: false
+%| fig-width: 13
+%| fig-height: 6
+%| cache: true
+%| include: false
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+%\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1]{xkcd}}]
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.0]{ArchitectsDaughter-Regular}}]
+\tikzstyle{Title} = [font={\fontspec[Scale=0.5]{ArchitectsDaughter-Regular}}]
+%\tikzstyle{Title} = [font={\fontspec[Scale=0.8]{CompleteinHim}}]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.5pt}]
+\begin{tikzpicture}
+\node[Messy, HandLabel, anchor=west] (descendent_title) {The descendent};
+\node[Messy, HandLabel, anchor=west] at ($(descendent_title.west) + (0, -0.4cm)$) (X){X};
+\node[Messy, HandLabel, align=left, right=1cm of X] (C){C};
+\node[Messy, HandLabel, align=left, right=1cm of C] (Y){Y};
+\node[Messy, HandLabel, align=center] at ($(C) +(0cm, -0.75cm)$) (D){D};
+\draw[-latex, Messy] (X) to (C);
+\draw[-latex, Messy] (Y) to (C);
+\draw[-latex, Messy] (C) to (D);
+\node[Title] at ($(X) + (0, -0.4cm)$) (x_label){(Predictor)};
+%\node[Title] at ($(C) + (0, -0.4cm)$) (c_label){(Collider)};
+\node[Title] at ($(D) + (0, -0.4cm)$) (d_label){(Descendent)};
+\node[Title] at ($(Y) + (0, -0.4cm)$) (y_label){(Response)};
+\end{tikzpicture}
+```
+
+![](25_pres_causation_files/figure-revealjs/dag_descendant-1.png){width="700px"}
+
+- acts as a weaker form of either of the other relation types
+
+## Biases
+
+- **Overcontrol bias**: is caused when we condition on a mediator
+thereby blocking the path from the exposure to the outcome.
+
+- **Confounding bias**: is caused when a variable that is a common
+  cause of both the exposure and the outcome (i.e. it is a backdoor
+  path) is not included in a model.
+
+- **Collider bias**: is caused when a variable that is a common effect
+  of the exposure and the outcome (i.e. it is a frontdoor path) is
+  included in a model.
+
+
+## Relation types and biases
+
+::: {.columns}
+:::: {.column width="50%"}
+```{r}
+#| label: dag_1b_plot
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 450px
+#| echo: false
+#| cache: false
+```
+
+::::
+:::: {.column width="50%"}
+
+![](25_pres_causation_files/figure-revealjs/dag_pipe-1.png){width="250px"}
+![](25_pres_causation_files/figure-revealjs/dag_fork-1.png){width="250px"}
+![](25_pres_causation_files/figure-revealjs/dag_collider-1.png){width="250px" style="vertical-align:top;"}
+![](25_pres_causation_files/figure-revealjs/dag_descendant-1.png){width="250px" style="vertical-align:top;"}
+::::
+
+::: 
+
+
+- what paths are between MPA and fish biomass?
+- how do we close any backdoors?
+
+## Relation types and biases
+<br><br>
+<div style="font-size: 60pt; text-align: center;">
+My brain hurts, this all sounds difficult...
+</div>
+
+
+## Relation types and biases
+
+R packages `dagitty` and `ggdag`
+
+- Identify the paths
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 9
+#| fig-height: 2
+ggdag_paths(dag, from = "mpa", to = "biomass", text_col = "black") +
+    coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
+    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+## Relation types and biases
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+```
+
+- Path 1 is a _pipe_ ![](25_pres_causation_files/figure-revealjs/dag_pipe-1.png){width="300px" style="vertical-align:middle;"}
+  - **do not** condition on fishing
+
+## Relation types and biases
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+```
+
+- Path 1 is a _pipe_
+- Path 2 is a _fork_ ![](25_pres_causation_files/figure-revealjs/dag_fork-1.png){width="300px" style="vertical-align:middle;"}
+  - **do** condition on complexity
+
+## Relation types and biases
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+```
+
+- Path 1 is a _pipe_
+- Path 2 is a _fork_
+- Path 3 is a _fork_ ![](25_pres_causation_files/figure-revealjs/dag_fork-1.png){width="300px" style="vertical-align:middle;"}
+  - **do** condition on complexity
+
+## Relation types and biases
+
+**Adjustment sets** - covariates required to close backdoors
+
+```{r}
+#| label: dag_paths
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+```
+
+```{r}
+#| label: adjustment_sets
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "mpa",
+                        outcome = "biomass",
+                        effect = "total"
+                        )
+```
+
+Step 5 - fit the model
+
+```{r}
+#| label: adjustment_sets_formula
+#| results: markup
+#| eval: false
+#| echo: true
+form <- bf(biomass ~ factor(mpa) + depth + complexity)
+# OR better still
+form <- bf(biomass ~ factor(mpa) + scale(depth) + scale(complexity))
+form <- bf(biomass ~ factor(mpa) * scale(depth) * scale(complexity))
+```
+
+## Relation types and biases
+
+**Adjustment sets** - covariates required to close backdoors
+
+```{r}
+#| label: adjustment_sets_plot
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+#| out-width: 500px
+set.seed(123)
+ggdag_adjustment_set(dag,
+                     exposure = "mpa",
+                     outcome = "biomass",
+                     effect = "total",
+                     shadow = TRUE, text_col = "black"
+                     ) +
+  theme_dag_blank()
+
+```
+
+## Relation types and biases
+
+**Total effect** of Structural complexity on fish biomass
+
+```{r}
+#| label: dag_paths_2
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+ggdag_paths(dag, from = "complexity", to = "biomass", text_col = "black") +
+    coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
+    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+```{r}
+#| label: adjustment_sets_2
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "complexity",
+                        outcome = "biomass",
+                        effect = "total"
+                        )
+```
+
+Step 5 - fit the model
+
+```{r}
+#| label: adjustment_sets_formula_2
+#| results: markup
+#| eval: false
+#| echo: true
+form <- bf(biomass ~ complexity)
+```
+
+## Relation types and biases
+
+**Direct effect** of Structural complexity on fish biomass
+
+```{r}
+#| label: dag_paths_3
+#| results: markup
+#| eval: true
+#| echo: false
+#| fig-width: 9
+#| fig-height: 2
+ggdag_paths(dag, from = "complexity", to = "biomass", text_col = "black") +
+    coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
+    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+```
+
+```{r}
+#| label: adjustment_sets_3
+#| results: markup
+#| eval: true
+#| echo: true
+#| fig-width: 8
+#| fig-height: 5
+dagitty::adjustmentSets(dag,
+                        exposure = "complexity",
+                        outcome = "biomass",
+                        effect = "direct"
+                        )
+```
+
+Step 5 - fit the model
+
+```{r}
+#| label: adjustment_sets_formula_3
+#| results: markup
+#| eval: false
+#| echo: true
+form <- bf(biomass ~ scale(complexity) + scale(fishing) + scale(human))
+#OR
+form <- bf(biomass ~ scale(complexity) + scale(depth) + factor(mpa))
+```
+
+
+::: {.columns}
+:::: {.column width="50%"}
+
+::::
+:::: {.column width="50%"}
+
+::::
+
+::: 
