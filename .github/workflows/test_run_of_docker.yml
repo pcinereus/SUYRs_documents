@@ -16,6 +16,16 @@ jobs:
         run: |
           docker pull ghcr.io/pcinereus/suyrs_documents:latest
 
-      - name: Run R script
+      # - name: Run R script
+      #   run: |
+      #     docker run --rm ghcr.io/pcinereus/suyrs_documents:latest Rscript -e "print('Hello from R!')"
+
+      # - name: Make tutorials
+      #   run: |
+      #     mkdir ~/tmp
+      #     # echo "library(quarto); quarto_render(\"tut/index.qmd\")" | R --no-save --no-restore;
+      #     # make -i tut
+      #     # make -i pres
+      - name: Run custom R script
         run: |
-          docker run --rm ghcr.io/pcinereus/suyrs_documents:latest Rscript -e "print('Hello from R!')"
+          docker run --rm -v ${{ github.workspace }}:~/ ghcr.io/pcinereus/suyrs_documents:latest Rscript -e "library(quarto); quarto_render(\"tut/index.qmd\")"
