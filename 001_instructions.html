@@ -9,7 +9,7 @@
 <meta name="author" content="Murray Logan">
 <meta name="dcterms.date" content="2026-02-27">
 
-<title>SUYR Statistics resources</title>
+<title>Instructions</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -3090,14 +3090,13 @@ vertical-align: -.125em;
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#tutorials" id="toc-tutorials" class="nav-link active" data-scroll-target="#tutorials"><span class="header-section-number">1</span> Tutorials</a>
+  <li><a href="#purpose" id="toc-purpose" class="nav-link active" data-scroll-target="#purpose"><span class="header-section-number">1</span> Purpose</a></li>
+  <li><a href="#format-of-tutorials" id="toc-format-of-tutorials" class="nav-link" data-scroll-target="#format-of-tutorials"><span class="header-section-number">2</span> Format of tutorials</a>
   <ul class="collapse">
-  <li><a href="#r-basics" id="toc-r-basics" class="nav-link" data-scroll-target="#r-basics"><span class="header-section-number">1.1</span> R basics</a></li>
-  <li><a href="#reproducible-research" id="toc-reproducible-research" class="nav-link" data-scroll-target="#reproducible-research"><span class="header-section-number">1.2</span> Reproducible research</a></li>
-  <li><a href="#statistical-principles" id="toc-statistical-principles" class="nav-link" data-scroll-target="#statistical-principles"><span class="header-section-number">1.3</span> Statistical principles</a></li>
-  <li><a href="#introduction-to-linear-modelling" id="toc-introduction-to-linear-modelling" class="nav-link" data-scroll-target="#introduction-to-linear-modelling"><span class="header-section-number">1.4</span> Introduction to linear modelling</a></li>
+  <li><a href="#r-code" id="toc-r-code" class="nav-link" data-scroll-target="#r-code"><span class="header-section-number">2.1</span> R code</a></li>
+  <li><a href="#bash-shell-code" id="toc-bash-shell-code" class="nav-link" data-scroll-target="#bash-shell-code"><span class="header-section-number">2.2</span> Bash (shell) code</a></li>
+  <li><a href="#plain-text" id="toc-plain-text" class="nav-link" data-scroll-target="#plain-text"><span class="header-section-number">2.3</span> Plain text</a></li>
   </ul></li>
-  <li><a href="#presentations" id="toc-presentations" class="nav-link" data-scroll-target="#presentations"><span class="header-section-number">2</span> Presentations</a></li>
   </ul>
 </nav>
 </div>
@@ -3105,7 +3104,7 @@ vertical-align: -.125em;
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">SUYR Statistics resources</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Instructions</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
 </div>
 
 
@@ -3134,61 +3133,107 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="tutorials" class="level2" data-number="1">
-<h2 data-number="1" class="anchored" data-anchor-id="tutorials"><span class="header-section-number">1</span> Tutorials</h2>
-<ul>
-<li><a href="001_instructions.html">Tutorial instructions</a></li>
-<li><a href="005_setup.html">Setup instructions</a></li>
-</ul>
-<section id="r-basics" class="level3" data-number="1.1">
-<h3 data-number="1.1" class="anchored" data-anchor-id="r-basics"><span class="header-section-number">1.1</span> R basics</h3>
-<ul>
-<li><a href="01_introduction_to_r.html">Introduction to R</a></li>
-<li><a href="02_editors.html">Editors</a></li>
-<li><a href="03_data_frames.html">Data frames</a></li>
-<li><a href="04_data_wrangling.html">Data wrangling</a></li>
-<li><a href="05_grammar_of_graphics.html">Grammar of graphics</a></li>
-</ul>
+<section id="purpose" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Purpose</h1>
+<p>This tutorial series should be considered reference and background materials in support of preparation for more advanced statistical analyses with R. The topics covered progress from introductory and foundational through to more advanced and as such, the tutorials are intended to be consumed and worked through largely in the order laid out in the sidebar menu to the left.</p>
 </section>
-<section id="reproducible-research" class="level3" data-number="1.2">
-<h3 data-number="1.2" class="anchored" data-anchor-id="reproducible-research"><span class="header-section-number">1.2</span> Reproducible research</h3>
+<section id="format-of-tutorials" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Format of tutorials</h1>
+<section id="r-code" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="r-code"><span class="header-section-number">2.1</span> R code</h2>
+<p>Throughout the tutorials, R code snippets will be presented in a block such as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="do">## construct variables</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb1-3"><a href="#cb1-3"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb1-4"><a href="#cb1-4"></a>g <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="at">n =</span> <span class="dv">2</span>, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High&#39;</span>, <span class="st">&#39;Low&#39;</span>))</span>
+<span id="cb1-5"><a href="#cb1-5"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">*</span> x) <span class="sc">+</span> (<span class="fu">as.numeric</span>(g) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="do">## compile into a data frame</span></span>
+<span id="cb1-7"><a href="#cb1-7"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, g, y)</span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="do">## print out data frame</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>dat</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   x    g         y
+1  1 High  4.439524
+2  2 High  7.769823
+3  3 High 12.558708
+4  4 High 14.070508
+5  5 High 17.129288
+6  1  Low  7.715065
+7  2  Low  9.460916
+8  3  Low 10.734939
+9  4  Low 14.313147
+10 5  Low 17.554338</code></pre>
+</div>
+</div>
+<p>This format is partially reminiscent of the layout of code editors, albeit with a very opinionated color scheme.</p>
 <ul>
-<li><a href="10_git.html">Git and version control</a></li>
-<li><a href="12_docker.html">Containerisation - docker and singularity</a></li>
+<li>the R code appears as the text over the faint yellow background.</li>
+<li>any output appears below the code (white background) and in red font</li>
+<li>the light gray numbers in the left hand gutter represent the line numbers. These can be useful when trying to draw attention to a particular line of code</li>
+<li>the light gray text in the R code block beginning with two hash symbols ‘##’ are comments</li>
+<li>in the upper right hand corner there is a clipboard symbol. Clicking on this symbol will copy the code to the clipboard to help you transfer the code to your own R session.</li>
 </ul>
+<p>Occasionally (and particularly within tables) code snippets may alternatively be presented without the line number gutter. In such cases, there tends to only be a single line of code and there are substantial space savings if the gutter is removed.</p>
+<div class="cell plain">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<!--
+## Julia code
+Throughout the tutorials, Julia code snippets will be presented in a block such as:
+
+
+
+::: {.cell}
+
+```{.rjulia .cell-code}
+## load any packages
+using DataFrames
+using Random
+using Distributions
+## construct variables
+Random.seed!(123);
+x = repeat(1:5, 2);
+g = repeat(["High", "Low"], inner = 5);
+y = 2 .+ (3 .* x) .+ (repeat(1:2, inner=5) .- 1) .+ rand(Normal(0, 1), 10);
+dat = DataFrame(x = x, g = g, y = y);
+println(dat)
+```
+:::
+
+
+-->
 </section>
-<section id="statistical-principles" class="level3" data-number="1.3">
-<h3 data-number="1.3" class="anchored" data-anchor-id="statistical-principles"><span class="header-section-number">1.3</span> Statistical principles</h3>
-<ul>
-<li><a href="20_basic_principles.html">Basic statistical principles</a></li>
-<li><a href="21_statistical_philosophies.html">Statistical philosophies</a></li>
-<li><a href="22_estimation.html">Estimation</a></li>
-<li><a href="25_causation.html">Causal inference</a></li>
-</ul>
+<section id="bash-shell-code" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="bash-shell-code"><span class="header-section-number">2.2</span> Bash (shell) code</h2>
+<p>Bash is a command-line shell that gives you access and control over your computer’s operating system. Whilst the majority of the tutorials in this series are focused on R, there are a couple of tutorials on other supporting topics (like version control) that might be interfaced via a shell (commands entered on a terminal). Furthermore, some software installation and/or configuration instructions might be in the form of shell commands.</p>
+<p>Such commands are presented as:</p>
+<div class="cell bash">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1"></a><span class="bu">pwd</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/workspace/tut</code></pre>
+</div>
+</div>
 </section>
-<section id="introduction-to-linear-modelling" class="level3" data-number="1.4">
-<h3 data-number="1.4" class="anchored" data-anchor-id="introduction-to-linear-modelling"><span class="header-section-number">1.4</span> Introduction to linear modelling</h3>
-<ul>
-<li><a href="30_glm.html">Generalised linear models</a></li>
-<li><a href="35_bayesian_glm.html">Bayesian generalised linear models</a></li>
-</ul>
-</section>
-</section>
-<section id="presentations" class="level2" data-number="2">
-<h2 data-number="2" class="anchored" data-anchor-id="presentations"><span class="header-section-number">2</span> Presentations</h2>
-<ul>
-<li><a href="01_introduction.html">Course introduction</a></li>
-<li><a href="03_pres_data_wrangling.html">Data wrangling</a></li>
-<li><a href="10_pres_git.html">git and github</a></li>
-<li><a href="20_pres_bayesian.html">Introduction to Bayesian analyses</a></li>
-<li><a href="30_pres_hierarchical.html">Introduction to hierarchical models</a></li>
-<li><a href="40_pres_gams.html">Introduction to Generalised Additive Models</a></li>
-<li><a href="50_pres_trees.html">Introduction to regression trees</a></li>
-<li><a href="60_pres_multivariate.html">Introduction to multivariate analyses</a></li>
-</ul>
-<p>The end</p>
+<section id="plain-text" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="plain-text"><span class="header-section-number">2.3</span> Plain text</h2>
+<p>The contents of plain text files will similarly be presented either as:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb6-1"><a href="#cb6-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span>
+<span id="cb6-2"><a href="#cb6-2"></a>Maecenas sed metus congue risus sagittis viverra. Etiam</span>
+<span id="cb6-3"><a href="#cb6-3"></a>hendrerit orci arcu, et vehicula libero vulputate nec.</span>
+<span id="cb6-4"><a href="#cb6-4"></a>Aliquam placerat lacinia ex sit amet varius. Suspendisse</span>
+<span id="cb6-5"><a href="#cb6-5"></a>potenti. Nam tristique fringilla lacus id tincidunt. Donec</span>
+<span id="cb6-6"><a href="#cb6-6"></a>quis turpis tempus leo pharetra malesuada. Vivamus consequat</span>
+<span id="cb6-7"><a href="#cb6-7"></a>a quam nec vestibulum.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>or when necessary to save space:</p>
+<div class="cell plain">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource txt number-lines code-with-copy"><code class="sourceCode default"><span id="cb7-1"><a href="#cb7-1"></a>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <!-- -->
 
+</section>
 </section>
 
 </main>
@@ -3661,62 +3706,131 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="an">title:</span><span class="co"> SUYR Statistics resources</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a><span class="an">crossref:</span></span>
-<span id="cb1-6"><a href="#cb1-6"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a><span class="co">  fig-labels: arabic</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
-<span id="cb1-9"><a href="#cb1-9"></a><span class="co">  tbl-labels: arabic</span></span>
-<span id="cb1-10"><a href="#cb1-10"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
-<span id="cb1-11"><a href="#cb1-11"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
-<span id="cb1-12"><a href="#cb1-12"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
-<span id="cb1-13"><a href="#cb1-13"></a><span class="co">---</span></span>
-<span id="cb1-14"><a href="#cb1-14"></a></span>
-<span id="cb1-15"><a href="#cb1-15"></a><span class="fu">## Tutorials</span></span>
-<span id="cb1-16"><a href="#cb1-16"></a></span>
-<span id="cb1-17"><a href="#cb1-17"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Tutorial instructions</span><span class="co">](001_instructions.html)</span></span>
-<span id="cb1-18"><a href="#cb1-18"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Setup instructions</span><span class="co">](005_setup.html)</span></span>
-<span id="cb1-19"><a href="#cb1-19"></a></span>
-<span id="cb1-20"><a href="#cb1-20"></a><span class="fu">### R basics</span></span>
-<span id="cb1-21"><a href="#cb1-21"></a></span>
-<span id="cb1-22"><a href="#cb1-22"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to R</span><span class="co">](01_introduction_to_r.html)</span></span>
-<span id="cb1-23"><a href="#cb1-23"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Editors</span><span class="co">](02_editors.html)</span></span>
-<span id="cb1-24"><a href="#cb1-24"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data frames</span><span class="co">](03_data_frames.html)</span></span>
-<span id="cb1-25"><a href="#cb1-25"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data wrangling</span><span class="co">](04_data_wrangling.html)</span></span>
-<span id="cb1-26"><a href="#cb1-26"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Grammar of graphics</span><span class="co">](05_grammar_of_graphics.html)</span></span>
-<span id="cb1-27"><a href="#cb1-27"></a></span>
-<span id="cb1-28"><a href="#cb1-28"></a><span class="fu">### Reproducible research</span></span>
-<span id="cb1-29"><a href="#cb1-29"></a></span>
-<span id="cb1-30"><a href="#cb1-30"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Git and version control</span><span class="co">](10_git.html)</span></span>
-<span id="cb1-31"><a href="#cb1-31"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Containerisation - docker and singularity</span><span class="co">](12_docker.html)</span></span>
-<span id="cb1-32"><a href="#cb1-32"></a></span>
-<span id="cb1-33"><a href="#cb1-33"></a><span class="fu">### Statistical principles</span></span>
-<span id="cb1-34"><a href="#cb1-34"></a></span>
-<span id="cb1-35"><a href="#cb1-35"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Basic statistical principles</span><span class="co">](20_basic_principles.html)</span></span>
-<span id="cb1-36"><a href="#cb1-36"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Statistical philosophies</span><span class="co">](21_statistical_philosophies.html)</span></span>
-<span id="cb1-37"><a href="#cb1-37"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Estimation</span><span class="co">](22_estimation.html)</span></span>
-<span id="cb1-38"><a href="#cb1-38"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Causal inference</span><span class="co">](25_causation.html)</span></span>
-<span id="cb1-39"><a href="#cb1-39"></a></span>
-<span id="cb1-40"><a href="#cb1-40"></a><span class="fu">### Introduction to linear modelling</span></span>
-<span id="cb1-41"><a href="#cb1-41"></a></span>
-<span id="cb1-42"><a href="#cb1-42"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Generalised linear models</span><span class="co">](30_glm.html)</span></span>
-<span id="cb1-43"><a href="#cb1-43"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Bayesian generalised linear models</span><span class="co">](35_bayesian_glm.html)</span></span>
-<span id="cb1-44"><a href="#cb1-44"></a></span>
-<span id="cb1-45"><a href="#cb1-45"></a><span class="fu">## Presentations</span></span>
-<span id="cb1-46"><a href="#cb1-46"></a></span>
-<span id="cb1-47"><a href="#cb1-47"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Course introduction</span><span class="co">](01_introduction.html)</span></span>
-<span id="cb1-48"><a href="#cb1-48"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Data wrangling</span><span class="co">](03_pres_data_wrangling.html)</span></span>
-<span id="cb1-49"><a href="#cb1-49"></a><span class="ss">- </span><span class="co">[</span><span class="ot">git and github</span><span class="co">](10_pres_git.html)</span></span>
-<span id="cb1-50"><a href="#cb1-50"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to Bayesian analyses</span><span class="co">](20_pres_bayesian.html)</span></span>
-<span id="cb1-51"><a href="#cb1-51"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to hierarchical models</span><span class="co">](30_pres_hierarchical.html)</span></span>
-<span id="cb1-52"><a href="#cb1-52"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to Generalised Additive Models</span><span class="co">](40_pres_gams.html)</span></span>
-<span id="cb1-53"><a href="#cb1-53"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to regression trees</span><span class="co">](50_pres_trees.html)</span></span>
-<span id="cb1-54"><a href="#cb1-54"></a><span class="ss">- </span><span class="co">[</span><span class="ot">Introduction to multivariate analyses</span><span class="co">](60_pres_multivariate.html)</span></span>
-<span id="cb1-55"><a href="#cb1-55"></a></span>
-<span id="cb1-56"><a href="#cb1-56"></a>The end</span></code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb8-1"><a href="#cb8-1"></a><span class="co">---</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="an">title:</span><span class="co"> Instructions</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a><span class="an">crossref:</span></span>
+<span id="cb8-6"><a href="#cb8-6"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a><span class="co">  fig-labels: arabic</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a><span class="co">  tbl-labels: arabic</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb8-11"><a href="#cb8-11"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
+<span id="cb8-12"><a href="#cb8-12"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a><span class="co">---</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a></span>
+<span id="cb8-15"><a href="#cb8-15"></a><span class="fu"># Purpose</span></span>
+<span id="cb8-16"><a href="#cb8-16"></a></span>
+<span id="cb8-17"><a href="#cb8-17"></a>This tutorial series should be considered reference and background</span>
+<span id="cb8-18"><a href="#cb8-18"></a>materials in support of preparation for more advanced statistical</span>
+<span id="cb8-19"><a href="#cb8-19"></a>analyses with R. The topics covered progress from introductory and</span>
+<span id="cb8-20"><a href="#cb8-20"></a>foundational through to more advanced and as such, the tutorials are</span>
+<span id="cb8-21"><a href="#cb8-21"></a>intended to be consumed and worked through largely in the order laid</span>
+<span id="cb8-22"><a href="#cb8-22"></a>out in the sidebar menu to the left.</span>
+<span id="cb8-23"><a href="#cb8-23"></a></span>
+<span id="cb8-24"><a href="#cb8-24"></a><span class="fu"># Format of tutorials</span></span>
+<span id="cb8-25"><a href="#cb8-25"></a></span>
+<span id="cb8-26"><a href="#cb8-26"></a><span class="fu">## R code</span></span>
+<span id="cb8-27"><a href="#cb8-27"></a>Throughout the tutorials, R code snippets will be presented in a block such as:</span>
+<span id="cb8-28"><a href="#cb8-28"></a></span>
+<span id="cb8-31"><a href="#cb8-31"></a><span class="in">```{r}</span></span>
+<span id="cb8-32"><a href="#cb8-32"></a><span class="co">#| label: cmd1</span></span>
+<span id="cb8-33"><a href="#cb8-33"></a><span class="do">## construct variables</span></span>
+<span id="cb8-34"><a href="#cb8-34"></a><span class="fu">set.seed</span>(<span class="dv">123</span>)</span>
+<span id="cb8-35"><a href="#cb8-35"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb8-36"><a href="#cb8-36"></a>g <span class="ot">&lt;-</span> <span class="fu">gl</span>(<span class="at">n =</span> <span class="dv">2</span>, <span class="at">k =</span> <span class="dv">5</span>, <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&#39;High&#39;</span>, <span class="st">&#39;Low&#39;</span>))</span>
+<span id="cb8-37"><a href="#cb8-37"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> (<span class="dv">3</span> <span class="sc">*</span> x) <span class="sc">+</span> (<span class="fu">as.numeric</span>(g) <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">10</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span>
+<span id="cb8-38"><a href="#cb8-38"></a><span class="do">## compile into a data frame</span></span>
+<span id="cb8-39"><a href="#cb8-39"></a>dat <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, g, y)</span>
+<span id="cb8-40"><a href="#cb8-40"></a><span class="do">## print out data frame</span></span>
+<span id="cb8-41"><a href="#cb8-41"></a>dat</span>
+<span id="cb8-42"><a href="#cb8-42"></a><span class="in">```</span></span>
+<span id="cb8-43"><a href="#cb8-43"></a></span>
+<span id="cb8-44"><a href="#cb8-44"></a>This format is partially reminiscent of the layout of code editors,</span>
+<span id="cb8-45"><a href="#cb8-45"></a>albeit with a very opinionated color scheme.</span>
+<span id="cb8-46"><a href="#cb8-46"></a></span>
+<span id="cb8-47"><a href="#cb8-47"></a><span class="ss">- </span>the R code appears as the text over the faint yellow background.</span>
+<span id="cb8-48"><a href="#cb8-48"></a><span class="ss">- </span>any output appears below the code (white background) and in red font</span>
+<span id="cb8-49"><a href="#cb8-49"></a><span class="ss">- </span>the light gray numbers in the left hand gutter represent the line</span>
+<span id="cb8-50"><a href="#cb8-50"></a>  numbers. These can be useful when trying to draw attention to a</span>
+<span id="cb8-51"><a href="#cb8-51"></a>  particular line of code</span>
+<span id="cb8-52"><a href="#cb8-52"></a><span class="ss">- </span>the light gray text in the R code block beginning with two hash</span>
+<span id="cb8-53"><a href="#cb8-53"></a>  symbols &#39;##&#39; are comments</span>
+<span id="cb8-54"><a href="#cb8-54"></a><span class="ss">- </span>in the upper right hand corner there is a clipboard symbol. Clicking</span>
+<span id="cb8-55"><a href="#cb8-55"></a>  on this symbol will copy the code to the clipboard to help you</span>
+<span id="cb8-56"><a href="#cb8-56"></a>  transfer the code to your own R session.</span>
+<span id="cb8-57"><a href="#cb8-57"></a></span>
+<span id="cb8-58"><a href="#cb8-58"></a>Occasionally (and particularly within tables) code snippets may</span>
+<span id="cb8-59"><a href="#cb8-59"></a>alternatively be presented without the line number gutter. In such</span>
+<span id="cb8-60"><a href="#cb8-60"></a>cases, there tends to only be a single line of code and there are</span>
+<span id="cb8-61"><a href="#cb8-61"></a>substantial space savings if the gutter is removed.</span>
+<span id="cb8-62"><a href="#cb8-62"></a></span>
+<span id="cb8-65"><a href="#cb8-65"></a><span class="in">```{r}</span></span>
+<span id="cb8-66"><a href="#cb8-66"></a><span class="co">#| label: cmd2</span></span>
+<span id="cb8-67"><a href="#cb8-67"></a><span class="co">#| class: plain</span></span>
+<span id="cb8-68"><a href="#cb8-68"></a>x <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">times =</span> <span class="dv">2</span>)</span>
+<span id="cb8-69"><a href="#cb8-69"></a><span class="in">```</span></span>
+<span id="cb8-70"><a href="#cb8-70"></a></span>
+<span id="cb8-71"><a href="#cb8-71"></a><span class="co">&lt;!--</span></span>
+<span id="cb8-72"><a href="#cb8-72"></a><span class="co">## Julia code</span></span>
+<span id="cb8-73"><a href="#cb8-73"></a><span class="co">Throughout the tutorials, Julia code snippets will be presented in a block such as:</span></span>
+<span id="cb8-74"><a href="#cb8-74"></a></span>
+<span id="cb8-77"><a href="#cb8-77"></a><span class="in">```{Rjulia}</span></span>
+<span id="cb8-78"><a href="#cb8-78"></a><span class="co">#| label: j_cmd1</span></span>
+<span id="cb8-79"><a href="#cb8-79"></a><span class="co">#| eval: false</span></span>
+<span id="cb8-80"><a href="#cb8-80"></a><span class="co">## load any packages</span></span>
+<span id="cb8-81"><a href="#cb8-81"></a><span class="co">using DataFrames</span></span>
+<span id="cb8-82"><a href="#cb8-82"></a><span class="co">using Random</span></span>
+<span id="cb8-83"><a href="#cb8-83"></a><span class="co">using Distributions</span></span>
+<span id="cb8-84"><a href="#cb8-84"></a><span class="co">## construct variables</span></span>
+<span id="cb8-85"><a href="#cb8-85"></a><span class="co">Random.seed!(123);</span></span>
+<span id="cb8-86"><a href="#cb8-86"></a><span class="co">x = repeat(1:5, 2);</span></span>
+<span id="cb8-87"><a href="#cb8-87"></a><span class="co">g = repeat([&quot;High&quot;, &quot;Low&quot;], inner = 5);</span></span>
+<span id="cb8-88"><a href="#cb8-88"></a><span class="co">y = 2 .+ (3 .* x) .+ (repeat(1:2, inner=5) .- 1) .+ rand(Normal(0, 1), 10);</span></span>
+<span id="cb8-89"><a href="#cb8-89"></a><span class="co">dat = DataFrame(x = x, g = g, y = y);</span></span>
+<span id="cb8-90"><a href="#cb8-90"></a><span class="co">println(dat)</span></span>
+<span id="cb8-91"><a href="#cb8-91"></a><span class="co">```</span></span>
+<span id="cb8-92"><a href="#cb8-92"></a><span class="co">--&gt;</span></span>
+<span id="cb8-93"><a href="#cb8-93"></a></span>
+<span id="cb8-94"><a href="#cb8-94"></a><span class="fu">## Bash (shell) code</span></span>
+<span id="cb8-95"><a href="#cb8-95"></a></span>
+<span id="cb8-96"><a href="#cb8-96"></a>Bash is a command-line shell that gives you access and control over</span>
+<span id="cb8-97"><a href="#cb8-97"></a>your computer&#39;s operating system. Whilst the majority of the tutorials</span>
+<span id="cb8-98"><a href="#cb8-98"></a>in this series are focused on R, there are a couple of tutorials on</span>
+<span id="cb8-99"><a href="#cb8-99"></a>other supporting topics (like version control) that might be</span>
+<span id="cb8-100"><a href="#cb8-100"></a>interfaced via a shell (commands entered on a terminal). Furthermore,</span>
+<span id="cb8-101"><a href="#cb8-101"></a>some software installation and/or configuration instructions might be</span>
+<span id="cb8-102"><a href="#cb8-102"></a>in the form of shell commands.</span>
+<span id="cb8-103"><a href="#cb8-103"></a></span>
+<span id="cb8-104"><a href="#cb8-104"></a>Such commands are presented as:</span>
+<span id="cb8-105"><a href="#cb8-105"></a></span>
+<span id="cb8-108"><a href="#cb8-108"></a><span class="in">```{bash}</span></span>
+<span id="cb8-109"><a href="#cb8-109"></a><span class="co">#| label: bash</span></span>
+<span id="cb8-110"><a href="#cb8-110"></a><span class="co">#| classes: bash</span></span>
+<span id="cb8-111"><a href="#cb8-111"></a><span class="bu">pwd</span></span>
+<span id="cb8-112"><a href="#cb8-112"></a><span class="in">```</span></span>
+<span id="cb8-113"><a href="#cb8-113"></a></span>
+<span id="cb8-114"><a href="#cb8-114"></a><span class="fu">## Plain text</span></span>
+<span id="cb8-115"><a href="#cb8-115"></a></span>
+<span id="cb8-116"><a href="#cb8-116"></a>The contents of plain text files will similarly be presented either as:</span>
+<span id="cb8-117"><a href="#cb8-117"></a></span>
+<span id="cb8-120"><a href="#cb8-120"></a><span class="in">```{txt}</span></span>
+<span id="cb8-121"><a href="#cb8-121"></a><span class="in">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></span>
+<span id="cb8-122"><a href="#cb8-122"></a><span class="in">Maecenas sed metus congue risus sagittis viverra. Etiam</span></span>
+<span id="cb8-123"><a href="#cb8-123"></a><span class="in">hendrerit orci arcu, et vehicula libero vulputate nec.</span></span>
+<span id="cb8-124"><a href="#cb8-124"></a><span class="in">Aliquam placerat lacinia ex sit amet varius. Suspendisse</span></span>
+<span id="cb8-125"><a href="#cb8-125"></a><span class="in">potenti. Nam tristique fringilla lacus id tincidunt. Donec</span></span>
+<span id="cb8-126"><a href="#cb8-126"></a><span class="in">quis turpis tempus leo pharetra malesuada. Vivamus consequat</span></span>
+<span id="cb8-127"><a href="#cb8-127"></a><span class="in">a quam nec vestibulum.</span></span>
+<span id="cb8-128"><a href="#cb8-128"></a><span class="in">```</span></span>
+<span id="cb8-129"><a href="#cb8-129"></a></span>
+<span id="cb8-130"><a href="#cb8-130"></a>or when necessary to save space:</span>
+<span id="cb8-131"><a href="#cb8-131"></a></span>
+<span id="cb8-132"><a href="#cb8-132"></a><span class="in">```{txt, class = &quot;plain&quot;}</span></span>
+<span id="cb8-133"><a href="#cb8-133"></a><span class="in">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</span></span>
+<span id="cb8-134"><a href="#cb8-134"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
