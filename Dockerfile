@@ -12,6 +12,11 @@ RUN apt-get update \
     graphviz \
     unzip \
     fontconfig \
+    build-essential \
+    libjpeg-dev \
+    libpng-dev \
+    libtiff-dev \
+    libgif-dev \
     pandoc && \
     rm -rf /var/lib/apt/lists/*
 
@@ -93,6 +98,12 @@ RUN R -e "options(repos = \
     list(CRAN = \"https://packagemanager.posit.co/cran/2024-04-11/\")); \
   pak::pkg_install(c('magick')); \
 "
+
+## It seems it is necessary to install ImageMagick from source to get the latest version that is compatible with the magick R package. The version available in the apt repositories is too old and causes errors when trying to use the magick package.
+RUN wget https://download.imagemagick.org/ImageMagick/download/ImageMagick.tar.gz
+RUN tar xvzf ImageMagick.tar.gz
+RUN cd ImageMagick-* && ./configure && make && make install
+RUN ldconfig /usr/local/lib
 
 # RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
 # COPY architects_daughter /usr/share/fonts/
