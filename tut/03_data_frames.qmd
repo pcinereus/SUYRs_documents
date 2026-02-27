@@ -1,8 +1,8 @@
 ---
-title: Data frames 
+title: Data frames
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -209,8 +209,8 @@ convenient way to create the factor vectors.
 
 ```{r}
 #| label: cmd4
-expand.grid(rep = 1:4, 
-  B = paste("b", 1:2, sep = ""), 
+expand.grid(rep = 1:4,
+  B = paste("b", 1:2, sep = ""),
   A = paste("a", 1:3, sep = "")
 )
 ```
@@ -333,13 +333,13 @@ commands used to import the files.
 The following examples assume that the above data will be in the
 current working directory. If the current
 working directory (which can be checked with the `getwd()` function)
-does not contain these files, then either: 
+does not contain these files, then either:
 
 - include the full path name (or path relative to the current working
-  directory) as the filename argument 
+  directory) as the filename argument
 - change the current working
   directory of your session prior to continuing (use the `setwd()`
-  function) 
+  function)
 - copy and paste the files into the current working
   directory.
 :::
@@ -359,11 +359,11 @@ Warneet,Gipps.Manna,8.4,3.8
 Cranbourne,Gipps.Manna,3.0,5.0
 ....
 ```
- 
+
 ```{r}
 #| label: input5b
 #| class: plain
-macnally_new <- read_csv("../data/macnally.csv", 
+macnally_new <- read_csv("../data/macnally.csv",
   trim_ws = TRUE)
 macnally_new
 ```
@@ -378,10 +378,10 @@ macnally_new
 **Tab delimited text file .txt**
 
 ```{txt, class="plain"}
-LOCATION    HABITAT	    GST	EYR
-Reedy Lake	Mixed	    3.4	0.0
+LOCATION    HABITAT     GST	EYR
+Reedy Lake	Mixed       3.4	0.0
 Pearcedale	Gipps.Manna	3.4	9.2
-Warneet	    Gipps.Manna	8.4	3.8
+Warneet     Gipps.Manna	8.4	3.8
 Cranbourne	Gipps.Manna	3.0	5.0
 ....
 ```
@@ -389,9 +389,9 @@ Cranbourne	Gipps.Manna	3.0	5.0
 ```{r}
 #| label: input6
 #| class: plain
-macnally_new <- read_tsv("../data/macnally.txt", 
+macnally_new <- read_tsv("../data/macnally.txt",
   trim_ws = TRUE)
-macnally_new 
+macnally_new
 ```
 
 :::
@@ -411,7 +411,7 @@ to each field (variable/column).
 
 The data are imported as a tibble.
 
-There are numerous ways to specify the filename.  
+There are numerous ways to specify the filename.
 
 - using full paths
   ```{r}
@@ -521,7 +521,7 @@ data.
 macnally$bool <- rep(c(TRUE, FALSE), 4)
 macnally$char <- rep(c('Large', 'Small'), 4)
 macnally$date <- seq(as.Date('2000-02-29'),
-  as.Date('2000-05-12'), 
+  as.Date('2000-05-12'),
   len=8)
 ```
 
@@ -720,5 +720,4 @@ dump("macnally", file = "")
 Thereafter, the dataset is automatically included when the script is
 sourced and cannot accidentally become separated from the script.
 
-
-
+The end

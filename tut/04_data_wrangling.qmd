@@ -2,7 +2,7 @@
 title: Data wrangling (tidyverse and friends)
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -41,7 +41,7 @@ library(tidyverse)
 library(pander)
 ## FIG_PATH <- 'data_manipulations/figure-html/'
 ```
- 
+
 
 ```{r makeData, echo=FALSE}
 ## dat.1
@@ -56,7 +56,7 @@ dat.1 <- expand.grid(Time = 1:4, Dose=c("H", "M", "L"), Plot = paste0("P", 1:4))
            Resp2 = round(rnorm(n(), (rnorm(n(), 10, 5) * M1) * M2 * Time, 5), 2)) |>
     dplyr::select(Treatment, Plot, Dose, Time, Resp1, Resp2)
 
-## tikus    
+## tikus
 data(tikus, package='mvabund')
 tikus <- cbind(tikus$x,tikus$abund)
 
@@ -160,9 +160,9 @@ manipulation is an art form that requires the use of many specific
 tools (functions) and expert data manipulation comes from the
 integration of these tools together. Therefore it is necessary to have
 an overview of the tool set before investigating any single tool.
-     
 
-# Manipulating data sets 
+
+# Manipulating data sets
 
 Rarely are data transcribed and organised into such simple and
 ready-to-go data sets.  More typically, data are spread throughout
@@ -174,7 +174,7 @@ formal statistical analyses , it is necessary to compile very focused,
 @Wickham-2014-59 suggested that there are many ways to organise data,
 yet tidy data (data that are structured in such a consistent way as to
 facilitate analyses) must adhere to a fairly strict set of structural
-rules. Specifically, in tidy data: 
+rules. Specifically, in tidy data:
 
 - **variables** are in columns
 - **observations** are in rows - that is, for univariate data, there
@@ -197,7 +197,7 @@ rules. Specifically, in tidy data:
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{code} = [font={\fontspec[Scale=2]{Inconsolata}}]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -224,7 +224,7 @@ rules. Specifically, in tidy data:
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -242,10 +242,10 @@ rules. Specifically, in tidy data:
 \begin{tikzpicture}
 
 \matrix (first) [table,text width=4em]{
-Var1&Var2&Var3\\    
-&  & \\    
-&  & \\    
-&  & \\    
+Var1&Var2&Var3\\
+&  & \\
+&  & \\
+&  & \\
 &  & \\
 };
 
@@ -254,10 +254,10 @@ Var1&Var2&Var3\\
 \draw[latex-latex,line width=5pt] (first-2-3.north) --(first-5-3.south);
 
 \matrix (second) [right=2cm of first,anchor=west,table,text width=4em]{
-Var1&Var2&Var3\\        
-&  & \\    
-&  & \\    
-&  & \\    
+Var1&Var2&Var3\\
+&  & \\
+&  & \\
+&  & \\
 &  & \\
 };
 \draw[latex-latex,line width=5pt] (second-2-1.west) --(second-2-3.east);
@@ -341,11 +341,11 @@ plots completely excluded something and the other two were controls
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [draw, minimum width=1cm, minimum height=1cm, Title, Messy] (P1D1) {H}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [draw, minimum width=1cm, minimum height=1cm, Title, Messy] (P1D1) {H};
 \node [draw, minimum width=1cm, minimum height=1cm, anchor=north west, Title, Messy] at ($(P1D1.south east) +(0.2,0)$) (P1D2) {M};
 \node [draw, minimum width=1cm, minimum height=1cm, anchor=south west, Title, Messy] at ($(P1D2.north east) +(0.2,0)$) (P1D3) {L};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1D1) (P1D2) (P1D3)}, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -386,7 +386,7 @@ plots completely excluded something and the other two were controls
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P4};
 \end{scope}
-	
+
 \begin{scope}[local bounding box=P4a, anchor=north west, shift=(P3a.north east), xshift=1cm]
 \node [draw, minimum width=1cm, minimum height=1cm, Title, Messy] (P4D1) {L};
 \node [draw, minimum width=1cm, minimum height=1cm, Title, anchor=north west, Messy] at ($(P4D1.south east) +(0.2,0)$) (P4D2) {M};
@@ -429,11 +429,11 @@ These data comprise a Response observed on three occasions (`Time.0`,
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [minimum width=1cm, minimum height=1cm, Title, Messy] (P1D1) {}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [minimum width=1cm, minimum height=1cm, Title, Messy] (P1D1) {};
 \node [ minimum width=1cm, minimum height=1cm, anchor=north west, Title, Messy] at ($(P1D1.south east) +(0.2,0)$) (P1D2) {};
 \node [minimum width=1cm, minimum height=1cm, anchor=south west, Title, Messy] at ($(P1D2.north east) +(0.2,0)$) (P1D3) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1D1) (P1D2) (P1D3)}, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -472,7 +472,7 @@ These data comprise a Response observed on three occasions (`Time.0`,
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P3};
 \end{scope}
-	
+
 \begin{scope}[local bounding box=P4a, anchor=north west, shift=(P3a.north east), xshift=1cm]
 \node [minimum width=1cm, minimum height=1cm, Title, Messy] (P4D1) {};
 \node [minimum width=1cm, minimum height=1cm, Title, anchor=north west, Messy] at ($(P4D1.south east) +(0.2,0)$) (P4D2) {};
@@ -509,8 +509,8 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P1S1B1) {B1}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P1S1B1) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north east) +(0.2,0)$) (P1S1B2) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north west) +(0,2.-5.5)$) (P1S2B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, fill=orange,opacity=0.7,Title, Messy] at ($(P1S2B1.north east) +(0.2,0)$) (P1S2B2) {B1};
@@ -518,7 +518,7 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P1S1B1) (P1S1B2) +(0,1)}, draw, Messy, thick, Title, text height=0.5cm] (P1S1) {S1};
 \node [fit={(P1S2B1) ($(P1S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P1S2) {S2};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1S1) (P1S2) }, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -531,8 +531,8 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \draw ($(P1S2B1.south) +(0,-1.5)$) -- ($(P1S2B1.south) +(0.5,-1.5)$) node [anchor=west, code]{Resp2};
 \end{scope}
 
-\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P2S1B1) {B1}; 
+\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P2S1B1) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S1B1.north east) +(0.2,0)$) (P2S1B2) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,fill=orange,opacity=0.7, Title, Messy] at ($(P2S1B1.north west) +(0,2.-5.5)$) (P2S2B1) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S2B1.north east) +(0.2,0)$) (P2S2B2) {B2};
@@ -540,15 +540,15 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P2S1B1) ($(P2S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S1) {S4};
 \node [fit={(P2S2B1) ($(P2S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S2) {S3};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P2S1) (P2S2) }, draw,  Messy, thick] (P2) {};
 \draw [Messy, thick] (P2.north west) -- (P2.south west) -- (P2.south east) -- (P2.north east) -- cycle;
 \node [Title, anchor = south] at (P2.north) {P2};
 \end{scope}
 
-\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {B2}; 
+\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy, fill=orange, opacity=0.7] at ($(P3S1B1.north east) +(0.2,0)$) (P3S1B2) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,fill=orange,opacity=0.7, Title, Messy] at ($(P3S1B1.north west) +(0,2.-5.5)$) (P3S2B1) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S2B1.north east) +(0.2,0)$) (P3S2B2) {B2};
@@ -556,15 +556,15 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P3S1B1) ($(P3S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S1) {S5};
 \node [fit={(P3S2B1) ($(P3S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P3S1) (P3S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P3) {};
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P3};
 \end{scope}
 
-\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {B2}; 
+\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy, fill=orange, opacity=0.7] at ($(P4S1B1.north east) +(0.2,0)$) (P4S1B2) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P4S1B1.north west) +(0,2.-5.5)$) (P4S2B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, fill=orange,opacity=0.7, Title, Messy] at ($(P4S2B1.north east) +(0.2,0)$) (P4S2B2) {B1};
@@ -572,15 +572,15 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P4S1B1) ($(P4S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S1) {S8};
 \node [fit={(P4S2B1) ($(P4S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S2) {S7};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P4S1) (P4S2) }, draw,  pattern=grid, pattern color=blue, opacity=0.2,Messy, thick] (P4) {};
 \draw [Messy, thick] (P4.north west) -- (P4.south west) -- (P4.south east) -- (P4.north east) -- cycle;
 \node [Title, anchor = south] at (P4.north) {P4};
 \end{scope}
 
-\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P5S1B1) {B1}; 
+\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy, fill=orange, opacity=0.7] (P5S1B1) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P5S1B1.north east) +(0.2,0)$) (P5S1B2) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S1B1.north west) +(0,2.-5.5)$) (P5S2B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,fill=orange,opacity=0.7,  Title, Messy] at ($(P5S2B1.north east) +(0.2,0)$) (P5S2B2) {B1};
@@ -588,15 +588,15 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P5S1B1) ($(P5S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S1) {S9};
 \node [fit={(P5S2B1) ($(P5S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S2) {S10};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P5S1) (P5S2) }, draw,  Messy, thick] (P5) {};
 \draw [Messy, thick] (P5.north west) -- (P5.south west) -- (P5.south east) -- (P5.north east) -- cycle;
 \node [Title, anchor = south] at (P5.north) {P5};
 \end{scope}
 
-\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer] 
-\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {B2}; 
+\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer]
+\node [draw, minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy, fill=orange, opacity=0.7] at ($(P6S1B1.north east) +(0.2,0)$) (P6S1B2) {B1};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P6S1B1.north west) +(0,2.-5.5)$) (P6S2B1) {B2};
 \node [draw, minimum width=2cm, minimum height=2cm, anchor=north west, fill=orange,opacity=0.7, Title, Messy] at ($(P6S2B1.north east) +(0.2,0)$) (P6S2B2) {B1};
@@ -604,7 +604,7 @@ Similar to `dat.1`, these data comprise two Responses (`Resp1` and
 \begin{scope}[on background layer]
 \node [fit={(P6S1B1) ($(P6S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S1) {S5};
 \node [fit={(P6S2B1) ($(P6S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P6S1) (P6S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P6) {};
 \draw [Messy, thick] (P6.north west) -- (P6.south west) -- (P6.south east) -- (P6.north east) -- cycle;
@@ -653,8 +653,8 @@ thus there are also fewer rows.
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north east) +(0.2,0)$) (P1S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north west) +(0,2.-5.5)$) (P1S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S2B1.north east) +(0.2,0)$) (P1S2B2) {};
@@ -662,7 +662,7 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P1S1B1) (P1S1B2) +(0,1)}, draw, Messy, thick, Title, text height=0.5cm] (P1S1) {S1};
 \node [fit={(P1S2B1) ($(P1S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P1S2) {S2};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1S1) (P1S2) }, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -675,8 +675,8 @@ thus there are also fewer rows.
 \draw ($(P1S2B1.south) +(0,-1.5)$) -- ($(P1S2B1.south) +(0.5,-1.5)$) node [anchor=west, code]{Resp2};
 \end{scope}
 
-\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {}; 
+\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S1B1.north east) +(0.2,0)$) (P2S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P2S1B1.north west) +(0,2.-5.5)$) (P2S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S2B1.north east) +(0.2,0)$) (P2S2B2) {};
@@ -684,15 +684,15 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P2S1B1) ($(P2S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S1) {S4};
 \node [fit={(P2S2B1) ($(P2S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S2) {S3};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P2S1) (P2S2) }, draw,  Messy, thick] (P2) {};
 \draw [Messy, thick] (P2.north west) -- (P2.south west) -- (P2.south east) -- (P2.north east) -- cycle;
 \node [Title, anchor = south] at (P2.north) {P2};
 \end{scope}
 
-\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {}; 
+\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S1B1.north east) +(0.2,0)$) (P3S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P3S1B1.north west) +(0,2.-5.5)$) (P3S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S2B1.north east) +(0.2,0)$) (P3S2B2) {};
@@ -700,15 +700,15 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P3S1B1) ($(P3S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S1) {S5};
 \node [fit={(P3S2B1) ($(P3S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P3S1) (P3S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P3) {};
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P3};
 \end{scope}
 
-\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {}; 
+\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S1B1.north east) +(0.2,0)$) (P4S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P4S1B1.north west) +(0,2.-5.5)$) (P4S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S2B1.north east) +(0.2,0)$) (P4S2B2) {};
@@ -716,15 +716,15 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P4S1B1) ($(P4S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S1) {S8};
 \node [fit={(P4S2B1) ($(P4S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S2) {S7};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P4S1) (P4S2) }, draw,  pattern=grid, pattern color=blue, opacity=0.2,Messy, thick] (P4) {};
 \draw [Messy, thick] (P4.north west) -- (P4.south west) -- (P4.south east) -- (P4.north east) -- cycle;
 \node [Title, anchor = south] at (P4.north) {P4};
 \end{scope}
 
-\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {}; 
+\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P5S1B1.north east) +(0.2,0)$) (P5S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S1B1.north west) +(0,2.-5.5)$) (P5S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S2B1.north east) +(0.2,0)$) (P5S2B2) {};
@@ -732,15 +732,15 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P5S1B1) ($(P5S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S1) {S9};
 \node [fit={(P5S2B1) ($(P5S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S2) {S10};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P5S1) (P5S2) }, draw,  Messy, thick] (P5) {};
 \draw [Messy, thick] (P5.north west) -- (P5.south west) -- (P5.south east) -- (P5.north east) -- cycle;
 \node [Title, anchor = south] at (P5.north) {P5};
 \end{scope}
 
-\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {}; 
+\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S1B1.north east) +(0.2,0)$) (P6S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P6S1B1.north west) +(0,2.-5.5)$) (P6S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S2B1.north east) +(0.2,0)$) (P6S2B2) {};
@@ -748,7 +748,7 @@ thus there are also fewer rows.
 \begin{scope}[on background layer]
 \node [fit={(P6S1B1) ($(P6S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S1) {S5};
 \node [fit={(P6S2B1) ($(P6S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P6S1) (P6S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P6) {};
 \draw [Messy, thick] (P6.north west) -- (P6.south west) -- (P6.south east) -- (P6.north east) -- cycle;
@@ -787,8 +787,8 @@ same sampling units as the biological responses.
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north east) +(0.2,0)$) (P1S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north west) +(0,2.-5.5)$) (P1S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S2B1.north east) +(0.2,0)$) (P1S2B2) {};
@@ -796,7 +796,7 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P1S1B1) (P1S1B2) +(0,1)}, draw, Messy, thick, Title, text height=0.5cm] (P1S1) {S1};
 \node [fit={(P1S2B1) ($(P1S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P1S2) {S2};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1S1) (P1S2) }, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -809,8 +809,8 @@ same sampling units as the biological responses.
 \draw ($(P1S2B1.south) +(0,-1.5)$) -- ($(P1S2B1.south) +(0.5,-1.5)$) node [anchor=west, code]{Chem2};
 \end{scope}
 
-\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {}; 
+\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S1B1.north east) +(0.2,0)$) (P2S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P2S1B1.north west) +(0,2.-5.5)$) (P2S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S2B1.north east) +(0.2,0)$) (P2S2B2) {};
@@ -818,15 +818,15 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P2S1B1) ($(P2S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S1) {S4};
 \node [fit={(P2S2B1) ($(P2S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P2S2) {S3};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P2S1) (P2S2) }, draw,  Messy, thick] (P2) {};
 \draw [Messy, thick] (P2.north west) -- (P2.south west) -- (P2.south east) -- (P2.north east) -- cycle;
 \node [Title, anchor = south] at (P2.north) {P2};
 \end{scope}
 
-\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {}; 
+\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S1B1.north east) +(0.2,0)$) (P3S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P3S1B1.north west) +(0,2.-5.5)$) (P3S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S2B1.north east) +(0.2,0)$) (P3S2B2) {};
@@ -834,15 +834,15 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P3S1B1) ($(P3S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S1) {S5};
 \node [fit={(P3S2B1) ($(P3S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P3S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P3S1) (P3S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P3) {};
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P3};
 \end{scope}
 
-\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {}; 
+\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S1B1.north east) +(0.2,0)$) (P4S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P4S1B1.north west) +(0,2.-5.5)$) (P4S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S2B1.north east) +(0.2,0)$) (P4S2B2) {};
@@ -850,15 +850,15 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P4S1B1) ($(P4S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S1) {S8};
 \node [fit={(P4S2B1) ($(P4S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P4S2) {S7};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P4S1) (P4S2) }, draw,  pattern=grid, pattern color=blue, opacity=0.2,Messy, thick] (P4) {};
 \draw [Messy, thick] (P4.north west) -- (P4.south west) -- (P4.south east) -- (P4.north east) -- cycle;
 \node [Title, anchor = south] at (P4.north) {P4};
 \end{scope}
 
-\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {}; 
+\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P5S1B1.north east) +(0.2,0)$) (P5S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S1B1.north west) +(0,2.-5.5)$) (P5S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S2B1.north east) +(0.2,0)$) (P5S2B2) {};
@@ -866,15 +866,15 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P5S1B1) ($(P5S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S1) {S9};
 \node [fit={(P5S2B1) ($(P5S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P5S2) {S10};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P5S1) (P5S2) }, draw,  Messy, thick] (P5) {};
 \draw [Messy, thick] (P5.north west) -- (P5.south west) -- (P5.south east) -- (P5.north east) -- cycle;
 \node [Title, anchor = south] at (P5.north) {P5};
 \end{scope}
 
-\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {}; 
+\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S1B1.north east) +(0.2,0)$) (P6S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P6S1B1.north west) +(0,2.-5.5)$) (P6S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S2B1.north east) +(0.2,0)$) (P6S2B2) {};
@@ -882,7 +882,7 @@ same sampling units as the biological responses.
 \begin{scope}[on background layer]
 \node [fit={(P6S1B1) ($(P6S1B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S1) {S5};
 \node [fit={(P6S2B1) ($(P6S2B2) +(1,2)$)}, draw, Messy, thick, Title, text height=0.5cm] (P6S2) {S6};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P6S1) (P6S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P6) {};
 \draw [Messy, thick] (P6.north west) -- (P6.south west) -- (P6.south east) -- (P6.north east) -- cycle;
@@ -919,8 +919,8 @@ The `data.geo` dataset represent geographical information about the
 \begin{tikzpicture}
 \coordinate (A) at (0,0);
 
-\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {}; 
+\begin{scope}[local bounding box=P1a,anchor=north west, shift=(A),on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P1S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north east) +(0.2,0)$) (P1S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S1B1.north west) +(0,2.-5.5)$) (P1S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P1S2B1.north east) +(0.2,0)$) (P1S2B2) {};
@@ -928,7 +928,7 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P1S1B1) (P1S1B2) +(0,1)}, draw, thick, Title, text height=0.5cm] (P1S1) {};
 \node [fit={(P1S2B1) ($(P1S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P1S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P1S1) (P1S2) }, draw, pattern = grid, pattern color=blue, opacity=0.2, Messy, thick] (P1) {};
 \draw [Messy, thick] (P1.north west) -- (P1.south west) -- (P1.south east) -- (P1.north east) -- cycle;
@@ -941,8 +941,8 @@ The `data.geo` dataset represent geographical information about the
 \draw ($(P1S2B1.south) +(0,-1.5)$) -- ($(P1S2B1.south) +(0.5,-1.5)$) node [anchor=west, code]{LONG};
 \end{scope}
 
-\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {}; 
+\begin{scope}[local bounding box=P2a,anchor=north west, shift=(P1a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P2S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S1B1.north east) +(0.2,0)$) (P2S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P2S1B1.north west) +(0,2.-5.5)$) (P2S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P2S2B1.north east) +(0.2,0)$) (P2S2B2) {};
@@ -950,15 +950,15 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P2S1B1) ($(P2S1B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P2S1) {};
 \node [fit={(P2S2B1) ($(P2S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P2S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P2S1) (P2S2) }, draw,  Messy, thick] (P2) {};
 \draw [Messy, thick] (P2.north west) -- (P2.south west) -- (P2.south east) -- (P2.north east) -- cycle;
 \node [Title, anchor = south] at (P2.north) {P2};
 \end{scope}
 
-\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {}; 
+\begin{scope}[local bounding box=P3a,anchor=north west, shift=(P2a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P3S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S1B1.north east) +(0.2,0)$) (P3S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P3S1B1.north west) +(0,2.-5.5)$) (P3S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P3S2B1.north east) +(0.2,0)$) (P3S2B2) {};
@@ -966,15 +966,15 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P3S1B1) ($(P3S1B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P3S1) {};
 \node [fit={(P3S2B1) ($(P3S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P3S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P3S1) (P3S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P3) {};
 \draw [Messy, thick] (P3.north west) -- (P3.south west) -- (P3.south east) -- (P3.north east) -- cycle;
 \node [Title, anchor = south] at (P3.north) {P3};
 \end{scope}
 
-\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {}; 
+\begin{scope}[local bounding box=P4a,anchor=north west, shift=(P3a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P4S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S1B1.north east) +(0.2,0)$) (P4S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P4S1B1.north west) +(0,2.-5.5)$) (P4S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P4S2B1.north east) +(0.2,0)$) (P4S2B2) {};
@@ -982,15 +982,15 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P4S1B1) ($(P4S1B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P4S1) {};
 \node [fit={(P4S2B1) ($(P4S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P4S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P4S1) (P4S2) }, draw,  pattern=grid, pattern color=blue, opacity=0.2,Messy, thick] (P4) {};
 \draw [Messy, thick] (P4.north west) -- (P4.south west) -- (P4.south east) -- (P4.north east) -- cycle;
 \node [Title, anchor = south] at (P4.north) {P4};
 \end{scope}
 
-\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {}; 
+\begin{scope}[local bounding box=P5a,anchor=north west, shift=(P4a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P5S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P5S1B1.north east) +(0.2,0)$) (P5S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S1B1.north west) +(0,2.-5.5)$) (P5S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P5S2B1.north east) +(0.2,0)$) (P5S2B2) {};
@@ -998,15 +998,15 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P5S1B1) ($(P5S1B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P5S1) {};
 \node [fit={(P5S2B1) ($(P5S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P5S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P5S1) (P5S2) }, draw,  Messy, thick] (P5) {};
 \draw [Messy, thick] (P5.north west) -- (P5.south west) -- (P5.south east) -- (P5.north east) -- cycle;
 \node [Title, anchor = south] at (P5.north) {P5};
 \end{scope}
 
-\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer] 
-\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {}; 
+\begin{scope}[local bounding box=P6a,anchor=north west, shift=(P5a.north east),xshift =1cm, on background layer]
+\node [minimum width=2cm, minimum height=2cm, Title, Messy] (P6S1B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S1B1.north east) +(0.2,0)$) (P6S1B2) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west,Title, Messy] at ($(P6S1B1.north west) +(0,2.-5.5)$) (P6S2B1) {};
 \node [minimum width=2cm, minimum height=2cm, anchor=north west, Title, Messy] at ($(P6S2B1.north east) +(0.2,0)$) (P6S2B2) {};
@@ -1014,7 +1014,7 @@ The `data.geo` dataset represent geographical information about the
 \begin{scope}[on background layer]
 \node [fit={(P6S1B1) ($(P6S1B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P6S1) {};
 \node [fit={(P6S2B1) ($(P6S2B2) +(1,2)$)}, draw, thick, Title, text height=0.5cm] (P6S2) {};
-\end{scope} 
+\end{scope}
 \begin{scope}[on background layer]
 \node [fit={(P6S1) (P6S2) }, draw,  pattern=fivepointed stars, pattern color=blue, opacity=0.2,Messy, thick] (P6) {};
 \draw [Messy, thick] (P6.north west) -- (P6.south west) -- (P6.south east) -- (P6.north east) -- cycle;
@@ -1058,14 +1058,14 @@ The great folks over at Rstudio have produced an excellent set of
 range of topics.  For this tutorial, the **Data Transformation Cheat
 Sheet** and **Data Tidying Cheat Sheet** (mainly just the first page)
 are useful summaries.
- 
-::: panel-tabset 
+
+::: panel-tabset
 
 ## Data importation
 
 ```{r data-import, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/data-import.pdf ../resources/data-import.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/data-import.pdf
 ![](../resources/data-import-0.png "data-import")
@@ -1075,7 +1075,7 @@ https://github.com/rstudio/cheatsheets/raw/main/data-import.pdf
 
 ```{r data-transformation, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/data-transformation.pdf ../resources/data-transformation.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf
 ![](../resources/data-transformation-0.png "data-transformation")
@@ -1085,7 +1085,7 @@ https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf
 
 ```{r tidyr, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/tidyr.pdf ../resources/tidyr.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/tidyr.pdf
 ![](../resources/tidyr-0.png "tidyr")
@@ -1095,7 +1095,7 @@ https://github.com/rstudio/cheatsheets/raw/main/tidyr.pdf
 
 ```{r factors, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/factors.pdf ../resources/factors.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/factors.pdf
 ![](../resources/factors.png "factors")
@@ -1104,7 +1104,7 @@ https://github.com/rstudio/cheatsheets/raw/main/factors.pdf
 
 ```{r lubridate, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/lubridate.pdf ../resources/lubridate.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/lubridate.pdf
 ![](../resources/lubridate-0.png "lubridate")
@@ -1114,17 +1114,17 @@ https://github.com/rstudio/cheatsheets/raw/main/lubridate.pdf
 
 ```{r purrr, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/purrr.pdf ../resources/purrr.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/purrr.pdf
 ![](../resources/purrr-0.png "purrr")
 ![](../resources/purrr-1.png "purrr")
 
-## Regular expression 
+## Regular expression
 
 ```{r regex, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/regex.pdf ../resources/regex.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/regex.pdf
 ![](../resources/regex.png "regex")
@@ -1133,7 +1133,7 @@ https://github.com/rstudio/cheatsheets/raw/main/regex.pdf
 
 ```{r strings, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/strings.pdf ../resources/strings.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/strings.pdf
 ![](../resources/strings-0.png "strings")
@@ -1143,7 +1143,7 @@ https://github.com/rstudio/cheatsheets/raw/main/strings.pdf
 
 ```{r tidyeval, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/tidyeval.pdf ../resources/tidyeval.png")
-#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png") 
+#system("mv ../docs/resources/data-import-0.png ../docs/resources/data-import.png")
 ```
 https://github.com/rstudio/cheatsheets/raw/main/tidyeval.pdf
 ![](../resources/tidyeval-0.png "tidyeval")
@@ -1213,7 +1213,7 @@ detach(package:forcats)
 detach(package:pander)
 ```
 
-```{r} 
+```{r}
 #| label: libraryA
 #| message: true
 #| warning: true
@@ -1305,7 +1305,7 @@ evaluation** to make referring to columns more flexible.
 - **data-masking** - refer to variables as if they were directly
   attached to the current environment (e.g. `Var1` instead of
   `data$Var1`.  This form of variable referral is used within:
-  - `arrange()` 
+  - `arrange()`
   - `filter()`
   - `count()`
   - `mutate()`
@@ -1325,7 +1325,7 @@ evaluation** to make referring to columns more flexible.
   hypothetical columns (`Var1`, `Var2`, etc) and cannot be evaluated
   directly. They all mostly illustrate the concept using the
   `select()` _function_.
- 
+
 <table class='table table-primary table-bordered table-sm paramsTable' id = 'tidy-select-table'>
 <thead>
 <tr class = 'header'>
@@ -1570,11 +1570,11 @@ If the code is set out as above (with each verb on a separate line),
 it gives an opportunity to provide a short comment to the right side
 of each line to provide useful documentation.
 
-<details><summary>A more specific example</summary> 
+<details><summary>A more specific example</summary>
 
 As a motivating (if not a bit extreme) example, lets say we wanted to
 calculate the logSumExp function:
-			
+
 $$
 log(\sum^{n}_{i=1} e^{x_i})
 $$
@@ -1637,19 +1637,19 @@ are numerous properties of data.frames that make them less than ideal.
 
   <details><summary>show comparison</summary>
   :::: {.columns style="display:flex; justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
-  dat.1 |> as.data.frame() 
+  dat.1 |> as.data.frame()
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   dat.1 |> as_tibble()
   ```
   :::
-   
+
   ::::
   </details>
 - `data.frame`s have very strict column naming rules and when these
@@ -1657,19 +1657,19 @@ are numerous properties of data.frames that make them less than ideal.
   the rules.  `tibble`s permit a wider range of names.
   <details><summary>show comparison</summary>
   :::: {.columns style="display:flex; justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   data.frame('1.3' = 1:6, 'Wt (kg)' = 1:6)
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   tibble('1.3' = 1:6, 'Wt (kg)' = 1:6)
   ```
   :::
-  
+
   ::::
   </details>
 - character vectors are often coerced into factors (categorical
@@ -1682,20 +1682,20 @@ are numerous properties of data.frames that make them less than ideal.
 
   <details><summary>show comparison</summary>
   :::: {.columns style="display:flex; justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   data.frame(Var1 = 1:6, Var2 = 1:2, Var3 = 1)
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE, error = TRUE}
   tibble(Var1 = 1:6, Var2 = 1:2, Var3 = 1)
   tibble(Var1 = 1:6, Var2 = 1)
   ```
   :::
-  
+
   ::::
   </details>
 - when sub-setting via column indices, `data.frame`s return a vector
@@ -1706,19 +1706,19 @@ are numerous properties of data.frames that make them less than ideal.
 
   <details><summary>show comparison</summary>
   :::: {.columns style="display:flex; justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   as.data.frame(dat.1)[,2]
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE, error = TRUE}
   as_tibble(dat.1)[,2]
   ```
   :::
-  
+
   ::::
   </details>
 - `data.frame`s permit partial matching via `$` indexing.  This can be
@@ -1727,19 +1727,19 @@ are numerous properties of data.frames that make them less than ideal.
 
   <details><summary>show comparison</summary>
   :::: {.columns style="display:flex; justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   as.data.frame(dat.1)$Plo
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE, error = TRUE, warning = TRUE}
   as_tibble(dat.1)$Plo
   ```
   :::
-  
+
   ::::
   </details>
 - `data.frame`s have very clumsy support for _list columns_ (a list
@@ -1748,8 +1748,8 @@ are numerous properties of data.frames that make them less than ideal.
   is an integral for the _functional programming_ routines of the
   `purrr` package.
 
-  <details><summary>show comparison</summary> 
-  
+  <details><summary>show comparison</summary>
+
   In this fictitious example, I would like to store three different
   `data.frames` (or any three objects for that matter) in the three
   cells of a variable (e.g. `Var2`).  This is not possible in a
@@ -1758,11 +1758,11 @@ are numerous properties of data.frames that make them less than ideal.
   of each to ensure they are all the same length.  Once the data have
   been coerced into a `data.frame`, the structure is lost (we can no
   longer access `Var2`).
- 
+
   These issues are addressed in the `tibble`.
 
   :::: {.columns style="display:flex;justify-content:space-evenly;"}
-  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE}
   D <- data.frame(Var1 = LETTERS[1:3],
@@ -1775,7 +1775,7 @@ are numerous properties of data.frames that make them less than ideal.
   D$Var2
   ```
   :::
-	  
+
   ::: {.column width="49%"}
   ```{r, cache=FALSE, error = TRUE, warning = TRUE}
   D <- tibble(Var1 = LETTERS[1:3],
@@ -1788,7 +1788,7 @@ are numerous properties of data.frames that make them less than ideal.
   D$Var2
   ```
   :::
-  
+
   ::::
   </details>
 
@@ -1827,7 +1827,7 @@ to determine which observations to perform actions on.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -1848,7 +1848,7 @@ to determine which observations to perform actions on.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -1879,10 +1879,10 @@ to determine which observations to perform actions on.
 %(0,0) -- (3mm,0mm) arc (0:30:3mm) -- cycle;
 
 %\shadedraw[draw,left color=red, right color=blue] (0,1) -- (2,0.5) -- (2,0.75) -- (3,0() -- (2,-0.75) -- (2,-0.5) -- (0,-1) -- cycle;
- 
-%\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) -- 
-\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) -- 
-%\draw[draw,fill=blue!60] ($(first.north east) + (0,-0.2)$) -- 
+
+%\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) --
+\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) --
+%\draw[draw,fill=blue!60] ($(first.north east) + (0,-0.2)$) --
  ($($(first.north east) !0.75! (first.east)$) +(4,0)$) --
  ($($(first.north east) !0.5! (first.east)$) +(4,0)$) -- (6,0) --
  ($($(first.south east) !0.5! (first.east)$) +(4,0)$) --
@@ -1890,7 +1890,7 @@ to determine which observations to perform actions on.
  ($(first.south east) + (0,0.2)$) -- cycle;
 \node [anchor=center,Title] at (3,0) (text) {\begin{minipage}{2cm}summary\\function\end{minipage}};
 %\draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {summaryFnct()} ++(second);
-  
+
 \end{tikzpicture}
 ```
 
@@ -1912,7 +1912,7 @@ to determine which observations to perform actions on.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -1933,7 +1933,7 @@ to determine which observations to perform actions on.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -1967,8 +1967,8 @@ to determine which observations to perform actions on.
 %(0,0) -- (3mm,0mm) arc (0:30:3mm) -- cycle;
 
 %\shadedraw[draw,left color=red, right color=blue] (0,1) -- (2,0.5) -- (2,0.75) -- (3,0() -- (2,-0.75) -- (2,-0.5) -- (0,-1) -- cycle;
- 
-\shadedraw[draw,left color=black!20, right color=blue!60] ($($(first.north east) !0.5! (first.east)$) +(0,0)$) -- 
+
+\shadedraw[draw,left color=black!20, right color=blue!60] ($($(first.north east) !0.5! (first.east)$) +(0,0)$) --
  ($($(first.north east) !0.5! (first.east)$) +(4,0)$) --
  ($($(first.north east) !0.25! (first.east)$) +(4,0)$) -- (6,0) --
  ($($(first.south east) !0.25! (first.east)$) +(4,0)$) --
@@ -1976,7 +1976,7 @@ to determine which observations to perform actions on.
  ($($(first.south east) !0.5! (first.east)$) +(0,0)$) -- cycle;
 \node [anchor=center,Title] at (3,0) (text) {\begin{minipage}{2cm}vectorized\\function\end{minipage}};
 %\draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {vectorizedFnct()} ++(second);
-  
+
 \end{tikzpicture}
 ```
 
@@ -2326,7 +2326,7 @@ case_when(x <= 3 ~ "L",
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -2353,7 +2353,7 @@ case_when(x <= 3 ~ "L",
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -2368,18 +2368,18 @@ case_when(x <= 3 ~ "L",
 }
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
-&  &   & \\    
-&  & |[fill=black!80]| & \\    
-&  & |[fill=black!20]|  & \\    
-&  & |[fill=black!60]|  & \\    
+&  &   & \\
+&  & |[fill=black!80]| & \\
+&  & |[fill=black!20]|  & \\
+&  & |[fill=black!60]|  & \\
 &  & |[fill=black!40]|  & \\
 };
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
-&  &   & \\    
-&  & |[fill=black!20]| & \\    
-&  & |[fill=black!40]|  & \\    
-&  & |[fill=black!60]|  & \\    
+&  &   & \\
+&  & |[fill=black!20]| & \\
+&  & |[fill=black!40]|  & \\
+&  & |[fill=black!60]|  & \\
 &  & |[fill=black!80]|  & \\
 };
 
@@ -2405,7 +2405,7 @@ structures and manipulation interfaces mean that you really have to
 try to break the data in this way. Furthermore, you are encouraged to
 store reordered data in a different object to the original data, and
 hence 'rolling' back is trivial.
- 
+
 <!--
 :::: {.columns style="display:flex;justify-content:space-evenly;"}
 
@@ -2453,7 +2453,7 @@ dat.1 |> arrange(Resp1 + Resp2) |>
     head()
 ```
 
-### Sort by Dose then by mean of Resp1 and Resp2 
+### Sort by Dose then by mean of Resp1 and Resp2
 
 ```{r arrange5, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> arrange(Dose, mean(c(Resp1, Resp2))) |>
@@ -2478,7 +2478,7 @@ focus on a subset of the rows.  These two forms of sub-setting are:
 - `select`ing - reducing the number of columns
 - `filter`ing - reducing the number of rows
 
-## Subset columns (`select`) 
+## Subset columns (`select`)
 
 Selecting works by either including (or excluding) the column names
 that you indicate or via special selection 'Helper' functions that
@@ -2497,7 +2497,7 @@ pass a vector of column indices to include in the subset data.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -2527,7 +2527,7 @@ pass a vector of column indices to include in the subset data.
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -2543,18 +2543,18 @@ pass a vector of column indices to include in the subset data.
 \begin{tikzpicture}
 
 \matrix (first) [table,text width=4em]{
-& |[fill=blue!70]| & |[fill=blue!70]| & & |[fill=blue!70]|\\    
-&  &  & &\\    
-&  &  & &\\    
-&  &  & &\\    
+& |[fill=blue!70]| & |[fill=blue!70]| & & |[fill=blue!70]|\\
+&  &  & &\\
+&  &  & &\\
+&  &  & &\\
 &  &  & &\\
 };
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
-|[fill=blue!70]|& |[fill=blue!70]| & |[fill=blue!70]| \\    
-|[fill=blue!40]|&  &  \\    
-|[fill=blue!40]|&  &  \\    
-|[fill=blue!40]|&  &  \\    
+|[fill=blue!70]|& |[fill=blue!70]| & |[fill=blue!70]| \\
+|[fill=blue!40]|&  &  \\
+|[fill=blue!40]|&  &  \\
+|[fill=blue!40]|&  &  \\
 |[fill=blue!40]|&  &  \\
 };
 
@@ -2572,7 +2572,7 @@ pass a vector of column indices to include in the subset data.
 ```
 
 :::
- 
+
 ::: {.column style="width:60%;font-size:10pt;"}
 <!--
 | Helper function | Select variables ...                                                        |
@@ -2595,17 +2595,17 @@ Note, by default, the above searchers are NOT case sensitive
 ```{css, echo=FALSE}
 ```
 
-    
-	
+
+
 The `select()` _function_ users [_tidy-select_ semantics](#tidy-select-table).
 
 ::: {.panel-tabset .tabset-left}
 
 ### Inclusion / exclusion of from bare names
-Select specific variables	
+Select specific variables
 ```{r select1, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(Treatment, Dose, Time, Resp1) |>
-    head() 
+    head()
 ```
 Exclude specific variables
 ```{r select2, cache=FALSE, error = TRUE, warning = TRUE}
@@ -2618,33 +2618,33 @@ dat.1 |> select(-Plot, -Resp2) |>
 Include columns `Treatment` through to `Time`
 ```{r select7, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(Treatment:Time) |>
-    head() 
+    head()
 ```
 Exclude columns `Treatment` through to `Time`
 ```{r select7a, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(-(Treatment:Time)) |>
-    head() 
+    head()
 ```
 Exclude columns `Treatment` through to `Time`
 ```{r select7b, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(!(Treatment:Time)) |>
-    head() 
+    head()
 ```
 ### Inclusion / exclusion from name predicates
 Names containing and 'r' (case insensitive)
 ```{r select3, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(contains("R")) |>
-    head() 
+    head()
 ```
 Names starting with 'r' (case insensitive)
 ```{r select4, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(starts_with("R")) |>
-    head() 
+    head()
 ```
 Names ending in 'e' (case insensitive)
 ```{r select5, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(ends_with("e")) |>
-    head() 
+    head()
 ```
 Names that are exactly four characters long
 ```{r select6, cache=FALSE, error = TRUE, warning = TRUE}
@@ -2664,10 +2664,10 @@ dat.1 |> select(num_range("Resp", 1:2)) |>
 ```{r select9, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(num_range("Resp", 1:2),
                  everything()) |>
-    head() 
+    head()
 ```
 
-### Select and `all_of` / `any_of` 
+### Select and `all_of` / `any_of`
 Select from a vector of strings
 ```{r select10, cache=FALSE, error = TRUE, warning = TRUE}
 Vars <- c("Resp1", "Resp2")
@@ -2679,20 +2679,20 @@ Select from string vector of strings...
 ```{r select11, cache=FALSE, error = TRUE, warning = TRUE}
 Vars <- c("Resp1", "Resp2", "Resp3")
 dat.1 |> select(any_of(Vars)) |>
-    head() 
+    head()
 ```
 
 ```{r select12, cache=FALSE, error = TRUE, warning = TRUE}
 Vars <- c("Resp1", "Resp2", "Resp3")
 dat.1 |> select(-any_of(Vars)) |>
-    head() 
+    head()
 ```
 
 ### Select and `where`
 
 ```{r select13, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> select(where(is.numeric)) |>
-    head() 
+    head()
 ```
 :::
 
@@ -2763,7 +2763,7 @@ lookup <- tribble(
     "Resp2",     "Response 2")
 ## Convert to list of pairs
 lookup <- lookup |>
-    select(Long_name, Abbr_name) |> 
+    select(Long_name, Abbr_name) |>
     deframe() |>
     list()
 dat.1 |>
@@ -2771,7 +2771,7 @@ dat.1 |>
     head()
 ```
 
-    
+
 ## Select a single column (`pull`)
 
 As indicated earlier, single column indices on `tibble`s return a single column `tibble`.  To extract a single column as a vector, there is a `pull` _function_.
@@ -2779,7 +2779,7 @@ As indicated earlier, single column indices on `tibble`s return a single column 
 The `pull()` _function_ users [_tidy-select_ semantics](#tidy-select-table).
 
 ```{r pull, cache=FALSE, error = TRUE, warning = TRUE}
-dat.1 |> pull(Resp1) 
+dat.1 |> pull(Resp1)
 ```
 
 
@@ -2804,7 +2804,7 @@ The `filter()` _function_ users [_data-masking_ semantics](#the-grammar-of-data-
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -2835,17 +2835,17 @@ The `filter()` _function_ users [_data-masking_ semantics](#the-grammar-of-data-
 \begin{tikzpicture}
 
 \matrix (first) [table,text width=4em]{
-&  &  &\\    
-&  &  &\\    
-|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| \\    
-|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| \\    
+&  &  &\\
+&  &  &\\
+|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| \\
+|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| \\
 &  &  &\\
 };
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
-|[fill=blue!70]|& |[fill=blue!70]| & |[fill=blue!70]| & |[fill=blue!70]|  \\    
-|[fill=blue!40]|& |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|  \\    
-|[fill=blue!40]|& |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|  \\    
+|[fill=blue!70]|& |[fill=blue!70]| & |[fill=blue!70]| & |[fill=blue!70]|  \\
+|[fill=blue!40]|& |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|  \\
+|[fill=blue!40]|& |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|  \\
 };
 
 \draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {filter()} ++(second);
@@ -2863,7 +2863,7 @@ The `filter()` _function_ users [_data-masking_ semantics](#the-grammar-of-data-
 ```
 
 :::
- 
+
 ::: {.column style="width:55%;font-size:12pt;"}
 
 : {.primary .bordered .sm .paramsTable}
@@ -2901,31 +2901,31 @@ Note, by default, the above searchers are NOT case sensitive
 ::: {.panel-tabset .tabset-left}
 
 ### Filter by category level
-	
+
 ```{r filter1, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(Dose == "H")
 ```
 
 ### Filter by multiple category levels
-	
+
 ```{r filter2, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(Dose %in% c("H", "M"))
 ```
 
 ### Filter by numeric
-	
+
 ```{r filter2a, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(Resp1 < 25)
 ```
 
 ### Filter and `between`
-	
+
 ```{r filter2b, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(between(Resp1, 15, 25))
 ```
 
 ### Filter by numeric (cumulative functions)
-Keep all cases after a value of Resp1 has exceeded 200	
+Keep all cases after a value of Resp1 has exceeded 200
 ```{r filter2c, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(cumany(Resp1 > 200))
 ```
@@ -2935,7 +2935,7 @@ dat.1 |> filter(cumall(Resp1 < 25))
 ```
 
 ### Filter by multiple filters (AND)
-	
+
 ```{r filter3, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(Dose == "H", Resp1 < 25)
 ##OR
@@ -2943,43 +2943,43 @@ dat.1 |> filter(Dose == "H" & Resp1 < 25)
 ```
 
 ### Filter by multiple filters (OR)
-	
+
 ```{r filter4, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(Dose == "H" | Resp1 < 25)
 ```
 
 ### Filter by multiple selection filters (AND)
-	
+
 ```{r filter5, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(if_all(starts_with("Resp"), ~ . < 25))
 ```
 
 ### Filter by multiple selection filters (OR)
-	
+
 ```{r filter6, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> filter(if_any(starts_with("Resp"), ~ . < 25))
 ```
 :::
 
-## Subset of rows by position (`slice`) 
+## Subset of rows by position (`slice`)
 
 ::: {.panel-tabset .tabset-left}
 
 ### Keep rows 1 through to 4
-	
+
 ```{r slice1, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> slice(1:4)
 ```
 
 ### Keep rows 1 through to 4 and 7
-	
+
 ```{r slice2, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> slice(c(1:4, 7))
 ```
 
 :::
 
-## Random selection of rows (`sample_n`) 
+## Random selection of rows (`sample_n`)
 
 In each of the examples, I will set the random seed to ensure we can
 all repeat the example exactly.
@@ -2987,14 +2987,14 @@ all repeat the example exactly.
 ::: {.panel-tabset .tabset-left}
 
 ### Random sample of rows
-Random sample of 10 rows (without replacement)	
+Random sample of 10 rows (without replacement)
 ```{r sample1, cache=FALSE, error = TRUE, warning = TRUE}
 set.seed(123)
 dat.1 |> sample_n(10, replace = FALSE)
 ```
 
 ### Random fractional sample of rows
-Random sample of 25% of the rows (without replacement)	
+Random sample of 25% of the rows (without replacement)
 ```{r sample2, cache=FALSE, error = TRUE, warning = TRUE}
 set.seed(123)
 dat.1 |> sample_frac(0.25, replace = FALSE)
@@ -3080,7 +3080,7 @@ levels(dat.2$Treatment)
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -3107,7 +3107,7 @@ levels(dat.2$Treatment)
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -3122,18 +3122,18 @@ levels(dat.2$Treatment)
 }
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
-&  &  & \\    
-&  &  & \\    
-&  &  & \\    
-&  &  & \\    
+&  &  & \\
+&  &  & \\
+&  &  & \\
+&  &  & \\
 &  &  & \\
 };
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
-&  &  & & |[fill=blue!70]| \\    
-&  &  & &\\    
-&  &  &  &\\    
-&  &  &  &\\    
+&  &  & & |[fill=blue!70]| \\
+&  &  & &\\
+&  &  &  &\\
+&  &  &  &\\
 &  &  &  & \\
 };
 
@@ -3144,7 +3144,7 @@ levels(dat.2$Treatment)
 ```
 
 To add to (mutate) a data set, a **vectorised** function is applied either
-once or across one or more existing columns.  
+once or across one or more existing columns.
 
 The `mutate()` _function_ users [_data-masking_ semantics](#the-grammar-of-data-manipulation) and can use [_tidy-select_ semantics](#tidy-select-table) via `across()`.
 
@@ -3195,7 +3195,7 @@ must preserve the number of rows.
 ::: {.panel-tabset .tabset-left}
 
 ### arithmetic operators
- 	
+
 ```{r mutate2a, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(Sum = Resp1 + Resp2,
                  Div = Resp1 / Resp2) |>
@@ -3203,7 +3203,7 @@ dat.1 |> mutate(Sum = Resp1 + Resp2,
 ```
 
 ### logarithmic operators
-	
+
 ```{r mutate2b, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(logResp1 = log(Resp1),
                  expResp2 = exp(Resp2)) |>
@@ -3211,14 +3211,14 @@ dat.1 |> mutate(logResp1 = log(Resp1),
 ```
 
 ### logical operators
-	
+
 ```{r mutate2c, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(largeResp1 = Resp1 > 25) |>
     head()
 ```
 
 ### near
-	
+
 ```{r mutate2d, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(
               A = Resp1 == 8.1,
@@ -3227,7 +3227,7 @@ dat.1 |> mutate(
 ```
 
 ### between
-	
+
 ```{r mutate2e, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(mediumResp1 = between(Resp1, 15, 25)) |>
     head()
@@ -3235,7 +3235,7 @@ dat.1 |> mutate(mediumResp1 = between(Resp1, 15, 25)) |>
 
 :::
 
-## Offset functions 
+## Offset functions
 
 | Function                   | Description                                                      |
 |----------------------------|------------------------------------------------------------------|
@@ -3247,14 +3247,14 @@ dat.1 |> mutate(mediumResp1 = between(Resp1, 15, 25)) |>
 ::: {.panel-tabset .tabset-left}
 
 ### lags
-	
+
 ```{r mutate2, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(lagResp1 = lag(Resp1)) |>
     head()
 ```
 
 ### leads
-	
+
 ```{r mutate3, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> mutate(leadResp1 = lead(Resp1)) |>
     tail()
@@ -3333,7 +3333,7 @@ dat.1 |> mutate(ntile(Resp1, 5)) |>
 
 :::
 
-## Miscellaneous 
+## Miscellaneous
 
 | Function                   | Description                                                      |
 |----------------------------|------------------------------------------------------------------|
@@ -3502,7 +3502,7 @@ Change the level order of the `Dose` factor to something more natural.
 ```{r mutate6c, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> pull(Dose)
 dat.1 |>
-    mutate(Dose = fct_relevel(Dose, c("L", "M", "H"))) |> 
+    mutate(Dose = fct_relevel(Dose, c("L", "M", "H"))) |>
     as_tibble() |>
     pull(Dose)
 ```
@@ -3515,7 +3515,7 @@ dat.1 |> mutate(
               Dose = fct_relevel(Dose, c("L", "M", "H")),
               Dose = fct_recode(Dose, High = 'H',  Medium = 'M')
               ) |>
-    as_tibble |> 
+    as_tibble |>
     pull(Dose)
 ```
 
@@ -3523,7 +3523,7 @@ dat.1 |> mutate(
 ```{r mutate6e, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> pull(Dose)
 dat.1 |> mutate(Dose = fct_reorder(Dose, 1:n())) |>
-    as_tibble |> 
+    as_tibble |>
     pull(Dose)
 ```
 
@@ -3532,7 +3532,7 @@ Change the order of `Dose` levels according to the median `Resp1` values
 ```{r mutate6f, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> pull(Dose)
 dat.1 |> mutate(Dose = fct_reorder(Dose, Resp1, median)) |>
-    as_tibble |> 
+    as_tibble |>
     pull(Dose)
 ```
 
@@ -3554,7 +3554,7 @@ dat.1 |> mutate(Dose = fct_reorder(Dose, Resp1, median)) |>
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -3581,7 +3581,7 @@ dat.1 |> mutate(Dose = fct_reorder(Dose, Resp1, median)) |>
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -3596,16 +3596,16 @@ dat.1 |> mutate(Dose = fct_reorder(Dose, Resp1, median)) |>
 }
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
-&  &   & \\    
-&  &   & \\    
-&  &   & \\    
-&  &   & \\    
-&  &   & \\    
+&  &   & \\
+&  &   & \\
+&  &   & \\
+&  &   & \\
+&  &   & \\
 };
- 
+
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
-|[fill=blue!70]| & |[fill=blue!70]| &  |[fill=blue!70]| & |[fill=blue!70]| \\    
-|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|\\ 
+|[fill=blue!70]| & |[fill=blue!70]| &  |[fill=blue!70]| & |[fill=blue!70]| \\
+|[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]| & |[fill=blue!40]|\\
 };
 
 \draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {summarize()} ++(second);
@@ -3635,7 +3635,7 @@ The `summarise()` _function_ users [_data-masking_ semantics](#the-grammar-of-da
 ```
 
 :::
- 
+
 ::: {.column style="width:55%;font-size:12pt;"}
 
 | Function                     | Description                                     |
@@ -3669,13 +3669,13 @@ dat.1 |> summarise(N = n(),
 ```
 
 ### Simple math functions
-	
+
 Calculate the number of rows in the data as well as the number of
 distinct (unique) values of `Dose`.
 
 ```{r summarise2a, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> summarise(Mean = mean(Resp1),
-                    Median = median(Resp1)) 
+                    Median = median(Resp1))
 ```
 
 Calculate the number of rows in the data as well as the number of
@@ -3683,7 +3683,7 @@ distinct (unique) values of `Dose`.
 
 ```{r summarise2b, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> summarise(Sum = sum(Resp1),
-                    Prod = prod(Resp1)) 
+                    Prod = prod(Resp1))
 ```
 
 Calculate the number of rows in the data as well as the number of
@@ -3691,7 +3691,7 @@ distinct (unique) values of `Dose`.
 
 ```{r summarise2c, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> summarise(Var = var(Resp1),
-                    MAD = mad(Resp1)) 
+                    MAD = mad(Resp1))
 ```
 
 Calculate the number of rows in the data as well as the number of
@@ -3699,7 +3699,7 @@ distinct (unique) values of `Dose`.
 
 ```{r summarise2d, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> summarise(Min = min(Resp1),
-                    Max = max(Resp1)) 
+                    Max = max(Resp1))
 ```
 
 ### quantile functions
@@ -3719,7 +3719,7 @@ distinct (unique) values of `Dose`.
 ```{r summarise2f, cache=FALSE, error = TRUE, warning = TRUE}
 dat.1 |> summarise(First = first(Resp1),
                     Last = last(Resp1),
-                    Fifth = nth(Resp1, 5)) 
+                    Fifth = nth(Resp1, 5))
 ```
 
 ### `Across` functions
@@ -3728,7 +3728,7 @@ dat.1 |> summarise(First = first(Resp1),
 dat.1 |> summarise(across(c(Resp1, Resp2),
                            list(Mean = mean, Var = var),
                            .names = "{.fn}.{.col}"),
-                    N = n()) 
+                    N = n())
 ```
 
 ### Multiple variables / functions
@@ -3787,7 +3787,7 @@ dat.1 |> count(Dose, between(Resp1, 30, 50))
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -3814,7 +3814,7 @@ dat.1 |> count(Dose, between(Resp1, 30, 50))
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -3829,23 +3829,23 @@ dat.1 |> count(Dose, between(Resp1, 30, 50))
 }
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
-&  &   & \\    
-|[fill=orange!10]| &  &   & \\    
-|[fill=orange!30]| &  &   & \\    
-|[fill=orange!50]| &  &   & \\    
-|[fill=orange!70]| &   &   & \\    
+&  &   & \\
+|[fill=orange!10]| &  &   & \\
+|[fill=orange!30]| &  &   & \\
+|[fill=orange!50]| &  &   & \\
+|[fill=orange!70]| &   &   & \\
 };
- 
+
 \matrix (second) [above right=1cm and 5cm of first,anchor=north west,table,text width=4em]{
-&  &   & \\    
-|[fill=orange!10]| &  &   & \\    
-|[fill=orange!30]| &  &   & \\    
+&  &   & \\
+|[fill=orange!10]| &  &   & \\
+|[fill=orange!30]| &  &   & \\
 };
 
 \matrix (third) [below=1cm of second,anchor=north,table,text width=4em]{
-&  &   & \\    
-|[fill=orange!50]| &  &   & \\    
-|[fill=orange!70]| &  &   & \\    
+&  &   & \\
+|[fill=orange!50]| &  &   & \\
+|[fill=orange!70]| &  &   & \\
 };
 
 \draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {group\_by()} ++($(second.west|-first) +(-0.5cm, 0)$);
@@ -4046,7 +4046,7 @@ the long (molten) format.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4067,7 +4067,7 @@ the long (molten) format.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4083,9 +4083,9 @@ the long (molten) format.
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
 &|[fill=blue!40!black!40]|  & |[fill=blue!60!black!60]|  & |[fill=blue!80!black!80]|\\
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\ 
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\ 
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\     
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
 };
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
@@ -4127,7 +4127,7 @@ where:
   values that were previously in the old columns.
 - `values_drop_na` - whether or not to drop rows that only contain
   `NA` values in the new value column.
-  
+
 To illustrate, we will use the `dat.w` dataframe.
 
 ```{r datawView, cache=FALSE, echo=FALSE}
@@ -4179,7 +4179,7 @@ familiar.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4200,7 +4200,7 @@ familiar.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4226,9 +4226,9 @@ familiar.
 
 \matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
 &|[fill=blue!40!black!40]|  & |[fill=blue!60!black!60]|  & |[fill=blue!80!black!80]|\\
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\ 
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\ 
-&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\     
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
+&|[fill=blue!40!white!40]|  & |[fill=blue!60!white!60]|  & |[fill=blue!80!white!80]|\\
 };
 
 \draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {pivot\_wider()} ++(second);
@@ -4315,7 +4315,7 @@ combine these to form a single date field.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4336,7 +4336,7 @@ combine these to form a single date field.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4406,7 +4406,7 @@ or else providing a fixed width format.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4427,7 +4427,7 @@ or else providing a fixed width format.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4526,7 +4526,7 @@ missing values. The following describe these various options.
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4548,7 +4548,7 @@ missing values. The following describe these various options.
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4599,7 +4599,7 @@ C & 3 & |[fill=none]| NA\\
   - new columns for unmatched rows from the left data sets receive NA
     values
   - when there are multiple matches, all combinations included
-  
+
 ```{tikz}
 %| label: tikz_rightjoin
 %| engine: tikz
@@ -4613,7 +4613,7 @@ C & 3 & |[fill=none]| NA\\
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4635,7 +4635,7 @@ C & 3 & |[fill=none]| NA\\
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4678,7 +4678,7 @@ C& 3\\
 \node [Title,above=0.75cm of first.north,anchor=north] (A)  {Left dataset};
 \node [Title,above=0.75cm of second.north,anchor=north] (B)  {Right dataset};
 \end{tikzpicture}
-``` 
+```
 
 - inner join
   - return all columns from the left and right data set
@@ -4698,7 +4698,7 @@ C& 3\\
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4720,7 +4720,7 @@ C& 3\\
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4782,7 +4782,7 @@ B & 2 & |[fill=blue!60!white!60]| F\\
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4804,7 +4804,7 @@ B & 2 & |[fill=blue!60!white!60]| F\\
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4865,7 +4865,7 @@ B & 2\\
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4887,7 +4887,7 @@ B & 2\\
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -4947,7 +4947,7 @@ C & 3\\
 \tikzstyle{code} = [font=\ttfamily]
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
 
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
         row sep=-\pgflinewidth,
@@ -4969,7 +4969,7 @@ C & 3\\
         %%},
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -5150,5 +5150,4 @@ data.bio |> left_join(data.geo)
 ```
 :::
 
-
-
+The end
