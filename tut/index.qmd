@@ -1,5 +1,5 @@
 ---
-title: SUYR Statistics resources 
+title: SUYR Statistics resources
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 crossref:
@@ -24,7 +24,7 @@ output_dir: "docs"
 - [Data frames](03_data_frames.html)
 - [Data wrangling](04_data_wrangling.html)
 - [Grammar of graphics](05_grammar_of_graphics.html)
- 
+
 ### Reproducible research
 
 - [Git and version control](10_git.html)
@@ -45,10 +45,10 @@ output_dir: "docs"
 ## Presentations
 
 - [Course introduction](01_introduction.html)
+- [Data wrangling](03_pres_data_wrangling.html)
 - [git and github](10_pres_git.html)
 - [Introduction to Bayesian analyses](20_pres_bayesian.html)
 - [Introduction to hierarchical models](30_pres_hierarchical.html)
 - [Introduction to Generalised Additive Models](40_pres_gams.html)
 - [Introduction to regression trees](50_pres_trees.html)
 - [Introduction to multivariate analyses](60_pres_multivariate.html)
- 

@@ -14,17 +14,21 @@ bibliography: ../resources/references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-            
+
 Course
--------------- 
-    
-     
+--------------
+
+
 <https://pcinereus.github.io/SUYRs_documents/>
 
-<http://www.flutterbys.com.au/stats>
- 
+<https://pcinereus.github.io/SUYRs_public/>
+
+<https://github.com/pcinereus/SUYRs_public/>
+
+<!--<http://www.flutterbys.com.au/stats>-->
+
 <http://r4ds.had.co.nz/>
- 
+
 Topics
 -------
 
@@ -61,7 +65,7 @@ Preparations
   - [webpage](https://pcinereus.github.io/SUYRs_documents/)
 
 - R editors
-  - Rstudio	
+  - Rstudio
 
 - Version control / Collaboration
   - git/github
@@ -73,17 +77,17 @@ Preparations
 
 R {.smaller}
 --------------------
- 
+
 <https://github.com/rstudio/cheatsheets/raw/master/base-r.pdf>
 
 ```{r base-r, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/base-r.pdf ../resources/base-r.png")
-system("mv ../resources/base-r-0.png ../resources/base-r.png") 
+system("mv ../resources/base-r-0.png ../resources/base-r.png")
 ```
 
 ![](../resources/base-r.png "base-r")
 
- 
+
 R studio {.smaller}
 --------------------
 
@@ -91,12 +95,12 @@ R studio {.smaller}
 
 ```{r rstudio-ide, cache=TRUE,echo=FALSE}
 system("convert -resize 650x ../resources/rstudio-ide.pdf ../resources/rstudio-ide.png")
-system("mv ../resources/rstudio-ide-0.png ../resources/rstudio-ide.png") 
+system("mv ../resources/rstudio-ide-0.png ../resources/rstudio-ide.png")
 ```
- 
+
 ![](../resources/rstudio-ide.png "rstudio-ide")
 
-R studio 
+R studio
 --------------------
 
 - browser IDE
@@ -107,11 +111,11 @@ R studio
 ### Important considerations
 
 1. Rstudio is not R
-2. Avoid installing packages via RStudio 
+2. Avoid installing packages via RStudio
 3. Learn to use **Keybindings**: Cntl-Shift-K
- 
-    
-Packages 
+4. Use **snippets** (Tools -> Edit Code Snippets)
+
+Packages
 ----------
 
 - extend functionality
@@ -168,11 +172,11 @@ Packages - Option 1
 ```{r library1b, results='markdown', eval=FALSE}
 install.packages("report")      # for reporting methods/results
 install.packages("easystats")   # framework for stats, modelling and visualisation
-install.packages("MuMIn")       # for AIC and model selection 
-install.packages("MASS")        # for old modelling routines 
-install.packages("patchwork")   # for combining multiple plots together 
-install.packages("gam")         # for GAM(M)s 
-install.packages("gratia")      # for GAM(M) plots 
+install.packages("MuMIn")       # for AIC and model selection
+install.packages("MASS")        # for old modelling routines
+install.packages("patchwork")   # for combining multiple plots together
+install.packages("gam")         # for GAM(M)s
+install.packages("gratia")      # for GAM(M) plots
 install.packages("modelbased")  # for model info
 install.packages("broom.mixed") # for tidy outputs from mixed models
 ```
@@ -204,7 +208,7 @@ Packages - Option 2
 ```{r library1b2, results='markdown', eval=FALSE}
 install.packages("report")      # for reporting methods/results
 install.packages("easystats")   # framework for stats, modelling and visualisation
-install.packages("patchwork")   # for combining multiple plots together 
+install.packages("patchwork")   # for combining multiple plots together
 install.packages("modelbased")  # for model info
 install.packages("broom.mixed") # for tidy outputs from mixed models
 install.packages("tidybayes")   # for tidy outputs from mixed models
@@ -222,7 +226,7 @@ and then there is `cmdstan` or `rstan` and `brms`....
 
 :::
 
-Packages 
+Packages
 ----------
 
 - **namespaces**
@@ -230,7 +234,7 @@ Packages
 stats::filter()
 dplyr::filter()
 ```
-. . . 
+. . .
 
 - **polymorphism** (functional overloading)
 ```{r polymorphism, results='markdown', eval=TRUE}
@@ -257,16 +261,26 @@ system("mv ../resources/rmarkdown-0.png ../resources/rmarkdown.png")
 ```
 
 ![](../resources/rmarkdown.png)
- 
+
 
 Cheat sheets (ref cards) {.smaller}
 --------------------------
 
 https://www.rstudio.com/resources/cheatsheets/
- 
+
 
 R revision and updates
 -------------------------------
 
 - functions
 - pipes (`|>`)
+- snippets
+
+````{snippets}
+snippet r
+```{r}
+#| label: ${1}
+#| eval: true
+${0}
+```
+````
