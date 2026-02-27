@@ -60,9 +60,10 @@ jobs:
         run: |
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
+          ls -lat
           mkdir -p docs
-          cp -r * ../docs || echo "No existing files to copy."
-          ls -lat ../docs
+          cp -r * docs || echo "No existing files to copy."
+          ls -lat docs
 
       - name: Render Updated Quarto Files
         run: |
@@ -77,7 +78,7 @@ jobs:
           fi
           ls -lat
           ls -lat tut
-          mkdir docs
+          # mkdir docs
           cp tut/*.html docs
 
       - name: Deploy to GitHub Pages
