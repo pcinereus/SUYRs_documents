@@ -29,6 +29,7 @@ output_dir: "docs"
 
 - [Git and version control](10_git.html)
 - [Containerisation - docker and singularity](12_docker.html)
+- [AI coding assistance](14_ai.html)
 
 ### Statistical principles
 

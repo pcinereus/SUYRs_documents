@@ -2,7 +2,7 @@
 title: Containerisation - docker and singularity
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -57,7 +57,7 @@ knitr::knit_hooks$set(output = function(x, options) {
         }
     } else {
         x <- c(more, x[n], more)
-    }    
+    }
     x <- paste(x, collapse = "\n")
   }
   hook_output(x, options)
@@ -117,7 +117,7 @@ Time for some container terminology:
 # Preparations
 
 If you intend to follow along with this tutorial, you may like to:
- 
+
 - create a new folder (hereafter referred to as the _sandpit folder_)
   in which to create some files. On my local machine, I have a folder
   (`tmp`) in my home folder into which I will place a folder (called
@@ -168,11 +168,11 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 %| engine-opts:
 %|   template: "../resources/tikz-commit.tex"
 \usetikzlibrary{positioning,shapes.callouts}
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 \newcommand{\file}[3] {
  \coordinate (#3) at (#1);
  \draw[thick,anchor=top left](#1) -- ++(2,0) -- ++(0.5,-0.5) -- ++(0,-3) -- ++(-2.5,0) -- ++(0,3.5);
- \draw[thick,anchor=top left]($(#1) +(2,0)$) -- ++(0,-0.5) -- ++(0.5,0); 	 
+ \draw[thick,anchor=top left]($(#1) +(2,0)$) -- ++(0,-0.5) -- ++(0.5,0);
  \node [anchor=north west,fileText] at ($(#1) +(0,-0.1)$) {#2};
 }
 
@@ -235,18 +235,18 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    example will be a very minimal example and much of the rest of the
    Docker section of this tutorial will then progressively build on
    this example to introduce more and more complexity.
-   
+
    The image we will build will start with a very minimal Debian Linux
    base called [minidep](https://hub.docker.com/r/bitnami/minideb)
    sourced from Dockerhub.  This provides a fully functioning Linux
    operating system complete with the typical terminal power tools.
-   
+
    To then extend the image by updating the package lists (location of
    repositories) before adding (installing) a small fun terminal
    application
    ([cowsay](https://github.com/tnalpgge/rank-amateur-cowsay)) that
    generates ASCII art of a cow (or other animals) along with a speech
-   bubble. 
+   bubble.
 
    ```{bash}
    #| label: createDockerfile
@@ -297,7 +297,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
    - the **RUN** command runs shell commands in a new layer on top of
      the current image and commits the result.  Each RUN generates a
-     new layer.  The above example, first updates the packages list 
+     new layer.  The above example, first updates the packages list
      and then installs an additional package (`cowsay`).
 
 
@@ -305,7 +305,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
    In a terminal in the same location as the `Dockerfile` (i.e. your
    _sandpit folder_), enter something the following:
-   
+
    ```{bash}
    #| label: dockerBuildReal
    #| engine: bash
@@ -343,35 +343,35 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    This will build a series of docker container images (each of the
    layers built upon the layer before) in a local registry
 
-	<details>
-	<summary>More details</summary>
-	Usage: `docker build [OPTIONS] PATH | URL | -`
-	<br>
-	Common options:
-	
-	| Name         | Description                                  | Default      |
-	|--------------|----------------------------------------------|--------------|
-	| `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |
-	| `--no-cache` | Do not use cache when building image         |              |
-	| `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |
-	
-	Typical files in context:<br>
-	
-	- `Dockerfile`: a build recipe file<br>
-	- `.dockerignore`: similar to a `.gitignore`, this file lists
+    <details>
+    <summary>More details</summary>
+    Usage: `docker build [OPTIONS] PATH | URL | -`
+    <br>
+    Common options:
+
+    | Name         | Description                                  | Default      |
+    |--------------|----------------------------------------------|--------------|
+    | `--file, -f` | Path and name of `Dockerfile`                | `Dockerfile` |
+    | `--no-cache` | Do not use cache when building image         |              |
+    | `--tag, -t`  | Name (and optional tag) in `name:tag` format |              |
+
+    Typical files in context:<br>
+
+    - `Dockerfile`: a build recipe file<br>
+    - `.dockerignore`: similar to a `.gitignore`, this file lists
       files to be ignored in collating the files that form the build context.<br>
-	
-	As an alternative to providing build instructions in the form of a
+
+    As an alternative to providing build instructions in the form of a
     `Dockerfile`, build can accept a `URL` to a (remote) docker
     repository.<br><br>
-	More info:<br>
-	https://docs.docker.com/engine/reference/commandline/build/
-	</details>
+    More info:<br>
+    https://docs.docker.com/engine/reference/commandline/build/
+    </details>
 
 3. **Check that the image(s) have been created**
 
    A list of images in your registry is obtained by:
-   
+
    ```{bash}
    #| label: dockerImage
    #| engine: bash
@@ -386,7 +386,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| cache: true
    docker image ls
    ```
-           
+
    Note, the above simply lists all named images in your local
    registry.  To get a more complete list of all images:
 
@@ -402,7 +402,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| eval: true
    #| comment: ""
    #| cache: true
-   docker images -a  
+   docker images -a
    ```
 
    The `-a` switch indicates all images (including unnamed and hanging images).
@@ -432,9 +432,9 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| code-line-numbers: false
    #| out.lines: 1
    #| highlight-style: zenburn
-   docker ps -a  
+   docker ps -a
    ```
-   
+
 
    The output is empty (assuming you have not previously generated any
    containers), indicating that there are currently no running
@@ -448,8 +448,8 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    `cowsay` terminal application will display an ASCII cow saying
    'Moo" before quietly terminating.  The container will be
    automatically stopped and removed.
-   
-   ```{bash} 
+
+   ```{bash}
    #| label: dockerRun
    #| engine: bash
    #| results: markup
@@ -464,21 +464,21 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    docker run --entrypoint ./usr/games/cowsay --rm minideb Moo
    ```
 
-   where: 
-   
+   where:
+
    - `--entrypoint ./usr/games/cowsay` defines the base command that
      will be run once the container has started.  In this case, it
      specifies the full path to the `cowsay` executable file.
 
    - `--rm` indicates that the container should be removed after it
      has finished running.
-	 
+
    - `minideb` is the name of our docker container image
 
    - `Moo` is the string passed on to `cowsay` to display in the
      speech bubble.  Feel free to experiment with other strings here.
 
-	To further appreciate the way arguments are passed on to
+    To further appreciate the way arguments are passed on to
     applications within a container, lets alter the `cowsay` animal.
 
    ```{bash}
@@ -493,9 +493,9 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| class-output: terminal
    #| code-line-numbers: false
    #| highlight-style: zenburn
-   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt 
+   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt
    ```
-   
+
    In the above example, we passed `-f
    /usr/share/cowsay/cows/koala.cow Grunt` on to `cowsay`.  In this
    context, `-f` points to were alternative animal definitions are
@@ -503,7 +503,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
 5. **Test the docker image interactively**
 
-	Rather than fire up a container, run some command and then
+    Rather than fire up a container, run some command and then
     immediately terminate, it is possible to run a container in
     _interactive mode_.  In this mode, after the container starts up,
     you will be placed in a terminal where you can issue any available
@@ -512,7 +512,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
     Try the following (within the container):
 
-   ```{bash} 
+   ```{bash}
    #| label: dockerRun2
    #| engine: bash
    #| results: markup
@@ -524,14 +524,14 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| class-output: terminal
    #| code-line-numbers: false
    #| highlight-style: zenburn
-   docker run --rm -it minideb   
+   docker run --rm -it minideb
    ```
 
    Once the prompt appears try entering the following:
 
    - list the files and folders in the current working directory
 
-   ```{bash} 
+   ```{bash}
    #| label: dockerRun3
    #| engine: bash
    #| results: markup
@@ -545,7 +545,7 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    #| highlight-style: zenburn
    ls -la
    ```
-  
+
    - run the cowsay application
 
    ```{bash}
@@ -579,10 +579,10 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    exit
    ```
 
-	Running in interactive mode is very useful when
+    Running in interactive mode is very useful when
     developing/debugging code on a container.
-	
- 
+
+
 ## Some Dockerfile goodness
 
 
@@ -634,7 +634,7 @@ In the above `Dockerfile`:
 
 - `ENTRYPOINT` provides a default command to run within the container.
   This specification is in _JSON_ format.
- 
+
 - `CMD` provides default extra parameters that are passed on to the
   command (also in _JSON_ format). This can be overridden by passing
   an alternative when running the `docker run` command (see below).
@@ -651,7 +651,7 @@ cd ~/tmp/docker_tests
 docker build . --tag minideb -f Dockerfile2
 ```
 
-```{bash} 
+```{bash}
 #| label: dockerBuild2
 #| engine: bash
 #| results: hide
@@ -661,7 +661,7 @@ docker build . --tag minideb -f Dockerfile2
 #| code-line-numbers: false
 #| highlight-style: zenburn
 #| eval: false
-docker build . --tag minideb -f Dockerfile2 
+docker build . --tag minideb -f Dockerfile2
 ```
 
 If we again review the list of images, we see that there are now two
@@ -732,10 +732,10 @@ to be useful, a container should have:
 
 2. the ability to store the results on the host where they can be
    viewed and disseminated.
-  
+
 To illustrate these, we will add the R Statistical and Graphical
 Environment to our container image and use this in two further
-examples.  
+examples.
 
 #### Copy
 
@@ -808,12 +808,12 @@ echo 'CMD ["analysis.R"]' >> Dockerfile3
 ```
 
 This `Dockerfile` includes instructions to:
-	
-	- install R (`r-base`)
-	
-	- copy our R script from the current working directory to the home
+
+    - install R (`r-base`)
+
+    - copy our R script from the current working directory to the home
       folder in the container (`COPY analysis.R ~/`)
- 
+
     - set the working directory within the container to be the home
       folder (`WORKDIR ~/`)
 
@@ -821,8 +821,8 @@ This `Dockerfile` includes instructions to:
       command should be run (`ENTRYPOINT ["Rscript"]`)
 
     - specify that once the container has started, the `Rscript`
-      command should be run using the `analysis.R` script 
-	  (`CMD ["analysis.R"]`)
+      command should be run using the `analysis.R` script
+      (`CMD ["analysis.R"]`)
 
 Great.  This time when we build the container image, we will provide
 both a name and tag for the image (via `--tag r:1`).  This will result
@@ -854,7 +854,7 @@ docker build . --tag r:1 -f Dockerfile3
 </br>
 
 When we run this new image, we see that a data frame of 10 values is
-returned to the terminal. 
+returned to the terminal.
 
 ```{bash}
 #| label: dockerRun30
@@ -953,7 +953,7 @@ docker build . --tag r:2 -f Dockerfile4
 #| code-line-numbers: false
 #| highlight-style: zenburn
 #| eval: false
-docker build . --tag r:2 -f Dockerfile4 
+docker build . --tag r:2 -f Dockerfile4
 ```
 
 </br>
@@ -986,7 +986,7 @@ where:
   directory on the host machine to the `/home/Project' (which the
   `Dockerfile` defined as the working directory) folder inside the
   container
-	
+
 If we list the contents of our local folder, we see that the output
 file (`dat.csv`) has been created on the host filesystem.
 
@@ -1003,7 +1003,7 @@ file (`dat.csv`) has been created on the host filesystem.
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
-ls -la  
+ls -la
 ```
 
 Of course, it is possible to define a combination of the above two
@@ -1018,7 +1018,7 @@ output(s) to be obtained by the host.
 The `.dockerignore` file is similar in structure to a `.gitignore`
 file in that they both define files (or patterns) to ignore.  The
 purpose of a `dockerignore` is to indicate which files and folders
-should be **excluded** from the docker build context.  Excluding 
+should be **excluded** from the docker build context.  Excluding
 certain files and directories:
 
 - reduce image size by preventing unnecessary files from being copied
@@ -1027,7 +1027,7 @@ certain files and directories:
   Docker daemon.
 - improve security by excluding sensitive files like `.env` or
   credentials
-  
+
 
 
 :::
@@ -1060,7 +1060,7 @@ appropriate dependencies before trying again.
 The R package called `pak` is designed to install R packages and if
 necessary handle the installation of any additional external
 dependencies as well.  This makes `pak` a very useful addition in
-Dockerfiles. 
+Dockerfiles.
 
 Some R packages have system dependencies that usually must be
 installed before attempting to install R packages.
@@ -1080,7 +1080,7 @@ tidyverse from source.
 :::
 
 
-```{bash} 
+```{bash}
 #| label: createDockerfile5
 #| echo: false
 #| eval: true
@@ -1117,7 +1117,7 @@ echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5
 echo '' >> Dockerfile5
 echo 'CMD ["analysis.R"]' >> Dockerfile5
 ```
-   
+
 The changes from the previous `Dockerfile`:
 
 - switch the base image to `rocker:r-ver:4.2.2`
@@ -1175,11 +1175,11 @@ In the above `Dockerfile`
   `Rscript` application runs a non-interactive `R` session on a
   nominated R script file.  That is, it will run the nominated R
   script and then terminate on completion.
-  
+
 - the **CMD** command defined the default arguments to provide to the
   **ENTRYPOINT** command.  In this case, we have indicated which R
   script to run `Rscript` on.
- 
+
 **Note**, many of the large collection of R packages targeted for
 install as part of the `tidyverse` ecosystem (or its dependencies)
 require full compilations.  Whilst this does help ensure that the
@@ -1190,7 +1190,7 @@ up substantially by instead installing a pre-bundled version of the
 repositories.  The associated alternative `Dockerfile` is provided in
 the following expandable section.
 
-<details> <summary>Alternative Dockerfile</summary> 
+<details> <summary>Alternative Dockerfile</summary>
 
 As an alternative, we could instead install tidyverse from the ubuntu
 r-cran repository.  This install will be far faster, yet likely not as
@@ -1220,7 +1220,7 @@ echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5a
 echo '' >> Dockerfile5a
 echo 'CMD ["analysis.R"]' >> Dockerfile5a
 ```
-   
+
 ```{r}
 #| label: Text5a
 #| engine: verbatim
@@ -1231,7 +1231,7 @@ echo 'CMD ["analysis.R"]' >> Dockerfile5a
 #| class-output: dockerfile
 ```
 </details></br>
- 
+
 We will now build the container image with the name:tag of `r-tidyverse:1`
 Note, this will take some time to complete.
 
@@ -1254,7 +1254,7 @@ docker build . --tag r-tidyverse:1 -f Dockerfile5
 #| code-line-numbers: false
 #| highlight-style: zenburn
 #| eval: false
-docker build . --tag r-tidyverse:1 -f Dockerfile5 
+docker build . --tag r-tidyverse:1 -f Dockerfile5
 ```
 </br>
 
@@ -1274,7 +1274,7 @@ script.
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-cd ~/tmp/docker_tests/  
+cd ~/tmp/docker_tests/
 docker run --rm -v `pwd`:/home/Project r-tidyverse:1
 ```
 
@@ -1339,7 +1339,7 @@ docker run --rm -v `pwd`:/home/Project r-tidyverse:1 analysis5.R
 
 ### Listing images
 
-To list the most recently created images.  
+To list the most recently created images.
 
 ```{bash}
 #| label: docker ls
@@ -1406,7 +1406,7 @@ For example, to display all images that were created _since_
 #| eval: true
 #| comment: ""
 #| cache: true
-docker images -f "since=minideb" 
+docker images -f "since=minideb"
 ```
 
 There is also a _before_ version.
@@ -1428,10 +1428,10 @@ the intermediate images), use the `-a` switch.
 #| eval: true
 #| comment: ""
 #| cache: true
-docker images -a 
+docker images -a
 ```
 
-### Removing images 
+### Removing images
 
 ::: {.panel-tabset}
 
@@ -1451,7 +1451,7 @@ This will also remove unused (dangling) containers, volumes and caches.
 #| eval: false
 #| comment: ""
 #| cache: true
-docker system prune 
+docker system prune
 ```
 
 #### Removing **all** images
@@ -1468,7 +1468,7 @@ docker system prune
 #| eval: false
 #| comment: ""
 #| cache: true
-docker system prune -a 
+docker system prune -a
 ```
 
 #### Removing **specific** images
@@ -1485,7 +1485,7 @@ docker system prune -a
 #| eval: false
 #| comment: ""
 #| cache: true
-docker rmi <ID> 
+docker rmi <ID>
 ```
 
 where `<ID>` is the `IMAGE ID` from `docker images -a`
@@ -1637,7 +1637,7 @@ echo '      - name: Extract metadata (tags, labels) for Docker' >> Docker-build-
 echo '        id: meta' >> Docker-build-publish.yml
 echo '        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7' >> Docker-build-publish.yml
 echo '        with:' >> Docker-build-publish.yml
-echo '          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}' >> Docker-build-publish.yml 
+echo '          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}' >> Docker-build-publish.yml
 echo '' >> Docker-build-publish.yml
 echo '      - name: Build and push Docker image' >> Docker-build-publish.yml
 echo '        uses: docker/build-push-action@v5' >> Docker-build-publish.yml
@@ -1664,13 +1664,13 @@ In the above `.github/workflow`:
 
 - **on: workflow_dispatch:** specifies that this workflow can runs
   when manually triggered from the GitHub Actions UI.
-  
+
 - **on: push: branches [ "main" ]:** specifies that this workflow will
   be triggered whenever there is a pushed change to the "main" branch
 
 - **env: REGISTRY:** sets the container registry to GitHub Container
   Registry (ghcr.io).
-  
+
 - **env: IMAGE_NAME:** sets the repository name (in this case to the
   name of the github repository).
 
@@ -1686,7 +1686,7 @@ In the above `.github/workflow`:
 - **packages: write:** grants permission to push Docker images to
   Github Container Registry.
 
-- **strategy: fail-fast:** 
+- **strategy: fail-fast:**
 
 - **strategy: matrix: config:** defines a build matrix for testing
   against multiple R versions (only 4.4.1 is active). Commented-out
@@ -1697,7 +1697,7 @@ In the above `.github/workflow`:
   - **users: actions/checkout@v4** clones the repository so that the workflow can access
   files like the Dockerfile and any other code in the repository.  It
   is using version four of this routine
-  
+
   - **users: docker/login-action@v1 ...** uses GitHub's built-in token
   (`GITHUB_TOKEN`) to authenticate with Github Container Registry.
   Ensures that pushing images to Github Container Registry is authorized.
@@ -1706,14 +1706,14 @@ In the above `.github/workflow`:
      labels) based on the repository and commit details. The specific
      commit hash (in this case 9ec57ed1...) ensures a fixed version of
      docker/metadata-action.
-  
+
   - **users: docker/build-push-action@v5 ..** builds the Docker image
     from the repository. Pushes the image to Github Container Registry
     with the metadata-generated tags and labels.
 
 
 Now any time there is a change to the main branch, the image will be
-rebuilt and published to Github Container Registry. 
+rebuilt and published to Github Container Registry.
 
 To access the built image:
 
@@ -1724,12 +1724,12 @@ To access the built image:
 
 The displayed panel will provide information on the versions of the
 package available as well as instructions on how to obtain (pull) the
-image to a local repository from where it can be run. 
+image to a local repository from where it can be run.
 
- 
-  
 
-::: {.raw} 
+
+
+::: {.raw}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script type='text/javascript'>
 $(document).ready(function () {
@@ -1739,3 +1739,5 @@ $('div.terminal-docker').prepend("<div class='head'><a href='#' class='mbtn'>&#1
 </script>
 
 :::
+
+The end

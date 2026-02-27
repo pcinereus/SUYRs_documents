@@ -2,7 +2,7 @@
 title: Git and version control
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -41,7 +41,7 @@ library(tidyverse)
 library(pander)
 FIG_PATH <- '10_git_files/figure-html/'
 ```
- 
+
 
 
 
@@ -95,15 +95,15 @@ common actions and git 'verbs'.
 \definecolor{color_derivative}{rgb}{0.12,0.6,0.51}
 \definecolor{color_local}{rgb}{0.9,0.9,0.2}
 \definecolor{color_remote}{rgb}{1,0.55,0.15}
- 
+
 % A template for making the storage symbol
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -178,7 +178,7 @@ common actions and git 'verbs'.
 # convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png
 magick -density 300 10_git_files/figure-html/Fig0-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig0-1.png
 ```
- 
+
 ```{tikz}
 %| label: Fig1
 %| engine: tikz
@@ -260,7 +260,7 @@ magick -density 300 10_git_files/figure-html/Fig2-1.pdf -resize 20% -trim +repag
 #| include: false
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3a-1.pdf 10_git_files/figure-html/Fig3a-1.png  
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3a-1.pdf 10_git_files/figure-html/Fig3a-1.png
 magick -density 300 10_git_files/figure-html/Fig3a-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig3a-1.png
 ```
 
@@ -291,7 +291,7 @@ magick -density 300 10_git_files/figure-html/Fig3a-1.pdf -resize 20% -trim +repa
 #| include: false
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3b-1.pdf 10_git_files/figure-html/Fig3b-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3b-1.pdf 10_git_files/figure-html/Fig3b-1.png
 magick -density 300 10_git_files/figure-html/Fig3b-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig3b-1.png
 ```
 
@@ -324,7 +324,7 @@ magick -density 300 10_git_files/figure-html/Fig3b-1.pdf -resize 20% -trim +repa
 #| include: false
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3c-1.pdf 10_git_files/figure-html/Fig3c-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig3c-1.pdf 10_git_files/figure-html/Fig3c-1.png
 magick -density 300 10_git_files/figure-html/Fig3c-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig3c-1.png
 ```
 
@@ -353,7 +353,7 @@ magick -density 300 10_git_files/figure-html/Fig3c-1.pdf -resize 20% -trim +repa
 %\node[right = 0.5cm of C, rectangle, refText] (master) {main};
 \master{right = 0.5cm of C}
 \draw[->,line width=3pt,draw=black!60] (master) -- (C);
-\branch{right = 0.5cm of D}{Feature} 
+\branch{right = 0.5cm of D}{Feature}
 \draw[->,line width=3pt,draw=black!60] (Feature) -- (D);
 \end{tikzpicture}
 ```
@@ -364,7 +364,7 @@ magick -density 300 10_git_files/figure-html/Fig3c-1.pdf -resize 20% -trim +repa
 #| include: false
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig4-1.pdf 10_git_files/figure-html/Fig4-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig4-1.pdf 10_git_files/figure-html/Fig4-1.png
 magick -density 300 10_git_files/figure-html/Fig4-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig4-1.png
 ```
 
@@ -400,7 +400,7 @@ magick -density 300 10_git_files/figure-html/Fig4-1.pdf -resize 20% -trim +repag
 #| label: Fig5-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig5-1.pdf 10_git_files/figure-html/Fig5-1.png   
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig5-1.pdf 10_git_files/figure-html/Fig5-1.png
 magick -density 300 10_git_files/figure-html/Fig5-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig5-1.png
 ```
 
@@ -429,7 +429,7 @@ magick -density 300 10_git_files/figure-html/Fig5-1.pdf -resize 20% -trim +repag
 #| label: Fig6a-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig6a-1.pdf 10_git_files/figure-html/Fig6a-1.png  
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig6a-1.pdf 10_git_files/figure-html/Fig6a-1.png
 magick -density 300 10_git_files/figure-html/Fig6a-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig6a-1.png
 ```
 
@@ -465,7 +465,7 @@ magick -density 300 10_git_files/figure-html/Fig6a-1.pdf -resize 20% -trim +repa
 #| label: Fig5b-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig5b-1.pdf 10_git_files/figure-html/Fig5b-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig5b-1.pdf 10_git_files/figure-html/Fig5b-1.png
 magick -density 300 10_git_files/figure-html/Fig5b-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig5b-1.png
 ```
 
@@ -518,7 +518,7 @@ Establish a git repository (within the current path if no path provided)
 </tr>
 <tr>
 <td>
-<a href="#Commit">Staging</a><br> 
+<a href="#Commit">Staging</a><br>
     ![](10_git_files/figure-html/Fig1-1.png)
 </td>
 <td>
@@ -687,7 +687,7 @@ new file with a new name that indicates that it is a new version.
 %|   template: "../resources/tikz-minimal.tex"
 
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -699,7 +699,7 @@ new file with a new name that indicates that it is a new version.
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -755,7 +755,7 @@ purpose of git.
 %|   template: "../resources/tikz-minimal.tex"
 
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -767,7 +767,7 @@ purpose of git.
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -850,7 +850,7 @@ to instances of these files within previous snapshots.
 %|   template: "../resources/tikz-minimal.tex"
 
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -862,7 +862,7 @@ to instances of these files within previous snapshots.
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -901,7 +901,7 @@ to instances of these files within previous snapshots.
 \node [fileText] at ($(F3) + (0.75,-2.3)$) {todo.txt};
 
 %\file{6,-3}{\begin{minipage}{1.3cm}\textcolor{black}{Title}\\[1em]\textcolor{black}{content}\end{minipage}}{F3a}
-\node [anchor=west,text=green!50!black!50] at (6,-3) (F3a) {\#\#\#\#\#\#}; 
+\node [anchor=west,text=green!50!black!50] at (6,-3) (F3a) {\#\#\#\#\#\#};
 \node [fileText] at ($(F3 |- F3a) + (0.75,-0.5)$) {fileA.doc};
 \draw[->,very thick,color=green!50!black!50] (F3a) -- ($(F2a) +(1.6,-0.5)$);
 
@@ -996,12 +996,12 @@ files are in a _committed_ state.
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \usetikzlibrary{arrows.meta}
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -1015,9 +1015,9 @@ files are in a _committed_ state.
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -1057,12 +1057,12 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
- 
+
 \begin{tikzpicture}
- 
+
 \state{0,0}{color_workspace}{W}
 \node[TARGET,fill=white] at ($(W.north) +(0,0.5cm)$) {Workspace};
 \state{6,0}{color_index}{I}
@@ -1076,16 +1076,16 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 %\draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(W0.north) + (-1cm,-1cm)$)  -- ($(W0.south) + (-1cm,0.2cm)$);
- 
+
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -1094,16 +1094,16 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
- 
+
 
 Now if we add another file (`file 3`) to our
 _workspace_, add this file to the _staging area_ and then
@@ -1127,12 +1127,12 @@ representations (associated with `file 1` and `file
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \usetikzlibrary{arrows.meta}
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -1145,9 +1145,9 @@ representations (associated with `file 1` and `file
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -1187,7 +1187,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 \begin{tikzpicture}
@@ -1204,7 +1204,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child [text=color_workspace]{node {file 2}}
 child [text=color_workspace]{ node {file 1}};
@@ -1214,7 +1214,7 @@ child [text=color_workspace]{ node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,color=gray,text=gray]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child {node {file 1}};
@@ -1224,24 +1224,24 @@ child {node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 2}; 
- 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 2};
+
 \node [anchor=north west] at ($(L0) +(-1.2cm,-1cm)$)  (L1) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L1.north) + (1.3cm,-0.4cm)$)  -- ($(L1.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 1};  
+\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 
@@ -1388,7 +1388,7 @@ always _pulling_ before _pushing_).
 \input{../resources/common.tikz}
 
 \usetikzlibrary{arrows.meta}
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
 \tikzstyle{refText} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}
@@ -1416,25 +1416,25 @@ always _pulling_ before _pushing_).
 \definecolor{color_local}{rgb}{0.9,0.9,0.2}
 \definecolor{color_remote}{rgb}{1,0.55,0.15}
 
-\draw [line width=0.1cm,draw=color_workspace] (C1.west |- R1.north) -- (C1.west |- R11.south); 
+\draw [line width=0.1cm,draw=color_workspace] (C1.west |- R1.north) -- (C1.west |- R11.south);
 \node [draw=none,fill=color_workspace,shape=circle,minimum width=2cm] at (C1) (W) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\end{tikzpicture}	
+\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_workspace,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
+\end{tikzpicture}
 };
 \node[TARGET,fill=white] at ($(W.south) +(0,-0.5cm)$) {Workspace};
 
-\draw [line width=0.1cm,draw=color_index] (C2.west |- R1.north) -- (C2.west |- R11.south); 
+\draw [line width=0.1cm,draw=color_index] (C2.west |- R1.north) -- (C2.west |- R11.south);
 \node [draw=none,fill=color_index,shape=circle,minimum width=2cm] at (C2) (I) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\end{tikzpicture}	
+\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_index,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
+\end{tikzpicture}
 };
 \node[TARGET,fill=white] at ($(I.south) +(0,-0.5cm)$) {Staging area (Index)};
 
@@ -1442,10 +1442,10 @@ always _pulling_ before _pushing_).
 \node [draw=none,fill=color_local,shape=circle,minimum width=2cm] at (C3) (L) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\end{tikzpicture}	
+\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_local,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
+\end{tikzpicture}
 };
 \node[TARGET,fill=white] at ($(L.south) +(0,-0.5cm)$) {Local Repository};
 
@@ -1453,10 +1453,10 @@ always _pulling_ before _pushing_).
 \node [draw=none,fill=color_remote,shape=circle,minimum width=2cm] at (C4) (R) {
 \begin{tikzpicture}
 \node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};
-\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\end{tikzpicture}	
+\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=color_remote,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
+\end{tikzpicture}
 };
 \node[TARGET,fill=white] at ($(R.south) +(0,-0.5cm)$) {Remote Repository};
 
@@ -1486,7 +1486,7 @@ always _pulling_ before _pushing_).
 
 # Installation
 
-::: panel-tabset 
+::: panel-tabset
 
 ## Windows
 
@@ -1617,7 +1617,7 @@ git --version
 
 **Windows:**
 
-On Windows, you can access a terminal via one of the following: 
+On Windows, you can access a terminal via one of the following:
 
 - via the command Prompt:
   - Press `Win + R` to open the Run dialog.
@@ -1718,13 +1718,13 @@ encouraged to do similarly.
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \master{right = 0.5cm of A}\draw[->,line width=3pt,draw=black!60] (master) -- (A);
 \HEAD{right = 0.5cm of master}\draw[->,line width=3pt,draw=black!60] (HEAD) -- (master);
-\end{tikzpicture} 
+\end{tikzpicture}
 ```
 ```{bash}
 #| label: Fig1a-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1a-1.pdf 10_git_files/figure-html/Fig1a-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1a-1.pdf 10_git_files/figure-html/Fig1a-1.png
 magick -density 300 10_git_files/figure-html/Fig1a-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig1a-1.png
 ```
 
@@ -1745,7 +1745,7 @@ rules apply since it is just a regular directory.
 if (!dir.exists("~/tmp")) dir.create("~/tmp")
 unlink('~/tmp/Repo1', recursive=TRUE, force=TRUE)
 ```
- 
+
 ```{bash}
 #| label: makedirectory
 #| echo: true
@@ -1771,7 +1771,7 @@ operation</b>.
 #| classes: bash
 #| engine: bash
 cd ~/tmp/Repo1
-git init 
+git init
 ```
 
 The `.git` _folder_ contains all the necessary
@@ -1784,7 +1784,7 @@ _metadata_ to manage the repository.
 #| cache: false
 #| classes: bash
 #| engine: bash
-cd ~/tmp/Repo1	
+cd ~/tmp/Repo1
 ls -al
 ```
 ```{bash}
@@ -1794,7 +1794,7 @@ ls -al
 #| cache: false
 #| classes: bash
 #| engine: bash
-cd ~/tmp/Repo1	
+cd ~/tmp/Repo1
 tree -a --charset unicode
 ```
 
@@ -1857,7 +1857,7 @@ highlighted in the following figure:
 - a new `Git` tab will appear in the top right panel
 - the contents of this newly created project/repository will appear in
   the `Files` tab of the bottom right panel
-  
+
 If the files and directories that begin with a `.` do not appear,
 click on the `More file commands` cog and make sure the `Show Hidden
 Files` option is ticked.
@@ -1930,12 +1930,12 @@ so the figure will become more complex.
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{0.8,0.8,0.8}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -1947,18 +1947,18 @@ so the figure will become more complex.
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
@@ -2004,7 +2004,7 @@ repository contains some content.
 #| label: gitDraw1
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit1.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit1.png
 ```
 
 ![](10_git_files/figure-html/drawGit1.png)
@@ -2039,13 +2039,13 @@ These situations are briefly demonstrated in the following sections.
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \master{right = 0.5cm of A}\draw[->,line width=3pt,draw=black!60] (master) -- (A);
 \HEAD{right = 0.5cm of master}\draw[->,line width=3pt,draw=black!60] (HEAD) -- (master);
-\end{tikzpicture} 
+\end{tikzpicture}
 ```
 ```{bash}
 #| label: Fig1b-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1b-1.pdf 10_git_files/figure-html/Fig1b-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1b-1.pdf 10_git_files/figure-html/Fig1b-1.png
 magick -density 300 10_git_files/figure-html/Fig1b-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig1b-1.png
 ```
 
@@ -2060,7 +2060,7 @@ repository should only be able to interact with the .git
 _metadata_ - they do not directly modify any files.
 
 Since a remote repository is devode of the working files and
-directories, it is referred to as _bare_. 
+directories, it is referred to as _bare_.
 
 ::: {.panel-tabset}
 
@@ -2122,13 +2122,13 @@ Use the instructions for the `Terminal`
 \rHEAD{right = 0.5cm of rmaster}\draw[->,line width=3pt,draw=black!60] (rHEAD) -- (rmaster);
 
 \draw [->,line width=3pt,draw=black!60] (rB.south west) to [out=220,in=300] (B.south east);
-\end{tikzpicture} 
+\end{tikzpicture}
 ```
 ```{bash}
 #| label: Fig1c-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1c-1.pdf 10_git_files/figure-html/Fig1c-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig1c-1.pdf 10_git_files/figure-html/Fig1c-1.png
 magick -density 300 10_git_files/figure-html/Fig1c-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig1c-1.png
 ```
 
@@ -2306,9 +2306,9 @@ string saying 'File 1') and add it to the staging area.
 
 4. To stage a file, click on the corresponding checkbox - the status
    symbol should change to a green "A" (for added)
-   
+
    ![](../resources/rstudio_status4.png){width=50%}
-   
+
 :::
 
 Our simple overview schematic represents the staging of file 1.
@@ -2322,13 +2322,13 @@ Our simple overview schematic represents the staging of file 1.
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \usetikzlibrary{arrows.meta}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -2341,9 +2341,9 @@ Our simple overview schematic represents the staging of file 1.
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -2381,11 +2381,11 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \makeatother
 %end of t
 
-%Define a file 
+%Define a file
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(2,-2);
-\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0.3,-0.3)$) {#2};
 }
 % end of file definition
@@ -2403,7 +2403,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 1}};
 \end{tikzpicture}
 };
@@ -2411,12 +2411,12 @@ child {node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 1}};
 \end{tikzpicture}
 };
 
-\end{tikzpicture}			   
+\end{tikzpicture}
 ```
 
 A schematic of the internal working of git shows in
@@ -2431,7 +2431,7 @@ We can look at the contents of this _blob_ using the `git
 cat-file` _command_. This command outputs the contents of a
 compressed _object_ (_blob_, _tree_, _commit_)
 from either the objects name (or unique fraction thereof) or its
-_tag_ (we will discuss tags later). 
+_tag_ (we will discuss tags later).
 
 ```{bash}
 #| label: git-blob1
@@ -2452,18 +2452,18 @@ staging a file.
 ```{cat}
 #| label: Fig-advanced2
 #| echo: true
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced2.tikz"
-   
+
 \documentclass{minimal}
 \usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -2478,12 +2478,12 @@ staging a file.
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -2495,18 +2495,18 @@ staging a file.
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
@@ -2565,7 +2565,7 @@ system("xelatex -output-directory=../resources ../resources/Fig-advanced2.tikz")
 ## system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced2.pdf ../resources/Fig-advanced2.png")
 system("magick -density 300 ../resources/Fig-advanced2.pdf -resize 20% -trim +repage ../resources/Fig-advanced2.png")
 ```
- 
+
 ![](../resources/Fig-advanced2.png)
 
 ::: {.callout-note collapse="true"}
@@ -2574,7 +2574,7 @@ system("magick -density 300 ../resources/Fig-advanced2.pdf -resize 20% -trim +re
 #| label: gitDraw2
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit2.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit2.png
 ```
 
 ![](10_git_files/figure-html/drawGit2.png)
@@ -2595,19 +2595,19 @@ system("magick -density 300 ../resources/Fig-advanced2.pdf -resize 20% -trim +re
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}
 \commit{}{A}{color_commit}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \master{right = 0.5cm of A}\draw[->,line width=3pt,draw=black!60] (master) -- (A);
 \HEAD{right = 0.5cm of master}\draw[->,line width=3pt,draw=black!60] (HEAD) -- (master);
-\end{tikzpicture} 
+\end{tikzpicture}
 ```
 ```{bash}
 #| label: Fig2a-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig2a-1.pdf 10_git_files/figure-html/Fig2a-1.png 
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig2a-1.pdf 10_git_files/figure-html/Fig2a-1.png
 magick -density 300 10_git_files/figure-html/Fig2a-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig2a-1.png
 ```
 
@@ -2662,7 +2662,7 @@ repository:
    "file1"), the changes in this file since the previous commit (as
    this is the first time this file has been committed, the changes
    are the file contents)
-   
+
 2. you should also provide a commit message (in the figure above, I
    entered "Initial commit". This message should ideally describe what
    the changes the commit introduces to the repository.
@@ -2670,9 +2670,9 @@ repository:
    message.
 
    ![](../resources/rstudio_commit2.png)
-   
+
    This message provides feedback to confirm that your commit was
-   successful.  
+   successful.
 4. close the popup window and the "Review Changes" window
 
 `file1` should now have disappeared from the git status panel.
@@ -2690,13 +2690,13 @@ Our simple overview schematic represents the staging of file 1.
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \usetikzlibrary{arrows.meta}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -2709,9 +2709,9 @@ Our simple overview schematic represents the staging of file 1.
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -2749,11 +2749,11 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \makeatother
 %end of t
 
-%Define a file 
+%Define a file
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(2,-2);
-\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0.3,-0.3)$) {#2};
 }
 % end of file definition
@@ -2769,7 +2769,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 1}};
 \end{tikzpicture}
 };
@@ -2777,7 +2777,7 @@ child {node {file 1}};
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 1}};
 \end{tikzpicture}
 };
@@ -2785,7 +2785,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child { node {file 1}};
 \end{tikzpicture}
 };
@@ -2793,12 +2793,12 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.2cm)$)  -- ($(L0.south) + (1.3cm,0.0cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 
 \end{tikzpicture}
 ```
@@ -2847,10 +2847,10 @@ they actually occur):
     code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
     code = paste(options$engine_opts,code)
     out = system(code,intern=TRUE)
-    engine_output(options,options$code,out) 
+    engine_output(options,options$code,out)
   })
   ```
-  
+
   ```{r, replace=TRUE}
   #| label: git-commit1b
   #| echo: !expr -1
@@ -2875,9 +2875,9 @@ they actually occur):
   cd ~/tmp/Repo1
   git ls-tree #
   ```
-  
+
   Or most commonly (if interested in the latest commit):
-  
+
   ```{r, replace=FALSE}
   #| label: git-commit1d
   #| echo: !expr -1
@@ -2888,14 +2888,14 @@ they actually occur):
   cd ~/tmp/Repo1
   git ls-tree HEAD
   ```
-::: 
+:::
 
 The schematic now looks like
 
 ```{cat}
 #| label: Fig-advanced3
 #| echo: true
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced3.tikz"
 
@@ -2904,9 +2904,9 @@ The schematic now looks like
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -2921,12 +2921,12 @@ The schematic now looks like
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -2938,18 +2938,18 @@ The schematic now looks like
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
@@ -3025,7 +3025,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced3.pdf 
 system("magick -density 300 ../resources/Fig-advanced3.pdf -resize 20% -trim +repage ../resources/Fig-advanced3.png")
 ```
 
-  
+
 ![](../resources/Fig-advanced3.png)
 
 ::: {.callout-note collapse="true"}
@@ -3034,7 +3034,7 @@ system("magick -density 300 ../resources/Fig-advanced3.pdf -resize 20% -trim +re
 #| label: gitDraw3
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit3.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit3.png
 ```
 
 ![](10_git_files/figure-html/drawGit3.png)
@@ -3105,7 +3105,7 @@ git log --oneline
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}
 \commit{}{A}{color_inactive}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
@@ -3113,13 +3113,13 @@ git log --oneline
 \draw [-,line width=3pt,draw=black!60] (B) -- (A);
 \master{right = 0.5cm of B}\draw[->,line width=3pt,draw=black!60] (master) -- (B);
 \HEAD{right = 0.5cm of master}\draw[->,line width=3pt,draw=black!60] (HEAD) -- (master);
-\end{tikzpicture}  
+\end{tikzpicture}
 ```
 ```{bash}
 #| label: Fig2b-conv
 #| cache: false
 #| echo: false
-# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig2b-1.pdf 10_git_files/figure-html/Fig2b-1.png  
+# convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig2b-1.pdf 10_git_files/figure-html/Fig2b-1.png
 magick -density 300 10_git_files/figure-html/Fig2b-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig2b-1.png
 ```
 
@@ -3165,7 +3165,7 @@ git status
 
 1. modify `file1` by adding a number of hyphens under the `File 1`
    like in the figure below
-   
+
    ![](../resources/rstudio_commit3.png)
 
 2. save the file. As you do so, you should notice that the file
@@ -3174,9 +3174,9 @@ git status
 3. to create the subdirectory, click on the "Add a new folder" icon
    and then enter a name for the subdirectory in the popup box (as per
    figure below)
-   
+
    ![](../resources/rstudio_commit4.png)
-   
+
 4. navigate to this new directory (`dir1`)
 5. click the "Create a new blank file in current directory" button and
    select "Text file"
@@ -3184,7 +3184,7 @@ git status
 7. enter some text into this file (like in the figure below)
 
    ![](../resources/rstudio_commit5.png)
-   
+
 8. save the file and notice that the `dir1` directory is now also in
    the git status panel (yet its status is "untracked")
 9. stage both `file1` and `dir1` (click on the corresponding checkboxes)
@@ -3197,7 +3197,7 @@ And now our schematic looks like:
 ```{cat}
 #| label: Fig-advanced4
 #| echo: true
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced4.tikz"
 
@@ -3206,9 +3206,9 @@ And now our schematic looks like:
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -3223,12 +3223,12 @@ And now our schematic looks like:
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -3240,25 +3240,25 @@ And now our schematic looks like:
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
 \end{tikzpicture}};
 }
 % end of file definition
-    
+
 \begin{tikzpicture}
 \coordinate (G_ul) at (0,0);
 \coordinate (G_ll) at ($(G_ul) +(0,-10)$);
@@ -3300,7 +3300,7 @@ And now our schematic looks like:
 
 %trees
 \file{$(blob1.west) +(5,0)$}{\textcolor{black}{hashtree}}{tree1}{color_tree}
-    
+
 %commits
 \file{$(tree1.west) +(3,0)$}{\textcolor{black}{hashcommit}}{commit1}{color_commit}
 
@@ -3311,13 +3311,13 @@ And now our schematic looks like:
 \draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit1) +(1.2,0)$);
 \draw[->,very thick] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
 \draw[->,very thick] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
-    
+
 \draw[<-,very thick,dashed] ($(blob2) +(-1.2,0)$) -- ($(file1) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob3) +(-1.2,0)$) -- ($(file2) +(1.2,0)$);
-    
+
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
-               
+
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -3325,7 +3325,7 @@ And now our schematic looks like:
 
 ```{r, cache=FALSE, echo=FALSE, results='asis'}
 library(knitr)
-#commit 
+#commit
 hash = scan('~/tmp/Repo1/.git/refs/heads/main', what='character')
 hash_commits = strtrim(hash, width = 5)
 
@@ -3349,7 +3349,7 @@ system("xelatex -output-directory=../resources ../resources/Fig-advanced4.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced4.pdf ../resources/Fig-advanced4.png")
 ```
 
-  
+
 ![](../resources/Fig-advanced4.png)
 
 
@@ -3360,7 +3360,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced4.pdf 
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit4.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit4.png
 ```
 
 ![](10_git_files/figure-html/drawGit4.png)
@@ -3417,7 +3417,7 @@ git commit -m 'Modified file1 and added file2 (in dir1)'
 3. enter a commit message (as in the figure below)
 
    ![](../resources/rstudio_commit7.png)
-   
+
 4. click the "Commit" button
 5. after checking that the "Git Commit" popup does not contain any
    errors, close the popup
@@ -3425,7 +3425,7 @@ git commit -m 'Modified file1 and added file2 (in dir1)'
    button on the top left corner of the "Review Changes" window
 
    ![](../resources/rstudio_commit8.png)
-   
+
    This provides a graphical list of commits (in reverse chronological
    order)
 
@@ -3478,10 +3478,10 @@ The following modifications occur:
     code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
     code = paste(options$engine_opts,code)
     out = system(code,intern=TRUE)
-    engine_output(options,options$code,out) 
+    engine_output(options,options$code,out)
   })
   ```
-  
+
   ```{r, replace=TRUE}
   #| label: git-commit2b
   #| echo: !expr -1
@@ -3534,9 +3534,9 @@ The following modifications occur:
   cd ~/tmp/Repo1
   git ls-tree #
   ```
-  
+
   OR,
-  
+
   ```{r, replace=TRUE}
   #| label: git-commit2f
   #| echo: !expr -1
@@ -3555,7 +3555,7 @@ The following modifications occur:
 #| label: Fig-advanced5
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced5.tikz"
 
@@ -3564,9 +3564,9 @@ The following modifications occur:
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -3581,12 +3581,12 @@ The following modifications occur:
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -3598,25 +3598,25 @@ The following modifications occur:
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
 \end{tikzpicture}};
 }
 % end of file definition
-    
+
 \begin{tikzpicture}
 \coordinate (G_ul) at (0,0);
 \coordinate (G_ll) at ($(G_ul) +(0,-10)$);
@@ -3656,7 +3656,7 @@ The following modifications occur:
 \file{$(blob1.west) +(5,0)$}{\textcolor{black}{hashtree1}}{tree1}{color_tree}
 \file{$($(blob3.west) !0.5! (blob3.west)$) +(3,0)$}{\textcolor{black}{hashtree3}}{tree2}{color_tree}
 \file{$($(blob2.west) !0.5! (blob3.west)$) +(5.75,0)$}{\textcolor{black}{hashtree2}}{tree3}{color_tree}
-               
+
 %commits
 \file{$(tree1.west) +(3,0)$}{\textcolor{black}{hashcommits1}}{commit1}{color_commit}
 \file{$(tree3.west) +(2.75,0)$}{\textcolor{black}{hashcommits2}}{commit2}{color_commit}
@@ -3666,15 +3666,15 @@ The following modifications occur:
 \draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit2) +(1.2,0)$);
 \draw[->,very thick] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
 \draw[->,very thick] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
-    
+
 
 \draw[->,very thick] ($(commit2) +(-1,0)$) -- ($(tree3) +(1.2,0)$);
 \draw[->,very thick] ($(tree3) +(-1,0)$) -- ($(tree2) +(1.2,0)$);
 \draw[->,very thick] ($(tree3) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick] ($(tree2) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
-    
+
 \draw[->,very thick] ($(commit2) +(0,0.6)$) -- ($(commit1) +(0,-0.7)$);
-    
+
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \end{tikzpicture}
@@ -3713,7 +3713,7 @@ system("xelatex -output-directory=../resources ../resources/Fig-advanced5.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced5.pdf ../resources/Fig-advanced5.png")
 ```
 
-  
+
 ![](../resources/Fig-advanced5.png)
 
 
@@ -3723,7 +3723,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced5.pdf 
 #| label: gitDraw5
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit5.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit5.png
 ```
 
 ![](10_git_files/figure-html/drawGit5.png){width=100%}
@@ -3813,7 +3813,7 @@ generated. These files are commonly generated in the process of
 working with files in a project, yet we do not necessarily wish for
 them to be tracked. Often these files have very predictable filename
 pattern (such as ending with a # or ~ symbol or having a specific file
-extension such as .aux. 
+extension such as .aux.
 
 As an example, when working with a project in Rstudio, files (such as
 `.Rhistory`) and directories (such as `.Rproj.user`) are automatically
@@ -3883,7 +3883,7 @@ cat .gitignore
 2. click on the `gitignore` file to open it up for editing
 3. navigate to the end of this file and add a newline containing the
    text `*.tmp`
-   
+
    ![](../resources/rstudio_gitignore2.png)
 
 You will notice that this `.gitignore` file already had items in it
@@ -3999,7 +3999,7 @@ For those still interested in the schematic...
 #| label: Fig-advanced6
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced6.tikz"
 
@@ -4008,9 +4008,9 @@ For those still interested in the schematic...
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -4025,12 +4025,12 @@ For those still interested in the schematic...
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -4042,25 +4042,25 @@ For those still interested in the schematic...
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
 \end{tikzpicture}};
 }
 % end of file definition
-    
+
 \begin{tikzpicture}
 \coordinate (G_ul) at (0,0);
 \coordinate (G_ll) at ($(G_ul) +(0,-10)$);
@@ -4121,25 +4121,25 @@ For those still interested in the schematic...
 \draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(-1,0)$) -- ($(tree3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(tree2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree2) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(0,0.6)$) -- ($(commit1) +(0,-0.7)$);
-    
+
 \draw[->,very thick] ($(commit3) +(-1,0)$) -- ($(tree5) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(tree4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob5) +(1.2,0)$);
 \draw[->,very thick] ($(tree4) +(-1,0)$) -- ($(blob4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick] ($(commit3) +(0,0.6)$) -- ($(commit2) +(0,-0.7)$);
-    
+
 \draw[<-,very thick,dashed] ($(blob2) +(-1.2,0)$) -- ($(file1) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob4) +(-1.2,0)$) -- ($(file2) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob5) +(-1.2,0)$) -- ($(file4) +(1.2,0)$);
-    
+
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 
@@ -4150,7 +4150,7 @@ For those still interested in the schematic...
 
 ```{r, cache=FALSE, echo=FALSE, results='asis'}
 library(knitr)
-#commit 
+#commit
 hash = scan('~/tmp/Repo1/.git/refs/heads/main', what='character')
 hash_commits = c(hash_commits, strtrim(hash, width = 5))
 
@@ -4167,7 +4167,7 @@ hash_tree = c(hash_tree, strtrim(hash$V3[hash$V2 == "tree"], 5))
 hash = system('cd ~/tmp/Repo1; git ls-files --stage', intern=TRUE)
 hash = read.table(textConnection(hash))
 hash_blob = unique(c(hash_blob,strtrim(hash$V2,5)))
- 
+
 system(paste0("sed -i 's/hashblob1/", hash_blob[1], "/g' ../resources/Fig-advanced6.tikz"))
 system(paste0("sed -i 's/hashblob2/", hash_blob[2], "/g' ../resources/Fig-advanced6.tikz"))
 system(paste0("sed -i 's/hashblob3/", hash_blob[3], "/g' ../resources/Fig-advanced6.tikz"))
@@ -4185,7 +4185,7 @@ system("xelatex -output-directory=../resources ../resources/Fig-advanced6.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced6.pdf ../resources/Fig-advanced6.png")
 ```
 
-  
+
 ![](../resources/Fig-advanced6.png)
 
 ::: {.callout-note collapse="true"}
@@ -4195,7 +4195,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced6.pdf 
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit6.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit6.png
 ```
 
 ![](10_git_files/figure-html/drawGit6.png){width=100%}
@@ -4276,7 +4276,7 @@ Issue the following commands in your terminal
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -4372,7 +4372,7 @@ were made as well as the supplied commit comment.
 
 Over time repositories accumulate a large number of commits, to only
 review the last 2 commits, we could issue the `git log -n
-2` _command_. 
+2` _command_.
 
 ```{bash}
 #| label: git_log1
@@ -4382,7 +4382,7 @@ review the last 2 commits, we could issue the `git log -n
 #| classes: bash
 #| engine: bash
 cd ~/tmp/Repo1
-git log -n 2 
+git log -n 2
 ```
 
 ::: {.callout-note collapse="true"}
@@ -4541,7 +4541,7 @@ background represents text that have been removed.
 If we scroll down and explore the changes in `dir1/file2` for the most
 recent commit, we see that the text `* Notes` was removed and then `*
 Notes` and `---` were added. At first this might seem a bit odd - why
-was `* Notes` deleted and then added back? 
+was `* Notes` deleted and then added back?
 
 ![](../resources/rstudio_gitstatus2.png)
 
@@ -4602,13 +4602,13 @@ are only available as terminal commands.
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \usetikzlibrary{arrows.meta}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -4621,9 +4621,9 @@ are only available as terminal commands.
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -4661,11 +4661,11 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \makeatother
 %end of t
 
-%Define a file 
+%Define a file
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(2,-2);
-\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(2,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0.3,-0.3)$) {#2};
 }
 % end of file definition
@@ -4673,15 +4673,15 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \begin{tikzpicture}
 \state{0,0}{color_workspace}{W}
 \node[TARGET,fill=white] at ($(W.north) +(0,0.5cm)$) {Workspace};
-\draw [line width=0.1cm,draw=color_workspace] (W.south) -- ++(0,-5); 
+\draw [line width=0.1cm,draw=color_workspace] (W.south) -- ++(0,-5);
 
 \state{8,0}{color_index}{I}
 \node[TARGET,fill=white] at ($(I.north) +(0,0.5cm)$) {Staging Area};
-\draw [line width=0.1cm,draw=color_index] (I.south) -- ++(0,-5); 
+\draw [line width=0.1cm,draw=color_index] (I.south) -- ++(0,-5);
 
 \state{16,0}{color_local}{L}
 \node[TARGET,fill=white] at ($(L.north) +(0,0.5cm)$) {Local Repository};
-\draw [line width=0.1cm,draw=color_local] (L.south) -- ++(0,-5); 
+\draw [line width=0.1cm,draw=color_local] (L.south) -- ++(0,-5);
 
 \draw[{Round Cap[length=0.5em]}-Triangle Cap,very thick, line width=1cm, draw=color_index] ($(W) + (0.1cm,-3)$) -- ($(I) + (-0.1cm,-3)$) node[anchor=west,pos=0, text=black,align=center,CODE] {git diff};
 
@@ -4722,7 +4722,7 @@ between:
   lines that have changed. Finally the next two rows show that a
   charrage return has been added to the end of the first line and the
   new version has added the word 'Notes' to the next line.
-  
+
 - the staging area and the last commit
 
   ```{bash}
@@ -4831,7 +4831,7 @@ We can list the files that comprise the repository by:
 #| classes: bash
 #| engine: bash
 cd ~/tmp/Repo1
-git ls-files 
+git ls-files
 ```
 
 The change to `dir1/file2` above was just to illustrate the `git
@@ -4854,7 +4854,7 @@ In addition to the `git reset --hard`, I will also clean and prune the repositor
 #| classes: bash
 #| engine: bash
 cd ~/tmp/Repo1
-git reset --hard 
+git reset --hard
 git clean -qfdx
 git reflog expire --expire-unreachable=now --all
 git gc --prune=now
@@ -4944,7 +4944,7 @@ we can see the tag represented by a yellow tag in the commit diagram.
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7.png
 ```
 
 ![](10_git_files/figure-html/drawGit7.png){width=100%}
@@ -4970,7 +4970,7 @@ working on the repository built up in the previous section.
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -5007,7 +5007,7 @@ The following are a couple of different visuals of the repository.
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit6a.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit6a.png
 ```
 
 ![](10_git_files/figure-html/drawGit6a.png){width=100%}
@@ -5017,7 +5017,7 @@ The following are a couple of different visuals of the repository.
 #| label: Fig7
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7.tikz"
 
@@ -5026,15 +5026,15 @@ The following are a couple of different visuals of the repository.
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 
@@ -5042,8 +5042,8 @@ The following are a couple of different visuals of the repository.
 \draw [<-,line width=3pt,draw=black!60] (commitshash1) -- (commitshash2.west);
 
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_commit}{commitshash3}{commitscomment3}
-\master{below = 1cm of commitshash3} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash3}
+\HEAD{below = 0.1cm of master}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
 \end{tikzpicture}
 \end{preview}
@@ -5121,36 +5121,36 @@ box.
 #| label: Fig7a
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7a.tikz"
-    
+
 \documentclass{minimal}
 \usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
-    
+
 \input{../resources/common1.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
-    
+
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
 \draw [<-,line width=3pt,draw=black!60] (commitshash1) -- (commitshash2.west);
-    
+
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_commit}{commitshash3}{commitscomment3}
-\master{below = 1cm of commitshash3} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash3}
+\HEAD{below = 0.1cm of master}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
-\branch{below = 0.1cm of HEAD}{Feature} 
+\branch{below = 0.1cm of HEAD}{Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -5179,7 +5179,7 @@ system(paste0("sed -i 's/commitscomment3/", commits$comment[3], "/g' ../resource
 system("xelatex -output-directory=../resources ../resources/Fig7a.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig7a.pdf ../resources/Fig7a.png")
 ```
-    
+
 ![](../resources/Fig7a.png)
 
 ::: {.callout-note}
@@ -5222,7 +5222,7 @@ git reflog
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7a.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7a.png
 ```
 
 ![](10_git_files/figure-html/drawGit7a.png){width=100%}
@@ -5272,40 +5272,40 @@ branch.
 #| label: Fig7b
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7b.tikz"
-    
+
 \documentclass{minimal}
 \usepackage[paperwidth=35cm,paperheight=10cm,hmargin=0cm,vmargin=0cm]{geometry}
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
-    
+
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
-    
+
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
 \draw [<-,line width=3pt,draw=black!60] (commitshash1) -- (commitshash2.west);
-    
+
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_commit}{commitshash3}{commitscomment3}
-\master{below = 1cm of commitshash3} 
+\master{below = 1cm of commitshash3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
-\branch{below = 0.1cm of master}{Feature} 
-\HEAD{below = 0.1cm of Feature} 
+\branch{below = 0.1cm of master}{Feature}
+\HEAD{below = 0.1cm of Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
 ```
-    
+
 ```{r, cache=FALSE, echo=FALSE, results='asis'}
 library(knitr)
 
@@ -5370,7 +5370,7 @@ git reflog
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7b.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7b.png
 ```
 
 ![](10_git_files/figure-html/drawGit7b.png){width=100%}
@@ -5405,10 +5405,10 @@ git commit -m 'New feature'
 
 1. modify `file1` by adding a carriage return followed by some
    additional text (e.g. a `b`) like in the figure below
- 
+
    ![](../resources/rstudio_gitbranch4.png)
-   
-   
+
+
 2. navigate to this new directory (`dir1`)
 3. click the "Create a new blank file in current directory" button and
    select "Text file"
@@ -5427,13 +5427,13 @@ git commit -m 'New feature'
 
 Notice that we have advanced one commit on this new branch.
 :::
- 
+
 
 ```{cat}
 #| label: Fig7c
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7c.tikz"
 
@@ -5442,28 +5442,28 @@ Notice that we have advanced one commit on this new branch.
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
-    
+
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
 \draw [<-,line width=3pt,draw=black!60] (commitshash1) -- (commitshash2.west);
-    
+
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_inactive}{commitshash3}{commitscomment3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
-\master{below = 1cm of commitshash3} 
-    
+\master{below = 1cm of commitshash3}
+
 \commit{right = 1.5cm of commitshash3}{commitshash5}{color_commit}{commitshash5}{commitscomment5}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.east) -- (commitshash5.west);
-\branch{below = 1cm of commitshash5}{Feature} 
-\HEAD{below = 0.1cm of Feature} 
+\branch{below = 1cm of commitshash5}{Feature}
+\HEAD{below = 0.1cm of Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -5483,8 +5483,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7c.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7c.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7c.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7c.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig7c.tikz")
@@ -5528,7 +5528,7 @@ git reflog
 #| cache: false
 #| echo: false
 #| eval: true
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7c.png  
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7c.png
 ```
 
 ![](10_git_files/figure-html/drawGit7c.png){width=100%}
@@ -5569,7 +5569,7 @@ Use the "Switch branch" selector to checkout the `main` branch
 #| label: Fig7d
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7d.tikz"
 
@@ -5578,15 +5578,15 @@ Use the "Switch branch" selector to checkout the `main` branch
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -5594,12 +5594,12 @@ Use the "Switch branch" selector to checkout the `main` branch
 
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_commit}{commitshash3}{commitscomment3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
-\master{below = 1cm of commitshash3} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash3}
+\HEAD{below = 0.1cm of master}
 
 \commit{right = 1.5cm of commitshash3}{commitshash5}{color_inactive}{commitshash5}{commitscomment5}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.east) -- (commitshash5.west);
-\branch{below = 1cm of commitshash5}{Feature} 
+\branch{below = 1cm of commitshash5}{Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -5620,8 +5620,8 @@ lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7d.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7d.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7d.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7d.tikz"))
 }
 system("xelatex -output-directory=../resources ../resources/Fig7d.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig7d.pdf ../resources/Fig7d.png")
@@ -5672,7 +5672,7 @@ git reflog
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7d.png  
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7d.png
 ```
 
 ![](10_git_files/figure-html/drawGit7d.png){width=100%}
@@ -5717,7 +5717,7 @@ git commit -m 'Bug fix in file1'
 #| label: Fig7e
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7e.tikz"
 \documentclass{minimal}
@@ -5725,32 +5725,32 @@ git commit -m 'Bug fix in file1'
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
-    
+
 \input{../resources/common1.tikz}
 
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
 \draw [<-,line width=3pt,draw=black!60] (commitshash1) -- (commitshash2.west);
-    
+
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_inactive}{commitshash3}{commitscomment3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
-    
+
 \commit{right = 1.5cm of commitshash3}{commitshash7}{color_commit}{commitshash7}{commitscomment7}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.east) -- (commitshash7.west);
-    
+
 \commit{above = 3cm of commitshash7}{commitshash5}{color_inactive}{commitshash5}{commitscomment5}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.north east) -- (commitshash5.south west);
-\branch{below = 1cm of commitshash5}{Feature} 
+\branch{below = 1cm of commitshash5}{Feature}
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -5771,8 +5771,8 @@ lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7e.tikz")) 
-  system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7e.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7e.tikz"))
+  system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7e.tikz"))
 }
 system("xelatex -output-directory=../resources ../resources/Fig7e.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig7e.pdf ../resources/Fig7e.png")
@@ -5814,7 +5814,7 @@ git reflog
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7e.png  
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7e.png
 ```
 
 ![](10_git_files/figure-html/drawGit7e.png){width=100%}
@@ -5822,8 +5822,8 @@ git reflog
 :::
 ::::
 
- 
- 
+
+
 
 We could simultaneously make additional modifications to the `Feature`
 _branch_ just by simply checking out the `Feature` _branch_ and
@@ -5874,7 +5874,7 @@ git commit -m 'Feature complete'
 #| label: Fig7f
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7f.tikz"
 \documentclass{minimal}
@@ -5882,15 +5882,15 @@ git commit -m 'Feature complete'
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+    \usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -5905,13 +5905,13 @@ git commit -m 'Feature complete'
 \commit{above = 3cm of commitshash7}{commitshash5}{color_inactive}{commitshash5}{commitscomment5}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.north east) -- (commitshash5.south west);
 
-\master{below = 1cm of commitshash7} 
+\master{below = 1cm of commitshash7}
 
 \commit{right = 1.5cm of commitshash5}{commitshash9}{color_commit}{commitshash9}{commitscomment9}
 \draw [<-,line width=3pt,draw=black!60] (commitshash5.east) -- (commitshash9.west);
 
-\branch{below = 1cm of commitshash9}{Feature} 
-\HEAD{below = 0.1cm of Feature} 
+\branch{below = 1cm of commitshash9}{Feature}
+\HEAD{below = 0.1cm of Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -5931,8 +5931,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7f.tikz")) 
-  system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7f.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7f.tikz"))
+  system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7f.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig7f.tikz")
@@ -5976,7 +5976,7 @@ tree -ra -L 2 --charset ascii
 #| engine: bash
 #| cache: false
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7f.png  
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7f.png
 ```
 
 ![](10_git_files/figure-html/drawGit7f.png){width=100%}
@@ -6032,13 +6032,13 @@ git merge Feature --no-edit
 1. checkout the `main` branch using the "Switch branch" selector
 2. merging is not directly supported in Rstudio, so go to the terminal
    and enter the `git merge` command as shown below
-   
+
    ![](../resources/rstudio_gitmerge1.png)
-   
+
 3. if you now review the "History" tab of the "Review Changes" window,
    you will see the confluence of the two branches reflected in the
    commit graphic
-   
+
    ![](../resources/rstudio_gitmerge2.png)
 :::
 
@@ -6046,7 +6046,7 @@ git merge Feature --no-edit
 #| label: Fig7g
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7g.tikz"
 \documentclass{minimal}
@@ -6054,15 +6054,15 @@ git merge Feature --no-edit
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -6085,9 +6085,9 @@ git merge Feature --no-edit
 \draw [<-,line width=3pt,draw=black!60] (commitshash9.south east) -- (commitshash11.north west);
 \draw [<-,line width=3pt,draw=black!60] (commitshash7.east) -- (commitshash11.west);
 
-\master{below = 1cm of commitshash11} 
-\branch{below = 1cm of commitshash9}{Feature} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash11}
+\branch{below = 1cm of commitshash9}{Feature}
+\HEAD{below = 0.1cm of master}
 
 \end{tikzpicture}
 \end{preview}
@@ -6108,8 +6108,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7g.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7g.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7g.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7g.tikz"))
 }
 system("xelatex -output-directory=../resources ../resources/Fig7g.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig7g.pdf ../resources/Fig7g.png")
@@ -6151,7 +6151,7 @@ git reflog
 #| engine: bash
 #| echo: false
 #| eval: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7g.png  
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7g.png
 ```
 
 ![](10_git_files/figure-html/drawGit7g.png){width=100%}
@@ -6197,7 +6197,7 @@ knit_engines$set(bash1=function(options) {
   code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
   code = paste(options$engine_opts,code)
   out = system(code,intern=TRUE)
-  engine_output(options,options$code,out) 
+  engine_output(options,options$code,out)
 })
 ```
 
@@ -6216,7 +6216,7 @@ git branch -d Feature
 #| label: Fig7h
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7h.tikz"
 \documentclass{minimal}
@@ -6224,9 +6224,9 @@ git branch -d Feature
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -6255,8 +6255,8 @@ git branch -d Feature
 \draw [<-,line width=3pt,draw=black!60] (commitshash9.south east) -- (commitshash11.north west);
 \draw [<-,line width=3pt,draw=black!60] (commitshash7.east) -- (commitshash11.west);
 
-\master{below = 1cm of commitshash11} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash11}
+\HEAD{below = 0.1cm of master}
 
 \end{tikzpicture}
 \end{preview}
@@ -6277,8 +6277,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7h.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7h.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7h.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7h.tikz"))
 }
 system("xelatex -output-directory=../resources ../resources/Fig7h.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig7h.pdf ../resources/Fig7h.png")
@@ -6319,7 +6319,7 @@ git reflog
 #| label: gitDraw7h
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7h.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit7h.png
 ```
 
 ![](10_git_files/figure-html/drawGit7h.png){width=100%}
@@ -6362,7 +6362,7 @@ git gc --prune=now
 #| label: Fig7i
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig7i.tikz"
 \documentclass{minimal}
@@ -6370,9 +6370,9 @@ git gc --prune=now
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -6397,8 +6397,8 @@ git gc --prune=now
 \commit{right = 1.5cm of commitshash5}{commitshash9}{color_inactive}{commitshash9}{commitscomment9}
 \draw [<-,line width=3pt,draw=black!60] (commitshash5.east) -- (commitshash9.west);
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 
 \end{tikzpicture}
 
@@ -6420,8 +6420,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7i.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7i.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig7i.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig7i.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig7i.tikz")
@@ -6476,7 +6476,7 @@ tutorial. To remind you, the repository currently looks like:
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -6574,7 +6574,7 @@ git rebase main
 
 ## Rstudio
 
-Rebasing is not directly supported by Rstudio. 
+Rebasing is not directly supported by Rstudio.
 
 1. checkout the `Feature` branch using the "Switch branch" selector
 2. in the terminal, type `git rebase main` to rebase the `Feature`
@@ -6584,7 +6584,7 @@ Rebasing is not directly supported by Rstudio.
    you will now see that the history is linear and the `Feature`
    branch stems from the end of the `main` branch. That is, we have
    moved the base of the `Feature` branch.
-   
+
    ![](../resources/rstudio_gitrebase1.png)
 :::
 
@@ -6627,7 +6627,7 @@ git reflog
 #| label: Fig8a
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig8a.tikz"
 \documentclass{minimal}
@@ -6635,15 +6635,15 @@ git reflog
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -6664,9 +6664,9 @@ git reflog
 \commit{right = 1.5cm of commitshash5}{commitshash6}{color_commit}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash5.east) -- (commitshash6.west);
 
-\master{below = 1cm of commitshash4} 
-\branch{below = 1cm of commitshash6}{Feature} 
-\HEAD{below = 0.1cm of Feature} 
+\master{below = 1cm of commitshash4}
+\branch{below = 1cm of commitshash6}{Feature}
+\HEAD{below = 0.1cm of Feature}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -6689,18 +6689,18 @@ commits = system("cd ~/tmp/Repo1; git log --oneline | awk '{ print $1,\"\\t\",su
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig8a.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig8a.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig8a.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig8a.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig8a.tikz")
 system("convert +repage -density 300 -resize 20% ../resources/Fig8a.pdf ../resources/Fig8a.png")
-    
+
 ```
 
 ![](../resources/Fig8a.png)
@@ -6710,7 +6710,7 @@ If the rebased commits were previously on a remote repository
 (hopefully you checked to make sure noone was relying on any of the
 commits that have been squashed), then it will be necessary to force a
 push on this repository.
- 
+
 
 # Undoing (rolling back) changes
 
@@ -6737,7 +6737,7 @@ earlier in this tutorial (before we started branching).
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -6765,7 +6765,7 @@ git tag V.1
 cd ~/tmp/Repo1
 cat .git/refs/heads/main
 ```
-    
+
 
 :::
 
@@ -6809,7 +6809,7 @@ git reflog
 #| label: Fig-advanced7
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced7.tikz"
 
@@ -6818,9 +6818,9 @@ git reflog
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -6835,12 +6835,12 @@ git reflog
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -6852,25 +6852,25 @@ git reflog
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
 \end{tikzpicture}};
 }
 % end of file definition
-    
+
 \begin{tikzpicture}
 \coordinate (G_ul) at (0,0);
 \coordinate (G_ll) at ($(G_ul) +(0,-10)$);
@@ -6931,25 +6931,25 @@ git reflog
 \draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(-1,0)$) -- ($(tree3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(tree2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree2) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(0,0.6)$) -- ($(commit1) +(0,-0.7)$);
-    
+
 \draw[->,very thick] ($(commit3) +(-1,0)$) -- ($(tree5) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(tree4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob5) +(1.2,0)$);
 \draw[->,very thick] ($(tree4) +(-1,0)$) -- ($(blob4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick] ($(commit3) +(0,0.6)$) -- ($(commit2) +(0,-0.7)$);
-    
+
 \draw[<-,very thick,dashed] ($(blob2) +(-1.2,0)$) -- ($(file1) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob4) +(-1.2,0)$) -- ($(file2) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob5) +(-1.2,0)$) -- ($(file4) +(1.2,0)$);
-    
+
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 
@@ -6977,7 +6977,7 @@ hash_tree = c(hash_tree, strtrim(hash$V3[hash$V2 == "tree"], 5))
 hash = system('cd ~/tmp/Repo1; git ls-files --stage', intern=TRUE)
 hash = read.table(textConnection(hash))
 hash_blob = unique(c(hash_blob,strtrim(hash$V2,5)))
- 
+
 system(paste0("sed -i 's/hashblob1/", hash_blob[1], "/g' ../resources/Fig-advanced7.tikz"))
 system(paste0("sed -i 's/hashblob2/", hash_blob[2], "/g' ../resources/Fig-advanced7.tikz"))
 system(paste0("sed -i 's/hashblob3/", hash_blob[3], "/g' ../resources/Fig-advanced7.tikz"))
@@ -6996,7 +6996,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced7.pdf 
 ```
 
 ![](../resources/Fig-advanced7.png)
-    
+
 The above diagram shows that both `HEAD` and `main` point at the
 same stage (all three files). **Again, remember that the SHA-1 has
 values will be different in your repo so in the following, you will
@@ -7011,7 +7011,7 @@ thereof (`HEAD`, `main` and _branches_).
 #| label: Fig9a
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9a.tikz"
 \documentclass{minimal}
@@ -7019,15 +7019,15 @@ thereof (`HEAD`, `main` and _branches_).
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -7036,8 +7036,8 @@ thereof (`HEAD`, `main` and _branches_).
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_inactive}{commitshash3}{commitscomment3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2.east) -- (commitshash3.west);
 
-\master{below = 1cm of commitshash3} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash3}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -7061,10 +7061,10 @@ commits = system("cd ~/tmp/Repo1; git log --oneline | awk '{ print $1,\"\\t\",su
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9a.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9a.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9a.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9a.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9a.tikz")
@@ -7103,7 +7103,7 @@ unstage it.
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
 \commit{}{A}{color_inactive}{}{}
 \commit{right = 1cm of A}{B}{color_commit}{}{}
@@ -7117,7 +7117,7 @@ unstage it.
 #| label: Figs9a-conv
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9a-1.pdf 10_git_files/figure-html/Figs9a-1.png 
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9a-1.pdf 10_git_files/figure-html/Figs9a-1.png
 ```
 
 
@@ -7132,7 +7132,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9a-1
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
 \commit{}{A}{color_inactive}{}{}
 \commit{right = 1cm of A}{B}{color_commit}{}{}
@@ -7146,7 +7146,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9a-1
 #| label: Figs9b-conv
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9b-1.pdf 10_git_files/figure-html/Figs9b-1.png  
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9b-1.pdf 10_git_files/figure-html/Figs9b-1.png
 ```
 
 ```{tikz}
@@ -7160,7 +7160,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9b-1
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
 \commit{}{A}{color_commit}{}{}
 \commit{right = 1cm of A}{B}{color_detached!30}{}{}
@@ -7174,7 +7174,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9b-1
 #| label: Figs9c-conv
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9c-1.pdf 10_git_files/figure-html/Figs9c-1.png   
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9c-1.pdf 10_git_files/figure-html/Figs9c-1.png
 ```
 
 ```{tikz}
@@ -7188,7 +7188,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9c-1
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
 \commit{}{A}{color_inactive}{}{}
 \commit{right = 1cm of A}{B}{color_commit}{}{}
@@ -7201,7 +7201,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9c-1
 #| label: Figs9d-conv
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9d-1.pdf 10_git_files/figure-html/Figs9d-1.png  
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9d-1.pdf 10_git_files/figure-html/Figs9d-1.png
 ```
 
 ```{tikz}
@@ -7215,7 +7215,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9d-1
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \input{../resources/common.tikz}
-\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{refText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 \begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
 \commit{}{A}{color_inactive}{}{}
 \commit{right = 1cm of A}{B}{color_commit}{}{}
@@ -7230,7 +7230,7 @@ convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9d-1
 #| label: Figs9e-conv
 #| cache: false
 #| echo: false
-convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9e-1.pdf 10_git_files/figure-html/Figs9e-1.png  
+convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Figs9e-1.pdf 10_git_files/figure-html/Figs9e-1.png
 ```
 
 <table class='table table-primary table-bordered table-sm paramsTable' id = 'rollback-table'>
@@ -7293,7 +7293,7 @@ We have three main choices:
   are sure you want to permanently remove the changes introduced via
   one or more commits. **A reset should never be performed on a branch
   that exists in a remote repository**
-			  
+
 - **revert** - this allows us to skip the most recent commit. That
   is, a _revert_ rolls back to a previous commit and then apply
   that state to a new commit. Unlike a _reset_, all commits
@@ -7305,7 +7305,7 @@ We have three main choices:
   the project. At some point, if the new direction proves useful, the
   changes can be merged back into the main branch. We will expore
   _branching_ in <a href="#Branching">the section on branching</a>.
-				
+
 Normally we would not perform all three. Rather, we would select the
 most appropriate one depending on the context and goal. Nevertheless,
 this is a tutorial and therefore we will perform all three. In order
@@ -7334,7 +7334,7 @@ knit_engines$set(bash1=function(options) {
   code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
   code = paste(options$engine_opts,code)
   out = system(code,intern=TRUE)
-  engine_output(options,options$code,out) 
+  engine_output(options,options$code,out)
 })
 ```
 
@@ -7389,7 +7389,7 @@ git reflog
 #| label: Fig-advanced8
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig-advanced8.tikz"
 
@@ -7398,9 +7398,9 @@ git reflog
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -7415,12 +7415,12 @@ git reflog
 \definecolor{color_index}{HTML}{E0FFFF} %\definecolor{color_index}{rgb}{1,1,1}
 \definecolor{color_file}{rgb}{1,1,1}
 
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}] 
-\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}] 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]
+\tikzstyle{CODE} = [font={\fontspec[Scale=2]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{InconsolataSemiCondensed-Regular}}]
+\tikzstyle{fileText} = [font={\fontspec[Scale=1.1]{InconsolataSemiCondensed-Regular}}]
 
-%Define a file 
+%Define a file
 \newcommand{\file}[4] {
 \def\corner{0.15in};
 \def\cornerradius{0.02in};
@@ -7432,25 +7432,25 @@ git reflog
 \def\topmargin{0.3in};
 \node at (#1) {\begin{tikzpicture}
 \coordinate (nw) at ($(-0.05in*1,-0.15in*1)$);
-\coordinate (#3) at (#1); 
+\coordinate (#3) at (#1);
 \coordinate (ne0) at ($(nw) + (\w, 0)$);
 \coordinate (ne1) at ($(ne0) - (\corner, 0)$);
 \coordinate (ne2) at ($(ne0) - (0, \corner)$);
-\coordinate (se) at ($(ne0) + (0, -\h)$); 
+\coordinate (se) at ($(ne0) + (0, -\h)$);
 \filldraw [-, line width = \lwidth, fill=#4] (nw) -- (ne1) -- (ne2)
 [rounded corners=\cornerradius]--(se) -- (nw|-se) -- cycle;
 \draw [-, line width = \lwidth] (ne1) [rounded corners=\cornerradius]-- (ne1|-ne2) -- (ne2);
 \node [anchor=north west,TREE] at (nw) {#2};
 \foreach \k in {0,...,\nline}
 {
-\draw [-, line width = \lwidth, line cap=round] 
+\draw [-, line width = \lwidth, line cap=round]
 ($(nw|-se) + (\iconmargin,\iconmargin) + (0,{(\k-1)/(\nline-1)*(\h - \iconmargin - \topmargin)})$)
 -- ++ ($(\w,0) - 2*(\iconmargin,0)$);
 }
 \end{tikzpicture}};
 }
 % end of file definition
-    
+
 \begin{tikzpicture}
 \coordinate (G_ul) at (0,0);
 \coordinate (G_ll) at ($(G_ul) +(0,-10)$);
@@ -7511,25 +7511,25 @@ git reflog
 \draw[->,very thick] ($(master) +(-1,0)$) -- ($(commit3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(commit1) +(-1,0)$) -- ($(tree1) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree1) +(-1,0)$) -- ($(blob1) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(-1,0)$) -- ($(tree3) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(tree2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree3) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick,draw=gray] ($(tree2) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
-    
+
 \draw[->,very thick,draw=gray] ($(commit2) +(0,0.6)$) -- ($(commit1) +(0,-0.7)$);
-    
+
 \draw[->,very thick] ($(commit3) +(-1,0)$) -- ($(tree5) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(tree4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob5) +(1.2,0)$);
 \draw[->,very thick] ($(tree4) +(-1,0)$) -- ($(blob4) +(1.2,0)$);
 \draw[->,very thick] ($(tree5) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick] ($(commit3) +(0,0.6)$) -- ($(commit2) +(0,-0.7)$);
-    
+
 \draw[<-,very thick,dashed] ($(blob2) +(-1.2,0)$) -- ($(file1) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob4) +(-1.2,0)$) -- ($(file2) +(1.2,0)$);
 \draw[<-,very thick,dashed] ($(blob5) +(-1.2,0)$) -- ($(file4) +(1.2,0)$);
-    
+
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob3) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob2) +(1.2,0)$);
 \draw[->,very thick] ($(index) +(-1,0)$) -- ($(blob5) +(1.2,0)$);
@@ -7557,7 +7557,7 @@ hash_tree = c(hash_tree, strtrim(hash$V3[hash$V2 == "tree"], 5))
 hash = system('cd ~/tmp/Repo1; git ls-files --stage', intern=TRUE)
 hash = read.table(textConnection(hash))
 hash_blob = unique(c(hash_blob,strtrim(hash$V2,5)))
- 
+
 system(paste0("sed -i 's/hashblob1/", hash_blob[1], "/g' ../resources/Fig-advanced8.tikz"))
 system(paste0("sed -i 's/hashblob2/", hash_blob[2], "/g' ../resources/Fig-advanced8.tikz"))
 system(paste0("sed -i 's/hashblob3/", hash_blob[3], "/g' ../resources/Fig-advanced8.tikz"))
@@ -7576,7 +7576,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced8.pdf 
 ```
 
 ![](../resources/Fig-advanced8.png)
-    
+
 
 ::: {.callout-note collapse="true"}
 
@@ -7586,7 +7586,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig-advanced8.pdf 
 #| label: gitDraw8a
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit8a.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit8a.png
 ```
 
 ![](10_git_files/figure-html/drawGit8a.png){width=100%}
@@ -7731,7 +7731,7 @@ specific point in the repo history that you may have just erased.
 #| label: Fig9b
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9b.tikz"
 \documentclass{minimal}
@@ -7739,15 +7739,15 @@ specific point in the repo history that you may have just erased.
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_commit}{commitshash2}{commitscomment2}
@@ -7756,8 +7756,8 @@ specific point in the repo history that you may have just erased.
 \commitz{right = 1.5cm of commitshash2}{commitshash3}{color_zombie}{commitshash3}{commitscomment3}{black!20!white}
 \draw [<-,line width=3pt,draw=black!20] (commitshash2.east) -- (commitshash3.west);
 
-\master{below = 1cm of commitshash2} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash2}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -7767,7 +7767,7 @@ specific point in the repo history that you may have just erased.
 library(knitr)
 
 ## get these from a chunk before had reset so that it has all commits
- 
+
 ## commits = system("cd ~/tmp/Repo1; git reflog | awk '{ print $1,\"\\t\",substr($0, index($0,$4)) }'", intern=TRUE)
 ## commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 ## commits = commits[rev(1:nrow(commits)),]
@@ -7779,8 +7779,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9b.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9b.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9b.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9b.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9b.tikz")
@@ -7797,7 +7797,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9b.pdf ../resou
 #| label: gitDraw9a
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9a.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9a.png
 ```
 
 ![](10_git_files/figure-html/drawGit9a.png){width=100%}
@@ -7872,7 +7872,7 @@ git ls-files
 #| label: Fig9c
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9c.tikz"
 \documentclass{minimal}
@@ -7880,15 +7880,15 @@ git ls-files
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -7900,8 +7900,8 @@ git ls-files
 \commitz{below = 3cm of commitshash7}{commitshash3}{color_zombie}{commitshash3}{commitscomment3}{black!20!white}
 \draw [<-,line width=3pt,draw=black!20] (commitshash2.east) -- (commitshash3.west);
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -7921,8 +7921,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9c.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9c.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9c.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9c.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9c.tikz")
@@ -7939,7 +7939,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9c.pdf ../resou
 #| label: gitDraw9c
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9c.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9c.png
 ```
 
 ![](10_git_files/figure-html/drawGit9c.png){width=100%}
@@ -8062,7 +8062,7 @@ we will see that we are back to the state where only `file1` and
 #| label: Fig9d
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9d.tikz"
 \documentclass{minimal}
@@ -8070,15 +8070,15 @@ we will see that we are back to the state where only `file1` and
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_inactive}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_commit!20}{commitshash2}{commitscomment2}
@@ -8090,8 +8090,8 @@ we will see that we are back to the state where only `file1` and
 \commit{right = 1.5cm of commitshash3}{commitshash7}{color_commit}{commitshash7}{commitscomment7}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.east) -- (commitshash7.west);
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -8111,8 +8111,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9d.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9d.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9d.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9d.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9d.tikz")
@@ -8129,7 +8129,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9d.pdf ../resou
 #| label: gitDraw9d
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9d.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9d.png
 ```
 
 ![](10_git_files/figure-html/drawGit9d.png){width=100%}
@@ -8151,7 +8151,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9d.pdf ../resou
 :::
 
 
-If we had actually wanted to roll back to commit ``r commits$hash[1]``, 
+If we had actually wanted to roll back to commit ``r commits$hash[1]``,
 then we could do so by sequentially issuing `git revert`:
 
 ```{bash}
@@ -8222,7 +8222,7 @@ we will see that we are back to the state where only `file` is present
 #| label: Fig9e
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9e.tikz"
 \documentclass{minimal}
@@ -8230,15 +8230,15 @@ we will see that we are back to the state where only `file` is present
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_commit!20}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_inactive}{commitshash2}{commitscomment2}
@@ -8250,8 +8250,8 @@ we will see that we are back to the state where only `file` is present
 \commit{right = 1.5cm of commitshash3}{commitshash7}{color_commit}{commitshash7}{commitscomment7}
 \draw [<-,line width=3pt,draw=black!60] (commitshash3.east) -- (commitshash7.west);
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -8271,8 +8271,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9e.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9e.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9e.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9e.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9e.tikz")
@@ -8289,7 +8289,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9e.pdf ../resou
 #| label: gitDraw9e
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9e.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9e.png
 ```
 
 ![](10_git_files/figure-html/drawGit9e.png){width=100%}
@@ -8316,7 +8316,7 @@ supported by Rstudio. Please use the terminal instead.
 :::
 
 
-If we wanted to review the state of files corresponding to commit 
+If we wanted to review the state of files corresponding to commit
 ``r commits$hash[2]``, we could checkout the code from that commit. This
 provides a way to travel back in time through your commits and explore
 the (tracked) files exactly as they were.
@@ -8335,7 +8335,7 @@ knit_engines$set(bash1=function(options) {
   code = paste(options$engine.opts,code)
   cmd = 'bash'
   out = system2(cmd, code, stdout=TRUE, stderr=TRUE, env=options$engine.env)
-  engine_output(options,options$code,out) 
+  engine_output(options,options$code,out)
 })
 
 ```
@@ -8410,7 +8410,7 @@ we will see that we are back to the state where only `file` is present
 #| label: Fig9f
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig9f.tikz"
 \documentclass{minimal}
@@ -8418,15 +8418,15 @@ we will see that we are back to the state where only `file` is present
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
 
 \input{../resources/common1.tikz}
-      
+
 \begin{tikzpicture}
 \commit{}{commitshash1}{color_commit!20}{commitshash1}{commitscomment1}
 \commit{right = 1.5cm of commitshash1}{commitshash2}{color_commit}{commitshash2}{commitscomment2}
@@ -8435,8 +8435,8 @@ we will see that we are back to the state where only `file` is present
 \commit{right = 1.5cm of commitshash2}{commitshash3}{color_inactive}{commitshash3}{commitscomment3}
 \draw [<-,line width=3pt,draw=black!60] (commitshash2) -- (commitshash3.west);
 
-\master{below = 1cm of commitshash3} 
-\HEAD{below = 1cm of commitshash2} 
+\master{below = 1cm of commitshash3}
+\HEAD{below = 1cm of commitshash2}
 \end{tikzpicture}
 \end{preview}
 \end{document}
@@ -8456,8 +8456,8 @@ lookup = read.table(textConnection(lookup), header=FALSE, sep='\t')
 lookup = lookup %>% mutate(Ref=ifelse(grepl('main',V2),'main',NA))
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9f.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9f.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig9f.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig9f.tikz"))
   }
 
 system("xelatex -output-directory=../resources ../resources/Fig9f.tikz")
@@ -8473,7 +8473,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig9f.pdf ../resou
 #| label: gitDraw9f
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9f.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit9f.png
 ```
 
 ![](10_git_files/figure-html/drawGit9f.png){width=100%}
@@ -8620,7 +8620,7 @@ that we made earlier on in this tutorial. This repository comprises a
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -8659,7 +8659,7 @@ git log --graph --decorate --oneline --all
 #| label: Fig10a
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig10a.tikz"
 \documentclass{minimal}
@@ -8667,9 +8667,9 @@ git log --graph --decorate --oneline --all
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -8693,10 +8693,10 @@ git log --graph --decorate --oneline --all
 
 \commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash6}{Feature} 
+\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commitshash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash5}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 
 \end{preview}
@@ -8719,12 +8719,12 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10a.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10a.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10a.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10a.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig10a.tikz")
@@ -8862,7 +8862,7 @@ git log --graph --decorate --oneline --all
 #| label: Fig10b
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig10b.tikz"
 \documentclass{minimal}
@@ -8870,9 +8870,9 @@ git log --graph --decorate --oneline --all
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -8896,10 +8896,10 @@ git log --graph --decorate --oneline --all
 
 \commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash6}{Feature} 
+\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commitshash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commitshash1.south) + (0,-2cm)$) {Local Repository};
 
 \rcommit{right = 8cm of commitshash5}{rcommitshash1}{color_inactive}{commitshash1}{commitscomment1}
@@ -8917,11 +8917,11 @@ git log --graph --decorate --oneline --all
 
 %\rcommit{right = 1.5cm of rcommitshash4}{rcommitshash6}{color_inactive}{commitshash6}{commitscomment6}
 %\draw [<-,line width=3pt,draw=black!60] (rcommitshash4.east) -- (rcommitshash6.west);
-%\rbranch{below = 1cm of rcommitshash6}{Feature} 
+%\rbranch{below = 1cm of rcommitshash6}{Feature}
 
-\rmaster{below = 1cm of rcommitshash5} 
-\rHEAD{below = 0.1cm of rmaster} 
-%\rbranch{below = 1cm of rcommitshash6}{Feature} 
+\rmaster{below = 1cm of rcommitshash5}
+\rHEAD{below = 0.1cm of rmaster}
+%\rbranch{below = 1cm of rcommitshash6}{Feature}
 
 \node [anchor=north west,TARGET] at ($(rcommitshash1.south) + (0,-2cm)$) (Remote) {Remote Repository};
 
@@ -8932,7 +8932,7 @@ git log --graph --decorate --oneline --all
 \end{preview}
 \end{document}
 ```
- 
+
 ```{r, cache=FALSE, echo=FALSE, results='markdown'}
 library(knitr)
 
@@ -8950,12 +8950,12 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10b.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10b.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10b.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10b.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig10b.tikz")
@@ -8971,15 +8971,15 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig10b.pdf ../reso
 #| label: gitDraw10b
 #| engine: bash
 #| echo: false
-./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit10b.png 
+./../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Repo1/.git --image-filename 10_git_files/figure-html/drawGit10b.png
 ```
 
 ![](10_git_files/figure-html/drawGit10b.png){width=100%}
 
 :::
 
-**Note that when we pushed the commits to the remote repository, 
-we only pushed the `main` branch.  Consequently, the remote 
+**Note that when we pushed the commits to the remote repository,
+we only pushed the `main` branch.  Consequently, the remote
 repository only has a single branch.**
 
 ## Cloning
@@ -8987,7 +8987,7 @@ repository only has a single branch.**
 To collaborate with others on a repository, we start by **cloning**
 the repository you wish to collaborate on. So at the moment, we have
 the original repository (`~/tmp/Repo1`) created by user 1. We also
-have a remote repository (`~/tmp/RemoteRepo1`).  
+have a remote repository (`~/tmp/RemoteRepo1`).
 
 To demonstrate cloning (and collaborating), we will also assume the
 personal of user 2 and we will clone the remote repository to yet
@@ -9025,21 +9025,21 @@ git clone ~/tmp/RemoteRepo1 ~/tmp/MyRepo1
 2. select `New Project` from the dropdown menu
 3. select `Version Control` form the Create Project panel
 4. select `Git` from the Create Project from Version Control panel
-5. provide a path to a remote repository.  Normally this URL would be 
-   for a location on a server such as Github, Gitlab, Bitbucket etc.  
+5. provide a path to a remote repository.  Normally this URL would be
+   for a location on a server such as Github, Gitlab, Bitbucket etc.
    However, for this demostration we will point to the remote repository
    that we set up in the previous section (`~/tmp/RemoteRepo1`)
 6. provide a directory name in which to store this new cloned repository.
    Normally this field is populated based on the name give in the URL.
-   However, in this case, it would suggest a name of `RemoteRepo1` 
-   which already exists (for the repository we are trying to clone), 
+   However, in this case, it would suggest a name of `RemoteRepo1`
+   which already exists (for the repository we are trying to clone),
    and we don't wish to overwrite that one.  I will instead offer
    an alternative name (`MyRepo1`).
-7. we also need to supply a path to where this cloned repository 
+7. we also need to supply a path to where this cloned repository
    will be stored.
 
    ![](../resources/rstudio_gitclone1.png)
-8. click the "Create Project" button.   
+8. click the "Create Project" button.
 :::
 
 The contents (and state) of `~/tmp/MyRepo1` should match that of
@@ -9061,7 +9061,7 @@ tree -ra -L 2 --charset ascii
 #| label: Fig10c
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig10c.tikz"
 \documentclass{minimal}
@@ -9069,9 +9069,9 @@ tree -ra -L 2 --charset ascii
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -9095,10 +9095,10 @@ tree -ra -L 2 --charset ascii
 
 \commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash6}{Feature} 
+\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commitshash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commitshash1.south) + (0,-2cm)$) {Local Repository};
 \draw [fill=white, fill opacity = 0.5, draw=none] ($(commitshash1.west |- commitshash6.north west) +(-0.5cm,0.5cm)$) rectangle ($(commitshash6.east |- HEAD.south east) +(0.8cm,-0.5cm)$);
 
@@ -9117,10 +9117,10 @@ tree -ra -L 2 --charset ascii
 
 %%\rcommit{right = 1.5cm of rcommitshash4}{rcommitshash6}{color_inactive}{commitshash6}{commitscomment6}
 %%\draw [<-,line width=3pt,draw=black!60] (rcommitshash4.east) -- (rcommitshash6.west);
-%%\rbranch{below = 1cm of rcommitshash6}{Feature} 
+%%\rbranch{below = 1cm of rcommitshash6}{Feature}
 
-\rmaster{below = 1cm of rcommitshash5} 
-\rHEAD{below = 0.1cm of rmaster} 
+\rmaster{below = 1cm of rcommitshash5}
+\rHEAD{below = 0.1cm of rmaster}
 
 \node [anchor=north west,TARGET] at ($(rcommitshash1.south) + (0,-2cm)$) (Remote) {Remote Repository};
 
@@ -9144,17 +9144,17 @@ tree -ra -L 2 --charset ascii
 
 %\commit{right = 1.5cm of commits2hash4}{commits2hash6}{color_inactive}{commitshash6}{commitscomment6}
 %\draw [<-,line width=3pt,draw=black!60] (commits2hash4.east) -- (commits2hash6.west);
-%\branch{below = 1cm of commitshash6}{Feature} 
+%\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commits2hash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commits2hash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commits2hash1.south) + (0,-2cm)$) {Cloned Repository};
 \draw [<-,very thick,dashed] ($(commits2hash5.east) +(0.5cm,0)$) to [out=10,in=220] ($(rcommitshash1.east) +(-2cm,0)$);
 \end{tikzpicture}
 \end{preview}
 \end{document}
 ```
- 
+
 ```{r, cache=FALSE, echo=FALSE, results='markdown'}
 library(knitr)
 
@@ -9172,12 +9172,12 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10c.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10c.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10c.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10c.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig10c.tikz")
@@ -9186,7 +9186,7 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig10c.pdf ../reso
 
 ![](../resources/Fig10c.png)
 
-**Note that when cloning repository, all branches in the 
+**Note that when cloning repository, all branches in the
 remote repository are cloned.  However, since the remote
 repository only had one branch (`main`), so too the clone
 only has one branch.**
@@ -9197,7 +9197,7 @@ Now as the collaborator (user 2), lets make a modification and push
 this change up to the remote repository.
 
 ::: {.callout-important collapse="false"}
-## Important info about pushing to a remote repository 
+## Important info about pushing to a remote repository
 
 Before pushing any changes, it is absolutely vital that you adhere to
 the following steps:
@@ -9248,16 +9248,16 @@ git push -u origin main
 
 #### Rstudio
 
-1. start by pulling the latest from the remote repository just incase 
+1. start by pulling the latest from the remote repository just incase
    there has been an change
-2. click on the "Create new blank file in the current directory" button 
-   and select "Text file" - name it `file4` 
+2. click on the "Create new blank file in the current directory" button
+   and select "Text file" - name it `file4`
 3. edit this file by adding the contents `Something else`
 4. save the file
 5. stage (add) the file
 6. commit the change with a message of "Added file4"
 7. push this commit either by clicking on the green up (push) arrow in
-   the "Review Changes" window or the same arrow in the git tab of the 
+   the "Review Changes" window or the same arrow in the git tab of the
    main Rstudio window.
 :::
 
@@ -9265,7 +9265,7 @@ git push -u origin main
 #| label: Fig10d
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig10d.tikz"
 \documentclass{minimal}
@@ -9273,9 +9273,9 @@ git push -u origin main
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -9299,10 +9299,10 @@ git push -u origin main
 
 \commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash6}{Feature} 
+\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commitshash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commitshash1.south) + (0,-2cm)$) {Local Repository};
 \draw [fill=white, fill opacity = 0.5, draw=none] ($(commitshash1.west |- commitshash6.north west) +(-0.5cm,0.5cm)$) rectangle ($(commitshash6.east |- HEAD.south east) +(0.8cm,-0.5cm)$);
 
@@ -9324,10 +9324,10 @@ git push -u origin main
 
 %%\rcommit{right = 1.5cm of rcommitshash4}{rcommitshash6}{color_inactive}{commitshash6}{commitscomment6}
 %%\draw [<-,line width=3pt,draw=black!60] (rcommitshash4.east) -- (rcommitshash6.west);
-%%\rbranch{below = 1cm of rcommitshash6}{Feature} 
+%%\rbranch{below = 1cm of rcommitshash6}{Feature}
 
-\rmaster{below = 1cm of rcommitshash5} 
-\rHEAD{below = 0.1cm of rmaster} 
+\rmaster{below = 1cm of rcommitshash5}
+\rHEAD{below = 0.1cm of rmaster}
 
 \node [anchor=north west,TARGET] at ($(rcommitshash1.south) + (0,-2cm)$) (Remote) {Remote Repository};
 
@@ -9351,17 +9351,17 @@ git push -u origin main
 
 %\commit{right = 1.5cm of commits2hash4}{commits2hash6}{color_inactive}{commitshash6}{commitscomment6}
 %\draw [<-,line width=3pt,draw=black!60] (commits2hash4.east) -- (commits2hash6.west);
-%\branch{below = 1cm of commitshash6}{Feature} 
+%\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commits2hash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commits2hash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commits2hash1.south) + (0,-2cm)$) {Cloned Repository};
 \draw [<-,very thick,dashed] ($(commits2hash5.east) +(0.5cm,0)$) to [out=10,in=220] ($(rcommitshash1.east) +(-2cm,0)$);
 \end{tikzpicture}
 \end{preview}
 \end{document}
 ```
- 
+
 ```{r, cache=FALSE, echo=FALSE, results='markdown'}
 library(knitr)
 
@@ -9379,24 +9379,24 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10d.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10d.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10d.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10d.tikz"))
 }
 
 zcommits = system("cd ~/tmp/MyRepo1; git log --oneline --all | awk '{ print $1,\"\\t\",substr($0, 9) }'", intern=TRUE)
 zcommits = read.table(textConnection(zcommits), header=FALSE, strip.white=TRUE, sep='\t')
 zcommits = zcommits[rev(1:nrow(zcommits)),]
 colnames(zcommits) <- c('hash','comment')
-zcommits$comment <- paste0(strtrim(gsub('.*:','',zcommits$comment),10),'..')	
+zcommits$comment <- paste0(strtrim(gsub('.*:','',zcommits$comment),10),'..')
 #print(zcommits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(zcommits)[1]) {
-  system(paste0("sed -i 's/commits2hash",i,"\\([\\.\\})]\\)/", zcommits$hash[i], "\\1/g' ../resources/Fig10d.tikz")) 
-    system(paste0("sed -i 's/commits2comment",i,"\\([\\.\\})]\\)/", zcommits$comment[i], "\\1/g' ../resources/Fig10d.tikz")) 
+  system(paste0("sed -i 's/commits2hash",i,"\\([\\.\\})]\\)/", zcommits$hash[i], "\\1/g' ../resources/Fig10d.tikz"))
+    system(paste0("sed -i 's/commits2comment",i,"\\([\\.\\})]\\)/", zcommits$comment[i], "\\1/g' ../resources/Fig10d.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig10d.tikz")
@@ -9405,10 +9405,10 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig10d.pdf ../reso
 
 ![](../resources/Fig10d.png)
 
-Notice how the second (cloned. `MyRepo1`) repository and the 
-remote repository (`RemoteRepo1`) are one commit ahead of the 
+Notice how the second (cloned. `MyRepo1`) repository and the
+remote repository (`RemoteRepo1`) are one commit ahead of the
 original local repository (`Repo1`).  For `Repo1` to be in sync
-with `MyRepo1`, the original user will have to pull the 
+with `MyRepo1`, the original user will have to pull the
 remote repository changes manually.
 
 
@@ -9416,17 +9416,17 @@ remote repository changes manually.
 
 Retrieving a commit chain (_pulling_) from a remote repository is
 superficially the opposite of _pushing_. Actually, technically it is two
-actions: 
+actions:
 
 - a _fetch_ that retrieves the remote information and uses it to
   create a _branch_ off your local repository (the name of this branch
   is made from the name of the remote and the branch that was
   fetched - e.g. `origin/master`).
 
-- a _merge_ that merges this branch into the main repository. 
+- a _merge_ that merges this branch into the main repository.
 
 These actions can be performed individually, however, they are more
-typically performed together via the `git pull` _command_. 
+typically performed together via the `git pull` _command_.
 
 To illustrate, lets return to being user 1 and we will pull the
 changes contributed by user 2 in the section above.
@@ -9500,7 +9500,7 @@ git log --graph --decorate --oneline --all
 #| label: Fig10e
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig10e.tikz"
 \documentclass{minimal}
@@ -9508,9 +9508,9 @@ git log --graph --decorate --oneline --all
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -9534,13 +9534,13 @@ git log --graph --decorate --oneline --all
 
 \commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 \draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash6}{Feature} 
+\branch{below = 1cm of commitshash6}{Feature}
 
 \commit{right = 1.5cm of commitshash5}{commitshash7}{color_commit}{commits2hash5}{commits2comment5}
 \draw [<-,line width=3pt,draw=black!60] (commitshash5.east) -- (commitshash7.west);
 
-\master{below = 1cm of commitshash7} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash7}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commitshash1.south) + (0,-2cm)$) {Local Repository};
 %\draw [fill=white, fill opacity = 0.5, draw=none] ($(commitshash1.west |- commitshash6.north west) +(-0.5cm,0.5cm)$) rectangle ($(commitshash6.east |- HEAD.south east) +(0.8cm,-0.5cm)$);
 
@@ -9562,10 +9562,10 @@ git log --graph --decorate --oneline --all
 
 %%\rcommit{right = 1.5cm of rcommitshash4}{rcommitshash6}{color_inactive}{commitshash6}{commitscomment6}
 %%\draw [<-,line width=3pt,draw=black!60] (rcommitshash4.east) -- (rcommitshash6.west);
-%%\rbranch{below = 1cm of rcommitshash6}{Feature} 
+%%\rbranch{below = 1cm of rcommitshash6}{Feature}
 
-\rmaster{below = 1cm of rcommitshash6} 
-\rHEAD{below = 0.1cm of rmaster} 
+\rmaster{below = 1cm of rcommitshash6}
+\rHEAD{below = 0.1cm of rmaster}
 
 \node [anchor=north west,TARGET] at ($(rcommitshash1.south) + (0,-2cm)$) (Remote) {Remote Repository};
 
@@ -9590,10 +9590,10 @@ git log --graph --decorate --oneline --all
 
 %\commit{right = 1.5cm of commits2hash4}{commits2hash6}{color_inactive}{commitshash6}{commitscomment6}
 %\draw [<-,line width=3pt,draw=black!60] (commits2hash4.east) -- (commits2hash6.west);
-%\branch{below = 1cm of commitshash6}{Feature} 
+%\branch{below = 1cm of commitshash6}{Feature}
 
-\master{below = 1cm of commits2hash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commits2hash5}
+\HEAD{below = 0.1cm of master}
 \node [anchor=north west,TARGET] at ($(commits2hash1.south) + (0,-2cm)$) {Cloned Repository};
 %\draw [<-,very thick,dashed] ($(commits2hash5.east) +(0.5cm,0)$) to [out=10,in=220] ($(rcommitshash1.east) +(-2cm,0)$);
 
@@ -9602,7 +9602,7 @@ git log --graph --decorate --oneline --all
 \end{preview}
 \end{document}
 ```
- 
+
 ```{r, cache=FALSE, echo=FALSE, results='markdown'}
 library(knitr)
 
@@ -9620,24 +9620,24 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10e.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10e.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig10e.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig10e.tikz"))
 }
 
 zcommits = system("cd ~/tmp/MyRepo1; git log --oneline --all | awk '{ print $1,\"\\t\",substr($0, 9) }'", intern=TRUE)
 zcommits = read.table(textConnection(zcommits), header=FALSE, strip.white=TRUE, sep='\t')
 zcommits = zcommits[rev(1:nrow(zcommits)),]
 colnames(zcommits) <- c('hash','comment')
-zcommits$comment <- paste0(strtrim(gsub('.*:','',zcommits$comment),10),'..')	
+zcommits$comment <- paste0(strtrim(gsub('.*:','',zcommits$comment),10),'..')
 #print(zcommits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(zcommits)[1]) {
-  system(paste0("sed -i 's/commits2hash",i,"\\([\\.\\})]\\)/", zcommits$hash[i], "\\1/g' ../resources/Fig10e.tikz")) 
-    system(paste0("sed -i 's/commits2comment",i,"\\([\\.\\})]\\)/", zcommits$comment[i], "\\1/g' ../resources/Fig10e.tikz")) 
+  system(paste0("sed -i 's/commits2hash",i,"\\([\\.\\})]\\)/", zcommits$hash[i], "\\1/g' ../resources/Fig10e.tikz"))
+    system(paste0("sed -i 's/commits2comment",i,"\\([\\.\\})]\\)/", zcommits$comment[i], "\\1/g' ../resources/Fig10e.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig10e.tikz")
@@ -9649,12 +9649,12 @@ system("convert +repage -density 300 -resize 20% ../resources/Fig10e.pdf ../reso
 
 ## Github as a remote repository
 
-GitHub provides the world's leading centralized platform for version 
+GitHub provides the world's leading centralized platform for version
 control, collaboration, and project management, facilitating seamless
 teamwork, tracking changes, and ensuring the integrity and accessibility
 of code repositories throughout the software development lifecycle.
 
-Although anyone can explore (read) public repositories on github, only 
+Although anyone can explore (read) public repositories on github, only
 those with github accounts can contribute and collaborate.
 
 ### Setup Github account
@@ -9664,7 +9664,7 @@ To create a **free** github account:
 1. visit <https://github.com> and click "Sign up for github"
 2. register by providing your prefered email address, a username and
    a password when prompted
-3. to complete the account activation, you will need to verify your 
+3. to complete the account activation, you will need to verify your
    details via an email sent to your nominated email address
 
 As of the start of 2024, github now requires Two-Factor Authentication
@@ -9675,16 +9675,16 @@ prompted for a password, you will also need to use 2FA. To setup 2FA:
 2. select "Settings" from the dropdown menu.
 3. select "Password and authentication" in the left sidebar.
 4. under "Two-factor authentication" section, click "Enable".
-5. choose your preferred method (authenticator app or SMS) and follow 
+5. choose your preferred method (authenticator app or SMS) and follow
    the prompts to set it up.
 
 Passwords and Two-Factor Authentication (2FA) are used when you (as a
 human) securely login and interact directly with the GitHub website.
 However, it is also possible to have other tools (such as `git`)
 interact with Github on your behalf via an Application Programming
-Interfacet (API).  Passwords/2FA are not appropriate to authenticate 
+Interfacet (API).  Passwords/2FA are not appropriate to authenticate
 these machine to machine communications.  Instead, Github requires the
-use of a Personal Access Token (PAT). PATs offer a more secure and granular 
+use of a Personal Access Token (PAT). PATs offer a more secure and granular
 approach, allowing users to control access without exposing their
 account password.
 
@@ -9710,10 +9710,10 @@ To generate a Personal Access Token (PAT):
    across multiple machines too regularly.
 
    Finally, you also need to indicate **scope** (what activities you are granting permission
-   for the tools to be able to perform).  In this case, I have ticked the 
-   "repo" box.  This grants general rea/write access to my repositories.  I have 
-   not granted permission for more administration like activities such as 
-   managing teams, deleting repositories, etc - these activities I am happy to 
+   for the tools to be able to perform).  In this case, I have ticked the
+   "repo" box.  This grants general rea/write access to my repositories.  I have
+   not granted permission for more administration like activities such as
+   managing teams, deleting repositories, etc - these activities I am happy to
    perform myself via the website.
 10. click "Generate token" and securely copy the generated token.  Until this is stored
     safely (see below) do not close the page, because Github will never show you this
@@ -9759,27 +9759,27 @@ and confirm that it indicates that there is a hidden password.
 ### Create remote Github repository
 
 1. login to your Github account
-2. either: 
+2. either:
 
    a. click on the "Create new.." button (with the plus sign) to the
       right of your profile picture in the top right corner and select
       "New repository" from the dropdown menu
-      
+
    b. click on "Repositories" from the top horizontal menu followed by
       the big green "New" button
-   
+
    ![](../resources/rstudio_github1.png)
-   
+
 3. fill out the details of the Create a new repository for similar to
    the following
-   
+
    ![](../resources/rstudio_github2.png)
-   
+
    In particular:
-   
+
    - give the repository a name. Typically use the same name as you
       used for the local repository to avoid confusion
-   
+
    - provide a description. Along with the name, this field is
       searchable so the more detailed it is, the more likely your
       repository will be discoverable by others as well as yourself in
@@ -9802,7 +9802,7 @@ and confirm that it indicates that there is a hidden password.
    run locally (on your machine) in order to establish a link between
    the local and remote repository. You need to run the appropriate
    set of commands in your local terminal
-   
+
    - if no local repository exists, follow the first set of instructions
    - if you already have a local repository (**as is the case with
      this demonstration**), follow the second set of instructions
@@ -9812,7 +9812,7 @@ and confirm that it indicates that there is a hidden password.
    Github page and you will be presented with your remote repository.
    From here you can navigate through your code, manage privileges
    etc.
-   
+
 If you would like to allow others to collaborate with you on your
 repository, then regardless of whether the repository is public or
 private, you will need to invite them as a collaborator.  To do so:
@@ -9830,7 +9830,7 @@ private, you will need to invite them as a collaborator.  To do so:
    settings, delete the repository etc)
 6. repeat steps 3-4 for each additional collaborator you wish to
    invite
-   
+
 # Resolving conflicts
 
 In Git, conflicts arise when changes made in different branches cannot
@@ -9857,7 +9857,7 @@ in such cases is as outlined above.
 To illustrate a git conflict, we will start with a very simple
 repository, create a branch and then concurrently make edits to the
 same part of the same file on each branch before attempting to merge
-the branches together.  
+the branches together.
 
 
 ::: {.callout-note collapse="true"}
@@ -9872,7 +9872,7 @@ the branches together.
 rm -rf ~/tmp/Repo1
 mkdir ~/tmp/Repo1
 cd ~/tmp/Repo1
-git init 
+git init
 echo 'File 1' > file1
 git add file1
 git commit -m 'Initial repo and added file1'
@@ -9906,7 +9906,7 @@ git log --graph --decorate --oneline --all
 #| label: Fig11a
 #| echo: true
 #| cache: false
-#| class: tikz 
+#| class: tikz
 #| engine.opts:
 #|   file: "../resources/Fig11a.tikz"
 \documentclass{minimal}
@@ -9914,9 +9914,9 @@ git log --graph --decorate --oneline --all
 %\usepackage[hmargin=0cm,vmargin=0cm]{geometry}
 \usepackage{fontspec}
 \usepackage[xelatex,active,tightpage]{preview}
-\renewcommand{\baselinestretch}{0.75} 
+\renewcommand{\baselinestretch}{0.75}
 \usepackage{tikz}
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 \begin{document}
 \include{preview}
 \begin{preview}
@@ -9940,10 +9940,10 @@ git log --graph --decorate --oneline --all
 
 %\commit{right = 1.5cm of commitshash4}{commitshash6}{color_inactive}{commitshash6}{commitscomment6}
 %\draw [<-,line width=3pt,draw=black!60] (commitshash4.east) -- (commitshash6.west);
-\branch{below = 1cm of commitshash4}{Feature} 
+\branch{below = 1cm of commitshash4}{Feature}
 
-\master{below = 1cm of commitshash5} 
-\HEAD{below = 0.1cm of master} 
+\master{below = 1cm of commitshash5}
+\HEAD{below = 0.1cm of master}
 \end{tikzpicture}
 
 \end{preview}
@@ -9966,12 +9966,12 @@ commits = system("cd ~/tmp/Repo1; git log --oneline --all | awk '{ print $1,\"\\
 commits = read.table(textConnection(commits), header=FALSE, strip.white=TRUE, sep='\t')
 commits = commits[rev(1:nrow(commits)),]
 colnames(commits) <- c('hash','comment')
-commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')	
+commits$comment <- paste0(strtrim(gsub('.*:','',commits$comment),10),'..')
 #print(commits)
 # get the commits from .git/logs/HEAD
 for (i in 1:dim(commits)[1]) {
-  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig11a.tikz")) 
-    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig11a.tikz")) 
+  system(paste0("sed -i 's/commitshash",i,"\\([\\.\\})]\\)/", commits$hash[i], "\\1/g' ../resources/Fig11a.tikz"))
+    system(paste0("sed -i 's/commitscomment",i,"\\([\\.\\})]\\)/", commits$comment[i], "\\1/g' ../resources/Fig11a.tikz"))
 }
 
 system("xelatex -output-directory=../resources ../resources/Fig11a.tikz")
@@ -9998,15 +9998,15 @@ git merge Feature --no-edit
 
 #### Rstudio
 
-Merging is not directly supported by Rstudio, please use the 
+Merging is not directly supported by Rstudio, please use the
 terminal.
 
 :::
 
 
 Hmmm. It appears that there is a conflict (although we should not be
-supprised since we deliberately set the repository up to have a conflict!). 
-If we explore the a `git diff`, we will see that on the `master` and 
+supprised since we deliberately set the repository up to have a conflict!).
+If we explore the a `git diff`, we will see that on the `master` and
 `Feature` _branches_ have incompatible changes.
 
 ::: {.callout-note collapse="true"}
@@ -10025,12 +10025,12 @@ cd ~/tmp/Repo1
 git status
 ```
 
-The above status informs us that whilst we were able to successfully 
+The above status informs us that whilst we were able to successfully
 merge in the changes in `dir1/file3`, the modifications in `file1`
 remain unmerged (due to conflicts).
 
-If we run a `git diff` on the two branches, we will be able to 
-identify all the differences within all comparable files between the 
+If we run a `git diff` on the two branches, we will be able to
+identify all the differences within all comparable files between the
 two branches.
 
 ```{bash}
@@ -10044,7 +10044,7 @@ cd ~/tmp/Repo1
 git diff main Feature
 ```
 
-The output indicates that `dir/file3` does not exist on the `main` 
+The output indicates that `dir/file3` does not exist on the `main`
 branch - this is not a conflict.  However, for `file1`, we see that
 line three differs between the two branches.
 
@@ -10066,7 +10066,7 @@ git cat-file -p main^:file1
 
 So prior to branching, the `file1` file had two lines of text.
 
-In the latest commit on the `main` branch, the `file1` has added 
+In the latest commit on the `main` branch, the `file1` has added
 a third line with text about a bug fix.
 
 ```{bash}
@@ -10144,9 +10144,9 @@ git commit -m 'Merge in Feature'
 1. open `file1` for editing
 2. make the necessary changes to the text
 3. save the file
-4. stage (add) the file (you may have to click on the checkbox twice 
+4. stage (add) the file (you may have to click on the checkbox twice
    before the tick appears)
-5. commit the changes with a message like "Merge in Feature" 
+5. commit the changes with a message like "Merge in Feature"
 :::
 
 
@@ -10174,4 +10174,5 @@ cd ~/tmp/Repo1
 git log --graph --decorate --oneline --all
 ```
 :::
- 
+
+The end
