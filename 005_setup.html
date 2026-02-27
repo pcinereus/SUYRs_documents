@@ -3451,7 +3451,7 @@ Important
 <div class="tab-content">
 <div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
 <ol type="1">
-<li><p>Install and setup <strong>Rtools</strong> (a collection of R focused build tools for windows)</p>
+<li>Install and setup <strong>Rtools</strong> (a collection of R focused build tools for windows)
 <ul>
 <li>go to CRAN Rtools website <a href="https://cran.r-project.org/bin/windows/Rtools/" class="uri">https://cran.r-project.org/bin/windows/Rtools/</a></li>
 <li>click on the Rtools version that matches the major version of R you are using.</li>
@@ -3459,7 +3459,7 @@ Important
 <li>run the installer</li>
 <li>follow all defaults during the installation process</li>
 </ul></li>
-<li><p>Install <strong>cmdstan</strong> (an implementation of the STAN language)</p>
+<li>Install <strong>cmdstan</strong> (an implementation of the STAN language)
 <ul>
 <li>using selected instructions from <a href="https://mc-stan.org/cmdstanr/articles/cmdstanr.html" class="uri">https://mc-stan.org/cmdstanr/articles/cmdstanr.html</a>
 <ul>
@@ -3487,12 +3487,37 @@ Important
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">check_cmdstan_toolchain</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></li>
-<li><p>if the toolchain is correctly configured, install cmdstan</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">install_cmdstan</span>(<span class="at">cores =</span> <span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div></li>
 </ul></li>
 </ul></li>
+</ol>
+<div class="indented">
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Pay particular attention to any messages returned at this step. Specifically, if it suggests you run a bit of code, please do so</p>
+</div>
+</div>
+</div>
+</div>
+<pre><code> - if the toolchain is correctly configured, install cmdstan
+
+
+   ::: {.cell}
+   
+   ```{.r .cell-code}
+   install_cmdstan(cores = 2)
+   ```
+   :::</code></pre>
+<ol start="3" type="1">
 <li><p>Ensure that cmdstan is properly configured by compiling a built in example</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>file <span class="ot">&lt;-</span> <span class="fu">file.path</span>(<span class="fu">cmdstan_path</span>(), <span class="st">&quot;examples&quot;</span>, <span class="st">&quot;bernoulli&quot;</span>, <span class="st">&quot;bernoulli.stan&quot;</span>)</span>
@@ -3540,7 +3565,7 @@ Chain 4 finished in 0.0 seconds.
 
 All 4 chains finished successfully.
 Mean chain execution time: 0.0 seconds.
-Total execution time: 0.3 seconds.</code></pre>
+Total execution time: 0.2 seconds.</code></pre>
 </div>
 </div>
 <p>If you get output resembling the above, then cmdstan is setup correctly.</p></li>
@@ -3615,8 +3640,8 @@ Attaching package: &#39;brms&#39;</code></pre>
 <pre><code>
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 1).
 Chain 1: 
-Chain 1: Gradient evaluation took 7e-06 seconds
-Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.07 seconds.
+Chain 1: Gradient evaluation took 1e-05 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 0.1 seconds.
 Chain 1: Adjust your expectations accordingly!
 Chain 1: 
 Chain 1: 
@@ -3634,14 +3659,14 @@ Chain 1: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 1: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 1: 
 Chain 1:  Elapsed Time: 0.011 seconds (Warm-up)
-Chain 1:                0.012 seconds (Sampling)
-Chain 1:                0.023 seconds (Total)
+Chain 1:                0.011 seconds (Sampling)
+Chain 1:                0.022 seconds (Total)
 Chain 1: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 3e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 2: Gradient evaluation took 4e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -3658,9 +3683,9 @@ Chain 2: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 2: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 2: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 2: 
-Chain 2:  Elapsed Time: 0.012 seconds (Warm-up)
+Chain 2:  Elapsed Time: 0.011 seconds (Warm-up)
 Chain 2:                0.011 seconds (Sampling)
-Chain 2:                0.023 seconds (Total)
+Chain 2:                0.022 seconds (Total)
 Chain 2: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
@@ -3684,14 +3709,14 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.011 seconds (Warm-up)
-Chain 3:                0.012 seconds (Sampling)
-Chain 3:                0.023 seconds (Total)
+Chain 3:                0.011 seconds (Sampling)
+Chain 3:                0.022 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 3e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 4: Gradient evaluation took 4e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -3708,9 +3733,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.012 seconds (Warm-up)
+Chain 4:  Elapsed Time: 0.011 seconds (Warm-up)
 Chain 4:                0.011 seconds (Sampling)
-Chain 4:                0.023 seconds (Total)
+Chain 4:                0.022 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -3723,12 +3748,12 @@ Formula: y ~ x
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.32      0.31    -0.93     0.29 1.00     2413     2190
-x             0.32      0.27    -0.20     0.85 1.00     2980     2641
+Intercept    -0.25      0.30    -0.85     0.33 1.00     2740     2204
+x             0.08      0.34    -0.59     0.78 1.00     3109     2258
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.75      0.22     0.45     1.29 1.00     2069     2482
+sigma     0.94      0.28     0.56     1.59 1.00     2285     2412
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -3817,7 +3842,7 @@ Chain 4 finished in 0.0 seconds.
 
 All 4 chains finished successfully.
 Mean chain execution time: 0.0 seconds.
-Total execution time: 0.3 seconds.</code></pre>
+Total execution time: 0.2 seconds.</code></pre>
 </div>
 </div>
 <p>If you get output resembling the above, then cmdstan is setup correctly.</p></li>
@@ -3868,8 +3893,8 @@ Chain 1:
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 3e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 2: Gradient evaluation took 4e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -3893,8 +3918,8 @@ Chain 2:
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 3e-06 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 3: Gradient evaluation took 4e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -3912,14 +3937,14 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.012 seconds (Warm-up)
-Chain 3:                0.012 seconds (Sampling)
-Chain 3:                0.024 seconds (Total)
+Chain 3:                0.009 seconds (Sampling)
+Chain 3:                0.021 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 3e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 4: Gradient evaluation took 4e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -3936,9 +3961,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.011 seconds (Warm-up)
+Chain 4:  Elapsed Time: 0.012 seconds (Warm-up)
 Chain 4:                0.011 seconds (Sampling)
-Chain 4:                0.022 seconds (Total)
+Chain 4:                0.023 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -3951,12 +3976,12 @@ Formula: y ~ x
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.32      0.30    -0.90     0.30 1.00     2633     2375
-x             0.33      0.26    -0.20     0.84 1.00     3133     2096
+Intercept    -0.25      0.32    -0.89     0.37 1.00     2752     1906
+x             0.07      0.36    -0.68     0.80 1.00     2550     1795
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.75      0.24     0.44     1.35 1.00     1937     2249
+sigma     0.94      0.29     0.56     1.65 1.00     1920     2267
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -4046,7 +4071,7 @@ Chain 4 finished in 0.0 seconds.
 
 All 4 chains finished successfully.
 Mean chain execution time: 0.0 seconds.
-Total execution time: 0.3 seconds.</code></pre>
+Total execution time: 0.2 seconds.</code></pre>
 </div>
 </div>
 <p>If you get output resembling the above, then cmdstan is setup correctly.</p></li>
@@ -4097,8 +4122,8 @@ Chain 1:
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 2).
 Chain 2: 
-Chain 2: Gradient evaluation took 3e-06 seconds
-Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 2: Gradient evaluation took 4e-06 seconds
+Chain 2: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 2: Adjust your expectations accordingly!
 Chain 2: 
 Chain 2: 
@@ -4122,8 +4147,8 @@ Chain 2:
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 3).
 Chain 3: 
-Chain 3: Gradient evaluation took 3e-06 seconds
-Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 3: Gradient evaluation took 4e-06 seconds
+Chain 3: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 3: Adjust your expectations accordingly!
 Chain 3: 
 Chain 3: 
@@ -4141,14 +4166,14 @@ Chain 3: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 3: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 3: 
 Chain 3:  Elapsed Time: 0.012 seconds (Warm-up)
-Chain 3:                0.012 seconds (Sampling)
-Chain 3:                0.024 seconds (Total)
+Chain 3:                0.009 seconds (Sampling)
+Chain 3:                0.021 seconds (Total)
 Chain 3: 
 
 SAMPLING FOR MODEL &#39;anon_model&#39; NOW (CHAIN 4).
 Chain 4: 
-Chain 4: Gradient evaluation took 3e-06 seconds
-Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.03 seconds.
+Chain 4: Gradient evaluation took 4e-06 seconds
+Chain 4: 1000 transitions using 10 leapfrog steps per transition would take 0.04 seconds.
 Chain 4: Adjust your expectations accordingly!
 Chain 4: 
 Chain 4: 
@@ -4165,9 +4190,9 @@ Chain 4: Iteration: 1600 / 2000 [ 80%]  (Sampling)
 Chain 4: Iteration: 1800 / 2000 [ 90%]  (Sampling)
 Chain 4: Iteration: 2000 / 2000 [100%]  (Sampling)
 Chain 4: 
-Chain 4:  Elapsed Time: 0.011 seconds (Warm-up)
+Chain 4:  Elapsed Time: 0.012 seconds (Warm-up)
 Chain 4:                0.011 seconds (Sampling)
-Chain 4:                0.022 seconds (Total)
+Chain 4:                0.023 seconds (Total)
 Chain 4: </code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
@@ -4180,12 +4205,12 @@ Formula: y ~ x
 
 Population-Level Effects: 
           Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-Intercept    -0.32      0.30    -0.90     0.30 1.00     2633     2375
-x             0.33      0.26    -0.20     0.84 1.00     3133     2096
+Intercept    -0.25      0.32    -0.89     0.37 1.00     2752     1906
+x             0.07      0.36    -0.68     0.80 1.00     2550     1795
 
 Family Specific Parameters: 
       Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
-sigma     0.75      0.24     0.44     1.35 1.00     1937     2249
+sigma     0.94      0.29     0.56     1.65 1.00     1920     2267
 
 Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
 and Tail_ESS are effective sample size measures, and Rhat is the potential
@@ -5141,214 +5166,225 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb61-487"><a href="#cb61-487"></a><span class="in">       #| eval: false</span></span>
 <span id="cb61-488"><a href="#cb61-488"></a><span class="in">       check_cmdstan_toolchain()</span></span>
 <span id="cb61-489"><a href="#cb61-489"></a><span class="in">       ```</span></span>
-<span id="cb61-490"><a href="#cb61-490"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb61-491"><a href="#cb61-491"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-492"><a href="#cb61-492"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb61-493"><a href="#cb61-493"></a><span class="in">       #| eval: false</span></span>
-<span id="cb61-494"><a href="#cb61-494"></a><span class="in">       install_cmdstan(cores = 2)</span></span>
-<span id="cb61-495"><a href="#cb61-495"></a><span class="in">       ```</span></span>
-<span id="cb61-496"><a href="#cb61-496"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb61-497"><a href="#cb61-497"></a>   <span class="in">```{r}</span></span>
-<span id="cb61-498"><a href="#cb61-498"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb61-499"><a href="#cb61-499"></a><span class="in">   #| eval: true</span></span>
-<span id="cb61-500"><a href="#cb61-500"></a><span class="in">   #| cache: true</span></span>
-<span id="cb61-501"><a href="#cb61-501"></a><span class="in">   file &lt;- file.path(cmdstan_path(), &quot;examples&quot;, &quot;bernoulli&quot;, &quot;bernoulli.stan&quot;)</span></span>
-<span id="cb61-502"><a href="#cb61-502"></a><span class="in">   mod &lt;- cmdstan_model(file)</span></span>
-<span id="cb61-503"><a href="#cb61-503"></a><span class="in">   data_list &lt;- list(N = 10, y = c(0,1,0,0,0,0,0,0,0,1))</span></span>
-<span id="cb61-504"><a href="#cb61-504"></a></span>
-<span id="cb61-505"><a href="#cb61-505"></a><span class="in">   fit &lt;- mod$sample(</span></span>
-<span id="cb61-506"><a href="#cb61-506"></a><span class="in">     data = data_list,</span></span>
-<span id="cb61-507"><a href="#cb61-507"></a><span class="in">     seed = 123,</span></span>
-<span id="cb61-508"><a href="#cb61-508"></a><span class="in">     chains = 4,</span></span>
-<span id="cb61-509"><a href="#cb61-509"></a><span class="in">     parallel_chains = 4,</span></span>
-<span id="cb61-510"><a href="#cb61-510"></a><span class="in">     refresh = 500 # print update every 500 iters</span></span>
-<span id="cb61-511"><a href="#cb61-511"></a><span class="in">   )</span></span>
-<span id="cb61-512"><a href="#cb61-512"></a><span class="in">   ```</span></span>
-<span id="cb61-513"><a href="#cb61-513"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb61-514"><a href="#cb61-514"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb61-515"><a href="#cb61-515"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb61-516"><a href="#cb61-516"></a><span class="ss">   - </span>install the package</span>
-<span id="cb61-517"><a href="#cb61-517"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-518"><a href="#cb61-518"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb61-519"><a href="#cb61-519"></a><span class="in">     #| eval: false</span></span>
-<span id="cb61-520"><a href="#cb61-520"></a><span class="in">     install.packages(&quot;brms&quot;)</span></span>
-<span id="cb61-521"><a href="#cb61-521"></a><span class="in">     ```</span></span>
-<span id="cb61-522"><a href="#cb61-522"></a>     <span class="co">&lt;!--</span></span>
-<span id="cb61-523"><a href="#cb61-523"></a><span class="co">     ```{r}</span></span>
-<span id="cb61-524"><a href="#cb61-524"></a><span class="co">     #| label: test</span></span>
-<span id="cb61-525"><a href="#cb61-525"></a><span class="co">     #| results: markup</span></span>
-<span id="cb61-526"><a href="#cb61-526"></a><span class="co">     #| eval: false</span></span>
-<span id="cb61-527"><a href="#cb61-527"></a><span class="co">     #| echo: false</span></span>
-<span id="cb61-528"><a href="#cb61-528"></a><span class="co">     #| cache: false</span></span>
-<span id="cb61-529"><a href="#cb61-529"></a><span class="co">     cmdstanr:::get_cmdstan_flags(&quot;STANCFLAGS&quot;)</span></span>
-<span id="cb61-530"><a href="#cb61-530"></a><span class="co">     cmdstanr:::cmdstan_path()</span></span>
-<span id="cb61-531"><a href="#cb61-531"></a><span class="co">     Sys.getenv(&quot;HOME&quot;)</span></span>
-<span id="cb61-532"><a href="#cb61-532"></a><span class="co">     cmdstan_path &lt;- cmdstanr:::cmdstan_path()</span></span>
-<span id="cb61-533"><a href="#cb61-533"></a><span class="co">     withr::with_envvar(</span></span>
-<span id="cb61-534"><a href="#cb61-534"></a><span class="co">       c(&quot;HOME&quot; = Sys.getenv(&quot;HOME&quot;)),</span></span>
-<span id="cb61-535"><a href="#cb61-535"></a><span class="co">     flags &lt;- cmdstanr:::wsl_compatible_run(</span></span>
-<span id="cb61-536"><a href="#cb61-536"></a><span class="co">      command = &quot;make&quot;,</span></span>
-<span id="cb61-537"><a href="#cb61-537"></a><span class="co">      args = c(&quot;-s&quot;, paste0(&quot;print-&quot;, &quot;STANCFLAGS&quot;)),</span></span>
-<span id="cb61-538"><a href="#cb61-538"></a><span class="co">      wd = cmdstan_path</span></span>
-<span id="cb61-539"><a href="#cb61-539"></a><span class="co">     )$stdout</span></span>
-<span id="cb61-540"><a href="#cb61-540"></a><span class="co">     )</span></span>
-<span id="cb61-541"><a href="#cb61-541"></a></span>
-<span id="cb61-542"><a href="#cb61-542"></a><span class="co">     flags &lt;- gsub(&quot;\n&quot;, &quot;&quot;, flags, fixed = TRUE)</span></span>
-<span id="cb61-543"><a href="#cb61-543"></a><span class="co">     print(flags)</span></span>
-<span id="cb61-544"><a href="#cb61-544"></a><span class="co">     flags_vec &lt;- strsplit(x = flags, split = &quot; &quot;, fixed = TRUE)[[1]]</span></span>
-<span id="cb61-545"><a href="#cb61-545"></a><span class="co">     print(flags_vec)</span></span>
-<span id="cb61-546"><a href="#cb61-546"></a></span>
-<span id="cb61-547"><a href="#cb61-547"></a><span class="co">     list.files(cmdstanr:::cmdstan_path())</span></span>
-<span id="cb61-548"><a href="#cb61-548"></a></span>
-<span id="cb61-549"><a href="#cb61-549"></a><span class="co">     cmdstanr::cmdstanr_example()</span></span>
-<span id="cb61-550"><a href="#cb61-550"></a></span>
-<span id="cb61-551"><a href="#cb61-551"></a><span class="co">     #system(paste0(&quot;cat &quot;, cmdstanr:::cmdstan_path(), &quot;/makefile&quot;))</span></span>
-<span id="cb61-552"><a href="#cb61-552"></a><span class="co">     ```</span></span>
-<span id="cb61-553"><a href="#cb61-553"></a><span class="co">     --&gt;</span></span>
-<span id="cb61-554"><a href="#cb61-554"></a></span>
-<span id="cb61-555"><a href="#cb61-555"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb61-556"><a href="#cb61-556"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-557"><a href="#cb61-557"></a><span class="in">     #| label: install_cmdstan7_print</span></span>
-<span id="cb61-558"><a href="#cb61-558"></a><span class="in">     #| eval: false</span></span>
-<span id="cb61-559"><a href="#cb61-559"></a><span class="in">     library(cmdstanr)</span></span>
-<span id="cb61-560"><a href="#cb61-560"></a><span class="in">     library(brms)</span></span>
-<span id="cb61-561"><a href="#cb61-561"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
-<span id="cb61-562"><a href="#cb61-562"></a><span class="in">     brm(y ~ x, data = dat, backend = &quot;cmdstanr&quot;)</span></span>
-<span id="cb61-563"><a href="#cb61-563"></a><span class="in">     ```</span></span>
-<span id="cb61-564"><a href="#cb61-564"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-565"><a href="#cb61-565"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb61-566"><a href="#cb61-566"></a><span class="in">     #| eval: true</span></span>
-<span id="cb61-567"><a href="#cb61-567"></a><span class="in">     #| echo: false</span></span>
-<span id="cb61-568"><a href="#cb61-568"></a><span class="in">     #| cache: true</span></span>
-<span id="cb61-569"><a href="#cb61-569"></a><span class="in">     library(rstan)</span></span>
-<span id="cb61-570"><a href="#cb61-570"></a><span class="in">     library(brms)</span></span>
-<span id="cb61-571"><a href="#cb61-571"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
-<span id="cb61-572"><a href="#cb61-572"></a><span class="in">     brm(y ~ x, data = dat, backend = &quot;rstan&quot;)</span></span>
-<span id="cb61-573"><a href="#cb61-573"></a><span class="in">     ```</span></span>
-<span id="cb61-574"><a href="#cb61-574"></a></span>
-<span id="cb61-575"><a href="#cb61-575"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb61-576"><a href="#cb61-576"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb61-577"><a href="#cb61-577"></a></span>
-<span id="cb61-578"><a href="#cb61-578"></a><span class="fu">## MacOSx</span></span>
-<span id="cb61-579"><a href="#cb61-579"></a></span>
-<span id="cb61-580"><a href="#cb61-580"></a><span class="ss">1. </span>Install and setup **Xcode** (a collection of build tools for</span>
-<span id="cb61-581"><a href="#cb61-581"></a>   MacOSX)</span>
-<span id="cb61-582"><a href="#cb61-582"></a><span class="ss">   - </span>open a terminal and enter</span>
-<span id="cb61-583"><a href="#cb61-583"></a>   <span class="in">```{bash}</span></span>
-<span id="cb61-584"><a href="#cb61-584"></a><span class="in">   #| label: install_xcode</span></span>
-<span id="cb61-585"><a href="#cb61-585"></a><span class="in">   #| eval: false</span></span>
-<span id="cb61-586"><a href="#cb61-586"></a><span class="in">   #| engine: bash</span></span>
-<span id="cb61-587"><a href="#cb61-587"></a><span class="in">   #| classes: bash</span></span>
-<span id="cb61-588"><a href="#cb61-588"></a><span class="in">   xcode-select --install</span></span>
-<span id="cb61-589"><a href="#cb61-589"></a><span class="in">   ```</span></span>
+<span id="cb61-490"><a href="#cb61-490"></a></span>
+<span id="cb61-491"><a href="#cb61-491"></a>::::: {.indented}</span>
+<span id="cb61-492"><a href="#cb61-492"></a>:::: {.callout-important collapse=&quot;false&quot;}</span>
+<span id="cb61-493"><a href="#cb61-493"></a></span>
+<span id="cb61-494"><a href="#cb61-494"></a>Pay particular attention to any messages returned at this step.</span>
+<span id="cb61-495"><a href="#cb61-495"></a>Specifically, if it suggests you run a bit of code, please do so</span>
+<span id="cb61-496"><a href="#cb61-496"></a></span>
+<span id="cb61-497"><a href="#cb61-497"></a>::::</span>
+<span id="cb61-498"><a href="#cb61-498"></a>:::::</span>
+<span id="cb61-499"><a href="#cb61-499"></a></span>
+<span id="cb61-500"><a href="#cb61-500"></a><span class="in">     - if the toolchain is correctly configured, install cmdstan</span></span>
+<span id="cb61-501"><a href="#cb61-501"></a><span class="in">       ```{r}</span></span>
+<span id="cb61-502"><a href="#cb61-502"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb61-503"><a href="#cb61-503"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-504"><a href="#cb61-504"></a><span class="in">       install_cmdstan(cores = 2)</span></span>
+<span id="cb61-505"><a href="#cb61-505"></a><span class="in">       ```</span></span>
+<span id="cb61-506"><a href="#cb61-506"></a></span>
+<span id="cb61-507"><a href="#cb61-507"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb61-508"><a href="#cb61-508"></a>   <span class="in">```{r}</span></span>
+<span id="cb61-509"><a href="#cb61-509"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb61-510"><a href="#cb61-510"></a><span class="in">   #| eval: true</span></span>
+<span id="cb61-511"><a href="#cb61-511"></a><span class="in">   #| cache: true</span></span>
+<span id="cb61-512"><a href="#cb61-512"></a><span class="in">   file &lt;- file.path(cmdstan_path(), &quot;examples&quot;, &quot;bernoulli&quot;, &quot;bernoulli.stan&quot;)</span></span>
+<span id="cb61-513"><a href="#cb61-513"></a><span class="in">   mod &lt;- cmdstan_model(file)</span></span>
+<span id="cb61-514"><a href="#cb61-514"></a><span class="in">   data_list &lt;- list(N = 10, y = c(0,1,0,0,0,0,0,0,0,1))</span></span>
+<span id="cb61-515"><a href="#cb61-515"></a></span>
+<span id="cb61-516"><a href="#cb61-516"></a><span class="in">   fit &lt;- mod$sample(</span></span>
+<span id="cb61-517"><a href="#cb61-517"></a><span class="in">     data = data_list,</span></span>
+<span id="cb61-518"><a href="#cb61-518"></a><span class="in">     seed = 123,</span></span>
+<span id="cb61-519"><a href="#cb61-519"></a><span class="in">     chains = 4,</span></span>
+<span id="cb61-520"><a href="#cb61-520"></a><span class="in">     parallel_chains = 4,</span></span>
+<span id="cb61-521"><a href="#cb61-521"></a><span class="in">     refresh = 500 # print update every 500 iters</span></span>
+<span id="cb61-522"><a href="#cb61-522"></a><span class="in">   )</span></span>
+<span id="cb61-523"><a href="#cb61-523"></a><span class="in">   ```</span></span>
+<span id="cb61-524"><a href="#cb61-524"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb61-525"><a href="#cb61-525"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb61-526"><a href="#cb61-526"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb61-527"><a href="#cb61-527"></a><span class="ss">   - </span>install the package</span>
+<span id="cb61-528"><a href="#cb61-528"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-529"><a href="#cb61-529"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb61-530"><a href="#cb61-530"></a><span class="in">     #| eval: false</span></span>
+<span id="cb61-531"><a href="#cb61-531"></a><span class="in">     install.packages(&quot;brms&quot;)</span></span>
+<span id="cb61-532"><a href="#cb61-532"></a><span class="in">     ```</span></span>
+<span id="cb61-533"><a href="#cb61-533"></a>     <span class="co">&lt;!--</span></span>
+<span id="cb61-534"><a href="#cb61-534"></a><span class="co">     ```{r}</span></span>
+<span id="cb61-535"><a href="#cb61-535"></a><span class="co">     #| label: test</span></span>
+<span id="cb61-536"><a href="#cb61-536"></a><span class="co">     #| results: markup</span></span>
+<span id="cb61-537"><a href="#cb61-537"></a><span class="co">     #| eval: false</span></span>
+<span id="cb61-538"><a href="#cb61-538"></a><span class="co">     #| echo: false</span></span>
+<span id="cb61-539"><a href="#cb61-539"></a><span class="co">     #| cache: false</span></span>
+<span id="cb61-540"><a href="#cb61-540"></a><span class="co">     cmdstanr:::get_cmdstan_flags(&quot;STANCFLAGS&quot;)</span></span>
+<span id="cb61-541"><a href="#cb61-541"></a><span class="co">     cmdstanr:::cmdstan_path()</span></span>
+<span id="cb61-542"><a href="#cb61-542"></a><span class="co">     Sys.getenv(&quot;HOME&quot;)</span></span>
+<span id="cb61-543"><a href="#cb61-543"></a><span class="co">     cmdstan_path &lt;- cmdstanr:::cmdstan_path()</span></span>
+<span id="cb61-544"><a href="#cb61-544"></a><span class="co">     withr::with_envvar(</span></span>
+<span id="cb61-545"><a href="#cb61-545"></a><span class="co">       c(&quot;HOME&quot; = Sys.getenv(&quot;HOME&quot;)),</span></span>
+<span id="cb61-546"><a href="#cb61-546"></a><span class="co">     flags &lt;- cmdstanr:::wsl_compatible_run(</span></span>
+<span id="cb61-547"><a href="#cb61-547"></a><span class="co">      command = &quot;make&quot;,</span></span>
+<span id="cb61-548"><a href="#cb61-548"></a><span class="co">      args = c(&quot;-s&quot;, paste0(&quot;print-&quot;, &quot;STANCFLAGS&quot;)),</span></span>
+<span id="cb61-549"><a href="#cb61-549"></a><span class="co">      wd = cmdstan_path</span></span>
+<span id="cb61-550"><a href="#cb61-550"></a><span class="co">     )$stdout</span></span>
+<span id="cb61-551"><a href="#cb61-551"></a><span class="co">     )</span></span>
+<span id="cb61-552"><a href="#cb61-552"></a></span>
+<span id="cb61-553"><a href="#cb61-553"></a><span class="co">     flags &lt;- gsub(&quot;\n&quot;, &quot;&quot;, flags, fixed = TRUE)</span></span>
+<span id="cb61-554"><a href="#cb61-554"></a><span class="co">     print(flags)</span></span>
+<span id="cb61-555"><a href="#cb61-555"></a><span class="co">     flags_vec &lt;- strsplit(x = flags, split = &quot; &quot;, fixed = TRUE)[[1]]</span></span>
+<span id="cb61-556"><a href="#cb61-556"></a><span class="co">     print(flags_vec)</span></span>
+<span id="cb61-557"><a href="#cb61-557"></a></span>
+<span id="cb61-558"><a href="#cb61-558"></a><span class="co">     list.files(cmdstanr:::cmdstan_path())</span></span>
+<span id="cb61-559"><a href="#cb61-559"></a></span>
+<span id="cb61-560"><a href="#cb61-560"></a><span class="co">     cmdstanr::cmdstanr_example()</span></span>
+<span id="cb61-561"><a href="#cb61-561"></a></span>
+<span id="cb61-562"><a href="#cb61-562"></a><span class="co">     #system(paste0(&quot;cat &quot;, cmdstanr:::cmdstan_path(), &quot;/makefile&quot;))</span></span>
+<span id="cb61-563"><a href="#cb61-563"></a><span class="co">     ```</span></span>
+<span id="cb61-564"><a href="#cb61-564"></a><span class="co">     --&gt;</span></span>
+<span id="cb61-565"><a href="#cb61-565"></a></span>
+<span id="cb61-566"><a href="#cb61-566"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb61-567"><a href="#cb61-567"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-568"><a href="#cb61-568"></a><span class="in">     #| label: install_cmdstan7_print</span></span>
+<span id="cb61-569"><a href="#cb61-569"></a><span class="in">     #| eval: false</span></span>
+<span id="cb61-570"><a href="#cb61-570"></a><span class="in">     library(cmdstanr)</span></span>
+<span id="cb61-571"><a href="#cb61-571"></a><span class="in">     library(brms)</span></span>
+<span id="cb61-572"><a href="#cb61-572"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
+<span id="cb61-573"><a href="#cb61-573"></a><span class="in">     brm(y ~ x, data = dat, backend = &quot;cmdstanr&quot;)</span></span>
+<span id="cb61-574"><a href="#cb61-574"></a><span class="in">     ```</span></span>
+<span id="cb61-575"><a href="#cb61-575"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-576"><a href="#cb61-576"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb61-577"><a href="#cb61-577"></a><span class="in">     #| eval: true</span></span>
+<span id="cb61-578"><a href="#cb61-578"></a><span class="in">     #| echo: false</span></span>
+<span id="cb61-579"><a href="#cb61-579"></a><span class="in">     #| cache: true</span></span>
+<span id="cb61-580"><a href="#cb61-580"></a><span class="in">     library(rstan)</span></span>
+<span id="cb61-581"><a href="#cb61-581"></a><span class="in">     library(brms)</span></span>
+<span id="cb61-582"><a href="#cb61-582"></a><span class="in">     dat &lt;- data.frame(y = rnorm(10), x = rnorm(10))</span></span>
+<span id="cb61-583"><a href="#cb61-583"></a><span class="in">     brm(y ~ x, data = dat, backend = &quot;rstan&quot;)</span></span>
+<span id="cb61-584"><a href="#cb61-584"></a><span class="in">     ```</span></span>
+<span id="cb61-585"><a href="#cb61-585"></a></span>
+<span id="cb61-586"><a href="#cb61-586"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb61-587"><a href="#cb61-587"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb61-588"><a href="#cb61-588"></a></span>
+<span id="cb61-589"><a href="#cb61-589"></a><span class="fu">## MacOSx</span></span>
 <span id="cb61-590"><a href="#cb61-590"></a></span>
-<span id="cb61-591"><a href="#cb61-591"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
-<span id="cb61-592"><a href="#cb61-592"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
-<span id="cb61-593"><a href="#cb61-593"></a><span class="ss">     - </span>open a new R session and issue the following</span>
-<span id="cb61-594"><a href="#cb61-594"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-595"><a href="#cb61-595"></a><span class="in">       #| label: install_cmdstan1</span></span>
-<span id="cb61-596"><a href="#cb61-596"></a><span class="in">       #| eval: false</span></span>
-<span id="cb61-597"><a href="#cb61-597"></a><span class="in">       #| cache: true</span></span>
-<span id="cb61-598"><a href="#cb61-598"></a><span class="in">       ```</span></span>
-<span id="cb61-599"><a href="#cb61-599"></a><span class="ss">     - </span>make sure the package loads</span>
-<span id="cb61-600"><a href="#cb61-600"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-601"><a href="#cb61-601"></a><span class="in">       #| label: install_cmdstan2</span></span>
-<span id="cb61-602"><a href="#cb61-602"></a><span class="in">       #| eval: true</span></span>
-<span id="cb61-603"><a href="#cb61-603"></a><span class="in">       #| cache: true</span></span>
-<span id="cb61-604"><a href="#cb61-604"></a><span class="in">       ```</span></span>
-<span id="cb61-605"><a href="#cb61-605"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
-<span id="cb61-606"><a href="#cb61-606"></a>       installed and configured</span>
-<span id="cb61-607"><a href="#cb61-607"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-608"><a href="#cb61-608"></a><span class="in">       #| label: install_cmdstan3</span></span>
-<span id="cb61-609"><a href="#cb61-609"></a><span class="in">       #| eval: false</span></span>
-<span id="cb61-610"><a href="#cb61-610"></a><span class="in">       ```</span></span>
-<span id="cb61-611"><a href="#cb61-611"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb61-612"><a href="#cb61-612"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-613"><a href="#cb61-613"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb61-614"><a href="#cb61-614"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-591"><a href="#cb61-591"></a><span class="ss">1. </span>Install and setup **Xcode** (a collection of build tools for</span>
+<span id="cb61-592"><a href="#cb61-592"></a>   MacOSX)</span>
+<span id="cb61-593"><a href="#cb61-593"></a><span class="ss">   - </span>open a terminal and enter</span>
+<span id="cb61-594"><a href="#cb61-594"></a>   <span class="in">```{bash}</span></span>
+<span id="cb61-595"><a href="#cb61-595"></a><span class="in">   #| label: install_xcode</span></span>
+<span id="cb61-596"><a href="#cb61-596"></a><span class="in">   #| eval: false</span></span>
+<span id="cb61-597"><a href="#cb61-597"></a><span class="in">   #| engine: bash</span></span>
+<span id="cb61-598"><a href="#cb61-598"></a><span class="in">   #| classes: bash</span></span>
+<span id="cb61-599"><a href="#cb61-599"></a><span class="in">   xcode-select --install</span></span>
+<span id="cb61-600"><a href="#cb61-600"></a><span class="in">   ```</span></span>
+<span id="cb61-601"><a href="#cb61-601"></a></span>
+<span id="cb61-602"><a href="#cb61-602"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
+<span id="cb61-603"><a href="#cb61-603"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
+<span id="cb61-604"><a href="#cb61-604"></a><span class="ss">     - </span>open a new R session and issue the following</span>
+<span id="cb61-605"><a href="#cb61-605"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-606"><a href="#cb61-606"></a><span class="in">       #| label: install_cmdstan1</span></span>
+<span id="cb61-607"><a href="#cb61-607"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-608"><a href="#cb61-608"></a><span class="in">       #| cache: true</span></span>
+<span id="cb61-609"><a href="#cb61-609"></a><span class="in">       ```</span></span>
+<span id="cb61-610"><a href="#cb61-610"></a><span class="ss">     - </span>make sure the package loads</span>
+<span id="cb61-611"><a href="#cb61-611"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-612"><a href="#cb61-612"></a><span class="in">       #| label: install_cmdstan2</span></span>
+<span id="cb61-613"><a href="#cb61-613"></a><span class="in">       #| eval: true</span></span>
+<span id="cb61-614"><a href="#cb61-614"></a><span class="in">       #| cache: true</span></span>
 <span id="cb61-615"><a href="#cb61-615"></a><span class="in">       ```</span></span>
-<span id="cb61-616"><a href="#cb61-616"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb61-617"><a href="#cb61-617"></a>   <span class="in">```{r}</span></span>
-<span id="cb61-618"><a href="#cb61-618"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb61-619"><a href="#cb61-619"></a><span class="in">   #| eval: true</span></span>
-<span id="cb61-620"><a href="#cb61-620"></a><span class="in">   #| cache: true</span></span>
-<span id="cb61-621"><a href="#cb61-621"></a><span class="in">   ```</span></span>
-<span id="cb61-622"><a href="#cb61-622"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb61-623"><a href="#cb61-623"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb61-624"><a href="#cb61-624"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb61-625"><a href="#cb61-625"></a><span class="ss">   - </span>install the package</span>
-<span id="cb61-626"><a href="#cb61-626"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-627"><a href="#cb61-627"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb61-628"><a href="#cb61-628"></a><span class="in">     #| eval: false</span></span>
-<span id="cb61-629"><a href="#cb61-629"></a><span class="in">     ```</span></span>
-<span id="cb61-630"><a href="#cb61-630"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb61-631"><a href="#cb61-631"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-632"><a href="#cb61-632"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb61-633"><a href="#cb61-633"></a><span class="in">     #| eval: true</span></span>
-<span id="cb61-634"><a href="#cb61-634"></a><span class="in">     #| cache: true</span></span>
-<span id="cb61-635"><a href="#cb61-635"></a><span class="in">     ```</span></span>
-<span id="cb61-636"><a href="#cb61-636"></a></span>
-<span id="cb61-637"><a href="#cb61-637"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb61-638"><a href="#cb61-638"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb61-639"><a href="#cb61-639"></a></span>
-<span id="cb61-640"><a href="#cb61-640"></a><span class="fu">## Linux</span></span>
-<span id="cb61-641"><a href="#cb61-641"></a></span>
-<span id="cb61-642"><a href="#cb61-642"></a><span class="ss">1. </span>Ensure that you have installed (via your package manager) the</span>
-<span id="cb61-643"><a href="#cb61-643"></a>   following dependencies:</span>
-<span id="cb61-644"><a href="#cb61-644"></a><span class="ss">   - </span>build-essential</span>
-<span id="cb61-645"><a href="#cb61-645"></a><span class="ss">   - </span>g++</span>
-<span id="cb61-646"><a href="#cb61-646"></a><span class="ss">   - </span>gcc</span>
-<span id="cb61-647"><a href="#cb61-647"></a><span class="ss">   - </span>curl</span>
-<span id="cb61-648"><a href="#cb61-648"></a><span class="ss">   - </span>libcurl4-openssl-dev</span>
-<span id="cb61-649"><a href="#cb61-649"></a></span>
-<span id="cb61-650"><a href="#cb61-650"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
-<span id="cb61-651"><a href="#cb61-651"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
-<span id="cb61-652"><a href="#cb61-652"></a><span class="ss">     - </span>open a new R session and issue the following</span>
-<span id="cb61-653"><a href="#cb61-653"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-654"><a href="#cb61-654"></a><span class="in">       #| label: install_cmdstan1</span></span>
-<span id="cb61-655"><a href="#cb61-655"></a><span class="in">       #| eval: false</span></span>
-<span id="cb61-656"><a href="#cb61-656"></a><span class="in">       ```</span></span>
-<span id="cb61-657"><a href="#cb61-657"></a><span class="ss">     - </span>make sure the package loads</span>
-<span id="cb61-658"><a href="#cb61-658"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-659"><a href="#cb61-659"></a><span class="in">       #| label: install_cmdstan2</span></span>
-<span id="cb61-660"><a href="#cb61-660"></a><span class="in">       #| eval: true</span></span>
-<span id="cb61-661"><a href="#cb61-661"></a><span class="in">       #| cache: true</span></span>
-<span id="cb61-662"><a href="#cb61-662"></a><span class="in">       ```</span></span>
-<span id="cb61-663"><a href="#cb61-663"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
-<span id="cb61-664"><a href="#cb61-664"></a>       installed and configured</span>
-<span id="cb61-665"><a href="#cb61-665"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-666"><a href="#cb61-666"></a><span class="in">       #| label: install_cmdstan3</span></span>
-<span id="cb61-667"><a href="#cb61-667"></a><span class="in">       #| eval: false</span></span>
-<span id="cb61-668"><a href="#cb61-668"></a><span class="in">       ```</span></span>
-<span id="cb61-669"><a href="#cb61-669"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
-<span id="cb61-670"><a href="#cb61-670"></a>       <span class="in">```{r}</span></span>
-<span id="cb61-671"><a href="#cb61-671"></a><span class="in">       #| label: install_cmdstan4</span></span>
-<span id="cb61-672"><a href="#cb61-672"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-616"><a href="#cb61-616"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
+<span id="cb61-617"><a href="#cb61-617"></a>       installed and configured</span>
+<span id="cb61-618"><a href="#cb61-618"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-619"><a href="#cb61-619"></a><span class="in">       #| label: install_cmdstan3</span></span>
+<span id="cb61-620"><a href="#cb61-620"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-621"><a href="#cb61-621"></a><span class="in">       ```</span></span>
+<span id="cb61-622"><a href="#cb61-622"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
+<span id="cb61-623"><a href="#cb61-623"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-624"><a href="#cb61-624"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb61-625"><a href="#cb61-625"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-626"><a href="#cb61-626"></a><span class="in">       ```</span></span>
+<span id="cb61-627"><a href="#cb61-627"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb61-628"><a href="#cb61-628"></a>   <span class="in">```{r}</span></span>
+<span id="cb61-629"><a href="#cb61-629"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb61-630"><a href="#cb61-630"></a><span class="in">   #| eval: true</span></span>
+<span id="cb61-631"><a href="#cb61-631"></a><span class="in">   #| cache: true</span></span>
+<span id="cb61-632"><a href="#cb61-632"></a><span class="in">   ```</span></span>
+<span id="cb61-633"><a href="#cb61-633"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb61-634"><a href="#cb61-634"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb61-635"><a href="#cb61-635"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb61-636"><a href="#cb61-636"></a><span class="ss">   - </span>install the package</span>
+<span id="cb61-637"><a href="#cb61-637"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-638"><a href="#cb61-638"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb61-639"><a href="#cb61-639"></a><span class="in">     #| eval: false</span></span>
+<span id="cb61-640"><a href="#cb61-640"></a><span class="in">     ```</span></span>
+<span id="cb61-641"><a href="#cb61-641"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb61-642"><a href="#cb61-642"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-643"><a href="#cb61-643"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb61-644"><a href="#cb61-644"></a><span class="in">     #| eval: true</span></span>
+<span id="cb61-645"><a href="#cb61-645"></a><span class="in">     #| cache: true</span></span>
+<span id="cb61-646"><a href="#cb61-646"></a><span class="in">     ```</span></span>
+<span id="cb61-647"><a href="#cb61-647"></a></span>
+<span id="cb61-648"><a href="#cb61-648"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb61-649"><a href="#cb61-649"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb61-650"><a href="#cb61-650"></a></span>
+<span id="cb61-651"><a href="#cb61-651"></a><span class="fu">## Linux</span></span>
+<span id="cb61-652"><a href="#cb61-652"></a></span>
+<span id="cb61-653"><a href="#cb61-653"></a><span class="ss">1. </span>Ensure that you have installed (via your package manager) the</span>
+<span id="cb61-654"><a href="#cb61-654"></a>   following dependencies:</span>
+<span id="cb61-655"><a href="#cb61-655"></a><span class="ss">   - </span>build-essential</span>
+<span id="cb61-656"><a href="#cb61-656"></a><span class="ss">   - </span>g++</span>
+<span id="cb61-657"><a href="#cb61-657"></a><span class="ss">   - </span>gcc</span>
+<span id="cb61-658"><a href="#cb61-658"></a><span class="ss">   - </span>curl</span>
+<span id="cb61-659"><a href="#cb61-659"></a><span class="ss">   - </span>libcurl4-openssl-dev</span>
+<span id="cb61-660"><a href="#cb61-660"></a></span>
+<span id="cb61-661"><a href="#cb61-661"></a><span class="ss">2. </span>Install **cmdstan** (an implementation of the STAN language)</span>
+<span id="cb61-662"><a href="#cb61-662"></a><span class="ss">   - </span>using selected instructions from <span class="ot">&lt;https://mc-stan.org/cmdstanr/articles/cmdstanr.html&gt;</span></span>
+<span id="cb61-663"><a href="#cb61-663"></a><span class="ss">     - </span>open a new R session and issue the following</span>
+<span id="cb61-664"><a href="#cb61-664"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-665"><a href="#cb61-665"></a><span class="in">       #| label: install_cmdstan1</span></span>
+<span id="cb61-666"><a href="#cb61-666"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-667"><a href="#cb61-667"></a><span class="in">       ```</span></span>
+<span id="cb61-668"><a href="#cb61-668"></a><span class="ss">     - </span>make sure the package loads</span>
+<span id="cb61-669"><a href="#cb61-669"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-670"><a href="#cb61-670"></a><span class="in">       #| label: install_cmdstan2</span></span>
+<span id="cb61-671"><a href="#cb61-671"></a><span class="in">       #| eval: true</span></span>
+<span id="cb61-672"><a href="#cb61-672"></a><span class="in">       #| cache: true</span></span>
 <span id="cb61-673"><a href="#cb61-673"></a><span class="in">       ```</span></span>
-<span id="cb61-674"><a href="#cb61-674"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
-<span id="cb61-675"><a href="#cb61-675"></a>   <span class="in">```{r}</span></span>
-<span id="cb61-676"><a href="#cb61-676"></a><span class="in">   #| label: install_cmdstan5</span></span>
-<span id="cb61-677"><a href="#cb61-677"></a><span class="in">   #| eval: true</span></span>
-<span id="cb61-678"><a href="#cb61-678"></a><span class="in">   #| cache: true</span></span>
-<span id="cb61-679"><a href="#cb61-679"></a><span class="in">   ```</span></span>
-<span id="cb61-680"><a href="#cb61-680"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
-<span id="cb61-681"><a href="#cb61-681"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
-<span id="cb61-682"><a href="#cb61-682"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
-<span id="cb61-683"><a href="#cb61-683"></a><span class="ss">   - </span>install the package</span>
-<span id="cb61-684"><a href="#cb61-684"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-685"><a href="#cb61-685"></a><span class="in">     #| label: install_cmdstan6</span></span>
-<span id="cb61-686"><a href="#cb61-686"></a><span class="in">     #| eval: false</span></span>
-<span id="cb61-687"><a href="#cb61-687"></a><span class="in">     ```</span></span>
-<span id="cb61-688"><a href="#cb61-688"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
-<span id="cb61-689"><a href="#cb61-689"></a>     <span class="in">```{r}</span></span>
-<span id="cb61-690"><a href="#cb61-690"></a><span class="in">     #| label: install_cmdstan7</span></span>
-<span id="cb61-691"><a href="#cb61-691"></a><span class="in">     #| eval: true</span></span>
-<span id="cb61-692"><a href="#cb61-692"></a><span class="in">     #| cache: true</span></span>
-<span id="cb61-693"><a href="#cb61-693"></a><span class="in">     ```</span></span>
-<span id="cb61-694"><a href="#cb61-694"></a></span>
-<span id="cb61-695"><a href="#cb61-695"></a>     Again, if you get output similar to that above, then the complete</span>
-<span id="cb61-696"><a href="#cb61-696"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
-<span id="cb61-697"><a href="#cb61-697"></a>:::</span>
+<span id="cb61-674"><a href="#cb61-674"></a><span class="ss">     - </span>ensure that the c++ toolchain (from Rtools) is correctly</span>
+<span id="cb61-675"><a href="#cb61-675"></a>       installed and configured</span>
+<span id="cb61-676"><a href="#cb61-676"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-677"><a href="#cb61-677"></a><span class="in">       #| label: install_cmdstan3</span></span>
+<span id="cb61-678"><a href="#cb61-678"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-679"><a href="#cb61-679"></a><span class="in">       ```</span></span>
+<span id="cb61-680"><a href="#cb61-680"></a><span class="ss">     - </span>if the toolchain is correctly configured, install cmdstan</span>
+<span id="cb61-681"><a href="#cb61-681"></a>       <span class="in">```{r}</span></span>
+<span id="cb61-682"><a href="#cb61-682"></a><span class="in">       #| label: install_cmdstan4</span></span>
+<span id="cb61-683"><a href="#cb61-683"></a><span class="in">       #| eval: false</span></span>
+<span id="cb61-684"><a href="#cb61-684"></a><span class="in">       ```</span></span>
+<span id="cb61-685"><a href="#cb61-685"></a><span class="ss">3. </span>Ensure that cmdstan is properly configured by compiling a built in example</span>
+<span id="cb61-686"><a href="#cb61-686"></a>   <span class="in">```{r}</span></span>
+<span id="cb61-687"><a href="#cb61-687"></a><span class="in">   #| label: install_cmdstan5</span></span>
+<span id="cb61-688"><a href="#cb61-688"></a><span class="in">   #| eval: true</span></span>
+<span id="cb61-689"><a href="#cb61-689"></a><span class="in">   #| cache: true</span></span>
+<span id="cb61-690"><a href="#cb61-690"></a><span class="in">   ```</span></span>
+<span id="cb61-691"><a href="#cb61-691"></a>   If you get output resembling the above, then cmdstan is setup correctly.</span>
+<span id="cb61-692"><a href="#cb61-692"></a><span class="ss">4. </span>Install the **brms** - an R package that provides a more familiar R</span>
+<span id="cb61-693"><a href="#cb61-693"></a>   model fitting interface to <span class="in">`STAN`</span>.</span>
+<span id="cb61-694"><a href="#cb61-694"></a><span class="ss">   - </span>install the package</span>
+<span id="cb61-695"><a href="#cb61-695"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-696"><a href="#cb61-696"></a><span class="in">     #| label: install_cmdstan6</span></span>
+<span id="cb61-697"><a href="#cb61-697"></a><span class="in">     #| eval: false</span></span>
+<span id="cb61-698"><a href="#cb61-698"></a><span class="in">     ```</span></span>
+<span id="cb61-699"><a href="#cb61-699"></a><span class="ss">   - </span>test whether the whole tool chain works</span>
+<span id="cb61-700"><a href="#cb61-700"></a>     <span class="in">```{r}</span></span>
+<span id="cb61-701"><a href="#cb61-701"></a><span class="in">     #| label: install_cmdstan7</span></span>
+<span id="cb61-702"><a href="#cb61-702"></a><span class="in">     #| eval: true</span></span>
+<span id="cb61-703"><a href="#cb61-703"></a><span class="in">     #| cache: true</span></span>
+<span id="cb61-704"><a href="#cb61-704"></a><span class="in">     ```</span></span>
+<span id="cb61-705"><a href="#cb61-705"></a></span>
+<span id="cb61-706"><a href="#cb61-706"></a>     Again, if you get output similar to that above, then the complete</span>
+<span id="cb61-707"><a href="#cb61-707"></a>     Bayesian toolchain is correctly configured and ready for use.</span>
+<span id="cb61-708"><a href="#cb61-708"></a>:::</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
