@@ -2650,3 +2650,5 @@ that there are two functions of the same name in different packages.
 ```{r}
 #| label: cmdA
 ```
+
+The end
