@@ -1,5 +1,5 @@
 ---
-title: Instructions 
+title: Instructions
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
 crossref:
@@ -11,7 +11,7 @@ engine: knitr
 bibliography: ../resources/references.bib
 output_dir: "docs"
 ---
- 
+
 # Purpose
 
 This tutorial series should be considered reference and background
@@ -20,8 +20,8 @@ analyses with R. The topics covered progress from introductory and
 foundational through to more advanced and as such, the tutorials are
 intended to be consumed and worked through largely in the order laid
 out in the sidebar menu to the left.
- 
-# Format of tutorials 
+
+# Format of tutorials
 
 ## R code
 Throughout the tutorials, R code snippets will be presented in a block such as:
@@ -99,7 +99,7 @@ Such commands are presented as:
 
 ```{bash}
 #| label: bash
-#| classes: bash 
+#| classes: bash
 pwd
 ```
 
@@ -108,18 +108,17 @@ pwd
 The contents of plain text files will similarly be presented either as:
 
 ```{txt}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-Maecenas sed metus congue risus sagittis viverra. Etiam 
-hendrerit orci arcu, et vehicula libero vulputate nec. 
-Aliquam placerat lacinia ex sit amet varius. Suspendisse 
-potenti. Nam tristique fringilla lacus id tincidunt. Donec 
-quis turpis tempus leo pharetra malesuada. Vivamus consequat 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+Maecenas sed metus congue risus sagittis viverra. Etiam
+hendrerit orci arcu, et vehicula libero vulputate nec.
+Aliquam placerat lacinia ex sit amet varius. Suspendisse
+potenti. Nam tristique fringilla lacus id tincidunt. Donec
+quis turpis tempus leo pharetra malesuada. Vivamus consequat
 a quam nec vestibulum.
 ```
 
 or when necessary to save space:
 
 ```{txt, class = "plain"}
-Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 ```
- 
