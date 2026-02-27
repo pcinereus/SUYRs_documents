@@ -61,8 +61,9 @@ jobs:
           git fetch origin gh-pages:gh-pages
           git checkout gh-pages
           ls -lat
+          echo $PWD
           mkdir -p docs
-          cp -r * docs || echo "No existing files to copy."
+          cp -r *.html docs || echo "No existing files to copy."
           ls -lat docs
 
       - name: Render Updated Quarto Files
