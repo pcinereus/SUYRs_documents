@@ -1,8 +1,8 @@
 ---
-title: Code editors 
+title: Code editors
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -84,21 +84,21 @@ choice among R users.
 
 #### Installing RStudio on Windows:
 
-1. **Download R:** 
+1. **Download R:**
     - RStudio requires R to be installed. If you have not already done
       so, download and install R from the official CRAN website.
 
-2. **Download RStudio:** 
+2. **Download RStudio:**
     - Visit the [RStudio Download
     page](https://www.rstudio.com/products/rstudio/download/) and
     select the "RStudio Desktop" version compatible with your Windows
     operating system.
 
-3. **Install RStudio:** 
+3. **Install RStudio:**
     - Run the downloaded RStudio installer and follow the installation
-      wizard. 
+      wizard.
     - Accept the default settings unless you have specific
-      preferences. 
+      preferences.
 
 4. **Launch RStudio:**
     - After installation, launch RStudio from the Start menu or
@@ -122,7 +122,7 @@ choice among R users.
 4. **Launch RStudio:**
     - Open RStudio from the Applications folder or use Spotlight to
       search for it.
-      
+
 #### Installing RStudio on Linux:
 
 1. **Download R:**
@@ -418,7 +418,7 @@ au BufNewFile,BufRead *.R set filetype=r
     - Run R Script:
       - Evaluate parts of your R script or the entire script to ensure
         that the R interpreter is correctly executing code.
-      
+
 ### Key Features
 
 Neovim maintains Vim compatibility, supports plugins for extended
@@ -440,7 +440,7 @@ customizable environment suitable for various programming languages.
       page](https://www.sublimetext.com/download) and download the
       installer for your operating system (Windows, macOS, or Linux).
     - Follow the installation instructions provided on the website.
-    
+
 2. Launch Sublime Text:
     - After installation, launch Sublime Text. You can find it in the Start menu on Windows, in the Applications folder on macOS, or by using the terminal on Linux.
 
@@ -497,6 +497,4 @@ Package Control, and provides ample customization options.
 
 :::
 
-
-
-
+The end
