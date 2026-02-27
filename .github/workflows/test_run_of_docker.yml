@@ -9,3 +9,4 @@ jobs:
     steps:
       - name: Pull Docker image
         run: |
+          docker run --rm ghcr.io/pcinereus/suyrs_documents:cache Rscript -e "print('Hello from R!')"
