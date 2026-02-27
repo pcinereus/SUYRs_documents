@@ -467,12 +467,23 @@ and confirm that it indicates that there is a hidden password.
        #| eval: false
        check_cmdstan_toolchain()
        ```
+
+::::: {.indented}
+:::: {.callout-important collapse="false"}
+
+Pay particular attention to any messages returned at this step.
+Specifically, if it suggests you run a bit of code, please do so
+
+::::
+:::::
+
      - if the toolchain is correctly configured, install cmdstan
        ```{r}
        #| label: install_cmdstan4
        #| eval: false
        install_cmdstan(cores = 2)
        ```
+
 3. Ensure that cmdstan is properly configured by compiling a built in example
    ```{r}
    #| label: install_cmdstan5
