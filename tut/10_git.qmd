@@ -168,6 +168,11 @@ common actions and git 'verbs'.
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \end{tikzpicture}
 ```
+
+```{r tttest, cache=FALSE,echo=FALSE}
+system("convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png")
+```
+
 ```{bash}
 #| label: Fig0-conv
 #| warning: false
