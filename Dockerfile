@@ -88,6 +88,12 @@ RUN apt-get update && apt-get install -y \
     docker.io \
     && rm -rf /var/lib/apt/lists/*
 
+
+RUN R -e "options(repos = \
+    list(CRAN = \"https://packagemanager.posit.co/cran/2024-04-11/\")); \
+  pak::pkg_install(c('magick')); \
+"
+
 # RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
 # COPY architects_daughter /usr/share/fonts/
 # RUN unzip -d inconsolata/ resources/Inconsolata.zip
