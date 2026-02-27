@@ -58,18 +58,23 @@ jobs:
 
       - name: Pull Existing gh-pages Branch
         run: |
-          git fetch origin gh-pages:gh-pages
-          git checkout gh-pages
+          mkdir gh-pages-folder
+          # git fetch origin gh-pages:gh-pages
+          # git checkout gh-pages
+          git clone --branch gh-pages --single-branch https://github.com/${{ github.repository }} gh-pages-folder
+          ls -lat gh-pages-folder
+
           ls -lat
           echo $PWD
           mkdir -p docs
-          cp -r *.html docs || echo "No existing files to copy."
+          cp -r gh-pages-folder/*.html docs || echo "No existing files to copy."
           ls -lat docs
 
       - name: Render Updated Quarto Files
         run: |
           #mkdir ~/tmp
           #mkdir ~/tmp/docker_test
+          cat changed_files.txt
 
           if [ -s changed_files.txt ]; then
             docker run --privileged --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
