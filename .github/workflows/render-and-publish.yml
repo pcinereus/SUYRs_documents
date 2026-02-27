@@ -1,4 +1,3 @@
-
 name: Render and Publish Tutorials
 
 on:
@@ -16,7 +15,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with: 
+        with:
           fetch-depth: 0  # Ensure git history is available
 
       - name: Get last GitHub Pages deployment timestamp
@@ -43,7 +42,7 @@ jobs:
 
           echo "Changed files:"
           cat changed_files.txt || echo "No changes found."
-    
+
       - name: Log in to GitHub Container Registry
         run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $GITHUB_ACTOR --password-stdin
 
@@ -56,11 +55,20 @@ jobs:
       #    bash -c "cp gh-pages-folder/*.html tut/ && make tut"
       #    #bash -c "cp gh-pages-folder/*.html tut/ && ls -la tut"
       #    #bash -c "git diff --name-only HEAD~1 HEAD | grep '\.qmd$' | xargs -I {} quarto render {}"
+
+      - name: Pull Existing gh-pages Branch
+        run: |
+          git fetch origin gh-pages:gh-pages
+          git checkout gh-pages
+          mkdir -p docs
+          cp -r * ../docs || echo "No existing files to copy."
+          ls -lat ../docs
+
       - name: Render Updated Quarto Files
         run: |
           #mkdir ~/tmp
           #mkdir ~/tmp/docker_test
-          
+
           if [ -s changed_files.txt ]; then
             docker run --privileged --rm -v /var/run/docker.sock:/var/run/docker.sock -v $PWD:/workspace -w /workspace ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
