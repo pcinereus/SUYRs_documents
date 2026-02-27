@@ -6,10 +6,15 @@ on:
 jobs:
   run-r-script:
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: read
+
     steps:
       - name: Pull Docker image
         run: |
-          docker pull ghcr.io/pcinereus/suyrs_documents:cache
+          docker pull ghcr.io/pcinereus/suyrs_documents:latest
 
       - name: Run R script
         run: |
