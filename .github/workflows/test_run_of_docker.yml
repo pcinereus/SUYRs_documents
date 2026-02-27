@@ -18,4 +18,4 @@ jobs:
 
       - name: Run R script
         run: |
-          docker run --rm ghcr.io/pcinereus/suyrs_documents:cache Rscript -e "print('Hello from R!')"
+          docker run --rm ghcr.io/pcinereus/suyrs_documents:latest Rscript -e "print('Hello from R!')"
