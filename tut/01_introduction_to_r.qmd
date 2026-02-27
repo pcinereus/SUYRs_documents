@@ -1,8 +1,8 @@
 ---
-title: Introduction to R 
+title: Introduction to R
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -38,11 +38,11 @@ mirrors](https://cran.r-project.org/mirrors.html). Having selected one
 of the (Australian) mirrors, follow one of the sets of instructions
 below (depending on your operating system).
 
-::: panel-tabset 
+::: panel-tabset
 
 ## Windows
 
-- **Download R:** 
+- **Download R:**
   - Go to the CRAN R-project website <https://cran.r-project.org/> and
   click on "Download R for Windows".
   - Select the "base" subdirectory
@@ -57,21 +57,21 @@ below (depending on your operating system).
   the default for R scripts during installation. This allows you to
   run R scripts by double-clicking them.
 
-- **Verify installation:** 
+- **Verify installation:**
   - Open a new command prompt (Start > Run > cmd) and type `R`. If the R
   console opens, the installation was successful.
   - Alternatively, search for R in the Start menu
 
 ## MacOSx
 
-- **Download R:** 
+- **Download R:**
   - Go to the CRAN R-project website (https://cran.r-project.org/) and
     click on "Download R for macOS".
   - Choose the latest stable version that is appropriate for your
     architecture.
 - **Open the disk image:** Double-click the downloaded .pkg file and
   drag the R application icon to your Applications folder.
-  
+
 - **Verify installation:**
   - Open Terminal: Go to Applications > Utilities and open Terminal.
   - Type `R` in the Terminal window. If the R console opens, the
@@ -332,7 +332,7 @@ are also recommended:
 
 - only use lowercase letters and numbers
 - use underscores (`_`) to separate words (e.g. _snake case_)
-- try to use names that are both concise and meaningful. 
+- try to use names that are both concise and meaningful.
   - names should reflect the content of the object. One of the
     powerful features of R is that there is virtually no limit to the
     number of objects (variables, datasets, results, models, etc) that
@@ -349,7 +349,7 @@ are also recommended:
   - although there are no restrictions on the length of names, shorter
     names are quicker to type and provide less scope for typographical
     errors and are therefore recommended (of course within the
-    restrictions of the point above). 
+    restrictions of the point above).
 - where possible, avoid using names of common predefined functions and
   variables as this can provide a source of confusion for both you and
   R. For example, to represent the mean of a head length variable, use
@@ -500,7 +500,7 @@ str(seq.default)
 - we can alter this behavior by specifically providing values for the
   named arguments. The following generates a sequence of numbers from
   2 to 10 incrementing by 1 (default):
-  
+
   ```{r}
   #| label: cmd14
   seq(from = 2, to = 10)
@@ -542,7 +542,7 @@ str(seq.default)
 
   Note, although permittable, it is more difficult to unambiguously
   read/interpret the code and could easily be a source of bugs.
-  
+
 - named and unnamed arguments can be mixed, just remember the above
   rules about parameter order and unambiguous names:
 
@@ -619,7 +619,7 @@ function arguments. Function calls can be nested within the arguments
 of other functions and function arguments are evaluated before the
 function runs. In this way, multiple steps to be truncated together
 (although for the sake of the codes' readability and debugging, it is
-often better to break a problem up into smaller steps). 
+often better to break a problem up into smaller steps).
 
 If a function argument itself contains a function (as was the case
 above with the `from =` and `to =` arguments, both of which called the
@@ -739,7 +739,7 @@ calculates the mean of a vector).
   and `help.start()` functions search through the regular manuals and
   the local HTML manuals (via a web browser) respectively for specific
   terms:
-  
+
   ```{r}
   #| label: cmd30
   #| eval: false
@@ -753,7 +753,7 @@ calculates the mean of a vector).
   ```{r}
   #| label: cmd31
   #| eval: true
-  args(mean)         #the arguments that apply to the mean function 
+  args(mean)         #the arguments that apply to the mean function
   args(list.files)   #the arguments that apply to the list.files function
   ```
 
@@ -1427,7 +1427,7 @@ of vector indexing used to extract a subset of vectors:
 
 - **Vector of positive integers** - a set of integers that indicate
   which elements of the vector should be included:
- 
+
   ```{r}
   #| label: cmd59
   temperature[2]
@@ -1568,7 +1568,7 @@ pattern and returns the index of all matching entries.
 
 ```{r}
 #| label: cmd69
-## get the indexes of elements of the site vector that contain an 'A' 
+## get the indexes of elements of the site vector that contain an 'A'
 grep(pattern = "A", experiment$site)
 ## use the results of the grep as indexes to select only those 'site'
 ## values that contain an 'A'
@@ -1892,7 +1892,7 @@ specifications:
 ```{r}
 #| label: cmd90
 seq(pi, pi * 10000, length = 5)
-## format to integers  
+## format to integers
 formatC(seq(pi, pi * 10000, length = 5), format = "d")
 ## scientific notation
 formatC(seq(pi, pi * 10000, length = 5), format = "e", digits = 2)
@@ -2385,7 +2385,7 @@ critical for your regular analyses.
 devtools::dev_mode(on = TRUE)
 ##install the development version of ggplot2
 devtools::install_github("ggplot2")
-## use the development version of ggplot2 
+## use the development version of ggplot2
 library(ggplot2)
 ## switch development mode off
 devtools::dev_mode(on = FALSE)
@@ -2413,7 +2413,7 @@ Note, do not uncompress the packages.
 ```{r}
 #| label: cmd113
 #| eval: false
-R CMD INSTALL packagename 
+R CMD INSTALL packagename
 ```
 
 where `packagename` is replaced by the path and name of the compressed
@@ -2479,7 +2479,7 @@ functions to help manage and maintain the packages on your system.
   #| eval: false
   new.packages()
   ```
-  
+
 - `update.packages()` downloads and installs packages for which newer
   versions of those packages identified as 'old' by the `old.packages()`
   function. Just like `old.packages()`, alternative or multiple
@@ -2650,6 +2650,3 @@ that there are two functions of the same name in different packages.
 ```{r}
 #| label: cmdA
 ```
-
-
-

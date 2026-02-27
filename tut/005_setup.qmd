@@ -468,14 +468,14 @@ and confirm that it indicates that there is a hidden password.
        check_cmdstan_toolchain()
        ```
 
-::::: {.indented}
-:::: {.callout-important collapse="false"}
+       ::::: {.indented}
+       :::: {.callout-important collapse="false"}
 
-Pay particular attention to any messages returned at this step.
-Specifically, if it suggests you run a bit of code, please do so
+       Pay particular attention to any messages returned at this step.
+       Specifically, if it suggests you run a bit of code, please do so
 
-::::
-:::::
+       ::::
+       :::::
 
      - if the toolchain is correctly configured, install cmdstan
        ```{r}
