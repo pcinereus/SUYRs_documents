@@ -2,7 +2,7 @@
 title: Grammar of graphics (ggplot2 and friends)
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -42,7 +42,7 @@ library(pander)
 FIG_PATH <- "05_grammar_of_graphics_files/figure-html/"
 if (!dir.exists(FIG_PATH)) dir.create(FIG_PATH)
 ```
- 
+
 
 ```{r blank_template, echo=FALSE}
 blank_theme <- theme_bw() +
@@ -50,7 +50,7 @@ blank_theme <- theme_bw() +
           axis.title = element_blank(),
           axis.text = element_blank())
 ```
- 
+
 This Tutorial has been thrown together a little hastily and is
 therefore not very well organised - sorry!  Graphical features are
 demonstrated either via tables of properties or as clickable graphics
@@ -62,8 +62,8 @@ This tutorial is intended to be viewed sequentially. It begins with
 the basic ggplot framework and then progressively builds up more and
 more features as default elements are gradually replaced to yeild more
 customized graphics.
-		  
-		  
+
+
 Having said that, I am going to start with a sort of _showcase_ of
 graphics which should act as quick navigation to entire sections
 devoted to the broad series of graphs related to each of the featured
@@ -75,7 +75,7 @@ of graphics specifications are sufficiently unfamiliar to many that
 the relationships between the types of graphical features a researcher
 wishes to produce and the specific syntax required to achieve the
 desired result can be difficult to recognise.
-		  
+
 Each graphic is intended to encapsulate a broad series of related
 graph types.
 
@@ -91,7 +91,7 @@ graph types.
 
 [Points
 ![](05_grammar_of_graphics_files/figure-html/ggplotPoint-1.png){class="thumb"}
-](#Gpoints) 
+](#Gpoints)
 
 [Text
 ![](05_grammar_of_graphics_files/figure-html/ggplotText-1.png){class="thumb"}
@@ -247,9 +247,9 @@ graph types.
 
 </div>
 :::
- 
 
-# The Grammar of Graphics 
+
+# The Grammar of Graphics
 
 The Grammar of Graphics was first introduced/presented by Wilkinson
 and Wills (2006) as a new graphics philosophy that laid down a series
@@ -273,7 +273,7 @@ g <- ggplot() +
 ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.dir = TRUE)
 ```
 ```{tikz}
-%| label: tikz_basics 
+%| label: tikz_basics
 %| engine: tikz
 %| echo: false
 %| cache: true
@@ -289,7 +289,7 @@ ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.d
 \newcommand{\fequal}[1][black!20]{
   \tikz\draw[#1,line width=0.5em] (0,0.2) -- (1,0.2)(0,-0.2) -- (1,-0.2);
 }
-\tikzset{ 
+\tikzset{
     table/.style={
         matrix of nodes,
        nodes in empty cells,
@@ -317,7 +317,7 @@ ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.d
         },
         column 5/.style={
             nodes={
-                text width=4em, 
+                text width=4em,
                 fill=blue!40
             }
         },
@@ -332,14 +332,14 @@ ggsave(filename=paste0(FIG_PATH,"plot1.png"), g, width=3.2, height=2.6, create.d
 }
 \begin{tikzpicture}
 \matrix (first) [table,text width=4em]{
-V1&V2 &V3 \\    
-   &  & \\    
-  &  &  \\    
- &  & \\    
- &   &  \\    
- &  & \\    
- &   &  \\    
-}; 
+V1&V2 &V3 \\
+   &  & \\
+  &  &  \\
+ &  & \\
+ &   &  \\
+ &  & \\
+ &   &  \\
+};
 
 \draw[->,line width = 3pt,color=orange] (first-2-1.center) -- ($(first-2-1.center) +(4,0)$) node [circle,fill=black,inner sep=0pt,minimum size=9pt, right=5pt] {};
 \draw[->,line width = 3pt,color=orange] (first-3-1.center) -- ($(first-3-1.center) +(4,0)$) node [circle,fill=black,inner sep=0pt,minimum size=9pt, right=5pt] {};
@@ -359,7 +359,7 @@ V1&V2 &V3 \\
         amplitude = 10pt
     },
     decorate
-] (first.south west) -- ($(geom.east|-first.south)$) node [pos=0.5,anchor=north,yshift=-0.55cm, Title] {layer}; 
+] (first.south west) -- ($(geom.east|-first.south)$) node [pos=0.5,anchor=north,yshift=-0.55cm, Title] {layer};
 
 
 \matrix (second) [table,text width=4em, right=4.0cm of first.south east, anchor=south west,
@@ -388,17 +388,17 @@ every odd row/.style={
         }
 }
 ]{
-   &  &    & \\    
-   &  &    &\\    
-  &  &    & \\    
-  &  &    & \\    
-  &  &    & \\    
-  &  &    & \\    
-}; 
+   &  &    & \\
+   &  &    &\\
+  &  &    & \\
+  &  &    & \\
+  &  &    & \\
+  &  &    & \\
+};
 \node [Title,above=0.6cm of second.north,anchor=south] (Data)  {\parbox[c][][t]{5cm}{\centering{Coordinate system}}};
-\node [left=0.4cm of second.west, anchor=east] {\fplus};  
+\node [left=0.4cm of second.west, anchor=east] {\fplus};
 
-\node [right=0.4cm of second.east, anchor=west] {\fplus};  
+\node [right=0.4cm of second.east, anchor=west] {\fplus};
 
 \node [right=2cm of second.east, anchor=west, Title] (Scales) {\parbox[c][][t]{2cm}{\centering{Scales\\[2em]theme}}};
 
@@ -432,13 +432,13 @@ every odd row/.style={
 %         }
 % }
 % ]{
-%    &  &    & \\    
-%    &  &    &\\    
-%   &  &    & \\    
-%   &  &    & \\    
-%   &  &    & \\    
-%   &  &    & \\    
-% };  
+%    &  &    & \\
+%    &  &    &\\
+%   &  &    & \\
+%   &  &    & \\
+%   &  &    & \\
+%   &  &    & \\
+% };
 % \draw[black] (third-6-1.south west) -- (third-6-4.south east);
 % \draw[black] (third-6-1.south west) -- (third-1-1.north west);
 % \node [circle,fill=black,draw=black,inner sep=0pt,minimum size=9pt] at ($(third.south west) +(1,1)$) {};
@@ -448,7 +448,7 @@ every odd row/.style={
 % \node [circle,fill=black,draw=black,inner sep=0pt,minimum size=9pt] at ($(third.south west) +(3.3,3.1)$) {};
 % \node [circle,fill=black,draw=black,inner sep=0pt,minimum size=9pt] at ($(third.south west) +(4.0,3.9)$) {};
 
-\node [right=0.3cm of Scales.east, anchor=west] {\fequal};  
+\node [right=0.3cm of Scales.east, anchor=west] {\fequal};
 \node [above right=0.5cm and 6cm of second.north east, anchor=north west] (third) {\includegraphics[width=6cm]{05_grammar_of_graphics_files/figure-html/plot1.png}};
 \node [Title,above=0.25cm of third.north,anchor=south] (Plot)  {Plot};
 \end{tikzpicture}
@@ -468,7 +468,7 @@ ggplot() +                          # required
 ```
 
 
-Each layer is defined as: 
+Each layer is defined as:
 
 - the data - a data frame
 - <a>mapping</a> specifications that establish the visual aesthetics
@@ -499,7 +499,7 @@ expand on the flexibility etc.
 - `patchwork`
 - `tidyverse` - which is actually a collection of packages that make
   up the _tidyverse_ ecosystem.
-		
+
 ```{r libraries, cache = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 library(ggplot2)
 library(dplyr)
@@ -615,7 +615,7 @@ glimpse(iris)
 2d density estimate of Old Faithful data
 
 - `eruptions` - eruption time (mins)
-- `waiting` - waiting time until next eruption (mins) 
+- `waiting` - waiting time until next eruption (mins)
 - `density` - 2d density estimate
 
 ```{r Faithfuld, results='markup', paged.print=FALSE}
@@ -631,7 +631,7 @@ The warpbreaks dataset comprises of the number of warp breaks per loom
 for two different types of wool under three different tensions.
 
 - `breaks` - the number of warp breaks
-- `wool` - the type of wool (A or B) 
+- `wool` - the type of wool (A or B)
 - `tension` - the level of tension (L: low, M: medium, H: high)
 
 ```{r Warpbreaks, results='markup', paged.print=FALSE}
@@ -656,7 +656,7 @@ summarising) statistic visualised as a point geometric.
 ::: {style='width:72%;'}
 
 ```{r template1, eval=FALSE}
-p <- ggplot() +                                # initialise ggplot 
+p <- ggplot() +                                # initialise ggplot
     layer(data = BOD,                          # data.frame
           mapping = aes(y = demand, x = Time), # define x and y variables
           stat = "identity",                   # use raw input data
@@ -664,7 +664,7 @@ p <- ggplot() +                                # initialise ggplot
           position = "identity",               # how to handle overlap data
           params = list(na.rm = TRUE),         # additional params for stat
           show.legend = FALSE                  # whether include a legend
-          )+ 
+          )+
     layer(data = BOD,                          # data.frame
           mapping = aes(y = demand, x = Time), # define x and y variables
           stat = "identity",                   # use raw input data
@@ -699,7 +699,7 @@ Hence the above can also be entered as:
 ::: {style='width:72%;'}
 
 ```{r template2, eval=FALSE}
-p <- ggplot(data = BOD,                        # initialise ggplot 
+p <- ggplot(data = BOD,                        # initialise ggplot
             map = aes(x = Time, y = demand)) + # define x and y variables
     geom_point() +                             # add points
     geom_line()                                # add lines
@@ -730,37 +730,37 @@ implemented in R:
   <details><summary>Explore</summary>
   The following both alter the x axis to a log (base 10) scale. Note how
   both expressions yield the same outcome.
-  
+
   :::: {style='display:flex; place-content: space-between;'}
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExOrder1, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
-      geom_point() +                            
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
+      geom_point() +
       geom_line() +
       scale_x_log10()
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExOrder2, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
       scale_x_log10() +
-      geom_point() + 
-      geom_line() 
-  p                                           
+      geom_point() +
+      geom_line()
+  p
   ```
-  
+
   :::
-  
+
   ::::
-  
+
   </details>
 - multiple layers are laid down in the order that they appear in the
   statement.  In the example above, the lines are drawn over the top
@@ -769,35 +769,35 @@ implemented in R:
   The following define points and lines in different orders.  Note how
   the points appear under the line in the left hand figure and over
   the line in the right hand figure.
-  
+
   :::: {style='display:flex; place-content: space-between;'}
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExLayers1, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
-      geom_point(color = 'red', size=5) +                            
-      geom_line()                              
-  p                                           
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
+      geom_point(color = 'red', size=5) +
+      geom_line()
+  p
   ```
-  
+
   :::
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExLayers2, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
       geom_line() +
-      geom_point(color = 'red', size=5) 
-  p                                           
+      geom_point(color = 'red', size=5)
+  p
   ```
-  
+
   :::
-  
+
   ::::
-  
+
   </details>
 - layers can be defined either with the `layers` _function_, or more
   conveniently (as illustrated in the shorter, second code snippet),
@@ -810,33 +810,33 @@ implemented in R:
   nothing).  The default `stat` for `geom_line` is `identity` and
   therefore it is not necessary to provide this argument - in this
   case it was purely used for illustrative purposes.
-  
+
   :::: {style='display:flex; place-content: space-between;'}
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExLayers3, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
       geom_line(stat = 'identity')
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExLayers4, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
       stat_identity(geom = 'line')
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::::
-  
+
   </details>
 - the data and mapping used by `geom_*` and `stats_*` _functions_ can
   inherit mapping aesthetics from the main `ggplot()` function.
@@ -848,36 +848,36 @@ implemented in R:
   themselves.  Whilst in this case it does lead to code duplication,
   in other cases, it does permit different sources of data to be
   integrated together into a single graphic.
-  
+
   :::: {style='display:flex; place-content: space-between;'}
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExStat1, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand)) + 
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand)) +
       geom_line() +
       geom_point()
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExStat2, fig.width=4, fig.height = 3}
   p <- ggplot() +
-      geom_line(data = BOD,                      
+      geom_line(data = BOD,
                 map = aes(x = Time, y = demand)) +
       geom_point(data = BOD,
                  map = aes(x = Time, y = demand))
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::::
-  
+
   </details>
 - the `ggplot()` _function_ along with the other building _functions_
   work together to create a set of instructions that determine how a
@@ -888,14 +888,14 @@ implemented in R:
   the name of an object is the same as running the `print` function on
   this object.  <details><summary>Explore</summary> In the following
   figures, the plotting instructions will be built up in multiple
-  stages.  
-  
+  stages.
+
   - the first stage of both examples stores the ggplot initialisation
-	(including specification of the data and aesthetic mapping).
+    (including specification of the data and aesthetic mapping).
   - the second stage of the left hand syntax adds instructions for
-	including two data layers (line and points).  Finally, the left
-	hand syntax then uses prints the full set of plotting instructions
-	(which enacts the generation of the plot).
+    including two data layers (line and points).  Finally, the left
+    hand syntax then uses prints the full set of plotting instructions
+    (which enacts the generation of the plot).
   - the second stage of the right hand syntax adds instructions for
     including a single layer (line) and in the final stage,
     instructions for including a point layer are added to the
@@ -904,36 +904,36 @@ implemented in R:
     instructions on the right hand side do not contain the
     instructions for including the points layer - they are only added
     at the time of printing
-  
+
   :::: {style='display:flex; place-content: space-between;'}
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExProgressive1, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand))  
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand))
   p <- p + geom_line() +
       geom_point()
-  p                                           
+  p
   ```
-  
+
   :::
-  
+
   ::: {style='width:49%;'}
 
   ```{r ExProgressive2, fig.width=4, fig.height = 3}
-  p <- ggplot(data = BOD,                      
-              map = aes(x = Time, y = demand))  
+  p <- ggplot(data = BOD,
+              map = aes(x = Time, y = demand))
   p <- p + geom_line()
-  p + geom_point()                                          
+  p + geom_point()
   ```
-  
+
   :::
-  
+
   ::::
-  
+
   </details>
-  
+
 In all of the examples so far, you might have noticed that we stored
 the plotting instructions in an arbitrary variable (`p`) prior to
 printing (generating the plot).  Although it is not necessary to store
@@ -948,7 +948,7 @@ a section will feature slight variations of a common snippet of code.
 Typically, there will be a single common code block that initialises a
 fairly generic plot followed by a series of modifications/additions
 that highlight different plotting routines or options.
-  
+
 
 In an attempt to illustrate the use of ggplot for elegant graphics, we
 will drill down into each of the plot and layer specifications.
@@ -986,25 +986,25 @@ unaltered as the x,y coordinates on the graph.  Moreover, your
 dataframe may contain pre-calculated information about the quantiles,
 whiskers and outliers and you wish these to be used in the
 construction of a boxplot (rather than have the internals of ggplot
-perform the calculations on raw data).  
+perform the calculations on raw data).
 
 Since `geom_` and `stats_` functions are coupled together, a geometric
 representation can be expressed from either a `geom_` function OR a
 `stats_` function.  That is, you either:
-			  
+
 - specify a `geom_` function that itself calls a `stat_` function to
   provide the data for the `geom` function.
- 
+
   ```{r plotGgplotGeomSmoothA, cache=TRUE, tidy=TRUE, echo=TRUE, eval=FALSE,fig.width=4, fig.height=4, out.width=150, out.height=150, warning=FALSE, message=FALSE}
   ggplot(CO2)+geom_smooth(aes(x=conc,y=uptake), stat="smooth")
-  ``` 
+  ```
 - specify a `stat_` function that itself calls a `geom_` function to
   visually represent the data..
 
   ```{r plotGgplotGeomSmoothB, cache=TRUE, tidy=TRUE, echo=TRUE, eval=FALSE,fig.width=4, fig.height=4, out.width=150, out.height=150, warning=FALSE, message=FALSE}
   ggplot(CO2)+stat_smooth(aes(x=conc,y=uptake), geom="smooth")
   ```
-			
+
 It does not really make any difference which way around you do this.
 For the remainder of this tutorial, we will directly engage the
 `geom_` function for all examples.
@@ -1020,7 +1020,7 @@ which are common to all <samp>geoms_</samp>.
   shapes etc).  The aesthetic mapping can be inherited from the
   `ggplot` function.  Common aesthetic features (mapped via
   a `aes` function) include:
-				
+
   - `alpha` - transparency
   - `colour` - colour of the geometric features
   - `fill` - fill colour of geometric features
@@ -1049,29 +1049,29 @@ in this later instance, the colour is specified _outside_ of the
 aesthetic (`aes`) _function_.
 
 :::: {style='display:flex; place-content: space-between;'}
-  
+
 ::: {style='width:49%;'}
 
 ```{r ExColour1, fig.width=4, fig.height = 3}
-ggplot(data = CO2,                      
+ggplot(data = CO2,
             map = aes(x = conc, y = uptake)) +
-    geom_point(aes(colour = Type))                                  
+    geom_point(aes(colour = Type))
 ```
-  
+
 :::
-  
+
 ::: {style='width:49%;'}
 
 ```{r ExColour2, fig.width=4, fig.height = 3}
-ggplot(data = CO2,      
+ggplot(data = CO2,
             map = aes(x = conc, y = uptake)) +
-    geom_point(colour = "red")                                           
+    geom_point(colour = "red")
 ```
-  
+
 :::
-  
+
 ::::
-  
+
 The above figure (left side) illustrated the use of aesthetics to
 highlight different groups (or _series_) within the data (`Type` in
 that case).  For some _geoms_ it is important that they be able to
@@ -1083,27 +1083,27 @@ specifies that separate lines should be drawn for each `Plant` (each
 plant is its own series or _group_).
 
 :::: {style='display:flex; place-content: space-between;'}
-  
+
 ::: {style='width:49%;'}
 
 ```{r ExGroup1, fig.width=4, fig.height = 3}
-ggplot(data = CO2,                      
+ggplot(data = CO2,
             map = aes(x = conc, y = uptake)) +
-    geom_line()                                  
+    geom_line()
 ```
-  
+
 :::
-  
+
 ::: {style='width:49%;'}
 
 ```{r ExGroup2, fig.width=4, fig.height = 3}
-ggplot(data = CO2,      
+ggplot(data = CO2,
             map = aes(x = conc, y = uptake)) +
-    geom_line(aes(group = Plant))                                           
+    geom_line(aes(group = Plant))
 ```
-  
+
 :::
-  
+
 ::::
 
 In the above right, the series are defined by the _group_ aesthetic.
@@ -1117,7 +1117,7 @@ functions within the ggplot system.  This tutorial is still a work in
 progress and therefore does not include all of them - I have focused
 on the more commonly used ones.
 
-## Primitive geoms 
+## Primitive geoms
 
 Primitive _geoms_ are simple plotting shapes that typically represent
 direct mapping of data variables to the shapes - that is, they do not
@@ -1129,12 +1129,12 @@ points](#Gpoints)).
 
 ::: {.panel-tabset}
 
-### Blank ![](05_grammar_of_graphics_files/figure-html/ggplotBlank-s-1.png){class="thumb-s" #Gblank} 
+### Blank ![](05_grammar_of_graphics_files/figure-html/ggplotBlank-s-1.png){class="thumb-s" #Gblank}
 
 Although this might seem pointless, it can be useful for forcing axes
 scales to conform to a particular format - since axes scales are
 determined by the first layer (which can be blank) defined in the
-sequence of expressions.  
+sequence of expressions.
 
 To help illustrate this, I will introduce a fabricated data set
 comprising the length (mm) of 10 day old frog tadpoles incubated at
@@ -1143,7 +1143,7 @@ three different temperatures (Low, Medium, High).
 
 
 :::: {style='display:flex; place-content: space-between;'}
-  
+
 ::: {style='width:49%;'}
 
 ```{r dataFrogs}
@@ -1177,7 +1177,7 @@ in relation to temperature.  Doing so would introduce one of two problems:
   numeric variable in some way, however doing so would mean that the
   axes labels loose their meaning.
 
-::: 
+:::
 
 ::::
 
@@ -1231,7 +1231,7 @@ ggplot(data=tadpole, aes(y = length, x = temp)) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotBlank1, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(data=tadpole, aes(y = length, x = as.numeric(temp))) +
-    geom_line(stat = 'summary', fun = mean) 
+    geom_line(stat = 'summary', fun = mean)
 ```
 </td>
 </tr>
@@ -1253,7 +1253,7 @@ ggplot(data=tadpole, aes(y = length, x = as.numeric(temp))) +
 ggplot(data=tadpole, aes(y = length, x = temp))+
     geom_blank() +
     geom_line(aes(x = as.numeric(temp)),
-                  stat = 'summary', fun = mean) 
+                  stat = 'summary', fun = mean)
 ```
 </td>
 </tr>
@@ -1398,7 +1398,7 @@ ggplot(data = pch_table, aes(x = x, y = y, shape = shape)) +
 ```
 
 
-### Text ![](05_grammar_of_graphics_files/figure-html/ggplotText-s-1.png){class="thumb-s" #Gtext} 
+### Text ![](05_grammar_of_graphics_files/figure-html/ggplotText-s-1.png){class="thumb-s" #Gtext}
 
 ```{r ggplotText-s, echo=FALSE, include = FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = df, aes(y = y, x = x)) + geom_text(aes(label = z), size=15) +
@@ -1527,14 +1527,14 @@ td <- expand.grid(
     text="text"
 )
 
-ggplot(td, aes(x=hjust, y=vjust)) + 
+ggplot(td, aes(x=hjust, y=vjust)) +
     geom_point() +
-    geom_text(aes(label=text, angle=angle, hjust=hjust, vjust=vjust)) + 
+    geom_text(aes(label=text, angle=angle, hjust=hjust, vjust=vjust)) +
     facet_grid(~angle) +
     scale_x_continuous(breaks=c(0, 0.5, 1), expand=c(0, 0.2)) +
     scale_y_continuous(breaks=c(0, 0.5, 1), expand=c(0, 0.2))
 ```
-        
+
 
 ### Paths ![](05_grammar_of_graphics_files/figure-html/ggplotPath-s-1.png){class="thumb-s" #Gpaths}
 
@@ -1889,7 +1889,7 @@ ggplot(data=newdata, aes(x = Time)) +
 
 :::
 
-## Visualising distributions 
+## Visualising distributions
 
 ::: {.panel-tabset}
 
@@ -1911,12 +1911,12 @@ ggplot(data = diamonds, aes(x = carat)) +
     geom_boxplot() +
     blank_theme
 ```
-  
+
 ```{r ggplotBoxplotP, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(diamonds) +
     geom_boxplot(aes(x = carat, y = cut))
 ```
- 
+
 <details><summary>Show attributes</summary>
 
 
@@ -2349,7 +2349,7 @@ ggplot(data = diamonds, aes(x = carat)) +
 </table>
 
 
-### Violin<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotViolin-s-1.png){class="thumb-s" #Gviolin-plots} 
+### Violin<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotViolin-s-1.png){class="thumb-s" #Gviolin-plots}
 
 `geom_violin` constructs violin plots.  Violin plots are a blend on
 boxplot and density plots in that they are a density plot mirrored
@@ -2402,7 +2402,7 @@ ggplot(data = diamonds, aes(x = carat, y = carat)) +
 ggplot(diamonds) +
     geom_violin(aes(y = carat, x = cut))
 ```
- 
+
 <table class='table table-primary table-bordered table-sm paramsTable'>
 <thead>
 <tr class = 'header'>
@@ -2476,7 +2476,7 @@ ggplot(diamonds) +
 </table>
 
 
-### QQ<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotQQ-s-1.png){class="thumb-s" #Gqq-plots} 
+### QQ<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotQQ-s-1.png){class="thumb-s" #Gqq-plots}
 
 `geom_qq` constructs quantile-quantile (QQ) plots.  QQ plots
 illustrate the quantiles of the sample distribution against the
@@ -2499,12 +2499,12 @@ ggplot(data = diamonds, aes(sample = carat)) +
 ggplot(diamonds) +
     geom_qq(aes(sample = carat))
 ```
- 
+
 ```{r ggplotQQP, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(diamonds) +
     geom_qq(aes(sample = carat, color=cut))
 ```
- 
+
 <details><summary>Show attributes</summary>
 
 | Parameter                                                              | `geom_qq`    | `stat_qq`    |
@@ -2613,7 +2613,7 @@ ggplot(diamonds, aes(sample = carat, colour = cut)) +
 </table>
 
 
-### Bar<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotBar-s-1.png){class="thumb-s" #Gbar-plots} 
+### Bar<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotBar-s-1.png){class="thumb-s" #Gbar-plots}
 
 `geom_bar` constructs barcharts. By default, the bins of each bar along with the associated bar heights are calculated by the `stats_count` function. The following list describes the mapping aesthetic properties associated with `geom_bar` and `stats_count`. The entries in bold are compulsory.
 
@@ -2629,17 +2629,17 @@ ggplot(data = diamonds, aes(x = cut)) +
 ggplot(diamonds) +
     geom_bar(aes(x = cut))
 ```
- 
+
 ```{r ggplotBarS, echo=FALSE,include=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(diamonds) +
     geom_bar(aes(x = cut, fill = clarity))
 ```
- 
+
 ```{r ggplotBarP, echo=FALSE, include=FALSE,fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(diamonds) +
     geom_bar(aes(x = cut, fill = clarity), position = 'dodge')
 ```
- 
+
 <details><summary>Show attributes</summary>
 
 
@@ -2739,7 +2739,7 @@ ggplot(diamonds, aes(x = cut, fill = clarity)) +
 </tr>
 </tbody>
 </table>
- 
+
 ### Dot<br>plots ![](05_grammar_of_graphics_files/figure-html/ggplotDot-s-1.png){class="thumb-s" #Gdot-plots}
 
 <!-- the following generates the small thumbnail to use in the tab icon-->
@@ -2754,13 +2754,13 @@ ggplot(data = CO2, aes(x = uptake)) +
 ggplot(CO2) +
     geom_dotplot(aes(x = uptake), binwidth = 3)
 ```
- 
+
 ```{r ggplotDotP, echo=FALSE, include = FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(CO2) +
     geom_dotplot(aes(x = uptake, fill = Type), stackgroups = TRUE,
-                 binpositions = 'all', binwidth=3, dotsize=1) 
+                 binpositions = 'all', binwidth=3, dotsize=1)
 ```
- 
+
 `geom_dotplot` draws dotplots of continuous data after binning the
 data.  This geom is unusual in that it does not have an associated
 `stat`.  Instead, it calls its own density function.  Dotplots are
@@ -2872,7 +2872,7 @@ ggplot(data = CO2, aes(x = uptake)) +
 ggplot(data = CO2, aes(x = uptake, fill = Type)) +
     geom_dotplot(stackgroups = TRUE,
                  binpositions = 'all',
-                 binwidth=3, dotsize=1) 
+                 binwidth=3, dotsize=1)
 ```
 </td>
 </tr>
@@ -2981,7 +2981,7 @@ ggpairs(iris, colour = "Species", upper = list(continuous = "density",
 :::
 
 
-## Visualising trends 
+## Visualising trends
 
 ::: {.panel-tabset}
 
@@ -2995,9 +2995,9 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 
 ```{r ggplotScatterplot, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(filter(CO2, Plant == first(Plant))) +
-    geom_point(aes(x = conc, y = uptake)) 
+    geom_point(aes(x = conc, y = uptake))
 ```
- 
+
 [see points](#Gpoints)
 
 
@@ -3014,12 +3014,12 @@ ggplot(filter(CO2, Plant == first(Plant))) +
     geom_line(aes(x = conc, y = uptake)) +
     blank_theme
 ```
-  
+
 ```{r ggplotLine, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(filter(CO2, Plant == first(Plant))) +
-    geom_line(aes(x = conc, y = uptake)) 
+    geom_line(aes(x = conc, y = uptake))
 ```
- 
+
 <details><summary>Show attributes</summary>
 
 | Parameter                                                     | `geom_line` |
@@ -3064,7 +3064,7 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotScatterplot1, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(filter(CO2, Plant == first(Plant))) +
-    geom_line(aes(x = conc, y = uptake)) 
+    geom_line(aes(x = conc, y = uptake))
 ```
 </td>
 </tr>
@@ -3166,14 +3166,14 @@ ggplot(filter(CO2, Plant == first(Plant))) +
     geom_smooth(aes(x = conc, y = uptake)) +
     blank_theme
 ```
-  
+
 ```{r ggplotSmooth, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(filter(CO2, Plant == first(Plant))) +
-    geom_smooth(aes(x = conc, y = uptake)) 
+    geom_smooth(aes(x = conc, y = uptake))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 
 | Parameter                                                            | `geom_smooth` | `geom_smooth` |
 |----------------------------------------------------------------------|---------------|---------------|
@@ -3228,7 +3228,7 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotSmoother1, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(filter(CO2, Plant == first(Plant))) +
-    geom_smooth(aes(x = conc, y = uptake)) 
+    geom_smooth(aes(x = conc, y = uptake))
 ```
 </td>
 </tr>
@@ -3309,14 +3309,14 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
     geom_tile(aes(fill = density)) +
     blank_theme
 ```
-  
+
 ```{r ggplotTile, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_tile(aes(fill = density)) 
+    geom_tile(aes(fill = density))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_tile` |
 |--------------------------------------------------------------|-------------|
 | _aesthetics_                                                 |             |
@@ -3360,7 +3360,7 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotTiles1, echo=FALSE, fig.width=5, fig.height=5, out.extra='class="thumb-L"'}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_tile(aes(fill = density)) 
+    geom_tile(aes(fill = density))
 ```
 </td>
 </tr>
@@ -3388,14 +3388,14 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
     geom_raster(aes(fill = density)) +
     blank_theme
 ```
-  
+
 ```{r ggplotRaster, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_raster(aes(fill = density)) 
+    geom_raster(aes(fill = density))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_raster` |
 |--------------------------------------------------------------|---------------|
 | _aesthetics_                                                 |               |
@@ -3441,7 +3441,7 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotRasters1, echo=FALSE, fig.width=5, fig.height=5, out.extra='class="thumb-L"'}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_raster(aes(fill = density)) 
+    geom_raster(aes(fill = density))
 ```
 </td>
 </tr>
@@ -3465,14 +3465,14 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
     geom_contour(aes(z = density)) +
     blank_theme
 ```
-  
+
 ```{r ggplotContour, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_contour(aes(z = density)) 
+    geom_contour(aes(z = density))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_contour` | `stat_contour` |
 |--------------------------------------------------------------|----------------|----------------|
 | _aesthetics_                                                 |                |                |
@@ -3527,7 +3527,7 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotContours1, echo=FALSE, fig.width=5, fig.height=5, out.extra='class="thumb-L"'}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_contour(aes(z = density)) 
+    geom_contour(aes(z = density))
 ```
 </td>
 </tr>
@@ -3551,14 +3551,14 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
     geom_contour_filled(aes(z = density)) +
     blank_theme
 ```
-  
+
 ```{r ggplotFilledContour, include = FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_contour_filled(aes(z = density)) 
+    geom_contour_filled(aes(z = density))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_contour_filled` | `stat_contour_filled` |
 |--------------------------------------------------------------|-----------------------|-----------------------|
 | _aesthetics_                                                 |                       |                       |
@@ -3611,7 +3611,7 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
 <td align = 'left' rowspan = 2>
 ```{r ggplotFilled_Contours1, echo=FALSE, fig.width=5, fig.height=5, out.extra='class="thumb-L"'}
 ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
-    geom_contour_filled(aes(z = density)) 
+    geom_contour_filled(aes(z = density))
 ```
 </td>
 </tr>
@@ -3626,7 +3626,7 @@ ggplot(faithfuld, aes(y = eruptions, x = waiting)) +
 :::
 
 
-## Visualising uncertainty 
+## Visualising uncertainty
 
 ::: {.panel-tabset}
 
@@ -3643,7 +3643,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
     geom_errorbar() +
     blank_theme
 ```
-  
+
 ```{r ggplotErrorbar, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
@@ -3653,7 +3653,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_errorbar` |
 |--------------------------------------------------------------|-----------------|
 | _aesthetics_                                                 |                 |
@@ -3700,7 +3700,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_errorbar() 
+    geom_errorbar()
 ```
 </td>
 </tr>
@@ -3722,7 +3722,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_errorbar(width = 0.25) 
+    geom_errorbar(width = 0.25)
 ```
 </td>
 </tr>
@@ -3744,7 +3744,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_crossbar(width = 0.25) 
+    geom_crossbar(width = 0.25)
 ```
 </td>
 </tr>
@@ -3768,7 +3768,7 @@ warpbreaks.sum <- warpbreaks %>%
 ggplot(warpbreaks.sum, aes(y = y, x = tension, ymin = ymin, ymax = ymax)) +
     geom_errorbar(aes(colour = wool),
                   position = position_dodge(width = 0.5),
-                  width = 0.25) 
+                  width = 0.25)
 ```
 </td>
 </tr>
@@ -3795,7 +3795,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
     geom_linerange() +
     blank_theme
 ```
-  
+
 ```{r ggplotLinerange, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
@@ -3805,7 +3805,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_linerange` |
 |--------------------------------------------------------------|------------------|
 | _aesthetics_                                                 |                  |
@@ -3851,7 +3851,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_linerange() 
+    geom_linerange()
 ```
 </td>
 </tr>
@@ -3874,7 +3874,7 @@ warpbreaks.sum <- warpbreaks %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = tension, ymin = ymin, ymax = ymax)) +
     geom_linerange(aes(colour = wool),
-                  position = position_dodge(width = 0.5)) 
+                  position = position_dodge(width = 0.5))
 ```
 </td>
 </tr>
@@ -3900,7 +3900,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
     geom_pointrange() +
     blank_theme
 ```
-  
+
 ```{r ggplotPointrange, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
@@ -3910,7 +3910,7 @@ ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                      | `geom_pointrange` |
 |----------------------------------------------------------------|-------------------|
 | _aesthetics_                                                   |                   |
@@ -3957,7 +3957,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_pointrange() 
+    geom_pointrange()
 ```
 </td>
 </tr>
@@ -3979,7 +3979,7 @@ warpbreaks.sum <- warpbreaks %>%
     group_by(wool) %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = wool, ymin = ymin, ymax = ymax)) +
-    geom_pointrange(fatten = 5) 
+    geom_pointrange(fatten = 5)
 ```
 </td>
 </tr>
@@ -4002,7 +4002,7 @@ warpbreaks.sum <- warpbreaks %>%
     summarise(mean_se(breaks))
 ggplot(warpbreaks.sum, aes(y = y, x = tension, ymin = ymin, ymax = ymax)) +
     geom_pointrange(aes(colour = wool),
-                  position = position_dodge(width = 0.5)) 
+                  position = position_dodge(width = 0.5))
 ```
 </td>
 </tr>
@@ -4030,13 +4030,13 @@ ggplot(data = pred, aes(x = x, ymin = lwr, ymax = upr)) +
     geom_ribbon() +
     blank_theme
 ```
-  
+
 [see ribbons](#Gribbons)
 
 :::
 
 
-## Other features 
+## Other features
 
 ::: {.panel-tabset}
 
@@ -4058,16 +4058,16 @@ ggplot(filter(CO2, Plant == first(Plant))) +
     geom_point(aes(x = conc, y = uptake)) +
     blank_theme
 ```
-  
+
 ```{r ggplotVline, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(filter(CO2, Plant == first(Plant))) +
     geom_hline(yintercept = 25, linetype = 'dashed') +
     geom_vline(xintercept = 500, linetype = 'dashed') +
-    geom_point(aes(x = conc, y = uptake)) 
+    geom_point(aes(x = conc, y = uptake))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_vline` | `geom_hline` | `geom_abline` |
 |--------------------------------------------------------------|--------------|--------------|---------------|
 | _aesthetics_                                                 |              |              |               |
@@ -4113,7 +4113,7 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 ```{r ggplotVline1, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(filter(CO2, Plant == first(Plant))) +
     geom_vline(xintercept = 500, linetype = 'dashed') +
-    geom_point(aes(x = conc, y = uptake)) 
+    geom_point(aes(x = conc, y = uptake))
 ```
 </td>
 </tr>
@@ -4133,7 +4133,7 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 ```{r ggplotVline2, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(filter(CO2, Plant == first(Plant))) +
     geom_hline(yintercept = 25, linetype = 'dashed') +
-    geom_point(aes(x = conc, y = uptake)) 
+    geom_point(aes(x = conc, y = uptake))
 ```
 </td>
 </tr>
@@ -4153,7 +4153,7 @@ ggplot(filter(CO2, Plant == first(Plant))) +
 ```{r ggplotVline3, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 ggplot(filter(CO2, Plant == first(Plant))) +
     geom_abline(slope = 0.01, intercept = 30, linetype = 'dashed') +
-    geom_point(aes(x = conc, y = uptake)) 
+    geom_point(aes(x = conc, y = uptake))
 ```
 </td>
 </tr>
@@ -4182,18 +4182,18 @@ ggplot(BOD)+
                  arrow = arrow(length=unit(0.5, "cm"), ends = "first")) +
     blank_theme
 ```
-  
+
 ```{r ggplotSegment, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 BOD.lm <- lm(demand ~ Time, data = BOD)
 BOD$fitted <- fitted(BOD.lm)
 BOD$resid <- resid(BOD.lm)
 ggplot(BOD)+
     geom_segment(aes(x=Time,y=demand, xend=Time,yend=fitted),
-                 arrow = arrow(length=unit(0.5, "cm"), ends = "first")) 
+                 arrow = arrow(length=unit(0.5, "cm"), ends = "first"))
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                    | `geom_segment` |
 |--------------------------------------------------------------|----------------|
 | _aesthetics_                                                 |                |
@@ -4246,7 +4246,7 @@ BOD$fitted <- fitted(BOD.lm)
 BOD$resid <- resid(BOD.lm)
 ggplot(BOD)+
     geom_segment(aes(x=Time,y=demand, xend=Time,yend=fitted),
-                 arrow = arrow(length=unit(0.5, "cm"), ends = "first")) 
+                 arrow = arrow(length=unit(0.5, "cm"), ends = "first"))
 ```
 </td>
 </tr>
@@ -4266,11 +4266,11 @@ ggplot(BOD)+
 :::
 
 
-# Coordinate system 
+# Coordinate system
 
 The coordinate system controls the nature and scale of the axes.
 
-## Types of coordinate systems 
+## Types of coordinate systems
 
 ::: {.panel-tabset}
 
@@ -4283,7 +4283,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     coord_cartesian() +
     blank_theme
 ```
-  
+
 ```{r ggplotCoord-Cartesian, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_line() +
@@ -4291,7 +4291,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                                                    | `geom_segment` |
 |--------------------------------------------------------------------------------------------------------------|----------------|
 | `xlim` - limits for the x axis                                                                               | NULL           |
@@ -4344,7 +4344,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     coord_polar() +
     blank_theme
 ```
-  
+
 ```{r ggplotPolar-Polar, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_line() +
@@ -4352,7 +4352,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                                                    | `geom_segment` |
 |--------------------------------------------------------------------------------------------------------------|----------------|
 | `theta` - map angle to either 'x' or 'y'                                                                     | 'x'            |
@@ -4405,7 +4405,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     coord_flip() +
     blank_theme
 ```
-  
+
 ```{r ggplotFlip-Flip, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_line() +
@@ -4413,7 +4413,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                                                    | `geom_segment` |
 |--------------------------------------------------------------------------------------------------------------|----------------|
 | `xlim` - limits for the x axis                                                                               | NULL           |
@@ -4467,7 +4467,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     coord_fixed() +
     blank_theme
 ```
-  
+
 ```{r ggplotCoord-Fixed, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_line() +
@@ -4547,7 +4547,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     coord_trans(x = "log10") +
     blank_theme
 ```
-  
+
 ```{r ggplotCoord-Trans, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_line() +
@@ -4555,7 +4555,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                                                    | `geom_segment` |
 |--------------------------------------------------------------------------------------------------------------|----------------|
 | `x` - the transformation to apply to the x-axis                                                              | "identity"     |
@@ -4621,7 +4621,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 
 :::
 
-## Altering axes scales via the coordinate system 
+## Altering axes scales via the coordinate system
 
 ### Zooming
 Modifying scales with _coords\__ affects the zoom on the graph. That is,
@@ -4678,7 +4678,7 @@ g + coord_fixed(ratio = 0.1,
 ```
 ```{r ggplotCoord-CoordAxes3, eval = TRUE, echo=FALSE, fig.width=2.5, fig.height=2.5}
 ```
- 
+
 :::
 
 ::::
@@ -4759,7 +4759,7 @@ g + geom_point() +
 ```{r ggplotCoord-Trans2b, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 g + geom_point() +
     geom_smooth(method="lm") +
-    coord_trans(x="log10") 
+    coord_trans(x="log10")
 ```
 ```{r ggplotCoord-Trans2b, eval=FALSE, class="plain"}
 ```
@@ -4768,7 +4768,7 @@ g + geom_point() +
 ```{r ggplotCoord-Trans2c, echo=FALSE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
 g + geom_point() +
     geom_smooth(method="lm") +
-    scale_x_continuous(trans="log10") 
+    scale_x_continuous(trans="log10")
 ```
 ```{r ggplotCoord-Trans2c, eval=FALSE, class="plain"}
 ```
@@ -4783,7 +4783,7 @@ other transformer functions is provided in the [scales
 section](#scales).
 
 
-# Scales 
+# Scales
 
 The idea of scales is that you present the plotting engine with data
 or characteristics in one scale and use the various `scale_`
@@ -4825,7 +4825,7 @@ of which are automatically selected according to what is appropriate
 for the sort of data. For example, if the variable mapped to an axis
 is continuous, the a continuous scale is the default.  If the variable
 mapped to an axis is categorical, then a discrete scale is the
-default.  And so on...  
+default.  And so on...
 
 The following table describes the typical scale associated with each
 of the major variable types:
@@ -4862,7 +4862,7 @@ function to manually define a colour scale would be
   title. For all other scales, the name is the title of the guide
   (legend).
   <details><summary>Explore</summary>
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -4879,7 +4879,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleName1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(name = "CO₂ concentration") 
+      scale_x_continuous(name = "CO₂ concentration")
   ```
   </td>
   </tr>
@@ -4895,7 +4895,7 @@ function to manually define a colour scale would be
   More elaborate titles that include special characters and mathematical
   notations are supported via `expression()`'s.  For more info on
   plotting mathematical expressions, run `demo(plotmath)`.
-  
+
   Note the use of the `~` character everywhere that a space would
   appear.  That is because an _expression_ cannot have spaces.
   </td>
@@ -4905,7 +4905,7 @@ function to manually define a colour scale would be
       geom_point() +
       scale_x_continuous(
           name = expression(Ambient~CO[2]~concentration~(mg/l))
-      ) 
+      )
   ```
   </td>
   </tr>
@@ -4927,7 +4927,7 @@ function to manually define a colour scale would be
       geom_point() +
       scale_x_continuous(
           name = expression(paste("Ambient ", CO[2],
-                                  " concentration (mg/l)"))) 
+                                  " concentration (mg/l)")))
   ```
   </td>
   </tr>
@@ -4966,7 +4966,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleBreaks1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(breaks = c(200, 500, 800)) 
+      scale_x_continuous(breaks = c(200, 500, 800))
   ```
   </td>
   </tr>
@@ -5047,7 +5047,7 @@ function to manually define a colour scale would be
 
   The `scales` _package_ has a number of label formatting _functions_.
   These all start with `label_`
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -5065,7 +5065,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleLabels1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(labels = scales::label_comma()) 
+      scale_x_continuous(labels = scales::label_comma())
   ```
   </td>
   </tr>
@@ -5085,7 +5085,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleLabels2, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_y_continuous(labels = scales::label_percent(scale=1)) 
+      scale_y_continuous(labels = scales::label_percent(scale=1))
   ```
   </td>
   </tr>
@@ -5098,7 +5098,7 @@ function to manually define a colour scale would be
   <tr class = 'even'>
   <td align = 'left'>User defined tick labels</td>
   <td align = 'left'>
-  
+
   Format y-axis labels to include percentage sign.  On this occasion
   we will derive a new variable to map to the y-axis.  These values
   are in the range from 0 to 1, so we do want to `scale` (multiply)
@@ -5112,7 +5112,7 @@ function to manually define a colour scale would be
   CO2 <- CO2 %>% mutate(percent = uptake/100)
   ggplot(data = CO2, aes(x = conc, y = percent)) +
       geom_point() +
-      scale_y_continuous(labels = scales::label_percent(accuracy = 1)) 
+      scale_y_continuous(labels = scales::label_percent(accuracy = 1))
   ```
   </td>
   </tr>
@@ -5136,7 +5136,7 @@ function to manually define a colour scale would be
   CO2 <- CO2 %>% mutate(species = paste0('italic(', Type, '.spp)'))
   ggplot(data = CO2, aes(x = species, y = uptake)) +
       geom_point() +
-      scale_x_discrete(labels = scales::label_parse()) 
+      scale_x_discrete(labels = scales::label_parse())
   ```
   </td>
   </tr>
@@ -5169,7 +5169,7 @@ function to manually define a colour scale would be
   </tr>
   </tbody>
   </table>
-  
+
   </details>
 
 - `limits` - the span/range of data represented in the scale. Note, if
@@ -5193,7 +5193,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleLimits1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(limits = c(0, 2000)) 
+      scale_x_continuous(limits = c(0, 2000))
   ```
   </td>
   </tr>
@@ -5211,7 +5211,7 @@ function to manually define a colour scale would be
   ```{r ggplotExampleScaleLimits2, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point(aes(colour=uptake)) +
-      scale_colour_continuous(limits = c(0,60)) 
+      scale_colour_continuous(limits = c(0,60))
   ```
   </td>
   </tr>
@@ -5224,19 +5224,19 @@ function to manually define a colour scale would be
   <tr class = 'odd'>
   <td align = 'left'>Range of the scale</td>
   <td align = 'left'>
-  
+
   This can also include categorical data - in this case, we are adding
   an additional category.  Although this category does not appear in
   the data, it may appear in other data for which you are producing
   similar plots and you wish to maintain the same legends and colour
   palettes.
-  
+
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleLimits3, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = Type, y = uptake)) +
       geom_violin(aes(fill=Treatment)) +
-      scale_fill_discrete(limits = c('nonchilled','chilled','heated')) 
+      scale_fill_discrete(limits = c('nonchilled','chilled','heated'))
   ```
   </td>
   </tr>
@@ -5267,13 +5267,13 @@ function to manually define a colour scale would be
   <tbody>
   <tr class = 'odd'>
   <td align = 'left'>Log (base 10) scale</td>
-  <td align = 'left'>Apply a log (base 10) transformation of the x-axis 
+  <td align = 'left'>Apply a log (base 10) transformation of the x-axis
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleTrans1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(trans = "log10") 
+      scale_x_continuous(trans = "log10")
   ```
   </td>
   </tr>
@@ -5285,13 +5285,13 @@ function to manually define a colour scale would be
   </tr>
   <tr class = 'even'>
   <td align = 'left'>Square-root scale</td>
-  <td align = 'left'>Apply a square-root transformation of the x-axis 
+  <td align = 'left'>Apply a square-root transformation of the x-axis
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleTrans2, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(trans = "sqrt") 
+      scale_x_continuous(trans = "sqrt")
   ```
   </td>
   </tr>
@@ -5304,17 +5304,17 @@ function to manually define a colour scale would be
   <tr class = 'odd'>
   <td align = 'left'>Log (base 2) scale</td>
   <td align = 'left'>
-  
+
   Apply a log (base 2) transformation of the x-axis
   The `scales` _package_ has a set of functions to achieve common
   transformation.
-  
+
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleTrans3, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
-      scale_x_continuous(trans = scales::log10_trans()) 
+      scale_x_continuous(trans = scales::log10_trans())
   ```
   </td>
   </tr>
@@ -5327,7 +5327,7 @@ function to manually define a colour scale would be
   <tr class = 'even'>
   <td align = 'left'>Log (base 2) scale</td>
   <td align = 'left'>
-  
+
   There is also a general _log_ transform that allows you to indicate
   the logarithmic base.  When using the `log_trans` _function_, it is
   a good idea to also use a related function to control the position
@@ -5339,7 +5339,7 @@ function to manually define a colour scale would be
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
       scale_x_continuous(trans = scales::log_trans(base = 2),
-                         breaks = scales::log_breaks(base = 2)) 
+                         breaks = scales::log_breaks(base = 2))
   ```
   </td>
   </tr>
@@ -5352,18 +5352,18 @@ function to manually define a colour scale would be
   <tr class = 'odd'>
   <td align = 'left'>Log (base 2) scale</td>
   <td align = 'left'>
-  
+
   If you wish to apply a logarithmic scale transform, yet also include
   a tickmark at 0, then the `psuedo_log_trans` is a very useful
   function.
-  
+
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleTrans5, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
   ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point() +
       scale_x_continuous(trans = scales::pseudo_log_trans(),
-                         limits = c(0, 1500)) 
+                         limits = c(0, 1500))
   ```
   </td>
   </tr>
@@ -5393,10 +5393,10 @@ function to manually define a colour scale would be
   <tr class = 'odd'>
   <td align = 'left'>Remove guide</td>
   <td align = 'left'>
-  
+
   Scale the size of the points according to a continuous variable, yet
   remove the associated legend.
-  
+
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleGuide1, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
@@ -5416,11 +5416,11 @@ function to manually define a colour scale would be
   <td align = 'left'>Override aethetics
   </td>
   <td align = 'left'>
-  
+
   Colour the points according to a categorical variable (`Type`), but
   increase the size of the points in the legend to make them more
   obvious.
-  
+
   </td>
   <td align = 'left' rowspan = 2>
   ```{r ggplotExampleScaleGuide3, echo=FALSE, fig.width=3, fig.height=3, out.extra='class="thumb-L"'}
@@ -5453,7 +5453,7 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
     scale_x_continuous() +
     theme_classic()
 ```
-  
+
 ```{r ggplotScale-Axes, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = CO2, aes(x = conc, y = uptake)) +
     geom_point(colour = "grey") +
@@ -5462,7 +5462,7 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                           |
 |---------------------------------------------------------------------|
 | _All_                                                               |
@@ -5575,7 +5575,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_point(aes(size = demand)) +
     theme_classic()
 ```
-  
+
 ```{r ggplotScale-Size, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_point(aes(size = demand)) +
@@ -5583,7 +5583,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                       | `_size` | `_size_area` | `_size_binned` |
 |-------------------------------------------------|---------|--------------|----------------|
 | `range` - range (min, max) of symbol sizes      | c(1, 6) |              | c(1,6)         |
@@ -5691,7 +5691,7 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
     scale_shape(solid = TRUE) +
     theme_classic()
 ```
-  
+
 ```{r ggplotScale-Shape, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = CO2, aes(x = conc, y = uptake)) +
     geom_point(aes(shape = Type)) +
@@ -5699,7 +5699,7 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
 ```
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                               | `_shape` | `_shape_binned` |
 |-------------------------------------------------------------------------|----------|-----------------|
 | `solid` - whether the plotting symbols should be solid (TRUE) or hollow | TRUE     | TRUE            |
@@ -5767,17 +5767,17 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
 
 ## Linetype<br><br> ![](05_grammar_of_graphics_files/figure-html/ggplotScale-Linetype-s-1.png){class="thumb-s" #Glinetype}
 
-The `scale_linetype_` scales control the linetype of geoms. 
+The `scale_linetype_` scales control the linetype of geoms.
 
 ```{r ggplotScale-Linetype-s, echo=FALSE, include = FALSE, fig.height=5, fig.width=5, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = CO2, aes(x = conc, y = uptake)) +
     geom_smooth(aes(linetype = Type), se=FALSE, show.legend = FALSE, color='black') +
     theme_classic()
 ```
-  
+
 ```{r ggplotScale-Linetype, include=FALSE, echo=FALSE, fig.height=3, fig.width=3, out.width='300px', out.height='300px', message=FALSE}
 ggplot(data = CO2, aes(x = conc, y = uptake)) +
-    geom_smooth(aes(linetype = Type)) 
+    geom_smooth(aes(linetype = Type))
 ```
 
 <table class='table table-primary table-bordered table-sm paramsTable'>
@@ -5852,7 +5852,7 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_point(aes(color = demand), size = 12) +
     theme_classic()
 ```
-  
+
 _Colour_ (or color) is used to represent the colour of lines and solid
 symbols (e.g. the outer color of shapes).  By contrast, _fill_ is used
 to represent the filling (inner) colour of shapes.
@@ -5861,23 +5861,23 @@ Colors can be specified by either:
 
 - a name of one of the 657 named colors
   <details><summary>Color names</summary>
-  
+
   The names of all the available colors can be obtained via:
   ```{r ggplotScale_ColorF, eval=FALSE}
   colors()
   ```
-  
+
   Below is a visual representation of those colours and their names
   (although you are going to need exceptional eye sight to read the
   names ;)).
-  
+
   ```{r ggplotScale_ColorG, echo=FALSE, fig.width=20, fig.height=20, out.height='650px', out.width='650px'}
   rgb2col = function(rgbmat){
                                         # function to apply to each column of input rgbmat
       ProcessColumn = function(col){
-          rgb(rgbmat[1, col], 
-              rgbmat[2, col], 
-              rgbmat[3, col], 
+          rgb(rgbmat[1, col],
+              rgbmat[2, col],
+              rgbmat[3, col],
               maxColorValue = 255)
       }
                                         # Apply the function
@@ -5916,7 +5916,7 @@ Colors can be specified by either:
   </details>
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                  | default       | default      |
 |------------------------------------------------------------|---------------|--------------|
 |                                                            | `_continuous` | `_binned`    |
@@ -6259,13 +6259,13 @@ ggplot(data = BOD, aes(x = Time, y = demand)) +
     geom_point(aes(alpha = demand), size = 12) +
     theme_classic()
 ```
-  
+
 _alpha_ is used to represent the opacity of lines and solid
 symbols. An _alpha_ value of 0 is transparent and an _alpha_ value of
 1 is fully opaque.
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                              | default  |
 |----------------------------------------+----------|
 | `range` - output range of alpha values | c(0.1,1) |
@@ -6387,7 +6387,7 @@ ggplot(data = CO2, aes(x = conc, y = uptake)) +
 :::
 
 
-# Facets (panels) 
+# Facets (panels)
 
 Faceting splits the data up into a matrix of panels on the basis of
 one or more categorical vectors. Since facets display subsets of the
@@ -6415,12 +6415,12 @@ Wrapped and gridded facets share a number of parameters:
   "free-y" (y-axes free)
 
   <details><summary>Explore</summary>
-  
+
   ```{r ggplotStrip-scales, eval = TRUE, echo=TRUE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
   g <- ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point()
   ```
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -6447,21 +6447,21 @@ Wrapped and gridded facets share a number of parameters:
   </tr>
   </tbody>
   </table>
-  
+
   </details>
-  
+
 - `as.table` - if TRUE (default), arranged from top left to bottom right, otherwise, from bottom left to top right
 - `drop` - whether to drop factor combinations that lack data (default TRUE)
 - `shrink` - whether to shrink axes scales to match applied statistics (TRUE, default) or raw data (FALSE)
 - `labeller` - a function that determines the format of facet (strip) labels (default, 'label_value')
-  
+
   <details><summary>Explore</summary>
-  
+
   ```{r ggplotStrip-labeller, eval = TRUE, echo=TRUE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
   g <- ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point()
   ```
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -6524,19 +6524,19 @@ Wrapped and gridded facets share a number of parameters:
   </tr>
   </tbody>
   </table>
-  
+
   </details>
 
-- `switch` - alternative positions for the panel strips ('x': move top labels to bottom, 'y': move right labels to left, 'both': move both top and right labels to bottom and left) 
+- `switch` - alternative positions for the panel strips ('x': move top labels to bottom, 'y': move right labels to left, 'both': move both top and right labels to bottom and left)
 - `dir` - direction in which to wrap panels ('h': horizontally', 'v': vertically)
 
   <details><summary>Explore</summary>
-  
+
   ```{r ggplotStrip-direction, eval = TRUE, echo=TRUE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
   g <- ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point()
   ```
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -6562,18 +6562,18 @@ Wrapped and gridded facets share a number of parameters:
   </td>
   </tbody>
   </table>
-  
+
   </details>
-  
+
 - `strip.position` - position of the panel label ('top','bottom', 'left', 'right')
 
   <details><summary>Explore</summary>
-  
+
   ```{r ggplotStrip-position, eval = TRUE, echo=TRUE, fig.width=2.5, fig.height=2.5, out.extra='class="thumb-L"'}
   g <- ggplot(data = CO2, aes(x = conc, y = uptake)) +
       geom_point()
   ```
-  
+
   <table class='table table-primary table-bordered table-sm paramsTable'>
   <thead>
   <tr class = 'header'>
@@ -6599,9 +6599,9 @@ Wrapped and gridded facets share a number of parameters:
   </td>
   </body>
   </table>
-  
+
   </details>
- 
+
 ::: {.panel-tabset}
 
 ## Facet wrap ![](05_grammar_of_graphics_files/figure-html/ggplotFacet-wrap-s-1.png){class="thumb-s" style="width:80px; height:80px;" #facet-wrapA}
@@ -6613,9 +6613,9 @@ ggplot(CO2, aes(y=uptake, x=conc)) +
     facet_wrap(~Plant) +
     blank_theme
 ```
-  
+
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                        | default |
 |----------------------------------------------------------------------------------|---------|
 | `nrow` - number of grid rows                                                     | NULL    |
@@ -6735,7 +6735,7 @@ ggplot(CO2, aes(y=uptake, x=conc)) +
 </tr>
 </tbody>
 </table>
-	
+
 
 ## Facet grid ![](05_grammar_of_graphics_files/figure-html/ggplotFacet-grid-s-1.png){class="thumb-s" style="width:80px; height:80px;" #facet-gridA}
 
@@ -6746,9 +6746,9 @@ ggplot(CO2, aes(y=uptake, x=conc)) +
     facet_grid(Treatment~Type) +
     blank_theme
 ```
-  
+
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                                                                                             | default |
 |---------------------------------------------------------------------------------------------------------------------------------------|---------|
 | `rows` - variables used to faceting for the rows                                                                                      | NULL    |
@@ -6847,11 +6847,11 @@ ggplot(CO2, aes(y=uptake, x=conc)) +
 </tr>
 </tbody>
 </table>
-	
+
 
 :::
 
-# Themes 
+# Themes
 
 ```{r ggplotThemes-s, echo=FALSE, include = FALSE, fig.height=5, fig.width=5, out.width='300px', out.height='300px', message=FALSE}
 ggplot(CO2, aes(y=uptake, x=conc)) +
@@ -7008,7 +7008,7 @@ elements can be directly supplied or defined relative to the size of
 the parent element via the `rel()` function.
 
 <details><summary>Show attributes</summary>
- 
+
 | Parameter                                                             | `_line` | `_rect` | `_text` |
 |-----------------------------------------------------------------------|---------|---------|---------|
 | `inherit.blank` -                                                     | FALSE   | FALSE   | FALSE   |
@@ -7045,6 +7045,7 @@ theme_grey()
 ```{r ggplotTheme6, echo=FALSE, eval = TRUE, fig.width=5, fig.height=5, out.extra='class="thumb-L"'}
 ```
 </details>
- 
 
 
+
+The end
