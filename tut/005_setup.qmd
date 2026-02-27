@@ -1,8 +1,8 @@
 ---
-title: Setup instructions 
+title: Setup instructions
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -38,11 +38,11 @@ mirrors](https://cran.r-project.org/mirrors.html). Having selected one
 of the (Australian) mirrors, follow one of the sets of instructions
 below (depending on your operating system).
 
-::: panel-tabset 
+::: panel-tabset
 
 ## Windows
 
-- **Download R:** 
+- **Download R:**
   - Go to the CRAN R-project website <https://cran.r-project.org/> and
   click on "Download R for Windows".
   - Select the "base" subdirectory
@@ -57,21 +57,21 @@ below (depending on your operating system).
   the default for R scripts during installation. This allows you to
   run R scripts by double-clicking them.
 
-- **Verify installation:** 
+- **Verify installation:**
   - Open a new command prompt (Start > Run > cmd) and type `R`. If the R
   console opens, the installation was successful.
   - Alternatively, search for R in the Start menu
 
 ## MacOSx
 
-- **Download R:** 
+- **Download R:**
   - Go to the CRAN R-project website (https://cran.r-project.org/) and
     click on "Download R for macOS".
   - Choose the latest stable version that is appropriate for your
     architecture.
 - **Open the disk image:** Double-click the downloaded .pkg file and
   drag the R application icon to your Applications folder.
-  
+
 - **Verify installation:**
   - Open Terminal: Go to Applications > Utilities and open Terminal.
   - Type `R` in the Terminal window. If the R console opens, the
@@ -98,21 +98,21 @@ below (depending on your operating system).
 
 #### Installing RStudio on Windows:
 
-1. **Download R:** 
+1. **Download R:**
     - RStudio requires R to be installed. If you have not already done
       so, download and install R from the official CRAN website.
 
-2. **Download RStudio:** 
+2. **Download RStudio:**
     - Visit the [RStudio Download
     page](https://www.rstudio.com/products/rstudio/download/) and
     select the "RStudio Desktop" version compatible with your Windows
     operating system.
 
-3. **Install RStudio:** 
+3. **Install RStudio:**
     - Run the downloaded RStudio installer and follow the installation
-      wizard. 
+      wizard.
     - Accept the default settings unless you have specific
-      preferences. 
+      preferences.
 
 4. **Launch RStudio:**
     - After installation, launch RStudio from the Start menu or
@@ -136,7 +136,7 @@ below (depending on your operating system).
 4. **Launch RStudio:**
     - Open RStudio from the Applications folder or use Spotlight to
       search for it.
-      
+
 #### Installing RStudio on Linux:
 
 1. **Download R:**
@@ -166,7 +166,7 @@ sudo apt-get install r-base
 
 # Installating git
 
-::: panel-tabset 
+::: panel-tabset
 
 ## Windows
 
@@ -297,7 +297,7 @@ git --version
 
 **Windows:**
 
-On Windows, you can access a terminal via one of the following: 
+On Windows, you can access a terminal via one of the following:
 
 - via the command Prompt:
   - Press `Win + R` to open the Run dialog.
@@ -338,7 +338,7 @@ To create a **free** github account:
 1. visit <https://github.com> and click "Sign up for github"
 2. register by providing your prefered email address, a username and
    a password when prompted
-3. to complete the account activation, you will need to verify your 
+3. to complete the account activation, you will need to verify your
    details via an email sent to your nominated email address
 
 As of the start of 2024, github now requires Two-Factor Authentication
@@ -349,16 +349,16 @@ prompted for a password, you will also need to use 2FA. To setup 2FA:
 2. select "Settings" from the dropdown menu.
 3. select "Password and authentication" in the left sidebar.
 4. under "Two-factor authentication" section, click "Enable".
-5. choose your preferred method (authenticator app or SMS) and follow 
+5. choose your preferred method (authenticator app or SMS) and follow
    the prompts to set it up.
 
 Passwords and Two-Factor Authentication (2FA) are used when you (as a
 human) securely login and interact directly with the GitHub website.
 However, it is also possible to have other tools (such as `git`)
 interact with Github on your behalf via an Application Programming
-Interfacet (API).  Passwords/2FA are not appropriate to authenticate 
+Interfacet (API).  Passwords/2FA are not appropriate to authenticate
 these machine to machine communications.  Instead, Github requires the
-use of a Personal Access Token (PAT). PATs offer a more secure and granular 
+use of a Personal Access Token (PAT). PATs offer a more secure and granular
 approach, allowing users to control access without exposing their
 account password.
 
@@ -384,10 +384,10 @@ To generate a Personal Access Token (PAT):
    across multiple machines too regularly.
 
    Finally, you also need to indicate **scope** (what activities you are granting permission
-   for the tools to be able to perform).  In this case, I have ticked the 
-   "repo" box.  This grants general rea/write access to my repositories.  I have 
-   not granted permission for more administration like activities such as 
-   managing teams, deleting repositories, etc - these activities I am happy to 
+   for the tools to be able to perform).  In this case, I have ticked the
+   "repo" box.  This grants general rea/write access to my repositories.  I have
+   not granted permission for more administration like activities such as
+   managing teams, deleting repositories, etc - these activities I am happy to
    perform myself via the website.
 10. click "Generate token" and securely copy the generated token.  Until this is stored
     safely (see below) do not close the page, because Github will never show you this
@@ -433,7 +433,7 @@ and confirm that it indicates that there is a hidden password.
 
 # Installing stan (for Bayesian modelling)
 
-::: panel-tabset 
+::: panel-tabset
 
 ## Windows
 
@@ -531,7 +531,7 @@ and confirm that it indicates that there is a hidden password.
      #system(paste0("cat ", cmdstanr:::cmdstan_path(), "/makefile"))
      ```
      -->
-     
+
    - test whether the whole tool chain works
      ```{r}
      #| label: install_cmdstan7_print
@@ -616,7 +616,7 @@ and confirm that it indicates that there is a hidden password.
 
      Again, if you get output similar to that above, then the complete
      Bayesian toolchain is correctly configured and ready for use.
-     
+
 ## Linux
 
 1. Ensure that you have installed (via your package manager) the
@@ -675,6 +675,3 @@ and confirm that it indicates that there is a hidden password.
      Again, if you get output similar to that above, then the complete
      Bayesian toolchain is correctly configured and ready for use.
 :::
-
-
-
