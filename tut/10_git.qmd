@@ -189,3 +189,5 @@ echo $PATH
 whereis convert
 whereis magick
 ```
+
+Here
