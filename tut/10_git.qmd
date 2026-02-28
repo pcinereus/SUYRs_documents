@@ -168,3 +168,5 @@ common actions and git 'verbs'.
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \end{tikzpicture}
 ```
+
+The end
