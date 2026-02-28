@@ -18,6 +18,8 @@ RUN apt-get update \
     libtiff-dev \
     libgif-dev \
     wget \
+    ghostscript \
+    build-essential \
     pandoc && \
     rm -rf /var/lib/apt/lists/*
 
@@ -25,14 +27,18 @@ RUN apt-get update \
 ENV PATH="${PATH}:/root/bin"
 
 ## It seems it is necessary to install ImageMagick from source to get the latest version that is compatible with the magick R package. The version available in the apt repositories is too old and causes errors when trying to use the magick package.
-# RUN wget https://download.imagemagick.org/ImageMagick/download/ImageMagick.tar.gz
-# RUN tar xvzf ImageMagick.tar.gz
-# RUN cd ImageMagick-* && ./configure && make && make install
-# RUN ldconfig /usr/local/lib
-# RUN ls /etc
-# RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-7/policy.xml
-RUN apt-get install imagemagick
+RUN wget https://download.imagemagick.org/ImageMagick/download/ImageMagick.tar.gz
+RUN tar xvzf ImageMagick.tar.gz
+RUN cd ImageMagick-* && ./configure --with-security-policy=open && make && make install
+RUN ldconfig /usr/local/lib
+RUN magick -list policy
 RUN ls /etc
+# RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-7/policy.xml
+# RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /usr/local/etc/ImageMagick-7/policy.xml
+RUN sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/' \
+    /usr/local/etc/ImageMagick-7/policy.xml
+# RUN apt-get install imagemagick
+# RUN ls /etc
 
 # Install R packages
 RUN R -e "options(repos = \
