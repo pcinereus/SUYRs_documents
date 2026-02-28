@@ -186,5 +186,6 @@ Sys.getenv("PATH")
 #| cache: false
 ls -lat
 echo $PATH
-# which convert
+whereis convert
+whereis magick
 ```
