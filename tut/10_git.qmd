@@ -169,18 +169,14 @@ common actions and git 'verbs'.
 \end{tikzpicture}
 ```
 
-```{r tttest, cache=FALSE,echo=FALSE}
-system("convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png")
-```
-
-```{bash}
+```{r}
 #| label: Fig0-conv
 #| warning: false
 #| message: false
 #| include: false
 #| cache: false
 #| echo: false
-/usr/bin/convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png
+system("convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png")
 #magick -density 300 10_git_files/figure-html/Fig0-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig0-1.png
 ```
 
