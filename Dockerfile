@@ -35,7 +35,8 @@ RUN magick -list policy
 RUN ls /etc
 # RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-7/policy.xml
 # RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /usr/local/etc/ImageMagick-7/policy.xml
-RUN sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/' \
+# RUN sed -i 's/<policy domain="coder" rights="none" pattern="PDF" \/>/<policy domain="coder" rights="read|write" pattern="PDF" \/>/' \
+RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' \
     /usr/local/etc/ImageMagick-7/policy.xml
 # RUN apt-get install imagemagick
 # RUN ls /etc
@@ -131,24 +132,24 @@ RUN R -e "options(repos = \
 #
 # RUN mkdir -p /usr/share/fonts
 
-COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
-RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
+# COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
+# RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
 
-COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts
-# RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
+# COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts
+# # RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
 
-COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
-RUN mkdir -p /usr/share/fonts/Inconsolata && \
-  unzip /tmp/Inconsolata.zip -d /usr/share/fonts/Inconsolata
+# COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
+# RUN mkdir -p /usr/share/fonts/Inconsolata && \
+#   unzip /tmp/Inconsolata.zip -d /usr/share/fonts/Inconsolata
 
-COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
-RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
-  unzip /tmp/Noto-Sans.zip -d /usr/share/fonts/Noto-Sans
+# COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
+# RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
+#   unzip /tmp/Noto-Sans.zip -d /usr/share/fonts/Noto-Sans
 
-COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
-RUN mkdir -p /usr/share/fonts/ubuntu && \
-  unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
-RUN fc-cache -fv && fc-list
+# COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
+# RUN mkdir -p /usr/share/fonts/ubuntu && \
+#   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
+# RUN fc-cache -fv && fc-list
 
 # Set work directory
 WORKDIR /workspace
