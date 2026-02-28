@@ -152,25 +152,19 @@ common actions and git 'verbs'.
 }
 ```
 
-```{r}
-#| label: teststt
-#| results: markup
-#| eval: true
-#| echo: true
-#| cache: false
-Sys.getenv("PATH")
+```{tikz}
+%| label: Fig0
+%| engine: tikz
+%| echo: false
+%| cache: true
+%| include: false
+%| dependson: common
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-minimal.tex"
+\input{../resources/common.tikz}
+\begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]
+\commit{}{A}{white}{}{}
+\draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
+\end{tikzpicture}
 ```
-
-```{bash}
-#| label: teststta
-#| results: markup
-#| eval: true
-#| echo: true
-#| cache: false
-ls -lat
-echo $PATH
-whereis convert
-whereis magick
-```
-
-Here
