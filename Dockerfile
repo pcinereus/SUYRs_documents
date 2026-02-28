@@ -30,7 +30,7 @@ RUN tar xvzf ImageMagick.tar.gz
 RUN cd ImageMagick-* && ./configure && make && make install
 RUN ldconfig /usr/local/lib
 
-RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-6/policy.xml
+RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-7/policy.xml
 
 # Install R packages
 RUN R -e "options(repos = \
