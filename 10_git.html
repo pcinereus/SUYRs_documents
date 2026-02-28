@@ -3146,36 +3146,39 @@ vertical-align: -.125em;
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
 <span id="cb3-2"><a href="#cb3-2"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="co"># which convert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">whereis</span> convert</span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">whereis</span> magick</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>total 1704
-drwxr-xr-x  4 1001 1001   4096 Feb 28 04:05 .
-drwxr-xr-x  3 root root   4096 Feb 28 04:05 10_git_files
-drwxr-xr-x  3 root root   4096 Feb 28 04:04 10_git_cache
--rw-r--r--  1 root root   6430 Feb 28 04:04 10_git.rmarkdown
-drwxr-xr-x 10 1001 1001   4096 Feb 28 04:04 ..
--rw-r--r--  1 1001 1001 583181 Feb 28 04:00 35_bayesian_glm.qmd
--rw-r--r--  1 1001 1001    237 Feb 28 04:00 Dockerfile
--rw-r--r--  1 1001 1001   6322 Feb 28 04:00 git-draw.dot
--rw-r--r--  1 1001 1001   7530 Feb 28 04:00 helperfunctions.R
--rw-r--r--  1 1001 1001   1623 Feb 28 04:00 index.qmd
--rw-r--r--  1 1001 1001   1317 Feb 28 04:00 Makefile
--rw-r--r--  1 1001 1001    456 Feb 28 04:00 _quarto.yml
--rw-r--r--  1 1001 1001 306912 Feb 28 04:00 30_glm.qmd
--rw-r--r--  1 1001 1001  46409 Feb 28 04:00 22_estimation.qmd
--rw-r--r--  1 1001 1001  47440 Feb 28 04:00 25_causation.qmd
--rw-r--r--  1 1001 1001 261984 Feb 28 04:00 05_grammar_of_graphics.qmd
--rw-r--r--  1 1001 1001   6425 Feb 28 04:00 10_git.qmd
--rw-r--r--  1 1001 1001   4320 Feb 28 04:00 12_docker.qmd
--rw-r--r--  1 1001 1001  68774 Feb 28 04:00 20_basic_principles.qmd
--rw-r--r--  1 1001 1001  11018 Feb 28 04:00 21_statistical_philosophies.qmd
--rw-r--r--  1 1001 1001 178163 Feb 28 04:00 04_data_wrangling.qmd
--rw-r--r--  1 1001 1001  19442 Feb 28 04:00 005_setup.qmd
--rw-r--r--  1 1001 1001  89520 Feb 28 04:00 01_introduction_to_r.qmd
--rw-r--r--  1 1001 1001  16348 Feb 28 04:00 02_editors.qmd
--rw-r--r--  1 1001 1001  23599 Feb 28 04:00 03_data_frames.qmd
--rw-r--r--  1 1001 1001   3664 Feb 28 04:00 001_instructions.qmd
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin</code></pre>
+drwxr-xr-x  4 1001 1001   4096 Feb 28 04:13 .
+drwxr-xr-x  3 root root   4096 Feb 28 04:13 10_git_files
+drwxr-xr-x  3 root root   4096 Feb 28 04:13 10_git_cache
+-rw-r--r--  1 root root   6445 Feb 28 04:13 10_git.rmarkdown
+drwxr-xr-x 10 1001 1001   4096 Feb 28 04:13 ..
+-rw-r--r--  1 1001 1001 583181 Feb 28 04:09 35_bayesian_glm.qmd
+-rw-r--r--  1 1001 1001    237 Feb 28 04:09 Dockerfile
+-rw-r--r--  1 1001 1001   6322 Feb 28 04:09 git-draw.dot
+-rw-r--r--  1 1001 1001   7530 Feb 28 04:09 helperfunctions.R
+-rw-r--r--  1 1001 1001   1623 Feb 28 04:09 index.qmd
+-rw-r--r--  1 1001 1001   1317 Feb 28 04:09 Makefile
+-rw-r--r--  1 1001 1001    456 Feb 28 04:09 _quarto.yml
+-rw-r--r--  1 1001 1001 306912 Feb 28 04:09 30_glm.qmd
+-rw-r--r--  1 1001 1001  47440 Feb 28 04:09 25_causation.qmd
+-rw-r--r--  1 1001 1001 261984 Feb 28 04:09 05_grammar_of_graphics.qmd
+-rw-r--r--  1 1001 1001   6440 Feb 28 04:09 10_git.qmd
+-rw-r--r--  1 1001 1001   4320 Feb 28 04:09 12_docker.qmd
+-rw-r--r--  1 1001 1001  68774 Feb 28 04:09 20_basic_principles.qmd
+-rw-r--r--  1 1001 1001  11018 Feb 28 04:09 21_statistical_philosophies.qmd
+-rw-r--r--  1 1001 1001  46409 Feb 28 04:09 22_estimation.qmd
+-rw-r--r--  1 1001 1001 178163 Feb 28 04:09 04_data_wrangling.qmd
+-rw-r--r--  1 1001 1001   3664 Feb 28 04:09 001_instructions.qmd
+-rw-r--r--  1 1001 1001  19442 Feb 28 04:09 005_setup.qmd
+-rw-r--r--  1 1001 1001  89520 Feb 28 04:09 01_introduction_to_r.qmd
+-rw-r--r--  1 1001 1001  16348 Feb 28 04:09 02_editors.qmd
+-rw-r--r--  1 1001 1001  23599 Feb 28 04:09 03_data_frames.qmd
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
+convert:
+magick:</code></pre>
 </div>
 </div>
 <!-- -->
@@ -3839,8 +3842,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb5-194"><a href="#cb5-194"></a><span class="co">#| cache: false</span></span>
 <span id="cb5-195"><a href="#cb5-195"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
 <span id="cb5-196"><a href="#cb5-196"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
-<span id="cb5-197"><a href="#cb5-197"></a><span class="co"># which convert</span></span>
-<span id="cb5-198"><a href="#cb5-198"></a><span class="in">```</span></span>
+<span id="cb5-197"><a href="#cb5-197"></a><span class="fu">whereis</span> convert</span>
+<span id="cb5-198"><a href="#cb5-198"></a><span class="fu">whereis</span> magick</span>
+<span id="cb5-199"><a href="#cb5-199"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
