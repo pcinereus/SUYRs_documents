@@ -29,7 +29,7 @@ RUN wget https://download.imagemagick.org/ImageMagick/download/ImageMagick.tar.g
 RUN tar xvzf ImageMagick.tar.gz
 RUN cd ImageMagick-* && ./configure && make && make install
 RUN ldconfig /usr/local/lib
-
+RUN ls /etc
 RUN sed -i 's/^.*policy.*coder.*none.*PDF.*//' /etc/ImageMagick-7/policy.xml
 
 # Install R packages
