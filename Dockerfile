@@ -17,6 +17,7 @@ RUN apt-get update \
     libpng-dev \
     libtiff-dev \
     libgif-dev \
+    wget \
     pandoc && \
     rm -rf /var/lib/apt/lists/*
 
