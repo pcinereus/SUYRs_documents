@@ -186,7 +186,5 @@ Sys.getenv("PATH")
 #| cache: false
 ls -lat
 echo $PATH
-which convert
+# which convert
 ```
-
-
