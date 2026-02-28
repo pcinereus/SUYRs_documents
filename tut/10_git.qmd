@@ -170,6 +170,25 @@ common actions and git 'verbs'.
 ```
 
 ```{r}
+#| label: teststt
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+ls -lat
+Sys.getenv("PATH")
+```
+
+```{bash}
+#| label: teststta
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+echo $PATH
+```
+
+```{r}
 #| label: Fig0-conv
 #| warning: false
 #| message: false
