@@ -94,17 +94,17 @@ RUN Rscript -e 'tinytex::tlmgr_install("pdfcol")'
 ##RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
 RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/tlnet && \
   tlmgr update --self && \
-  tlmgr update --all && \
-  tlmgr install \
-        titlesec \
-        forest \
-        koma-script \
-        caption \
-        pgf \
-        environ \
-        tikzfill \
-        tcolorbox \
-        pdfcol
+  tlmgr update --all && #\
+  # tlmgr install \
+  #       titlesec \
+  #       forest \
+  #       koma-script \
+  #       caption \
+  #       pgf \
+  #       environ \
+  #       tikzfill \
+  #       tcolorbox \
+  #       pdfcol
 
 ARG QUARTO_VERSION="1.6.40"
 RUN curl -o quarto-linux-amd64.deb -L https://github.com/quarto-dev/quarto-cli/releases/download/v${QUARTO_VERSION}/quarto-${QUARTO_VERSION}-linux-amd64.deb
