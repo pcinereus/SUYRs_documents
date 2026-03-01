@@ -125,15 +125,15 @@ RUN R -e "options(repos = \
 "
 
 
-RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
-COPY architects_daughter /usr/share/fonts/
-RUN unzip -d inconsolata/ resources/Inconsolata.zip
+# RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
+# COPY architects_daughter /usr/share/fonts/
+# RUN unzip -d inconsolata/ resources/Inconsolata.zip
 
-COPY inconsolata /usr/share/fonts/
-COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
+# COPY inconsolata /usr/share/fonts/
+# COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
 
-RUN unzip -d noto_sans/ resources/Noto_Sans.zip
-COPY noto_sans /usr/share/fonts/
+# RUN unzip -d noto_sans/ resources/Noto_Sans.zip
+# COPY noto_sans /usr/share/fonts/
 
 RUN mkdir -p /usr/share/fonts
 
