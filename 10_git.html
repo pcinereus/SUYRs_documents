@@ -3139,13 +3139,14 @@ vertical-align: -.125em;
 <p>The following table surves as both a key and overview of the most common actions and git ‘verbs’.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">magick</span> <span class="at">-version</span></span>
-<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">magick</span> <span class="at">-list</span> format</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">magick</span> <span class="at">-list</span> format</span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="ex">pkg-config</span> <span class="at">--modversion</span> libpng</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Version: ImageMagick 7.1.2-15 Q16-HDRI x86_64 23686 https://imagemagick.org
 Copyright: (C) 1999 ImageMagick Studio LLC
 License: https://imagemagick.org/license/
 Features: Cipher DPC HDRI OpenMP(4.5) 
-Delegates (built-in): jbig jpeg
+Delegates (built-in): heic jbig jng jpeg lzma png tiff webp xml zlib
 Compiler: gcc (11.4)
    Format  Mode  Description
 -------------------------------------------------------------------------------
@@ -3159,7 +3160,9 @@ Compiler: gcc (11.4)
       ART* rw-   PFS: 1st Publisher Clip Art
       ARW  r--   Sony Alpha Raw Format
    ASHLAR* -w+   Image sequence laid out in continuous irregular courses
+     AVCI  ---   AVC Image File Format (1.12.0)
       AVI  r--   Microsoft Audio/Visual Interleaved
+     AVIF  rw+   AV1 Image File Format (1.12.0)
       AVS* rw+   AVS X image
         B* rw+   Raw blue samples
     BAYER* rw+   Raw mosaiced samples
@@ -3173,9 +3176,9 @@ Compiler: gcc (11.4)
      BMP3* rw-   Microsoft Windows bitmap image (V3)
       BRF* -w-   BRF ASCII Braille format
         C* rw+   Raw cyan samples
-      CAL* r--   Continuous Acquisition and Life-cycle Support Type 1
+      CAL* rw-   Continuous Acquisition and Life-cycle Support Type 1
              Specified in MIL-R-28002 and MIL-PRF-28002
-     CALS* r--   Continuous Acquisition and Life-cycle Support Type 1
+     CALS* rw-   Continuous Acquisition and Life-cycle Support Type 1
              Specified in MIL-R-28002 and MIL-PRF-28002
    CANVAS* r--   Constant image uniform color
   CAPTION* r--   Caption
@@ -3215,6 +3218,9 @@ Compiler: gcc (11.4)
      EPS3  -w+   Level III Encapsulated PostScript
      EPSF  rw-   Encapsulated PostScript
      EPSI  rw-   Encapsulated PostScript Interchange format
+      EPT  rw-   Encapsulated PostScript with TIFF preview
+     EPT2  rw-   Encapsulated PostScript Level II with TIFF preview
+     EPT3  rw+   Encapsulated PostScript Level III with TIFF preview
       ERF  r--   Epson Raw Format
  FARBFELD* rw-   Farbfeld
       FAX* rw+   Group 3 FAX
@@ -3241,8 +3247,12 @@ Compiler: gcc (11.4)
  GRADIENT* r--   Gradual linear passing from one shade to another
      GRAY* rw+   Raw gray samples
     GRAYA* rw+   Raw gray and alpha samples
+   GROUP4* rw-   Raw CCITT Group4
+             Compression options: None, Fax/Group3, Group4, JBIG, JPEG, LERC, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
      HALD* r--   Identity Hald color lookup table image
       HDR* rw+   Radiance RGBE image format
+     HEIC  rw+   High Efficiency Image Format (1.12.0)
+     HEIF  rw+   High Efficiency Image Format (1.12.0)
 HISTOGRAM* -w-   Histogram of the image
       HRZ* rw-   Slow Scan TeleVision
       HTM* -w-   Hypertext Markup Language and a client-side image map
@@ -3261,6 +3271,9 @@ HISTOGRAM* -w-   Histogram of the image
   ISOBRL6* -w-   ISO/TR 11548-1 format 6dot
       JBG* rw+   Joint Bi-level Image experts Group interchange format (2.1)
      JBIG* rw+   Joint Bi-level Image experts Group interchange format (2.1)
+      JNG* rw-   JPEG Network Graphics
+             See http://www.libpng.org/pub/mng/ for details about the JNG
+             format.
       JNX* r--   Garmin tile format
       JPE* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
      JPEG* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
@@ -3283,6 +3296,9 @@ HISTOGRAM* -w-   Histogram of the image
       MEF  r--   Mamiya Raw Format
      MIFF* rw+   Magick Image File Format
       MKV  rw+   Multimedia Container
+      MNG* rw+   Multiple-image Network Graphics (libpng 1.6.37)
+             See http://www.libpng.org/pub/mng/ for details about the MNG
+             format.
      MONO* rw-   Raw bi-level bitmap
       MOS  r--   Aptus Leaf Raw Format
       MOV  rw+   MPEG Video Stream
@@ -3292,8 +3308,8 @@ HISTOGRAM* -w-   Histogram of the image
       MPG  rw+   MPEG Video Stream
       MPO* r--   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
       MRW  r--   Sony (Minolta) Raw Format
-      MSL* ---   Magick Scripting Language
-     MSVG* -w+   ImageMagick&#39;s own SVG internal renderer
+      MSL* rw+   Magick Scripting Language
+     MSVG* rw+   ImageMagick&#39;s own SVG internal renderer
       MTV* rw+   MTV Raytracing image format
       MVG* rw-   Magick Vector Graphics
       NEF  r--   Nikon Digital SLR Camera Raw Format
@@ -3328,6 +3344,14 @@ HISTOGRAM* -w-   Histogram of the image
       PIX* r--   Alias/Wavefront RLE image format
     PJPEG* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
    PLASMA* r--   Plasma fractal image
+      PNG* rw-   Portable Network Graphics (libpng 1.6.37)
+             See http://www.libpng.org/ for details about the PNG format.
+    PNG00* rw-   PNG inheriting bit-depth, color-type from original, if possible
+    PNG24* rw-   opaque or binary transparent 24-bit RGB
+    PNG32* rw-   opaque or transparent 32-bit RGBA
+    PNG48* rw-   opaque or binary transparent 48-bit RGB
+    PNG64* rw-   opaque or transparent 64-bit RGBA
+     PNG8* rw-   8-bit indexed with optional binary transparency
       PNM* rw+   Portable anymap
 POCKETMOD  rw+   Pocketmod Personal Organizer
       PPM* rw+   Portable pixmap format (color)
@@ -3336,6 +3360,8 @@ POCKETMOD  rw+   Pocketmod Personal Organizer
       PS3  -w+   Level III PostScript
       PSB* rw+   Adobe Large Document Format
       PSD* rw+   Adobe Photoshop bitmap
+     PTIF* rw+   Pyramid encoded TIFF
+             Compression options: None, Fax/Group3, Group4, JBIG, JPEG, LERC, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
       PWP* r--   Seattle Film Works
       QOI* rw-   Quite OK image format
         R* rw+   Raw red samples
@@ -3371,11 +3397,15 @@ SPARSE-COLOR* -w+   Sparse Color
       STI  r--   Sinar CaptureShop Raw Format
    STRIMG* rw-   String to image and back
       SUN* rw+   SUN Rasterfile
-      SVG* rw+   Scalable Vector Graphics
-     SVGZ* -w+   Compressed Scalable Vector Graphics
+      SVG* rw+   Scalable Vector Graphics (XML 2.9.13)
+     SVGZ* rw+   Compressed Scalable Vector Graphics (XML 2.9.13)
      TEXT* r--   Text
       TGA* rw-   Truevision Targa image
 THUMBNAIL* -w+   EXIF Profile Thumbnail
+     TIFF* rw+   Tagged Image File Format (LIBTIFF, Version 4.3.0)
+             Compression options: None, Fax/Group3, Group4, JBIG, JPEG, LERC, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
+   TIFF64* rw+   Tagged Image File Format (64-bit) (LIBTIFF, Version 4.3.0)
+             Compression options: None, Fax/Group3, Group4, JBIG, JPEG, LERC, LZW, LZMA, RLE, ZIP, ZSTD, WEBP
      TILE* r--   Tile image with a texture
       TIM* r--   PSX TIM
       TM2* r--   PS2 TIM2
@@ -3392,6 +3422,7 @@ THUMBNAIL* -w+   EXIF Profile Thumbnail
       VST* rw-   Truevision Targa image
      WBMP* rw-   Wireless Bitmap (level 0) image
      WEBM  rw+   Open Web Media
+     WEBP* rw+   WebP Image Format (libwebp 1.2.2 [020F])
       WMV  rw+   Windows Media Video
       WPG* rw-   Word Perfect Graphics
       X3F  r--   Sigma Camera RAW Format
@@ -3410,10 +3441,11 @@ THUMBNAIL* -w+   EXIF Profile Thumbnail
 * native blob support
 r read support
 w write support
-+ support for multiple images</code></pre>
++ support for multiple images
+1.6.37</code></pre>
 </div>
 </div>
-<p>The end again</p>
+<p>The end</p>
 <!-- -->
 
 
@@ -4062,10 +4094,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb3-179"><a href="#cb3-179"></a><span class="in">```{bash}</span></span>
 <span id="cb3-180"><a href="#cb3-180"></a><span class="ex">magick</span> <span class="at">-version</span></span>
 <span id="cb3-181"><a href="#cb3-181"></a><span class="ex">magick</span> <span class="at">-list</span> format</span>
-<span id="cb3-182"><a href="#cb3-182"></a><span class="in">```</span></span>
-<span id="cb3-183"><a href="#cb3-183"></a></span>
+<span id="cb3-182"><a href="#cb3-182"></a><span class="ex">pkg-config</span> <span class="at">--modversion</span> libpng</span>
+<span id="cb3-183"><a href="#cb3-183"></a><span class="in">```</span></span>
 <span id="cb3-184"><a href="#cb3-184"></a></span>
-<span id="cb3-185"><a href="#cb3-185"></a>The end again</span>
+<span id="cb3-185"><a href="#cb3-185"></a></span>
+<span id="cb3-186"><a href="#cb3-186"></a>The end</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
