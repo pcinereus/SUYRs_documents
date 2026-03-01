@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2026-02-28">
+<meta name="dcterms.date" content="2026-03-01">
 
 <title>Git and version control</title>
 <style>
@@ -3109,7 +3109,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">February 28, 2026</p>
+      <p class="date">March 1, 2026</p>
     </div>
   </div>
   
@@ -3138,49 +3138,282 @@ vertical-align: -.125em;
 <p>This tutorial will take a modular approach. The first section will provide an overview of the basic concepts of git. The second section will provide a quick overview of basic usage and the third and final section will cover intermediate level usage. In an attempt to ease understanding, the tutorial will blend together git commands and output, schematic diagrams and commentary in an attempt to ease understanding.</p>
 <p>The following table surves as both a key and overview of the most common actions and git ‘verbs’.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">Sys.getenv</span>(<span class="st">&quot;PATH&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1"></a><span class="ex">magick</span> <span class="at">-version</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="ex">magick</span> <span class="at">-list</span> format</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] &quot;/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin&quot;</code></pre>
+<pre><code>Version: ImageMagick 7.1.2-15 Q16-HDRI x86_64 23686 https://imagemagick.org
+Copyright: (C) 1999 ImageMagick Studio LLC
+License: https://imagemagick.org/license/
+Features: Cipher DPC HDRI OpenMP(4.5) 
+Delegates (built-in): jbig jpeg
+Compiler: gcc (11.4)
+   Format  Mode  Description
+-------------------------------------------------------------------------------
+      3FR  r--   Hasselblad CFV/H3D39II Raw Format
+      3G2  r--   Media Container
+      3GP  r--   Media Container
+        A* rw+   Raw alpha samples
+      AAI* rw+   AAI Dune image
+       AI  rw-   Adobe Illustrator CS2
+     APNG  rw+   Animated Portable Network Graphics
+      ART* rw-   PFS: 1st Publisher Clip Art
+      ARW  r--   Sony Alpha Raw Format
+   ASHLAR* -w+   Image sequence laid out in continuous irregular courses
+      AVI  r--   Microsoft Audio/Visual Interleaved
+      AVS* rw+   AVS X image
+        B* rw+   Raw blue samples
+    BAYER* rw+   Raw mosaiced samples
+   BAYERA* rw+   Raw mosaiced and alpha samples
+      BGR* rw+   Raw blue, green, and red samples
+     BGRA* rw+   Raw blue, green, red, and alpha samples
+     BGRO* rw+   Raw blue, green, red, and opacity samples
+      BIE* rw-   Joint Bi-level Image experts Group interchange format (2.1)
+      BMP* rw-   Microsoft Windows bitmap image
+     BMP2* rw-   Microsoft Windows bitmap image (V2)
+     BMP3* rw-   Microsoft Windows bitmap image (V3)
+      BRF* -w-   BRF ASCII Braille format
+        C* rw+   Raw cyan samples
+      CAL* r--   Continuous Acquisition and Life-cycle Support Type 1
+             Specified in MIL-R-28002 and MIL-PRF-28002
+     CALS* r--   Continuous Acquisition and Life-cycle Support Type 1
+             Specified in MIL-R-28002 and MIL-PRF-28002
+   CANVAS* r--   Constant image uniform color
+  CAPTION* r--   Caption
+      CIN* rw-   Cineon Image File
+      CIP* -w-   Cisco IP phone image format
+     CLIP* rw+   Image Clip Mask
+     CMYK* rw+   Raw cyan, magenta, yellow, and black samples
+    CMYKA* rw+   Raw cyan, magenta, yellow, black, and alpha samples
+      CR2  r--   Canon Digital Camera Raw Format
+      CR3  r--   Canon Digital Camera Raw Format
+      CRW  r--   Canon Digital Camera Raw Format
+     CUBE* r--   Cube LUT
+      CUR* rw-   Microsoft icon
+      CUT* r--   DR Halo
+     DATA* rw+   Base64-encoded inline images
+      DCM* r--   Digital Imaging and Communications in Medicine image
+             DICOM is used by the medical community for images like X-rays.  The
+             specification, &quot;Digital Imaging and Communications in Medicine
+             (DICOM)&quot;, is available at http://medical.nema.org/.  In particular,
+             see part 5 which describes the image encoding (RLE, JPEG, JPEG-LS),
+             and supplement 61 which adds JPEG-2000 encoding.
+      DCR  r--   Kodak Digital Camera Raw Format
+    DCRAW  r--   Raw Photo Decoder (dcraw)
+      DCX* rw+   ZSoft IBM PC multi-page Paintbrush
+      DDS* rw+   Microsoft DirectDraw Surface
+      DNG  r--   Digital Negative Raw Format
+      DPX* rw-   SMPTE 268M-2003 (DPX 2.0)
+             Digital Moving Picture Exchange Bitmap, Version 2.0.
+             See SMPTE 268M-2003 specification at http://www.smtpe.org
+             
+     DXT1* rw+   Microsoft DirectDraw Surface
+     DXT5* rw+   Microsoft DirectDraw Surface
+     EPDF  rw-   Encapsulated Portable Document Format
+      EPI  rw-   Encapsulated PostScript Interchange format
+      EPS  rw-   Encapsulated PostScript
+     EPS2  -w-   Level II Encapsulated PostScript
+     EPS3  -w+   Level III Encapsulated PostScript
+     EPSF  rw-   Encapsulated PostScript
+     EPSI  rw-   Encapsulated PostScript Interchange format
+      ERF  r--   Epson Raw Format
+ FARBFELD* rw-   Farbfeld
+      FAX* rw+   Group 3 FAX
+             FAX machines use non-square pixels which are 1.5 times wider than
+             they are tall but computer displays use square pixels, therefore
+             FAX images may appear to be narrow unless they are explicitly
+             resized using a geometry of &quot;150x100%&quot;.
+             
+       FF* rw-   Farbfeld
+      FFF  r--   Hasselblad CFV/H3D39II Raw Format
+     FILE* r--   Uniform Resource Locator (file://)
+     FITS* rw+   Flexible Image Transport System
+     FL32* rw-   FilmLight
+      FLV  rw+   Flash Video Stream
+  FRACTAL* r--   Plasma fractal image
+      FTP* ---   Uniform Resource Locator (ftp://)
+      FTS* rw+   Flexible Image Transport System
+     FTXT* rw-   Formatted text image
+        G* rw+   Raw green samples
+       G3* rw-   Group 3 FAX
+       G4* rw-   Group 4 FAX
+      GIF* rw+   CompuServe graphics interchange format
+    GIF87* rw-   CompuServe graphics interchange format (version 87a)
+ GRADIENT* r--   Gradual linear passing from one shade to another
+     GRAY* rw+   Raw gray samples
+    GRAYA* rw+   Raw gray and alpha samples
+     HALD* r--   Identity Hald color lookup table image
+      HDR* rw+   Radiance RGBE image format
+HISTOGRAM* -w-   Histogram of the image
+      HRZ* rw-   Slow Scan TeleVision
+      HTM* -w-   Hypertext Markup Language and a client-side image map
+     HTML* -w-   Hypertext Markup Language and a client-side image map
+     HTTP* r--   Uniform Resource Locator (http://)
+    HTTPS* r--   Uniform Resource Locator (https://)
+      ICB* rw-   Truevision Targa image
+      ICN* rw-   Microsoft icon
+      ICO* rw+   Microsoft icon
+     ICON* rw-   Microsoft icon
+      IIQ  r--   Phase One Raw Format
+     INFO  -w+   The image format and characteristics
+   INLINE* rw+   Base64-encoded inline images
+      IPL* rw+   IPL Image Sequence
+   ISOBRL* -w-   ISO/TR 11548-1 format
+  ISOBRL6* -w-   ISO/TR 11548-1 format 6dot
+      JBG* rw+   Joint Bi-level Image experts Group interchange format (2.1)
+     JBIG* rw+   Joint Bi-level Image experts Group interchange format (2.1)
+      JNX* r--   Garmin tile format
+      JPE* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+     JPEG* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+      JPG* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+      JPS* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+     JSON  -w+   The image format and characteristics
+        K* rw+   Raw black samples
+      K25  r--   Kodak Digital Camera Raw Format
+      KDC  r--   Kodak Digital Camera Raw Format
+    LABEL* r--   Image label
+        M* rw+   Raw magenta samples
+      M2V  rw+   MPEG Video Stream
+      M4V  rw+   Raw VIDEO-4 Video
+      MAC* r--   MAC Paint
+      MAP* rw-   Colormap intensities and indices
+     MASK* rw+   Image Clip Mask
+      MAT  rw+   MATLAB level 5 image format
+    MATTE* -w+   MATTE format
+      MDC  r--   Minolta Digital Camera Raw Format
+      MEF  r--   Mamiya Raw Format
+     MIFF* rw+   Magick Image File Format
+      MKV  rw+   Multimedia Container
+     MONO* rw-   Raw bi-level bitmap
+      MOS  r--   Aptus Leaf Raw Format
+      MOV  rw+   MPEG Video Stream
+      MP4  rw+   VIDEO-4 Video Stream
+      MPC* rw+   Magick Pixel Cache image format
+     MPEG  rw+   MPEG Video Stream
+      MPG  rw+   MPEG Video Stream
+      MPO* r--   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+      MRW  r--   Sony (Minolta) Raw Format
+      MSL* ---   Magick Scripting Language
+     MSVG* -w+   ImageMagick&#39;s own SVG internal renderer
+      MTV* rw+   MTV Raytracing image format
+      MVG* rw-   Magick Vector Graphics
+      NEF  r--   Nikon Digital SLR Camera Raw Format
+      NRW  r--   Nikon Digital SLR Camera Raw Format
+     NULL* rw-   Constant image of uniform color
+        O* rw+   Raw opacity samples
+      ORA  ---   OpenRaster format
+      ORF  r--   Olympus Digital Camera Raw Format
+      OTB* rw-   On-the-air bitmap
+      PAL* rw-   16bit/pixel interleaved YUV
+     PALM* rw+   Palm pixmap
+      PAM* rw+   Common 2-dimensional bitmap format
+    PANGO* ---   Pango Markup Language
+  PATTERN* r--   Predefined pattern
+      PBM* rw+   Portable bitmap format (black and white)
+      PCD* rw-   Photo CD
+     PCDS* rw-   Photo CD
+      PCL  rw+   Printer Control Language
+      PCT* rw-   Apple Macintosh QuickDraw/PICT
+      PCX* rw-   ZSoft IBM PC Paintbrush
+      PDB* rw+   Palm Database ImageViewer Format
+      PDF  rw+   Portable Document Format
+     PDFA  rw+   Portable Document Archive Format
+      PEF  r--   Pentax Electronic Raw Format
+      PES* r--   Embrid Embroidery Format
+      PFM* rw+   Portable float format
+      PGM* rw+   Portable graymap format (gray scale)
+      PGX* rw-   JPEG 2000 uncompressed format
+      PHM* rw+   Portable half float format
+    PICON* rw-   Personal Icon
+     PICT* rw-   Apple Macintosh QuickDraw/PICT
+      PIX* r--   Alias/Wavefront RLE image format
+    PJPEG* rw-   Joint Photographic Experts Group JFIF format (libjpeg-turbo 2.1.2)
+   PLASMA* r--   Plasma fractal image
+      PNM* rw+   Portable anymap
+POCKETMOD  rw+   Pocketmod Personal Organizer
+      PPM* rw+   Portable pixmap format (color)
+       PS  rw+   PostScript
+      PS2  -w+   Level II PostScript
+      PS3  -w+   Level III PostScript
+      PSB* rw+   Adobe Large Document Format
+      PSD* rw+   Adobe Photoshop bitmap
+      PWP* r--   Seattle Film Works
+      QOI* rw-   Quite OK image format
+        R* rw+   Raw red samples
+RADIAL-GRADIENT* r--   Gradual radial passing from one shade to another
+      RAF  r--   Fuji CCD-RAW Graphic Raw Format
+      RAS* rw+   SUN Rasterfile
+      RAW  r--   Raw
+      RGB* rw+   Raw red, green, and blue samples
+   RGB565* r--   Raw red, green, blue samples in 565 format
+     RGBA* rw+   Raw red, green, blue, and alpha samples
+     RGBO* rw+   Raw red, green, blue, and opacity samples
+      RGF* rw-   LEGO Mindstorms EV3 Robot Graphic Format (black and white)
+      RLA* r--   Alias/Wavefront image
+      RLE* r--   Utah Run length encoded image
+      RMF  r--   Raw Media Format
+      RW2  r--   Panasonic Lumix Raw Format
+      RWL  r--   Leica Raw Format
+      SCR* r--   ZX-Spectrum SCREEN$
+SCREENSHOT* r--   Screen shot
+      SCT* r--   Scitex HandShake
+      SF3* rw+   Simple File Format Family Images
+             See https://shirakumo.org/docs/sf3/ for information on the SF3 file formats.
+      SFW* r--   Seattle Film Works
+      SGI* rw+   Irix RGB image
+    SHTML* -w-   Hypertext Markup Language and a client-side image map
+      SIX* rw-   DEC SIXEL Graphics Format
+    SIXEL* rw-   DEC SIXEL Graphics Format
+SPARSE-COLOR* -w+   Sparse Color
+      SR2  r--   Sony Raw Format 2
+      SRF  r--   Sony Raw Format
+      SRW  r--   Samsung Raw Format
+  STEGANO* r--   Steganographic image
+      STI  r--   Sinar CaptureShop Raw Format
+   STRIMG* rw-   String to image and back
+      SUN* rw+   SUN Rasterfile
+      SVG* rw+   Scalable Vector Graphics
+     SVGZ* -w+   Compressed Scalable Vector Graphics
+     TEXT* r--   Text
+      TGA* rw-   Truevision Targa image
+THUMBNAIL* -w+   EXIF Profile Thumbnail
+     TILE* r--   Tile image with a texture
+      TIM* r--   PSX TIM
+      TM2* r--   PS2 TIM2
+      TXT* rw+   Text
+     UBRL* -w-   Unicode Text format
+    UBRL6* -w-   Unicode Text format 6dot
+      UIL* -w-   X-Motif UIL table
+     UYVY* rw-   16bit/pixel interleaved YUV
+      VDA* rw-   Truevision Targa image
+    VICAR* rw-   Video Image Communication And Retrieval
+      VID* rw+   Visual Image Directory
+     VIFF* rw+   Khoros Visualization image
+     VIPS* rw+   VIPS image
+      VST* rw-   Truevision Targa image
+     WBMP* rw-   Wireless Bitmap (level 0) image
+     WEBM  rw+   Open Web Media
+      WMV  rw+   Windows Media Video
+      WPG* rw-   Word Perfect Graphics
+      X3F  r--   Sigma Camera RAW Format
+      XBM* rw-   X Windows system bitmap (black and white)
+       XC* r--   Constant image uniform color
+      XCF* r--   GIMP image
+      XPM* rw-   X Windows system pixmap (color)
+      XPS  r--   Microsoft XML Paper Specification
+       XV* rw+   Khoros Visualization image
+        Y* rw+   Raw yellow samples
+     YAML  -w+   The image format and characteristics
+    YCBCR* rw+   Raw Y, Cb, and Cr samples
+   YCBCRA* rw+   Raw Y, Cb, Cr, and alpha samples
+      YUV* rw-   CCIR 601 4:1:1 or 4:2:2
+
+* native blob support
+r read support
+w write support
++ support for multiple images</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource bash number-lines code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">whereis</span> convert</span>
-<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">whereis</span> magick</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>total 1700
-drwxr-xr-x  3 1001 1001   4096 Feb 28 05:25 .
-drwxr-xr-x  3 root root   4096 Feb 28 05:25 10_git_cache
--rw-r--r--  1 root root   6043 Feb 28 05:25 10_git.rmarkdown
-drwxr-xr-x 10 1001 1001   4096 Feb 28 05:25 ..
--rw-r--r--  1 1001 1001 583181 Feb 28 05:21 35_bayesian_glm.qmd
--rw-r--r--  1 1001 1001    237 Feb 28 05:21 Dockerfile
--rw-r--r--  1 1001 1001   6322 Feb 28 05:21 git-draw.dot
--rw-r--r--  1 1001 1001   7530 Feb 28 05:21 helperfunctions.R
--rw-r--r--  1 1001 1001   1623 Feb 28 05:21 index.qmd
--rw-r--r--  1 1001 1001   1317 Feb 28 05:21 Makefile
--rw-r--r--  1 1001 1001    456 Feb 28 05:21 _quarto.yml
--rw-r--r--  1 1001 1001 306912 Feb 28 05:21 30_glm.qmd
--rw-r--r--  1 1001 1001   4320 Feb 28 05:21 12_docker.qmd
--rw-r--r--  1 1001 1001  68774 Feb 28 05:21 20_basic_principles.qmd
--rw-r--r--  1 1001 1001  11018 Feb 28 05:21 21_statistical_philosophies.qmd
--rw-r--r--  1 1001 1001  46409 Feb 28 05:21 22_estimation.qmd
--rw-r--r--  1 1001 1001  47440 Feb 28 05:21 25_causation.qmd
--rw-r--r--  1 1001 1001 178163 Feb 28 05:21 04_data_wrangling.qmd
--rw-r--r--  1 1001 1001 261984 Feb 28 05:21 05_grammar_of_graphics.qmd
--rw-r--r--  1 1001 1001   6036 Feb 28 05:21 10_git.qmd
--rw-r--r--  1 1001 1001  19442 Feb 28 05:21 005_setup.qmd
--rw-r--r--  1 1001 1001  89520 Feb 28 05:21 01_introduction_to_r.qmd
--rw-r--r--  1 1001 1001  16348 Feb 28 05:21 02_editors.qmd
--rw-r--r--  1 1001 1001  23599 Feb 28 05:21 03_data_frames.qmd
--rw-r--r--  1 1001 1001   3664 Feb 28 05:21 001_instructions.qmd
-/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/root/bin
-convert: /usr/local/bin/convert
-magick: /usr/local/bin/magick</code></pre>
-</div>
-</div>
-<p>Here</p>
+<p>The end again</p>
 <!-- -->
 
 
@@ -3654,182 +3887,185 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="an">title:</span><span class="co"> Git and version control</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
-<span id="cb5-5"><a href="#cb5-5"></a><span class="an">format:</span></span>
-<span id="cb5-6"><a href="#cb5-6"></a><span class="co">  html:</span></span>
-<span id="cb5-7"><a href="#cb5-7"></a><span class="co">    toc: true</span></span>
-<span id="cb5-8"><a href="#cb5-8"></a><span class="co">    toc-float: true</span></span>
-<span id="cb5-9"><a href="#cb5-9"></a><span class="co">    page-layout: full</span></span>
-<span id="cb5-10"><a href="#cb5-10"></a><span class="co">    number-sections: true</span></span>
-<span id="cb5-11"><a href="#cb5-11"></a><span class="co">    number-depth: 3</span></span>
-<span id="cb5-12"><a href="#cb5-12"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb5-13"><a href="#cb5-13"></a><span class="co">    code-fold: false</span></span>
-<span id="cb5-14"><a href="#cb5-14"></a><span class="co">    code-tools: true</span></span>
-<span id="cb5-15"><a href="#cb5-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
-<span id="cb5-16"><a href="#cb5-16"></a><span class="co">    code-line-numbers: true</span></span>
-<span id="cb5-17"><a href="#cb5-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
-<span id="cb5-18"><a href="#cb5-18"></a><span class="co">    code-copy: true</span></span>
-<span id="cb5-19"><a href="#cb5-19"></a><span class="co">    highlight-style: atom-one</span></span>
-<span id="cb5-20"><a href="#cb5-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
-<span id="cb5-21"><a href="#cb5-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
-<span id="cb5-22"><a href="#cb5-22"></a><span class="an">crossref:</span></span>
-<span id="cb5-23"><a href="#cb5-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
-<span id="cb5-24"><a href="#cb5-24"></a><span class="co">  fig-labels: arabic</span></span>
-<span id="cb5-25"><a href="#cb5-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
-<span id="cb5-26"><a href="#cb5-26"></a><span class="co">  tbl-labels: arabic</span></span>
-<span id="cb5-27"><a href="#cb5-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
-<span id="cb5-28"><a href="#cb5-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
-<span id="cb5-29"><a href="#cb5-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
-<span id="cb5-30"><a href="#cb5-30"></a><span class="co">---</span></span>
-<span id="cb5-31"><a href="#cb5-31"></a></span>
-<span id="cb5-32"><a href="#cb5-32"></a><span class="in">```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}</span></span>
-<span id="cb5-33"><a href="#cb5-33"></a><span class="in">knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = &quot;&quot;)</span></span>
-<span id="cb5-34"><a href="#cb5-34"></a><span class="in">options(tinytex.engine = &#39;xelatex&#39;)</span></span>
-<span id="cb5-35"><a href="#cb5-35"></a><span class="in">cleanRmdInput &lt;- function(x) {</span></span>
-<span id="cb5-36"><a href="#cb5-36"></a><span class="in">#x &lt;- gsub(&quot;```\\{r&quot;,&quot;```markdown\n`r &#39;&#39;```\\{r&quot;,x)</span></span>
-<span id="cb5-37"><a href="#cb5-37"></a><span class="in">x &lt;- gsub(&quot;^```$&quot;,&quot;`` `&quot;,x)  # the Makefile will then change this back to ``` after pandoc</span></span>
-<span id="cb5-38"><a href="#cb5-38"></a><span class="in">x</span></span>
-<span id="cb5-39"><a href="#cb5-39"></a><span class="in">}</span></span>
-<span id="cb5-40"><a href="#cb5-40"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb5-41"><a href="#cb5-41"></a><span class="in">library(pander)</span></span>
-<span id="cb5-42"><a href="#cb5-42"></a><span class="in">FIG_PATH &lt;- &#39;10_git_files/figure-html/&#39;</span></span>
-<span id="cb5-43"><a href="#cb5-43"></a><span class="in">```</span></span>
-<span id="cb5-44"><a href="#cb5-44"></a></span>
-<span id="cb5-45"><a href="#cb5-45"></a></span>
-<span id="cb5-46"><a href="#cb5-46"></a></span>
-<span id="cb5-47"><a href="#cb5-47"></a></span>
-<span id="cb5-48"><a href="#cb5-48"></a>::: {.newsbox}</span>
-<span id="cb5-49"><a href="#cb5-49"></a></span>
-<span id="cb5-50"><a href="#cb5-50"></a>**Other useful tutorials or resources**</span>
-<span id="cb5-51"><a href="#cb5-51"></a></span>
-<span id="cb5-52"><a href="#cb5-52"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://git-scm.com/book/en/v2</span><span class="co">](https://git-scm.com/book/en/v2)</span></span>
-<span id="cb5-53"><a href="#cb5-53"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://www.atlassian.com/git/tutorials</span><span class="co">](https://www.atlassian.com/git/tutorials)</span></span>
-<span id="cb5-54"><a href="#cb5-54"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://marklodato.github.io/visual-git-guide/index-en.html</span><span class="co">](https://marklodato.github.io/visual-git-guide/index-en.html)</span></span>
-<span id="cb5-55"><a href="#cb5-55"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://git-scm.com/docs/gittutorial</span><span class="co">](https://git-scm.com/docs/gittutorial)</span></span>
-<span id="cb5-56"><a href="#cb5-56"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://marklodato.github.io/visual-git-guide/index-en.html</span><span class="co">](https://marklodato.github.io/visual-git-guide/index-en.html)</span></span>
-<span id="cb5-57"><a href="#cb5-57"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://try.github.io/levels/1/challenges/1</span><span class="co">](https://try.github.io/levels/1/challenges/1)</span></span>
-<span id="cb5-58"><a href="#cb5-58"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://onlywei.github.io/explain-git-with-d3/</span><span class="co">](https://onlywei.github.io/explain-git-with-d3/)</span></span>
-<span id="cb5-59"><a href="#cb5-59"></a><span class="ss">- </span><span class="co">[</span><span class="ot">http://git-school.github.io/visualizing-git/</span><span class="co">](http://git-school.github.io/visualizing-git/)</span></span>
-<span id="cb5-60"><a href="#cb5-60"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://github.com/sensorflo/git-draw</span><span class="co">](https://github.com/sensorflo/git-draw)</span></span>
-<span id="cb5-61"><a href="#cb5-61"></a>:::</span>
-<span id="cb5-62"><a href="#cb5-62"></a></span>
-<span id="cb5-63"><a href="#cb5-63"></a></span>
-<span id="cb5-64"><a href="#cb5-64"></a>This tutorial will take a modular approach. The first section will</span>
-<span id="cb5-65"><a href="#cb5-65"></a>provide an overview of the basic concepts of git. The second section</span>
-<span id="cb5-66"><a href="#cb5-66"></a>will provide a quick overview of basic usage and the third and final</span>
-<span id="cb5-67"><a href="#cb5-67"></a>section will cover intermediate level usage. In an attempt to ease</span>
-<span id="cb5-68"><a href="#cb5-68"></a>understanding, the tutorial will blend together git commands and</span>
-<span id="cb5-69"><a href="#cb5-69"></a>output, schematic diagrams and commentary in an attempt to ease</span>
-<span id="cb5-70"><a href="#cb5-70"></a>understanding.</span>
-<span id="cb5-71"><a href="#cb5-71"></a></span>
-<span id="cb5-72"><a href="#cb5-72"></a>The following table surves as both a key and overview of the most</span>
-<span id="cb5-73"><a href="#cb5-73"></a>common actions and git &#39;verbs&#39;.</span>
-<span id="cb5-74"><a href="#cb5-74"></a></span>
-<span id="cb5-77"><a href="#cb5-77"></a><span class="in">```{cat}</span></span>
-<span id="cb5-78"><a href="#cb5-78"></a><span class="in">#| label: common</span></span>
-<span id="cb5-79"><a href="#cb5-79"></a><span class="in">#| echo: true</span></span>
-<span id="cb5-80"><a href="#cb5-80"></a><span class="in">#| eval: true</span></span>
-<span id="cb5-81"><a href="#cb5-81"></a><span class="in">#| cache: true</span></span>
-<span id="cb5-82"><a href="#cb5-82"></a><span class="in">#| engine.opts:</span></span>
-<span id="cb5-83"><a href="#cb5-83"></a><span class="in">#|   file: &quot;../resources/common.tikz&quot;</span></span>
-<span id="cb5-84"><a href="#cb5-84"></a></span>
-<span id="cb5-85"><a href="#cb5-85"></a><span class="in">\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]</span></span>
-<span id="cb5-86"><a href="#cb5-86"></a></span>
-<span id="cb5-87"><a href="#cb5-87"></a><span class="in">\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]</span></span>
-<span id="cb5-88"><a href="#cb5-88"></a><span class="in">\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata}}]</span></span>
-<span id="cb5-89"><a href="#cb5-89"></a><span class="in">\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]</span></span>
-<span id="cb5-90"><a href="#cb5-90"></a></span>
-<span id="cb5-91"><a href="#cb5-91"></a><span class="in">\definecolor{color_branch}{rgb}{1,0.8,0.4}</span></span>
-<span id="cb5-92"><a href="#cb5-92"></a><span class="in">\definecolor{color_head}{HTML}{6495ED} %</span></span>
-<span id="cb5-93"><a href="#cb5-93"></a><span class="in">\definecolor{color_HEAD}{rgb}{0.26,0.65,0.91}</span></span>
-<span id="cb5-94"><a href="#cb5-94"></a><span class="in">\definecolor{color_commit}{rgb}{0.9,0.9,0.2}</span></span>
-<span id="cb5-95"><a href="#cb5-95"></a><span class="in">\definecolor{color_inactive}{rgb}{0.90,0.9,0.9}</span></span>
-<span id="cb5-96"><a href="#cb5-96"></a><span class="in">\definecolor{color_detached}{rgb}{0.90,0.9,0.9}</span></span>
-<span id="cb5-97"><a href="#cb5-97"></a><span class="in">\definecolor{color_derivative}{rgb}{0.12,0.6,0.51}</span></span>
-<span id="cb5-98"><a href="#cb5-98"></a><span class="in">\definecolor{color_local}{rgb}{0.9,0.9,0.2}</span></span>
-<span id="cb5-99"><a href="#cb5-99"></a><span class="in">\definecolor{color_remote}{rgb}{1,0.55,0.15}</span></span>
-<span id="cb5-100"><a href="#cb5-100"></a></span>
-<span id="cb5-101"><a href="#cb5-101"></a><span class="in">% A template for making the storage symbol</span></span>
-<span id="cb5-102"><a href="#cb5-102"></a><span class="in">\newcommand{\state}[3]{</span></span>
-<span id="cb5-103"><a href="#cb5-103"></a><span class="in">\draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {</span></span>
-<span id="cb5-104"><a href="#cb5-104"></a><span class="in">\begin{tikzpicture}</span></span>
-<span id="cb5-105"><a href="#cb5-105"></a><span class="in">\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};</span></span>
-<span id="cb5-106"><a href="#cb5-106"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
-<span id="cb5-107"><a href="#cb5-107"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
-<span id="cb5-108"><a href="#cb5-108"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
-<span id="cb5-109"><a href="#cb5-109"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb5-110"><a href="#cb5-110"></a><span class="in">};</span></span>
-<span id="cb5-111"><a href="#cb5-111"></a><span class="in">}</span></span>
-<span id="cb5-112"><a href="#cb5-112"></a></span>
-<span id="cb5-113"><a href="#cb5-113"></a><span class="in">\newcommand{\commit}[5]{</span></span>
-<span id="cb5-114"><a href="#cb5-114"></a><span class="in">\node [#1,inner sep=0,outer sep=0] (#2) {</span></span>
-<span id="cb5-115"><a href="#cb5-115"></a><span class="in">\begin{tikzpicture}[#1]</span></span>
-<span id="cb5-116"><a href="#cb5-116"></a><span class="in">\draw [#1] node [draw=black!40!#3,fill=#3,shape=circle,minimum width=1.0cm,line width=3pt] (x) {};</span></span>
-<span id="cb5-117"><a href="#cb5-117"></a><span class="in">%\node [below,hashText] at (x.south) {#4};</span></span>
-<span id="cb5-118"><a href="#cb5-118"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb5-119"><a href="#cb5-119"></a><span class="in">};</span></span>
-<span id="cb5-120"><a href="#cb5-120"></a><span class="in">\ifx\notempty#4\empty</span></span>
-<span id="cb5-121"><a href="#cb5-121"></a><span class="in">\node [below,hashText, minimum height = 0] at (#2.south) {#4};</span></span>
-<span id="cb5-122"><a href="#cb5-122"></a><span class="in">\fi</span></span>
-<span id="cb5-123"><a href="#cb5-123"></a><span class="in">\ifx\notempty#5\empty</span></span>
-<span id="cb5-124"><a href="#cb5-124"></a><span class="in">\node [below,commentText,text=gray, minimum height = 0] at ($(#2.south) +(0,-0.5)$) {#5};</span></span>
-<span id="cb5-125"><a href="#cb5-125"></a><span class="in">\fi</span></span>
-<span id="cb5-126"><a href="#cb5-126"></a><span class="in">}</span></span>
-<span id="cb5-127"><a href="#cb5-127"></a></span>
-<span id="cb5-128"><a href="#cb5-128"></a><span class="in">\newcommand{\rcommit}[5]{</span></span>
-<span id="cb5-129"><a href="#cb5-129"></a><span class="in">\node [#1,inner sep=0,outer sep=0] (#2) {</span></span>
-<span id="cb5-130"><a href="#cb5-130"></a><span class="in">\begin{tikzpicture}[#1]</span></span>
-<span id="cb5-131"><a href="#cb5-131"></a><span class="in">\draw [#1] node [draw=black!40!#3,fill=#3,shape=rectangle,minimum width=1.0cm,minimum height=1.0cm,line width=3pt] (x) {};</span></span>
-<span id="cb5-132"><a href="#cb5-132"></a><span class="in">%\node [below,hashText] at (x.south) {#4};</span></span>
-<span id="cb5-133"><a href="#cb5-133"></a><span class="in">\end{tikzpicture}</span></span>
-<span id="cb5-134"><a href="#cb5-134"></a><span class="in">};</span></span>
-<span id="cb5-135"><a href="#cb5-135"></a><span class="in">\node [below,hashText] at (#2.south) {#4};</span></span>
-<span id="cb5-136"><a href="#cb5-136"></a><span class="in">\node [below,commentText,text=gray] at ($(#2.south) +(0,-0.5)$) {#5};</span></span>
-<span id="cb5-137"><a href="#cb5-137"></a><span class="in">}</span></span>
-<span id="cb5-138"><a href="#cb5-138"></a></span>
-<span id="cb5-139"><a href="#cb5-139"></a><span class="in">\newcommand{\master}[1] {</span></span>
-<span id="cb5-140"><a href="#cb5-140"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (master) {main};</span></span>
-<span id="cb5-141"><a href="#cb5-141"></a><span class="in">}</span></span>
-<span id="cb5-142"><a href="#cb5-142"></a><span class="in">\newcommand{\rmaster}[1] {</span></span>
-<span id="cb5-143"><a href="#cb5-143"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (rmaster) {origin/main};</span></span>
-<span id="cb5-144"><a href="#cb5-144"></a><span class="in">}</span></span>
-<span id="cb5-145"><a href="#cb5-145"></a><span class="in">\newcommand{\branch}[2] {</span></span>
-<span id="cb5-146"><a href="#cb5-146"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (#2) {#2};</span></span>
-<span id="cb5-147"><a href="#cb5-147"></a><span class="in">}</span></span>
-<span id="cb5-148"><a href="#cb5-148"></a></span>
-<span id="cb5-149"><a href="#cb5-149"></a><span class="in">\newcommand{\HEAD}[1] {</span></span>
-<span id="cb5-150"><a href="#cb5-150"></a><span class="in">\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (HEAD) {HEAD};</span></span>
-<span id="cb5-151"><a href="#cb5-151"></a><span class="in">}</span></span>
-<span id="cb5-152"><a href="#cb5-152"></a><span class="in">\newcommand{\rHEAD}[1] {</span></span>
-<span id="cb5-153"><a href="#cb5-153"></a><span class="in">\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (rHEAD) {origin/HEAD};</span></span>
-<span id="cb5-154"><a href="#cb5-154"></a><span class="in">}</span></span>
-<span id="cb5-155"><a href="#cb5-155"></a><span class="in">```</span></span>
-<span id="cb5-156"><a href="#cb5-156"></a></span>
-<span id="cb5-159"><a href="#cb5-159"></a><span class="in">```{r}</span></span>
-<span id="cb5-160"><a href="#cb5-160"></a><span class="co">#| label: teststt</span></span>
-<span id="cb5-161"><a href="#cb5-161"></a><span class="co">#| results: markup</span></span>
-<span id="cb5-162"><a href="#cb5-162"></a><span class="co">#| eval: true</span></span>
-<span id="cb5-163"><a href="#cb5-163"></a><span class="co">#| echo: true</span></span>
-<span id="cb5-164"><a href="#cb5-164"></a><span class="co">#| cache: false</span></span>
-<span id="cb5-165"><a href="#cb5-165"></a><span class="fu">Sys.getenv</span>(<span class="st">&quot;PATH&quot;</span>)</span>
-<span id="cb5-166"><a href="#cb5-166"></a><span class="in">```</span></span>
-<span id="cb5-167"><a href="#cb5-167"></a></span>
-<span id="cb5-170"><a href="#cb5-170"></a><span class="in">```{bash}</span></span>
-<span id="cb5-171"><a href="#cb5-171"></a><span class="co">#| label: teststta</span></span>
-<span id="cb5-172"><a href="#cb5-172"></a><span class="co">#| results: markup</span></span>
-<span id="cb5-173"><a href="#cb5-173"></a><span class="co">#| eval: true</span></span>
-<span id="cb5-174"><a href="#cb5-174"></a><span class="co">#| echo: true</span></span>
-<span id="cb5-175"><a href="#cb5-175"></a><span class="co">#| cache: false</span></span>
-<span id="cb5-176"><a href="#cb5-176"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb5-177"><a href="#cb5-177"></a><span class="bu">echo</span> <span class="va">$PATH</span></span>
-<span id="cb5-178"><a href="#cb5-178"></a><span class="fu">whereis</span> convert</span>
-<span id="cb5-179"><a href="#cb5-179"></a><span class="fu">whereis</span> magick</span>
-<span id="cb5-180"><a href="#cb5-180"></a><span class="in">```</span></span>
-<span id="cb5-181"><a href="#cb5-181"></a></span>
-<span id="cb5-182"><a href="#cb5-182"></a>Here</span>
+<div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="an">title:</span><span class="co"> Git and version control</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="an">author:</span><span class="co"> &quot;Murray Logan&quot;</span></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="an">date:</span><span class="co"> &quot;`r format(Sys.time(), &#39;%d %B, %Y&#39;)`&quot;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="an">format:</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a><span class="co">  html:</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a><span class="co">    toc: true</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a><span class="co">    toc-float: true</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a><span class="co">    page-layout: full</span></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">    number-sections: true</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="co">    number-depth: 3</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a><span class="co">    code-fold: false</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">    code-tools: true</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a><span class="co">    code-summary: &quot;Show the code&quot;</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="co">    code-block-border-left: &quot;#ccc&quot;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a><span class="co">    code-copy: true</span></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">    highlight-style: atom-one</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="co">    theme: [default, ../resources/tut-style.scss]</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="co">    css: ../resources/tut-style.css</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a><span class="an">crossref:</span></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">  fig-title: &#39;**Figure**&#39;</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="co">  fig-labels: arabic</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="co">  tbl-title: &#39;**Table**&#39;</span></span>
+<span id="cb3-26"><a href="#cb3-26"></a><span class="co">  tbl-labels: arabic</span></span>
+<span id="cb3-27"><a href="#cb3-27"></a><span class="an">engine:</span><span class="co"> knitr</span></span>
+<span id="cb3-28"><a href="#cb3-28"></a><span class="an">bibliography:</span><span class="co"> ../resources/references.bib</span></span>
+<span id="cb3-29"><a href="#cb3-29"></a><span class="an">output_dir:</span><span class="co"> &quot;docs&quot;</span></span>
+<span id="cb3-30"><a href="#cb3-30"></a><span class="co">---</span></span>
+<span id="cb3-31"><a href="#cb3-31"></a></span>
+<span id="cb3-32"><a href="#cb3-32"></a><span class="in">```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}</span></span>
+<span id="cb3-33"><a href="#cb3-33"></a><span class="in">knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = &quot;&quot;)</span></span>
+<span id="cb3-34"><a href="#cb3-34"></a><span class="in">options(tinytex.engine = &#39;xelatex&#39;)</span></span>
+<span id="cb3-35"><a href="#cb3-35"></a><span class="in">cleanRmdInput &lt;- function(x) {</span></span>
+<span id="cb3-36"><a href="#cb3-36"></a><span class="in">#x &lt;- gsub(&quot;```\\{r&quot;,&quot;```markdown\n`r &#39;&#39;```\\{r&quot;,x)</span></span>
+<span id="cb3-37"><a href="#cb3-37"></a><span class="in">x &lt;- gsub(&quot;^```$&quot;,&quot;`` `&quot;,x)  # the Makefile will then change this back to ``` after pandoc</span></span>
+<span id="cb3-38"><a href="#cb3-38"></a><span class="in">x</span></span>
+<span id="cb3-39"><a href="#cb3-39"></a><span class="in">}</span></span>
+<span id="cb3-40"><a href="#cb3-40"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb3-41"><a href="#cb3-41"></a><span class="in">library(pander)</span></span>
+<span id="cb3-42"><a href="#cb3-42"></a><span class="in">FIG_PATH &lt;- &#39;10_git_files/figure-html/&#39;</span></span>
+<span id="cb3-43"><a href="#cb3-43"></a><span class="in">```</span></span>
+<span id="cb3-44"><a href="#cb3-44"></a></span>
+<span id="cb3-45"><a href="#cb3-45"></a></span>
+<span id="cb3-46"><a href="#cb3-46"></a></span>
+<span id="cb3-47"><a href="#cb3-47"></a></span>
+<span id="cb3-48"><a href="#cb3-48"></a>::: {.newsbox}</span>
+<span id="cb3-49"><a href="#cb3-49"></a></span>
+<span id="cb3-50"><a href="#cb3-50"></a>**Other useful tutorials or resources**</span>
+<span id="cb3-51"><a href="#cb3-51"></a></span>
+<span id="cb3-52"><a href="#cb3-52"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://git-scm.com/book/en/v2</span><span class="co">](https://git-scm.com/book/en/v2)</span></span>
+<span id="cb3-53"><a href="#cb3-53"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://www.atlassian.com/git/tutorials</span><span class="co">](https://www.atlassian.com/git/tutorials)</span></span>
+<span id="cb3-54"><a href="#cb3-54"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://marklodato.github.io/visual-git-guide/index-en.html</span><span class="co">](https://marklodato.github.io/visual-git-guide/index-en.html)</span></span>
+<span id="cb3-55"><a href="#cb3-55"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://git-scm.com/docs/gittutorial</span><span class="co">](https://git-scm.com/docs/gittutorial)</span></span>
+<span id="cb3-56"><a href="#cb3-56"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://marklodato.github.io/visual-git-guide/index-en.html</span><span class="co">](https://marklodato.github.io/visual-git-guide/index-en.html)</span></span>
+<span id="cb3-57"><a href="#cb3-57"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://try.github.io/levels/1/challenges/1</span><span class="co">](https://try.github.io/levels/1/challenges/1)</span></span>
+<span id="cb3-58"><a href="#cb3-58"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://onlywei.github.io/explain-git-with-d3/</span><span class="co">](https://onlywei.github.io/explain-git-with-d3/)</span></span>
+<span id="cb3-59"><a href="#cb3-59"></a><span class="ss">- </span><span class="co">[</span><span class="ot">http://git-school.github.io/visualizing-git/</span><span class="co">](http://git-school.github.io/visualizing-git/)</span></span>
+<span id="cb3-60"><a href="#cb3-60"></a><span class="ss">- </span><span class="co">[</span><span class="ot">https://github.com/sensorflo/git-draw</span><span class="co">](https://github.com/sensorflo/git-draw)</span></span>
+<span id="cb3-61"><a href="#cb3-61"></a>:::</span>
+<span id="cb3-62"><a href="#cb3-62"></a></span>
+<span id="cb3-63"><a href="#cb3-63"></a></span>
+<span id="cb3-64"><a href="#cb3-64"></a>This tutorial will take a modular approach. The first section will</span>
+<span id="cb3-65"><a href="#cb3-65"></a>provide an overview of the basic concepts of git. The second section</span>
+<span id="cb3-66"><a href="#cb3-66"></a>will provide a quick overview of basic usage and the third and final</span>
+<span id="cb3-67"><a href="#cb3-67"></a>section will cover intermediate level usage. In an attempt to ease</span>
+<span id="cb3-68"><a href="#cb3-68"></a>understanding, the tutorial will blend together git commands and</span>
+<span id="cb3-69"><a href="#cb3-69"></a>output, schematic diagrams and commentary in an attempt to ease</span>
+<span id="cb3-70"><a href="#cb3-70"></a>understanding.</span>
+<span id="cb3-71"><a href="#cb3-71"></a></span>
+<span id="cb3-72"><a href="#cb3-72"></a>The following table surves as both a key and overview of the most</span>
+<span id="cb3-73"><a href="#cb3-73"></a>common actions and git &#39;verbs&#39;.</span>
+<span id="cb3-74"><a href="#cb3-74"></a></span>
+<span id="cb3-77"><a href="#cb3-77"></a><span class="in">```{cat}</span></span>
+<span id="cb3-78"><a href="#cb3-78"></a><span class="in">#| label: common</span></span>
+<span id="cb3-79"><a href="#cb3-79"></a><span class="in">#| echo: true</span></span>
+<span id="cb3-80"><a href="#cb3-80"></a><span class="in">#| eval: true</span></span>
+<span id="cb3-81"><a href="#cb3-81"></a><span class="in">#| cache: true</span></span>
+<span id="cb3-82"><a href="#cb3-82"></a><span class="in">#| engine.opts:</span></span>
+<span id="cb3-83"><a href="#cb3-83"></a><span class="in">#|   file: &quot;../resources/common.tikz&quot;</span></span>
+<span id="cb3-84"><a href="#cb3-84"></a></span>
+<span id="cb3-85"><a href="#cb3-85"></a><span class="in">\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{NotoSans-Regular}}]</span></span>
+<span id="cb3-86"><a href="#cb3-86"></a></span>
+<span id="cb3-87"><a href="#cb3-87"></a><span class="in">\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]</span></span>
+<span id="cb3-88"><a href="#cb3-88"></a><span class="in">\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata}}]</span></span>
+<span id="cb3-89"><a href="#cb3-89"></a><span class="in">\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata}}]</span></span>
+<span id="cb3-90"><a href="#cb3-90"></a></span>
+<span id="cb3-91"><a href="#cb3-91"></a><span class="in">\definecolor{color_branch}{rgb}{1,0.8,0.4}</span></span>
+<span id="cb3-92"><a href="#cb3-92"></a><span class="in">\definecolor{color_head}{HTML}{6495ED} %</span></span>
+<span id="cb3-93"><a href="#cb3-93"></a><span class="in">\definecolor{color_HEAD}{rgb}{0.26,0.65,0.91}</span></span>
+<span id="cb3-94"><a href="#cb3-94"></a><span class="in">\definecolor{color_commit}{rgb}{0.9,0.9,0.2}</span></span>
+<span id="cb3-95"><a href="#cb3-95"></a><span class="in">\definecolor{color_inactive}{rgb}{0.90,0.9,0.9}</span></span>
+<span id="cb3-96"><a href="#cb3-96"></a><span class="in">\definecolor{color_detached}{rgb}{0.90,0.9,0.9}</span></span>
+<span id="cb3-97"><a href="#cb3-97"></a><span class="in">\definecolor{color_derivative}{rgb}{0.12,0.6,0.51}</span></span>
+<span id="cb3-98"><a href="#cb3-98"></a><span class="in">\definecolor{color_local}{rgb}{0.9,0.9,0.2}</span></span>
+<span id="cb3-99"><a href="#cb3-99"></a><span class="in">\definecolor{color_remote}{rgb}{1,0.55,0.15}</span></span>
+<span id="cb3-100"><a href="#cb3-100"></a></span>
+<span id="cb3-101"><a href="#cb3-101"></a><span class="in">% A template for making the storage symbol</span></span>
+<span id="cb3-102"><a href="#cb3-102"></a><span class="in">\newcommand{\state}[3]{</span></span>
+<span id="cb3-103"><a href="#cb3-103"></a><span class="in">\draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {</span></span>
+<span id="cb3-104"><a href="#cb3-104"></a><span class="in">\begin{tikzpicture}</span></span>
+<span id="cb3-105"><a href="#cb3-105"></a><span class="in">\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};</span></span>
+<span id="cb3-106"><a href="#cb3-106"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
+<span id="cb3-107"><a href="#cb3-107"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
+<span id="cb3-108"><a href="#cb3-108"></a><span class="in">\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);</span></span>
+<span id="cb3-109"><a href="#cb3-109"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb3-110"><a href="#cb3-110"></a><span class="in">};</span></span>
+<span id="cb3-111"><a href="#cb3-111"></a><span class="in">}</span></span>
+<span id="cb3-112"><a href="#cb3-112"></a></span>
+<span id="cb3-113"><a href="#cb3-113"></a><span class="in">\newcommand{\commit}[5]{</span></span>
+<span id="cb3-114"><a href="#cb3-114"></a><span class="in">\node [#1,inner sep=0,outer sep=0] (#2) {</span></span>
+<span id="cb3-115"><a href="#cb3-115"></a><span class="in">\begin{tikzpicture}[#1]</span></span>
+<span id="cb3-116"><a href="#cb3-116"></a><span class="in">\draw [#1] node [draw=black!40!#3,fill=#3,shape=circle,minimum width=1.0cm,line width=3pt] (x) {};</span></span>
+<span id="cb3-117"><a href="#cb3-117"></a><span class="in">%\node [below,hashText] at (x.south) {#4};</span></span>
+<span id="cb3-118"><a href="#cb3-118"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb3-119"><a href="#cb3-119"></a><span class="in">};</span></span>
+<span id="cb3-120"><a href="#cb3-120"></a><span class="in">\ifx\notempty#4\empty</span></span>
+<span id="cb3-121"><a href="#cb3-121"></a><span class="in">\node [below,hashText, minimum height = 0] at (#2.south) {#4};</span></span>
+<span id="cb3-122"><a href="#cb3-122"></a><span class="in">\fi</span></span>
+<span id="cb3-123"><a href="#cb3-123"></a><span class="in">\ifx\notempty#5\empty</span></span>
+<span id="cb3-124"><a href="#cb3-124"></a><span class="in">\node [below,commentText,text=gray, minimum height = 0] at ($(#2.south) +(0,-0.5)$) {#5};</span></span>
+<span id="cb3-125"><a href="#cb3-125"></a><span class="in">\fi</span></span>
+<span id="cb3-126"><a href="#cb3-126"></a><span class="in">}</span></span>
+<span id="cb3-127"><a href="#cb3-127"></a></span>
+<span id="cb3-128"><a href="#cb3-128"></a><span class="in">\newcommand{\rcommit}[5]{</span></span>
+<span id="cb3-129"><a href="#cb3-129"></a><span class="in">\node [#1,inner sep=0,outer sep=0] (#2) {</span></span>
+<span id="cb3-130"><a href="#cb3-130"></a><span class="in">\begin{tikzpicture}[#1]</span></span>
+<span id="cb3-131"><a href="#cb3-131"></a><span class="in">\draw [#1] node [draw=black!40!#3,fill=#3,shape=rectangle,minimum width=1.0cm,minimum height=1.0cm,line width=3pt] (x) {};</span></span>
+<span id="cb3-132"><a href="#cb3-132"></a><span class="in">%\node [below,hashText] at (x.south) {#4};</span></span>
+<span id="cb3-133"><a href="#cb3-133"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb3-134"><a href="#cb3-134"></a><span class="in">};</span></span>
+<span id="cb3-135"><a href="#cb3-135"></a><span class="in">\node [below,hashText] at (#2.south) {#4};</span></span>
+<span id="cb3-136"><a href="#cb3-136"></a><span class="in">\node [below,commentText,text=gray] at ($(#2.south) +(0,-0.5)$) {#5};</span></span>
+<span id="cb3-137"><a href="#cb3-137"></a><span class="in">}</span></span>
+<span id="cb3-138"><a href="#cb3-138"></a></span>
+<span id="cb3-139"><a href="#cb3-139"></a><span class="in">\newcommand{\master}[1] {</span></span>
+<span id="cb3-140"><a href="#cb3-140"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (master) {main};</span></span>
+<span id="cb3-141"><a href="#cb3-141"></a><span class="in">}</span></span>
+<span id="cb3-142"><a href="#cb3-142"></a><span class="in">\newcommand{\rmaster}[1] {</span></span>
+<span id="cb3-143"><a href="#cb3-143"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (rmaster) {origin/main};</span></span>
+<span id="cb3-144"><a href="#cb3-144"></a><span class="in">}</span></span>
+<span id="cb3-145"><a href="#cb3-145"></a><span class="in">\newcommand{\branch}[2] {</span></span>
+<span id="cb3-146"><a href="#cb3-146"></a><span class="in">\node [#1,rectangle,fill=color_branch,draw=black!20!color_branch,line width=2pt,refText,minimum height=0.8cm] (#2) {#2};</span></span>
+<span id="cb3-147"><a href="#cb3-147"></a><span class="in">}</span></span>
+<span id="cb3-148"><a href="#cb3-148"></a></span>
+<span id="cb3-149"><a href="#cb3-149"></a><span class="in">\newcommand{\HEAD}[1] {</span></span>
+<span id="cb3-150"><a href="#cb3-150"></a><span class="in">\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (HEAD) {HEAD};</span></span>
+<span id="cb3-151"><a href="#cb3-151"></a><span class="in">}</span></span>
+<span id="cb3-152"><a href="#cb3-152"></a><span class="in">\newcommand{\rHEAD}[1] {</span></span>
+<span id="cb3-153"><a href="#cb3-153"></a><span class="in">\node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (rHEAD) {origin/HEAD};</span></span>
+<span id="cb3-154"><a href="#cb3-154"></a><span class="in">}</span></span>
+<span id="cb3-155"><a href="#cb3-155"></a><span class="in">```</span></span>
+<span id="cb3-156"><a href="#cb3-156"></a></span>
+<span id="cb3-159"><a href="#cb3-159"></a><span class="in">```{tikz}</span></span>
+<span id="cb3-160"><a href="#cb3-160"></a><span class="in">%| label: Fig0</span></span>
+<span id="cb3-161"><a href="#cb3-161"></a><span class="in">%| eval: false</span></span>
+<span id="cb3-162"><a href="#cb3-162"></a><span class="in">%| engine: tikz</span></span>
+<span id="cb3-163"><a href="#cb3-163"></a><span class="in">%| echo: false</span></span>
+<span id="cb3-164"><a href="#cb3-164"></a><span class="in">%| cache: true</span></span>
+<span id="cb3-165"><a href="#cb3-165"></a><span class="in">%| include: false</span></span>
+<span id="cb3-166"><a href="#cb3-166"></a><span class="in">%| dependson: common</span></span>
+<span id="cb3-167"><a href="#cb3-167"></a><span class="in">%| class: tikz</span></span>
+<span id="cb3-168"><a href="#cb3-168"></a><span class="in">%| engine-opts:</span></span>
+<span id="cb3-169"><a href="#cb3-169"></a><span class="in">%|   template: &quot;../resources/tikz-minimal.tex&quot;</span></span>
+<span id="cb3-170"><a href="#cb3-170"></a><span class="in">\input{../resources/common.tikz}</span></span>
+<span id="cb3-171"><a href="#cb3-171"></a><span class="in">\begin{tikzpicture}%[every node/.style={inner sep=0,outer sep=0, minimum height = 0}]</span></span>
+<span id="cb3-172"><a href="#cb3-172"></a><span class="in">\commit{}{A}{white}{}{}</span></span>
+<span id="cb3-173"><a href="#cb3-173"></a><span class="in">\draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);</span></span>
+<span id="cb3-174"><a href="#cb3-174"></a><span class="in">\end{tikzpicture}</span></span>
+<span id="cb3-175"><a href="#cb3-175"></a><span class="in">```</span></span>
+<span id="cb3-176"><a href="#cb3-176"></a></span>
+<span id="cb3-179"><a href="#cb3-179"></a><span class="in">```{bash}</span></span>
+<span id="cb3-180"><a href="#cb3-180"></a><span class="ex">magick</span> <span class="at">-version</span></span>
+<span id="cb3-181"><a href="#cb3-181"></a><span class="ex">magick</span> <span class="at">-list</span> format</span>
+<span id="cb3-182"><a href="#cb3-182"></a><span class="in">```</span></span>
+<span id="cb3-183"><a href="#cb3-183"></a></span>
+<span id="cb3-184"><a href="#cb3-184"></a></span>
+<span id="cb3-185"><a href="#cb3-185"></a>The end again</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
