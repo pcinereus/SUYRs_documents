@@ -438,3 +438,144 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
    The output is empty (assuming you have not previously generated any
    containers), indicating that there are currently no running
    containers.
+
+4. **Test the docker image (fire up an ephemeral container)**
+
+   We will now test the image by generating and running a container
+   from our container image.  Once the container has started, the
+   `cowsay` terminal application will display an ASCII cow saying
+   'Moo" before quietly terminating.  The container will be
+   automatically stopped and removed.
+
+   ```{bash}
+   #| label: dockerRun
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --entrypoint ./usr/games/cowsay --rm minideb Moo
+   ```
+
+   where:
+
+   - `--entrypoint ./usr/games/cowsay` defines the base command that
+     will be run once the container has started.  In this case, it
+     specifies the full path to the `cowsay` executable file.
+
+   - `--rm` indicates that the container should be removed after it
+     has finished running.
+
+   - `minideb` is the name of our docker container image
+
+   - `Moo` is the string passed on to `cowsay` to display in the
+     speech bubble.  Feel free to experiment with other strings here.
+
+    To further appreciate the way arguments are passed on to
+    applications within a container, lets alter the `cowsay` animal.
+
+   ```{bash}
+   #| label: dockerRun1
+   #| engine: bash
+   #| results: markup
+   #| eval: true
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --entrypoint ./usr/games/cowsay --rm minideb -f /usr/share/cowsay/cows/koala.cow Grunt
+   ```
+
+   In the above example, we passed `-f
+   /usr/share/cowsay/cows/koala.cow Grunt` on to `cowsay`.  In this
+   context, `-f` points to were alternative animal definitions are
+   located.
+
+5. **Test the docker image interactively**
+
+    Rather than fire up a container, run some command and then
+    immediately terminate, it is possible to run a container in
+    _interactive mode_.  In this mode, after the container starts up,
+    you will be placed in a terminal where you can issue any available
+    command you like.  Once you have finished the interactive session,
+    simply enter `exit` and the container will then terminate.
+
+    Try the following (within the container):
+
+   ```{bash}
+   #| label: dockerRun2
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal
+   #| class-source: terminal
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   docker run --rm -it minideb
+   ```
+
+   Once the prompt appears try entering the following:
+
+   - list the files and folders in the current working directory
+
+   ```{bash}
+   #| label: dockerRun3
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   ls -la
+   ```
+
+   - run the cowsay application
+
+   ```{bash}
+   #| label: dockerRun4
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| cache: true
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   ./usr/games/cowsay Moo
+   ```
+
+   - exit the container
+
+   ```{bash}
+   #| label: dockerRun5
+   #| engine: bash
+   #| results: markup
+   #| eval: false
+   #| comment: ""
+   #| classes: terminal-docker
+   #| class-source: [terminal, terminal-docker]
+   #| class-output: terminal
+   #| code-line-numbers: false
+   #| highlight-style: zenburn
+   exit
+   ```
+
+    Running in interactive mode is very useful when
+    developing/debugging code on a container.
