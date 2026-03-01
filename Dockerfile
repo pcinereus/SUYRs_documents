@@ -157,6 +157,11 @@ RUN mkdir -p /usr/share/fonts/ubuntu && \
   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
 RUN fc-cache -fv && fc-list
 
+RUN git config --global user.name "pcinereus"
+RUN git config --global user.email "i.obesulus@gmail.com"
+RUN git config --global init.defaultBranch main
+
+
 # Set work directory
 WORKDIR /workspace
 #
