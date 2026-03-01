@@ -173,6 +173,7 @@ common actions and git 'verbs'.
 ```{bash}
 magick -version
 magick -list format
+pgk-config --modversion libpng
 ```
 
 

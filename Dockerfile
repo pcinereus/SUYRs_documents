@@ -13,6 +13,7 @@ RUN apt-get update \
     unzip \
     fontconfig \
     build-essential \
+    pkg-config \
     libjpeg-dev \
     libpng-dev \
     libtiff-dev \
@@ -22,6 +23,7 @@ RUN apt-get update \
     wget \
     ghostscript \
     build-essential \
+    ca-certificates \
     pandoc && \
     rm -rf /var/lib/apt/lists/*
 
@@ -31,7 +33,7 @@ ENV PATH="${PATH}:/root/bin"
 ## It seems it is necessary to install ImageMagick from source to get the latest version that is compatible with the magick R package. The version available in the apt repositories is too old and causes errors when trying to use the magick package.
 RUN wget https://download.imagemagick.org/ImageMagick/download/ImageMagick.tar.gz
 RUN tar xvzf ImageMagick.tar.gz
-RUN cd ImageMagick-* && ./configure --with-security-policy=open && make && make install
+RUN cd ImageMagick-* && ./configure --with-security-policy=open && make -j$(nproc) && make install
 RUN ldconfig /usr/local/lib
 RUN magick -list policy
 RUN ls /etc
