@@ -154,7 +154,6 @@ common actions and git 'verbs'.
 
 ```{tikz}
 %| label: Fig0
-%| eval: false
 %| engine: tikz
 %| echo: false
 %| cache: true
