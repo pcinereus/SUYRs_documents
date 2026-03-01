@@ -17,6 +17,8 @@ RUN apt-get update \
     libpng-dev \
     libtiff-dev \
     libgif-dev \
+    libwebp-dev \
+    libheif-dev \
     wget \
     ghostscript \
     build-essential \
