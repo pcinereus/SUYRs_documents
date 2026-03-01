@@ -26,6 +26,7 @@ RUN apt-get update \
     build-essential \
     ca-certificates \
     pandoc && \
+    tree \
     rm -rf /var/lib/apt/lists/*
 
 ## Must set this environment variable to avoid issues with the magick package when trying to use it in R. The magick package relies on the ImageMagick library, which is installed in /usr/local/bin, but this directory is not in the default PATH. By adding it to the PATH, we ensure that the magick package can find the ImageMagick library and work properly.
