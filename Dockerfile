@@ -125,36 +125,36 @@ RUN R -e "options(repos = \
 "
 
 
-# RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
-# COPY architects_daughter /usr/share/fonts/
-# RUN unzip -d inconsolata/ resources/Inconsolata.zip
-#
-# COPY inconsolata /usr/share/fonts/
-# COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
-#
-# RUN unzip -d noto_sans/ resources/Noto_Sans.zip
-# COPY noto_sans /usr/share/fonts/
-#
-# RUN mkdir -p /usr/share/fonts
+RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
+COPY architects_daughter /usr/share/fonts/
+RUN unzip -d inconsolata/ resources/Inconsolata.zip
 
-# COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
-# RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
+COPY inconsolata /usr/share/fonts/
+COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts/
 
-# COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts
-# # RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
+RUN unzip -d noto_sans/ resources/Noto_Sans.zip
+COPY noto_sans /usr/share/fonts/
 
-# COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
-# RUN mkdir -p /usr/share/fonts/Inconsolata && \
-#   unzip /tmp/Inconsolata.zip -d /usr/share/fonts/Inconsolata
+RUN mkdir -p /usr/share/fonts
 
-# COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
-# RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
-#   unzip /tmp/Noto-Sans.zip -d /usr/share/fonts/Noto-Sans
+COPY resources/Architects_Daughter.zip /tmp/Architects_Daughter.zip
+RUN unzip /tmp/Architects_Daughter.zip -d /usr/share/fonts
 
-# COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
-# RUN mkdir -p /usr/share/fonts/ubuntu && \
-#   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
-# RUN fc-cache -fv && fc-list
+COPY resources/Inconsolata_Nerd_Font_Regular.ttf /usr/share/fonts
+# RUN unzip /tmp/Inconsolata.zip -d /usr/share/fonts
+
+COPY resources/Inconsolata.zip /tmp/Inconsolata.zip
+RUN mkdir -p /usr/share/fonts/Inconsolata && \
+  unzip /tmp/Inconsolata.zip -d /usr/share/fonts/Inconsolata
+
+COPY resources/Noto_Sans.zip /tmp/Noto-Sans.zip
+RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
+  unzip /tmp/Noto-Sans.zip -d /usr/share/fonts/Noto-Sans
+
+COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
+RUN mkdir -p /usr/share/fonts/ubuntu && \
+  unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
+RUN fc-cache -fv && fc-list
 
 # Set work directory
 WORKDIR /workspace
