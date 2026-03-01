@@ -183,7 +183,8 @@ common actions and git 'verbs'.
 #| cache: false
 #| echo: false
 ## convert -trim +repage -density 300 -resize 20% 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png
-magick -density 300 10_git_files/figure-html/Fig0-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig0-1.png
+## magick -density 300 10_git_files/figure-html/Fig0-1.pdf -resize 20% -trim +repage 10_git_files/figure-html/Fig0-1.png
+magick 10_git_files/figure-html/Fig0-1.pdf 10_git_files/figure-html/Fig0-1.png
 ```
 
 
