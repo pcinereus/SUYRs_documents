@@ -678,3 +678,38 @@ updated.
 #| cache: true
 docker images -a
 ```
+
+We can now run the container as:
+
+```{bash}
+#| label: dockerRun20
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb
+```
+
+To override the default arguments (**CMD**) we baked into the docker
+image, we can issue an alternative as a command line argument.
+
+```{bash}
+#| label: dockerRun20a
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm minideb Meow
+```
