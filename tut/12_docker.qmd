@@ -579,3 +579,102 @@ of which is supported via the [DockerHub](https://hub.docker.com) container ecos
 
     Running in interactive mode is very useful when
     developing/debugging code on a container.
+
+## Some Dockerfile goodness
+
+
+::: {.panel-tabset}
+
+### Incorporate default commands
+
+Lets now step this up a bit and add some more information to the build
+recipe.  Rather than alter the previous `Dockerfile`, we will instead
+make a different file (`Dockerfile2`) and inform `docker` to build with this
+alternative `Dockerfile`.
+
+```{bash}
+#| label: createDockerfile2
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+#| cache: false
+cd ~/tmp/docker_tests
+echo 'FROM bitnami/minideb:bookworm' > Dockerfile2
+echo 'LABEL maintainer="Author"' >> Dockerfile2
+echo 'LABEL email="author_email@email.com"' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Install the os packages' >> Dockerfile2
+echo 'RUN apt-get update \' >> Dockerfile2
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile2
+echo '    cowsay \' >> Dockerfile2
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Default command to run' >> Dockerfile2
+echo 'ENTRYPOINT ["/usr/games/cowsay","-f","/usr/share/cowsay/cows/koala.cow"]' >> Dockerfile2
+echo '' >> Dockerfile2
+echo '## Default extra parameters passed to the command' >> Dockerfile2
+echo 'CMD ["Grunt"]' >> Dockerfile2
+```
+
+```{r}
+#| label: Text2
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+#| file: ~/tmp/docker_tests/Dockerfile2
+#| eval: false
+```
+
+In the above `Dockerfile`:
+
+- `ENTRYPOINT` provides a default command to run within the container.
+  This specification is in _JSON_ format.
+
+- `CMD` provides default extra parameters that are passed on to the
+  command (also in _JSON_ format). This can be overridden by passing
+  an alternative when running the `docker run` command (see below).
+
+If we now build our container image using this `Dockerfile2`:
+
+```{bash}
+#| label: dockerBuildReal2
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag minideb -f Dockerfile2
+```
+
+```{bash}
+#| label: dockerBuild2
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag minideb -f Dockerfile2
+```
+
+If we again review the list of images, we see that there are now two
+additional intermediate images and the `latest` image has been
+updated.
+
+```{bash}
+#| label: dockerImages2
+#| engine: bash
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a
+```
