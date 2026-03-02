@@ -974,6 +974,7 @@ the container.
 #| code-line-numbers: false
 #| highlight-style: zenburn
 cp ~/tmp/docker_tests/analysis.R /workspace/analysis.R
+ls -lat /workspace
 cd ~/tmp/docker_tests/
 pwd
 ls -lat
@@ -981,7 +982,8 @@ ls -lat $(pwd)
 # docker run --rm -v $(pwd):/home/Project r:2
 docker run --rm -v $(pwd):/home/Project --entrypoint "ls" r:2 -lat
 docker run --rm -v $(pwd):/home/Project --entrypoint "pwd" r:2
-docker run --rm -v /workspace:/home/Project r:2 "analysis.R"
+docker run --rm -v /workspace:/home/Project --entrypoint "ls" r:2 -lat
+docker run --rm -v /var/run/docker.sock:/var/run/docker.sock -v /workspace:/home/Project r:2 "analysis.R"
 ```
 
 where:
