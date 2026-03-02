@@ -79,6 +79,7 @@ RUN R -e "options(repos = \
 RUN R -e "install.packages('INLA',repos=c(getOption('repos'),INLA='https://inla.r-inla-download.org/R/stable'), dep=TRUE)"
 
 RUN Rscript -e 'tinytex::install_tinytex()'
+RUN Rscript -e 'tinytex::reinstall_tinytex(repository = "illinois")'
 RUN Rscript -e 'tinytex::tlmgr_update(all = TRUE, self = TRUE)'
 RUN Rscript -e 'tinytex::tlmgr_install("titlesec")'
 RUN Rscript -e 'tinytex::tlmgr_install("forest")'
@@ -89,6 +90,8 @@ RUN Rscript -e 'tinytex::tlmgr_install("environ")'
 RUN Rscript -e 'tinytex::tlmgr_install("tikzfill")'
 RUN Rscript -e 'tinytex::tlmgr_install("tcolorbox")'
 RUN Rscript -e 'tinytex::tlmgr_install("pdfcol")'
+RUN Rscript -e 'tinytex::tlmgr_install("standalone")'
+
 
 
 RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
