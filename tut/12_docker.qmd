@@ -972,6 +972,7 @@ the container.
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
+cp ~/tmp/docker_tests/analysis.R ${GITHUB_WORKSPACE}/analysis.R
 cd ~/tmp/docker_tests/
 pwd
 ls -lat
@@ -979,7 +980,7 @@ ls -lat $(pwd)
 # docker run --rm -v $(pwd):/home/Project r:2
 docker run --rm -v $(pwd):/home/Project --entrypoint "ls" r:2 -lat
 docker run --rm -v $(pwd):/home/Project --entrypoint "pwd" r:2
-docker run --rm -v /root/tmp/docker_tests:/home/Project --entrypoint "Rscript" r:2 "analysis.R"
+docker run --rm -v ${GITHUB_WORKSPACE}:/home/Project r:2 "analysis.R"
 ```
 
 where:
