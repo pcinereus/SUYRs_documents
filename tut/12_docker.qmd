@@ -976,7 +976,7 @@ cd ~/tmp/docker_tests/
 ls -lat
 ls -lat $(pwd)
 # docker run --rm -v $(pwd):/home/Project r:2
-docker run --rm -v $(pwd):/home/Project --entrypoint "bash" r:2 ls -lat
+docker run --rm -v $(pwd):/home/Project --entrypoint "ls" r:2 -lat
 ```
 
 where:
