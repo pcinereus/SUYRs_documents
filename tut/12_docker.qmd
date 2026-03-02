@@ -954,3 +954,57 @@ docker build . --tag r:2 -f Dockerfile4
 ```
 
 </br>
+
+This time, when we run the container image, we will indicate a volume
+to mount (and a folder to mount this volume to).  This will define
+which host folder to mount (map) and the path to mount this to within
+the container.
+
+```{bash}
+#| label: dockerRun40
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+ls -lat
+docker run --rm -v $(pwd):/home/Project r:2
+```
+
+where:
+
+- `-v pwd:/home/Project` defines the mounting of the current working
+  directory on the host machine to the `/home/Project' (which the
+  `Dockerfile` defined as the working directory) folder inside the
+  container
+
+If we list the contents of our local folder, we see that the output
+file (`dat.csv`) has been created on the host filesystem.
+
+```{bash}
+#| label: dockerRun41
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+ls -la
+```
+
+Of course, it is possible to define a combination of the above two
+examples - one in which a copy of the codebase is packaged up into the
+container image (to ensure that a specific codebase is always
+applied), yet a moutpoint is also specified at run time to enable the
+output(s) to be obtained by the host.
