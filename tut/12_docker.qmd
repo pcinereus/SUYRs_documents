@@ -978,7 +978,7 @@ ls -lat $(pwd)
 # docker run --rm -v $(pwd):/home/Project r:2
 docker run --rm -v $(pwd):/home/Project --entrypoint "ls" r:2 -lat
 docker run --rm -v $(pwd):/home/Project --entrypoint "pwd" r:2
-docker run --rm -v $(pwd):/home/Project --entrypoint "Rscript" r:2 "analysis.R"
+docker run --rm -v ~/tmp/docker_tests:/home/Project --entrypoint "Rscript" r:2 "analysis.R"
 ```
 
 where:
