@@ -960,18 +960,6 @@ to mount (and a folder to mount this volume to).  This will define
 which host folder to mount (map) and the path to mount this to within
 the container.
 
-```{bash}
-#| label: testsss
-#| results: markup
-#| eval: true
-#| echo: true
-#| cache: false
-echo "PWD is: $PWD"
-echo "Workspace is: $GITHUB_WORKSPACE"
-ls -lat "$GITHUB_WORKSPACE"
-```
-
-
 
 ```{bash}
 #| label: dockerRun40
@@ -985,7 +973,7 @@ ls -lat "$GITHUB_WORKSPACE"
 #| class-output: terminal
 #| code-line-numbers: false
 #| highlight-style: zenburn
-cp ~/tmp/docker_tests/analysis.R ${GITHUB_WORKSPACE}/analysis.R
+cp ~/tmp/docker_tests/analysis.R /workspace/analysis.R
 cd ~/tmp/docker_tests/
 pwd
 ls -lat
@@ -993,7 +981,7 @@ ls -lat $(pwd)
 # docker run --rm -v $(pwd):/home/Project r:2
 docker run --rm -v $(pwd):/home/Project --entrypoint "ls" r:2 -lat
 docker run --rm -v $(pwd):/home/Project --entrypoint "pwd" r:2
-docker run --rm -v ${GITHUB_WORKSPACE}:/home/Project r:2 "analysis.R"
+docker run --rm -v /workspace:/home/Project r:2 "analysis.R"
 ```
 
 where:
