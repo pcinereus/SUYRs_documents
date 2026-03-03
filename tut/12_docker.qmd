@@ -982,7 +982,7 @@ work_dir
 
 cp ~/tmp/docker_tests/analysis.R $HOST_PWD/analysis.R
 
-ls -lat $GITHUB_WORKSPACE
+ls -lat $HOST_PWD
 
 ```
 
@@ -1008,14 +1008,14 @@ ls -lat
 # ls -lat /home/runner/work/SUYRs_documents/SUYRs_documents
 # find / -name analysis.R
 
-cp ~/tmp/docker_tests/analysis.R $GITHUB_WORKSPACE/analysis.R
-ls -lat $GITHUB_WORKSPACE
+cp ~/tmp/docker_tests/analysis.R $HOST_PWD/analysis.R
+ls -lat $HOST_PWD
 
 # docker run --rm -v $(pwd):/home/Project r:2 bash -c "ls -lat /home/Project && cat /etc/os-release && pwd && env"
 
 # docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project
 
-#docker run --rm -v $GITHUB_WORKSPACE:/home/Project r:2
+docker run --rm -v $HOST_PWD:/home/Project r:2
 ```
 
 where:
