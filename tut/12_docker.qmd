@@ -975,14 +975,16 @@ the container.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -lat
-ls -lat $(HOST_PWD)
+# ls -lat $(HOST_PWD)
+ls -lat $HOST_PWD
+
 
 
 # docker run --rm -v $(pwd):/home/Project r:2 bash -c "ls -lat /home/Project && cat /etc/os-release && pwd && env"
 
 # docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project
 
-docker run --rm -v $(HOST_PWD):/home/Project r:2
+docker run --rm -v $HOST_PWD:/home/Project r:2
 ```
 
 where:
