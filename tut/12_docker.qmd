@@ -1069,3 +1069,235 @@ certain files and directories:
   credentials
 
 :::
+
+## Building a reproducible R environment
+
+Just as it might be important to be able to recreate the state of an
+operating system and software from a previous time (to maximise the
+potential for reproducibility), it might be equally important to
+ensure that the entire environment reflects this state back in time.
+In the case of R software, this means that all included _packages_
+should be the same versions that were available at that previous time.
+
+Posit (the developers of Rstudio) provide daily snapshots of CRAN
+([Posit package manager](https://packagemanager.posit.co/)).  We can
+therefore nominate a date when providing package installation
+instructions in a `Dockerfile`.
+
+On UNIX based systems, such as linux and MacOSX, many R packages need
+to be compiled from source during their installation.  As such, they
+sometimes have additional external system dependencies.  Normally, it
+it is necessary to install these external dependencies prior to
+attempting to install the R packages.  This is done via the `apt-get
+install` (debian) instructions in the Dockerfile.  Unfortunately, this
+can turn into a very iterative process or attempting to install an R
+package, examine the progress and look out for any errors about
+missing dependencies and going back to the Dockerfile and adding the
+appropriate dependencies before trying again.
+
+The R package called `pak` is designed to install R packages and if
+necessary handle the installation of any additional external
+dependencies as well.  This makes `pak` a very useful addition in
+Dockerfiles.
+
+Some R packages have system dependencies that usually must be
+installed before attempting to install R packages.
+
+For this example, we will start from an image that already has a
+version of R (4.2.2) built in (`rocker/r-ver:4.2.2`).  Although this
+image is substantially larger than the mini debian we used earlier, it
+does come with all the build tools and R, each of which would
+otherwise require additional downloads and compilation.  The net
+result is that the `rocker/r-ver:4.2.2` image requires less overall
+download traffic than the individual parts.
+
+::: {.callout-note}
+Note, this image will take substantially longer to make as it not only
+has to pull down a larger base, it then has to compile the entire
+tidyverse from source.
+:::
+
+
+```{bash}
+#| label: createDockerfile5
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+#| cache: false
+cd ~/tmp/docker_tests
+echo 'FROM rocker/r-ver:4.2.2' > Dockerfile5
+echo 'LABEL maintainer="Author"' >> Dockerfile5
+echo 'LABEL email="author_email@email.com"' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'RUN apt-get update \' >> Dockerfile5
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile5
+echo '  libxml2-dev \' >> Dockerfile5
+echo '  libcurl4-openssl-dev  \' >> Dockerfile5
+echo '  libssl-dev \' >> Dockerfile5
+echo '  zlib1g-dev \' >> Dockerfile5
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile5
+echo '' >> Dockerfile5
+echo '## Install R package versions from Posit package manager (based on a date - YYYY-MM-DD)' >> Dockerfile5
+echo 'RUN R -e "options(repos = \' >> Dockerfile5
+echo '    list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \' >> Dockerfile5
+echo '  install.packages(\"pak\"); \' >> Dockerfile5
+echo '"' >> Dockerfile5
+echo 'RUN R -e "options(repos = \' >> Dockerfile5
+echo '    list(CRAN = \"https://packagemanager.posit.co/cran/2024-01-10/\")); \' >> Dockerfile5
+echo '  pak::pkg_install(c(\"tidyverse\")); \' >> Dockerfile5
+echo '"' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'WORKDIR /home/Project' >> Dockerfile5
+echo '' >> Dockerfile5
+echo '## Default command to run' >> Dockerfile5
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5
+echo '' >> Dockerfile5
+echo 'CMD ["analysis.R"]' >> Dockerfile5
+```
+
+The changes from the previous `Dockerfile`:
+
+- switch the base image to `rocker:r-ver:4.2.2`
+- add numerous `-dev` developer package dependencies
+- install the `tidyverse` collection of packages from a dated snapshot
+
+```{r}
+#| label: Text5
+#| file: ~/tmp/docker_tests/Dockerfile5
+#| eval: false
+#| engine: text
+#| results: asis
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+In the above `Dockerfile`
+
+- the three first rows in contain information on the base image on
+  which to construct your docker container image (in this case
+  rocker/r-ver:4.2.1 container freely provided by the rocker team), as
+  well as information about yourself.
+
+- the **FROM** command points to a parent image.  Typically, this will
+  point to a specific image within a registry on Docker hub.  This
+  generates the base layer of the container image.
+
+- the **LABEL** command is one of numerous _environmental variables_
+  and is used to add metadata to an image.  In this case, there are
+  two entries to specify information about the maintainer and their
+  contact details.  Note, entries must be key-value pairs and values
+  must be enclosed in double quotes.
+
+- the **RUN** command runs shell commands in a new layer on top of the
+  current image and commits the result.  Each RUN generates a new
+  layer.  In the above example, there are two RUN commands.
+  - the first `RUN` command updates the underlying Ubuntu linux
+    distribution and installs some necessary dependencies
+  - the second `RUN` adds the R package (`tidyverse` - which is
+    technically a large collection of packages) from the
+    [Posit package manager](https://packagemanager.posit.co/)) snapshot
+    repository (base on the 4th of October 2022).  This repository
+    stores daily snapshots of all the packages on CRAN and thus allows
+    us to obtain the set of packages in the state they existed on a
+    nominated day.
+
+- the **WORKDIR** command sets the working directory for software
+  within the container.  In this case, we are creating a dedicated
+  directory (`/home/Project`)
+
+- the **ENTRYPOINT** command defines the default command/application
+  to run within the container if the user does not provide a command.
+  This is in JSON format.  In this case, we are indicating that by
+  default the container should run the `Rscript` application.  The
+  `Rscript` application runs a non-interactive `R` session on a
+  nominated R script file.  That is, it will run the nominated R
+  script and then terminate on completion.
+
+- the **CMD** command defined the default arguments to provide to the
+  **ENTRYPOINT** command.  In this case, we have indicated which R
+  script to run `Rscript` on.
+
+**Note**, many of the large collection of R packages targeted for
+install as part of the `tidyverse` ecosystem (or its dependencies)
+require full compilations.  Whilst this does help ensure that the
+underlying package routines are optimised for your system, the entire
+install process may take up to an hour.  This installation can be sped
+up substantially by instead installing a pre-bundled version of the
+`tidyverse` packages (and dependencies) directly from the Ubuntu
+repositories.  The associated alternative `Dockerfile` is provided in
+the following expandable section.
+
+
+<details> <summary>Alternative Dockerfile</summary>
+
+As an alternative, we could instead install tidyverse from the ubuntu
+r-cran repository.  This install will be far faster, yet likely not as
+up-to-date and we would have a little less control over exactly which
+version we were installing...
+
+```{bash}
+#| label: createDockerfile5a
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+cd ~/tmp/docker_tests
+echo 'FROM rocker/r-ver:4.2.2' > Dockerfile5a
+echo 'LABEL maintainer="Author"' >> Dockerfile5a
+echo 'LABEL email="author_email@email.com"' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'RUN apt-get update \' >> Dockerfile5a
+echo '  && apt-get install -y --no-install-recommends \' >> Dockerfile5a
+echo '  r-cran-tidyverse \' >> Dockerfile5a
+echo '  && rm -rf /var/lib/apt/lists/*' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'WORKDIR /home/Project' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo '## Default command to run' >> Dockerfile5a
+echo 'ENTRYPOINT ["Rscript"]' >> Dockerfile5a
+echo '' >> Dockerfile5a
+echo 'CMD ["analysis.R"]' >> Dockerfile5a
+```
+
+```{r}
+#| label: Text5a
+#| engine: verbatim
+#| results: asis
+#| file: ~/tmp/docker_tests/Dockerfile5a
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+</details></br>
+
+
+We will now build the container image with the name:tag of `r-tidyverse:1`
+Note, this will take some time to complete.
+
+```{bash}
+#| label: dockerBuildReal5
+#| engine: bash
+#| results: hide
+#| eval: true
+#| echo: false
+cd ~/tmp/docker_tests
+docker build . --tag r-tidyverse:1 -f Dockerfile5
+```
+```{bash}
+#| label: dockerBuild5
+#| engine: bash
+#| results: hide
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+docker build . --tag r-tidyverse:1 -f Dockerfile5
+```
+</br>
+
+If we now run `docker` with this image, the resulting container will
+automatically run a non-interactive session using the `analysis.R`
+script.
