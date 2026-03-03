@@ -70,8 +70,8 @@ jobs:
           cp -r gh-pages-folder/*.html docs || echo "No existing files to copy."
           ls -lat docs
 
-      - name: Setup tmate session
-        uses: mxschmitt/action-tmate@v3
+      # - name: Setup tmate session
+      #   uses: mxschmitt/action-tmate@v3
 
 
       - name: Render Updated Quarto Files
