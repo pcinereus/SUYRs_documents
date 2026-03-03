@@ -1000,7 +1000,7 @@ ls -lat $GITHUB_WORKSPACE
 
 # docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project
 
-docker run --rm -v $GITHUB_WORKSPACE:/home/Project r:2
+#docker run --rm -v $GITHUB_WORKSPACE:/home/Project r:2
 ```
 
 where:
