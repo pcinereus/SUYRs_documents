@@ -94,9 +94,9 @@ RUN Rscript -e 'tinytex::tlmgr_install("standalone")'
 
 
 
-RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
-  tlmgr update --self && \
-  tlmgr update --all
+# RUN tlmgr option repository https://mirror.ctan.org/systems/texlive/tlnet && \
+#   tlmgr update --self && \
+#   tlmgr update --all
 # RUN tlmgr option repository http://ftp.math.utah.edu/pub/tex/historic/systems/texlive/tlnet && \
 #   tlmgr update --self && \
 #   tlmgr update --all && \
