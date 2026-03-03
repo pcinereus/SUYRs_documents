@@ -960,19 +960,6 @@ to mount (and a folder to mount this volume to).  This will define
 which host folder to mount (map) and the path to mount this to within
 the container.
 
-```{r}
-#| label: kl
-#| results: markup
-#| eval: true
-#| echo: true
-#| cache: false
-work_dir <- Sys.getenv("GITHUB_WORKSPACE")
-work_dir
-work_dir <- Sys.getenv("HOST_PWD")
-work_dir
-
-```
-
 ```{bash}
 #| label: copy across
 #| results: markup
@@ -1032,7 +1019,7 @@ file (`dat.csv`) has been created on the host filesystem.
 #| label: dockerRun41
 #| engine: bash
 #| results: markup
-#| eval: true
+#| eval: false
 #| comment: ""
 #| cache: true
 #| classes: terminal
@@ -1042,6 +1029,21 @@ file (`dat.csv`) has been created on the host filesystem.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -la
+```
+
+```{bash}
+#| label: dockerRun41a
+#| engine: bash
+#| results: markup
+#| eval: true
+#| echo: false
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
 ls -lat $HOST_PWD/docker_tests
 ```
 
@@ -1050,3 +1052,20 @@ examples - one in which a copy of the codebase is packaged up into the
 container image (to ensure that a specific codebase is always
 applied), yet a moutpoint is also specified at run time to enable the
 output(s) to be obtained by the host.
+
+### .dockerignore
+
+The `.dockerignore` file is similar in structure to a `.gitignore`
+file in that they both define files (or patterns) to ignore.  The
+purpose of a `dockerignore` is to indicate which files and folders
+should be **excluded** from the docker build context.  Excluding
+certain files and directories:
+
+- reduce image size by preventing unnecessary files from being copied
+  (e.g., logs, temporary files).
+- speed up builds by avoiding sending large or irrelevant files to the
+  Docker daemon.
+- improve security by excluding sensitive files like `.env` or
+  credentials
+
+:::
