@@ -977,13 +977,10 @@ work_dir
 #| label: copy across
 #| results: markup
 #| eval: true
-#| echo: true
+#| echo: false
 #| cache: false
-
-cp ~/tmp/docker_tests/analysis.R $HOST_PWD/analysis.R
-
-ls -lat $HOST_PWD
-
+mkdir -p $HOST_PWD/docker_tests
+cp ~/tmp/docker_tests/analysis.R $HOST_PWD/docker_tests/analysis.R
 ```
 
 A bit more
@@ -992,7 +989,7 @@ A bit more
 #| label: dockerRun40
 #| engine: bash
 #| results: markup
-#| eval: true
+#| eval: false
 #| comment: ""
 #| cache: true
 #| classes: terminal
@@ -1002,20 +999,23 @@ A bit more
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -lat
-# ls -lat $(HOST_PWD)
-# ls -lat $HOST_PWD
-# ls -lat $HOST_PWD/docs
-# ls -lat /home/runner/work/SUYRs_documents/SUYRs_documents
-# find / -name analysis.R
+docker run --rm -v $(pwd):/home/Project r:2
+```
 
-cp ~/tmp/docker_tests/analysis.R $HOST_PWD/analysis.R
-ls -lat $HOST_PWD
-
-# docker run --rm -v $(pwd):/home/Project r:2 bash -c "ls -lat /home/Project && cat /etc/os-release && pwd && env"
-
-# docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project
-
-docker run --rm -v $HOST_PWD:/home/Project r:2
+```{bash}
+#| label: dockerRun40b
+#| engine: bash
+#| results: markup
+#| eval: true
+#| echo: false
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm -v $HOST_PWD/docker_tests:/home/Project r:2
 ```
 
 where:
@@ -1042,7 +1042,7 @@ file (`dat.csv`) has been created on the host filesystem.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -la
-ls -lat $HOST_PWD
+ls -lat $HOST_PWD/docker_tests
 ```
 
 Of course, it is possible to define a combination of the above two
