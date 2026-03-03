@@ -968,10 +968,25 @@ the container.
 #| cache: false
 work_dir <- Sys.getenv("GITHUB_WORKSPACE")
 work_dir
+work_dir <- Sys.getenv("HOST_PWD")
+work_dir
+
 ```
 
+```{bash}
+#| label: copy across
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
 
+cp ~/tmp/docker_tests/analysis.R $HOST_PWD/analysis.R
 
+ls -lat $GITHUB_WORKSPACE
+
+```
+
+A bit more
 
 ```{bash}
 #| label: dockerRun40
