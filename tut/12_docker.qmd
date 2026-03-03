@@ -1301,3 +1301,47 @@ docker build . --tag r-tidyverse:1 -f Dockerfile5
 If we now run `docker` with this image, the resulting container will
 automatically run a non-interactive session using the `analysis.R`
 script.
+
+```{bash}
+#| label: dockerRun50a
+#| engine: bash
+#| results: markup
+#| eval: false
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+cd ~/tmp/docker_tests/
+docker run --rm -v `pwd`:/home/Project r-tidyverse:1
+```
+
+```{bash}
+#| label: dockerRun50ab
+#| engine: bash
+#| results: markup
+#| eval: true
+#| echo: false
+#| comment: ""
+#| cache: true
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+docker run --rm -v $HOST_PWD/docker_tests:/home/Project r-tidyverse:1
+```
+
+where:
+
+- `-v pwd:/home/Project` defines the mounting of the current working
+  directory on the host machine to the `/home/Project' (which the
+  `Dockerfile` defined as the working directory) folder inside the
+  container
+
+Conveniently, we can override the **CMD** command when we run `docker
+run`.  In the current context, perhaps we would like to run the R
+session on an different R script.  Lets try this by creating a new R
+script - this time, one that makes use of the `tidyverse` ecosystem.
