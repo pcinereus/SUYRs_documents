@@ -977,6 +977,9 @@ cd ~/tmp/docker_tests/
 ls -lat
 # ls -lat $(HOST_PWD)
 ls -lat $HOST_PWD
+ls -lat $HOST_PWD/docs
+ls -lat /home/runner/work/SUYRs_documents/SUYRs_documents
+find / -name analysis.R
 
 
 
