@@ -1042,6 +1042,7 @@ file (`dat.csv`) has been created on the host filesystem.
 #| highlight-style: zenburn
 cd ~/tmp/docker_tests/
 ls -la
+ls -lat $HOST_PWD
 ```
 
 Of course, it is possible to define a combination of the above two
