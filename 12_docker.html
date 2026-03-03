@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Murray Logan">
-<meta name="dcterms.date" content="2026-03-02">
+<meta name="dcterms.date" content="2026-03-03">
 
 <title>Containerisation - docker and singularity</title>
 <style>
@@ -3121,7 +3121,7 @@ vertical-align: -.125em;
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">March 2, 2026</p>
+      <p class="date">March 3, 2026</p>
     </div>
   </div>
   
@@ -3257,11 +3257,11 @@ vertical-align: -.125em;
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> image ls</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                                   TAG        IMAGE ID       CREATED        SIZE</span>
-<span id="cb5-2"><a href="#cb5-2"></a>minideb                                      latest     4a9e9e16b700   1 second ago   121MB</span>
-<span id="cb5-3"><a href="#cb5-3"></a>ghcr.io/pcinereus/suyrs_documents            latest     52005c18a2e3   3 hours ago    10.2GB</span>
-<span id="cb5-4"><a href="#cb5-4"></a>bitnami/minideb                              bookworm   f29455a5e33f   4 days ago     120MB</span>
-<span id="cb5-5"><a href="#cb5-5"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   5 days ago     794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb5-1"><a href="#cb5-1"></a>REPOSITORY                                   TAG        IMAGE ID       CREATED         SIZE</span>
+<span id="cb5-2"><a href="#cb5-2"></a>minideb                                      latest     e1e5751c2edd   1 second ago    121MB</span>
+<span id="cb5-3"><a href="#cb5-3"></a>ghcr.io/pcinereus/suyrs_documents            latest     6768d0f29c7d   8 minutes ago   10.2GB</span>
+<span id="cb5-4"><a href="#cb5-4"></a>bitnami/minideb                              bookworm   f29455a5e33f   5 days ago      120MB</span>
+<span id="cb5-5"><a href="#cb5-5"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   6 days ago      794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Note, the above simply lists all named images in your local registry. To get a more complete list of all images:</p>
@@ -3269,12 +3269,12 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb7-1"><a href="#cb7-1"></a>REPOSITORY                                   TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb7-2"><a href="#cb7-2"></a>minideb                                      latest     4a9e9e16b700   1 second ago    121MB</span>
-<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                                       &lt;none&gt;     f584b63ec3da   4 seconds ago   120MB</span>
-<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                                       &lt;none&gt;     5bb865d78be3   5 seconds ago   120MB</span>
-<span id="cb7-5"><a href="#cb7-5"></a>ghcr.io/pcinereus/suyrs_documents            latest     52005c18a2e3   3 hours ago     10.2GB</span>
-<span id="cb7-6"><a href="#cb7-6"></a>bitnami/minideb                              bookworm   f29455a5e33f   4 days ago      120MB</span>
-<span id="cb7-7"><a href="#cb7-7"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   5 days ago      794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>minideb                                      latest     e1e5751c2edd   1 second ago    121MB</span>
+<span id="cb7-3"><a href="#cb7-3"></a>&lt;none&gt;                                       &lt;none&gt;     e37cb81c195e   4 seconds ago   120MB</span>
+<span id="cb7-4"><a href="#cb7-4"></a>&lt;none&gt;                                       &lt;none&gt;     5a019b87524a   5 seconds ago   120MB</span>
+<span id="cb7-5"><a href="#cb7-5"></a>ghcr.io/pcinereus/suyrs_documents            latest     6768d0f29c7d   8 minutes ago   10.2GB</span>
+<span id="cb7-6"><a href="#cb7-6"></a>bitnami/minideb                              bookworm   f29455a5e33f   5 days ago      120MB</span>
+<span id="cb7-7"><a href="#cb7-7"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   6 days ago      794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>The <code>-a</code> switch indicates all images (including unnamed and hanging images).</p>
@@ -3396,14 +3396,14 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> images <span class="at">-a</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb21-1"><a href="#cb21-1"></a>REPOSITORY                                   TAG        IMAGE ID       CREATED         SIZE</span>
-<span id="cb21-2"><a href="#cb21-2"></a>minideb                                      latest     fd1c17fb3ab7   1 second ago    121MB</span>
-<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                                       &lt;none&gt;     f2eed61ce4fd   2 seconds ago   121MB</span>
-<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                                       &lt;none&gt;     4a9e9e16b700   3 seconds ago   121MB</span>
-<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                                       &lt;none&gt;     f584b63ec3da   6 seconds ago   120MB</span>
-<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                                       &lt;none&gt;     5bb865d78be3   7 seconds ago   120MB</span>
-<span id="cb21-7"><a href="#cb21-7"></a>ghcr.io/pcinereus/suyrs_documents            latest     52005c18a2e3   3 hours ago     10.2GB</span>
-<span id="cb21-8"><a href="#cb21-8"></a>bitnami/minideb                              bookworm   f29455a5e33f   4 days ago      120MB</span>
-<span id="cb21-9"><a href="#cb21-9"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   5 days ago      794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-2"><a href="#cb21-2"></a>minideb                                      latest     ac0fea7516aa   1 second ago    121MB</span>
+<span id="cb21-3"><a href="#cb21-3"></a>&lt;none&gt;                                       &lt;none&gt;     49ae6f409450   2 seconds ago   121MB</span>
+<span id="cb21-4"><a href="#cb21-4"></a>&lt;none&gt;                                       &lt;none&gt;     e1e5751c2edd   3 seconds ago   121MB</span>
+<span id="cb21-5"><a href="#cb21-5"></a>&lt;none&gt;                                       &lt;none&gt;     e37cb81c195e   6 seconds ago   120MB</span>
+<span id="cb21-6"><a href="#cb21-6"></a>&lt;none&gt;                                       &lt;none&gt;     5a019b87524a   7 seconds ago   120MB</span>
+<span id="cb21-7"><a href="#cb21-7"></a>ghcr.io/pcinereus/suyrs_documents            latest     6768d0f29c7d   8 minutes ago   10.2GB</span>
+<span id="cb21-8"><a href="#cb21-8"></a>bitnami/minideb                              bookworm   f29455a5e33f   5 days ago      120MB</span>
+<span id="cb21-9"><a href="#cb21-9"></a>ghcr.io/dependabot/dependabot-updater-core   latest     bf54b2c91cec   6 days ago      794MB</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>We can now run the container as:</p>
@@ -3509,16 +3509,16 @@ vertical-align: -.125em;
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> r:1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb31"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb31-1"><a href="#cb31-1"></a>             y</span>
-<span id="cb31-2"><a href="#cb31-2"></a>1  -0.87927753</span>
-<span id="cb31-3"><a href="#cb31-3"></a>2   1.59112532</span>
-<span id="cb31-4"><a href="#cb31-4"></a>3  -0.72684691</span>
-<span id="cb31-5"><a href="#cb31-5"></a>4  -1.42384169</span>
-<span id="cb31-6"><a href="#cb31-6"></a>5  -0.20844684</span>
-<span id="cb31-7"><a href="#cb31-7"></a>6   0.41781784</span>
-<span id="cb31-8"><a href="#cb31-8"></a>7  -0.09478711</span>
-<span id="cb31-9"><a href="#cb31-9"></a>8   1.66637584</span>
-<span id="cb31-10"><a href="#cb31-10"></a>9   1.72623041</span>
-<span id="cb31-11"><a href="#cb31-11"></a>10 -2.13316415</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-2"><a href="#cb31-2"></a>1  -1.75448239</span>
+<span id="cb31-3"><a href="#cb31-3"></a>2   0.96338894</span>
+<span id="cb31-4"><a href="#cb31-4"></a>3   0.14891207</span>
+<span id="cb31-5"><a href="#cb31-5"></a>4  -1.14270432</span>
+<span id="cb31-6"><a href="#cb31-6"></a>5   0.92356133</span>
+<span id="cb31-7"><a href="#cb31-7"></a>6  -0.39892576</span>
+<span id="cb31-8"><a href="#cb31-8"></a>7  -0.76587435</span>
+<span id="cb31-9"><a href="#cb31-9"></a>8   0.46436729</span>
+<span id="cb31-10"><a href="#cb31-10"></a>9  -0.04901229</span>
+<span id="cb31-11"><a href="#cb31-11"></a>10 -1.07371460</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -3563,29 +3563,49 @@ vertical-align: -.125em;
 <div class="cell terminal" data-highlight-style="zenburn">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode bash terminal code-with-copy"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span></span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2</span></span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">--entrypoint</span> <span class="st">&quot;ls&quot;</span> r:2 <span class="at">-lat</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$HOST_PWD</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$(</span><span class="ex">HOST_PWD</span><span class="va">)</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2 bash -c &quot;ls -lat /home/Project &amp;&amp; cat /etc/os-release &amp;&amp; pwd &amp;&amp; env&quot;</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project</span></span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb35-1"><a href="#cb35-1"></a>total 28</span>
-<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 root root  361 Mar  2 02:02 Dockerfile4</span>
-<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 root root 4096 Mar  2 02:02 .</span>
-<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Mar  2 02:02 Dockerfile3</span>
-<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Mar  2 02:02 analysis.R</span>
-<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Mar  2 02:02 Dockerfile2</span>
-<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Mar  2 02:01 Dockerfile</span>
-<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Mar  2 02:01 ..</span>
-<span id="cb35-9"><a href="#cb35-9"></a>total 28</span>
-<span id="cb35-10"><a href="#cb35-10"></a>-rw-r--r-- 1 root root  361 Mar  2 02:02 Dockerfile4</span>
-<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x 2 root root 4096 Mar  2 02:02 .</span>
-<span id="cb35-12"><a href="#cb35-12"></a>-rw-r--r-- 1 root root  369 Mar  2 02:02 Dockerfile3</span>
-<span id="cb35-13"><a href="#cb35-13"></a>-rw-r--r-- 1 root root   89 Mar  2 02:02 analysis.R</span>
-<span id="cb35-14"><a href="#cb35-14"></a>-rw-r--r-- 1 root root  403 Mar  2 02:02 Dockerfile2</span>
-<span id="cb35-15"><a href="#cb35-15"></a>-rw-r--r-- 1 root root  238 Mar  2 02:01 Dockerfile</span>
-<span id="cb35-16"><a href="#cb35-16"></a>drwxr-xr-x 3 root root 4096 Mar  2 02:01 ..</span>
-<span id="cb35-17"><a href="#cb35-17"></a>total 8</span>
-<span id="cb35-18"><a href="#cb35-18"></a>drwxr-xr-x 2 root root 4096 Mar  2 02:02 .</span>
-<span id="cb35-19"><a href="#cb35-19"></a>drwxr-xr-x 1 root root 4096 Mar  2 02:02 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-2"><a href="#cb35-2"></a>-rw-r--r-- 1 root root  361 Mar  3 00:22 Dockerfile4</span>
+<span id="cb35-3"><a href="#cb35-3"></a>drwxr-xr-x 2 root root 4096 Mar  3 00:22 .</span>
+<span id="cb35-4"><a href="#cb35-4"></a>-rw-r--r-- 1 root root  369 Mar  3 00:21 Dockerfile3</span>
+<span id="cb35-5"><a href="#cb35-5"></a>-rw-r--r-- 1 root root   89 Mar  3 00:21 analysis.R</span>
+<span id="cb35-6"><a href="#cb35-6"></a>-rw-r--r-- 1 root root  403 Mar  3 00:21 Dockerfile2</span>
+<span id="cb35-7"><a href="#cb35-7"></a>-rw-r--r-- 1 root root  238 Mar  3 00:21 Dockerfile</span>
+<span id="cb35-8"><a href="#cb35-8"></a>drwxr-xr-x 3 root root 4096 Mar  3 00:21 ..</span>
+<span id="cb35-9"><a href="#cb35-9"></a>total 64</span>
+<span id="cb35-10"><a href="#cb35-10"></a>drwxr-xr-x  4 1001 1001 4096 Mar  3 00:21 tut</span>
+<span id="cb35-11"><a href="#cb35-11"></a>drwxr-xr-x  3 root root 4096 Mar  3 00:21 ..</span>
+<span id="cb35-12"><a href="#cb35-12"></a>drwxr-xr-x  2 1001 1001 4096 Mar  3 00:21 docs</span>
+<span id="cb35-13"><a href="#cb35-13"></a>drwxr-xr-x 10 1001 1001 4096 Mar  3 00:21 .</span>
+<span id="cb35-14"><a href="#cb35-14"></a>drwxr-xr-x  3 1001 1001 4096 Mar  3 00:21 gh-pages-folder</span>
+<span id="cb35-15"><a href="#cb35-15"></a>-rw-r--r--  1 1001 1001   18 Mar  3 00:17 changed_files.txt</span>
+<span id="cb35-16"><a href="#cb35-16"></a>drwxr-xr-x  7 1001 1001 4096 Mar  3 00:17 .git</span>
+<span id="cb35-17"><a href="#cb35-17"></a>drwxr-xr-x  2 1001 1001 4096 Mar  3 00:17 resources</span>
+<span id="cb35-18"><a href="#cb35-18"></a>drwxr-xr-x  3 1001 1001 4096 Mar  3 00:17 pres</span>
+<span id="cb35-19"><a href="#cb35-19"></a>-rw-r--r--  1 1001 1001  768 Mar  3 00:17 default.nix</span>
+<span id="cb35-20"><a href="#cb35-20"></a>drwxr-xr-x  2 1001 1001 4096 Mar  3 00:17 data</span>
+<span id="cb35-21"><a href="#cb35-21"></a>-rw-r--r--  1 1001 1001 6619 Mar  3 00:17 Dockerfile</span>
+<span id="cb35-22"><a href="#cb35-22"></a>-rw-r--r--  1 1001 1001  986 Mar  3 00:17 .gitignore</span>
+<span id="cb35-23"><a href="#cb35-23"></a>-rw-r--r--  1 1001 1001  486 Mar  3 00:17 Makefile</span>
+<span id="cb35-24"><a href="#cb35-24"></a>drwxr-xr-x  3 1001 1001 4096 Mar  3 00:17 .github</span>
+<span id="cb35-25"><a href="#cb35-25"></a>bash: line 4: HOST_PWD: command not found</span>
+<span id="cb35-26"><a href="#cb35-26"></a>total 28</span>
+<span id="cb35-27"><a href="#cb35-27"></a>-rw-r--r-- 1 root root  361 Mar  3 00:22 Dockerfile4</span>
+<span id="cb35-28"><a href="#cb35-28"></a>drwxr-xr-x 2 root root 4096 Mar  3 00:22 .</span>
+<span id="cb35-29"><a href="#cb35-29"></a>-rw-r--r-- 1 root root  369 Mar  3 00:21 Dockerfile3</span>
+<span id="cb35-30"><a href="#cb35-30"></a>-rw-r--r-- 1 root root   89 Mar  3 00:21 analysis.R</span>
+<span id="cb35-31"><a href="#cb35-31"></a>-rw-r--r-- 1 root root  403 Mar  3 00:21 Dockerfile2</span>
+<span id="cb35-32"><a href="#cb35-32"></a>-rw-r--r-- 1 root root  238 Mar  3 00:21 Dockerfile</span>
+<span id="cb35-33"><a href="#cb35-33"></a>drwxr-xr-x 3 root root 4096 Mar  3 00:21 ..</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>where:</p>
@@ -3598,13 +3618,13 @@ vertical-align: -.125em;
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ls</span> <span class="at">-la</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource terminal number-lines code-with-copy"><code class="sourceCode"><span id="cb37-1"><a href="#cb37-1"></a>total 28</span>
-<span id="cb37-2"><a href="#cb37-2"></a>drwxr-xr-x 2 root root 4096 Mar  2 02:02 .</span>
-<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 3 root root 4096 Mar  2 02:01 ..</span>
-<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root   89 Mar  2 02:02 analysis.R</span>
-<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root  238 Mar  2 02:01 Dockerfile</span>
-<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Mar  2 02:02 Dockerfile2</span>
-<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  369 Mar  2 02:02 Dockerfile3</span>
-<span id="cb37-8"><a href="#cb37-8"></a>-rw-r--r-- 1 root root  361 Mar  2 02:02 Dockerfile4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-2"><a href="#cb37-2"></a>drwxr-xr-x 2 root root 4096 Mar  3 00:22 .</span>
+<span id="cb37-3"><a href="#cb37-3"></a>drwxr-xr-x 3 root root 4096 Mar  3 00:21 ..</span>
+<span id="cb37-4"><a href="#cb37-4"></a>-rw-r--r-- 1 root root   89 Mar  3 00:21 analysis.R</span>
+<span id="cb37-5"><a href="#cb37-5"></a>-rw-r--r-- 1 root root  238 Mar  3 00:21 Dockerfile</span>
+<span id="cb37-6"><a href="#cb37-6"></a>-rw-r--r-- 1 root root  403 Mar  3 00:21 Dockerfile2</span>
+<span id="cb37-7"><a href="#cb37-7"></a>-rw-r--r-- 1 root root  369 Mar  3 00:21 Dockerfile3</span>
+<span id="cb37-8"><a href="#cb37-8"></a>-rw-r--r-- 1 root root  361 Mar  3 00:22 Dockerfile4</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Of course, it is possible to define a combination of the above two examples - one in which a copy of the codebase is packaged up into the container image (to ensure that a specific codebase is always applied), yet a moutpoint is also specified at run time to enable the output(s) to be obtained by the host.</p>
@@ -5049,56 +5069,63 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb38-998"><a href="#cb38-998"></a>which host folder to mount (map) and the path to mount this to within</span>
 <span id="cb38-999"><a href="#cb38-999"></a>the container.</span>
 <span id="cb38-1000"><a href="#cb38-1000"></a></span>
-<span id="cb38-1003"><a href="#cb38-1003"></a><span class="in">```{bash}</span></span>
-<span id="cb38-1004"><a href="#cb38-1004"></a><span class="co">#| label: dockerRun40</span></span>
-<span id="cb38-1005"><a href="#cb38-1005"></a><span class="co">#| engine: bash</span></span>
-<span id="cb38-1006"><a href="#cb38-1006"></a><span class="co">#| results: markup</span></span>
-<span id="cb38-1007"><a href="#cb38-1007"></a><span class="co">#| eval: true</span></span>
-<span id="cb38-1008"><a href="#cb38-1008"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb38-1009"><a href="#cb38-1009"></a><span class="co">#| cache: true</span></span>
-<span id="cb38-1010"><a href="#cb38-1010"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb38-1011"><a href="#cb38-1011"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb38-1012"><a href="#cb38-1012"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb38-1013"><a href="#cb38-1013"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb38-1014"><a href="#cb38-1014"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb38-1015"><a href="#cb38-1015"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb38-1016"><a href="#cb38-1016"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
-<span id="cb38-1017"><a href="#cb38-1017"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span></span>
-<span id="cb38-1018"><a href="#cb38-1018"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2</span></span>
-<span id="cb38-1019"><a href="#cb38-1019"></a><span class="ex">docker</span> run <span class="at">--rm</span> <span class="at">-v</span> <span class="va">$(</span><span class="bu">pwd</span><span class="va">)</span>:/home/Project <span class="at">--entrypoint</span> <span class="st">&quot;ls&quot;</span> r:2 <span class="at">-lat</span></span>
-<span id="cb38-1020"><a href="#cb38-1020"></a><span class="in">```</span></span>
+<span id="cb38-1001"><a href="#cb38-1001"></a></span>
+<span id="cb38-1004"><a href="#cb38-1004"></a><span class="in">```{bash}</span></span>
+<span id="cb38-1005"><a href="#cb38-1005"></a><span class="co">#| label: dockerRun40</span></span>
+<span id="cb38-1006"><a href="#cb38-1006"></a><span class="co">#| engine: bash</span></span>
+<span id="cb38-1007"><a href="#cb38-1007"></a><span class="co">#| results: markup</span></span>
+<span id="cb38-1008"><a href="#cb38-1008"></a><span class="co">#| eval: true</span></span>
+<span id="cb38-1009"><a href="#cb38-1009"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb38-1010"><a href="#cb38-1010"></a><span class="co">#| cache: true</span></span>
+<span id="cb38-1011"><a href="#cb38-1011"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb38-1012"><a href="#cb38-1012"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb38-1013"><a href="#cb38-1013"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb38-1014"><a href="#cb38-1014"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb38-1015"><a href="#cb38-1015"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb38-1016"><a href="#cb38-1016"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb38-1017"><a href="#cb38-1017"></a><span class="fu">ls</span> <span class="at">-lat</span></span>
+<span id="cb38-1018"><a href="#cb38-1018"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$HOST_PWD</span></span>
+<span id="cb38-1019"><a href="#cb38-1019"></a><span class="fu">ls</span> <span class="at">-lat</span> <span class="va">$(</span><span class="ex">HOST_PWD</span><span class="va">)</span></span>
+<span id="cb38-1020"><a href="#cb38-1020"></a></span>
 <span id="cb38-1021"><a href="#cb38-1021"></a></span>
-<span id="cb38-1022"><a href="#cb38-1022"></a>where:</span>
+<span id="cb38-1022"><a href="#cb38-1022"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2 bash -c &quot;ls -lat /home/Project &amp;&amp; cat /etc/os-release &amp;&amp; pwd &amp;&amp; env&quot;</span></span>
 <span id="cb38-1023"><a href="#cb38-1023"></a></span>
-<span id="cb38-1024"><a href="#cb38-1024"></a><span class="ss">- </span><span class="in">`-v pwd:/home/Project`</span> defines the mounting of the current working</span>
-<span id="cb38-1025"><a href="#cb38-1025"></a>  directory on the host machine to the `/home/Project&#39; (which the</span>
-<span id="cb38-1026"><a href="#cb38-1026"></a>  <span class="in">`Dockerfile`</span> defined as the working directory) folder inside the</span>
-<span id="cb38-1027"><a href="#cb38-1027"></a>  container</span>
+<span id="cb38-1024"><a href="#cb38-1024"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2 ls -lat /home/Project</span></span>
+<span id="cb38-1025"><a href="#cb38-1025"></a></span>
+<span id="cb38-1026"><a href="#cb38-1026"></a><span class="co"># docker run --rm -v $(pwd):/home/Project r:2</span></span>
+<span id="cb38-1027"><a href="#cb38-1027"></a><span class="in">```</span></span>
 <span id="cb38-1028"><a href="#cb38-1028"></a></span>
-<span id="cb38-1029"><a href="#cb38-1029"></a>If we list the contents of our local folder, we see that the output</span>
-<span id="cb38-1030"><a href="#cb38-1030"></a>file (<span class="in">`dat.csv`</span>) has been created on the host filesystem.</span>
-<span id="cb38-1031"><a href="#cb38-1031"></a></span>
-<span id="cb38-1034"><a href="#cb38-1034"></a><span class="in">```{bash}</span></span>
-<span id="cb38-1035"><a href="#cb38-1035"></a><span class="co">#| label: dockerRun41</span></span>
-<span id="cb38-1036"><a href="#cb38-1036"></a><span class="co">#| engine: bash</span></span>
-<span id="cb38-1037"><a href="#cb38-1037"></a><span class="co">#| results: markup</span></span>
-<span id="cb38-1038"><a href="#cb38-1038"></a><span class="co">#| eval: true</span></span>
-<span id="cb38-1039"><a href="#cb38-1039"></a><span class="co">#| comment: &quot;&quot;</span></span>
-<span id="cb38-1040"><a href="#cb38-1040"></a><span class="co">#| cache: true</span></span>
-<span id="cb38-1041"><a href="#cb38-1041"></a><span class="co">#| classes: terminal</span></span>
-<span id="cb38-1042"><a href="#cb38-1042"></a><span class="co">#| class-source: terminal</span></span>
-<span id="cb38-1043"><a href="#cb38-1043"></a><span class="co">#| class-output: terminal</span></span>
-<span id="cb38-1044"><a href="#cb38-1044"></a><span class="co">#| code-line-numbers: false</span></span>
-<span id="cb38-1045"><a href="#cb38-1045"></a><span class="co">#| highlight-style: zenburn</span></span>
-<span id="cb38-1046"><a href="#cb38-1046"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
-<span id="cb38-1047"><a href="#cb38-1047"></a><span class="fu">ls</span> <span class="at">-la</span></span>
-<span id="cb38-1048"><a href="#cb38-1048"></a><span class="in">```</span></span>
-<span id="cb38-1049"><a href="#cb38-1049"></a></span>
-<span id="cb38-1050"><a href="#cb38-1050"></a>Of course, it is possible to define a combination of the above two</span>
-<span id="cb38-1051"><a href="#cb38-1051"></a>examples - one in which a copy of the codebase is packaged up into the</span>
-<span id="cb38-1052"><a href="#cb38-1052"></a>container image (to ensure that a specific codebase is always</span>
-<span id="cb38-1053"><a href="#cb38-1053"></a>applied), yet a moutpoint is also specified at run time to enable the</span>
-<span id="cb38-1054"><a href="#cb38-1054"></a>output(s) to be obtained by the host.</span>
+<span id="cb38-1029"><a href="#cb38-1029"></a>where:</span>
+<span id="cb38-1030"><a href="#cb38-1030"></a></span>
+<span id="cb38-1031"><a href="#cb38-1031"></a><span class="ss">- </span><span class="in">`-v pwd:/home/Project`</span> defines the mounting of the current working</span>
+<span id="cb38-1032"><a href="#cb38-1032"></a>  directory on the host machine to the `/home/Project&#39; (which the</span>
+<span id="cb38-1033"><a href="#cb38-1033"></a>  <span class="in">`Dockerfile`</span> defined as the working directory) folder inside the</span>
+<span id="cb38-1034"><a href="#cb38-1034"></a>  container</span>
+<span id="cb38-1035"><a href="#cb38-1035"></a></span>
+<span id="cb38-1036"><a href="#cb38-1036"></a>If we list the contents of our local folder, we see that the output</span>
+<span id="cb38-1037"><a href="#cb38-1037"></a>file (<span class="in">`dat.csv`</span>) has been created on the host filesystem.</span>
+<span id="cb38-1038"><a href="#cb38-1038"></a></span>
+<span id="cb38-1041"><a href="#cb38-1041"></a><span class="in">```{bash}</span></span>
+<span id="cb38-1042"><a href="#cb38-1042"></a><span class="co">#| label: dockerRun41</span></span>
+<span id="cb38-1043"><a href="#cb38-1043"></a><span class="co">#| engine: bash</span></span>
+<span id="cb38-1044"><a href="#cb38-1044"></a><span class="co">#| results: markup</span></span>
+<span id="cb38-1045"><a href="#cb38-1045"></a><span class="co">#| eval: true</span></span>
+<span id="cb38-1046"><a href="#cb38-1046"></a><span class="co">#| comment: &quot;&quot;</span></span>
+<span id="cb38-1047"><a href="#cb38-1047"></a><span class="co">#| cache: true</span></span>
+<span id="cb38-1048"><a href="#cb38-1048"></a><span class="co">#| classes: terminal</span></span>
+<span id="cb38-1049"><a href="#cb38-1049"></a><span class="co">#| class-source: terminal</span></span>
+<span id="cb38-1050"><a href="#cb38-1050"></a><span class="co">#| class-output: terminal</span></span>
+<span id="cb38-1051"><a href="#cb38-1051"></a><span class="co">#| code-line-numbers: false</span></span>
+<span id="cb38-1052"><a href="#cb38-1052"></a><span class="co">#| highlight-style: zenburn</span></span>
+<span id="cb38-1053"><a href="#cb38-1053"></a><span class="bu">cd</span> ~/tmp/docker_tests/</span>
+<span id="cb38-1054"><a href="#cb38-1054"></a><span class="fu">ls</span> <span class="at">-la</span></span>
+<span id="cb38-1055"><a href="#cb38-1055"></a><span class="in">```</span></span>
+<span id="cb38-1056"><a href="#cb38-1056"></a></span>
+<span id="cb38-1057"><a href="#cb38-1057"></a>Of course, it is possible to define a combination of the above two</span>
+<span id="cb38-1058"><a href="#cb38-1058"></a>examples - one in which a copy of the codebase is packaged up into the</span>
+<span id="cb38-1059"><a href="#cb38-1059"></a>container image (to ensure that a specific codebase is always</span>
+<span id="cb38-1060"><a href="#cb38-1060"></a>applied), yet a moutpoint is also specified at run time to enable the</span>
+<span id="cb38-1061"><a href="#cb38-1061"></a>output(s) to be obtained by the host.</span>
 </code><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
