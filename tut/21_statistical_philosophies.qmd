@@ -2,7 +2,7 @@
 title: Different statistical philosophies
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -70,7 +70,7 @@ the associated statistical interpretations and conclusions are
 somewhat counter-intuitive and not quite aligned with the desired
 manner in which researchers would like to phrase research conclusions.
 **Importantly, conclusions are strictly about the data, not the
-parameters or hypotheses.** 
+parameters or hypotheses.**
 
 Inference (probability and confidence intervals) is based on comparing
 the one observed outcome (parameter estimate) to all other outcomes
@@ -79,7 +79,7 @@ Moreover, as probabilities of point events always equal zero (e.g. the
 probability of obtaining a mean of 13.5646 is infinitely small),
 probability (the p-value) is calculated as the probability of
 obtaining data that is at least as extreme as that observed.
- 
+
 As a result of the somewhat obtuse association between hypotheses and
 the collected data, frequentist statistical outcomes (particularly
 p-values and confidence intervals) are often misused and
@@ -136,9 +136,9 @@ Nevertheless, further manipulations of conditional probability rules
 reveal a potential pathway to yield insights about a hypothesis given
 a collected sample (and thus Bayesian probability).
 
-Recall the conditional probability law: 
+Recall the conditional probability law:
 
-$$P(A|B) = \frac{P(AB)}{P(B)}~ \text{and equivalently, } P(B|A) = \frac{P(BA)}{PAB)}$$ 
+$$P(A|B) = \frac{P(AB)}{P(B)}~ \text{and equivalently, } P(B|A) = \frac{P(BA)}{PAB)}$$
 
 These can be transformed to express in terms of $P(AB)$:
 
@@ -154,7 +154,7 @@ conditional probability of outcome $A$ given $B$ to the conditional
 probability of $B$ given $A$. If we now substitute outcome $A$ for $H$
 (hypothesis) and outcome $B$ for $D$ (data), it becomes clearer how
 Bayes' rule can be used to examine the probability of a parameter or
-hypothesis given a single sample of data. 
+hypothesis given a single sample of data.
 
 $$P(H|D) =
 \frac{P(D|H)\times P(H)}{P(D)}$$
@@ -235,7 +235,8 @@ scenarios, modern computing now permits more brute force solutions in
 which very large numbers of samples can be drawn from the parameter
 space which in turn can be used to recreate the exact posterior
 probability distribution.
-  
 
 
 
+
+The end
