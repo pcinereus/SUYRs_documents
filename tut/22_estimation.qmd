@@ -2,7 +2,7 @@
 title: Estimation and inference
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -292,9 +292,9 @@ $$P(H|D) = \frac{\mathscr{L}(D|H)\times P(H)}{P(H)dH}$$
   When there are only a small number of possible parameter (hypothesis
 values), the calculations are relatively straight forward. For
 example, if the parameter can only be one of two states ('Male'
-'Female'), then the equation becomes: 
+'Female'), then the equation becomes:
 
-$$P(F|D) = \frac{P(F|H)\times P(F)}{P(F|H)\times P(F) + P(M|H)\times P(M)}$$ 
+$$P(F|D) = \frac{P(F|H)\times P(F)}{P(F|H)\times P(F) + P(M|H)\times P(M)}$$
 
 where $F$ and $M$ represent parameter values of 'Female' and 'Male'
 respectively.<br> However, when $H$ is continuous and the number of
@@ -362,7 +362,7 @@ par(mfrow=c(1,2))
 par(mar=c(1,1,0,0))
 persp(a,b,outer(a,b, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),lphi=30,ltheta=30,phi=30,theta=60, xlab="b", ylab="a",zlab="")
 par(mar=c(4,4,1,1))
-contour(a,b,outer(a,b, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="a",ylab="b") 
+contour(a,b,outer(a,b, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="a",ylab="b")
 ```
 
 The specific MCMC algorithm that I will describe is the
@@ -378,98 +378,98 @@ starting configuration will diminish.
 #| label: mcmcsampling
 #| echo: false
 mcmcsim <- function(n=500,start.x=0.5, start.y=0.5,tex=FALSE, lns=FALSE, fls=FALSE) {
-		   library(mvtnorm)
-		   xv <- seq(-3,3,by=0.1)
-		   yv <- seq(0,10,by=0.1)
-		   #Create the three dimensional plot
-		   pmat <- persp(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),
-				   zlab="density",xlab="parameter a",ylab="parameter b",phi=30,theta=0,ticktype="detailed",shade=0.9,lphi=30,ltheta=0)
-		   #Calculate the z-score for the starting coordinates
-		   z <- outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+           library(mvtnorm)
+           xv <- seq(-3,3,by=0.1)
+           yv <- seq(0,10,by=0.1)
+           #Create the three dimensional plot
+           pmat <- persp(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),
+                   zlab="density",xlab="parameter a",ylab="parameter b",phi=30,theta=0,ticktype="detailed",shade=0.9,lphi=30,ltheta=0)
+           #Calculate the z-score for the starting coordinates
+           z <- outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
            #plot the starting point
-		   points(trans3d(start.x,start.y,z,pmat), col="red",pch=16)
-		   #Label the point
+           points(trans3d(start.x,start.y,z,pmat), col="red",pch=16)
+           #Label the point
            if (tex) text(trans3d(start.x,start.y,z,pmat),labels=paste(1),pos=4, font=2, col="red")
-		   #iteratively move through the Markov chain
-		   if (n >1) {
+           #iteratively move through the Markov chain
+           if (n >1) {
            for (i in 2:n) {
-				#Get a new candidate location by a random point around the current point
-				newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
-				new.x=start.x+newLoc[1]
-				new.y=start.y+newLoc[2]
-				#plot this new point
-				if (fls) points(trans3d(new.x,new.y,outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="blue",pch=16)
-				z1 <- outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				#Calculate the ratio of probability of the new point to the previous point
-				rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
-				#Get a random number between 0 and 1
-			    rCompRatio<-runif(1)
-				old.x=start.x
-				old.y=start.y
-				#If the calculated ratio is greater than the random number, accept this new location for sampling
-				if (rRatio>rCompRatio) { #accept current position
-					start.x=new.x
-					start.y=new.y
-					z <- outer(old.x,old.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				} #otherwise stay were you are
-				#points(trans3d(start.x,start.y,outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="red",pch=16)
-				z2<-outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				points(trans3d(start.x,start.y,z2,pmat), col="red",pch=16)
-				if (rRatio>rCompRatio) {
-					lab<-paste(i)
-					if (tex) text(trans3d(start.x,start.y,z2,pmat),labels=paste(i),pos=4, font=2, col="red")
-					}else {
-						lab <- paste(lab,"&", i)
-						if(tex) text(trans3d(start.x,start.y,z2,pmat),labels=lab,pos=4, font=2, col="red")
-						if(tex)text(trans3d(new.x,new.y,z1,pmat),labels=i,pos=4, font=2,col="blue")
-					}
-					if(lns)lines(trans3d(c(old.x,start.x),c(old.y,start.y),c(z,z2),pmat), col="blue",lwd=2)
-				    z<-z2
-				}
+                #Get a new candidate location by a random point around the current point
+                newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
+                new.x=start.x+newLoc[1]
+                new.y=start.y+newLoc[2]
+                #plot this new point
+                if (fls) points(trans3d(new.x,new.y,outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="blue",pch=16)
+                z1 <- outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                #Calculate the ratio of probability of the new point to the previous point
+                rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
+                #Get a random number between 0 and 1
+                rCompRatio<-runif(1)
+                old.x=start.x
+                old.y=start.y
+                #If the calculated ratio is greater than the random number, accept this new location for sampling
+                if (rRatio>rCompRatio) { #accept current position
+                    start.x=new.x
+                    start.y=new.y
+                    z <- outer(old.x,old.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                } #otherwise stay were you are
+                #points(trans3d(start.x,start.y,outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="red",pch=16)
+                z2<-outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                points(trans3d(start.x,start.y,z2,pmat), col="red",pch=16)
+                if (rRatio>rCompRatio) {
+                    lab<-paste(i)
+                    if (tex) text(trans3d(start.x,start.y,z2,pmat),labels=paste(i),pos=4, font=2, col="red")
+                    }else {
+                        lab <- paste(lab,"&", i)
+                        if(tex) text(trans3d(start.x,start.y,z2,pmat),labels=lab,pos=4, font=2, col="red")
+                        if(tex)text(trans3d(new.x,new.y,z1,pmat),labels=i,pos=4, font=2,col="blue")
+                    }
+                    if(lns)lines(trans3d(c(old.x,start.x),c(old.y,start.y),c(z,z2),pmat), col="blue",lwd=2)
+                    z<-z2
+                }
         }
 }
 mcmcsim1 <- function(n=500,start.x=0.5, start.y=0.5,tex=FALSE, lns=FALSE, fls=FALSE, thin=1,burnin=0) {
-			library(mvtnorm)
-			xv <- seq(-3,3,by=0.1)
-			yv <- seq(0,10,by=0.1)
-	        cmat<-contour(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="Parameter a",ylab="Parameter b",col="lightblue")		
-			points(start.x,start.y, col="red",pch=16)
-			nn <- 0
-			ii<-0
-			params <- c(start.x,start.y)
-			if (tex) text(start.x,start.y,labels=paste(1),pos=4, font=2, col="red")
-			if(n>1) {
-				 for (i in 2:n) {
-					if (i>burnin) ii <- i-burnin
-					newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
-					new.x=start.x+newLoc[1]
-					new.y=start.y+newLoc[2]
-					if (fls) points(new.x,new.y, col="blue",pch=16)
-					rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
-					rCompRatio<-runif(1)
-					old.x=start.x
-					old.y=start.y
-					if (rRatio>rCompRatio) { #accept current position
-						start.x=new.x
-						start.y=new.y
-					}
-					points(start.x,start.y, col="red",pch=16)
-					if (rRatio>rCompRatio) {
-						lab=paste(i)
-						if (tex) text(start.x,start.y,labels=paste(i),pos=4, font=2, col="red")
-					}else {
-					    lab =paste(lab,"&", i)
-						if(tex) text(start.x,start.y,labels=lab,pos=4, font=2, col="red")
-						if(tex & fls) text(new.x,new.y,labels=i,pos=4, font=2,col="blue")
-						if(lns) lines(c(new.x,start.x),c(new.y,start.y), col="blue",lwd=1, lty=2)
-					}
-					if(lns) lines(c(old.x,start.x),c(old.y,start.y), col="blue",lwd=2)
-					if ((ii %% thin)==0 & ii>0) {
+            library(mvtnorm)
+            xv <- seq(-3,3,by=0.1)
+            yv <- seq(0,10,by=0.1)
+            cmat<-contour(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="Parameter a",ylab="Parameter b",col="lightblue")
+            points(start.x,start.y, col="red",pch=16)
+            nn <- 0
+            ii<-0
+            params <- c(start.x,start.y)
+            if (tex) text(start.x,start.y,labels=paste(1),pos=4, font=2, col="red")
+            if(n>1) {
+                 for (i in 2:n) {
+                    if (i>burnin) ii <- i-burnin
+                    newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
+                    new.x=start.x+newLoc[1]
+                    new.y=start.y+newLoc[2]
+                    if (fls) points(new.x,new.y, col="blue",pch=16)
+                    rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
+                    rCompRatio<-runif(1)
+                    old.x=start.x
+                    old.y=start.y
+                    if (rRatio>rCompRatio) { #accept current position
+                        start.x=new.x
+                        start.y=new.y
+                    }
+                    points(start.x,start.y, col="red",pch=16)
+                    if (rRatio>rCompRatio) {
+                        lab=paste(i)
+                        if (tex) text(start.x,start.y,labels=paste(i),pos=4, font=2, col="red")
+                    }else {
+                        lab =paste(lab,"&", i)
+                        if(tex) text(start.x,start.y,labels=lab,pos=4, font=2, col="red")
+                        if(tex & fls) text(new.x,new.y,labels=i,pos=4, font=2,col="blue")
+                        if(lns) lines(c(new.x,start.x),c(new.y,start.y), col="blue",lwd=1, lty=2)
+                    }
+                    if(lns) lines(c(old.x,start.x),c(old.y,start.y), col="blue",lwd=2)
+                    if ((ii %% thin)==0 & ii>0) {
                       nn <- nn+1
-							  params<- rbind(params,c(start.x,start.y))		   
-					}
-			}
-		}
+                              params<- rbind(params,c(start.x,start.y))
+                    }
+            }
+        }
 params
 }
 ```
@@ -553,7 +553,7 @@ With 1000 samples collected
 #| fig-width: 9
 #| cache: true
 #| warning: false
-set.seed(9) 
+set.seed(9)
 par(mfrow=c(1,2), mar=c(1,1,0,0))
 mcmcsim(n=1000, start.x=0.5, start.y=3,tex=FALSE, lns=FALSE, fls=FALSE)
 set.seed(9)
@@ -605,7 +605,7 @@ posterior distribution or not.
 #| fig-width: 9
 #| cache: true
 #| warning: false
-set.seed(9) 
+set.seed(9)
 par(mfrow=c(1,2), mar=c(1,1,0,0))
 mcmcsim(n=10000, start.x=0.5, start.y=3,tex=FALSE, lns=FALSE, fls=FALSE)
 set.seed(9)
@@ -662,7 +662,7 @@ plot(a, type="l",main="Bad mixing")
 
 :::
 
-			  
+
 - The drawback of a Markov Chain is that the samples are not
   independent of one another. In a sense, its strength (the properties
   that allow it to simulate in proportion to the density) can also be
@@ -734,7 +734,7 @@ acf(params[,1],main="Thin=1")
 #| cache: true
 #| warning: false
 library(coda)
-par(mfrow=c(1,2),mar=c(4,4,2,1))  
+par(mfrow=c(1,2),mar=c(4,4,2,1))
 set.seed(9)
 params<-mcmcsim1(n=1000, start.x=0.5, start.y=3,tex=FALSE,lns=FALSE,fls=FALSE,thin=10)
 points(params[,1],params[,2], col="black",bg="red",pch=21)
@@ -835,7 +835,7 @@ complete the analysis.
   priors are typically used to simplify the expected posterior
   distribution.
 
-:::: {.indented} 
+:::: {.indented}
 
 In our contrived example, this should be a normal distribution. Hence,
 obviously non-normal (particularly bi-modal) distributions would
@@ -884,7 +884,7 @@ rug(a)
   the chain) and the resulting Z-scores are plotted against the first
   iteration in the starting segment.
 
-:::: {.indented} 
+:::: {.indented}
 
 Substantial deviations of the Z-score from zero (those outside the
 horizontal critical confidence limits) imply poor mixing and a lack of
@@ -904,7 +904,7 @@ long the burnin phase should be.
 set.seed(9)
 par(mfrow=c(1,2),mar=c(4,4,1,1))
 colnames(params) <- c("a","b")
-geweke.plot(as.mcmc(params)) 
+geweke.plot(as.mcmc(params))
 #geweke.plot(as.mcmc(params[,2]))
 ```
 
@@ -922,7 +922,7 @@ geweke.plot(as.mcmc(params))
   factor is greater than 1.1 (or more conservatively 1.2), we should
   run the chain(s) for longer to improve convergence.
 
-:::: {.indented} 
+:::: {.indented}
 
 Clearly, in order to calculate the Gelman and Rubin diagnostic and
 plot, it is necessary to run multiple chains. When doing so, it is
@@ -938,7 +938,7 @@ chain.
 #| out-width: 8in
 #| cache: true
 #| warning: false
-set.seed(9)  
+set.seed(9)
 par(mfrow=c(1,3),mar=c(3,3,0,0))
 params1<-mcmcsim1(n=10000, start.x=0.5, start.y=3,tex=FALSE,lns=FALSE,fls=FALSE,thin=15)
 params2<-mcmcsim1(n=10000, start.x=-0.5, start.y=6,tex=FALSE,lns=FALSE,fls=FALSE,thin=15)
@@ -963,9 +963,9 @@ gelman.plot(mcmc.list)
   number of MCMC iterations ($N$), minimum number of (uncorrelated)
   samples to construct this plot and $I$ (the proportional increase in
   necessary iterations due to autocorrelation). Values of $I$ greater
-  than 5 indicate substantial autocorrelation. 
+  than 5 indicate substantial autocorrelation.
 
-:::: {.indented} 
+:::: {.indented}
 
 ```{r}
 #| label: sim13
@@ -976,7 +976,7 @@ gelman.plot(mcmc.list)
 #| out-width: 5in
 #| cache: true
 #| warning: false
-set.seed(9)  
+set.seed(9)
 raftery.diag(params)
 params1<-mcmcsim1(n=40000, start.x=0.5, start.y=3,tex=FALSE,lns=FALSE,fls=FALSE,thin=10)
 raftery.diag(params1)
@@ -996,14 +996,14 @@ raftery.diag(params1)
   of the chain that passed (null hypothesis accepted), the sample mean
   and 95% confidence interval are calculated.
 
-:::: {.indented} 
+:::: {.indented}
 
 If the ratio of the mean to 95% interval is greater than 0.1, then the
 mean is considered accurate otherwise a longer overall chain length is
 recommended. Note, this diagnostic is misleading for residuals or any
 other parameters whose means are close to zero. Whilst this diagnostic
 can help trim chains to gain speed, in practice it is more useful for
-just verifying that the collected chain is long enough. 
+just verifying that the collected chain is long enough.
 
 ```{r}
 #| label: sim14
@@ -1014,7 +1014,7 @@ just verifying that the collected chain is long enough.
 #| out-width: 5in
 #| cache: true
 #| warning: false
-set.seed(9) 
+set.seed(9)
 par(mfrow=c(1,3),mar=c(4,4,1,1))
 heidel.diag(params)
 heidel.diag(params1)
@@ -1086,7 +1086,7 @@ that the posterior distribution is equal to the product of the
 likelihood function ($P(D|H)$) and the prior ($P(H)$) normalized
 (divided by) the probability of the data ($P(D)$) and that $P(D)$ is
 determined by integrating across all possible parameter (hypothesis)
-values. 
+values.
 
 $$P(H|D) = \frac{P(D|H)\times P(H)}{\int P(D|H)P(H)dH}$$
 
@@ -1096,7 +1096,7 @@ distribution family (same distribution type, yet possibly different
 values of the parameters) as the prior distribution ($P(H)$). The
 posterior and prior distributions are thence called **conjugate
 distributions** and the prior is considered the **conjugate
-prior** to the model likelihood. 
+prior** to the model likelihood.
 
 
 | Observations                          | Likelihood distribution | Parameter      | Conjugate prior | Prior hyperparameters |
@@ -1138,7 +1138,7 @@ including:
   $\epsilon$ is set to a low value such as 0.001, 1.0E-06 etc)
 - half-cauchy distribution $HC(\alpha)$ where the scale parameter,
   $\alpha$ is typically 5 or 25.
-  
+
 @Gelman-2006-515 warns that the use of the inverse-gamma family of
 non-informative priors are very sensitive to $\epsilon$ particularly
 when variance is close to zero and this may lead to unintentionally
@@ -1150,3 +1150,4 @@ priors have a tendency to result in inflated variance estimates.
 Consequently, half-cauchy priors are generally recommended for
 variances.
 
+The end
