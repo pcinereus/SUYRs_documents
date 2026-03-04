@@ -1415,3 +1415,101 @@ docker run --rm -v `pwd`:/home/Project r-tidyverse:1 analysis5.R
 #| code-line-numbers: false
 docker run --rm -v $HOST_PWD/docker_tests:/home/Project r-tidyverse:1 analysis5.R
 ```
+
+## Managing Docker images
+
+::: {.panel-tabset}
+
+### Listing images
+
+To list the most recently created images.
+
+```{bash}
+#| label: docker ls
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images
+```
+
+The output will include all created images along with the base images
+that they are derived from (those sourced from Dockerhub for example).
+
+The images (`REPOSITORY`) entries that are `<none>` are _dangling_
+images.  That is, they are intermediate images that were previously
+used in the building of an image and are no longer used (because the
+`Dockerfile` layer that they were associated with is no longer used in
+the latest version of that `Dockerfile`).
+
+We can exclude them from the output, by defining a filter that
+excludes dangling images.
+
+```{bash}
+#| label: docker f dangling
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -f "dangling=false"
+```
+
+If instead of `dangling=false`, you indicate `dangling=true`, only
+dangling images are displayed.  This can be useful for identifying
+redundant images.
+
+Another useful filter is to predicate on time relative to an image.
+For example, to display all images that were created _since_
+`minideb`:
+
+```{bash}
+#| label: docker f after
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -f "since=minideb"
+```
+
+There is also a _before_ version.
+
+Note, the above examples will exclude the intermediate images that are
+associated with build layers.  If we want to see all images (including
+the intermediate images), use the `-a` switch.
+
+```{bash}
+#| label: docker ls a
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| out.lines: 7
+#| highlight-style: zenburn
+#| eval: true
+#| comment: ""
+#| cache: true
+docker images -a
+```
