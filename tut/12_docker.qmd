@@ -1345,3 +1345,73 @@ Conveniently, we can override the **CMD** command when we run `docker
 run`.  In the current context, perhaps we would like to run the R
 session on an different R script.  Lets try this by creating a new R
 script - this time, one that makes use of the `tidyverse` ecosystem.
+
+
+```{bash}
+#| label: createanalysis5
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+#| cache: false
+cd ~/tmp/docker_tests
+echo 'library(tidyverse)' > analysis5.R
+echo 'dat <- data.frame(y = rnorm(10))' >> analysis5.R
+echo 'dat' >> analysis5.R
+echo 'dat %>% summarise(Mean = mean(y), Median = median(y))' >> analysis5.R
+```
+
+```{r}
+#| label: Rcode5
+#| engine: text
+#| results: asis
+#| file: ~/tmp/docker_tests/analysis5.R
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+```{bash}
+#| label: copy across 5
+#| results: markup
+#| eval: true
+#| echo: false
+#| cache: false
+mkdir -p $HOST_PWD/docker_tests
+cp ~/tmp/docker_tests/analysis5.R $HOST_PWD/docker_tests/analysis5.R
+```
+
+Now we can nominate this alternative R script as the argument to the
+`Rscript` command.
+
+```{bash}
+#| label: dockerRun50
+#| engine: bash
+#| results: markup
+#| eval: true
+#| comment: ""
+#| cache: true
+#| highlight-style: zenburn
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+cd ~/tmp/docker_tests/
+docker run --rm -v `pwd`:/home/Project r-tidyverse:1 analysis5.R
+```
+
+```{bash}
+#| label: dockerRun50b
+#| engine: bash
+#| results: markup
+#| eval: true
+#| echo: false
+#| comment: ""
+#| cache: true
+#| highlight-style: zenburn
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+docker run --rm -v $HOST_PWD/docker_tests:/home/Project r-tidyverse:1 analysis5.R
+```
