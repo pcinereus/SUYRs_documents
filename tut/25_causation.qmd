@@ -214,7 +214,6 @@ interrogation of DAGs. For constructing the DAG, we can use either the
 #| eval: true
 #| echo: true
 #| cache: false
-scales
 ls()
 conflicts()
 ```
