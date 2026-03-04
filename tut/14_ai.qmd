@@ -1,0 +1,645 @@
+---
+title: AI coding assistance
+author: "Murray Logan"
+date: "`r format(Sys.time(), '%d %B, %Y')`"
+format:
+  html:
+    toc: true
+    toc-float: true
+    page-layout: full
+    number-sections: true
+    number-depth: 3
+    embed-resources: true
+    code-fold: false
+    code-tools: true
+    code-summary: "Show the code"
+    code-line-numbers: true
+    code-block-border-left: "#ccc"
+    code-copy: true
+    highlight-style: atom-one
+    theme: [default, ../resources/tut-style.scss]
+    css: ../resources/tut-style.css
+crossref:
+  fig-title: '**Figure**'
+  fig-labels: arabic
+  tbl-title: '**Table**'
+  tbl-labels: arabic
+engine: knitr
+bibliography: ../resources/references.bib
+output_dir: "docs"
+---
+
+```{r setup, include=FALSE,warning=FALSE, cache=FALSE, message=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE, message=FALSE, cache = TRUE, comment = "")
+options(tinytex.engine = 'xelatex')
+cleanRmdInput <- function(x) {
+#x <- gsub("```\\{r","```markdown\n`r ''```\\{r",x)
+x <- gsub("^```$","`` `",x)  # the Makefile will then change this back to ``` after pandoc
+x
+}
+library(tidyverse)
+library(pander)
+FIG_PATH <- '14_ai_files/figure-html/'
+
+# save the built-in output hook
+hook_output <- knitr::knit_hooks$get("output")
+
+# set a new output hook to truncate text output
+knitr::knit_hooks$set(output = function(x, options) {
+  if (!is.null(n <- options$out.lines)) {
+    x <- xfun::split_lines(x)
+    more <- "..."
+    n <- eval(parse(text=n))
+    if (length(n) == 1) {
+      if (length(x) > n) {
+        # truncate the output
+        x <- c(head(x, n), "....\n")
+        }
+    } else {
+        x <- c(more, x[n], more)
+    }
+    x <- paste(x, collapse = "\n")
+  }
+  hook_output(x, options)
+})
+```
+
+# Background information
+
+AI code assistants are advanced tools powered by artificial
+intelligence that help developers write, debug, and optimize code more
+efficiently. These tools leverage machine learning models trained on
+vast amounts of code to provide intelligent suggestions,
+auto-completions, and even entire code snippets based on the context
+of your work. They are designed to enhance productivity, reduce
+repetitive tasks, and assist in learning new programming languages or
+frameworks.
+
+Some of the most popular AI code assistants include:
+
++ *GitHub Copilot*: Developed by GitHub and OpenAI, this tool
+  integrates seamlessly with popular IDEs like Visual Studio Code,
+  RStudio / Positron, Sublime Text, Vim and Emacs. It provides
+  context-aware code suggestions and can even generate entire
+  functions or classes.
++ *TabNine*: A general-purpose AI code assistant that supports
+  multiple programming languages and integrates with various IDEs.
++ *Kite*: Focused on Python but also supports other languages, Kite
+  offers intelligent code completions and documentation suggestions.
++ *Amazon CodeWhisperer*: A tool designed to assist developers in
+  writing code faster by providing real-time suggestions and code
+  snippets.
++ *OpenAI Codex*: The underlying model powering GitHub Copilot, Codex
+  can be used directly via the OpenAI API for custom integrations.
+
+AI code assistants are useful for several reasons:
+
++ *Increased Productivity*: They help automate repetitive coding
+  tasks, allowing developers to focus on solving complex problems.
++ *Learning Aid*: They provide suggestions and examples, making it
+  easier for beginners to learn new programming languages or
+  frameworks.
++ *Error Reduction*: By suggesting syntactically correct code, they
+  help reduce common errors and bugs.
++ *Code Optimization*: Some tools can suggest more efficient or
+  idiomatic ways to write code.
++ *Documentation Assistance*: They can generate comments or
+  documentation for your code, improving readability and
+  maintainability.
+
+## General Guidelines for Using AI Code Assistants
+
+While AI code assistants are powerful tools, it is important to use
+them effectively and responsibly. Here are some general guidelines:
+
+1. *Understand the Suggestions*: Always review and understand the code
+   suggestions provided by the AI. Do not blindly accept them, as they
+   may not always align with your specific requirements or best
+   practices.
+2. *Use as a Learning Tool*: Treat the AI assistant as a mentor or
+   guide, especially when learning a new language or
+   framework. Analyze the suggestions to understand why they work.
+3. *Maintain Security and Privacy*: Avoid sharing sensitive or
+   proprietary information with the AI assistant, especially if it
+   involves uploading code to external servers.
+4. *Customize for Your Needs*: Many AI assistants allow customization
+   to better suit your coding style or project requirements. Take
+   advantage of these features to improve the relevance of
+   suggestions.
+5. *Stay Updated*: AI tools are constantly evolving. Keep your
+   assistant updated to benefit from the latest features and
+   improvements.
+6. *Combine with Best Practices*: Use AI assistants as a supplement
+   to, not a replacement for, good coding practices, thorough testing,
+   and code reviews.
+7. *Be Aware of Limitations*: AI assistants are not perfect and may
+   occasionally provide incorrect or suboptimal suggestions. Use your
+   judgment and expertise to evaluate their output.
+
+By integrating AI code assistants like GitHub Copilot into your
+workflow, you can significantly enhance your coding experience,
+whether you're working in RStudio, Emacs, or any other development
+environment.
+
+
+# Github copilot
+
+GitHub Copilot is an AI-powered code assistant developed by GitHub in
+collaboration with OpenAI. It is designed to help developers write
+code faster and more efficiently by providing intelligent code
+suggestions, autocompletions, and even generating entire functions or
+modules based on the context of the code. GitHub Copilot is powered by
+OpenAI's Codex model, which is a descendant of the GPT (Generative
+Pre-trained Transformer) family of models. Codex is specifically
+trained on a large corpus of publicly available code from
+repositories, documentation, and other programming-related resources.
+
+GitHub Copilot supports a wide range of programming languages,
+including R, Python, JavaScript, TypeScript, Go, Ruby, and more. It
+integrates seamlessly with popular development environments such as
+~Visual Studio Code~, ~RStudio~, ~JetBrains IDEs~, and ~Neovim~. The
+tool is particularly useful for tasks such as writing boilerplate
+code, exploring unfamiliar libraries, and improving productivity.
+
+GitHub Copilot is available under different subscription plans,
+including a free plan for students through the GitHub Student
+Developer Pack.
+
+## Obtaining a GitHub Student Developer Pack and Setting Up GitHub Copilot in RStudio
+
+University students can access GitHub Copilot for free by obtaining a
+GitHub Student Developer Pack. Below are the steps to acquire the pack
+and set up GitHub Copilot in ~RStudio~:
+
+1. **Sign Up for a GitHub Account**
+   + If you don’t already have a GitHub account, go to
+     <https://github.com> and sign up for a free account.
+
+2. **Apply for the GitHub Student Developer Pack**
+   + Visit the GitHub Student Developer Pack page:
+     <https://education.github.com/pack>.
+   + Click on the *Get your pack* button.
+   + Verify your student status by providing proof of enrollment. This
+     can include:
+     - A valid school-issued email address.
+     - A scanned copy of your student ID card.
+     - Other official proof of enrollment (e.g., a transcript or
+       enrollment letter).
+   + Submit your application and wait for approval. This process may
+     take a few days.
+
+3. **Activate GitHub Copilot**
+   + Once your GitHub Student Developer Pack is approved, go to the
+     GitHub Copilot page: <https://github.com/features/copilot>.
+   + Click on the *Start my free trial* button and follow the
+     instructions to activate GitHub Copilot using your GitHub
+     account.
+
+4. **Install GitHub Copilot in RStudio** GitHub Copilot can be
+   integrated into `RStudio` using the `Copilot for JetBrains`
+   plugin. Follow these steps:
+   + Open `RStudio`.
+   + Navigate to ~Tools -> Add-ins -> Browse Add-ins~.
+   + Search for the ~GitHub Copilot~ plugin and install it.
+   + Once installed, log in to your GitHub account through the plugin
+     to authenticate your access to GitHub Copilot.
+   + After successful authentication, GitHub Copilot will be enabled
+     in your ~RStudio~ environment.
+
+5. **Start Using GitHub Copilot in RStudio**
+   + Open an R script or create a new one in ~RStudio~.
+   + Start typing your code, and GitHub Copilot will provide
+     suggestions based on the context.
+   + Use the ~Tab~ key to accept a suggestion or ~Esc~ to dismiss it.
+   + You can also use comments to guide Copilot. For example, typing
+     ~Create a function to calculate the mean of a vector~ will
+     prompt Copilot to generate a relevant function.
+
+## Final Notes
+
+GitHub Copilot is a powerful tool that can significantly enhance your
+coding experience in ~RStudio~. However, always review the suggestions
+provided by Copilot to ensure they meet your specific requirements and
+adhere to best practices. Additionally, be mindful of the ethical
+considerations, such as avoiding the use of sensitive or proprietary
+data in your code.
+
+
+## Uses
+
+Once copilot is activated, it is ready to start providing suggestions
+inside your scripts.  If for example, you started a new R script and
+type a `#` character, you might notice that along the lower right
+border of the script window, there is a message like "Copilot: Waiting
+for completions" or "Copilot: No completions available".  If you then
+start to type out something like:
+
+`# This script` and wait a second or so, copilot might make a
+suggestion (which will appear as lighter coloured text).  If you
+continue typing the suggestion will progressively be replaced by
+suggestions that are consistent with what you are typing.  To accept
+copilot's suggestion, you can hit the TAB key.
+
+The same applies for when you are typing code.  After the first few
+keystrokes, copilot will offer a suggestion.
+
+Here is a list of the most common uses of this sort of AI assisted
+coding:
+
+1. Assisted auto-complete
+
+   - context aware auto-complete as you type
+
+     e.g. start typing:
+     ```{r}
+     #| label: ai test 1a
+     #| results: markup
+     #| eval: false
+     #| echo: true
+     #| cache: false
+     calculate_mean <-
+     ```
+
+     Copilot will kick in an make a suggestion.  In my case that was:
+
+     ```{r}
+     #| label: ai test 1b
+     #| results: markup
+     #| eval: false
+     #| echo: true
+     #| cache: false
+     calculate_mean <- function(x) {
+       if (!is.numeric(x)) {
+         stop("Input must be a numeric vector")
+       }
+       mean_value <- mean(x, na.rm = TRUE)
+       return(mean_value)
+     }
+     ```
+
+     ::: {.callout-note}
+     Note that this suggestion even provides a safety net that ensures it
+     fails elegantly when the input data is not numeric
+     :::
+
+     As another example, if we had just run the following (e.g. a
+     linear model):
+
+     ```{r}
+     #| label: ai test 1c
+     #| results: markup
+     #| eval: false
+     #| echo: true
+     #| cache: false
+     data_lm <- lm(mpg ~ wt + hp, data = mtcars)
+     ```
+
+     Copilot might make the following suggestion as an acknowledgement
+     that this next step is commonly performed after fitting a linear
+     model.
+
+     ```{r}
+     #| label: ai test 1d
+     #| results: markup
+     #| eval: false
+     #| echo: true
+     #| cache: false
+     summary(data_lm)
+     ```
+
+2. Generating code / documentation from comments
+
+   You can elicit suggestions by typing an instruction as a comment.
+   For example, we could write a comment asking to fit a linear model
+   of bill length against species from the penguins dataset:
+
+   ```{r}
+   #| label: ai test 2a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   ## fit a linear model of bill length against species using the built in penguins dataset
+   ```
+
+   After I entered the above line in an empty R script and hit RETURN,
+   copilot offered the following suggestion:
+
+   ```{r}
+   #| label: ai test 2b
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   data("penguins", package = "palmerpenguins")
+   data_lm_penguins <- lm(bill_length_mm ~ species, data = penguins)
+   ```
+
+   ::: {.callout-note}
+
+   Note, that it initially suggested the first
+   line (starting with `data`) and once I accepted that line (by
+   hitting TAB) the next line was suggested
+   :::
+
+   The instructive comments can span multiple lines and can include
+   additional information that guides copilot to produce a code
+   snippet that might satisfy your needs better.  For example, if we
+   wanted to perform some data wrangling on the penguins data, we
+   might stipulate that we want it to use tidyverse, the native R pipe
+   and follow the style guidelines outlined by Hadley Wickham in R for
+   Data Science
+
+   ```{r}
+   #| label: ai test 2c
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   ## calculate the mean and standard deviation bill length of each
+   ## species of penguin using the tidyverse package, the native R
+   ## (|>) pipe and follow the style guidelines outlined by Hadley
+   ## Wickham in R for Data Science
+   ```
+
+   This resulted in the following:
+
+   ```{r}
+   #| label: ai test 2d
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   penguin_summary <- penguins |>
+     group_by(species) |>
+     summarize(
+       mean_bill_length = mean(bill_length_mm, na.rm = TRUE),
+       sd_bill_length = sd(bill_length_mm, na.rm = TRUE)
+     )
+   ```
+
+    As another example, we could ask for a function for calculating
+    the standard deviation of a numeric vector and to demonstrate its
+    use on the penguin dataset
+
+   ```{r}
+   #| label: ai test 2e
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   ## generate a function for calculating the standard deviation of a
+   ## numeric vector and to demonstrate its use on the penguin dataset
+   ```
+
+   Which resulted in:
+
+   ```{r}
+   #| label: ai test 2f
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   calculate_sd <- function(x) {
+     if (!is.numeric(x)) {
+       stop("Input must be a numeric vector")
+     }
+     sd_value <- sd(x, na.rm = TRUE)
+     return(sd_value)
+   }
+   sd_bill_length <- calculate_sd(penguins$bill_length_mm)
+   ```
+
+   Perhaps I should have been more explicit that I wanted it to apply
+   the function in the tidyverse manner!
+
+3. Exploring libraries and APIs
+
+   Copilot can help you explore and use R libraries by suggesting
+   functions and their usage. This is particularly helpful when
+   working with new or unfamiliar libraries.
+
+   For example, if we start off typing `ggplot(`, copilot will provide
+   us with the basic structure of a ggplot call from which we can
+   learn about the function.
+
+4. Refactoring code
+
+   Copilot can suggest more efficient or cleaner ways to write your
+   code, helping you refactor and improve its readability.
+
+   Example: Refactoring a loop to use vectorized operations.
+
+   ```{r}
+   #| label: ai test 3a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   # Calculate the square of each element in a vector
+   x <- c(1, 2, 3, 4, 5)
+   squares <- c()
+   for (i in 1:length(x)) {
+     squares[i] <- x[i]^2
+   }
+   ```
+
+   If we then enter a comment like: `## can you refactor the above code using a more efficient approach?`
+
+   If might offer a suggestion like:
+
+   ```{r}
+   #| label: ai test 3b
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   x <- c(1, 2, 3, 4, 5)
+   squares_refactored <- x^2
+   ```
+
+   Similarly, we could have made a comment like: `## can you refactor
+   the above code using the apply family of functions?`
+
+   And it might have suggested:
+
+   ```{r}
+   #| label: ai test 3c
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   x <- c(1, 2, 3, 4, 5)
+   squares_apply <- sapply(x, function(i) i^2)
+   ```
+
+5. Debugging assistance
+
+   Copilot can help identify potential issues in your code and suggest
+   fixes. For example, if you forget to handle missing values in a
+   dataset, Copilot might suggest adding `na.rm = TRUE` to your function
+   calls.
+
+   ```{r}
+   #| label: ai test 4a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   # Calculate the mean of a column in a data frame
+   calculate_column_mean <- function(df, column_name) {
+     mean(df[[column_name]])
+   }
+   ```
+
+   If we then ask it `## can you suggest ways to improve this function?`
+   We might get:
+
+   ```{r}
+   #| label: ai test 4b
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   calculate_column_mean_improved <- function(df, column_name) {
+     if (!is.data.frame(df)) {
+       stop("Input must be a data frame")
+     }
+     if (!column_name %in% names(df)) {
+       stop("Column not found in data frame")
+     }
+     if (!is.numeric(df[[column_name]])) {
+       stop("Column must be numeric")
+     }
+     mean_value <- mean(df[[column_name]], na.rm = TRUE)
+     return(mean_value)
+   }
+   ```
+
+   ::: {.callout-note}
+
+   Note that whilst this function is longer and more complex that our
+   original function, it is arguably more robust.  Note also that
+   copilot made the above suggestions line by line and I had to keep
+   hitting TAB until it was complete.
+
+   :::
+
+6. Writing documentation for a function.
+
+
+   GitHub Copilot can assist in generating *Roxygen* documentation for
+   your R functions. Roxygen is a popular tool in the R ecosystem for
+   documenting functions, datasets, and packages. It uses specially
+   formatted comments to generate documentation files
+   automatically. With Copilot, you can quickly create well-structured
+   Roxygen comments, saving time and ensuring consistency in your
+   documentation.
+
+   This feature is particularly useful for creating detailed and
+   standardized documentation for your functions, including
+   descriptions, parameter explanations, and return values.
+
+    Typically (and particularly if you are authoring an R package),
+    functions should be documented so that users can read a help file
+    that explains how the function works, what the parameters are and
+    can try an example.  This documentation is structured in a format
+
+    For example, we could ask it to `## generate Roxygen documentation
+    for the above function`
+
+   ```{r}
+   #| label: ai test 6a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   #' Calculate the mean of a specified column in a data frame
+   #'
+   #' This function calculates the mean of a specified numeric column in a given data frame,
+   #' handling missing values appropriately.
+   #'
+   #' @param df A data frame containing the data.
+   #' @param column_name A string specifying the name of the column for which to calculate the
+   #' mean.
+   #' @return The mean of the specified column, excluding any NA values.
+   #' @examples
+   #' df <- data.frame(a = c(1, 2, 3, NA
+   #' ), b = c(4, 5, 6, 7))
+   #' calculate_column_mean_improved(df, "a")
+   #' @export
+   #' @importFrom stats mean
+   ```
+
+6. Unit tests
+
+   GitHub Copilot can assist in generating unit tests for your R
+   functions, which is an essential practice for ensuring code
+   reliability and correctness. Unit tests are small, isolated tests
+   that verify the behavior of individual functions or components. In
+   R, unit testing is commonly performed using the ~testthat~ package.
+
+   With Copilot, you can quickly create test cases for your functions,
+   including edge cases and typical use cases. This helps you save
+   time and ensures that your code is robust and behaves as expected.
+
+   Example: Generating unit tests for a function that calculates the
+   mean of a numeric vector.
+
+   If I now type `## generate unit tests for the calculate_mean function using the
+   testthat package`:
+   I might receive the following suggestion from copilot:
+
+   ```{r}
+   #| label: ai test 7a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   library(testthat)
+   test_that("calculate_mean works correctly", {
+     expect_equal(calculate_mean(c(1, 2, 3, 4, 5)), 3)
+     expect_equal(calculate_mean(c(1, 2, NA, 4, 5)), 3)
+     expect_error(calculate_mean("not a numeric vector"), "Input must be a numeric vector")
+   })
+   ```
+
+8. A chat agent
+
+
+   GitHub Copilot can also function as a simple chat agent within your
+   code editor. By starting a comment with `# q: `, you can ask
+   Copilot a question, and it will attempt to provide an answer or
+   explanation in the form of a comment starting with `# a: `. This
+   feature is particularly useful for quick clarifications,
+   understanding code, or getting guidance on how to implement
+   specific functionality.
+
+   This use case allows you to interact with Copilot conversationally,
+   making it a helpful tool for learning, debugging, or brainstorming
+   coding solutions.
+
+   If I enter a comment like: `# q: explain the difference between a data frame and a tibble in R`
+
+   Copilot might offer:
+
+   ```{r}
+   #| label: ai test 8a
+   #| results: markup
+   #| eval: false
+   #| echo: true
+   #| cache: false
+   # a: A data frame is a base R data structure used for storing tabular data,
+   #    while a tibble is a modern reimagining of the data frame provided by the
+   #    tidyverse (specifically the tibble package). Tibbles have several advantages over
+   #    traditional data frames, including better printing methods that show only the first
+   #    few rows and columns, improved handling of variable types, and enhanced subsetting
+   #    capabilities. Tibbles also do not convert character vectors to factors by default,
+   #    which can help avoid unintended consequences during data analysis. Overall, tibbles
+   #    are designed to be more user-friendly and consistent with tidyverse principles.
+   ```
+
+
+# Examples
+
+The end
