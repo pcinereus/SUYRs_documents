@@ -243,6 +243,6 @@ dag {
   biomass -> coral
 }
 ")
-## ggdag(dag, text = TRUE, text_size = 2.5) +
+ggdag(dag, text = TRUE, text_size = 2.5) #+
 ##   theme_dag_blank()
 ```
