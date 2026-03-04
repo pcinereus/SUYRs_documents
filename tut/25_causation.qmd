@@ -217,3 +217,32 @@ interrogation of DAGs. For constructing the DAG, we can use either the
 ls()
 conflicts()
 ```
+
+::: {.panel-tabset}
+## `dagitty()`
+
+```{r}
+#| label: dag_1a
+#| results: markup
+#| eval: true
+#| fig-width: 8
+#| fig-height: 5
+#| echo: true
+#| cache: false
+dag <- dagitty("
+dag {
+  depth -> mpa
+  depth -> fishing
+  mpa -> fishing
+  fishing -> biomass
+  complexity -> mpa
+  complexity -> biomass
+  human -> fishing
+  human -> biomass
+  mpa -> coral
+  biomass -> coral
+}
+")
+## ggdag(dag, text = TRUE, text_size = 2.5) +
+##   theme_dag_blank()
+```
