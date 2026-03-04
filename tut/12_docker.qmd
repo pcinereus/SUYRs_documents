@@ -1513,3 +1513,314 @@ the intermediate images), use the `-a` switch.
 #| cache: true
 docker images -a
 ```
+
+### Removing images
+
+::: {.panel-tabset}
+
+#### Removing all **unused** images
+
+This will also remove unused (dangling) containers, volumes and caches.
+
+```{bash}
+#| label: docker system prune
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker system prune
+```
+
+#### Removing **all** images
+
+```{bash}
+#| label: docker system prune a
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker system prune -a
+```
+
+#### Removing **specific** images
+
+```{bash}
+#| label: docker rmi
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker rmi <ID>
+```
+
+where `<ID>` is the `IMAGE ID` from `docker images -a`
+
+#### Removing images (**regex**)
+
+```{bash}
+#| label: docker rmi grep
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker images -a | grep <"pattern"> | awk '{print $3}' | xargs docker rmi
+```
+
+where `<"pattern">` is a regular expression for isolating the name of
+the image(s) to remove.
+
+:::
+
+### remove dangling images
+
+```{bash}
+#| label: docker remove dangling
+#| engine: bash
+#| results: markup
+#| classes: terminal
+#| class-source: terminal
+#| class-output: terminal
+#| code-line-numbers: false
+#| highlight-style: zenburn
+#| eval: false
+#| comment: ""
+#| cache: true
+docker rmi -f $(docker images -f "dangling=true" -q).
+```
+
+:::
+
+
+# Generating docker images on github
+
+Up to now, the docker images we have created have been housed in a
+registry locally on the machine that we are building them on.  In the
+spirit of reproducibility, we ideally want these images to be
+available to others (as well as our future selves).  There are
+numerous options for making images available:
+
+- each user (or your future self) can build the image from the
+  `Dockerfile`.  In many cases, this will be a lengthy (yet automated)
+  process.  For this to be a viable option, each party will need to
+  have the ability and resources to be able to build docker images
+  from a Dockerfile.
+- the docker image could be hosted on a remote repository (such as
+  [dockerhub](hub.docker.com)).  This option requires that the
+  original author of the docker image has a dockerhub account so that
+  they can push the image that they created locally up to the remote
+  registry.
+- build and host the docker image on github.  This option requires the
+  original author/authors to have a github account.
+
+Building Docker images on GitHub via GitHub Actions is useful because
+it enables automated, consistent, and reproducible builds directly
+from your remote repository. As such, it is possible to trigger a
+fresh image build every time there is a change to the repo itself.
+This reduces manual effort and minimizing deployment errors. With
+GitHub Actions, you can integrate CI/CD workflows, automatically test
+images, and push them to container registries (e.g., GitHub Container
+Registry or Docker Hub). It also enhances collaboration, as team
+members can track build logs, detect failures early, and enforce
+security best practices through automated vulnerability scanning.
+Finally, it also means that the one platform can be used to host both
+code and the environment in which to run the code.
+
+To have Github Actions build and publish a docker image, we start by
+creating a github actions workflow file.  This file is in yaml format
+and should be placed a directory called `.github/workflows` within
+your git repository.
+
+```{r}
+#| label: prepareCIFolder1
+#| results: hide
+#| eval: true
+#| echo: false
+#| cache: false
+setwd("~/tmp/docker_tests")
+unlink('.github/workflows', recursive=TRUE, force=TRUE)
+unlink('.github', recursive=TRUE, force=TRUE)
+```
+```{bash}
+#| label: CI1
+#| echo: false
+#| eval: true
+#| classes: bash
+#| engine: bash
+#| cache: false
+mkdir ~/tmp/docker_tests/.github
+mkdir ~/tmp/docker_tests/.github/workflows
+cd ~/tmp/docker_tests/.github/workflows
+echo 'name: Create and publish the Docker image' > Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'on:' >> Docker-build-publish.yml
+echo ' workflow_dispatch:' >> Docker-build-publish.yml
+echo ' push:' >> Docker-build-publish.yml
+echo '   branches: [ "main" ]' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'env:' >> Docker-build-publish.yml
+echo '  REGISTRY: ghcr.io' >> Docker-build-publish.yml
+echo '  IMAGE_NAME: ${{ github.repository }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo 'jobs:' >> Docker-build-publish.yml
+echo '  build-image:' >> Docker-build-publish.yml
+echo '    runs-on: ubuntu-latest' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo "    if: \"!contains(github.event.head_commit.message, '[ci skip]')\"" >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    permissions:' >> Docker-build-publish.yml
+echo '      contents: read' >> Docker-build-publish.yml
+echo '      packages: write' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    name: ${{ matrix.config.r }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    strategy:' >> Docker-build-publish.yml
+echo '      fail-fast: false' >> Docker-build-publish.yml
+echo '      matrix:' >> Docker-build-publish.yml
+echo '        config:' >> Docker-build-publish.yml
+echo '        #- { r: 'devel' }' >> Docker-build-publish.yml
+echo '        #- { r: 'next'  }' >> Docker-build-publish.yml
+echo '        - { r: '4.4.1' }' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '    steps:' >> Docker-build-publish.yml
+echo '      - name: Checkout repository' >> Docker-build-publish.yml
+echo '        uses: actions/checkout@v4' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '      - name: Login to GitHub Container Registry' >> Docker-build-publish.yml
+echo '        uses: docker/login-action@v1' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          registry: ${{ env.REGISTRY }}' >> Docker-build-publish.yml
+echo '          username: ${{ github.repository_owner }}  #' >> Docker-build-publish.yml
+echo '          password: ${{ secrets.GITHUB_TOKEN }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '      - name: Extract metadata (tags, labels) for Docker' >> Docker-build-publish.yml
+echo '        id: meta' >> Docker-build-publish.yml
+echo '        uses: docker/metadata-action@9ec57ed1fcdbf14dcef7dfbe97b2010124a938b7' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}' >> Docker-build-publish.yml
+echo '' >> Docker-build-publish.yml
+echo '      - name: Build and push Docker image' >> Docker-build-publish.yml
+echo '        uses: docker/build-push-action@v5' >> Docker-build-publish.yml
+echo '        with:' >> Docker-build-publish.yml
+echo '          context: .' >> Docker-build-publish.yml
+echo '          push: true' >> Docker-build-publish.yml
+echo '          tags: ${{ steps.meta.outputs.tags }}' >> Docker-build-publish.yml
+echo '          labels: ${{ steps.meta.outputs.labels }}' >> Docker-build-publish.yml
+```
+```{r}
+#| label: CIcode1
+#| engine: text
+#| results: asis
+#| file: ~/tmp/docker_tests/.github/workflows/Docker-build-publish.yml
+#| eval: false
+#| classes: dockerfile
+#| class-output: dockerfile
+```
+
+In the above `.github/workflow`:
+
+- **name** give a name to the workflow and is how it will be referred
+  to within the Actions user interface
+
+- **on: workflow_dispatch:** specifies that this workflow can runs
+  when manually triggered from the GitHub Actions UI.
+
+- **on: push: branches [ "main" ]:** specifies that this workflow will
+  be triggered whenever there is a pushed change to the "main" branch
+
+- **env: REGISTRY:** sets the container registry to GitHub Container
+  Registry (ghcr.io).
+
+- **env: IMAGE_NAME:** sets the repository name (in this case to the
+  name of the github repository).
+
+- **jobs: build-image:** runs-on: defines a job (build-image) that
+  runs on the latest version of Ubuntu
+
+- **if:** provides a way of defining exclusion rules.  In this case it
+  prevents execution if the latest commit message contains either "ci"
+  or "skip". This is useful for avoiding unnecessary builds.
+
+- **permissions: contents: read:** allows the workflow to read the repository contents.
+
+- **packages: write:** grants permission to push Docker images to
+  Github Container Registry.
+
+- **strategy: fail-fast:**
+
+- **strategy: matrix: config:** defines a build matrix for testing
+  against multiple R versions (only 4.4.1 is active). Commented-out
+  lines suggest that devel and next versions were once considered.
+
+- **steps:** the actions to perform:
+
+  - **users: actions/checkout@v4** clones the repository so that the workflow can access
+  files like the Dockerfile and any other code in the repository.  It
+  is using version four of this routine
+
+  - **users: docker/login-action@v1 ...** uses GitHub's built-in token
+  (`GITHUB_TOKEN`) to authenticate with Github Container Registry.
+  Ensures that pushing images to Github Container Registry is authorized.
+
+  - **users: docker/metadata-actions@...** generates metadata (tags,
+     labels) based on the repository and commit details. The specific
+     commit hash (in this case 9ec57ed1...) ensures a fixed version of
+     docker/metadata-action.
+
+  - **users: docker/build-push-action@v5 ..** builds the Docker image
+    from the repository. Pushes the image to Github Container Registry
+    with the metadata-generated tags and labels.
+
+
+Now any time there is a change to the main branch, the image will be
+rebuilt and published to Github Container Registry.
+
+To access the built image:
+
+- navigate to the `Code` panel of the repositories Github page.
+- click on the item under the heading `Packages`.
+
+  ![](../resources/git_packages1.png)
+
+The displayed panel will provide information on the versions of the
+package available as well as instructions on how to obtain (pull) the
+image to a local repository from where it can be run.
+
+
+
+
+::: {.raw}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type='text/javascript'>
+$(document).ready(function () {
+$('div.terminal').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>murray@arch:~</span></div>");
+$('div.terminal-docker').prepend("<div class='head'><a href='#' class='mbtn'>&#10005;</a><a href='#' class='mbtn stnd'>&#9472;</a><a href='#' class='mbtn stnd max'>&#9723;</a><span>#</span></div>");
+});
+</script>
+
+:::
+
+The end
