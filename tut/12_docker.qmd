@@ -1388,7 +1388,7 @@ Now we can nominate this alternative R script as the argument to the
 #| label: dockerRun50
 #| engine: bash
 #| results: markup
-#| eval: true
+#| eval: false
 #| comment: ""
 #| cache: true
 #| highlight-style: zenburn
