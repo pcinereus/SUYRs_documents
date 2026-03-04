@@ -207,3 +207,14 @@ areas (MPAs) on reef fish biomass.
 There is an R package (**dagitty**) to help with the construction and
 interrogation of DAGs. For constructing the DAG, we can use either the
 `dagitty()` function or the `dagify()` function.
+
+```{r}
+#| label: scales
+#| results: markup
+#| eval: true
+#| echo: true
+#| cache: false
+scales
+ls()
+conflicts()
+```
