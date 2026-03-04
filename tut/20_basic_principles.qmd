@@ -2,7 +2,7 @@
 title: Basic statistical principles
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -141,39 +141,39 @@ B.t <-
 structure(list(x = c(0.946219314926405, 1.16598494764398, 0.988079435444038,1.249705, 1.160752), y = c(0.643979057591623, 0.507853403141361, 0.319371727748691,0.4136126, 0.3089005
 )), .Names = c("x", "y"))
 AB.t <-
-structure(list(x = c(0.742151227402944, 0.768313802726464), y = c(0.612565445026178, 
+structure(list(x = c(0.742151227402944, 0.768313802726464), y = c(0.612565445026178,
 0.371727748691099)), .Names = c("x", "y"))
 T.t <-
-structure(list(x = c(0.119481934703151, 0.119481934703151, 0.0671567840561098, 
-0.286922416773684, 0.76308128766176, 1.09796225180283, 1.3177278845204, 
-1.46947082139682, 1.45377327620271, 1.40668064062037, 1.09272973673812, 
-0.53691871233824), y = c(0.931937172774869, 0.795811518324607, 
-0.0994764397905759, 0.12565445026178, 0.0575916230366492, 0.0837696335078534, 
-0.0418848167539267, 0.172774869109948, 0.507853403141361, 0.931937172774869, 
+structure(list(x = c(0.119481934703151, 0.119481934703151, 0.0671567840561098,
+0.286922416773684, 0.76308128766176, 1.09796225180283, 1.3177278845204,
+1.46947082139682, 1.45377327620271, 1.40668064062037, 1.09272973673812,
+0.53691871233824), y = c(0.931937172774869, 0.795811518324607,
+0.0994764397905759, 0.12565445026178, 0.0575916230366492, 0.0837696335078534,
+0.0418848167539267, 0.172774869109948, 0.507853403141361, 0.931937172774869,
 0.900523560209424, 0.873874345549738)), .Names = c("x", "y"))
 
 library(plotrix)
 library(PBSmapping)
 circle <- function(x, y, radius, units=c("cm", "in"), segments=100){
-       units <- match.arg(units) 
-     if (units == "cm") radius <- radius/2.54 
-     plot.size <- par("pin") 
-     plot.units <- par("usr") 
-     units.x <- plot.units[2] - plot.units[1] 
-     units.y <- plot.units[4] - plot.units[3] 
-     ratio <- (units.x/plot.size[1])/(units.y/plot.size[2]) 
-     size <- radius*units.x/plot.size[1] 
-     angles <- (0:segments)*2*pi/segments 
-     unit.circle <- cbind(cos(angles), sin(angles)) 
-     shape <- matrix(c(1, 0, 0, 1/(ratio^2)), 2, 2) 
-     ellipse <- t(c(x, y) + size*t(unit.circle %*% chol(shape))) 
+       units <- match.arg(units)
+     if (units == "cm") radius <- radius/2.54
+     plot.size <- par("pin")
+     plot.units <- par("usr")
+     units.x <- plot.units[2] - plot.units[1]
+     units.y <- plot.units[4] - plot.units[3]
+     ratio <- (units.x/plot.size[1])/(units.y/plot.size[2])
+     size <- radius*units.x/plot.size[1]
+     angles <- (0:segments)*2*pi/segments
+     unit.circle <- cbind(cos(angles), sin(angles))
+     shape <- matrix(c(1, 0, 0, 1/(ratio^2)), 2, 2)
+     ellipse <- t(c(x, y) + size*t(unit.circle %*% chol(shape)))
      #lines(ellipse)
        ellipse
-     } 
+     }
 
 circ2Poly <- function(circ) {
-		pol <- data.frame(PID=rep(1, 100), POS=1:100, X=circ$x, Y=circ$y)
-		pol <- as.PolySet(pol, projection=1)	   
+        pol <- data.frame(PID=rep(1, 100), POS=1:100, X=circ$x, Y=circ$y)
+        pol <- as.PolySet(pol, projection=1)
 }
 
 pp <- circle(0.3,0.5,6)
@@ -515,7 +515,7 @@ plot(xs, dnorm(xs,25,5), type="l", ylim=c(0,0.25), lwd=4, ann=FALSE, axes=FALSE,
 points(xs, dnorm(xs,25,2), type="l", col="grey60", lwd=4)
 points(xs, dnorm(xs,10,2), type="l", col="grey40", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(mu==25, ", ", sigma^2==5)), 
+legend("topright", legend=c(expression(paste(mu==25, ", ", sigma^2==5)),
   expression(paste(mu==25, ", ", sigma^2==2)),
   expression(paste(mu==10, ", ", sigma^2==2))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -613,7 +613,7 @@ plot(xs, dlnorm(xs,log(25),log(4)), type="l", ylim=c(0,0.03), lwd=4, ann=FALSE, 
 points(xs, dlnorm(xs,log(25),log(2)), type="l", col="grey60", lwd=4)
 points(xs, dlnorm(xs,log(50),log(2)), type="l", col="grey40", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(mu==ln(25), ", ", sigma^2==ln(5))), 
+legend("topright", legend=c(expression(paste(mu==ln(25), ", ", sigma^2==ln(5))),
   expression(paste(mu==ln(25), ", ", sigma^2==ln(2))),
   expression(paste(mu==ln(50), ", ", sigma^2==ln(2)))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -683,7 +683,7 @@ plot(xs, dt(xs,30), type="l", lwd=4, ann=FALSE, axes=FALSE, col="grey40")
 points(xs, dt(xs,3), type="l", col="grey60", lwd=4)
 points(xs, dt(xs,1), type="l", col="grey90", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(df==1)), 
+legend("topright", legend=c(expression(paste(df==1)),
   expression(paste(df==3)),
   expression(paste(df==30))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -737,7 +737,7 @@ plot(xs, dgamma(xs,shape=1, scale=2), type="l", ylim=c(0,0.25), lwd=4, ann=FALSE
 points(xs, dgamma(xs,shape=2,scale=2), type="l", col="grey60", lwd=4)
 points(xs, dgamma(xs,shape=20,scale=0.5), type="l", col="grey40", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(k==1, ", ", theta==2)), 
+legend("topright", legend=c(expression(paste(k==1, ", ", theta==2)),
   expression(paste(k==2, ", ", theta==2)),
   expression(paste(k==20, ", ", theta==0.5))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -852,7 +852,7 @@ plot(xs, dexp(xs,rate=1.5), type="l", lwd=4, ann=FALSE, axes=FALSE, col="grey90"
 points(xs, dexp(xs,rate=1), type="l", col="grey60", lwd=4)
 points(xs, dexp(xs,rate=0.5), type="l", col="grey40", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(rate==1.5)), 
+legend("topright", legend=c(expression(paste(rate==1.5)),
   expression(paste(rate==1)),
   expression(paste(rate==0.5))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -890,7 +890,7 @@ The beta distribution is defined by two shape parameters:
   ($a-1$)
 - **$b$ - shape parameter 1**. Number of successes in binomial trial
   ($b-1$)
-                  
+
 ::::
 
 :::: {.column width="48%"}
@@ -910,7 +910,7 @@ points(xs, dbeta(xs,shape1=1, shape2=5), type="l", col="grey60", lwd=4)
 points(xs, dbeta(xs,shape1=5, shape2=1), type="l", col="grey40", lwd=4)
 points(xs, dbeta(xs,shape1=1, shape2=1), type="l", col="grey40", lwd=4, lty=3)
 title("Probability density function")
-legend("top", legend=c(expression(paste(shape1==5, ", ", shape2==5)), 
+legend("top", legend=c(expression(paste(shape1==5, ", ", shape2==5)),
   expression(paste(shape1==1, ", ",shape2==5)),
   expression(paste(shape1==5, ", ",shape2==1)),
   expression(paste(shape1==1, ", ",shape2==1))
@@ -985,7 +985,7 @@ points((0:25), dbinom(0:25,50,p=0.1), type="h", col="grey60", lwd=4)
 #points((0:25), dbinom(0:25,10,p=0.5), type="h", col="grey40", lwd=4)
 
 title("Probability density function")
-legend("topright", legend=c(expression(paste(n==30, ", ", p==0.5, sep="")), 
+legend("topright", legend=c(expression(paste(n==30, ", ", p==0.5, sep="")),
   expression(paste(n==3, ", ", p==0.5, sep="")),
   #expression(n==10),
   expression(paste(n==50, ", ", p==0.1, sep=""))
@@ -1017,7 +1017,7 @@ parameter ($\lambda$) that describes the expected count (mean) as well
 as the variance in count. The poisson distribution is bounded at the
 lower end by zero, yet theoretically unbounded at the upper end
 ($0$,$\infty$).
-  
+
 The poisson distribution is particularly appropriate for modeling
 count data as they are always truncated at zero, have no upper limit
 and tend to get more variable with increasing mean.
@@ -1048,7 +1048,7 @@ points((0:40), dpois(0:40,15), type="h", col="grey60", lwd=4)
 points((0:40), dpois(0:40,3), type="h", col="grey40", lwd=4)
 #points((0:40), dpois(0:40,1), type="h", col="grey20", lwd=4)
 title("Probability density function")
-legend("topright", legend=c(expression(paste(lambda==25)), 
+legend("topright", legend=c(expression(paste(lambda==25)),
   expression(paste(lambda==15)),
   expression(paste(lambda==3))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -1076,7 +1076,7 @@ modeling count data for which the variance is greater than the mean
 heterogeneous/patchy/clumped response). The negative binomial
 distribution is bounded at the lower end by zero, yet theoretically
 unbounded at the upper end ($0$,$\infty$).
-  
+
 :::: {.column width="48%"}
 
 There are two parameterizations of the Gamma distribution
@@ -1084,7 +1084,7 @@ There are two parameterizations of the Gamma distribution
 - in terms of the size ($n$) and probability ($p$)
 
     $$f(x;n,p) = \frac{(n+x-1)!}{(n-1!)x!}p^{n}(1-p)^x$$
-    
+
     - **$n$** - the number of successes to occur before stopping the
       count of failures. $n$ acts as a stopping point in that the
       number of failures are counted until $n$ successes are
@@ -1093,14 +1093,14 @@ There are two parameterizations of the Gamma distribution
 
   - in terms of mean $\mu=n(1-p)/p$) and _overdispersion parameter_ or
     _scaling factor_ ($\omega$). This parameterization is more
-    meaningful in ecology. 
-    
+    meaningful in ecology.
+
     $$f(x;\mu,\omega) =
     \frac{\Gamma(\omega+x)}{\Gamma(\omega)x!}\frac{(\mu^x\omega^\omega}{(\mu+\omega)^{\mu+\omega}}$$
 
     - **$\mu$** - the mean (expected number of failures).
     - **$\omega$** - the dispersion or scaling factor.
- 
+
 ::::
 
 :::: {.column width="48%"}
@@ -1118,7 +1118,7 @@ points((0:40), dnbinom(0:40,mu=10,size=5), type="h", col="grey60", lwd=3.75)
 points((0:40), dnbinom(0:40,mu=20,size=20), type="h", col="grey90", lwd=3.5)
 
 title("Probability density function")
-legend("topright", legend=c(expression(paste(mu==20, ", ", omega==20, sep="")), 
+legend("topright", legend=c(expression(paste(mu==20, ", ", omega==20, sep="")),
   expression(paste(mu==10, ", ", omega==5, sep="")),
   expression(paste(mu==10, ", ", omega==1, sep=""))
   ), col=c("grey90","grey60","grey40"), lwd=c(4,4,4), bty="n")
@@ -1189,7 +1189,7 @@ vert1 <- mmax*.75
 vert2 <- mmax*.7
 segments(xxx,vert1,xxx,vert2)
 lines(c(xxx[1],xxx[length(xxx)]),c(vert2,vert2))
-#  text(upperLeft(offset=0.08),"a)", cex=1.5) 
+#  text(upperLeft(offset=0.08),"a)", cex=1.5)
 xx <- seq(0,2,length=1000)
 h<-hist(log10(xl),ylab="", ylim=c(0,max(dnorm(xx,1,.25))), xlim=c(0,2),xlab="", br=50,main="",axes=F, freq=F, border="gray")
 xy <- seq(0,40, l=1000)
@@ -1218,7 +1218,7 @@ axis(1, pos=0)
 xx <- seq(0,80,length=1000)
 lines(c(0,40),c(0,0))
 # text(upperLeft(offset=0.08),"c)", cex=1.5)
-#lines(c(0,0),c(0,.1), lty=2,col="gray") 
+#lines(c(0,0),c(0,.1), lty=2,col="gray")
 #  h<-hist(xl,ylab="", xlim=c(0,2),xlab="", br=100,main="",axes=F, freq=F, border="gray", plot=F)
 #  h<-hist(log10(xl),ylab="", xlim=c(0,2),xlab="", br=50,main="",axes=F, freq=F, border="gray", plot=F)
 #  h<-hist(log10(xl),ylab="", xlim=c(0,2),xlab="", br=50,main="",axes=F, freq=F, border="gray", plot=F)
@@ -1232,7 +1232,7 @@ axis(1, pos=0)
 #mtext("Frequency", 2)
 xx <- seq(0,2,length=1000)
 #lines(c(0,0),c(0,.1), lty=2,col="gray")
-#  text(upperLeft(offset=0.08),"d)", cex=1.5) 
+#  text(upperLeft(offset=0.08),"d)", cex=1.5)
 par(fig=c(.3,.6,.15,.45),new=T)
 s <-seq(1,30, length=1000)
 plot(log10(s)~s, ylim=c(0,1.5), axes=F, xlab="", ylab="", type="n")
@@ -1340,7 +1340,7 @@ process - a much more likely situation.
 It used to be reasonably common to apply square-root transformations
 to normalise count data. Square-root transformations were favoured
 over logarithmic transformations since count data often contained
-numerous zero values and the logarithm of zero is illegal. 
+numerous zero values and the logarithm of zero is illegal.
 
 Great care and consideration must be applied prior to performing a
 square-root transformation in preparation for statistical model
@@ -1379,7 +1379,7 @@ population (and sample) follows an exactly symmetrical distribution.
 Whilst the mean is highly influenced by unusually large or small
 values (outliers) and skewed distributions, the median is more
 <b>robust</b>. The greater the degree of asymmetry and outliers, the
-more disparate the different measures of location. 
+more disparate the different measures of location.
 
 
 | Parameter                           | Description                                                                                                                 | R syntax                                 |
@@ -1632,6 +1632,7 @@ size (the greater the number of replicates, the greater the degrees of
 freedom and power) and negatively related to the number of variables
 and prior required parameters (the greater the number of parameters
 and variables, the lower the degrees of freedom and power).
- 
 
 
+
+The end
