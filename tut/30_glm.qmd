@@ -2,7 +2,7 @@
 title: Generalised linear models
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -167,7 +167,7 @@ the independent variable is equal to zero. These estimates can be used
 to construct a predictive model (equation) that relates the magnitude
 of a dependent variable to the magnitude of an independent variable,
 and thus permit new responses to be predicted from new values of the
-independent variable.  
+independent variable.
 -->
 
 
@@ -212,8 +212,8 @@ $$
 where:
 
 - $y_i$ represents a vector (think single variable) of response values
-  (the subset $i$ is a way to indicate that there are multiple values), 
-- $x_i$ represents the value of the $ith$ observed predictor value.  
+  (the subset $i$ is a way to indicate that there are multiple values),
+- $x_i$ represents the value of the $ith$ observed predictor value.
 - $\beta_0$ represents a single y-intercept (expected value of $y$ when $x$=0),
 - $\beta$ represents the __slope__ of the linear line (this is the rate of
   change in $y$ associated with 1 unit change in $x$).
@@ -235,7 +235,7 @@ y_2\\
 y_3\\
 ...\\
 y_i
-\end{bmatrix}}_{Y} = 
+\end{bmatrix}}_{Y} =
 \underbrace{\begin{bmatrix}
 1&x_1\\
 1&x_2\\
@@ -307,7 +307,7 @@ hand figure) and a statistical model (right hand figure).
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 g1=ggplot(data=NULL, aes(y=y, x=x)) + geom_line() + theme_classic() +
     annotate(geom='text', y=40, x=2, label=expression(y==2+5*x), parse=TRUE, hjust=0)
 g2=ggplot(data=NULL, aes(y=y1, x=x)) + geom_point() + geom_smooth(method='lm', se=FALSE) + theme_classic() +
@@ -333,14 +333,14 @@ are called **residuals**.
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 lm1 <- lm(y1 ~ x)
 cc <- coef(lm1)
 r <- resid(lm1)
 #print(r)
 ff <- fitted(lm1)
 #print(ff)
-g2=ggplot(data=NULL, aes(y=y1, x=x)) + 
+g2=ggplot(data=NULL, aes(y=y1, x=x)) +
     geom_segment(data = NULL, aes(y = ff, x = x, yend = y1, xend = x), colour = "red") +
     geom_point() +
     geom_abline(slope = cc[2], intercept = cc[1], colour = "blue") +
@@ -348,13 +348,13 @@ g2=ggplot(data=NULL, aes(y=y1, x=x)) +
     annotate(geom='text', y=30, x=2.5, label=expression(residual~(epsilon[i])), parse=TRUE, hjust=1) +
     annotate(geom='text', y=15, x=5, label=expression(slope~(beta[1])), parse=TRUE, hjust=0) +
     annotate(geom='text', y=-5, x=1, label=expression(y-intercept~(beta[0])), parse=TRUE, hjust=0) +
-    geom_curve(aes(x = 2, y = 27, xend = 3.8, yend = 23), 
+    geom_curve(aes(x = 2, y = 27, xend = 3.8, yend = 23),
              curvature = 0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
-    geom_curve(aes(x = 4.7, y = 15, xend = 3.7, yend = 18), 
+    geom_curve(aes(x = 4.7, y = 15, xend = 3.7, yend = 18),
              curvature = -0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
-    geom_curve(aes(x = 0.7, y = -5, xend = -0.5, yend = -0.5), 
+    geom_curve(aes(x = 0.7, y = -5, xend = -0.5, yend = -0.5),
              curvature = -0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
     scale_y_continuous('y', limits = c(-10, 50)) +
@@ -379,7 +379,7 @@ y_2\\
 y_3\\
 ...\\
 y_i
-\end{bmatrix}}_{Y} = 
+\end{bmatrix}}_{Y} =
 \underbrace{\begin{bmatrix}
 1&x_1\\
 1&x_2\\
@@ -395,7 +395,7 @@ y_3\\
 y_i
 \end{bmatrix}}\begin{bmatrix}
 \beta_0&\beta
-\end{bmatrix}}_{\boldsymbol{\beta}} + 
+\end{bmatrix}}_{\boldsymbol{\beta}} +
 \underbrace{\begin{bmatrix}
 \varepsilon_1\\
 \varepsilon_2\\
@@ -413,9 +413,9 @@ $$
   multiplied does exist.
 - $\boldsymbol{\beta}$ represents a vector of parameters to be
   estimated. In this case, there is only one.
-- $\boldsymbol{\varepsilon}$ represents a column vector or residuals.  
+- $\boldsymbol{\varepsilon}$ represents a column vector or residuals.
 
-This could all be summarised as: 
+This could all be summarised as:
 
 $$ Y = \boldsymbol{X}\boldsymbol{\beta} + \boldsymbol{\varepsilon} $$
 
@@ -425,15 +425,15 @@ notation again, yet with more general labels:
 $$
 \underbrace{\begin{pmatrix}
   0\\1\\2\\4\\7\\10
-\end{pmatrix}}_\text{Response values} = 
+\end{pmatrix}}_\text{Response values} =
 \underbrace{\begin{pmatrix}
-	1&1\\1&2\\1&3\\1&4\\1&5\\1&6
+    1&1\\1&2\\1&3\\1&4\\1&5\\1&6
 \end{pmatrix}}_\text{Model matrix} \times
 \underbrace{\begin{pmatrix}
-	\beta_0\\\beta_1
-\end{pmatrix}}_\text{Parameter vector} + 
+    \beta_0\\\beta_1
+\end{pmatrix}}_\text{Parameter vector} +
 \underbrace{\begin{pmatrix}
-	\varepsilon_1\\\varepsilon_2\\\varepsilon_3\\\varepsilon_4&\\\varepsilon_5\\\varepsilon_6
+    \varepsilon_1\\\varepsilon_2\\\varepsilon_3\\\varepsilon_4&\\\varepsilon_5\\\varepsilon_6
 \end{pmatrix}}_\text{Residual vector}
 $$
 
@@ -453,7 +453,7 @@ regression model (listed immediately above) with the overall mean
 ($\mu$) replacing the y-intercept ($\beta_0$). The factor levels
 (groups) are represented in the model by binary (contain only of 0s
 and 1s, see Table below) <i>indicator</i> (or `dummy') variables and
-their associated estimable parameters ($\beta_1,~\beta_2,~...$). 
+their associated estimable parameters ($\beta_1,~\beta_2,~...$).
 
 For a data set comprising of $p$ groups and $n$ replicates within each
 group, the linear model is: $$y_{ij} = \mu + \beta_1(dummy_1)_{ij} +
@@ -463,7 +463,7 @@ replicates (from 1 to $n$) within the $j^{th}$ group. Hence, $y_{ij}$
 represents the $i^{th}$ observation of the response variable within
 the $j^{th}$ group and $(dummy_1)_{ij}$ represents the dummy code for
 the $i^{th}$ replicate within the $j^{th}$ group of the first dummy
-variable (first treatment level). 
+variable (first treatment level).
 
 ::: {.columns}
 
@@ -516,7 +516,7 @@ single factor with three levels (`G1', `G2', `G3') each with three
 replicates. Note that a linear model of the form:
 
 $$y_{ij}=\beta_0+\beta_1(dummy_1)_{ij} + \beta_2(dummy_2)_{ij}
-+\beta_3(dummy_3)_{ij} + \varepsilon_{ij}$$ 
++\beta_3(dummy_3)_{ij} + \varepsilon_{ij}$$
 
 is **over-parameterized** (as we are attempting to estimate four
 parameters from three populations, see [the tutorial on
@@ -547,13 +547,13 @@ of two alternative parameterizations:
   $$y_{ij} = \beta_j+\varepsilon_{ij}, \hspace{2cm}\text{where}~j= 1:\text{number of levels of the factor}$$
   $$\begin{pmatrix}
     2\\3\\4\\6\\7\\8\\10\\11\\12
-  \end{pmatrix} = 
+  \end{pmatrix} =
   \begin{pmatrix}
-	1&0&0\\1&0&0\\1&0&0\\0&1&0\\0&1&0\\0&1&0\\0&0&1\\0&0&1\\0&0&1
+    1&0&0\\1&0&0\\1&0&0\\0&1&0\\0&1&0\\0&1&0\\0&0&1\\0&0&1\\0&0&1
   \end{pmatrix} \times
   \begin{pmatrix}
-	\beta_1\\\beta_2\\\beta_3
-  \end{pmatrix} + 
+    \beta_1\\\beta_2\\\beta_3
+  \end{pmatrix} +
   \begin{pmatrix}	\varepsilon_1\\\varepsilon_2\\\varepsilon_3\\\varepsilon_4&\\\varepsilon_5\\\varepsilon_6\\\varepsilon_7&\\\varepsilon_8\\\varepsilon_9
   \end{pmatrix}
   $$
@@ -576,13 +576,13 @@ of two alternative parameterizations:
 
   $$\begin{pmatrix}
     2\\3\\4\\6\\7\\8\\10\\11\\12
-  \end{pmatrix} = 
+  \end{pmatrix} =
   \begin{pmatrix}
-	1&0&0\\1&0&0\\1&0&0\\1&1&0\\1&1&0\\1&1&0\\1&0&1\\1&0&1\\1&0&1
+    1&0&0\\1&0&0\\1&0&0\\1&1&0\\1&1&0\\1&1&0\\1&0&1\\1&0&1\\1&0&1
   \end{pmatrix} \times
   \begin{pmatrix}
-	\beta_0\\\beta_1\\\beta_2\\\beta_3
-  \end{pmatrix} + 
+    \beta_0\\\beta_1\\\beta_2\\\beta_3
+  \end{pmatrix} +
   \begin{pmatrix}	\varepsilon_1\\\varepsilon_2\\\varepsilon_3\\\varepsilon_4&\\\varepsilon_5\\\varepsilon_6\\\varepsilon_7&\\\varepsilon_8\\\varepsilon_9
   \end{pmatrix}
   $$
@@ -704,7 +704,7 @@ set.seed(234)
 dat <- data.frame(x = 1:10) |>
     mutate(y = round(2 + 5*x + rnorm(n = 10, mean = 0, sd = 4), digits = 2))
 dat
-ggplot(data = dat) + 
+ggplot(data = dat) +
 geom_point(aes(y = y, x = x))
 ```
 
@@ -766,15 +766,15 @@ x <- gl(3, 4, 12, labels = c('control', 'medium', 'high'))
 y <- (model.matrix(~x) %*% c(beta_0, beta)) + rnorm(12, 0, sigma)
 dat2 <- data.frame(x = x, y = y)
 dat2
-ggplot(data = dat2) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat2) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 3 (Poisson data)
 
 The Poisson distribution is only parameterized by a single parameter
 ($\lambda$) which represents both the mean and variance. Furthermore,
-Poisson data can only be positive integers.  
+Poisson data can only be positive integers.
 
 Unlike simple trend between two Gaussian or uniform distributions,
 modelling against a Poisson distribution alters the scale to
@@ -810,8 +810,8 @@ n <- 10
 dat3 <- data.frame(x=seq(from = 1, to = 10, len = n)) |>
     mutate(y = rpois(n, lambda = exp(beta[1] + beta[2]*x)))
 dat3
-ggplot(data = dat3) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat3) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 4 (NB data)
@@ -886,8 +886,8 @@ dat4 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
         y = rnbinom(n, size = size, mu =  mu)
     )
 dat4
-ggplot(data = dat4) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat4) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 5 (Binary data)
@@ -927,8 +927,8 @@ dat5 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
         y = as.numeric(rbernoulli(n, p = plogis(beta[1] + beta[2] * x)))
     )
 dat5
-ggplot(data = dat5) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat5) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 6 (Binomial data)
@@ -971,8 +971,8 @@ dat6 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
       y = count/total
     )
 dat6
-ggplot(data = dat6) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat6) +
+geom_point(aes(y = y, x = x))
 ```
 
 
@@ -1006,13 +1006,13 @@ models usually comprise a set of targetted graphical summaries. They
 are not to be considered definitive diagnostics of the model
 assumptions, but rather a first pass to assess the obvious violations
 prior to the fitting of models. More definitive diagnostics can only
-be achieved after a model has been fit. 
+be achieved after a model has been fit.
 
 In addition to graphical summaries, there are numerous statistical
 tests to help explore possible violations of various statistical
 assumptions. These tests are less commonly used in ecology since they
 are often more sensitive to deviations from ideal than are the models
-that we are seeking to ensure. 
+that we are seeking to ensure.
 
 Simple classic regression models are often the easiest models to fit
 and interpret and as such often represent a standard by which other
@@ -1038,7 +1038,7 @@ assumptions:
 #| echo: false
 #| cache: false
 #| fig-width: 6
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 
 \newcommand{\tikzmark}[1]{\tikz[baseline, remember picture] \coordinate (#1) {};}
 
@@ -1060,17 +1060,17 @@ assumptions:
 \coordinate (zeromark) at ($(otherzero.north) + (covnode.west|-covnode)$);
 \path (zeromark) +(1,-1em) node[anchor = west](Z) {\parbox{3cm}{Zero covariance\\ (=independence)}};
 \draw[->] (zeromark)++(.9em,0ex) to [bend left] ($(Z.north west) + (0, -0.5em)$) ;
- 
+
 \coordinate (sigma2mark) at ($(sigma.north) + (dist.west|-dist)$);
 \coordinate (covmark) at ($(cov.north) + (covnode.west|-covnode)$);
 
-\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$) 
-    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm) 
+\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$)
+    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm)
     .. controls ++(-2cm,-0.1cm) and ++(4cm,-.0cm) ..  ++(-6cm,0cm)
     .. controls ++(-0.8cm, 0cm) and ++ (0.2cm, 1.3cm) .. ($(covmark.north) +(0.7em, 0.7em)$);
 \end{tikzpicture}
 ```
- 
+
 
 ::::
 
@@ -1086,7 +1086,7 @@ assumptions:
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 lm1 <- lm(y1 ~ x)
 cc <- coef(lm1)
 r <- resid(lm1)
@@ -1136,7 +1136,7 @@ The observations represent
   from populations that are normal distribution. _The right hand figure
   underlays the ficticious normally distributed populations from which
   the observed values have been sampled_.
-  
+
 :::: {.indented}
 
 ::: {.callout-note collapse="true"}
@@ -1275,7 +1275,7 @@ transformations) are appropriate.
   populations. _The right hand figure underlays the ficticious normally
   distributed and equally varied populations from which the
   observations have been sampled_.
-  
+
   Moreover, since the expected values (obtained by solving the
   deterministic component of the model) and the variance must be
   estimated from the same data, they need to be independent (not
@@ -1733,12 +1733,12 @@ assumptions will be explored and detailed.
 #| label: eda1a
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1747,8 +1747,8 @@ dat |>
 - to be convincing evidence of non-normality, each segment of the
   boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -1759,13 +1759,13 @@ dat |>
 #| label: eda1b
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1773,8 +1773,8 @@ dat |>
 - the spread of values around the trendline seems fairly even (hence
   it there is no evidence of non-homogeneity
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -1785,13 +1785,13 @@ dat |>
 #| label: eda1c
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1800,8 +1800,8 @@ dat |>
   Furthermore, the lowess smoother does not appear to have a
   consistent shift trajectory.
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -1827,7 +1827,7 @@ dat |>
 #| label: eda2a
 #| fig-width: 3
 #| fig-height: 3
-dat2 |> 
+dat2 |>
   ggplot(aes(y = y, x = x)) +
   geom_boxplot()
 ```
@@ -1838,7 +1838,7 @@ dat2 |>
 - there is no consitent evidence of non-normality across all groups
 - even though the control group demonstrates some evidence of
   non-normality
-:::::: 
+::::::
 :::::
 
 ### Homogeneity of variance
@@ -1850,12 +1850,12 @@ dat2 |>
 #| label: eda2b
 #| fig-width: 3
 #| fig-height: 3
-dat2 |> 
+dat2 |>
   ggplot(aes(y = y, x = x)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1868,8 +1868,8 @@ dat2 |>
 - that is, the size of the boxplots do not vary with the elevation of
   the boxplots.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -1898,12 +1898,12 @@ between two points can only ever be linear)....
 #| label: eda3a
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1911,8 +1911,8 @@ dat3 |>
 - there is strong evidence of non-normality
 - each segment of the boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -1923,13 +1923,13 @@ dat3 |>
 #| label: eda3b
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1939,8 +1939,8 @@ dat3 |>
   distributional issues (such as non-normality in this case) as they
   can result in non-linearity (apparent here)
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -1951,21 +1951,21 @@ dat3 |>
 #| label: eda3c
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - the data do not appear to be linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -1988,12 +1988,12 @@ dat3 |>
 #| label: eda4a
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2001,8 +2001,8 @@ dat4 |>
 - there is strong evidence of non-normality
 - each segment of the boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2013,13 +2013,13 @@ dat4 |>
 #| label: eda4b
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2029,8 +2029,8 @@ dat4 |>
   distributional issues (such as non-normality in this case) as they
   can result in non-linearity (apparent here)
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2041,21 +2041,21 @@ dat4 |>
 #| label: eda4c
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - the data do not appear to be linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2077,20 +2077,20 @@ dat4 |>
 #| label: eda5a
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - clearly a set of 0's and 1's cant be normally distributied.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2101,13 +2101,13 @@ dat5 |>
 #| label: eda5b
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2115,8 +2115,8 @@ dat5 |>
 - the spread of noise does not look random (or equal) along the line
   of best fit.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2127,21 +2127,21 @@ dat5 |>
 #| label: eda5c
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - the data are clearly not linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2163,20 +2163,20 @@ dat5 |>
 #| label: eda6a
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - distribution is not normal and is truncated
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2187,13 +2187,13 @@ dat6 |>
 #| label: eda6b
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2201,8 +2201,8 @@ dat6 |>
 - the spread of noise does not look random (or equal) along the line
   of best fit.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2213,13 +2213,13 @@ dat6 |>
 #| label: eda6c
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2230,8 +2230,8 @@ dat6 |>
   observed $x$ values. That is, a simple linear model would predict
   proportions higher than 100% at high values of $x$
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2270,7 +2270,7 @@ to the right (and squashed in the case of the standardised data).
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 ggplot(data = NULL, aes(x = y1, y = 1)) +
 geom_point() +
 scale_x_continuous('y') +
@@ -2294,7 +2294,7 @@ theme_classic() +
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 y2 <- y1 - mean(y1)
 ggplot(data = NULL, aes(x = y2, y = 1)) +
 geom_point() +
@@ -2318,7 +2318,7 @@ theme_classic() +
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 y2 <- (y1 - mean(y1))/sd(y1)
 ggplot(data = NULL, aes(x = y2, y = 1)) +
 geom_point() +
@@ -2361,7 +2361,7 @@ enhance the performance and stability of statistical models:
   mass of zero is not going to be within the domain of collectable
   data. A bird that has no mass does not exist. In such cases, the
   y-intercept has no practical interpretation.
-  
+
   If however, the data are centered (or standardised), an $x$ value of
   zero represents the mean value of $y$. Hence, the y-intercept is
   then interpreted as the expected value of $y$ at the average $x$ -
@@ -2384,7 +2384,7 @@ violated.
 For Example 1 - Gaussian, we will fit the model three ways (on raw
 predictor values, on centered predictor values and on standardised
 predictor values). The purpose of this is to illustrate how these
-choices impact on the diagnostics and interpretation of the model. 
+choices impact on the diagnostics and interpretation of the model.
 
 ::: {.panel-tabset}
 
@@ -2394,7 +2394,7 @@ The Ordinary Least Squares (**OLS**) estimate of a **parameter** (e.g
 the mean, $\mu$) is the value of this parameter that minimize the sum
 of the square residuals (e.g. $(y_i-\mu)^2$). That is, it minimize the
 total difference between the observed values ($x_i$) and those
-expected ($\mu$). 
+expected ($\mu$).
 
 :::: {.callout-note collapse="true"}
 ### Details about performing regression via long methods
@@ -2424,7 +2424,7 @@ for (i in 1:length(mu)) {
     rss[i] <- sum((dat$y - mu[i])^2)
 }
 mu[which(rss == min(rss))]
-ggplot(data = NULL) + 
+ggplot(data = NULL) +
 geom_line(aes(y = rss, x = mu))
 ```
 
@@ -2472,7 +2472,7 @@ y_2\\
 y_3\\
 ...\\
 y_n
-\end{bmatrix}}_{Y} = 
+\end{bmatrix}}_{Y} =
 \underbrace{\begin{bmatrix}
 1\\
 1\\
@@ -2488,7 +2488,7 @@ y_3\\
 y_n
 \end{bmatrix}}\begin{bmatrix}
 \beta_0
-\end{bmatrix}}_{\boldsymbol{\beta}} + 
+\end{bmatrix}}_{\boldsymbol{\beta}} +
 \underbrace{\begin{bmatrix}
 \varepsilon_1\\
 \varepsilon_2\\
@@ -2505,7 +2505,7 @@ $$
   just ensures that the thing being multiplied does exist.
 - $\boldsymbol{\beta}$ represents a vector of parameters to be estimated.  In
   this case, there is only one.
-- $\boldsymbol{\varepsilon}$ represents a column vector or residuals.  
+- $\boldsymbol{\varepsilon}$ represents a column vector or residuals.
 
 This could all be summarised as:
 
@@ -2541,7 +2541,7 @@ $$
 \varepsilon_3\\
 ...\\
 \varepsilon_n\\
-\end{bmatrix} = 
+\end{bmatrix} =
 \begin{bmatrix}
 \varepsilon_1\times\varepsilon_1 + \varepsilon_2\times\varepsilon_2 + \varepsilon_3\times\varepsilon_3 + ... + \varepsilon_n\times\varepsilon_n
 \end{bmatrix}
@@ -2628,7 +2628,7 @@ $$
 `r dat$y[2]`\\
 `r dat$y[3]`\\
 ...\\
-\end{bmatrix} = 
+\end{bmatrix} =
 \underbrace{\begin{bmatrix}
 1&`r dat$x[1]`\\
 1&`r dat$x[2]`\\
@@ -2638,7 +2638,7 @@ $$
 \begin{bmatrix}
 \beta_0\\
 \beta_1
-\end{bmatrix} + 
+\end{bmatrix} +
 \begin{bmatrix}
 \varepsilon_1\\
 \varepsilon_2\\
@@ -2652,7 +2652,7 @@ estimate ($\beta_0$: the intercept and $\beta_1$: the slope) and a vector of
 residuals (random noise).
 
 Recall that in order to estimate $\boldsymbol{\beta}$, we solve the following:
-                                   
+
 $$
 \boldsymbol{\beta} = (\boldsymbol{X}^T\boldsymbol{X})^{-1} \boldsymbol{X}^T Y
 $$
@@ -2685,7 +2685,7 @@ y_i = \beta_0+\beta_1\times x_i+\varepsilon_i \hspace{1cm}\varepsilon_i\sim{}\ma
 $$
 
 
-This whole process, can be more conveniently wrapped into a simple function within R called `lm()`. 
+This whole process, can be more conveniently wrapped into a simple function within R called `lm()`.
 
 ```{r lm, results='markdown', eval=TRUE}
 dat.lm <- lm(y~x, data = dat)
@@ -2703,12 +2703,12 @@ step definitively confirms the model assumptions.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics1a
 #| eval: true
 #| echo: true
 #| cache: false
-dat.lm |> 
+dat.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -2741,7 +2741,7 @@ set of standard diagnostic regression plots:
   identify whether the issues are due to residuals or leverage.
 - the bottom right plot displays the trend between Cook's distance and
   leverage.
-  
+
 ### Influence measures
 
 Statistical models assume that all observations have the same
@@ -2877,7 +2877,7 @@ range of diagnostic tests will be provided as side effects.
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat.lm |> 
+dat.resid <- dat.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -2898,14 +2898,14 @@ individual tests can be explored.
     is to the left, it suggests under-dispersion.
   - histogram of outliers. The red line (if present) indicates the
     presence of outliers.
- 
+
   The figures are accompanied by formal statistical tests. These tests
   should be reviewed, however, be aware that they are typically more
   sensitive than the assumptions they seek to explore. So while it is
   important to review them in order to identify potential issues,
   significant tests need not be considered indicators of complete
   model failure.
-  
+
 ```{r}
 #| label: validateModelb2
 #| eval: true
@@ -2999,7 +2999,7 @@ dat.lm |> confint()
 - when $x=0$, $y$ is expected to be `r round(coef(dat.lm)[1], 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
   increases by `r round(coef(dat.lm)[2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat.lm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat.lm)[2,1], 3)` or as high as
   `r round(confint(dat.lm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -3022,7 +3022,7 @@ y_i = \beta_0+\beta_1\times (x_i - \bar{x}) +\varepsilon_i \hspace{1cm}\varepsil
 $$
 
 
-This whole process, can be more conveniently wrapped into a simple function within R called `lm()`. 
+This whole process, can be more conveniently wrapped into a simple function within R called `lm()`.
 
 ```{r lm1b, results='markdown', eval=TRUE}
 dat1b.lm <- lm(y ~ scale(x, scale = FALSE), data = dat)
@@ -3040,12 +3040,12 @@ step definitively confirms the model assumptions.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics1b
 #| eval: true
 #| echo: true
 #| cache: false
-dat1b.lm |> 
+dat1b.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -3078,7 +3078,7 @@ set of standard diagnostic regression plots:
   identify whether the issues are due to residuals or leverage.
 - the bottom right plot displays the trend between Cook's distance and
   leverage.
-  
+
 ### Influence measures
 
 Statistical models assume that all observations have the same
@@ -3214,7 +3214,7 @@ range of diagnostic tests will be provided as side effects.
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1b.lm |> 
+dat.resid <- dat1b.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -3235,14 +3235,14 @@ individual tests can be explored.
     is to the left, it suggests under-dispersion.
   - histogram of outliers. The red line (if present) indicates the
     presence of outliers.
- 
+
   The figures are accompanied by formal statistical tests. These tests
   should be reviewed, however, be aware that they are typically more
   sensitive than the assumptions they seek to explore. So while it is
   important to review them in order to identify potential issues,
   significant tests need not be considered indicators of complete
   model failure.
-  
+
 ```{r}
 #| label: validateModelb2b
 #| eval: true
@@ -3337,7 +3337,7 @@ dat1b.lm |> confint()
   expected to be `r round(coef(dat1b.lm)[1], 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
   increases by `r round(coef(dat1b.lm)[2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat1b.lm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1b.lm)[2,1], 3)` or as high as
   `r round(confint(dat1b.lm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -3360,7 +3360,7 @@ y_i = \beta_0+\beta_1\times (x_i - \bar{x})/\sigma_{x} +\varepsilon_i \hspace{1c
 $$
 
 
-This whole process, can be more conveniently wrapped into a simple function within R called `lm()`. 
+This whole process, can be more conveniently wrapped into a simple function within R called `lm()`.
 
 ```{r lm1c, results='markdown', eval=TRUE}
 dat1c.lm <- lm(y ~ scale(x), data = dat)
@@ -3378,12 +3378,12 @@ step definitively confirms the model assumptions.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics1c
 #| eval: true
 #| echo: true
 #| cache: false
-dat1c.lm |> 
+dat1c.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -3416,7 +3416,7 @@ set of standard diagnostic regression plots:
   identify whether the issues are due to residuals or leverage.
 - the bottom right plot displays the trend between Cook's distance and
   leverage.
-  
+
 ### Influence measures
 
 Statistical models assume that all observations have the same
@@ -3552,7 +3552,7 @@ range of diagnostic tests will be provided as side effects.
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1c.lm |> 
+dat.resid <- dat1c.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -3573,14 +3573,14 @@ individual tests can be explored.
     is to the left, it suggests under-dispersion.
   - histogram of outliers. The red line (if present) indicates the
     presence of outliers.
- 
+
   The figures are accompanied by formal statistical tests. These tests
   should be reviewed, however, be aware that they are typically more
   sensitive than the assumptions they seek to explore. So while it is
   important to review them in order to identify potential issues,
   significant tests need not be considered indicators of complete
   model failure.
-  
+
 ```{r}
 #| label: validateModelb2c
 #| eval: true
@@ -3676,7 +3676,7 @@ dat1c.lm |> confint()
   approximately 34% of the range of $x$ since standardised), the
   expected value of $y$ increases by `r round(coef(dat1c.lm)[2], 3)`
   (the slope)
-- the slope could be as low as `r round(confint(dat1c.lm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1c.lm)[2,1], 3)` or as high as
   `r round(confint(dat1c.lm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -3928,7 +3928,7 @@ dat2d.lm
   of the first and second groups is `r coef(dat2d.lm)[2]`
 - the difference between the mean of the second group and the mean
   of the second and third groups is `r coef(dat2d.lm)[2]`
-  
+
 ### Polynomial contrasts
 
 Polynomial contrasts generate orthogonal polynomial trends (such as
@@ -4003,10 +4003,10 @@ matrix according to the following rules:
 - groups to be apposed (contrasted) to one another should have
   apposing signs
 - the number of contrasts must not exceed $p-1$, where $p$ is the
-				number of groups. Actually, it must equal $p-1$
-				exactly. However, it is usually sufficient to define
-				less than $p-1$ contrasts and let R generate the
-				remaining contrasts.
+                number of groups. Actually, it must equal $p-1$
+                exactly. However, it is usually sufficient to define
+                less than $p-1$ contrasts and let R generate the
+                remaining contrasts.
 - within a given contrast, the sum of positive coefficients (and
   negative coefficients) should sum to 1 to ensure that the resulting
   estimates can be sensibly interpreted.
@@ -4075,7 +4075,7 @@ model (unless the sample sizes within groups vary substantially).
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2a.lm |> 
+dat.resid <- dat2a.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4090,7 +4090,7 @@ dat.resid <- dat2a.lm |>
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2b.lm |> 
+dat.resid <- dat2b.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4105,7 +4105,7 @@ dat.resid <- dat2b.lm |>
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2c.lm |> 
+dat.resid <- dat2c.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4120,7 +4120,7 @@ dat.resid <- dat2c.lm |>
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2d.lm |> 
+dat.resid <- dat2d.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4135,7 +4135,7 @@ dat.resid <- dat2d.lm |>
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2e.lm |> 
+dat.resid <- dat2e.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4150,7 +4150,7 @@ dat.resid <- dat2e.lm |>
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat2f.lm |> 
+dat.resid <- dat2f.lm |>
   simulateResiduals(plot = TRUE)
 ```
 ::::
@@ -4201,12 +4201,12 @@ And now to explore the regression diagnostics.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics3a
 #| eval: true
 #| echo: true
 #| cache: false
-dat3.lm |> 
+dat3.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -4256,7 +4256,7 @@ dat3.lm |> performance::check_outliers()
 **Conclusions**:
 
 - the observed density and simulated densities in the Posterior
-  Predictive Check plot are inconsistent 
+  Predictive Check plot are inconsistent
   - the peaks are not aligned
 - there is clear evidence of a non-linear trend in the residuals plot
 - the 10th observation has high Cook's D value
@@ -4274,7 +4274,7 @@ dat3.lm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat3.resid <- dat3.lm |> 
+dat3.resid <- dat3.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4338,12 +4338,12 @@ And now to explore the regression diagnostics.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics4a
 #| eval: true
 #| echo: true
 #| cache: false
-dat4.lm |> 
+dat4.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -4393,7 +4393,7 @@ dat4.lm |> performance::check_outliers()
 **Conclusions**:
 
 - the observed density and simulated densities in the Posterior
-  Predictive Check plot are inconsistent 
+  Predictive Check plot are inconsistent
   - the peaks are not aligned
 - there is clear evidence of a non-linear trend in the residuals plot
 - the 10th observation has high Cook's D value
@@ -4411,7 +4411,7 @@ dat4.lm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat4.resid <- dat4.lm |> 
+dat4.resid <- dat4.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4478,12 +4478,12 @@ And now to explore the regression diagnostics.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics5a
 #| eval: true
 #| echo: true
 #| cache: false
-dat5.lm |> 
+dat5.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -4532,7 +4532,7 @@ dat5.lm |> performance::check_outliers()
 **Conclusions**:
 
 - the observed density and simulated densities in the Posterior
-  Predictive Check plot are inconsistent 
+  Predictive Check plot are inconsistent
   - the observed data show two peaks (associated with 0's and 1's)
   - the posterior predictions show a single peak between 0 and 1
 - there is clear evidence of a non-linear trend in the standardised
@@ -4551,7 +4551,7 @@ dat5.lm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat5.resid <- dat5.lm |> 
+dat5.resid <- dat5.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4616,12 +4616,12 @@ And now to explore the regression diagnostics.
 
 ### Autoplot
 
-```{r} 
+```{r}
 #| label: lm_diagnostics6a
 #| eval: true
 #| echo: true
 #| cache: false
-dat6.lm |> 
+dat6.lm |>
   autoplot(which = 1:6, ncol = 2, label.size = 3)
 ```
 
@@ -4670,7 +4670,7 @@ dat6.lm |> performance::check_outliers()
 **Conclusions**:
 
 - the observed density and simulated densities in the Posterior
-  Predictive Check plot are inconsistent 
+  Predictive Check plot are inconsistent
   - the observed data show two peaks (associated with 0's and 1's)
   - the posterior predictions show a single peak between 0 and 1
 - there is clear evidence of a non-linear trend in the standardised
@@ -4689,7 +4689,7 @@ dat6.lm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat6.resid <- dat6.lm |> 
+dat6.resid <- dat6.lm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -4716,7 +4716,7 @@ performance::model_performance(dat6.lm)
 ```
 ::::
 
- 
+
 :::
 # Generalised linear models
 
@@ -4739,7 +4739,7 @@ The essential points are:
     g(\boldsymbol{\eta}) =& \boldsymbol{X}\boldsymbol{\beta}\\
     \end{align}
     $$
-    
+
     where $D$ represents the nominated distribution to model the data
     against and $g()$ represents a _link_ function that is used to map
     the scale of the expected values [$-\infty, \infty$] to the scale
@@ -4929,7 +4929,7 @@ $$
 
 So in order to estimate the optimum values for the parameters ($\mu$ and $\sigma$), given our data ($x$), we would maximize the following:
 
-Returning to our example, 
+Returning to our example,
 
 $$
 \begin{align}
@@ -4984,7 +4984,7 @@ ggplot(data=NULL) + geom_line(aes(y=B, x=theta[,'mu']))
 Again, this estimation is very close to the 'true' value.
 
 
-## Optimization 
+## Optimization
 
 Optimization algorithms are essentially search algorithms. They are
 attempting to find a single point in multidimensional space. There are
@@ -5065,8 +5065,8 @@ ggplot(data=theta,aes(y=mu, x=sigma, fill=LL)) +
     scale_y_continuous(expand=c(0,0))
 theta[which(theta$LL==min(theta$LL)),]
 ```
-The optimum solution yielded an estimated mean of 
-`r theta[which(theta$LL==min(theta$LL)),]$mu` and sigma of 
+The optimum solution yielded an estimated mean of
+`r theta[which(theta$LL==min(theta$LL)),]$mu` and sigma of
 `r theta[which(theta$LL==min(theta$LL)),]$sigma`.  These values are very similar
 to the empirical calculations.
 
@@ -5107,24 +5107,24 @@ minimisation rather than maximisation):
 1. Start with some initial estimate values - e.g. a set of $p+1$ vertices for
    each parameter.
 2. Identify the vertex with the highest (ie worst) loss (negative log-likelihood).
-3. Reflect the simplex around the centroid of the other vertices 
+3. Reflect the simplex around the centroid of the other vertices
     3a. If the reflected point is better (lower negative log-likelihood) than the second
-		worst point, but not better than the best point, replace the worst point
-		with the reflected point.
+        worst point, but not better than the best point, replace the worst point
+        with the reflected point.
     3b. If instead, the reflected point is the best vertex, then expand this
-	    point by doubling the reflection distance
-		
+        point by doubling the reflection distance
+
         3b.1.  If this expanded point is better than the reflected point,
-		       replace the worst point with the expanded point
+               replace the worst point with the expanded point
         3b.2   Otherwise replace the worst point with the reflected point.
-		
+
     3c. If instead neither 3a or 3b (the reflected point is not better than the
-		second worst point, then contract the point by halving the reflection
-		distance.
-		
+        second worst point, then contract the point by halving the reflection
+        distance.
+
         3c.1.  If this contracted point is better than the worst point, replace the worst point with the contracted point
         3c.2.  Otherwise, shrink the entire simplex (contract all vertices towards the centroid)
-		
+
 4. Repeat Steps 2-3 until either the maximum number of iterations have occurred
    or the change in loss between two successive iterations is below a
    certain threshold.
@@ -5157,7 +5157,7 @@ get.optim.NM <- function(X.vert, params.init, objective.fn, iter.max=250, abs.to
   while (not.converged & not.max.iter)
   {
     # get values at vertices
-    f_X.vert <- control$fnscale*apply(X = X.vert, MARGIN = 1, FUN = objective.fn, x) 
+    f_X.vert <- control$fnscale*apply(X = X.vert, MARGIN = 1, FUN = objective.fn, x)
     # order ascending X.vert and f(X.vert), by f(X.vert)
     X.order <- sort(f_X.vert, index.return = TRUE)$ix
     X.vert <- X.vert[X.order, ]
@@ -5168,10 +5168,10 @@ get.optim.NM <- function(X.vert, params.init, objective.fn, iter.max=250, abs.to
     X.refl <- X.centr + control$refl*(X.centr - X.vert[X.len+1, ])
     f_X.refl <- control$fnscale*objective.fn(X.refl,x)
     if ((f_X.vert[1] <= f_X.refl) & (f_X.refl < f_X.vert[X.len]))
-    { 
+    {
       # if the reflected point is better than the second worst, but not better than the best...
       # ... then obtain a new simplex by replacing the worst point with the reflected point
-      X.vert[X.len+1, ] <- X.refl 
+      X.vert[X.len+1, ] <- X.refl
     } else if (f_X.refl < f_X.vert[1]) {
       # if the reflected point is the best point so far
       # ... then compute the expanded point
@@ -5181,7 +5181,7 @@ get.optim.NM <- function(X.vert, params.init, objective.fn, iter.max=250, abs.to
       if (f_X.expan < f_X.refl)
       {
         # ... then obtain a new simplex by replacing the worst point with the expanded point
-        X.vert[X.len+1, ] <- X.expan   
+        X.vert[X.len+1, ] <- X.expan
       } else {
         # ... else obtain a new simplex by replacing the worst point with the reflected point
         X.vert[X.len+1, ] <- X.refl
@@ -5199,25 +5199,25 @@ get.optim.NM <- function(X.vert, params.init, objective.fn, iter.max=250, abs.to
       } else {
         # ... shrink the simplex: X = X1 + coef.shrink(X-X1)
         X.vert <- sweep(control$shrink*sweep(X.vert, 2, X.vert[1, ], FUN = "-"), 2, X.vert[1, ], FUN="+")
-      }    
+      }
     }
     # get values at vertices
-    f_X.vert <- control$fnscale*apply(X = X.vert, MARGIN = 1, FUN = objective.fn, x) 
+    f_X.vert <- control$fnscale*apply(X = X.vert, MARGIN = 1, FUN = objective.fn, x)
     # order asc X.vert and f(X.vert)
     X.order <- sort(f_X.vert, index.return = TRUE)$ix
     X.vert <- X.vert[X.order, ]
-    f_X.vert <- f_X.vert[X.order]   
+    f_X.vert <- f_X.vert[X.order]
     # update controls
-    iter <- iter + 1 
+    iter <- iter + 1
     not.max.iter <- (iter < iter.max)*1
     not.converged <- (abs(control$fnscale*objective.fn(X.vert[X.len, ],x)- control$fnscale*objective.fn(X.vert[1, ],x)) > abs.tol)*1
-    
+
     X.optim <- X.vert[1, ]; f_X.optim <- control$fnscale*objective.fn(X.optim,x)
   }
-  return(list(X.optim=X.optim, f_X.optim=f_X.optim, X.vert=X.vert, iter=iter))   
+  return(list(X.optim=X.optim, f_X.optim=f_X.optim, X.vert=X.vert, iter=iter))
 }
 ```
-    
+
 ::::
 
 We can illustrate the iterative process by plotting the outcome of a limited
@@ -5235,7 +5235,7 @@ simplex <- rbind(Vertex1 = params.init + c(d.mu,d.sigma),
   Vertex3 = params.init + c(-d.mu, -d.sigma)) |>
   data.frame()
 base.plot <- ggplot(data = theta, aes(y = mu, x = sigma)) +
-  geom_tile(aes(fill = LL), show.legend = FALSE) + 
+  geom_tile(aes(fill = LL), show.legend = FALSE) +
   geom_contour(aes(z = LL)) +
   scale_fill_gradientn(colors = terrain.colors(12)) +
   scale_x_continuous(expand = c(0,0)) +
@@ -5248,17 +5248,17 @@ for (i in 2:15) {
   a <- get.optim.NM(X.vert = a$X.vert, params.init = a$X.optim, objective.fn = LL.gaus, x = dat$y, iter.max = 1, control = list(fnscale = 1, refl = 1, expan = 2, contr = -0.5, shrink = 0.5))
   newdata[[i]] <- data.frame(a$X.vert)
 }
-newdata <- bind_rows(newdata, .id = 'Iter') |> 
+newdata <- bind_rows(newdata, .id = 'Iter') |>
   mutate(Iter=factor(Iter, levels = unique(Iter)))
-g <- base.plot + 
-  geom_polygon(data = newdata, aes(y = mu, x = sigma, group = Iter), 
+g <- base.plot +
+  geom_polygon(data = newdata, aes(y = mu, x = sigma, group = Iter),
     color = 'black', fill = 'grey40') +
-  transition_manual(Iter) + 
-  shadow_trail(distance = 0.1, alpha = 0.4, color = 'grey40', fill = NA) + 
+  transition_manual(Iter) +
+  shadow_trail(distance = 0.1, alpha = 0.4, color = 'grey40', fill = NA) +
   labs(title = 'Iter: {current_frame}')
 #ga <- animate(g, fps = 20, duration = 15)
 ##ga=animate(g, renderer=av_renderer())
-#anim_save('simplexAnim.gif', animation = ga, path = '../resources/',  renderer =av_renderer()) 
+#anim_save('simplexAnim.gif', animation = ga, path = '../resources/',  renderer =av_renderer())
 ```
 
 
@@ -5279,11 +5279,11 @@ starting configurations to ensure that any single optimization has not
 just settled n a local minimum (maximum).
 
 ```{r simplexOptimNM, results='markdown', eval=TRUE, tidy = TRUE}
-get.optim.NM(X.vert = as.matrix(simplex), params.init, objective.fn = LL.gaus, 
-  x = dat$y, iter.max = 250, abs.tol = 1e-08, 
+get.optim.NM(X.vert = as.matrix(simplex), params.init, objective.fn = LL.gaus,
+  x = dat$y, iter.max = 250, abs.tol = 1e-08,
   control = list(fnscale = 1, refl = 1, expan = 2, contr = -0.5, shrink = 0.5))
-get.optim.NM(X.vert = as.matrix(simplex - c(-0.5, 0.2)), params.init, objective.fn = LL.gaus, 
-  x = dat$y, iter.max = 250, abs.tol = 1e-08, 
+get.optim.NM(X.vert = as.matrix(simplex - c(-0.5, 0.2)), params.init, objective.fn = LL.gaus,
+  x = dat$y, iter.max = 250, abs.tol = 1e-08,
   control = list(fnscale = 1, refl = 1, expan = 2, contr = -0.5, shrink = 0.5))
 ```
 
@@ -5359,7 +5359,7 @@ began to stabalise (converge) on a value of approximately $1.98$.
 
 ```{r eg3, results='markdown', eval=TRUE}
 NR <- function(f, x, return.grid=FALSE) {
-    if (is.function(f)) f=body(f)[[2]]    
+    if (is.function(f)) f=body(f)[[2]]
     f_x = eval(f)
     f._x = eval(D(f,'x'))
     if (return.grid) {
@@ -5374,7 +5374,7 @@ optim.NR <- function(f, x0, abs.tol=1.0E-6, iter.max=250, return.grid=FALSE) {
     while (not.converged & not.max.iter) {
         nr <- NR(f, x = x0, return.grid)
         x1 <- nr$x1
-        iter <- iter + 1 
+        iter <- iter + 1
         not.max.iter <- (iter < iter.max)*1
         not.converged <- (abs(x0-x1) > abs.tol)*1
         if (return.grid) fgrid[[iter]] <- c(x0 = x0, x1 = x1, f_x = nr$f_x, f._x = nr$f._x)
@@ -5384,7 +5384,7 @@ optim.NR <- function(f, x0, abs.tol=1.0E-6, iter.max=250, return.grid=FALSE) {
 }
 ```
 ```{r NManim, results='markdown', eval=TRUE, cache=TRUE, warning=FALSE, message=FALSE, fig.width=6, fig.height=4, tidy = TRUE}
-f <- function(x) {0.1*x^4 + x^3 - x^2 + 10*x + 30} 
+f <- function(x) {0.1*x^4 + x^3 - x^2 + 10*x + 30}
 a <- optim.NR(f, x0 = 3, abs.tol = 0.001, return.grid = TRUE)
 
 x <- seq(-4, 4, len = 100)
@@ -5401,9 +5401,9 @@ g <- ggplot() + geom_line(data = dat1, aes(y = y, x = x)) +
     geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = -5, label = "x[0]"), parse = TRUE) +
     geom_text(data = gdat %>% filter(Iter<4), aes(x = x1, y = -5, label = "x[1]"), parse = TRUE) +
     geom_point(data = gdat, aes(x = x0, y = f_x)) +
-    geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = f_x, label = "f(x)"), 
+    geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = f_x, label = "f(x)"),
       parse = TRUE, nudge_x = 0.1, nudge_y = -5, hjust = 0, vjust = 0) +
-    geom_text(data = gdat |> filter(Iter<4), aes(x = x0+0.3+(x1-x0)/2, y = (f_x/2)-5, label = "f*minute*(x)"), 
+    geom_text(data = gdat |> filter(Iter<4), aes(x = x0+0.3+(x1-x0)/2, y = (f_x/2)-5, label = "f*minute*(x)"),
       parse = TRUE, color = 'red') +
     geom_text(data = gdat, aes(x = -4, y = 140, label = paste0("Iter == ", Iter)), parse = TRUE, hjust = 0) +
     geom_text(data = gdat, aes(x = -4, y = 120, label = paste0("x[1] == ", round(x1, 3))), parse = TRUE, hjust = 0) +
@@ -5449,10 +5449,10 @@ f <- function(x) {0.001*x^3 - 0.001*x^2 -0.3*x + 5}
 f1 <- D(body(f)[[2]], 'x')
 x <- seq(0, 20, len = 100)
 dat1 <- data.frame(x = x, y = f(x))
-g1 <- ggplot() + 
-  geom_line(data = dat1, aes(y = y, x = x)) 
+g1 <- ggplot() +
+  geom_line(data = dat1, aes(y = y, x = x))
 
-g2 <- ggplot() + 
+g2 <- ggplot() +
   geom_line(data = data.frame(x = x, y = eval(f1, envi = list(x = x))), aes(y = y, x = x)) +
   geom_hline(yintercept = 0, linetype = 'dashed')
 grid.arrange(g1, g2, nrow = 1)
@@ -5472,7 +5472,7 @@ gdat <- a$grid |>
            x = ifelse(x0>0,x0+1, x0-1),
            y = f_x + (x-x0)*f._x)
 
-g2 <- ggplot() + 
+g2 <- ggplot() +
   geom_line(data = dat1, aes(y = y, x = x)) +
   geom_hline(yintercept = 0, linetype = 'dashed') +
   geom_segment(data = gdat, aes(x = x, y = y, xend = x1, yend = 0), color = 'red') +
@@ -5480,11 +5480,11 @@ g2 <- ggplot() +
   geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = -0.05, label = "x[0]"), parse = TRUE) +
   geom_text(data = gdat |> filter(Iter<4), aes(x = x1, y = -0.05, label = "x[1]"), parse = TRUE) +
   geom_point(data = gdat, aes(x = x0, y = f_x)) +
-  geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = f_x, label = "f(x)"), 
+  geom_text(data = gdat |> filter(Iter<4), aes(x = x0, y = f_x, label = "f(x)"),
     parse = TRUE, nudge_x = 0.1, nudge_y = -0.05, hjust = 0, vjust = 0) +
-  geom_text(data = gdat |> filter(Iter<4), aes(x = x0+0.3+(x1-x0)/2, y = (f_x/2)-0.05, label = "f*minute*(x)"), 
+  geom_text(data = gdat |> filter(Iter<4), aes(x = x0+0.3+(x1-x0)/2, y = (f_x/2)-0.05, label = "f*minute*(x)"),
     parse = TRUE, color = 'red') +
-  geom_text(data = gdat, aes(x = 0, y = 0.8, label = paste0("Iter == ", Iter)), 
+  geom_text(data = gdat, aes(x = 0, y = 0.8, label = paste0("Iter == ", Iter)),
     parse = TRUE, hjust = 0) +
   geom_text(data = gdat, aes(x = -0, y = 1, label = paste0("x[1] == ", round(x1, 3))), parse = TRUE, hjust = 0) +
   transition_manual(Iter)
@@ -5567,7 +5567,7 @@ specific point on a profile), by calculating the rise over run for a
 very small run ($\Delta$)
 
 $$
-\frac{df(x)}{dx} \approx \frac{(f(x) + \Delta x/2) - (f(x - \Delta x/2))}{\Delta x} 
+\frac{df(x)}{dx} \approx \frac{(f(x) + \Delta x/2) - (f(x - \Delta x/2))}{\Delta x}
 $$
 
 Now that all the pieces are in place, we can demonstrate this by
@@ -5588,7 +5588,7 @@ iter <- 0; not.converged <- 1; not.max.iter <- 1
 while (not.converged & not.max.iter) {
     a <- apply(as.matrix(xs), 1, function(x) D(body(f)[[2]], x[1]))
     g <- do.call('c',lapply(a, eval, x0))
-    
+
     a <- apply(as.matrix(xsg), 1, function(x) D(D(body(f)[[2]], x[1]),x[2]))
     F <- lapply(a,function(x) as.numeric(eval(x, x0)))
     F <- do.call('c',F)
@@ -5596,7 +5596,7 @@ while (not.converged & not.max.iter) {
     F_inv <- solve(F)
     x1 <- as.list(unlist(x0) - F_inv %*% (g))
     f._x <- do.call('f',x1)
-    iter <- iter + 1 
+    iter <- iter + 1
     not.max.iter <- (iter < iter.max)*1
     not.converged <- (f._x>abs.tol)*1
     x0 <- x1
@@ -5634,7 +5634,7 @@ optim.NR <- function(params.init, fn, x, iter.max = 250, abs.tol = 1e-05, contro
         not.max.iter <- (iter < iter.max)*1
         not.converged <- (abs(fn(oldpar) - fn(newpar))>abs.tol)*1
     }
-    list(iter=iter, final = as.vector(newpar), LL = fn(as.vector(newpar)), 
+    list(iter=iter, final = as.vector(newpar), LL = fn(as.vector(newpar)),
       gradient = fnc(newpar), hessian = gradfn(newpar))
 }
 
@@ -5647,7 +5647,7 @@ theta <- expand.grid(mu = mu, sigma = sigma)
 theta$LL <- apply(theta, 1, LL.gaus, x = dat$y)
 
 base.plot <- ggplot(data = theta, aes(y = mu, x = sigma)) +
-    geom_tile(aes(fill = LL), show.legend = FALSE) + 
+    geom_tile(aes(fill = LL), show.legend = FALSE) +
     geom_contour(aes(z = LL)) +
     scale_fill_gradientn(colors = terrain.colors(12)) +
     scale_x_continuous(expand = c(0,0)) +
@@ -5663,7 +5663,7 @@ for (i in 2:10) {
 }
 newdata <- bind_rows(newdata, .id='Iter') |>
   mutate(Iter = factor(Iter, levels = unique(Iter)), nIter = as.numeric(Iter))
-g <- base.plot + 
+g <- base.plot +
     geom_point(data = newdata, aes(y = mu, x = sigma, group = Iter), color = 'black') +
     geom_path(data = newdata, aes(y = mu, x = sigma), color = 'black') +
     transition_reveal(nIter) +
@@ -5675,7 +5675,7 @@ g <- base.plot +
 ::::
 
 ![](../resources/NMAnim3.gif)
-    
+
 Now lets allow the routine (`optim.NR()` defined in the concealed code
 above) to run to convergence.
 
@@ -5741,16 +5741,16 @@ or the **Metropolis algorithm** and it works as follows:
    parameters and return to Step 2.
 4. If the value of the loss function is not better,
     - Calculate the difference ($\Delta L = L_{new} - L_{old}$) in
-	  loss between the new and old parameter estimates
+      loss between the new and old parameter estimates
     - Pick a random number between 0 and 1
     - Accept the new parameter estimates if the random number is less
-	  than $e^{-\Delta L/k}$ (where $k$ is a constant that regulates
-	  the acceptance propensity), otherwise retain the previous
-	  parameter estimates.
+      than $e^{-\Delta L/k}$ (where $k$ is a constant that regulates
+      the acceptance propensity), otherwise retain the previous
+      parameter estimates.
     - Periodically (e.g. every 100 iterations), decrease $k$ so as to
       reduce the acceptance propensity.
     - Return to Step 2.
-	
+
 Rather than have a stopping rule based on convergence, simulated
 annealing continues until the maximum number of iterations have been
 performed. Along with the capacity and encouragement to occasionally
@@ -5814,12 +5814,12 @@ for (i in 1:iters) {
     newdata[[i]] <- data.frame(t(setNames(a$last, c('mu', 'sigma'))), iter = floor(log2(i))+1, t(setNames(bestpar, c('bestmu', 'bestsigma'))))
     p.i <- as.vector(a$last)
 }
-newdata <- bind_rows(newdata, .id = 'Iter') |> 
+newdata <- bind_rows(newdata, .id = 'Iter') |>
   mutate(iter = factor(iter, levels = unique(iter)), nIter = as.numeric(as.character(iter)))
-g <- base.plot + 
+g <- base.plot +
     geom_point(data = newdata, aes(y = mu, x = sigma, group = iter), color = 'black') +
     geom_path(data = newdata, aes(y = mu, x = sigma), color = 'black') +
-    geom_point(data = newdata, aes(y = bestmu, x = bestsigma), color = 'red') + 
+    geom_point(data = newdata, aes(y = bestmu, x = bestsigma), color = 'red') +
     transition_reveal(nIter) +
     labs(title = "Iteration: {2^frame_along}")
 #ga <- animate(g, nframes = 12, fps = 1)
@@ -5908,7 +5908,7 @@ dat.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat.glm |> 
+dat.resid <- dat.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -5939,7 +5939,7 @@ dat.glm |> performance::r2()
   y-intercept).
 - for every one unit change in $x$, the expected value of $y$
   increases by `r round(fixef(dat.glm)[[1]][2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat.glm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat.glm)[2,1], 3)` or as high as
   `r round(confint(dat.glm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -6006,7 +6006,7 @@ dat1b.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1b.glm |> 
+dat.resid <- dat1b.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6037,7 +6037,7 @@ dat1b.glm |> performance::r2()
   y-intercept).
 - for every one unit change in $x$ (which represents a span of approximately 34% of the range of $x$), the expected value of $y$
   increases by `r round(fixef(dat1b.glm)[[1]][2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat1b.glm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1b.glm)[2,1], 3)` or as high as
   `r round(confint(dat1b.glm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -6105,7 +6105,7 @@ dat1c.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1c.glm |> 
+dat.resid <- dat1c.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6138,7 +6138,7 @@ dat1c.glm |> performance::r2()
   approximately 34% of the range of $x$ since standardised), the
   expected value of $y$ increases by `r
   round(fixef(dat1c.glm)[[1]][2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat1c.glm)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1c.glm)[2,1], 3)` or as high as
   `r round(confint(dat1c.glm)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -6224,7 +6224,7 @@ dat3.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3.glm |> 
+dat.resid <- dat3.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6259,25 +6259,25 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
-- when $x=0$, $y$ is expected to be exp(`r round(fixef(dat3.glm)[[1]][1], 3)`) = 
+- when $x=0$, $y$ is expected to be exp(`r round(fixef(dat3.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat3.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(fixef(dat3.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat3.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat3.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat3.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat3.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3.glm)[2,1], 3)` or
   as high as `r round(confint(dat3.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -6354,7 +6354,7 @@ dat3b.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3b.glm |> 
+dat.resid <- dat3b.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6390,26 +6390,26 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(fixef(dat3b.glm)[[1]][1], 3)`) = 
+  expected to be exp(`r round(fixef(dat3b.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat3b.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(fixef(dat3b.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat3b.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat3b.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat3b.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat3b.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3b.glm)[2,1], 3)` or
   as high as `r round(confint(dat3b.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3b.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3b.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -6485,7 +6485,7 @@ dat3c.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3c.glm |> 
+dat.resid <- dat3c.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6521,27 +6521,27 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(fixef(dat3c.glm)[[1]][1], 3)`) = 
+  expected to be exp(`r round(fixef(dat3c.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat3c.glm)[[1]][1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the expected value of $y$
   increases by exp(`r round(fixef(dat3c.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat3c.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat3c.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat3c.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3c.glm)[2,1], 3)` or
   as high as `r round(confint(dat3c.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3c.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3c.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -6624,7 +6624,7 @@ dat4.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4.glm |> 
+dat.resid <- dat4.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6671,25 +6671,25 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
-- when $x=0$, $y$ is expected to be exp(`r round(fixef(dat4.glm)[[1]][1], 3)`) = 
+- when $x=0$, $y$ is expected to be exp(`r round(fixef(dat4.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat4.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(fixef(dat4.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat4.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat4.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat4.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat4.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4.glm)[2,1], 3)` or
   as high as `r round(confint(dat4.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -6767,7 +6767,7 @@ dat4b.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4b.glm |> 
+dat.resid <- dat4b.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6803,26 +6803,26 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(fixef(dat4b.glm)[[1]][1], 3)`) = 
+  expected to be exp(`r round(fixef(dat4b.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat4b.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(fixef(dat4b.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat4b.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat4b.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat4b.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat4b.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4b.glm)[2,1], 3)` or
   as high as `r round(confint(dat4b.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4b.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4b.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -6899,7 +6899,7 @@ dat4c.glm |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4c.glm |> 
+dat.resid <- dat4c.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -6935,27 +6935,27 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(fixef(dat4c.glm)[[1]][1], 3)`) = 
+  expected to be exp(`r round(fixef(dat4c.glm)[[1]][1], 3)`) =
   `r round(exp(fixef(dat4c.glm)[[1]][1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the expected value of $y$
   increases by exp(`r round(fixef(dat4c.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat4c.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat4c.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat4c.glm)[[1]][2]) - 1), 3)`%
   increase in the response per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4c.glm)[2,1], 3)` or
   as high as `r round(confint(dat4c.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4c.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4c.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7040,7 +7040,7 @@ dat5.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5.glm |> 
+dat.resid <- dat5.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7095,30 +7095,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$:
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat5.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat5.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat5.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat5.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat5.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat5.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(fixef(dat5.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat5.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat5.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat5.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat5.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5.glm)[2,1], 3)` or
   as high as `r round(confint(dat5.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7196,7 +7196,7 @@ dat5b.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5b.glm |> 
+dat.resid <- dat5b.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7240,30 +7240,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat5b.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat5b.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat5b.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat5b.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat5b.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat5b.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(fixef(dat5b.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat5b.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat5b.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat5b.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat5b.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5b.glm)[2,1], 3)` or
   as high as `r round(confint(dat5b.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5b.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5b.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7339,7 +7339,7 @@ dat5c.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5c.glm |> 
+dat.resid <- dat5c.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7383,31 +7383,31 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat5c.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat5c.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat5c.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat5c.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat5c.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat5c.glm)[[1]][1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the odds of $y$
-  increases by exp(`r round(fixef(dat5c.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat5c.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat5c.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat5c.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat5c.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5c.glm)[2,1], 3)` or
   as high as `r round(confint(dat5c.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5c.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5c.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7490,7 +7490,7 @@ dat6.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6.glm |> 
+dat.resid <- dat6.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7545,30 +7545,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$:
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat6.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat6.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat6.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat6.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat6.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat6.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(fixef(dat6.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat6.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat6.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat6.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat6.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6.glm)[2,1], 3)` or
   as high as `r round(confint(dat6.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7645,7 +7645,7 @@ dat6b.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6b.glm |> 
+dat.resid <- dat6b.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7689,30 +7689,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat6b.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat6b.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat6b.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat6b.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat6b.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat6b.glm)[[1]][1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(fixef(dat6b.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat6b.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat6b.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat6b.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat6b.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6b.glm)[2,1], 3)` or
   as high as `r round(confint(dat6b.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6b.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6b.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -7788,7 +7788,7 @@ dat6c.glm |> performance::check_outliers(residual_type = "normal")
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6c.glm |> 
+dat.resid <- dat6c.glm |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -7832,31 +7832,31 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(fixef(dat6c.glm)[[1]][1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(fixef(dat6c.glm)[[1]][1], 3)`) =
     `r round(exp(fixef(dat6c.glm)[[1]][1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(fixef(dat6c.glm)[[1]][1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(fixef(dat6c.glm)[[1]][1], 3)`) =
     `r round(plogis(fixef(dat6c.glm)[[1]][1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the odds of $y$
-  increases by exp(`r round(fixef(dat6c.glm)[[1]][2], 3)`) =  
+  increases by exp(`r round(fixef(dat6c.glm)[[1]][2], 3)`) =
   `r round(exp(fixef(dat6c.glm)[[1]][2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(fixef(dat6c.glm)[[1]][2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(fixef(dat6c.glm)[[1]][2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6c.glm)[2,1], 3)` or
   as high as `r round(confint(dat6c.glm)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6c.glm)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6c.glm)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -8199,7 +8199,7 @@ dat.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat.glmw |> 
+dat.resid <- dat.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8230,7 +8230,7 @@ dat.glmw |> performance::r2()
   y-intercept).
 - for every one unit change in $x$, the expected value of $y$
   increases by `r round(coef(dat.glmw)[2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat.glmw)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat.glmw)[2,1], 3)` or as high as
   `r round(confint(dat.glmw)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -8297,7 +8297,7 @@ dat1b.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1b.glmw |> 
+dat.resid <- dat1b.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8328,7 +8328,7 @@ dat1b.glmw |> performance::r2()
   y-intercept).
 - for every one unit change in $x$ (which represents a span of approximately 34% of the range of $x$), the expected value of $y$
   increases by `r round(coef(dat1b.glmw)[2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat1b.glmw)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1b.glmw)[2,1], 3)` or as high as
   `r round(confint(dat1b.glmw)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -8396,7 +8396,7 @@ dat1c.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat1c.glmw |> 
+dat.resid <- dat1c.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8429,7 +8429,7 @@ dat1c.glmw |> performance::r2()
   approximately 34% of the range of $x$ since standardised), the
   expected value of $y$ increases by `r
   round(fixef(dat1c.glmw)[2], 3)` (the slope)
-- the slope could be as low as `r round(confint(dat1c.glmw)[2,1], 3)` or as high as 
+- the slope could be as low as `r round(confint(dat1c.glmw)[2,1], 3)` or as high as
   `r round(confint(dat1c.glmw)[2,2], 3)` (95% confidence interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
@@ -8505,7 +8505,7 @@ dat3.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3.glmw |> 
+dat.resid <- dat3.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8540,25 +8540,25 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
-- when $x=0$, $y$ is expected to be exp(`r round(coef(dat3.glmw)[1], 3)`) = 
+- when $x=0$, $y$ is expected to be exp(`r round(coef(dat3.glmw)[1], 3)`) =
   `r round(exp(coef(dat3.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(coef(dat3.glmw)[2], 3)`) =  
+  increases by exp(`r round(coef(dat3.glmw)[2], 3)`) =
   `r round(exp(coef(dat3.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat3.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat3.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3.glmw)[2,1], 3)` or
   as high as `r round(confint(dat3.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -8635,7 +8635,7 @@ dat3b.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3b.glmw |> 
+dat.resid <- dat3b.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8671,26 +8671,26 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(coef(dat3b.glmw)[1], 3)`) = 
+  expected to be exp(`r round(coef(dat3b.glmw)[1], 3)`) =
   `r round(exp(coef(dat3b.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(coef(dat3b.glmw)[2], 3)`) =  
+  increases by exp(`r round(coef(dat3b.glmw)[2], 3)`) =
   `r round(exp(coef(dat3b.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat3b.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat3b.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3b.glmw)[2,1], 3)` or
   as high as `r round(confint(dat3b.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3b.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3b.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -8766,7 +8766,7 @@ dat3c.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat3c.glmw |> 
+dat.resid <- dat3c.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8802,27 +8802,27 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(coef(dat3c.glmw)[1], 3)`) = 
+  expected to be exp(`r round(coef(dat3c.glmw)[1], 3)`) =
   `r round(exp(coef(dat3c.glmw)[1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the expected value of $y$
   increases by exp(`r round(coef(dat3c.glmw)[2], 3)`) =
   `r round(exp(coef(dat3c.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat3c.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat3c.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat3c.glmw)[2,1], 3)` or
   as high as `r round(confint(dat3c.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat3c.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat3c.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -8906,7 +8906,7 @@ dat4.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4.glmw |> 
+dat.resid <- dat4.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -8953,25 +8953,25 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
-- when $x=0$, $y$ is expected to be exp(`r round(coef(dat4.glmw)[1], 3)`) = 
+- when $x=0$, $y$ is expected to be exp(`r round(coef(dat4.glmw)[1], 3)`) =
   `r round(exp(coef(dat4.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(coef(dat4.glmw)[2], 3)`) = 
+  increases by exp(`r round(coef(dat4.glmw)[2], 3)`) =
   `r round(exp(coef(dat4.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat4.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat4.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4.glmw)[2,1], 3)` or
   as high as `r round(confint(dat4.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9048,7 +9048,7 @@ dat4b.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4b.glmw |> 
+dat.resid <- dat4b.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9084,26 +9084,26 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(coef(dat4b.glmw)[1], 3)`) = 
+  expected to be exp(`r round(coef(dat4b.glmw)[1], 3)`) =
   `r round(exp(coef(dat4b.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the expected value of $y$
-  increases by exp(`r round(coef(dat4b.glmw)[2], 3)`) = 
+  increases by exp(`r round(coef(dat4b.glmw)[2], 3)`) =
   `r round(exp(coef(dat4b.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat4b.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat4b.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4b.glmw)[2,1], 3)` or
   as high as `r round(confint(dat4b.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4b.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4b.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9179,7 +9179,7 @@ dat4c.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat4c.glmw |> 
+dat.resid <- dat4c.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9215,27 +9215,27 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered), $y$ is
-  expected to be exp(`r round(coef(dat4c.glmw)[1], 3)`) = 
+  expected to be exp(`r round(coef(dat4c.glmw)[1], 3)`) =
   `r round(exp(coef(dat4c.glmw)[1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the expected value of $y$
   increases by exp(`r round(coef(dat4c.glmw)[2], 3)`) =
   `r round(exp(coef(dat4c.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat4c.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat4c.glmw)[2]) - 1), 3)`%
   increase in the response per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat4c.glmw)[2,1], 3)` or
   as high as `r round(confint(dat4c.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat4c.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat4c.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9320,7 +9320,7 @@ dat5.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5.glmw |> 
+dat.resid <- dat5.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9375,30 +9375,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$:
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat5.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat5.glmw)[1], 3)`) =
     `r round(exp(coef(dat5.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat5.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat5.glmw)[1], 3)`) =
     `r round(plogis(coef(dat5.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(coef(dat5.glmw)[2], 3)`) =  
+  increases by exp(`r round(coef(dat5.glmw)[2], 3)`) =
   `r round(exp(coef(dat5.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat5.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat5.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5.glmw)[2,1], 3)` or
   as high as `r round(confint(dat5.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9476,7 +9476,7 @@ dat5b.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5b.glmw |> 
+dat.resid <- dat5b.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9520,30 +9520,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat5b.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat5b.glmw)[1], 3)`) =
     `r round(exp(coef(dat5b.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat5b.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat5b.glmw)[1], 3)`) =
     `r round(plogis(coef(dat5b.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(coef(dat5b.glmw)[2], 3)`) = 
+  increases by exp(`r round(coef(dat5b.glmw)[2], 3)`) =
   `r round(exp(coef(dat5b.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat5b.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat5b.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5b.glmw)[2,1], 3)` or
   as high as `r round(confint(dat5b.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5b.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5b.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9619,7 +9619,7 @@ dat5c.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat5c.glmw |> 
+dat.resid <- dat5c.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9663,31 +9663,31 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat5c.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat5c.glmw)[1], 3)`) =
     `r round(exp(coef(dat5c.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat5c.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat5c.glmw)[1], 3)`) =
     `r round(plogis(coef(dat5c.glmw)[1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the odds of $y$
-  increases by exp(`r round(coef(dat5c.glmw)[2], 3)`) = 
+  increases by exp(`r round(coef(dat5c.glmw)[2], 3)`) =
   `r round(exp(coef(dat5c.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat5c.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat5c.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat5c.glmw)[2,1], 3)` or
   as high as `r round(confint(dat5c.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat5c.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat5c.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9701,7 +9701,7 @@ inference testsing:
 :::::
 
 :::::::
- 
+
 ### Example  6 (Binomial data)
 
 ::::::: {.panel-tabset}
@@ -9770,7 +9770,7 @@ dat6.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6.glmw |> 
+dat.resid <- dat6.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9825,30 +9825,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$:
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat6.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat6.glmw)[1], 3)`) =
     `r round(exp(coef(dat6.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat6.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat6.glmw)[1], 3)`) =
     `r round(plogis(coef(dat6.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(coef(dat6.glmw)[2], 3)`) =  
+  increases by exp(`r round(coef(dat6.glmw)[2], 3)`) =
   `r round(exp(coef(dat6.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat6.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat6.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6.glmw)[2,1], 3)` or
   as high as `r round(confint(dat6.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -9925,7 +9925,7 @@ dat6b.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6b.glmw |> 
+dat.resid <- dat6b.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -9969,30 +9969,30 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat6b.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat6b.glmw)[1], 3)`) =
     `r round(exp(coef(dat6b.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat6b.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat6b.glmw)[1], 3)`) =
     `r round(plogis(coef(dat6b.glmw)[1]), 3)` (the y-intercept).
 - for every one unit change in $x$, the odds of $y$
-  increases by exp(`r round(coef(dat6b.glmw)[2], 3)`) = 
+  increases by exp(`r round(coef(dat6b.glmw)[2], 3)`) =
   `r round(exp(coef(dat6b.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat6b.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat6b.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6b.glmw)[2,1], 3)` or
   as high as `r round(confint(dat6b.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6b.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6b.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -10068,7 +10068,7 @@ dat6c.glmw |> performance::check_outliers()
 #| warning: false
 #| fig-height: 4
 #| fig-width: 8
-dat.resid <- dat6c.glmw |> 
+dat.resid <- dat6c.glmw |>
   simulateResiduals(plot = TRUE)
 ```
 
@@ -10112,31 +10112,31 @@ inference testsing:
   are "significant"
 - if using estimates on the response scale, intervals that do not
   include 1 are "significant"
-  
+
 ::::::::
 
 **Interpretation**:
 
 - when $x=0$ (e.g. the average $x$ value since centered):
-  - the odds of $y$ being 1 vs 0 is expected to be 
-    exp(`r round(coef(dat6c.glmw)[1], 3)`) = 
+  - the odds of $y$ being 1 vs 0 is expected to be
+    exp(`r round(coef(dat6c.glmw)[1], 3)`) =
     `r round(exp(coef(dat6c.glmw)[1]), 3)` (the y-intercept).
-  - the probability of $y$ being 1 is expected to be 
-    plogis(`r round(coef(dat6c.glmw)[1], 3)`) = 
+  - the probability of $y$ being 1 is expected to be
+    plogis(`r round(coef(dat6c.glmw)[1], 3)`) =
     `r round(plogis(coef(dat6c.glmw)[1]), 3)` (the y-intercept).
-- for every one unit change in $x$ (which represents a span of approximately 34% of the 
+- for every one unit change in $x$ (which represents a span of approximately 34% of the
   range of $x$ since standardised), the odds of $y$
   increases by exp(`r round(coef(dat6c.glmw)[2], 3)`) =
   `r round(exp(coef(dat6c.glmw)[2]), 3)` (the slope)
-- this is equivalent to a `r round(100 * (exp(coef(dat6c.glmw)[2]) - 1), 3)`% 
+- this is equivalent to a `r round(100 * (exp(coef(dat6c.glmw)[2]) - 1), 3)`%
   increase in the odds of the response being 1 per one unit change in (standardised) $x$
-- the slope (on the link scale) could be as low as 
+- the slope (on the link scale) could be as low as
   `r round(confint(dat6c.glmw)[2,1], 3)` or
   as high as `r round(confint(dat6c.glmw)[2,2], 3)` (95% confidence
   interval of the slope)
 - as the above interval does not include the value of 0, the linear
   relationship (slope) can be considered significant
-- the slope (on the response scale) could be as low as 
+- the slope (on the response scale) could be as low as
   `r round(exp(confint(dat6c.glmw)[2,1]), 3)` or
   as high as `r round(exp(confint(dat6c.glmw)[2,2]), 3)` (95% confidence
   interval of the slope)
@@ -10154,3 +10154,4 @@ inference testsing:
 
 
 
+The end
