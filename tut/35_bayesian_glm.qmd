@@ -2,7 +2,7 @@
 title: Bayesian generalised linear models
 author: "Murray Logan"
 date: "`r format(Sys.time(), '%d %B, %Y')`"
-format: 
+format:
   html:
     toc: true
     toc-float: true
@@ -74,7 +74,7 @@ underlying model is vital to be able to create a sensible Bayesian
 model. Consequently, I will always present the linear model formulae
 along with the analysis. If you start to feel some form of disorder
 starting to develop, you might like to run through the Tutorials and
-Workshops twice (the first time ignoring the formulae). 
+Workshops twice (the first time ignoring the formulae).
 
 ::: {.callout-note}
 This tutorial will introduce the concept of Bayesian (generalised)
@@ -176,7 +176,7 @@ for (n in 1:1000) {
   mm <- model.matrix(~x)
   y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
   (popA <- data.frame(y,x))
-  
+
   set.seed(n)
   x <- 1:10
   b <- -10
@@ -185,7 +185,7 @@ for (n in 1:1000) {
   mm <- model.matrix(~x)
   y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
   (popB <- data.frame(y,x))
-  
+
   set.seed(n)
   x <- seq(1,10,l=100)
   b <- -10
@@ -194,14 +194,14 @@ for (n in 1:1000) {
   mm <- model.matrix(~x)
   y <- (mm %*% c(a,b))+rnorm(length(x),0,sigma)
   popC <- data.frame(y,x)
-  
+
   aa<-popA.lm <- lm(y~x,popA)
   bb<-popB.lm <- lm(y~x,popB)
   cc<-popC.lm <- lm(y~x,popC)
   AA<-summary(popA.lm)$coef
   BB<-summary(popB.lm)$coef
   CC<-summary(popC.lm)$coef
-  
+
   if(AA[2,4]<0.05 & BB[2,4]>0.05 & abs(BB[2,1]-CC[2,1])<1) break
 }
 ```
@@ -361,7 +361,7 @@ ggplot() +
 
 Focusing on Populations A and B, we would conclude:
 
-- the mean (plus or minus CI) slopes for Population A and B are 
+- the mean (plus or minus CI) slopes for Population A and B are
   `r round(mean(slopeA),2)` (`r paste(round(quantile(slopeA,
   p=c(0.025,0.975)),2),collapse=",")`) and `r round(mean(slopeB),2)`
   (`r paste(round(quantile(slopeB,
@@ -371,7 +371,7 @@ Focusing on Populations A and B, we would conclude:
   is many other ways in order to ask sensible biological questions.
   For example, we might consider that a rate of change of 5% or
   greater represents an important biological impact. For Population A
-  and B, the probability that the rate is 5% or greater is 
+  and B, the probability that the rate is 5% or greater is
   `r round(mean(slopeA< -5),2)` and `r round(mean(slopeB < -5),2)`
   respectively.
 
@@ -426,14 +426,14 @@ where:
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 lm1 <- lm(y1 ~ x)
 cc <- coef(lm1)
 r <- resid(lm1)
 #print(r)
 ff <- fitted(lm1)
 #print(ff)
-g2=ggplot(data=NULL, aes(y=y1, x=x)) + 
+g2=ggplot(data=NULL, aes(y=y1, x=x)) +
     geom_segment(data = NULL, aes(y = ff, x = x, yend = y1, xend = x), colour = "red") +
     geom_point() +
     geom_abline(slope = cc[2], intercept = cc[1], colour = "blue") +
@@ -441,13 +441,13 @@ g2=ggplot(data=NULL, aes(y=y1, x=x)) +
     annotate(geom='text', y=30, x=2.5, label=expression(residual~(epsilon[i])), parse=TRUE, hjust=1) +
     annotate(geom='text', y=15, x=5, label=expression(slope~(beta[1])), parse=TRUE, hjust=0) +
     annotate(geom='text', y=-5, x=1, label=expression(y-intercept~(beta[0])), parse=TRUE, hjust=0) +
-    geom_curve(aes(x = 2, y = 27, xend = 3.8, yend = 23), 
+    geom_curve(aes(x = 2, y = 27, xend = 3.8, yend = 23),
              curvature = 0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
-    geom_curve(aes(x = 4.7, y = 15, xend = 3.7, yend = 18), 
+    geom_curve(aes(x = 4.7, y = 15, xend = 3.7, yend = 18),
              curvature = -0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
-    geom_curve(aes(x = 0.7, y = -5, xend = -0.5, yend = -0.5), 
+    geom_curve(aes(x = 0.7, y = -5, xend = -0.5, yend = -0.5),
              curvature = -0.3, # Adjust curvature as needed
              arrow = arrow(length = unit(0.05, "inches"))) +
     scale_y_continuous('y', limits = c(-10, 50)) +
@@ -493,7 +493,7 @@ relationship between a response ($y$) and a continuous predictor ($x =
 [1,2,3,4,5,6,7,8,9,10]$. The fabricated data set will comprise 10
 observations each drawn from normal distributions with a set standard
 deviation of 4. The means of the 10 populations will be determined by
-the following equation: 
+the following equation:
 
 $$ \mu_i = 2 + 5\times x_i $$
 
@@ -694,7 +694,7 @@ priors:
 
 - $\beta_0$: Normal prior centred at `r round(median(dat$y),2)` with a
   variance of `r round(mad(dat$y),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_1a
     #| echo: true
@@ -702,7 +702,7 @@ priors:
     #| cache: false
     dat$y |> median() |> round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1a
     #| echo: true
@@ -715,7 +715,7 @@ priors:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_1a
     #| echo: true
@@ -725,7 +725,7 @@ priors:
     ```
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(mad(dat$y),2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1a
     #| echo: true
@@ -822,7 +822,7 @@ set.seed(234)
 dat <- data.frame(x = 1:10) |>
     mutate(y = round(2 + 5*x + rnorm(n = 10, mean = 0, sd = 4), digits = 2))
 dat
-ggplot(data = dat) + 
+ggplot(data = dat) +
 geom_point(aes(y = y, x = x))
 ```
 
@@ -884,15 +884,15 @@ x <- gl(3, 4, 12, labels = c('control', 'medium', 'high'))
 y <- (model.matrix(~x) %*% c(beta_0, beta)) + rnorm(12, 0, sigma)
 dat2 <- data.frame(x = x, y = y)
 dat2
-ggplot(data = dat2) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat2) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 3 (Poisson data)
 
 The Poisson distribution is only parameterized by a single parameter
 ($\lambda$) which represents both the mean and variance. Furthermore,
-Poisson data can only be positive integers.  
+Poisson data can only be positive integers.
 
 Unlike simple trend between two Gaussian or uniform distributions,
 modelling against a Poisson distribution alters the scale to
@@ -928,8 +928,8 @@ n <- 10
 dat3 <- data.frame(x=seq(from = 1, to = 10, len = n)) |>
     mutate(y = rpois(n, lambda = exp(beta[1] + beta[2]*x)))
 dat3
-ggplot(data = dat3) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat3) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 4 (NB data)
@@ -1004,8 +1004,8 @@ dat4 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
         y = rnbinom(n, size = size, mu =  mu)
     )
 dat4
-ggplot(data = dat4) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat4) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 5 (Binary data)
@@ -1045,8 +1045,8 @@ dat5 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
         y = as.numeric(rbernoulli(n, p = plogis(beta[1] + beta[2] * x)))
     )
 dat5
-ggplot(data = dat5) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat5) +
+geom_point(aes(y = y, x = x))
 ```
 
 ## Example 6 (Binomial data)
@@ -1089,8 +1089,8 @@ dat6 <- data.frame(x = seq(from = 1, to = 10, len = n)) |>
       y = count/total
     )
 dat6
-ggplot(data = dat6) + 
-geom_point(aes(y = y, x = x)) 
+ggplot(data = dat6) +
+geom_point(aes(y = y, x = x))
 ```
 
 
@@ -1125,13 +1125,13 @@ models usually comprise a set of targetted graphical summaries. They
 are not to be considered definitive diagnostics of the model
 assumptions, but rather a first pass to assess the obvious violations
 prior to the fitting of models. More definitive diagnostics can only
-be achieved after a model has been fit. 
+be achieved after a model has been fit.
 
 In addition to graphical summaries, there are numerous statistical
 tests to help explore possible violations of various statistical
 assumptions. These tests are less commonly used in ecology since they
 are often more sensitive to deviations from ideal than are the models
-that we are seeking to ensure. 
+that we are seeking to ensure.
 
 Simple classic regression models are often the easiest models to fit
 and interpret and as such often represent a standard by which other
@@ -1157,7 +1157,7 @@ assumptions:
 #| echo: false
 #| cache: false
 #| fig-width: 6
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 
 \newcommand{\tikzmark}[1]{\tikz[baseline, remember picture] \coordinate (#1) {};}
 
@@ -1179,17 +1179,17 @@ assumptions:
 \coordinate (zeromark) at ($(otherzero.north) + (covnode.west|-covnode)$);
 \path (zeromark) +(1,-1em) node[anchor = west](Z) {\parbox{3cm}{Zero covariance\\ (=independence)}};
 \draw[->] (zeromark)++(.9em,0ex) to [bend left] ($(Z.north west) + (0, -0.5em)$) ;
- 
+
 \coordinate (sigma2mark) at ($(sigma.north) + (dist.west|-dist)$);
 \coordinate (covmark) at ($(cov.north) + (covnode.west|-covnode)$);
 
-\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$) 
-    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm) 
+\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$)
+    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm)
     .. controls ++(-2cm,-0.1cm) and ++(4cm,-.0cm) ..  ++(-6cm,0cm)
     .. controls ++(-0.8cm, 0cm) and ++ (0.2cm, 1.3cm) .. ($(covmark.north) +(0.7em, 0.7em)$);
 \end{tikzpicture}
 ```
- 
+
 
 ::::
 
@@ -1205,7 +1205,7 @@ assumptions:
 set.seed(234)
 x=1:10
 y=2+5*x
-y1=2+5*x + rnorm(10,0,4) 
+y1=2+5*x + rnorm(10,0,4)
 lm1 <- lm(y1 ~ x)
 cc <- coef(lm1)
 r <- resid(lm1)
@@ -1255,7 +1255,7 @@ The observations represent
   from populations that are normal distribution. _The right hand figure
   underlays the ficticious normally distributed populations from which
   the observed values have been sampled_.
-  
+
 :::: {.indented}
 
 ::: {.callout-note collapse="true"}
@@ -1392,7 +1392,7 @@ transformations) are appropriate.
   populations. _The right hand figure underlays the ficticious normally
   distributed and equally varied populations from which the
   observations have been sampled_.
-  
+
   Moreover, since the expected values (obtained by solving the
   deterministic component of the model) and the variance must be
   estimated from the same data, they need to be independent (not
@@ -1854,12 +1854,12 @@ assumptions will be explored and detailed.
 #| label: eda1a
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1868,8 +1868,8 @@ dat |>
 - to be convincing evidence of non-normality, each segment of the
   boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -1880,13 +1880,13 @@ dat |>
 #| label: eda1b
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1894,8 +1894,8 @@ dat |>
 - the spread of values around the trendline seems fairly even (hence
   it there is no evidence of non-homogeneity
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -1906,13 +1906,13 @@ dat |>
 #| label: eda1c
 #| fig-width: 3
 #| fig-height: 3
-dat |> 
+dat |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1921,8 +1921,8 @@ dat |>
   Furthermore, the lowess smoother does not appear to have a
   consistent shift trajectory.
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -1947,7 +1947,7 @@ dat |>
 #| label: eda2a
 #| fig-width: 3
 #| fig-height: 3
-dat2 |> 
+dat2 |>
   ggplot(aes(y = y, x = x)) +
   geom_boxplot()
 ```
@@ -1958,7 +1958,7 @@ dat2 |>
 - there is no consitent evidence of non-normality across all groups
 - even though the control group demonstrates some evidence of
   non-normality
-:::::: 
+::::::
 :::::
 
 ### Homogeneity of variance
@@ -1970,12 +1970,12 @@ dat2 |>
 #| label: eda2b
 #| fig-width: 3
 #| fig-height: 3
-dat2 |> 
+dat2 |>
   ggplot(aes(y = y, x = x)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -1988,8 +1988,8 @@ dat2 |>
 - that is, the size of the boxplots do not vary with the elevation of
   the boxplots.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2018,12 +2018,12 @@ between two points can only ever be linear)....
 #| label: eda3a
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2031,8 +2031,8 @@ dat3 |>
 - there is strong evidence of non-normality
 - each segment of the boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2043,13 +2043,13 @@ dat3 |>
 #| label: eda3b
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2059,8 +2059,8 @@ dat3 |>
   distributional issues (such as non-normality in this case) as they
   can result in non-linearity (apparent here)
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2071,14 +2071,14 @@ dat3 |>
 #| label: eda3c
 #| fig-width: 3
 #| fig-height: 3
-dat3 |> 
+dat3 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_smooth(colour = "red") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2087,8 +2087,8 @@ dat3 |>
 - the red line is a loess smoother and it is clear that the data are
   not linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2111,12 +2111,12 @@ dat3 |>
 #| label: eda4a
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2124,8 +2124,8 @@ dat4 |>
 - there is strong evidence of non-normality
 - each segment of the boxplot should get progressively larger
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2136,13 +2136,13 @@ dat4 |>
 #| label: eda4b
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2152,8 +2152,8 @@ dat4 |>
   distributional issues (such as non-normality in this case) as they
   can result in non-linearity (apparent here)
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2164,14 +2164,14 @@ dat4 |>
 #| label: eda4c
 #| fig-width: 3
 #| fig-height: 3
-dat4 |> 
+dat4 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_smooth(colour = "red") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2180,8 +2180,8 @@ dat4 |>
 - the red line is a loess smoother and it is clear that the data are
   not linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2203,20 +2203,20 @@ dat4 |>
 #| label: eda5a
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - clearly a set of 0's and 1's cant be normally distributied.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2227,13 +2227,13 @@ dat5 |>
 #| label: eda5b
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2241,8 +2241,8 @@ dat5 |>
 - the spread of noise does not look random (or equal) along the line
   of best fit.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2253,14 +2253,14 @@ dat5 |>
 #| label: eda5c
 #| fig-width: 3
 #| fig-height: 3
-dat5 |> 
+dat5 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_smooth(colour = "red") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2269,8 +2269,8 @@ dat5 |>
 - the red line is a loess smoother and it is clear that the data are
   not linear
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2292,20 +2292,20 @@ dat5 |>
 #| label: eda6a
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y)) +
   geom_boxplot()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
 
 - distribution is not normal and is truncated
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Homogeneity of variance
 
@@ -2316,13 +2316,13 @@ dat6 |>
 #| label: eda6b
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2330,8 +2330,8 @@ dat6 |>
 - the spread of noise does not look random (or equal) along the line
   of best fit.
 
-:::::: 
-::::: 
+::::::
+:::::
 
 ### Linearity
 
@@ -2342,14 +2342,14 @@ dat6 |>
 #| label: eda6c
 #| fig-width: 3
 #| fig-height: 3
-dat6 |> 
+dat6 |>
   ggplot(aes(y = y, x = x)) +
   geom_smooth(method = "lm") +
   geom_smooth(colour = "red") +
   geom_point()
 ```
 
-:::::: 
+::::::
 
 :::::: {.column width="48%"}
 **Conclusions**
@@ -2362,8 +2362,8 @@ dat6 |>
 - this is a common issue with binomial data and is often addressed by
   fitting a logistic regression model
 
-:::::: 
-::::: 
+::::::
+:::::
 ::::
 
 
@@ -2414,14 +2414,14 @@ Earlier we suggested the following priors might be useful:
 
 - $\beta_0$: Normal prior centred at `r round(median(dat$y),2)` with a
   variance of `r round(mad(dat$y),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_1a
     #| echo: true
     #| eval: true
     #| cache: false
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1a
     #| echo: true
@@ -2433,17 +2433,17 @@ Earlier we suggested the following priors might be useful:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_1a
     #| echo: true
     #| eval: true
     #| cache: false
     ```
- 
+
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(mad(dat$y),2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1a
     #| echo: true
@@ -2459,7 +2459,7 @@ have gone with either normal or _t_ distributions for all of the above
 parameters. To visualise prior distributions for the slope based on
 both normal and _t_ distributions:
 
-```{r} 
+```{r}
 #| label: normal_prior
 #| eval: true
 #| echo: true
@@ -2472,7 +2472,7 @@ Evidently, the _t_ distribution (with 3 degrees of freedom) is wider
 than the normal distribution. The former should be more robust to data
 with values that are less concentrated around the mean.
 
-```{r} 
+```{r}
 #| label: set_priors_1a
 #| eval: true
 #| echo: true
@@ -2493,7 +2493,7 @@ $$
 1. start by fitting the model and sampling from the priors only
 
 ::: {.indented}
-    
+
 ```{r}
 #| label: junk
 #| results: markup
@@ -2514,7 +2514,7 @@ brm(y ~ x, data = dat, backend = "rstan")
 dat1a.brm <- brm(bf(y ~ x),
                 data=dat,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -2542,7 +2542,7 @@ dat1a.brm |>
     plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -2592,7 +2592,7 @@ dat1a.brm2 |>
     plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -2602,7 +2602,7 @@ dat1a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -2636,7 +2636,7 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel2k, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
 dat1a.brm2 |> tidybayes::get_variables()
 dat1a.brm2 |> SUYR_prior_and_posterior()
@@ -2670,7 +2670,7 @@ Lets try the following priors:
 
 - $\beta_0$: Normal prior centred at `r round(median(dat$y),2)` with a
   variance of `r round(mad(dat$y),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_1b
     #| echo: true
@@ -2678,7 +2678,7 @@ Lets try the following priors:
     #| cache: false
     dat$y |> median() |> round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1b
     #| echo: true
@@ -2691,7 +2691,7 @@ Lets try the following priors:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_1b
     #| echo: true
@@ -2699,10 +2699,10 @@ Lets try the following priors:
     #| cache: false
     mad(dat$y) / mad(dat$x) |> round(2)
     ```
- 
+
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(mad(dat$y),2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1b
     #| echo: true
@@ -2710,7 +2710,7 @@ Lets try the following priors:
     #| cache: false
     ```
 
-```{r} 
+```{r}
 #| label: set_priors_1b
 #| eval: true
 #| echo: true
@@ -2740,7 +2740,7 @@ $$
 dat1b.brm <- brm(bf(y ~ scale(x, scale = FALSE)),
                 data=dat,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -2768,7 +2768,7 @@ dat1b.brm |>
     plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -2815,10 +2815,10 @@ dat1b.brm2 <- update(dat1b.brm,
 #| fig-height: 3
 dat1b.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -2828,7 +2828,7 @@ dat1b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -2851,7 +2851,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat1b.brm2 |> tidybayes::get_variables() 
+dat1b.brm2 |> tidybayes::get_variables()
 dat1b.brm2 |> hypothesis("scalexscaleEQFALSE = 0") |> plot()
 dat1b.brm2 |> hypothesis("sigma = 0", class = "") |> plot()
 ```
@@ -2862,9 +2862,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel1b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat1b.brm2 |> tidybayes::get_variables() 
+dat1b.brm2 |> tidybayes::get_variables()
 dat1b.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -2894,7 +2894,7 @@ Lets try the following priors:
 
 - $\beta_0$: Normal prior centred at `r round(median(dat$y),2)` with a
   variance of `r round(mad(dat$y),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_1c
     #| echo: true
@@ -2902,7 +2902,7 @@ Lets try the following priors:
     #| cache: false
     dat$y |> median() |> round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1c
     #| echo: true
@@ -2915,7 +2915,7 @@ Lets try the following priors:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_1c
     #| echo: true
@@ -2923,10 +2923,10 @@ Lets try the following priors:
     #| cache: false
     mad(dat$y) |> round(2)
     ```
- 
+
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(mad(dat$y),2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_1c
     #| echo: true
@@ -2934,7 +2934,7 @@ Lets try the following priors:
     #| cache: false
     ```
 
-```{r} 
+```{r}
 #| label: set_priors_1c
 #| eval: true
 #| echo: true
@@ -2965,7 +2965,7 @@ $$
 dat1c.brm <- brm(bf(y ~ scale(x)),
                 data=dat,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -2993,7 +2993,7 @@ dat1c.brm |>
     plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -3041,7 +3041,7 @@ dat1c.brm2 |>
     plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -3051,7 +3051,7 @@ dat1c.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -3085,7 +3085,7 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel1c, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
 dat1c.brm2 |> tidybayes::get_variables()
 dat1c.brm2 |> SUYR_prior_and_posterior()
@@ -3143,7 +3143,7 @@ dat2_prior_sig <-
 
 - $\beta_0$: Normal prior centred at `r round(dat2_prior[1,2],2)` with a
   variance of `r round(dat2_prior[1,4],2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_2a
     #| echo: true
@@ -3153,7 +3153,7 @@ dat2_prior_sig <-
       group_by(x) |>
         summarise(across(y, list(med = median, sd = sd, mad = mad)))
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_2a
     #| echo: true
@@ -3168,7 +3168,7 @@ dat2_prior_sig <-
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_2a
     #| echo: true
@@ -3182,10 +3182,10 @@ dat2_prior_sig <-
       abs() |>
       max()
     ```
- 
+
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(dat2_prior_sig, 2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var2_2a
     #| echo: true
@@ -3198,7 +3198,7 @@ dat2_prior_sig <-
     max()
     ```
 
-```{r} 
+```{r}
 #| label: set_priors_2a
 #| eval: true
 #| echo: true
@@ -3228,13 +3228,13 @@ $$
 dat2a.brm <- brm(bf(y ~ x),
                 data=dat2,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
                 thin = 5,
                 backend = "rstan",
-                refresh = 0) 
+                refresh = 0)
 ```
 
 :::
@@ -3253,10 +3253,10 @@ dat2a.brm <- brm(bf(y ~ x),
 #| fig-height: 3
 dat2a.brm |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -3282,7 +3282,7 @@ dat2a.brm |>
 #| cache: true
 dat2a.brm2 <- update(dat2a.brm,
     sample_prior = "yes"
-) 
+)
 ```
 
 :::
@@ -3301,10 +3301,10 @@ dat2a.brm2 <- update(dat2a.brm,
 #| fig-height: 3
 dat2a.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -3314,7 +3314,7 @@ dat2a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -3339,7 +3339,7 @@ that the posteriors are being too strongly driven by the priors.
 #| fig-height: 3
 dat2a.brm2 |> tidybayes::get_variables()
 dat2a.brm2 |> hypothesis("xmedium = 0") |> plot()
-dat2a.brm2 |> hypothesis("sigma = 0", class = "") |> plot() 
+dat2a.brm2 |> hypothesis("sigma = 0", class = "") |> plot()
 ```
 
 Unfortunately, it is not possible to do this comparison sensibly for
@@ -3348,10 +3348,10 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel2a, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
 dat2a.brm2 |> tidybayes::get_variables()
-dat2a.brm2 |> SUYR_prior_and_posterior() 
+dat2a.brm2 |> SUYR_prior_and_posterior()
 ```
 
 **Conclusions:**
@@ -3397,7 +3397,7 @@ dat2_prior_sig <-
   - mean: since each groups mean is being estimated separately, they
     could either all have different priors, or more commonly, the same
     priors.
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_2b
     #| echo: true
@@ -3408,7 +3408,7 @@ dat2_prior_sig <-
     ```
 - $\sigma$: (half) _t_ distribution (3 degrees of freedom) centred at
   0 with a variance of `r round(dat2_prior_sig, 2)`
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var2_2b
     #| echo: true
@@ -3421,7 +3421,7 @@ dat2_prior_sig <-
     max()
     ```
 
-```{r} 
+```{r}
 #| label: set_priors_2b
 #| eval: true
 #| echo: true
@@ -3450,13 +3450,13 @@ $$
 dat2b.brm <- brm(bf(y ~ -1 + x),
                 data=dat2,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
                 thin = 5,
                 backend = "rstan",
-                refresh = 0) 
+                refresh = 0)
 ```
 
 :::
@@ -3475,10 +3475,10 @@ dat2b.brm <- brm(bf(y ~ -1 + x),
 #| fig-height: 3
 dat2b.brm |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -3504,7 +3504,7 @@ dat2b.brm |>
 #| cache: true
 dat2b.brm2 <- update(dat2b.brm,
     sample_prior = "yes"
-) 
+)
 ```
 
 :::
@@ -3523,10 +3523,10 @@ dat2b.brm2 <- update(dat2b.brm,
 #| fig-height: 3
 dat2b.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -3536,7 +3536,7 @@ dat2b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -3562,7 +3562,7 @@ that the posteriors are being too strongly driven by the priors.
 dat2b.brm2 |> tidybayes::get_variables()
 dat2b.brm2 |> hypothesis("xcontrol = 0") |> plot()
 dat2b.brm2 |> hypothesis("xmedium = 0") |> plot()
-dat2b.brm2 |> hypothesis("sigma = 0", class = "") |> plot() 
+dat2b.brm2 |> hypothesis("sigma = 0", class = "") |> plot()
 ```
 
 Unfortunately, it is not possible to do this comparison sensibly for
@@ -3571,10 +3571,10 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel2b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
 dat2b.brm2 |> tidybayes::get_variables()
-#dat2b.brm2 |> SUYR_prior_and_posterior() 
+#dat2b.brm2 |> SUYR_prior_and_posterior()
 ```
 
 **Conclusions:**
@@ -3613,25 +3613,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat3$y)),2)` with a
   variance of `r round(mad(log(dat3$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_3a
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_3a
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -3640,7 +3640,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_3a
     #| echo: true
@@ -3651,8 +3651,8 @@ log. So the following priors might be appropriate:
         summarise(across(c(y, x), mad)) |>
         mutate(round(y / x, 2))
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_3a
 #| eval: true
 #| echo: true
@@ -3675,7 +3675,7 @@ dat3a.form <- bf(y ~ x, family = poisson(link = "log"))
 dat3a.brm <- brm(dat3a.form,
                 data=dat3,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -3703,7 +3703,7 @@ dat3a.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -3749,10 +3749,10 @@ dat3a.brm2 <- update(dat3a.brm,
 #| fig-height: 3
 dat3a.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -3762,7 +3762,7 @@ dat3a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -3785,7 +3785,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat3a.brm2 |> tidybayes::get_variables() 
+dat3a.brm2 |> tidybayes::get_variables()
 dat3a.brm2 |> hypothesis("x = 0") |> plot()
 ```
 
@@ -3795,9 +3795,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel3a, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat3a.brm2 |> tidybayes::get_variables() 
+dat3a.brm2 |> tidybayes::get_variables()
 dat3a.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -3834,25 +3834,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat3$y)),2)` with a
   variance of `r round(mad(log(dat3$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_3b
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_3b
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -3861,7 +3861,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_3b
     #| echo: true
@@ -3872,8 +3872,8 @@ log. So the following priors might be appropriate:
         summarise(across(c(y, x), mad)) |>
         mutate(round(y / x, 2))
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_3b
 #| eval: true
 #| echo: true
@@ -3896,7 +3896,7 @@ dat3b.form <- bf(y ~ scale(x, scale = FALSE), family = poisson(link = "log"))
 dat3b.brm <- brm(dat3b.form,
                 data=dat3,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -3924,7 +3924,7 @@ dat3b.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -3970,10 +3970,10 @@ dat3b.brm2 <- update(dat3b.brm,
 #| fig-height: 3
 dat3b.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -3983,7 +3983,7 @@ dat3b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -4006,7 +4006,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat3b.brm2 |> tidybayes::get_variables() 
+dat3b.brm2 |> tidybayes::get_variables()
 dat3b.brm2 |> hypothesis("scalexscaleEQFALSE = 0") |> plot()
 ```
 
@@ -4016,9 +4016,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel3b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat3b.brm2 |> tidybayes::get_variables() 
+dat3b.brm2 |> tidybayes::get_variables()
 dat3b.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -4055,25 +4055,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat3$y)),2)` with a
   variance of `r round(mad(log(dat3$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_3c
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_3c
     #| echo: true
     #| eval: true
     #| cache: false
     dat3$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -4082,7 +4082,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_3c
     #| echo: true
@@ -4090,8 +4090,8 @@ log. So the following priors might be appropriate:
     #| cache: false
     dat3$y |> log() |> mad() |> round(2)
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_3c
 #| eval: true
 #| echo: true
@@ -4114,7 +4114,7 @@ dat3c.form <- bf(y ~ scale(x), family = poisson(link = "log"))
 dat3c.brm <- brm(dat3c.form,
                 data=dat3,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -4142,7 +4142,7 @@ dat3c.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -4188,10 +4188,10 @@ dat3c.brm2 <- update(dat3c.brm,
 #| fig-height: 3
 dat3c.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -4201,7 +4201,7 @@ dat3c.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -4224,7 +4224,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat3c.brm2 |> tidybayes::get_variables() 
+dat3c.brm2 |> tidybayes::get_variables()
 dat3c.brm2 |> hypothesis("scalex = 0") |> plot()
 ```
 
@@ -4234,9 +4234,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel3c, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat3c.brm2 |> tidybayes::get_variables() 
+dat3c.brm2 |> tidybayes::get_variables()
 dat3c.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -4277,25 +4277,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat4$y)),2)` with a
   variance of `r round(mad(log(dat4$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_4a
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_4a
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -4304,7 +4304,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_4a
     #| echo: true
@@ -4315,8 +4315,8 @@ log. So the following priors might be appropriate:
         summarise(across(c(y, x), mad)) |>
         mutate(round(y / x, 2))
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_4a
 #| eval: true
 #| echo: true
@@ -4340,13 +4340,13 @@ dat4a.form <- bf(y ~ x, family = negbinomial(link = "log"))
 dat4a.brm <- brm(dat4a.form,
                 data=dat4,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
                 thin = 5,
                 backend = "rstan",
-                refresh = 0) 
+                refresh = 0)
 ```
 :::
 
@@ -4368,7 +4368,7 @@ dat4a.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -4414,10 +4414,10 @@ dat4a.brm2 <- update(dat4a.brm,
 #| fig-height: 3
 dat4a.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -4427,7 +4427,7 @@ dat4a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -4450,7 +4450,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat4a.brm2 |> tidybayes::get_variables() 
+dat4a.brm2 |> tidybayes::get_variables()
 dat4a.brm2 |> hypothesis("x = 0") |> plot()
 ```
 
@@ -4460,9 +4460,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel4a, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat4a.brm2 |> tidybayes::get_variables() 
+dat4a.brm2 |> tidybayes::get_variables()
 dat4a.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -4499,25 +4499,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat4$y)),2)` with a
   variance of `r round(mad(log(dat4$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_4b
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_4b
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -4526,7 +4526,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_4b
     #| echo: true
@@ -4537,8 +4537,8 @@ log. So the following priors might be appropriate:
         summarise(across(c(y, x), mad)) |>
         mutate(round(y / x, 2))
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_4b
 #| eval: true
 #| echo: true
@@ -4562,7 +4562,7 @@ dat4b.form <- bf(y ~ scale(x, scale = FALSE), family = negbinomial(link = "log")
 dat4b.brm <- brm(dat4b.form,
                 data=dat4,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -4590,7 +4590,7 @@ dat4b.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -4636,10 +4636,10 @@ dat4b.brm2 <- update(dat4b.brm,
 #| fig-height: 3
 dat4b.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -4649,7 +4649,7 @@ dat4b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -4672,7 +4672,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat4b.brm2 |> tidybayes::get_variables() 
+dat4b.brm2 |> tidybayes::get_variables()
 dat4b.brm2 |> hypothesis("scalexscaleEQFALSE = 0") |> plot()
 ```
 
@@ -4682,9 +4682,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel4b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat4b.brm2 |> tidybayes::get_variables() 
+dat4b.brm2 |> tidybayes::get_variables()
 dat4b.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -4721,25 +4721,25 @@ log. So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at `r round(median(log(dat4$y)),2)` with a
   variance of `r round(mad(log(dat4$y)),2)`
-  - mean: 
+  - mean:
     ```{r}
     #| prior_y_mean_4c
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var_4c
     #| echo: true
     #| eval: true
     #| cache: false
     dat4$y |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -4748,7 +4748,7 @@ log. So the following priors might be appropriate:
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_4c
     #| echo: true
@@ -4756,8 +4756,8 @@ log. So the following priors might be appropriate:
     #| cache: false
     dat4$y |> log() |> mad() |> round(2)
     ```
- 
-```{r} 
+
+```{r}
 #| label: set_priors_4c
 #| eval: true
 #| echo: true
@@ -4781,7 +4781,7 @@ dat4c.form <- bf(y ~ scale(x), family = negbinomial(link = "log"))
 dat4c.brm <- brm(dat4c.form,
                 data=dat4,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -4809,7 +4809,7 @@ dat4c.brm |>
   scale_y_log10()
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -4855,10 +4855,10 @@ dat4c.brm2 <- update(dat4c.brm,
 #| fig-height: 3
 dat4c.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -4868,7 +4868,7 @@ dat4c.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -4891,7 +4891,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat4c.brm2 |> tidybayes::get_variables() 
+dat4c.brm2 |> tidybayes::get_variables()
 dat3c.brm2 |> hypothesis("scalex = 0") |> plot()
 ```
 
@@ -4901,9 +4901,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel4c, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat4c.brm2 |> tidybayes::get_variables() 
+dat4c.brm2 |> tidybayes::get_variables()
 dat4c.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -4957,7 +4957,7 @@ variance of 1
 - $\beta_1$: _t_ distribution (3 degrees of freedom) prior centred at
   0 with a variance of 1
 
-```{r} 
+```{r}
 #| label: set_priors_5a
 #| eval: true
 #| echo: true
@@ -4980,7 +4980,7 @@ dat5a.form <- bf(y | trials(1) ~ x, family = binomial(link = "logit"))
 dat5a.brm <- brm(dat5a.form,
                 data=dat5,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -5007,14 +5007,14 @@ definitely be considered wide enough.
 #| fig-width: 4
 #| fig-height: 3
 dat5a.brm |>
-  conditional_effects(method = "posterior_linpred") 
+  conditional_effects(method = "posterior_linpred")
 
 dat5a.brm |>
   conditional_effects() |>
-  plot(points = TRUE) 
+  plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -5060,10 +5060,10 @@ dat5a.brm2 <- update(dat5a.brm,
 #| fig-height: 3
 dat5a.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -5073,7 +5073,7 @@ dat5a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -5096,7 +5096,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat5a.brm2 |> tidybayes::get_variables() 
+dat5a.brm2 |> tidybayes::get_variables()
 dat5a.brm2 |> hypothesis("x = 0") |> plot()
 ```
 
@@ -5106,9 +5106,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel5a, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat5a.brm2 |> tidybayes::get_variables() 
+dat5a.brm2 |> tidybayes::get_variables()
 dat5a.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -5143,7 +5143,7 @@ variance of 1
 - $\beta_1$: _t_ distribution (3 degrees of freedom) prior centred at
   0 with a variance of 1
 
-```{r} 
+```{r}
 #| label: set_priors_5b
 #| eval: true
 #| echo: true
@@ -5166,7 +5166,7 @@ dat5b.form <- bf(y | trials(1) ~ scale(x, scale = FALSE), family = binomial(link
 dat5b.brm <- brm(dat5b.form,
                 data=dat5,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -5189,10 +5189,10 @@ dat5b.brm <- brm(dat5b.form,
 #| fig-width: 4
 #| fig-height: 3
 dat5b.brm |>
-  conditional_effects(method = "posterior_linpred") 
+  conditional_effects(method = "posterior_linpred")
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -5238,10 +5238,10 @@ dat5b.brm2 <- update(dat5b.brm,
 #| fig-height: 3
 dat5b.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -5251,7 +5251,7 @@ dat5b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -5274,7 +5274,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat5b.brm2 |> tidybayes::get_variables() 
+dat5b.brm2 |> tidybayes::get_variables()
 dat5b.brm2 |> hypothesis("scalexscaleEQFALSE = 0") |> plot()
 ```
 
@@ -5284,9 +5284,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel5b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat5b.brm2 |> tidybayes::get_variables() 
+dat5b.brm2 |> tidybayes::get_variables()
 dat5b.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -5321,7 +5321,7 @@ variance of 1
 - $\beta_1$: _t_ distribution (3 degrees of freedom) prior centred at
   0 with a variance of 1
 
-```{r} 
+```{r}
 #| label: set_priors_5c
 #| eval: true
 #| echo: true
@@ -5344,7 +5344,7 @@ dat5c.form <- bf(y | trials(1) ~ scale(x), family = binomial(link = "logit"))
 dat5c.brm <- brm(dat5c.form,
                 data=dat5,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -5367,10 +5367,10 @@ dat5c.brm <- brm(dat5c.form,
 #| fig-width: 4
 #| fig-height: 3
 dat5c.brm |>
-  conditional_effects(method = "posterior_linpred") 
+  conditional_effects(method = "posterior_linpred")
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -5416,10 +5416,10 @@ dat5c.brm2 <- update(dat5c.brm,
 #| fig-height: 3
 dat5c.brm2 |>
     conditional_effects() |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -5429,7 +5429,7 @@ dat5c.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -5452,7 +5452,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat5c.brm2 |> tidybayes::get_variables() 
+dat5c.brm2 |> tidybayes::get_variables()
 dat5c.brm2 |> hypothesis("scalex = 0") |> plot()
 ```
 
@@ -5462,9 +5462,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel5c, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat5c.brm2 |> tidybayes::get_variables() 
+dat5c.brm2 |> tidybayes::get_variables()
 dat5c.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -5510,15 +5510,15 @@ logit. Binomial data is notoriously difficult to define priors for.  Nevertheles
 So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at  `r round(median(log(dat6$count/dat6$total)))` with a
-variance of `r round(mad(log(dat6$count/dat6$total)))` 
-  - mean: 
+variance of `r round(mad(log(dat6$count/dat6$total)))`
+  - mean:
     ```{r}
     #| prior_y_mean_6a
     #| echo: true
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
@@ -5529,7 +5529,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -5539,7 +5539,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_6a
     #| echo: true
@@ -5556,7 +5556,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
 #| eval: true
 #| echo: true
 priors <- prior(normal(-0.22, 0.33), class = "Intercept") +
-    prior(student_t(3, 0, 0.51), class = "b") 
+    prior(student_t(3, 0, 0.51), class = "b")
 ```
 
 ##### Fit the model
@@ -5574,7 +5574,7 @@ dat6a.form <- bf(count | trials(total) ~ x, family = binomial(link = "logit"))
 dat6a.brm <- brm(dat6a.form,
                 data=dat6,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -5601,14 +5601,14 @@ definitely be considered wide enough.
 #| fig-width: 4
 #| fig-height: 3
 dat6a.brm |>
-  conditional_effects(method = "posterior_linpred") 
+  conditional_effects(method = "posterior_linpred")
 
 dat6a.brm |>
   conditional_effects(conditions = data.frame(total = dat6$total)) |>
-  plot(points = TRUE) 
+  plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -5654,10 +5654,10 @@ dat6a.brm2 <- update(dat6a.brm,
 #| fig-height: 3
 dat6a.brm2 |>
     conditional_effects(conditions = data.frame(total = dat6$total)) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -5667,7 +5667,7 @@ dat6a.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -5690,7 +5690,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat6a.brm2 |> tidybayes::get_variables() 
+dat6a.brm2 |> tidybayes::get_variables()
 dat6a.brm2 |> hypothesis("x = 0") |> plot()
 ```
 
@@ -5700,9 +5700,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel6a, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat6a.brm2 |> tidybayes::get_variables() 
+dat6a.brm2 |> tidybayes::get_variables()
 dat6a.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -5743,15 +5743,15 @@ logit. Binomial data is notoriously difficult to define priors for.  Nevertheles
 So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at  `r round(median(log(dat6$count/dat6$total)))` with a
-variance of `r round(mad(log(dat6$count/dat6$total)))` 
-  - mean: 
+variance of `r round(mad(log(dat6$count/dat6$total)))`
+  - mean:
     ```{r}
     #| prior_y_mean_6b
     #| echo: true
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
@@ -5762,7 +5762,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -5772,7 +5772,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_6b
     #| echo: true
@@ -5789,7 +5789,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
 #| eval: true
 #| echo: true
 priors <- prior(normal(-0.22, 0.33), class = "Intercept") +
-    prior(student_t(3, 0, 0.51), class = "b") 
+    prior(student_t(3, 0, 0.51), class = "b")
 ```
 
 ##### Fit the model
@@ -5803,12 +5803,12 @@ priors <- prior(normal(-0.22, 0.33), class = "Intercept") +
 #| eval: true
 #| echo: true
 #| cache: true
-dat6b.form <- bf(count | trials(total) ~ scale(x, scale = FALSE), 
+dat6b.form <- bf(count | trials(total) ~ scale(x, scale = FALSE),
   family = binomial(link = "logit"))
 dat6b.brm <- brm(dat6b.form,
                 data=dat6,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -5835,14 +5835,14 @@ definitely be considered wide enough.
 #| fig-width: 4
 #| fig-height: 3
 dat6b.brm |>
-  conditional_effects(method = "posterior_linpred") 
+  conditional_effects(method = "posterior_linpred")
 
 dat6b.brm |>
   conditional_effects(conditions = data.frame(total = dat6$total)) |>
-  plot(points = TRUE) 
+  plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -5888,10 +5888,10 @@ dat6b.brm2 <- update(dat6b.brm,
 #| fig-height: 3
 dat6b.brm2 |>
     conditional_effects(conditions = data.frame(total = dat6$total)) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -5901,7 +5901,7 @@ dat6b.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -5924,7 +5924,7 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat6b.brm2 |> tidybayes::get_variables() 
+dat6b.brm2 |> tidybayes::get_variables()
 dat6b.brm2 |> hypothesis("scalexscaleEQFALSE = 0") |> plot()
 ```
 
@@ -5934,9 +5934,9 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel6b, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat6b.brm2 |> tidybayes::get_variables() 
+dat6b.brm2 |> tidybayes::get_variables()
 dat6b.brm2 |> SUYR_prior_and_posterior()
 ```
 
@@ -5977,15 +5977,15 @@ logit. Binomial data is notoriously difficult to define priors for.  Nevertheles
 So the following priors might be appropriate:
 
 - $\beta_0$: Normal prior centred at  `r round(median(log(dat6$count/dat6$total)))` with a
-variance of `r round(mad(log(dat6$count/dat6$total)))` 
-  - mean: 
+variance of `r round(mad(log(dat6$count/dat6$total)))`
+  - mean:
     ```{r}
     #| prior_y_mean_6c
     #| echo: true
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         median() |>
         round(2)
     ```
@@ -5996,7 +5996,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
     #| eval: true
     #| cache: false
     (dat6$count/dat6$total) |>
-        log() |> 
+        log() |>
         mad() |>
         round(2)
     ```
@@ -6006,7 +6006,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
   - mean: since effects are differences and we may not want to
     pre-determine the direction (polarity) of any trends, it is
     typical to define effects priors with means of 0
-  - variance: 
+  - variance:
     ```{r}
     #| prior_y_var1_6c
     #| echo: true
@@ -6024,7 +6024,7 @@ variance of `r round(mad(log(dat6$count/dat6$total)))`
 #| eval: true
 #| echo: true
 priors <- prior(normal(-0.22, 0.33), class = "Intercept") +
-    prior(student_t(3, 0, 0.33), class = "b") 
+    prior(student_t(3, 0, 0.33), class = "b")
 ```
 
 ##### Fit the model
@@ -6038,12 +6038,12 @@ priors <- prior(normal(-0.22, 0.33), class = "Intercept") +
 #| eval: true
 #| echo: true
 #| cache: true
-dat6c.form <- bf(count | trials(total) ~ scale(x), 
+dat6c.form <- bf(count | trials(total) ~ scale(x),
   family = binomial(link = "logit"))
 dat6c.brm <- brm(dat6c.form,
                 data=dat6,
                 prior=priors,
-                sample_prior = 'only', 
+                sample_prior = 'only',
                 iter = 5000,
                 warmup = 1000,
                 chains = 3, cores = 3,
@@ -6070,14 +6070,14 @@ definitely be considered wide enough.
 #| fig-width: 4
 #| fig-height: 3
 dat6c.brm |>
-  conditional_effects(method = "posterior_linpred") 
- 
+  conditional_effects(method = "posterior_linpred")
+
 dat6c.brm |>
   conditional_effects(conditions = data.frame(total = dat6$total)) |>
-  plot(points = TRUE) 
+  plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the grey ribbon above represents the credible range of the posterior
   predictions
@@ -6104,7 +6104,7 @@ dat6c.brm |>
 #| cache: true
 dat6c.brm2 <- update(dat6c.brm,
     sample_prior = "yes"
-) 
+)
 ```
 
 :::
@@ -6123,10 +6123,10 @@ dat6c.brm2 <- update(dat6c.brm,
 #| fig-height: 3
 dat6c.brm2 |>
     conditional_effects(conditions = data.frame(total = dat6$total)) |>
-    plot(points = TRUE)  
+    plot(points = TRUE)
 ```
 
-**Conclusions:** 
+**Conclusions:**
 
 - the range of the posteriors are now substantially reduced (now that
   the model includes both data and priors)
@@ -6136,7 +6136,7 @@ dat6c.brm2 |>
 
 5. compare the priors and posteriors to further confirm that the
    priors are not overly influential
-   
+
 ::: {.indented}
 
 When we have indicated that the posterior should be informed by both
@@ -6159,8 +6159,8 @@ that the posteriors are being too strongly driven by the priors.
 #| cache: true
 #| fig-width: 4
 #| fig-height: 3
-dat6c.brm2 |> tidybayes::get_variables() 
-dat6c.brm2 |> hypothesis("scalex = 0") |> plot() 
+dat6c.brm2 |> tidybayes::get_variables()
+dat6c.brm2 |> hypothesis("scalex = 0") |> plot()
 ```
 
 Unfortunately, it is not possible to do this comparison sensibly for
@@ -6169,10 +6169,10 @@ was applied to an intercept that is associated with centred
 continuous predictors (predictors are centred behind the scenes).
 Since we did not centre the predictor, the intercept returned is as if
 uncentred.  Hence, the prior and posterior are on different scales.
- 
+
 ```{r fitModel6c, results='markdown', eval=TRUE, mhidden=TRUE, fig.width = 8, fig.height = 4}
-dat6c.brm2 |> tidybayes::get_variables() 
-dat6c.brm2 |> SUYR_prior_and_posterior() 
+dat6c.brm2 |> tidybayes::get_variables()
+dat6c.brm2 |> SUYR_prior_and_posterior()
 ```
 
 **Conclusions:**
@@ -6196,103 +6196,103 @@ dat6c.brm2 |> SUYR_prior_and_posterior()
 
 
 # MCMC sampling diagnostics
-    
+
 ```{r}
 #| label: mcmcsampling
 #| echo: false
 mcmcsim <- function(n=500,start.x=0.5, start.y=0.5,tex=FALSE, lns=FALSE, fls=FALSE) {
-		   library(mvtnorm)
-		   xv <- seq(-3,3,by=0.1)
-		   yv <- seq(0,10,by=0.1)
-		   #Create the three dimensional plot
-		   pmat <- persp(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),
-				   zlab="density",xlab="parameter a",ylab="parameter b",phi=30,theta=0,ticktype="detailed",shade=0.9,lphi=30,ltheta=0)
-		   #Calculate the z-score for the starting coordinates
-		   z <- outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+           library(mvtnorm)
+           xv <- seq(-3,3,by=0.1)
+           yv <- seq(0,10,by=0.1)
+           #Create the three dimensional plot
+           pmat <- persp(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),
+                   zlab="density",xlab="parameter a",ylab="parameter b",phi=30,theta=0,ticktype="detailed",shade=0.9,lphi=30,ltheta=0)
+           #Calculate the z-score for the starting coordinates
+           z <- outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
            #plot the starting point
-		   points(trans3d(start.x,start.y,z,pmat), col="red",pch=16)
-		   #Label the point
+           points(trans3d(start.x,start.y,z,pmat), col="red",pch=16)
+           #Label the point
            if (tex) text(trans3d(start.x,start.y,z,pmat),labels=paste(1),pos=4, font=2, col="red")
-		   #iteratively move through the Markov chain
-		   if (n >1) {
+           #iteratively move through the Markov chain
+           if (n >1) {
            for (i in 2:n) {
-				#Get a new candidate location by a random point around the current point
-				newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
-				new.x=start.x+newLoc[1]
-				new.y=start.y+newLoc[2]
-				#plot this new point
-				if (fls) points(trans3d(new.x,new.y,outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="blue",pch=16)
-				z1 <- outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				#Calculate the ratio of probability of the new point to the previous point
-				rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
-				#Get a random number between 0 and 1
-			    rCompRatio<-runif(1)
-				old.x=start.x
-				old.y=start.y
-				#If the calculated ratio is greater than the random number, accept this new location for sampling
-				if (rRatio>rCompRatio) { #accept current position
-					start.x=new.x
-					start.y=new.y
-					z <- outer(old.x,old.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				} #otherwise stay were you are
-				#points(trans3d(start.x,start.y,outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="red",pch=16)
-				z2<-outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
-				points(trans3d(start.x,start.y,z2,pmat), col="red",pch=16)
-				if (rRatio>rCompRatio) {
-					lab<-paste(i)
-					if (tex) text(trans3d(start.x,start.y,z2,pmat),labels=paste(i),pos=4, font=2, col="red")
-					}else {
-						lab <- paste(lab,"&", i)
-						if(tex) text(trans3d(start.x,start.y,z2,pmat),labels=lab,pos=4, font=2, col="red")
-						if(tex)text(trans3d(new.x,new.y,z1,pmat),labels=i,pos=4, font=2,col="blue")
-					}
-					if(lns)lines(trans3d(c(old.x,start.x),c(old.y,start.y),c(z,z2),pmat), col="blue",lwd=2)
-				    z<-z2
-				}
+                #Get a new candidate location by a random point around the current point
+                newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
+                new.x=start.x+newLoc[1]
+                new.y=start.y+newLoc[2]
+                #plot this new point
+                if (fls) points(trans3d(new.x,new.y,outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="blue",pch=16)
+                z1 <- outer(new.x,new.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                #Calculate the ratio of probability of the new point to the previous point
+                rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
+                #Get a random number between 0 and 1
+                rCompRatio<-runif(1)
+                old.x=start.x
+                old.y=start.y
+                #If the calculated ratio is greater than the random number, accept this new location for sampling
+                if (rRatio>rCompRatio) { #accept current position
+                    start.x=new.x
+                    start.y=new.y
+                    z <- outer(old.x,old.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                } #otherwise stay were you are
+                #points(trans3d(start.x,start.y,outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),pmat), col="red",pch=16)
+                z2<-outer(start.x,start.y, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2)))
+                points(trans3d(start.x,start.y,z2,pmat), col="red",pch=16)
+                if (rRatio>rCompRatio) {
+                    lab<-paste(i)
+                    if (tex) text(trans3d(start.x,start.y,z2,pmat),labels=paste(i),pos=4, font=2, col="red")
+                    }else {
+                        lab <- paste(lab,"&", i)
+                        if(tex) text(trans3d(start.x,start.y,z2,pmat),labels=lab,pos=4, font=2, col="red")
+                        if(tex)text(trans3d(new.x,new.y,z1,pmat),labels=i,pos=4, font=2,col="blue")
+                    }
+                    if(lns)lines(trans3d(c(old.x,start.x),c(old.y,start.y),c(z,z2),pmat), col="blue",lwd=2)
+                    z<-z2
+                }
         }
 }
 mcmcsim1 <- function(n=500,start.x=0.5, start.y=0.5,tex=FALSE, lns=FALSE, fls=FALSE, thin=1,burnin=0) {
-			library(mvtnorm)
-			xv <- seq(-3,3,by=0.1)
-			yv <- seq(0,10,by=0.1)
-	        cmat<-contour(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="Parameter a",ylab="Parameter b",col="lightblue")		
-			points(start.x,start.y, col="red",pch=16)
-			nn <- 0
-			ii<-0
-			params <- c(start.x,start.y)
-			if (tex) text(start.x,start.y,labels=paste(1),pos=4, font=2, col="red")
-			if(n>1) {
-				 for (i in 2:n) {
-					if (i>burnin) ii <- i-burnin
-					newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
-					new.x=start.x+newLoc[1]
-					new.y=start.y+newLoc[2]
-					if (fls) points(new.x,new.y, col="blue",pch=16)
-					rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
-					rCompRatio<-runif(1)
-					old.x=start.x
-					old.y=start.y
-					if (rRatio>rCompRatio) { #accept current position
-						start.x=new.x
-						start.y=new.y
-					}
-					points(start.x,start.y, col="red",pch=16)
-					if (rRatio>rCompRatio) {
-						lab=paste(i)
-						if (tex) text(start.x,start.y,labels=paste(i),pos=4, font=2, col="red")
-					}else {
-					    lab =paste(lab,"&", i)
-						if(tex) text(start.x,start.y,labels=lab,pos=4, font=2, col="red")
-						if(tex & fls) text(new.x,new.y,labels=i,pos=4, font=2,col="blue")
-						if(lns) lines(c(new.x,start.x),c(new.y,start.y), col="blue",lwd=1, lty=2)
-					}
-					if(lns) lines(c(old.x,start.x),c(old.y,start.y), col="blue",lwd=2)
-					if ((ii %% thin)==0 & ii>0) {
+            library(mvtnorm)
+            xv <- seq(-3,3,by=0.1)
+            yv <- seq(0,10,by=0.1)
+            cmat<-contour(xv,yv,outer(xv,yv, function(x,y) dmvnorm(cbind(x,y), mean=c(0,5), sigma=diag(2)*c(1,2))),xlab="Parameter a",ylab="Parameter b",col="lightblue")
+            points(start.x,start.y, col="red",pch=16)
+            nn <- 0
+            ii<-0
+            params <- c(start.x,start.y)
+            if (tex) text(start.x,start.y,labels=paste(1),pos=4, font=2, col="red")
+            if(n>1) {
+                 for (i in 2:n) {
+                    if (i>burnin) ii <- i-burnin
+                    newLoc <- rmvnorm(1,mean=c(0,0),sigma=diag(2)*0.5)
+                    new.x=start.x+newLoc[1]
+                    new.y=start.y+newLoc[2]
+                    if (fls) points(new.x,new.y, col="blue",pch=16)
+                    rRatio <- dmvnorm(c(new.x,new.y), mean=c(0,5), sigma=diag(2)*c(1,2))/dmvnorm(c(start.x,start.y), mean=c(0,5), sigma=diag(2)*c(1,2))
+                    rCompRatio<-runif(1)
+                    old.x=start.x
+                    old.y=start.y
+                    if (rRatio>rCompRatio) { #accept current position
+                        start.x=new.x
+                        start.y=new.y
+                    }
+                    points(start.x,start.y, col="red",pch=16)
+                    if (rRatio>rCompRatio) {
+                        lab=paste(i)
+                        if (tex) text(start.x,start.y,labels=paste(i),pos=4, font=2, col="red")
+                    }else {
+                        lab =paste(lab,"&", i)
+                        if(tex) text(start.x,start.y,labels=lab,pos=4, font=2, col="red")
+                        if(tex & fls) text(new.x,new.y,labels=i,pos=4, font=2,col="blue")
+                        if(lns) lines(c(new.x,start.x),c(new.y,start.y), col="blue",lwd=1, lty=2)
+                    }
+                    if(lns) lines(c(old.x,start.x),c(old.y,start.y), col="blue",lwd=2)
+                    if ((ii %% thin)==0 & ii>0) {
                       nn <- nn+1
-							  params<- rbind(params,c(start.x,start.y))		   
-					}
-			}
-		}
+                              params<- rbind(params,c(start.x,start.y))
+                    }
+            }
+        }
 params
 }
 ```
@@ -6306,7 +6306,7 @@ params
 #| warning: false
 #| include: false
 #| results: hide
-set.seed(9) 
+set.seed(9)
 par(mfrow=c(1,2), mar=c(1,1,0,0))
 mcmcsim(n=10000, start.x=0.5, start.y=3,tex=FALSE, lns=FALSE, fls=FALSE)
 set.seed(9)
@@ -6351,7 +6351,7 @@ plot(a, type="l", main="Bad mixing")
 a <- c(rnorm(4000,10.1,1),seq(10,6,l=1000)+rnorm(1000,0,0.2),rnorm(4000,6.1,1),seq(6,7,l=1000)+rnorm(1000,0,0.2),rnorm(2000,7.1,1))
 plot(a, type="l",main="Bad mixing")
 ```
-  
+
 :::
 
 - **autocorrelation function** - plots of the degree of correlation
@@ -6513,7 +6513,7 @@ dat1a.brm2$fit |> stan_trace(inc_warmup = TRUE)
 **Conclusions**:
 
     - the chains appear well mixed and very similar
-   
+
 ##### Autocorrelation plots
 
 ```{r}
@@ -6543,7 +6543,7 @@ dat1a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6554,7 +6554,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -6601,7 +6601,7 @@ dat1b.brm2$fit |> stan_trace(inc_warmup = TRUE)
 **Conclusions**:
 
     - the chains appear well mixed and very similar
-   
+
 ##### Autocorrelation plots
 
 ```{r}
@@ -6631,7 +6631,7 @@ dat1b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6642,7 +6642,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -6663,7 +6663,7 @@ dat1b.brm2$fit |> stan_ess()
 - all the diagnostics appear reasonable
 - we can conclude that the chains are all well mixed and have
   converged on a stable posterior.
-  
+
 #### Standardised predictor
 
 ::::: {.panel-tabset}
@@ -6688,7 +6688,7 @@ dat1c.brm2$fit |> stan_trace(inc_warmup = TRUE)
 **Conclusions**:
 
     - the chains appear well mixed and very similar
-   
+
 ##### Autocorrelation plots
 
 ```{r}
@@ -6718,7 +6718,7 @@ dat1c.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6729,7 +6729,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -6750,9 +6750,9 @@ dat1c.brm2$fit |> stan_ess()
 - all the diagnostics appear reasonable
 - we can conclude that the chains are all well mixed and have
   converged on a stable posterior.
-  
+
 :::::::
- 
+
 ### Example 2 (categorical predictor)
 
 ::::::: {.panel-tabset}
@@ -6779,7 +6779,7 @@ dat2a.brm2$fit |> stan_trace(inc_warmup = TRUE)
 **Conclusions**:
 
     - the chains appear well mixed and very similar
-   
+
 ##### Autocorrelation plots
 
 ```{r}
@@ -6809,7 +6809,7 @@ dat2a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6820,7 +6820,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -6866,7 +6866,7 @@ dat2b.brm2$fit |> stan_trace(inc_warmup = TRUE)
 **Conclusions**:
 
     - the chains appear well mixed and very similar
-   
+
 ##### Autocorrelation plots
 
 ```{r}
@@ -6896,7 +6896,7 @@ dat2b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6907,7 +6907,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -6929,7 +6929,7 @@ dat2b.brm2$fit |> stan_ess()
 - we can conclude that the chains are all well mixed and have
   converged on a stable posterior.
 
-::::::: 
+:::::::
 
 ### Example 3 (Poisson data)
 
@@ -6987,7 +6987,7 @@ dat3a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -6998,7 +6998,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7073,7 +7073,7 @@ dat3b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7084,7 +7084,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7159,7 +7159,7 @@ dat3c.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7170,7 +7170,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7251,7 +7251,7 @@ dat4a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7262,7 +7262,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7337,7 +7337,7 @@ dat4b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7348,7 +7348,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7423,7 +7423,7 @@ dat4c.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7434,7 +7434,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7515,7 +7515,7 @@ dat5a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7526,7 +7526,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7601,7 +7601,7 @@ dat5b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7612,7 +7612,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7687,7 +7687,7 @@ dat5c.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7698,7 +7698,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7779,7 +7779,7 @@ dat6a.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7790,7 +7790,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7865,7 +7865,7 @@ dat6b.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7876,7 +7876,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -7951,7 +7951,7 @@ dat6c.brm2$fit |> stan_rhat()
 
 **Conclusions**:
 
-- all Rhat values are below 1.05, suggesting the chains have converged. 
+- all Rhat values are below 1.05, suggesting the chains have converged.
 
 ##### Effective sample sizes
 
@@ -7962,7 +7962,7 @@ MCMC sampler. Ratios that are less than 0.5 for a parameter suggest
 that the sampler spent considerable time in difficult areas of the
 sampling domain and rejected more than half of the samples (replacing
 them with the previous effective sample).
-  
+
 If the ratios are low, tightening the priors may help.
 
 ```{r}
@@ -10195,7 +10195,7 @@ To address this, you can either:
   - Dispersion test: would not normally expect this to be an issue for
     a Gaussian family unless there are other issues with the residuals
   - Outlier test: the influence of each observation
-- there does not appear to be any patterns in the residuals 
+- there does not appear to be any patterns in the residuals
 - the observed dispersion is well within the simulated range
   indicating that there is no issue with dispersion (again this is
   expected for a Gaussian model)
@@ -10380,7 +10380,7 @@ To address this, you can either:
   - Dispersion test: would not normally expect this to be an issue for
     a Gaussian family unless there are other issues with the residuals
   - Outlier test: the influence of each observation
-- there does not appear to be any patterns in the residuals 
+- there does not appear to be any patterns in the residuals
 - the observed dispersion is well within the simulated range
   indicating that there is no issue with dispersion (again this is
   expected for a Gaussian model)
@@ -10565,7 +10565,7 @@ To address this, you can either:
   - Dispersion test: would not normally expect this to be an issue for
     a Gaussian family unless there are other issues with the residuals
   - Outlier test: the influence of each observation
-- there does not appear to be any patterns in the residuals 
+- there does not appear to be any patterns in the residuals
 - the observed dispersion is well within the simulated range
   indicating that there is no issue with dispersion (again this is
   expected for a Gaussian model)
@@ -11145,7 +11145,7 @@ dat1a.brm2 |>
 #OR
 dat1a.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11165,7 +11165,7 @@ dat1b.brm2 |>
 #OR
 dat1b.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11189,7 +11189,7 @@ dat1c.brm2 |>
 #OR
 dat1c.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11220,7 +11220,7 @@ dat2a.brm2 |>
 #OR
 dat2a.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11241,7 +11241,7 @@ dat2b.brm2 |>
 #OR
 dat2b.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11266,7 +11266,7 @@ dat3a.brm2 |>
 #OR
 dat3a.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11286,7 +11286,7 @@ dat3b.brm2 |>
 #OR
 dat3b.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11310,7 +11310,7 @@ dat3c.brm2 |>
 #OR
 dat3c.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11339,7 +11339,7 @@ dat4a.brm2 |>
 #OR
 dat4a.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11359,7 +11359,7 @@ dat4b.brm2 |>
 #OR
 dat4b.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11383,7 +11383,7 @@ dat4c.brm2 |>
 #OR
 dat4c.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11412,7 +11412,7 @@ dat5a.brm2 |>
 #OR
 dat5a.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11432,7 +11432,7 @@ dat5b.brm2 |>
 #OR
 dat5b.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11456,7 +11456,7 @@ dat5c.brm2 |>
 #OR
 dat5c.brm2 |>
     conditional_effects(spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11484,9 +11484,9 @@ dat6a.brm2 |>
   plot(points = TRUE)
 #OR
 dat6a.brm2 |>
-    conditional_effects(conditions = data.frame(total = dat6$total), 
+    conditional_effects(conditions = data.frame(total = dat6$total),
     spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 :::::
@@ -11505,9 +11505,9 @@ dat6b.brm2 |>
   plot(points = TRUE)
 #OR
 dat6b.brm2 |>
-    conditional_effects(conditions = data.frame(total = dat6$total), 
+    conditional_effects(conditions = data.frame(total = dat6$total),
     spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered the predictor, because we did so
@@ -11530,9 +11530,9 @@ dat6c.brm2 |>
   plot(points = TRUE)
 #OR
 dat6c.brm2 |>
-    conditional_effects(conditions = data.frame(total = dat6$total), 
+    conditional_effects(conditions = data.frame(total = dat6$total),
     spaghetti = TRUE, ndraws = 200) |>
-    plot(points = TRUE) 
+    plot(points = TRUE)
 ```
 
 Notice that although we had centered and scaled the predictor, because we did so
@@ -11603,7 +11603,7 @@ dat1a.fixef <- fixef(dat1a.brm2)
 dat1a.sum <- summary(dat1a.brm2)
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11620,9 +11620,9 @@ dat1a.sum <- summary(dat1a.brm2)
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat1a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat1a.fixef[1,3], 3)` and 
+  value is between `r round(dat1a.fixef[1,3], 3)` and
   `r round(dat1a.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -11676,7 +11676,7 @@ dat1a.summ_draws <- dat1a.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11693,9 +11693,9 @@ dat1a.summ_draws <- dat1a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat1a.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat1a.summ_draws[1,3], 3)` and
   `r round(dat1a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -11733,7 +11733,7 @@ dat1a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11750,9 +11750,9 @@ dat1a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat1a.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat1a.summ_draws[1,3], 3)` and
   `r round(dat1a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -11816,7 +11816,7 @@ dat1a.r2 <- dat1a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat1a.r2[1,2], 3)`% and `r round(100*dat1a.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Centered predictor
@@ -11836,7 +11836,7 @@ dat1b.fixef <- fixef(dat1b.brm2)
 dat1b.sum <- summary(dat1b.brm2)
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11853,10 +11853,10 @@ dat1b.sum <- summary(dat1b.brm2)
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is
   `r round(dat1b.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat1b.fixef[1,3], 3)` and 
-  `r round(dat1b.fixef[1,4], 3)`. So $y$ is expected to be 
+  value is between `r round(dat1b.fixef[1,3], 3)` and
+  `r round(dat1b.fixef[1,4], 3)`. So $y$ is expected to be
   `r round(dat1b.fixef[1,1], 3)` at the average $x$.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
   $x$. So for every one unit change in $x$, $y$ increases by (on
@@ -11909,7 +11909,7 @@ dat1b.summ_draws <- dat1b.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11926,10 +11926,10 @@ dat1b.summ_draws <- dat1b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is
   `r round(dat1b.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1b.summ_draws[1,3], 3)` and 
-  `r round(dat1b.summ_draws[1,4], 3)`. So $y$ is expected to be 
+  value is between `r round(dat1b.summ_draws[1,3], 3)` and
+  `r round(dat1b.summ_draws[1,4], 3)`. So $y$ is expected to be
   `r round(dat1b.fixef[1,1], 3)` at the average $x$.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
   $x$. So for every one unit change in $x$, $y$ increases by (on
@@ -11966,7 +11966,7 @@ dat1b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -11983,10 +11983,10 @@ dat1b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is centered), the expected value of $y$ is
   `r round(dat1b.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1b.summ_draws[1,3], 3)` and 
-  `r round(dat1b.summ_draws[1,4], 3)`. So $y$ is expected to be 
+  value is between `r round(dat1b.summ_draws[1,3], 3)` and
+  `r round(dat1b.summ_draws[1,4], 3)`. So $y$ is expected to be
   `r round(dat1b.fixef[1,1], 3)` at the average $x$.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
   $x$. So for every one unit change in $x$, $y$ increases by (on
@@ -12010,7 +12010,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat1b.brm2 |> get_variables()
 dat1b.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x.*`, `sigma`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x.*`, `sigma`, regex = TRUE) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
   facet_wrap(~.variable, scales = "free")
@@ -12024,7 +12024,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat1b.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x.*`, `sigma`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x.*`, `sigma`, regex = TRUE) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
 ```
@@ -12052,7 +12052,7 @@ dat1b.r2 <- dat1b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat1b.r2[1,2], 3)`% and `r round(100*dat1b.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Standardised predictor
@@ -12072,7 +12072,7 @@ dat1c.fixef <- fixef(dat1c.brm2)
 dat1c.sum <- summary(dat1c.brm2)
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12089,9 +12089,9 @@ dat1c.sum <- summary(dat1c.brm2)
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat1c.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat1c.fixef[1,3], 3)` and 
+  value is between `r round(dat1c.fixef[1,3], 3)` and
   `r round(dat1c.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12145,7 +12145,7 @@ dat1c.summ_draws <- dat1c.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12162,9 +12162,9 @@ dat1c.summ_draws <- dat1c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat1c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat1c.summ_draws[1,3], 3)` and
   `r round(dat1c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12202,7 +12202,7 @@ dat1c.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12219,9 +12219,9 @@ dat1c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat1c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat1c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat1c.summ_draws[1,3], 3)` and
   `r round(dat1c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12246,7 +12246,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat1c.brm2 |> get_variables()
 dat1c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, `sigma`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, `sigma`, regex = TRUE) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
   facet_wrap(~.variable, scales = "free")
@@ -12260,7 +12260,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat1c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, `sigma`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, `sigma`, regex = TRUE) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
 ```
@@ -12288,7 +12288,7 @@ dat1c.r2 <- dat1c.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat1c.r2[1,2], 3)`% and `r round(100*dat1c.r2[1,3], 3)`%
-  
+
 :::::
 
 :::::::
@@ -12313,7 +12313,7 @@ dat2a.fixef <- fixef(dat2a.brm2)
 dat2a.sum <- summary(dat2a.brm2)
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12330,11 +12330,11 @@ dat2a.sum <- summary(dat2a.brm2)
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x$ is "control", the expected value of $y$ is 
+- `Intercept`: when $x$ is "control", the expected value of $y$ is
   `r round(dat2a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat2a.fixef[1,3], 3)` and 
+  value is between `r round(dat2a.fixef[1,3], 3)` and
   `r round(dat2a.fixef[1,4], 3)`.
-- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level. 
+- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level.
   - `xmedium`: $y$ is (on
   average) `r abs(round(dat2a.fixef[ 2,1], 3))` units (95%
   confident that this change is between `r round(dat2a.fixef[2,3], 3)`
@@ -12389,7 +12389,7 @@ dat2a.summ_draws <- dat2a.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12406,11 +12406,11 @@ dat2a.summ_draws <- dat2a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x$ is "control", the expected value of $y$ is 
+- `Intercept`: when $x$ is "control", the expected value of $y$ is
   `r round(dat2a.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat2a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat2a.summ_draws[1,3], 3)` and
   `r round(dat2a.summ_draws[1,4], 3)`.
-- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level. 
+- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level.
   - `xmedium`: $y$ is (on
   average) `r abs(round(dat2a.summ_draws[ 2,2], 3))` units (95%
   confident that this change is between `r round(dat2a.summ_draws[2,3], 3)`
@@ -12449,7 +12449,7 @@ dat2a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12466,11 +12466,11 @@ dat2a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x$ is "control", the expected value of $y$ is 
+- `Intercept`: when $x$ is "control", the expected value of $y$ is
   `r round(dat2a.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat2a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat2a.summ_draws[1,3], 3)` and
   `r round(dat2a.summ_draws[1,4], 3)`.
-- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level. 
+- `x*`: (the slopes) - the change (effect) in $y$ between the first (control) group unit (=1) and each other $x$ level.
   - `xmedium`: $y$ is (on
   average) `r abs(round(dat2a.summ_draws[ 2,2], 3))` units (95%
   confident that this change is between `r round(dat2a.summ_draws[2,3], 3)`
@@ -12536,7 +12536,7 @@ dat2a.r2 <- dat2a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat2a.r2[1,2], 3)`% and `r round(100*dat2a.r2[1,3], 3)`%
- 
+
 
 :::::
 
@@ -12557,7 +12557,7 @@ dat2b.fixef <- fixef(dat2b.brm2)
 dat2b.sum <- summary(dat2b.brm2)
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12574,18 +12574,18 @@ dat2b.sum <- summary(dat2b.brm2)
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `x*`: (the group means). 
-  - `xcontrol`: the expected value of $y$ in the "control" group is 
+- `x*`: (the group means).
+  - `xcontrol`: the expected value of $y$ in the "control" group is
     `r round(dat2b.fixef[ 1,2], 3)` (95% credibility interval is
-    between `r round(dat2b.fixef[1,3], 3)` and 
+    between `r round(dat2b.fixef[1,3], 3)` and
     `r round(dat2b.fixef[1,4], 3)`)
-  - `xmedium`: the expected value of $y$ in the "control" group is 
+  - `xmedium`: the expected value of $y$ in the "control" group is
     `r round(dat2b.fixef[ 2,2], 3)` (95% credibility interval is
-    between `r round(dat2b.fixef[2,3], 3)` and 
+    between `r round(dat2b.fixef[2,3], 3)` and
     `r round(dat2b.fixef[2,4], 3)`)
-  - `xhigh`: the expected value of $y$ in the "control" group is 
+  - `xhigh`: the expected value of $y$ in the "control" group is
     `r round(dat2b.fixef[ 3,2], 3)` (95% credibility interval is
-    between `r round(dat2b.fixef[3,3], 3)` and 
+    between `r round(dat2b.fixef[3,3], 3)` and
     `r round(dat2b.fixef[3,4], 3)`)
 - sigma is estimated to be `r round(dat2b.sum$spec_pars[1,1],2)`
 
@@ -12633,7 +12633,7 @@ dat2b.summ_draws <- dat2b.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12650,18 +12650,18 @@ dat2b.summ_draws <- dat2b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `x*`: (the means of each group) 
-  - `xcontrol`: the expected value of $y$ in the "control" group is 
+- `x*`: (the means of each group)
+  - `xcontrol`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 1,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[1,3], 3)` and 
+    between `r round(dat2b.summ_draws[1,3], 3)` and
     `r round(dat2b.summ_draws[1,4], 3)`)
-  - `xmedium`: the expected value of $y$ in the "control" group is 
+  - `xmedium`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 2,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[2,3], 3)` and 
+    between `r round(dat2b.summ_draws[2,3], 3)` and
     `r round(dat2b.summ_draws[2,4], 3)`)
-  - `xhigh`: the expected value of $y$ in the "control" group is 
+  - `xhigh`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 3,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[3,3], 3)` and 
+    between `r round(dat2b.summ_draws[3,3], 3)` and
     `r round(dat2b.summ_draws[3,4], 3)`)
 - sigma is estimated to be `r round(dat2b.sum$spec_pars[1,1],2)`
 
@@ -12693,7 +12693,7 @@ dat2b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12710,18 +12710,18 @@ dat2b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `x*`: (the means of each group) 
-  - `xcontrol`: the expected value of $y$ in the "control" group is 
+- `x*`: (the means of each group)
+  - `xcontrol`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 1,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[1,3], 3)` and 
+    between `r round(dat2b.summ_draws[1,3], 3)` and
     `r round(dat2b.summ_draws[1,4], 3)`)
-  - `xmedium`: the expected value of $y$ in the "control" group is 
+  - `xmedium`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 2,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[2,3], 3)` and 
+    between `r round(dat2b.summ_draws[2,3], 3)` and
     `r round(dat2b.summ_draws[2,4], 3)`)
-  - `xhigh`: the expected value of $y$ in the "control" group is 
+  - `xhigh`: the expected value of $y$ in the "control" group is
     `r round(dat2b.summ_draws[ 3,2], 3)` (95% credibility interval is
-    between `r round(dat2b.summ_draws[3,3], 3)` and 
+    between `r round(dat2b.summ_draws[3,3], 3)` and
     `r round(dat2b.summ_draws[3,4], 3)`)
 - sigma is estimated to be `r round(dat2b.sum$spec_pars[1,1],2)`
 
@@ -12780,7 +12780,7 @@ dat2b.r2 <- dat2b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat2b.r2[1,2], 3)`% and `r round(100*dat2b.r2[1,3], 3)`%
- 
+
 
 :::::
 
@@ -12808,13 +12808,13 @@ dat3a.sum <- summary(dat3a.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12831,9 +12831,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat3a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat3a.fixef[1,3], 3)` and 
+  value is between `r round(dat3a.fixef[1,3], 3)` and
   `r round(dat3a.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12887,12 +12887,12 @@ dat3a.summ_draws <- dat3a.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12909,9 +12909,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat3a.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat3a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat3a.summ_draws[1,3], 3)` and
   `r round(dat3a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12952,7 +12952,7 @@ dat3a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -12969,9 +12969,9 @@ dat3a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat3a.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat3a.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat3a.summ_draws[1,3]), 3)` and
   `r round(exp(dat3a.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -12979,7 +12979,7 @@ dat3a.brm2 |>
   average) a factor of `r round(exp(dat3a.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat3a.summ_draws[2,3]), 3)`
   and `r round(exp(dat3a.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat3a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat3a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -13038,7 +13038,7 @@ dat3a.r2 <- dat3a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat3a.r2[1,2], 3)`% and `r round(100*dat3a.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Centered predictor
@@ -13059,13 +13059,13 @@ dat3b.sum <- summary(dat3b.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13082,9 +13082,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat3b.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat3b.fixef[1,3], 3)` and 
+  value is between `r round(dat3b.fixef[1,3], 3)` and
   `r round(dat3b.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13138,12 +13138,12 @@ dat3b.summ_draws <- dat3b.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13160,9 +13160,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat3b.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat3b.summ_draws[1,3], 3)` and 
+  value is between `r round(dat3b.summ_draws[1,3], 3)` and
   `r round(dat3b.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13203,7 +13203,7 @@ dat3b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13220,9 +13220,9 @@ dat3b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat3b.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat3b.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat3b.summ_draws[1,3]), 3)` and
   `r round(exp(dat3b.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13230,7 +13230,7 @@ dat3b.brm2 |>
   average) a factor of `r round(exp(dat3b.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat3b.summ_draws[2,3]), 3)`
   and `r round(exp(dat3b.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat3b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat3b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -13289,7 +13289,7 @@ dat3b.r2 <- dat3b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat3b.r2[1,2], 3)`% and `r round(100*dat3b.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Standardised predictor
@@ -13310,13 +13310,13 @@ dat3c.sum <- summary(dat3c.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13333,9 +13333,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat3c.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat3c.fixef[1,3], 3)` and 
+  value is between `r round(dat3c.fixef[1,3], 3)` and
   `r round(dat3c.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13388,7 +13388,7 @@ dat3c.summ_draws <- dat3c.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13405,9 +13405,9 @@ dat3c.summ_draws <- dat3c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat3c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat3c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat3c.summ_draws[1,3], 3)` and
   `r round(dat3c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13448,7 +13448,7 @@ dat3c.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13465,9 +13465,9 @@ dat3c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(exp(dat3c.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat3c.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat3c.summ_draws[1,3]), 3)` and
   `r round(exp(dat3c.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13475,7 +13475,7 @@ dat3c.brm2 |>
   average) a factor of `r round(exp(dat3c.summ_draws[ 2,2]), 3)` units and we are 95%
   confident that this change is between `r round(exp(dat3c.summ_draws[2,3]), 3)`
   and `r round(exp(dat3c.summ_draws[2,4]), 3)`. This represents a ((value -1) * 100)
-  `r round((exp(dat3c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per 
+  `r round((exp(dat3c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per
   unit increase in $x$.
 
 
@@ -13494,7 +13494,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat3c.brm2 |> get_variables()
 dat3c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
@@ -13509,7 +13509,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat3c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
@@ -13538,7 +13538,7 @@ dat3c.r2 <- dat3c.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat3c.r2[1,2], 3)`% and `r round(100*dat3c.r2[1,3], 3)`%
-  
+
 :::::
 
 :::::::
@@ -13564,13 +13564,13 @@ dat4a.sum <- summary(dat4a.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13587,9 +13587,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat4a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat4a.fixef[1,3], 3)` and 
+  value is between `r round(dat4a.fixef[1,3], 3)` and
   `r round(dat4a.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13643,12 +13643,12 @@ dat4a.summ_draws <- dat4a.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13665,9 +13665,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat4a.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat4a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat4a.summ_draws[1,3], 3)` and
   `r round(dat4a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13708,7 +13708,7 @@ dat4a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13725,9 +13725,9 @@ dat4a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat4a.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat4a.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat4a.summ_draws[1,3]), 3)` and
   `r round(exp(dat4a.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13735,7 +13735,7 @@ dat4a.brm2 |>
   average) a factor of `r round(exp(dat4a.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat4a.summ_draws[2,3]), 3)`
   and `r round(exp(dat4a.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat4a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat4a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -13794,7 +13794,7 @@ dat4a.r2 <- dat4a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat4a.r2[1,2], 3)`% and `r round(100*dat4a.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Centered predictor
@@ -13815,13 +13815,13 @@ dat4b.sum <- summary(dat4b.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13838,9 +13838,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat4b.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat4b.fixef[1,3], 3)` and 
+  value is between `r round(dat4b.fixef[1,3], 3)` and
   `r round(dat4b.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13894,12 +13894,12 @@ dat4b.summ_draws <- dat4b.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13916,9 +13916,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat4b.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat4b.summ_draws[1,3], 3)` and 
+  value is between `r round(dat4b.summ_draws[1,3], 3)` and
   `r round(dat4b.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13959,7 +13959,7 @@ dat4b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -13976,9 +13976,9 @@ dat4b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat4b.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat4b.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat4b.summ_draws[1,3]), 3)` and
   `r round(exp(dat4b.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -13986,7 +13986,7 @@ dat4b.brm2 |>
   average) a factor of `r round(exp(dat4b.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat4b.summ_draws[2,3]), 3)`
   and `r round(exp(dat4b.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat4b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat4b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -14045,7 +14045,7 @@ dat4b.r2 <- dat4b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat4b.r2[1,2], 3)`% and `r round(100*dat4b.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Standardised predictor
@@ -14066,13 +14066,13 @@ dat4c.sum <- summary(dat4c.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the log scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the log scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14089,9 +14089,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat4c.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat4c.fixef[1,3], 3)` and 
+  value is between `r round(dat4c.fixef[1,3], 3)` and
   `r round(dat4c.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14144,7 +14144,7 @@ dat4c.summ_draws <- dat4c.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14161,9 +14161,9 @@ dat4c.summ_draws <- dat4c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat4c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat4c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat4c.summ_draws[1,3], 3)` and
   `r round(dat4c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14204,7 +14204,7 @@ dat4c.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14221,9 +14221,9 @@ dat4c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(exp(dat4c.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat4c.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat4c.summ_draws[1,3]), 3)` and
   `r round(exp(dat4c.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14231,7 +14231,7 @@ dat4c.brm2 |>
   average) a factor of `r round(exp(dat4c.summ_draws[ 2,2]), 3)` units and we are 95%
   confident that this change is between `r round(exp(dat4c.summ_draws[2,3]), 3)`
   and `r round(exp(dat4c.summ_draws[2,4]), 3)`. This represents a ((value -1) * 100)
-  `r round((exp(dat4c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per 
+  `r round((exp(dat4c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per
   unit increase in $x$.
 
 
@@ -14250,7 +14250,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat4c.brm2 |> get_variables()
 dat4c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
@@ -14265,7 +14265,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat4c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
@@ -14294,7 +14294,7 @@ dat4c.r2 <- dat4c.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat4c.r2[1,2], 3)`% and `r round(100*dat4c.r2[1,3], 3)`%
-  
+
 :::::
 
 :::::::
@@ -14320,13 +14320,13 @@ dat5a.sum <- summary(dat5a.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14343,9 +14343,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat5a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat5a.fixef[1,3], 3)` and 
+  value is between `r round(dat5a.fixef[1,3], 3)` and
   `r round(dat5a.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14399,12 +14399,12 @@ dat5a.summ_draws <- dat5a.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14421,9 +14421,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat5a.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat5a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat5a.summ_draws[1,3], 3)` and
   `r round(dat5a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14464,7 +14464,7 @@ dat5a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14481,9 +14481,9 @@ dat5a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat5a.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat5a.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat5a.summ_draws[1,3]), 3)` and
   `r round(exp(dat5a.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14491,7 +14491,7 @@ dat5a.brm2 |>
   average) a factor of `r round(exp(dat5a.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat5a.summ_draws[2,3]), 3)`
   and `r round(exp(dat5a.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat5a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat5a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -14550,7 +14550,7 @@ dat5a.r2 <- dat5a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat5a.r2[1,2], 3)`% and `r round(100*dat5a.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Centered predictor
@@ -14571,13 +14571,13 @@ dat5b.sum <- summary(dat5b.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14594,9 +14594,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat5b.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat5b.fixef[1,3], 3)` and 
+  value is between `r round(dat5b.fixef[1,3], 3)` and
   `r round(dat5b.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14650,12 +14650,12 @@ dat5b.summ_draws <- dat5b.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14672,9 +14672,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat5b.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat5b.summ_draws[1,3], 3)` and 
+  value is between `r round(dat5b.summ_draws[1,3], 3)` and
   `r round(dat5b.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14715,7 +14715,7 @@ dat5b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14732,9 +14732,9 @@ dat5b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat5b.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat5b.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat5b.summ_draws[1,3]), 3)` and
   `r round(exp(dat5b.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14742,7 +14742,7 @@ dat5b.brm2 |>
   average) a factor of `r round(exp(dat5b.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat5b.summ_draws[2,3]), 3)`
   and `r round(exp(dat5b.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat5b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat5b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -14801,7 +14801,7 @@ dat5b.r2 <- dat5b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat5b.r2[1,2], 3)`% and `r round(100*dat5b.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Standardised predictor
@@ -14822,13 +14822,13 @@ dat5c.sum <- summary(dat5c.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14845,9 +14845,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat5c.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat5c.fixef[1,3], 3)` and 
+  value is between `r round(dat5c.fixef[1,3], 3)` and
   `r round(dat5c.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14900,7 +14900,7 @@ dat5c.summ_draws <- dat5c.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14917,9 +14917,9 @@ dat5c.summ_draws <- dat5c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat5c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat5c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat5c.summ_draws[1,3], 3)` and
   `r round(dat5c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14960,7 +14960,7 @@ dat5c.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -14977,9 +14977,9 @@ dat5c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(exp(dat5c.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat5c.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat5c.summ_draws[1,3]), 3)` and
   `r round(exp(dat5c.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -14987,7 +14987,7 @@ dat5c.brm2 |>
   average) a factor of `r round(exp(dat5c.summ_draws[ 2,2]), 3)` units and we are 95%
   confident that this change is between `r round(exp(dat5c.summ_draws[2,3]), 3)`
   and `r round(exp(dat5c.summ_draws[2,4]), 3)`. This represents a ((value -1) * 100)
-  `r round((exp(dat5c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per 
+  `r round((exp(dat5c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per
   unit increase in $x$.
 
 
@@ -15006,7 +15006,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat5c.brm2 |> get_variables()
 dat5c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
@@ -15021,7 +15021,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat5c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
@@ -15050,7 +15050,7 @@ dat5c.r2 <- dat5c.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat5c.r2[1,2], 3)`% and `r round(100*dat5c.r2[1,3], 3)`%
-  
+
 :::::
 
 :::::::
@@ -15076,13 +15076,13 @@ dat6a.sum <- summary(dat6a.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15099,9 +15099,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat6a.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat6a.fixef[1,3], 3)` and 
+  value is between `r round(dat6a.fixef[1,3], 3)` and
   `r round(dat6a.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15155,12 +15155,12 @@ dat6a.summ_draws <- dat6a.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15177,9 +15177,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat6a.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat6a.summ_draws[1,3], 3)` and 
+  value is between `r round(dat6a.summ_draws[1,3], 3)` and
   `r round(dat6a.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15220,7 +15220,7 @@ dat6a.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15237,9 +15237,9 @@ dat6a.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat6a.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat6a.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat6a.summ_draws[1,3]), 3)` and
   `r round(exp(dat6a.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15247,7 +15247,7 @@ dat6a.brm2 |>
   average) a factor of `r round(exp(dat6a.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat6a.summ_draws[2,3]), 3)`
   and `r round(exp(dat6a.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat6a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat6a.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -15306,7 +15306,7 @@ dat6a.r2 <- dat6a.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat6a.r2[1,2], 3)`% and `r round(100*dat6a.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Centered predictor
@@ -15327,13 +15327,13 @@ dat6b.sum <- summary(dat6b.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15350,9 +15350,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$, the expected value of $y$ is 
+- `Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat6b.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat6b.fixef[1,3], 3)` and 
+  value is between `r round(dat6b.fixef[1,3], 3)` and
   `r round(dat6b.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15406,12 +15406,12 @@ dat6b.summ_draws <- dat6b.brm2 |>
 ```
 
 ::: {.callout-important}
-The results presented by the above function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the above function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15428,9 +15428,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(dat6b.summ_draws[3,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat6b.summ_draws[1,3], 3)` and 
+  value is between `r round(dat6b.summ_draws[1,3], 3)` and
   `r round(dat6b.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15471,7 +15471,7 @@ dat6b.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15488,9 +15488,9 @@ dat6b.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$, the expected value of $y$ is 
+- `b_Intercept`: when $x=0$, the expected value of $y$ is
   `r round(exp(dat6b.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat6b.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat6b.summ_draws[1,3]), 3)` and
   `r round(exp(dat6b.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15498,7 +15498,7 @@ dat6b.brm2 |>
   average) a factor of `r round(exp(dat6b.summ_draws[ 2,2]), 3)` and we are 95%
   confident that this change is between `r round(exp(dat6b.summ_draws[2,3]), 3)`
   and `r round(exp(dat6b.summ_draws[2,4]), 3)`.  This represents a (value -1) * 100
-  `r round((exp(dat6b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per 
+  `r round((exp(dat6b.summ_draws[ 2,2]) - 1) * 100, 1)` % increase in $y$ per
   unit increase in $x$.
 
 ##### Density plots (via `gather_draws`)
@@ -15557,7 +15557,7 @@ dat6b.r2 <- dat6b.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat6b.r2[1,2], 3)`% and `r round(100*dat6b.r2[1,3], 3)`%
-  
+
 :::::
 
 #### Standardised predictor
@@ -15578,13 +15578,13 @@ dat6c.sum <- summary(dat6c.brm2)
 ```
 
 ::: {.callout-important}
-The results presented by the `summary()` function on the link scale 
-(in this case, the logit, or log-odds  scale).  As such, they can be awkward to 
+The results presented by the `summary()` function on the link scale
+(in this case, the logit, or log-odds  scale).  As such, they can be awkward to
 interpret and are particularly punishing for your audience.
 :::
 
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15601,9 +15601,9 @@ interpret and are particularly punishing for your audience.
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat6c.fixef[1,1], 3)` and we are 95% confident that the true
-  value is between `r round(dat6c.fixef[1,3], 3)` and 
+  value is between `r round(dat6c.fixef[1,3], 3)` and
   `r round(dat6c.fixef[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15656,7 +15656,7 @@ dat6c.summ_draws <- dat6c.brm2 |>
   as.data.frame()
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15673,9 +15673,9 @@ dat6c.summ_draws <- dat6c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(dat6c.summ_draws[1,2], 3)` and we are 95% confident that the true
-  value is between `r round(dat6c.summ_draws[1,3], 3)` and 
+  value is between `r round(dat6c.summ_draws[1,3], 3)` and
   `r round(dat6c.summ_draws[1,4], 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15716,7 +15716,7 @@ dat6c.brm2 |>
     )
 ```
 
-**Conclusions**: 
+**Conclusions**:
 
 - in the initial block of information, we are reminded on the formula
   as well as chain fitting characteristics. We are also informed that
@@ -15733,9 +15733,9 @@ dat6c.brm2 |>
   transitions etc). The fraction of effective samples from this region
   is relatively high implying that the sampler did not get stuck in
   such areas that are unsupported by data.
-- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is 
+- `b_Intercept`: when $x=0$ (its average since it is standardised), the expected value of $y$ is
   `r round(exp(dat6c.summ_draws[1,2]), 3)` and we are 95% confident that the true
-  value is between `r round(exp(dat6c.summ_draws[1,3]), 3)` and 
+  value is between `r round(exp(dat6c.summ_draws[1,3]), 3)` and
   `r round(exp(dat6c.summ_draws[1,4]), 3)`. Since $x=0$ is outside the observed
   range of $x$, this y-intercept is of very limited value.
 - `b_x`: (the slope) - the rate of change in $y$ per unit (=1) change in
@@ -15743,7 +15743,7 @@ dat6c.brm2 |>
   average) a factor of `r round(exp(dat6c.summ_draws[ 2,2]), 3)` units and we are 95%
   confident that this change is between `r round(exp(dat6c.summ_draws[2,3]), 3)`
   and `r round(exp(dat6c.summ_draws[2,4]), 3)`. This represents a ((value -1) * 100)
-  `r round((exp(dat6c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per 
+  `r round((exp(dat6c.summ_draws[ 2,2]) - 1) * 100, 1)`% increase in $y$ per
   unit increase in $x$.
 
 
@@ -15762,7 +15762,7 @@ parameter via a regular expression.
 #| fig-height: 3
 dat6c.brm2 |> get_variables()
 dat6c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   geom_histogram(aes(x = .value)) +
@@ -15777,7 +15777,7 @@ the `ggdist` package.
 #| fig-width: 5
 #| fig-height: 3
 dat6c.brm2 |>
-  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |> 
+  gather_draws(`b_Intercept`,`b_.*x`, regex = TRUE) |>
   mutate(across(everything(), exp)) |>
   ggplot() +
   stat_halfeye(aes(x = .value, y = .variable))
@@ -15806,7 +15806,7 @@ dat6c.r2 <- dat6c.brm2 |>
   explained by its relationship to $x$
 - we are 95% confident that the strength of this relationship is
   between `r round(100*dat6c.r2[1,2], 3)`% and `r round(100*dat6c.r2[1,3], 3)`%
-  
+
 :::::
 
 :::::::
@@ -15873,7 +15873,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16011,7 +16011,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16149,7 +16149,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16292,7 +16292,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16436,7 +16436,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16586,7 +16586,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16599,13 +16599,13 @@ dat3a.brm2 |> emmeans(~x, at = list(x = c(2.5, 5)), type = "response")
 dat3a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    mutate(.value = exp(.value)) |> 
+    mutate(.value = exp(.value)) |>
     median_hdci()
 # OR with yet more control over the way posteriors are summarised
 dat3a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(
       median,
       HDInterval::hdi
@@ -16700,7 +16700,7 @@ dat3a.epred <- dat3a.brm2 |>
 #| label: lpred3a
 dat3a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat3a.brm2 |>
@@ -16717,7 +16717,7 @@ dat3a.brm2 |>
 #| echo: false
 dat3a.linpred <- dat3a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -16739,7 +16739,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16842,7 +16842,7 @@ dat3b.epred <- dat3b.brm2 |>
 #| label: lpred3b
 dat3b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat3b.brm2 |>
@@ -16858,7 +16858,7 @@ dat3b.brm2 |>
 #| label: linpred3b_2
 dat3b.linpred <- dat3b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -16880,7 +16880,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -16983,7 +16983,7 @@ dat3c.epred <- dat3c.brm2 |>
 #| label: lpred3c
 dat3c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat3c.brm2 |>
@@ -16999,7 +16999,7 @@ dat3c.brm2 |>
 #| label: linpred3c_2
 dat3c.linpred <- dat3c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17026,7 +17026,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17039,13 +17039,13 @@ dat4a.brm2 |> emmeans(~x, at = list(x = c(2.5, 5)), type = "response")
 dat4a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    mutate(.value = exp(.value)) |> 
+    mutate(.value = exp(.value)) |>
     median_hdci()
 # OR with yet more control over the way posteriors are summarised
 dat4a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(
       median,
       HDInterval::hdi
@@ -17140,7 +17140,7 @@ dat4a.epred <- dat4a.brm2 |>
 #| label: lpred4a
 dat4a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat4a.brm2 |>
@@ -17157,7 +17157,7 @@ dat4a.brm2 |>
 #| echo: false
 dat4a.linpred <- dat4a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17179,7 +17179,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17282,7 +17282,7 @@ dat4b.epred <- dat4b.brm2 |>
 #| label: lpred4b
 dat4b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat4b.brm2 |>
@@ -17298,7 +17298,7 @@ dat4b.brm2 |>
 #| label: linpred4b_2
 dat4b.linpred <- dat4b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17320,7 +17320,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17423,7 +17423,7 @@ dat4c.epred <- dat4c.brm2 |>
 #| label: lpred4c
 dat4c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat4c.brm2 |>
@@ -17439,7 +17439,7 @@ dat4c.brm2 |>
 #| label: linpred4c_2
 dat4c.linpred <- dat4c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    exp() |> 
+    exp() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17466,7 +17466,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17479,13 +17479,13 @@ dat5a.brm2 |> emmeans(~x, at = list(x = c(2.5, 5)), type = "response")
 dat5a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    mutate(.value = plogis(.value)) |> 
+    mutate(.value = plogis(.value)) |>
     median_hdci()
 # OR with yet more control over the way posteriors are summarised
 dat5a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(
       median,
       HDInterval::hdi
@@ -17580,7 +17580,7 @@ dat5a.epred <- dat5a.brm2 |>
 #| label: lpred5a
 dat5a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat5a.brm2 |>
@@ -17597,7 +17597,7 @@ dat5a.brm2 |>
 #| echo: false
 dat5a.linpred <- dat5a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17619,7 +17619,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17722,7 +17722,7 @@ dat5b.epred <- dat5b.brm2 |>
 #| label: lpred5b
 dat5b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat5b.brm2 |>
@@ -17738,7 +17738,7 @@ dat5b.brm2 |>
 #| label: linpred5b_2
 dat5b.linpred <- dat5b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17760,7 +17760,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17863,7 +17863,7 @@ dat5c.epred <- dat5c.brm2 |>
 #| label: lpred5c
 dat5c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat5c.brm2 |>
@@ -17879,7 +17879,7 @@ dat5c.brm2 |>
 #| label: linpred5c_2
 dat5c.linpred <- dat5c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5))) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -17906,7 +17906,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -17919,13 +17919,13 @@ dat6a.brm2 |> emmeans(~x, at = list(x = c(2.5, 5)), type = "response")
 dat6a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    mutate(.value = plogis(.value)) |> 
+    mutate(.value = plogis(.value)) |>
     median_hdci()
 # OR with yet more control over the way posteriors are summarised
 dat6a.brm2 |>
     emmeans(~x, at = list(x = c(2.5, 5))) |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(
       median,
       HDInterval::hdi
@@ -18020,7 +18020,7 @@ dat6a.epred <- dat6a.brm2 |>
 #| label: lpred6a
 dat6a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat6a.brm2 |>
@@ -18037,7 +18037,7 @@ dat6a.brm2 |>
 #| echo: false
 dat6a.linpred <- dat6a.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -18059,7 +18059,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -18162,7 +18162,7 @@ dat6b.epred <- dat6b.brm2 |>
 #| label: lpred6b
 dat6b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat6b.brm2 |>
@@ -18178,7 +18178,7 @@ dat6b.brm2 |>
 #| label: linpred6b_2
 dat6b.linpred <- dat6b.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -18200,7 +18200,7 @@ Note, for a Gaussian model `emmeans`, `posterior_epred` and
 `posterior_linpred` will all yield the same outputs.
 `posterior_predict` will yield wider credible intervals as it is
 predicting for individual observations rather than predicting means of
-large samples. 
+large samples.
 
 ::::: {.panel-tabset}
 
@@ -18303,7 +18303,7 @@ dat6c.epred <- dat6c.brm2 |>
 #| label: lpred6c
 dat6c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 # Or for even more control and ability to add other summaries
 dat6c.brm2 |>
@@ -18319,7 +18319,7 @@ dat6c.brm2 |>
 #| label: linpred6c_2
 dat6c.linpred <- dat6c.brm2 |>
     posterior_linpred(newdata = data.frame(x = c(2.5, 5), total = 1)) |>
-    plogis() |> 
+    plogis() |>
     summarise_draws(median, HDInterval::hdi)
 ```
 
@@ -18378,8 +18378,8 @@ dat1a_hyp <- dat1a.brm2 |>
 
 - the parameter (`b_x`) minus 0 is `r round(dat1a_hyp[1,2], 3)`
 - `Evid.Ratio`: the ratio of evidence for the hypothesis vs the
-  evidence against it.  In this case, the evidence ratio is 
-  `r round(dat1a_hyp[1,6], 3)` - `Inf` is because the divisor was 0 
+  evidence against it.  In this case, the evidence ratio is
+  `r round(dat1a_hyp[1,6], 3)` - `Inf` is because the divisor was 0
   (no evidence against the hypothesis).
 - `Post.Prob`: the probability of the hypothesis is `r round(dat1a_hyp[1,7], 3)`
 - there is very high evidence for this hypothesis
@@ -18469,10 +18469,10 @@ dat1a_hyp3 <- dat1a.brm2 |>
   increases from 2.5 to 5 and 50% is `r round(dat1a_hyp3[1,2], 3)`
 - the evidence ratio in support of the hypothesis that the percentage
   change exceeds 50% is `r round(dat1a_hyp3[ 1,6], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1a_hyp3[ 1,7], 3)`
 - the evidence for such a change is very weak
-  
+
 ```{r}
 #| label: hypotheses1a_4
 dat1a.brm2 |>
@@ -18509,7 +18509,7 @@ dat1a_hyp4 <- dat1a.brm2 |>
 
 - the percentage change in estimated $y$ as $x$
   increases from 2.5 to 5 is `r round(dat1a_hyp4[1,2], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1a_hyp4[ 1,6], 3)`
 - the evidence for such a change is very weak
 
@@ -18638,8 +18638,8 @@ dat1b_hyp <- dat1b.brm2 |>
 
 - the parameter (`b_scalexscaledEQFALSE`) minus 0 is `r round(dat1b_hyp[1,2], 3)`
 - `Evid.Ratio`: the ratio of evidence for the hypothesis vs the
-  evidence against it.  In this case, the evidence ratio is 
-  `r round(dat1b_hyp[1,6], 3)` - `Inf` is because the divisor was 0 
+  evidence against it.  In this case, the evidence ratio is
+  `r round(dat1b_hyp[1,6], 3)` - `Inf` is because the divisor was 0
   (no evidence against the hypothesis).
 - `Post.Prob`: the probability of the hypothesis is `r round(dat1b_hyp[1,7], 3)`
 - there is very high evidence for this hypothesis
@@ -18729,10 +18729,10 @@ dat1b_hyp3 <- dat1b.brm2 |>
   increases from 2.5 to 5 and 50% is `r round(dat1b_hyp3[1,2], 3)`
 - the evidence ratio in support of the hypothesis that the percentage
   change exceeds 50% is `r round(dat1b_hyp3[ 1,6], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1b_hyp3[ 1,7], 3)`
 - the evidence for such a change is very weak
-  
+
 ```{r}
 #| label: hypotheses1b_4
 dat1b.brm2 |>
@@ -18769,7 +18769,7 @@ dat1b_hyp4 <- dat1b.brm2 |>
 
 - the percentage change in estimated $y$ as $x$
   increases from 2.5 to 5 is `r round(dat1b_hyp4[1,2], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1b_hyp4[ 1,6], 3)`
 - the evidence for such a change is very weak
 
@@ -18898,8 +18898,8 @@ dat1c_hyp <- dat1c.brm2 |>
 
 - the parameter (`b_scalex`) minus 0 is `r round(dat1c_hyp[1,2], 3)`
 - `Evid.Ratio`: the ratio of evidence for the hypothesis vs the
-  evidence against it.  In this case, the evidence ratio is 
-  `r round(dat1c_hyp[1,6], 3)` - `Inf` is because the divisor was 0 
+  evidence against it.  In this case, the evidence ratio is
+  `r round(dat1c_hyp[1,6], 3)` - `Inf` is because the divisor was 0
   (no evidence against the hypothesis).
 - `Post.Prob`: the probability of the hypothesis is `r round(dat1c_hyp[1,7], 3)`
 - there is very high evidence for this hypothesis
@@ -18989,10 +18989,10 @@ dat1c_hyp3 <- dat1c.brm2 |>
   increases from 2.5 to 5 and 50% is `r round(dat1c_hyp3[1,2], 3)`
 - the evidence ratio in support of the hypothesis that the percentage
   change exceeds 50% is `r round(dat1c_hyp3[ 1,6], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1c_hyp3[ 1,7], 3)`
 - the evidence for such a change is very weak
-  
+
 ```{r}
 #| label: hypotheses1c_4
 dat1c.brm2 |>
@@ -19029,7 +19029,7 @@ dat1c_hyp4 <- dat1c.brm2 |>
 
 - the percentage change in estimated $y$ as $x$
   increases from 2.5 to 5 is `r round(dat1c_hyp4[1,2], 3)`
-- the probability that the change in $y$ exceeds 50% is 
+- the probability that the change in $y$ exceeds 50% is
   `r round(dat1c_hyp4[ 1,6], 3)`
 - the evidence for such a change is very weak
 
@@ -19172,7 +19172,7 @@ dat2a.brm2 |>
     emmeans(~x) |>
     pairs() |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(median,
         HDInterval::hdi,
         Pl = ~ mean(.x < 0),
@@ -19199,7 +19199,7 @@ dat2a.emmeans <-
 
 **Conclusions**:
 
-- the difference in $y$ between "control" and "medium" is 
+- the difference in $y$ between "control" and "medium" is
   `r round(dat2a.emmeans[2,3], 2)`, however there is no evidence of this
   effect (exceedence probability)
 - the difference in $y$ between "control" and "high" is
@@ -19246,7 +19246,7 @@ dat2a.brm2 |>
   emmeans(~x) |>
   regrid(transform = "log") |>
   pairs() |>
-  regrid() |> 
+  regrid() |>
   gather_emmeans_draws() |>
   dplyr::select(-.chain) |>
   summarise_draws(median,
@@ -19265,7 +19265,7 @@ dat2a.emmeans <-
     emmeans(~x) |>
     regrid(transform = "log") |>
     pairs() |>
-    regrid() |> 
+    regrid() |>
   gather_emmeans_draws() |>
   dplyr::select(-.chain) |>
   summarise_draws(median,
@@ -19320,9 +19320,9 @@ Or with full posteriors and exceedance probabilities...
 #| label: hypothesis2a_6
 dat2a.brm2 |>
     emmeans(~x) |>
-    contrast(method = list(x = cmat)) |> 
+    contrast(method = list(x = cmat)) |>
     gather_emmeans_draws() |>
-    dplyr::select(-.chain) |> 
+    dplyr::select(-.chain) |>
     summarise_draws(median,
         HDInterval::hdi,
         Pl = ~ mean(.x < 0),
@@ -19455,7 +19455,7 @@ As a spaghetti plot
 dat1a.grid <- list(x = modelr::seq_range(dat$x, n = 100))
 dat1a.brm2 |>
     emmeans(~x, at = dat1a.grid) |>
-    gather_emmeans_draws() |> 
+    gather_emmeans_draws() |>
     ggplot(aes(y = .value, x = x)) +
     geom_line(aes(group=.draw),  colour = 'orange', alpha=0.01) +
     geom_point(data = dat, aes(y = y)) +
@@ -19495,7 +19495,7 @@ As a spaghetti plot
 dat1b.grid <- list(x = modelr::seq_range(dat$x, n = 100))
 dat1b.brm2 |>
     emmeans(~x, at = dat1b.grid) |>
-    gather_emmeans_draws() |> 
+    gather_emmeans_draws() |>
     ggplot(aes(y = .value, x = x)) +
     geom_line(aes(group=.draw),  colour = 'orange', alpha=0.01) +
     geom_point(data = dat, aes(y = y)) +
@@ -19535,7 +19535,7 @@ As a spaghetti plot
 dat1c.grid <- list(x = modelr::seq_range(dat$x, n = 100))
 dat1c.brm2 |>
     emmeans(~x, at = dat1c.grid) |>
-    gather_emmeans_draws() |> 
+    gather_emmeans_draws() |>
     ggplot(aes(y = .value, x = x)) +
     geom_line(aes(group=.draw),  colour = 'orange', alpha=0.01) +
     geom_point(data = dat, aes(y = y)) +
@@ -19573,5 +19573,6 @@ dat2a.brm2 |>
 
 ::::
 
+The end
 
 # References
