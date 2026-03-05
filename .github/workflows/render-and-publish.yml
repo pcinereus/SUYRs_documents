@@ -89,10 +89,20 @@ jobs:
           else
             echo "No updated files to render."
           fi
-          ls -lat
-          ls -lat tut
+          # ls -lat
+          # ls -lat tut
           # mkdir docs
+          # cp tut/*.html docs
+          # Check for files starting with 'tut/' and copy them
+          if grep -q '^tut/' changed_files.txt; then
           cp tut/*.html docs
+          fi
+
+          # Check for files starting with 'pres/' and copy them
+          if grep -q '^pres/' changed_files.txt; then
+          cp pres/*.html docs
+          fi
+
 
       - name: Deploy to GitHub Pages
         uses: JamesIves/github-pages-deploy-action@4.1.4
