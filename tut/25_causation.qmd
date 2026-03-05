@@ -286,7 +286,6 @@ ggdag(dag, text = TRUE, text_size = 2.5) +
 ```
 
 
-
 ## `dagify()`
 
 ```{r}
@@ -1357,4 +1356,4 @@ approximately $(-1.1\times -0.99)\times 0.335 = 0.365$
 :::
 
 
-The end
+The End
