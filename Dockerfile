@@ -93,6 +93,8 @@ RUN Rscript -e 'tinytex::tlmgr_install("tikzfill")'
 RUN Rscript -e 'tinytex::tlmgr_install("tcolorbox")'
 RUN Rscript -e 'tinytex::tlmgr_install("pdfcol")'
 RUN Rscript -e 'tinytex::tlmgr_install("standalone")'
+RUN Rscript -e 'tinytex::tlmgr_install("preview")'
+
 
 
 
@@ -130,7 +132,10 @@ RUN apt-get update && apt-get install -y \
 RUN R -e "options(repos = \
     list(CRAN = \"https://packagemanager.posit.co/cran/2024-04-11/\")); \
   pak::pkg_install(c('magick')); \
+  pak::pkg_install(c('ggdag')); \
+
 "
+
 
 
 # RUN unzip -d architects_daughter/ resources/Architects_Daughter.zip
