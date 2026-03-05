@@ -86,6 +86,17 @@ jobs:
 
             docker run --privileged --rm -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:${{ github.workspace }} -e HOST_PWD=${{ github.workspace }} -w ${{ github.workspace }} ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
+
+            # Check for files starting with 'tut' and copy them
+            if grep -q '^tut' changed_files.txt; then
+            cp tut/*.html docs
+            fi
+
+            # Check for files starting with 'pres' and copy them
+            if grep -q '^pres' changed_files.txt; then
+            cp pres/*.html docs
+            fi
+
           else
             echo "No updated files to render."
           fi
@@ -93,15 +104,6 @@ jobs:
           # ls -lat tut
           # mkdir docs
           # cp tut/*.html docs
-          # Check for files starting with 'tut/' and copy them
-          if grep -q '^tut/' changed_files.txt; then
-          cp tut/*.html docs
-          fi
-
-          # Check for files starting with 'pres/' and copy them
-          if grep -q '^pres/' changed_files.txt; then
-          cp pres/*.html docs
-          fi
 
 
       - name: Deploy to GitHub Pages
