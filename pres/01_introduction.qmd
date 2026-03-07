@@ -306,4 +306,4 @@ ${0}
 
 . . .
 
-- AI coding tools (RStudio)
+- AI coding tools (in RStudio)
