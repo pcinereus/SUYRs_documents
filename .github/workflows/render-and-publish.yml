@@ -97,7 +97,7 @@ jobs:
 
             # Check for files starting with 'pres' and copy them
             grep -q '^pres' changed_files.txt
-            if [ $? -eq - ]; then
+            if [ $? -eq 0 ]; then
             cp pres/*.html docs
             fi
 

@@ -306,4 +306,4 @@ ${0}
 
 . . .
 
-- AI tools
+- AI coding tools

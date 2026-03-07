@@ -10,62 +10,6 @@
 }
 
 @font-face{
-  font-family:'VeteranTypewriter';
-  src:  local("☺"),
-      url("veteran_typewriter.ttf") format('truetype');
-}
-
-@font-face{
-  font-family:'Hannahs_hand';
-  src:  local("☺"),
-      url("Hannahs_Messy_Handwriting_Regular.ttf") format('truetype');
-}
-@font-face{
-  font-family:'ArchitectsDaughter';
-  src:  local("☺"),
-      url("ArchitectsDaughter-Regular.ttf") format('truetype');
-}
-
-@font-face{
-  font-family:'SpicyPotatos';
-  src:  local("☺"),
-      url("Spicy Potatos.ttf") format('truetype');
-}
-
-@font-face{
-  font-family:'KGT';
-  src:  local("☺"),
-      url("KGTeacherJordan.ttf") format('truetype');
-}
-
-@font-face{
-  font-family:'MorningBright';
-  src:  local("☺"),
-      url("Morning Bright.otf") format('truetype');
-}
-
-@font-face{
-  font-family:'PatrickHand';
-  src:  local("☺"),
-      url("PatrickHand-Regular.ttf") format('truetype');
-}
-@font-face{
-  font-family:'Caveat';
-  src:  local("☺"),
-      url("Caveat-SemiBold.ttf") format('truetype');
-}
-
-@font-face{
-  font-family:'CrayonCrumble';
-  src:  local("☺"),
-      url("DK Crayon Crumble.ttf") format('truetype');
-}
-@font-face{
-  font-family:'QuickPencil';
-  src:  local("☺"),
-      url("QuickPencil-Regular.ttf") format('truetype');
-}
-@font-face{
   font-family:'Crayone';
   src:  local("☺"),
       url("Crayone.otf") format('truetype');
@@ -168,19 +112,7 @@
   padding-left:130px;
   padding-top: 0px;
   padding-right:100px;
-  /* font-family: VeteranTypewriter,Arial, serif; */
-  /* font-family: Hannahs_hand,Arial, serif; */
-  /* font-family: ArchitectsDaughter,Arial, serif; */
-  /* font-family: SpicyPotatos,Arial, serif; */
-  /* font-family: KGT,Arial, serif; */
-  /* font-family: MorningBright,Arial, serif; */
-  /* font-family: PatrickHand,Arial, serif; */
-  /* font-family: Caveat,Arial, serif; */
-  /* font-family: CrayonCrumble,Arial, serif; */
-  /* font-family: QuickPencil,Arial, serif; */
   font-family: Crayone,Arial, serif;
-  /* font-size:22pt; */
-  /* line-height: 13pt; */
   font-size:40pt;
   line-height: 20pt;
 }
