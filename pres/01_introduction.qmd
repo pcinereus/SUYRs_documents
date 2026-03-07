@@ -6,7 +6,11 @@ date-format: "D MMMM YYYY"
 format:
   revealjs:
     embed-resources: true
-    css: ../resources/pres-style.css
+    css: ../resources/pres-style1.css
+    logo: ../resources/logo_torn.png
+    footer: https://pcinereus.github.io/SUYRs_documents/01_introduction.qmd
+    slide-number: c/t
+    show-slide-number: all
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -17,7 +21,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Course
 --------------
-
 
 <https://pcinereus.github.io/SUYRs_documents/>
 
@@ -36,7 +39,7 @@ Topics
 | Day | Topic                                                                    |
 +=====+==========================================================================+
 | 1   | Intro to Version control (git), reproducible research (quarto)           |
-|     | and setting up R environment                                             |
+|     | and AI assisted coding setting up environment                            |
 +-----+--------------------------------------------------------------------------+
 |   2 | Introduction to Bayesian analyses and (generalized) linear models (GLM)  |
 +-----+--------------------------------------------------------------------------+
@@ -56,7 +59,7 @@ Topics
 +-----+--------------------------------------------------------------------------+
 |  10 | Multivariate analyses                                                    |
 +-----+--------------------------------------------------------------------------+
-: {.striped .hover .simple-table}
+: {.striped .hover .sketch-table}
 
 Preparations
 ------------------
@@ -66,14 +69,25 @@ Preparations
 
 - R editors
   - Rstudio
+  - Positron
 
 - Version control / Collaboration
   - git/github
+
+Preparations
+------------------
 
 - Scripts and reproducible research
   - knitr
   - lintr/styler
   - Quarto
+
+Cheat sheets (ref cards) {.smaller}
+--------------------------
+
+<https://www.rstudio.com/resources/cheatsheets/>
+
+
 
 R {.smaller}
 --------------------
@@ -100,20 +114,20 @@ system("mv ../resources/rstudio-ide-0.png ../resources/rstudio-ide.png")
 
 ![](../resources/rstudio-ide.png "rstudio-ide")
 
-R studio
+R studio {.fragment}
 --------------------
 
 - browser IDE
 - integrates with R, git, bash etc
 
-<br><br>
+<br>
 
 ### Important considerations
 
-1. Rstudio is not R
-2. Avoid installing packages via RStudio
-3. Learn to use **Keybindings**: Cntl-Shift-K
-4. Use **snippets** (Tools -> Edit Code Snippets)
+- Rstudio is not R
+- **Avoid** installing packages via RStudio
+- Learn to use **Keybindings**: Cntl-Shift-K
+- Use **snippets** (Tools -> Edit Code Snippets)
 
 Packages
 ----------
@@ -123,11 +137,18 @@ Packages
 . . .
 
 - installing from CRAN
+
+::: {.callout-important}
+Be very careful doing this within an RStudio session
+:::
+
+
 ```{r installing, results='markdown', eval=FALSE}
 install.packages("tidyverse")
 ```
 
 . . .
+
 
 - installing from github
 ```{r installing-gh, results='markdown', eval=FALSE}
@@ -147,7 +168,10 @@ library("tidyverse")
 Packages - Option 1
 ----------
 
-```{r library1a, results='markdown', eval=FALSE}
+```{r}
+#| label: library1a
+#| eval: false
+#| code-line-numbers: "|8-10"
 install.packages("car")         # for regression diagnostics
 install.packages("ggfortify")   # for model diagnostics
 install.packages("DHARMa")      # for model diagnostics
@@ -214,17 +238,12 @@ install.packages("broom.mixed") # for tidy outputs from mixed models
 install.packages("tidybayes")   # for tidy outputs from mixed models
 ```
 
-and then there is `cmdstan` or `rstan` and `brms`....
+and then there is `cmdstan` or `rstan` and `brms`
 
-::: {.smaller}
+- [005_setup.html](https://pcinereus.github.io/SUYRs_documents/005_setup.html)
+- [cmdstanr](https://mc-stan.org/cmdstanr/articles/cmdstanr.html)
+- [install-brms](https://learnb4ss.github.io/learnB4SS/articles/install-brms.html)
 
-<https://pcinereus.github.io/SUYRs_documents/005_setup.html>
-
-<https://mc-stan.org/cmdstanr/articles/cmdstanr.html>
-
-<https://learnb4ss.github.io/learnB4SS/articles/install-brms.html>
-
-:::
 
 Packages
 ----------
@@ -263,17 +282,17 @@ system("mv ../resources/rmarkdown-0.png ../resources/rmarkdown.png")
 ![](../resources/rmarkdown.png)
 
 
-Cheat sheets (ref cards) {.smaller}
---------------------------
-
-https://www.rstudio.com/resources/cheatsheets/
-
-
 R revision and updates
--------------------------------
+------------------------------------
 
 - functions
+
+. . .
+
 - pipes (`|>`)
+
+. . .
+
 - snippets
 
 ````{snippets}
@@ -284,5 +303,7 @@ snippet r
 ${0}
 ```
 ````
+
+. . .
 
 - AI tools

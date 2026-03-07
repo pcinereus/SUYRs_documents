@@ -1,0 +1,608 @@
+@font-face{
+  font-family:'FFF';
+  src:  local("☺"),
+      url("FFF Tusj.ttf") format('truetype');
+}
+@font-face{
+  font-family:'CabinSketch';
+  src:  local("☺"),
+      url("CabinSketch-Bold.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'VeteranTypewriter';
+  src:  local("☺"),
+      url("veteran_typewriter.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'Hannahs_hand';
+  src:  local("☺"),
+      url("Hannahs_Messy_Handwriting_Regular.ttf") format('truetype');
+}
+@font-face{
+  font-family:'ArchitectsDaughter';
+  src:  local("☺"),
+      url("ArchitectsDaughter-Regular.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'SpicyPotatos';
+  src:  local("☺"),
+      url("Spicy Potatos.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'KGT';
+  src:  local("☺"),
+      url("KGTeacherJordan.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'MorningBright';
+  src:  local("☺"),
+      url("Morning Bright.otf") format('truetype');
+}
+
+@font-face{
+  font-family:'PatrickHand';
+  src:  local("☺"),
+      url("PatrickHand-Regular.ttf") format('truetype');
+}
+@font-face{
+  font-family:'Caveat';
+  src:  local("☺"),
+      url("Caveat-SemiBold.ttf") format('truetype');
+}
+
+@font-face{
+  font-family:'CrayonCrumble';
+  src:  local("☺"),
+      url("DK Crayon Crumble.ttf") format('truetype');
+}
+@font-face{
+  font-family:'QuickPencil';
+  src:  local("☺"),
+      url("QuickPencil-Regular.ttf") format('truetype');
+}
+@font-face{
+  font-family:'Crayone';
+  src:  local("☺"),
+      url("Crayone.otf") format('truetype');
+}
+
+
+
+
+
+
+
+.reveal div.sourceCode {
+    border: none !important;
+    border-radius: none !important;
+}
+
+/* .reveal > .slides { */
+/*   background-image: url(NotebookPaper.jpg) !important; */
+/*   background-size:cover; */
+/*   background-position:center; */
+/* } */
+/* .reveal { */
+/*     background: black; */
+/* } */
+
+
+.reveal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  /* background-image: url('../resources/pexels-pixabay-235985.jpg'); */
+  background-image: url('../resources/Designer1.png');
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  opacity: 0.5;
+  z-index: -1;
+}
+
+/* .reveal .slides::after { */
+.reveal .slide-logo {
+  display: block;
+  position: fixed;
+  /* right: unset !important; */
+  top: -50px !important;
+  left: -46px !important;
+  height: 180px !important;
+  /* width: 100x !important; */
+  max-width: unset !important;
+  max-height: unset !important;
+  /* content: ""; */
+  /* position: fixed; */
+  /* bottom: 10px; /\* Adjust the distance from the bottom *\/ */
+  /* left: 30px; /\* Adjust the distance from the right *\/ */
+  /* width: 450px; /\* Set the width of the image *\/ */
+  /* height: 100px; /\* Set the height of the image *\/ */
+  /* background-image: url('../resources/logo1.png'); /\* Path to the image *\/ */
+  /* background-size: contain; /\* Ensure the image fits within the dimensions *\/ */
+  /* background-repeat: no-repeat; /\* Prevent the image from repeating *\/ */
+  /* background-position: left; */
+  /* opacity: 0.8; /\* Optional: Adjust the transparency *\/ */
+  /* pointer-events: none; /\* Prevent the image from interfering with clicks *\/ */
+  z-index: 40;
+}
+
+
+.slides > #title-slide h1 {
+  font-family: FFF, Arial, serif;
+}
+
+.slides h1 {
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+}
+
+.slide h1 {
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    text-align: center;
+}
+.quarto-title-author-name, .date {
+  font-family: CabinSketch, Arial, serif;
+}
+
+
+.reveal > .slides {
+  padding-left:130px;
+  padding-top: 0px;
+  padding-right:100px;
+  /* font-family: VeteranTypewriter,Arial, serif; */
+  /* font-family: Hannahs_hand,Arial, serif; */
+  /* font-family: ArchitectsDaughter,Arial, serif; */
+  /* font-family: SpicyPotatos,Arial, serif; */
+  /* font-family: KGT,Arial, serif; */
+  /* font-family: MorningBright,Arial, serif; */
+  /* font-family: PatrickHand,Arial, serif; */
+  /* font-family: Caveat,Arial, serif; */
+  /* font-family: CrayonCrumble,Arial, serif; */
+  /* font-family: QuickPencil,Arial, serif; */
+  font-family: Crayone,Arial, serif;
+  /* font-size:22pt; */
+  /* line-height: 13pt; */
+  font-size:40pt;
+  line-height: 20pt;
+}
+
+.slides > .slide h2 {
+    font-size: 60px;
+    line-height: 65px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+.slide > h2 {
+    font-size: 60px;
+    line-height: 65px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+.slides > .slide h3 {
+    font-size: 50px;
+    line-height: 35px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+.slide > h3 {
+    font-size: 50px;
+    line-height: 35px;
+    letter-spacing: -2px;
+    font-family: CabinSketch, Arial, serif;
+    color: #3E769A;
+    background: url(PikPng.com_paint-brush-stroke-png_2380207.png);
+    background-repeat: no-repeat;
+    background-size: 100% 95%;
+    padding: 8px 0;
+    padding-left:20px;
+    background-position:0% 50%;
+    display: table;
+}
+
+.slide {
+    color: #696969;
+}
+
+.reveal .slide ul, .reveal .slide ol {
+    margin-bottom: 0.0em !important;
+}
+.reveal .slide ul li, .reveal .slide ol li {
+    margin-top: 0.0em !important;
+    margin-bottom: 0.0em !important;
+}
+.reveal .slide ul {
+    list-style: none;
+}
+.reveal .slide ul > li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(bullet2.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 0.4em;
+}
+.reveal .slide ul > li > ul > li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(bullet1.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 0.4em;
+}
+.reveal .slide ul > li > ul > li > ul > li::before {
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    background-image: url(bullet3.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    margin-right: 0.4em;
+}
+
+
+
+/*Two tone blue*/
+table.simple-table  {
+    font-size:70%;
+    background:#e8f1f6;
+    text-align:left;
+    border:0;
+    border-spacing:0;
+    margin: 0;
+}
+table.simple-table th {
+    display:table-header;
+    color:white;
+    font-size:1em;
+    font-weight: bold;
+    border:1.0pt solid rgb(0,0,127);
+    padding:3.6pt 5pt;
+    background:rgb(0,120,230) none repeat scroll 0% 50%;
+}
+table.simple-table td {
+    font-size:0.8em;
+    padding:3pt;
+    border-left: 1.0pt solid rgb(0,0,127);
+    border-right: 1.0pt solid rgb(0,0,127);
+    border-bottom: 1.0pt solid rgb(0,0,127)
+}
+table.simple-table ul {
+    margin-left: 1.5em;
+    line-height: 1.2em;
+}
+table.simple-table ul li {
+    padding: 0em;
+}
+table.simple-table ul li::marker {
+    vertical-align: top;
+    content: "-";
+    font-family:VeteranTypewriter ;
+    font-size: unset !important;
+    letter-spacing: 10px;
+}
+
+
+.reveal ol, .reveal dl, .reveal ul {
+    display: block;
+    text-align: left;
+    margin: 0 0 0 1em;
+}
+.slide strong {
+    color: #e17727 !important;
+}
+
+.cell{
+    /* width: calc(100% - 200px); */
+    font-size:27pt;
+}
+
+div.sourceCode {
+    margin-left: calc(calc(0em + -2px) + 2px);
+    background-color: #fff !important;
+}
+pre.sourceCode>code.sourceCode {
+    padding: 0;
+}
+
+.reveal .slide-number {
+    top: 10px !important;
+    right: 15px !important;
+    font-size: 30pt !important;
+    font-family: FFF !important;
+    color: #3E769A !important;
+}
+
+.cell:has(>div> .r),  .cell:has(>div> .txt), .cell:has(>div> .elisp), .cell:has(>div> .bash) , .cell:has(>div> .bash1), .cell:has(>div> .julia){
+    margin-bottom: 0.5em;
+    border: 1px solid #d6d6d6;
+    /* width: calc(100% - 200px); */
+}
+div.sourceCode:has(> .r, .bash, .bash1, .julia) {
+    margin: 0 0 0px;
+    padding: 0;
+    padding-left: 3px;
+    /* border: 1px solid #d6d6d6;  /\**\/ */
+    /* border-left: 5px solid #3E769A; */
+    /* background: #FFFFE4 !important; */
+    overflow: hidden;
+    width: auto;
+    color: var(--bs-body-color);
+    border-bottom:none;
+}
+pre.r {
+    color: var(--bs-body-color) !important;
+    border-radius: 0rem;
+    background: #FFFFE4 !important;
+    border-left: 5px solid #3E769A;
+    padding-top: 2px;
+}
+
+.reveal div.sourceCode {
+    /* margin: 0; */
+    overflow: unset !important;
+}
+.reveal p {
+    padding-bottom: 2pt !important;
+    margin-bottom: 2pt !important;
+}
+.reveal pre {
+    width: inherit !important;
+}
+.reveal pre.numberSource {
+    padding-left: 4px !important;
+    margin-left: 2em !important;
+}
+.reveal pre code {
+    /* background-color: unset !important; */
+    /* color: #222; */
+    overflow: unset !important;
+}
+.reveal pre > code:not(:first-child).fragment {
+    position: absolute;
+    top: 2px !important;
+    left: 4px !important;
+    width: 100%;
+    box-sizing: border-box;
+}
+pre.numberSource code > span {
+    position: relative;
+    left: -4.5em !important;
+    counter-increment: source-line;
+}
+
+.reveal img.r-stretch {
+    max-width: none !important;
+    max-height: none !important;
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    max-width: 85%;
+}
+
+
+.bash>div.cell-output>pre {
+    border-left: 3px;
+    border-left-style: solid;
+    border-left-color: #ccc;
+}
+
+pre.bash {
+    background-color: black !important;
+}
+div.bash>.cell-output {
+    background-color: black;
+}
+div.bash>.cell-output>pre code {
+    color: #c9c9c9;
+}
+
+pre.bash > code.sourceCode > span, pre.bash1 > code.sourceCode > span {
+    color: white;
+}
+
+p .bash code:not(.sourceCode), li .bash code:not(.sourceCode), td .bash code:not(.sourceCode) {
+    background-color: black;
+    padding: 0.2em;
+}
+
+.bash code span.fu, .bash code span.at, .bash code span.st , .bash code span.bu, .bash code span.ex, .bash code span.op  {
+    color: white;
+}
+
+.bash1>div.cell-output>pre {
+    border-left: 3px;
+    border-left-style: solid;
+    border-left-color: #ccc;
+}
+
+pre.bash1 {
+    background-color: black !important;
+}
+div.bash1>.cell-output {
+    background-color: black;
+}
+div.bash1>.cell-output>pre code {
+    color: #c9c9c9;
+}
+
+pre.bash1 > code.sourceCode > span, pre.bash11 > code.sourceCode > span {
+    color: white;
+}
+
+p .bash1 code:not(.sourceCode), li .bash1 code:not(.sourceCode), td .bash1 code:not(.sourceCode) {
+    background-color: black;
+    padding: 0.2em;
+}
+
+.bash1 code span.fu, .bash1 code span.at, .bash1 code span.st , .bash1 code span.bu, .bash1 code span.ex, .bash1 code span.op  {
+    color: white;
+}
+
+
+/* Sketchy table  */
+
+.sketch-table {
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: auto;
+  /* font-size: 36px; */
+  font-size:50%;
+}
+
+/* cells */
+
+.sketch-table th,
+.sketch-table td {
+  padding: 12px 28px;
+  position: relative;
+}
+
+/* horizontal grid lines */
+
+.sketch-table th::before,
+.sketch-table td::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -3px;
+  height: 6px;
+
+  background-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' width='200' height='6'>\
+<path d='M0 3 Q20 0 40 3 T80 3 T120 3 T160 3 T200 3' stroke='black' fill='none' stroke-width='2'/>\
+</svg>");
+
+  background-repeat: repeat-x;
+  background-size: 200px 6px;
+}
+
+/* vertical grid lines */
+
+.sketch-table th::after,
+.sketch-table td::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: -3px;
+  width: 6px;
+
+  background-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' width='6' height='200'>\
+<path d='M3 0 Q0 20 3 40 T3 80 T3 120 T3 160 T3 200' stroke='black' fill='none' stroke-width='2'/>\
+</svg>");
+
+  background-repeat: repeat-y;
+}
+
+/* TOP BORDER */
+
+.sketch-table thead th {
+  border-top: 3px solid transparent;
+}
+
+.sketch-table thead th::marker {}
+
+.sketch-table thead th {
+  box-shadow: inset 0 6px 0 -3px transparent;
+}
+
+.sketch-table thead th::before {
+  /* keep header bottom border */
+}
+
+/* draw top border separately */
+
+.sketch-table {
+  position: relative;
+}
+
+.sketch-table::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -3px;
+  height: 6px;
+
+  background-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' width='200' height='6'>\
+<path d='M0 3 Q20 0 40 3 T80 3 T120 3 T160 3 T200 3' stroke='black' fill='none' stroke-width='2'/>\
+</svg>");
+
+  background-repeat: repeat-x;
+  background-size: 200px 6px;
+}
+
+/* LEFT BORDER */
+
+.sketch-table::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: -3px;
+  width: 6px;
+
+  background-image: url("data:image/svg+xml,\
+<svg xmlns='http://www.w3.org/2000/svg' width='6' height='200'>\
+<path d='M3 0 Q0 20 3 40 T3 80 T3 120 T3 160 T3 200' stroke='black' fill='none' stroke-width='2'/>\
+</svg>");
+
+  background-repeat: repeat-y;
+}
