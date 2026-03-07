@@ -90,9 +90,13 @@ jobs:
             cat changed_files.txt
 
             # Check for files starting with 'tut' and copy them
+              echo "tut1"
+
             grep -q "^tut" changed_files.txt
+              echo "tut2"
+
             if [ $? -eq 0 ]; then
-              echo "tut"
+              echo "tut3"
               cp tut/*.html docs
             fi
 
