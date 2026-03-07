@@ -87,13 +87,17 @@ jobs:
             docker run --privileged --rm -v /var/run/docker.sock:/var/run/docker.sock -v ${{ github.workspace }}:${{ github.workspace }} -e HOST_PWD=${{ github.workspace }} -w ${{ github.workspace }} ghcr.io/${{ env.IMAGE_NAME }}:latest \
             bash -c "cat changed_files.txt | xargs -I {} quarto render {}"
 
+            cat changed_files.txt
+
             # Check for files starting with 'tut' and copy them
-            if grep -q '^tut' changed_files.txt; then
+            grep -q '^tut' changed_files.txt
+            if [ $? -eq 0 ]; then
             cp tut/*.html docs
             fi
 
             # Check for files starting with 'pres' and copy them
-            if grep -q '^pres' changed_files.txt; then
+            grep -q '^pres' changed_files.txt
+            if [ $? -eq - ]; then
             cp pres/*.html docs
             fi
 
