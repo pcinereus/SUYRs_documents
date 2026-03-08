@@ -7,7 +7,7 @@ format:
   revealjs:
     embed-resources: true
     css: ../resources/pres-style1.css
-    logo: ../resources/logo_torn.png
+    logo: ../resources/logo_torn3.png
     footer: https://pcinereus.github.io/SUYRs_documents/01_introduction.qmd
     slide-number: c/t
     show-slide-number: all

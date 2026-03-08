@@ -44,7 +44,7 @@
   width: 100%;
   height: 100%;
   /* background-image: url('../resources/pexels-pixabay-235985.jpg'); */
-  background-image: url('../resources/Designer1.png');
+  background-image: url('../resources/Designer2.png');
   background-size: 100% 100%;
   background-position: center;
   background-repeat: no-repeat;
@@ -57,9 +57,9 @@
   display: block;
   position: fixed;
   /* right: unset !important; */
-  top: -50px !important;
-  left: -46px !important;
-  height: 180px !important;
+  top: -14px !important;
+  left: 0px !important;
+  height: 100px !important;
   /* width: 100x !important; */
   max-width: unset !important;
   max-height: unset !important;
