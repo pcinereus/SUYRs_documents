@@ -628,12 +628,179 @@ Summary and vectorised functions
 Summary and vectorised functions
 ------------------
 
+```{tikz}
+%| label: tikz_summary
+%| engine: tikz
+%| echo: false
+%| cache: true
+%| class: tikz
+%| out-width: 40%
+%| engine-opts:
+%|   template: "../resources/tikz-standalone.tex"
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric, shapes.multipart,patterns}
+\tikzstyle{Title} = [font={\fontspec[Scale=1.5]{ArchitectsDaughter-Regular}}]
+\tikzstyle{code} = [font=\ttfamily]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
+
+\tikzset{
+    table/.style={
+        matrix of nodes,
+        row sep=-\pgflinewidth,
+        column sep=-\pgflinewidth,
+        nodes={
+            rectangle,
+            draw=white,
+            align=center,
+            fill=black!20
+        },
+        minimum height=1.5em,
+        text depth=0.5ex,
+        text height=2ex,
+        nodes in empty cells,
+%%
+        %%every even row/.style={
+        %%    nodes={fill=gray!30}
+        %%},
+        column 5/.style={
+            nodes={
+                text width=4em,
+                fill=blue!40
+            }
+        },
+        row 1/.style={
+            nodes={
+                fill=black!20,
+                text=white,
+                font=\bfseries
+            }
+        }
+    }
+}
+
+\begin{tikzpicture}
+
+\matrix (first) [table,text width=4em]{
+\\
+\\
+\\
+\\
+};
+
+\matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
+|[fill=blue!60!black!60]|\\
+};
+
+%\shadedraw[left color=gray,right color=green, draw=green!50!black]
+%(0,0) -- (3mm,0mm) arc (0:30:3mm) -- cycle;
+
+%\shadedraw[draw,left color=red, right color=blue] (0,1) -- (2,0.5) -- (2,0.75) -- (3,0() -- (2,-0.75) -- (2,-0.5) -- (0,-1) -- cycle;
+
+%\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) --
+\shadedraw[draw,left color=black!20, right color=blue!60] ($(first.north east) + (0,-0.2)$) --
+%\draw[draw,fill=blue!60] ($(first.north east) + (0,-0.2)$) --
+ ($($(first.north east) !0.75! (first.east)$) +(4,0)$) --
+ ($($(first.north east) !0.5! (first.east)$) +(4,0)$) -- (6,0) --
+ ($($(first.south east) !0.5! (first.east)$) +(4,0)$) --
+ ($($(first.south east) !0.75! (first.east)$) +(4,0)$) --
+ ($(first.south east) + (0,0.2)$) -- cycle;
+\node [anchor=center,Title] at (3,0) (text) {\begin{minipage}{2cm}summary\\function\end{minipage}};
+%\draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {summaryFnct()} ++(second);
+
+\end{tikzpicture}
+```
+
+<!--
 ![](../tut/04_data_wrangling_files/figure-html/tikz_summary-1.png){width='50%'}
+-->
 
 - take a vector and return a **single value**
      - e.g. `mean()`
 
+```{tikz}
+%| label: tikz_vectorised
+%| engine: tikz
+%| echo: false
+%| cache: true
+%| out-width: 40%
+%| class: tikz
+%| engine-opts:
+%|   template: "../resources/tikz-standalone.tex"
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric, shapes.multipart,patterns}
+\tikzstyle{Title} = [font={\fontspec[Scale=1.5]{ArchitectsDaughter-Regular}}]
+\tikzstyle{code} = [font=\ttfamily]
+\tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt},thick]
+
+\tikzset{
+    table/.style={
+        matrix of nodes,
+        row sep=-\pgflinewidth,
+        column sep=-\pgflinewidth,
+        nodes={
+            rectangle,
+            draw=white,
+            align=center,
+            fill=black!20
+        },
+        minimum height=1.5em,
+        text depth=0.5ex,
+        text height=2ex,
+        nodes in empty cells,
+%%
+        %%every even row/.style={
+        %%    nodes={fill=gray!30}
+        %%},
+        column 5/.style={
+            nodes={
+                text width=4em,
+                fill=blue!40
+            }
+        },
+        row 1/.style={
+            nodes={
+                fill=black!20,
+                text=white,
+                font=\bfseries
+            }
+        }
+    }
+}
+
+\begin{tikzpicture}
+
+\matrix (first) [table,text width=4em]{
+\\
+\\
+\\
+\\
+};
+
+\matrix (second) [right=5cm of first,anchor=west,table,text width=4em]{
+|[fill=blue!60!black!60]|\\
+|[fill=blue!60!black!60]|\\
+|[fill=blue!60!black!60]|\\
+|[fill=blue!60!black!60]|\\
+};
+
+%\shadedraw[left color=gray,right color=green, draw=green!50!black]
+%(0,0) -- (3mm,0mm) arc (0:30:3mm) -- cycle;
+
+%\shadedraw[draw,left color=red, right color=blue] (0,1) -- (2,0.5) -- (2,0.75) -- (3,0() -- (2,-0.75) -- (2,-0.5) -- (0,-1) -- cycle;
+
+\shadedraw[draw,left color=black!20, right color=blue!60] ($($(first.north east) !0.5! (first.east)$) +(0,0)$) --
+ ($($(first.north east) !0.5! (first.east)$) +(4,0)$) --
+ ($($(first.north east) !0.25! (first.east)$) +(4,0)$) -- (6,0) --
+ ($($(first.south east) !0.25! (first.east)$) +(4,0)$) --
+ ($($(first.south east) !0.5! (first.east)$) +(4,0)$) --
+ ($($(first.south east) !0.5! (first.east)$) +(0,0)$) -- cycle;
+\node [anchor=center,Title] at (3,0) (text) {\begin{minipage}{2cm}vectorized\\function\end{minipage}};
+%\draw[-latex,line width=8pt] (first) -- node[code,above,scale=2] {vectorizedFnct()} ++(second);
+
+\end{tikzpicture}
+```
+
+<!--
 ![](../tut/04_data_wrangling_files/figure-html/tikz_vectorised-1.png){width='50%'}
+-->
 
 - take a vector and return a **vector**
      - e.g. `log()`
