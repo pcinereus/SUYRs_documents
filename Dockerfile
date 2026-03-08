@@ -167,6 +167,10 @@ RUN mkdir -p /usr/share/fonts/Noto-Sans &&\
 COPY resources/Ubuntu.zip /tmp/Ubuntu.zip
 RUN mkdir -p /usr/share/fonts/ubuntu && \
   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
+
+RUN mkdir -p /usr/share/fonts/Complete-in-Him
+COPY "resources/Complete in Him.ttf" /usr/share/fonts/Complete-in-Him
+
 RUN fc-cache -fv && fc-list
 
 RUN git config --global user.name "pcinereus"
