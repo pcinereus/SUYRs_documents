@@ -96,13 +96,13 @@ jobs:
               echo "No files starting with 'tut' found in changed_files.txt."
             fi
 
-
-            # # Check for files starting with 'pres' and copy them
-            grep -q "^pres" changed_files.txt
-            if [ $? -eq 0 ]; then
-              echo "pres"
+            # Check for files starting with 'pres' and copy them
+            if grep -q '^pres changed_files.txt; then
               cp pres/*.html docs
+            else
+              echo "No files starting with 'pres found in changed_files.txt."
             fi
+
 
           else
             echo "No updated files to render."
