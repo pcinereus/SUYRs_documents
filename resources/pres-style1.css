@@ -362,7 +362,7 @@ pre.numberSource code > span {
 }
 
 section {
-    max-width: 85%;
+    max-width: 90%;
 }
 
 
@@ -537,4 +537,17 @@ p .bash1 code:not(.sourceCode), li .bash1 code:not(.sourceCode), td .bash1 code:
 </svg>");
 
   background-repeat: repeat-y;
+}
+
+
+.grid-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal-width columns */
+  gap: 10px; /* Spacing between grid items */
+  list-style: none; /* Remove default bullet styles */
+  padding: 0; /* Remove default padding */
+}
+
+.grid-list li {
+  margin: 0; /* Remove default margin */
 }
