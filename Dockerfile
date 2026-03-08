@@ -169,7 +169,7 @@ RUN mkdir -p /usr/share/fonts/ubuntu && \
   unzip /tmp/Ubuntu.zip -d /usr/share/fonts/ubuntu
 
 RUN mkdir -p /usr/share/fonts/Complete-in-Him
-COPY "resources/Complete in Him.ttf" "/usr/share/fonts/Complete-in-Him/Complete in Him.ttf"
+COPY ["resources/Complete in Him.ttf" "/usr/share/fonts/Complete-in-Him/Complete in Him.ttf"]
 
 RUN fc-cache -fv && fc-list
 
