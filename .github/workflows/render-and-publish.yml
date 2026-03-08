@@ -90,15 +90,12 @@ jobs:
             cat changed_files.txt
 
             # Check for files starting with 'tut' and copy them
-              echo "tut1"
-
-            grep -q "^tut" changed_files.txt
-              echo "tut2"
-
-            if [ $? -eq 0 ]; then
-              echo "tut3"
+            if grep -q '^tut' changed_files.txt; then
               cp tut/*.html docs
+            else
+              echo "No files starting with 'tut' found in changed_files.txt."
             fi
+
 
             # # Check for files starting with 'pres' and copy them
             grep -q "^pres" changed_files.txt
