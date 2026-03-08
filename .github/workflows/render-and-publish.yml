@@ -97,7 +97,7 @@ jobs:
             fi
 
             # Check for files starting with 'pres' and copy them
-            if grep -q '^pres changed_files.txt; then
+            if grep -q '^pres' changed_files.txt; then
               cp pres/*.html docs
             else
               echo "No files starting with 'pres found in changed_files.txt."
