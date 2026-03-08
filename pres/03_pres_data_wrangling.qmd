@@ -43,7 +43,7 @@ load(file = "../data/manipulationDatasets.RData")
 #| eval: true
 #| echo: false
 #| cache: false
-load(file = "../../public/data/manipulationDatasets.RData")
+load(file = "../data/manipulationDatasets.RData")
 ```
 
 ```{tikz}
