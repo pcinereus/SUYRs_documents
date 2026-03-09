@@ -7,8 +7,13 @@ format:
   revealjs:
     embed-resources: true
     auto-stretch: false
-    css: ../resources/pres-style.css
     margin: 0
+    css: ../resources/pres-style1.css
+    logo: ../resources/logo_torn3.png
+    footer: https://pcinereus.github.io/SUYRs_documents/003_data_wrangling.qmd
+    slide-number: c/t
+    show-slide-number: all
+
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -18,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options(tinytex.engine = "xelatex")
 
 ```
-            
+
 
 # Background
 
@@ -33,7 +38,7 @@ Required
 
 Version control
 -----------------
-  
+
 ```{tikz}
 %| label: fig1
 %| engine: tikz
@@ -44,9 +49,9 @@ Version control
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
 \definecolor{color_local}{rgb}{0.9,0.9,0.2}
@@ -56,7 +61,7 @@ Version control
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -84,7 +89,7 @@ Version control
 ```
 
 
-## Version control 
+## Version control
 
 >- large space requirements
 >- difficult to collaborate
@@ -101,9 +106,9 @@ Version control
 %| class: tikz
 %| engine-opts:
 %|   template: "../resources/tikz-standalone.tex"
-\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}] 
+\tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}] 
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
 \definecolor{color_local}{rgb}{0.9,0.9,0.2}
@@ -113,7 +118,7 @@ Version control
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 \begin{tikzpicture}
@@ -152,7 +157,7 @@ Version control
 \node [fileText] at ($(F3) + (0.75,-2.3)$) {todo.txt};
 
 %\file{6,-3}{\begin{minipage}{1.3cm}\textcolor{black}{Title}\\[1em]\textcolor{black}{content}\end{minipage}}{F3a}
-\node [anchor=west,text=green!50!black!50] at (6,-3) (F3a) {\#\#\#\#\#\#}; 
+\node [anchor=west,text=green!50!black!50] at (6,-3) (F3a) {\#\#\#\#\#\#};
 \node [fileText] at ($(F3 |- F3a) + (0.75,-0.5)$) {fileA.doc};
 \draw[->,very thick,color=green!50!black!50] (F3a) -- ($(F2a) +(1.6,-0.5)$);
 
@@ -177,12 +182,12 @@ Version control
 ## Git
 
 
-## Git - overview 
+## Git - overview
 
 >- Git - is a **distributed version control system**
 
 >- Git - stores **snapshots** of the filesystem
-	- **commits**
+    - **commits**
 
 . . .
 
@@ -201,9 +206,9 @@ Version control
 \usetikzlibrary{arrows.meta}
 
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}] 
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_branch}{rgb}{1,0.8,0.4}
 \definecolor{color_head}{HTML}{6495ED} %
@@ -220,9 +225,9 @@ Version control
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -266,7 +271,7 @@ Version control
 \node [#1,rectangle,fill=color_HEAD,draw=black!20!color_HEAD,line width=2pt,refText,minimum height=0.8cm] (rHEAD) {origin/HEAD};
 }
 
-\begin{tikzpicture} 
+\begin{tikzpicture}
 
 \commit{}{A}{color_inactive}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
@@ -283,9 +288,9 @@ Version control
 
 - The system consists of **three trees**:
 
-. . . 
+. . .
 
-. . . 
+. . .
 
 ```{tikz}
 %| label: Fig0a
@@ -304,9 +309,9 @@ Version control
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
 \tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}] 
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -319,9 +324,9 @@ Version control
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -361,7 +366,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -380,7 +385,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -389,7 +394,7 @@ child { node {file 1}};
 
 %\node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 %\begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-%\node {} 
+%\node {}
 %child {node {file 2}}
 %child { node {file 1}};
 %\end{tikzpicture}
@@ -398,13 +403,13 @@ child { node {file 1}};
 
 %\node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 %\begin{tikzpicture}[dirtree,TREE]
-%\node {} 
+%\node {}
 %child {node {file 2}}
 %child { node {file 1}};
 %\end{tikzpicture}
 %};
 %\draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + %(1.3cm,0.2cm)$);
-%\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+%\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 
@@ -451,9 +456,9 @@ Files can be in one of **four states**:
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
 \tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}] 
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -466,9 +471,9 @@ Files can be in one of **four states**:
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -508,7 +513,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -527,7 +532,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -536,7 +541,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -545,17 +550,17 @@ child { node {file 1}};
 
 %\node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 %\begin{tikzpicture}[dirtree,TREE]
-%\node {} 
+%\node {}
 %child {node {file 2}}
 %child { node {file 1}};
 %\end{tikzpicture}
 %};
 %\draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-%\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+%\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 
-Git - overview 
+Git - overview
 -----
 
 Files can be in one of **four states**:
@@ -582,9 +587,9 @@ shadings,shapes.geometric,patterns}
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
 \tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}] 
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -597,9 +602,9 @@ shadings,shapes.geometric,patterns}
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -639,7 +644,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -658,7 +663,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -667,7 +672,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -676,13 +681,13 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 
@@ -716,9 +721,9 @@ Files can be in one of **four states**:
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]
 \tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
-\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
-\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}] 
-\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}] 
+\tikzstyle{hashText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
+\tikzstyle{commentText} = [font={\fontspec[Scale=1.0]{Inconsolata Nerd Font}}]
+\tikzstyle{refText} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}
@@ -731,9 +736,9 @@ Files can be in one of **four states**:
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -773,7 +778,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -792,7 +797,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child [text=color_workspace]{node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -801,7 +806,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -810,19 +815,19 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 
 
 
-## Git - overview 
+## Git - overview
 
 ::: columns
 ::: {.column width="40%"}
@@ -842,8 +847,8 @@ child { node {file 1}};
 \usetikzlibrary{arrows.meta}%
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}] %
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]%
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]% 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]% 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]%
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]%
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}%
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}%
@@ -851,14 +856,14 @@ child { node {file 1}};
 \definecolor{color_remote}{rgb}{1,0.55,0.15}%
 \definecolor{color_main}{rgb}{0.36,0.27,0.87}%
 \definecolor{color_head}{HTML}{6495ED} %\definecolor{color_head}{rgb}{0.26,0.65,0.91}%
- 
+
 % A template for making the storage symbol
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }%
@@ -898,7 +903,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }%
 
@@ -917,7 +922,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -926,7 +931,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,text=gray,color=gray]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
@@ -935,13 +940,13 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 :::
@@ -957,7 +962,7 @@ child { node {file 1}};
 %| engine-opts:
 %|   template: "../resources/tikz-commit.tex"
 
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \commit{}{A}{color_commit}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \end{tikzpicture}
@@ -986,8 +991,8 @@ child { node {file 1}};
 \usetikzlibrary{arrows.meta}%
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}] %
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]%
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]% 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]% 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]%
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]%
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}%
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}%
@@ -1000,9 +1005,9 @@ child { node {file 1}};
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -1042,7 +1047,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -1060,7 +1065,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child [text=color_workspace]{node {file 2}}
 child [text=color_workspace]{ node {file 1}};
@@ -1070,7 +1075,7 @@ child [text=color_workspace]{ node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,color=gray,text=gray]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child {node {file 1}};
@@ -1080,24 +1085,24 @@ child {node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 2}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 2};
 
 \node [anchor=north west] at ($(L0) +(-1.2cm,-1cm)$)  (L1) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L1.north) + (1.3cm,-0.4cm)$)  -- ($(L1.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 1};  
+\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 1};
 \end{tikzpicture}
 ```
 :::
@@ -1114,7 +1119,7 @@ child { node {file 1}};
 %| engine-opts:
 %|   template: "../resources/tikz-commit.tex"
 
-\begin{tikzpicture} 
+\begin{tikzpicture}
 
 \commit{}{A}{color_inactive}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
@@ -1145,8 +1150,8 @@ child { node {file 1}};
 \usetikzlibrary{arrows.meta}%
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}] %
 \tikzstyle{CODE} = [font={\fontspec[Scale=2]{Inconsolata Nerd Font}}]%
-\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]% 
-\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]% 
+\tikzstyle{TREE} = [font={\fontspec[Scale=1.5]{Inconsolata Nerd Font}}]%
+\tikzstyle{fileText} = [font={\fontspec[Scale=1]{Inconsolata Nerd Font}}]%
 
 \definecolor{color_workspace}{rgb}{0.12,0.6,0.51}%
 \definecolor{color_index}{rgb}{0.78,0.86,0.27}%
@@ -1159,9 +1164,9 @@ child { node {file 1}};
 \newcommand{\state}[3]{
 \draw (#1) node [draw=none,fill=#2,shape=circle,minimum width=2cm] (#3) {
 \begin{tikzpicture}
-\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm); 
-\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm); 
+\node [draw=white, fill=white,shape=cylinder,shape aspect=1.3 ,shape border rotate=90,minimum height=1.6cm,minimum width=1.5cm] at (0,0) (Cylinder) {};				\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.1cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.5cm)$) arc (-180:0:0.8cm and 0.2cm);
+\draw[draw=#2,very thick,line width=0.1cm,anchor=north west] ($(Cylinder.north west) +(-0.05cm,-0.9cm)$) arc (-180:0:0.8cm and 0.2cm);
 \end{tikzpicture}
 };
 }
@@ -1201,7 +1206,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 \newcommand{\file}[3] {
 \coordinate (#3) at (#1);
 \draw [anchor=top left](#1) rectangle ++(1.5,-2);
-\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle; 
+\draw [fill=color_workspace]($(#1) +(1.5,0)$) -- ++(0,-0.5) --++(-0.5,0.5) -- cycle;
 \node [anchor=north west,fileText] at ($(#1) +(0,-0.5)$) {#2};
 }
 
@@ -1220,7 +1225,7 @@ edge from parent path={(\tikzparentnode\tikzparentanchor) |- (\tikzchildnode\tik
 
 \node [anchor=north west] at ($(W) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child [text=color_workspace]{ node {file 3}}
 child [text=color_workspace]{node {file 2}}
 child { node {file 1}};
@@ -1230,7 +1235,7 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(I) +(-1cm,-1cm)$)  (W0) {
 \begin{tikzpicture}[dirtree,TREE,color=gray,text=gray]
-\node {} 
+\node {}
 child [text=color_index]{ node {file 3}}
 child [text=color_index]{ node {file 2}}
 child { node {file 1}};
@@ -1240,35 +1245,35 @@ child { node {file 1}};
 
 \node [anchor=north west] at ($(L) +(-1cm,-1cm)$)  (L0) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L0.north) + (1.3cm,-0.4cm)$)  -- ($(L0.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 3}; 
+\node [TREE,anchor=west] at ($(L0) +(1.5,-0.1)$) {committed snapshot 3};
 
 \node [anchor=north west] at ($(L0) +(-1.2cm,-1cm)$)  (L1) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child { node {file 3}}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L1.north) + (1.3cm,-0.4cm)$)  -- ($(L1.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 2}; 
+\node [TREE,anchor=west] at ($(L1) +(1.5,-0.1)$) {committed snapshot 2};
 
 \node [anchor=north west] at ($(L1) +(-1.2cm,-1cm)$)  (L2) {
 \begin{tikzpicture}[dirtree,TREE]
-\node {} 
+\node {}
 child {node {file 2}}
 child { node {file 1}};
 \end{tikzpicture}
 };
 \draw[decorate,decoration={brace,amplitude=5pt},very thick] ($(L2.north) + (1.3cm,-0.4cm)$)  -- ($(L2.south) + (1.3cm,0.2cm)$);
-\node [TREE,anchor=west] at ($(L2) +(1.5,-0.1)$) {committed snapshot 1}; 
+\node [TREE,anchor=west] at ($(L2) +(1.5,-0.1)$) {committed snapshot 1};
 
 \end{tikzpicture}
 ```
@@ -1285,7 +1290,7 @@ child { node {file 1}};
 %| engine-opts:
 %|   template: "../resources/tikz-commit.tex"
 
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \commit{}{A}{color_inactive}{}{}
 \draw [-,line width=3pt,draw=black!60] (A) -- ++(-1,0);
 \commit{right = 1cm of A}{B}{color_inactive}{}{}
@@ -1356,14 +1361,14 @@ Git - overview
 
 ```
 
- 
+
 # Git in depth
 
-## Git - configuration 
+## Git - configuration
 
 This is a **once off action** (_per machine_)
 
->- define who you are 
+>- define who you are
 
 . . .
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
@@ -1382,9 +1387,9 @@ git config --global init.defaultBranch main
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE}
 git config --global --list
 ```
- 
 
-## Git - configuration 
+
+## Git - configuration
 
 Or within R (via the [usethis](https://usethis.r-lib.org/articles/articles/usethis-setup.html) _package_)
 
@@ -1401,13 +1406,14 @@ gert::git_config_global()
 
 
 ## Git - new repository
-  
+
 ```{r, engine='R',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE}
-unlink('~/tmp/Test_repo', recursive=TRUE, force=TRUE)
+if (dir.exists("~/tmp/Test_repo"))
+  unlink('~/tmp/Test_repo', recursive=TRUE, force=TRUE)
 ```
 
 ```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE}
-mkdir ~/tmp/Test_repo
+mkdir -p ~/tmp/Test_repo
 cd ~/tmp/Test_repo
 ```
 
@@ -1419,7 +1425,7 @@ git init
 ### RStudio
 
 ```{bash, echo=FALSE, eval=TRUE, include=FALSE}
-convert resources/RStudio_NewProject2a.png -resize 250x resources/RStudio_NewProject2a_small.png 
+convert resources/RStudio_NewProject2a.png -resize 250x resources/RStudio_NewProject2a_small.png
 convert resources/RStudio_NewProject3a.png -resize 250x resources/RStudio_NewProject3a_small.png
 ```
 
@@ -1452,7 +1458,7 @@ plot(x, y)
 ```
 
 <br><br>
-	
+
 Otherwise, create any kind of file (**in the folder we just created**)
 
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE}
@@ -1461,7 +1467,7 @@ echo 'x=seq(1, 10, len = 1)' > analysis.R
 echo 'y=40 * 2 + rnorm(10, 0, 5)' >> analysis.R
 echo 'plot(x, y)' >> analysis.R
 ```
- 
+
 Git - adding content
 ----------------------
 
@@ -1518,7 +1524,7 @@ convert resources/Rstudio_gitignore2.png -resize 350x resources/RStudio_gitignor
 
 Examples
 
-- `.RData` all files ending in .RData 
+- `.RData` all files ending in .RData
 - `.pdf` all files ending in .pdf
 - `data/` the entire folder called data
 
@@ -1545,10 +1551,10 @@ cp 10_pres_git_Test_repo1.pdf resources/10_pres_git_Test_repo1.pdf
 ### RStudio
 
 <!--
-	IF FOLLOWING FAILS, IT MAY BE NECESSARY TO ALTER THE SECURITY POLICIES OF IMAGEMAGICK
-	comment out the following (towards the end):
-	<policy domain="delegate" rights="none" pattern="gs" />
-	to /etc/ImageMagick-7/policy.xml
+    IF FOLLOWING FAILS, IT MAY BE NECESSARY TO ALTER THE SECURITY POLICIES OF IMAGEMAGICK
+    comment out the following (towards the end):
+    <policy domain="delegate" rights="none" pattern="gs" />
+    to /etc/ImageMagick-7/policy.xml
 -->
 
 ```{bash, echo=FALSE, eval=TRUE, include=FALSE}
@@ -1557,7 +1563,7 @@ convert -density 300 resources/10_pres_git_Test_repo1.pdf -resize 350x resources
 ```
 ![](resources/RStudio_GitCommit_small.png)
 ![](resources/10_pres_git_Test_repo1.png)
-   
+
 ```{r gert_commit, results='markdown', eval=FALSE}
 gert::git_commit('Initial commit')
 ```
@@ -1632,7 +1638,7 @@ convert  -density 300 -resize 500x resources/Test_repo2.png resources/Test_repo2
 
 ![](resources/Test_repo2.png)
 ![](resources/10_pres_git_Test_repo2.png)
- 
+
 
 Git - history (logs)
 ---------------------
@@ -1660,7 +1666,7 @@ gert::git_log(max=10)
 setwd(oldwd)
 ```
 
-A listing (data.frame) of tracked files 
+A listing (data.frame) of tracked files
 ```{r gert_ls, results='markdown', eval=TRUE, echo=2}
 oldwd=setwd('~/tmp/Test_repo')
 gert::git_ls()
@@ -1683,7 +1689,7 @@ git tag -a 'V.1' -m 'Version 1'
 mv 10_pres_git_Test_repo3.pdf resources/10_pres_git_Test_repo3.pdf
 convert  -density 300 -resize 250x resources/10_pres_git_Test_repo3.pdf resources/10_pres_git_Test_repo3.png
 rm 10_pres_git_Test_repo3.tex
-```  
+```
 
 ![](resources/10_pres_git_Test_repo2.png)
 ![](resources/10_pres_git_Test_repo3.png)
@@ -1705,7 +1711,7 @@ convert  -density 300 -resize 350x resources/Rstudio_GitTag1.png resources/RStud
 
 Git - tags
 ----------------------
- 
+
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
 ../resources/git-draw --image-only --sha1-length 5 --hide-legend --hide-reflogs --git-dir ~/tmp/Test_repo/.git --image-filename resources/Test_repo3.png
 convert  -density 300 -resize 500x resources/Test_repo3.png resources/Test_repo3.png
@@ -1715,7 +1721,7 @@ convert  -density 300 -resize 500x resources/Test_repo3.png resources/Test_repo3
 
 Rolling back to previous snapshots
 ====================================
- 
+
 Git - rolling back
 ---------------------
 
@@ -1744,7 +1750,7 @@ knit_engines$set(bash1=function(options) {
     code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
     code = paste(options$engine_opts,code)
     out = system(code,intern=TRUE)
-    engine_output(options,options$code,out) 
+    engine_output(options,options$code,out)
 })
 ```
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
@@ -1756,19 +1762,19 @@ git checkout #
 cd ~/tmp/Test_repo
 git checkout #
 ```
- 
+
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
 ../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo6.tex
 mv 10_pres_git_Test_repo6.pdf resources/10_pres_git_Test_repo6.pdf
 convert  -density 300 -resize 250x resources/10_pres_git_Test_repo6.pdf resources/10_pres_git_Test_repo6.png
-rm 10_pres_git_Test_repo6.tex 
+rm 10_pres_git_Test_repo6.tex
 ```
 
 ![](resources/10_pres_git_Test_repo3.png)
 ![](resources/10_pres_git_Test_repo6.png)
 
 ### R/RStudio
- 
+
 ```{r, echo=FALSE, results='asis'}
 library(knitr)
 hash = read.fwf('~/tmp/Test_repo/.git/logs/HEAD', widths=c(40,40))
@@ -1783,7 +1789,7 @@ knit_hooks$set(source = function(x, options) {
 })
 sub_hook = knit_hooks$get('source')
 ```
- 
+
 ```{r gert_checkout, engine='r', results='markdown', eval=FALSE, echo=2}
 oldwd=setwd('~/tmp/Test_repo')
 gert::git_branch_create(branch = 'temp', ref = '#', checkout = TRUE)
@@ -1795,7 +1801,7 @@ knit_hooks$set(source = old_hook)
 ```
 
 
- 
+
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
 convert  -density 300 -resize 350x resources/Rstudio_GitCheckout1.png resources/RStudio_GitCheckout1_small.png
 ```
@@ -1827,7 +1833,7 @@ git checkout main
 ../resources/git-tikz --git-dir ~/tmp/Test_repo/.git --filename 10_pres_git_Test_repo7.tex
 mv 10_pres_git_Test_repo7.pdf resources/10_pres_git_Test_repo7.pdf
 convert  -density 300 -resize 250x resources/10_pres_git_Test_repo7.pdf resources/10_pres_git_Test_repo7.png
-rm 10_pres_git_Test_repo7.tex 
+rm 10_pres_git_Test_repo7.tex
 ```
 
 ![](resources/10_pres_git_Test_repo6.png)
@@ -1870,7 +1876,7 @@ knit_engines$set(bash1=function(options) {
     code = paste("bash -c",shQuote(paste(options$code, collapse="\n")))
     code = paste(options$engine_opts,code)
     out = system(code,intern=TRUE)
-    engine_output(options,options$code,out) 
+    engine_output(options,options$code,out)
 })
 ```
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
@@ -1881,7 +1887,7 @@ git reset --hard #
 cd ~/tmp/Test_repo
 git reset --hard #
 ```
-  
+
 ![](resources/10_pres_git_Test_repo3.png)
 ![](resources/10_pres_git_Test_repo4.png)
 
@@ -2050,7 +2056,7 @@ convert  -density 300 -resize 250x resources/10_pres_git_Test_repo9.pdf resource
 
 ![](resources/Test_repo9.png)
 ![](resources/10_pres_git_Test_repo9.png)
- 
+
 Git - branch
 ---------------
 
@@ -2058,7 +2064,7 @@ We are on the new branch
 
 - add or edit some content
     - **stage** and **commit**
-	
+
 ```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
 x=seq(1, 10, len=1)
 y=40*2 + rnorm(10,0,5)
@@ -2133,12 +2139,12 @@ We are on the main branch
 
 - add another file (test.R)
     - **stage** and **commit**
-	
+
 ```{r, engine='R',results="markup", prompt=FALSE,eval=FALSE}
 mean(c(1,2,3))
 ```
 
-Otherwise, create any kind of file 
+Otherwise, create any kind of file
 
 ```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
 cd ~/tmp/Test_repo
@@ -2284,14 +2290,14 @@ convert  -density 300 -resize 500x resources/Github2.png resources/Github2_small
 
 New remote repo
 ----------------
- 
+
 If not using `use_github()`...
 
 ![](resources/Github2_small.png)
 
 Set remote
 ------------
- 
+
 If not using `use_github()`...
 
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE,echo=TRUE}
@@ -2304,15 +2310,15 @@ cd ~/tmp/Test_repo
 git remote add origin git@github.com:pcinereus/Test.git
 #git push -u origin main
 ```
-  
-### R 
+
+### R
 ```{r git_remote_add, results='markdown', eval=FALSE}
 gert::git_remote_add(url='https://github.com/pcinereus/Test.git')
 gert::git_remote_list()
 ```
 
 
- 
+
 Set remote
 ------------
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=TRUE, echo=FALSE, include=FALSE}
@@ -2340,8 +2346,8 @@ sd(c(1,2,3))
 ```
 <br><br>
 
-Otherwise, create any kind of file 
- 
+Otherwise, create any kind of file
+
 ```{r, engine='bash',results="hide", prompt=FALSE,eval=TRUE, echo=FALSE}
 cd ~/tmp/Test_repo
 echo 'sd(c(1,2,3))' >> test.R
