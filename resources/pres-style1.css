@@ -299,7 +299,9 @@ div.sourceCode {
 pre.sourceCode>code.sourceCode {
     padding: 0;
 }
-
+.reveal pre.sourceCode code {
+    max-height: 700px;
+}
 .reveal .slide-number {
     top: 10px !important;
     right: 15px !important;

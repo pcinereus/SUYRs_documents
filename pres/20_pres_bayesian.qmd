@@ -7,8 +7,13 @@ format:
   revealjs:
     embed-resources: true
     auto-stretch: false
-    css: ../resources/pres-style.css
-    margin: 0
+    # margin: 0
+    css: ../resources/pres-style1.css
+    logo: ../resources/logo_torn3.png
+    footer: https://pcinereus.github.io/SUYRs_documents/003_data_wrangling.qmd
+    slide-number: c/t
+    show-slide-number: all
+
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -18,8 +23,6 @@ knitr::opts_chunk$set(echo = TRUE)
 options(tinytex.engine = "xelatex")
 
 ```
-            
-
 
 Frequentist vs Bayesian
 =======================================
@@ -27,22 +30,21 @@ Frequentist vs Bayesian
 Frequentist
 -------------
 
->- P(D|H)
->- long-run frequency
->- relatively simple analytical methods to solve roots
->- conclusions pertain to data, not parameters or hypotheses
->- compared to theoretical distribution when NULL hypothesis is true
->- probability of obtaining observed data or MORE EXTREME data
+- P(D|H)
+- long-run frequency
+- relatively simple analytical methods to solve roots
+- conclusions pertain to data, not parameters or hypotheses
+- compared to theoretical distribution when NULL hypothesis is true
+- probability of obtaining observed data or MORE EXTREME data
 
-   
+
 Frequentist
 -------------
 
 - P-value
     * probabulity of rejecting NULL
-	* NOT a measure of the magnitude of an effect or degree of significance!
+    * NOT a measure of the magnitude of an effect or degree of significance!
     * measure of whether the sample size is large enough
-
 - 95% CI
     * NOT about the parameter it is about the interval
     * does not tell you the range of values likely to contain the true mean
@@ -51,21 +53,21 @@ Frequentist vs Bayesian
 -----------------------
 
 -----------------------------------------------------
-                Frequentist			 Bayesian  
---------------  ------------  		 ----------------
+                Frequentist			 Bayesian
+--------------  ------------         ----------------
 Probability		Long-run frequency	 Degree of belief
                 $P(D|H)$             $P(H|D)$
 
-Parameters		Fixed, true	  		 Random, 
-					   				 distribution
+Parameters		Fixed, true          Random,
+                                     distribution
 
-Obs. data   	One possible		 Fixed, true
+Obs. data       One possible		 Fixed, true
 
-Inferences		Data   		  		 Parameters
+Inferences		Data                 Parameters
 
 -----------------------------------------------------
 
-: {.striped .hover .simple-table}
+: {.striped .hover .sketch-table}
 
 Frequentist vs Bayesian
 ------------------------
@@ -176,9 +178,9 @@ Slope: `r round(coef(popC.lm)[2],4)`<br>
 :::
 :::
 
- 
+
 <img src="resources/graphics-tut7_2b-tut7.2bS1.1a.png" width="60%"/>
- 
+
 Frequentist vs Bayesian
 ------------------------
 
@@ -202,7 +204,7 @@ Percentage change   0.46          45.46
 Prob. >5% decline   0             0.86
 ------------------------------------------------
 
-: {.striped .hover .simple-table tbl-colwidths="[40, 30, 30]"}
+: {.striped .hover .sketch-table tbl-colwidths="[40, 30, 30]"}
 
 
 Bayesian Statistics
@@ -238,7 +240,7 @@ $$
 
 The normalizing constant is required for probability - turn a frequency distribution into a probability distribution
 
- 
+
 Estimation: Likelihood
 -------------
 <table class='plainTable'>
@@ -252,20 +254,28 @@ $P(D\mid H)$
 </tr>
 </table>
 
-Bayesian
------------
->- conclusions pertain to hypotheses
->- computationally robust (sample size,balance,collinearity)
->- inferential flexibility - derive any number of inferences
+## Bayesian
 
-Bayesian
------------
+::: {.incremental}
+
+- conclusions pertain to hypotheses
+- computationally robust (sample size, balance, collinearity)
+- inferential flexibility - derive any number of inferences
+
+:::
+
+Bayesian {.incremental}
+--------------------------
+
+$$P(H\mid D) = \frac{P(D\mid H) \times P(H)}{P(D)}$$
+
+::: {.incremental}
+
 - subjectivity?
 - intractable
-    $$P(H\mid D) = \frac{P(D\mid H) \times P(H)}{P(D)}$$
+  $P(D)$ - probability of data from all possible hypotheses
 
-    $P(D)$ - probability of data from all possible hypotheses
-
+:::
 
 MCMC sampling
 ----------------
@@ -273,7 +283,7 @@ MCMC sampling
 Marchov Chain Monte Carlo sampling
 
 - draw samples proportional to likelihood
- 
+
 ![](resources/graphics-tut4.3LDF.png)
 
 <div role="note">
@@ -302,7 +312,7 @@ Marchov Chain Monte Carlo sampling
 - draw samples proportional to likelihood
 
 ![](resources/graphics-tut4.3sim2.png)
- 
+
 
 MCMC sampling
 ----------------
@@ -334,20 +344,26 @@ MCMC sampling
 ----------------
 Marchov Chain Monte Carlo sampling
 
->- Aim: samples reflect posterior frequency distribution
->- samples used to construct posterior prob. dist.
->- the sharper the multidimensional "features" - more samples
->- chain should have traversed entire posterior
->- inital location should not influence
+::: {.incremental}
+
+- Aim: samples reflect posterior frequency distribution
+- samples used to construct posterior prob. dist.
+- the sharper the multidimensional "features" - more samples
+- chain should have traversed entire posterior
+- inital location should not influence
+
+:::
 
 MCMC diagnostics
 -------------------------
-### Trace plots
+
+Trace plots
+
 ![](resources/graphics-tut4.3sim7.png)
 
 MCMC diagnostics
 -------------------------
-### Autocorrelation
+Autocorrelation
 
 * Summary stats on non-independent values are biased
 * Thinning factor = 1
@@ -356,7 +372,7 @@ MCMC diagnostics
 
 MCMC diagnostics
 -------------------------
-### Autocorrelation
+Autocorrelation
 
 * Summary stats on non-independent values are biased
 * Thinning factor = 10
@@ -365,7 +381,7 @@ MCMC diagnostics
 
 MCMC diagnostics
 -------------------------
-### Autocorrelation
+Autocorrelation
 
 * Summary stats on non-independent values are biased
 * Thinning factor = 10, n=10,000
@@ -375,7 +391,7 @@ MCMC diagnostics
 
 MCMC diagnostics
 -------------------------
-### Plot of Distributions
+Plot of Distributions
 
 ![](resources/graphics-tut4.3sim10.png)
 
@@ -401,7 +417,7 @@ library(cowplot)
 library(gridExtra)
 library(animation)
 samples.mcmc <- MCMCregress(y~x, data=data, burnin=0)
- 
+
 animation:::saveMovie({
     for (i in c(2:10,20,50,100,200,500,1000,2000)) {
         g1<-ggplot(data.frame(samples.mcmc[1:i,1:2]), aes(y=X.Intercept.,x=x)) +
@@ -423,14 +439,14 @@ animation:::saveMovie({
 ## This does not seem to want to save the gif where I have asked.  It puts it in /tmp
 # So I have manually copied it across
 ```
-  
+
 <video controls autoplay name='media' width='900' height='450'>
 <source src='resources/sampler.mh.mp4'  type='video/mp4'></source>
 </video>
 http://twiecki.github.io/blog/2014/01/02/visualizing-mcmc/
 
 <!-- ![](resources/samples.mh.gif) -->
- 
+
 https://chi-feng.github.io/mcmc-demo/app.html?algorithm=GibbsSampling&target=banana
 
 Sampler types
@@ -481,7 +497,7 @@ animation:::saveMovie({
 }, interval=1, movie.name='samples.gibbs.gif', ani.width=600, ani.height=500)
 
 ```
-  
+
 <video controls autoplay name='media' width='900' height='450'>
 <source src='resources/sampler.gibbs.mp4'  type='video/mp4'></source>
 </video>
@@ -500,20 +516,20 @@ NUTS
 Sampling
 -------------
 
->- thinning
->- burnin (warmup)
->- chains
+- thinning
+- burnin (warmup)
+- chains
 
 Bayesian software (for R)
 ---------------------------
 
->- MCMCpack
->- winbugs (R2winbugs)
->- jags (R2jags)
->- stan (rstan, rstanarm, brms)
+- MCMCpack
+- winbugs (R2winbugs)
+- jags (R2jags)
+- stan (rstan, rstanarm, brms)
 
 Bayesian software (for R)
 ----------------------------
 
->- https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started
->- https://learnb4ss.github.io/learnB4SS/articles/install-brms.html
+- <https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started>
+- <https://learnb4ss.github.io/learnB4SS/articles/install-brms.html>

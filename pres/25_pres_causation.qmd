@@ -7,8 +7,12 @@ format:
   revealjs:
     embed-resources: true
     auto-stretch: false
-    css: ../resources/pres-style.css
-    margin: 0
+    css: ../resources/pres-style1.css
+    logo: ../resources/logo_torn3.png
+    footer: https://pcinereus.github.io/SUYRs_documents/003_data_wrangling.qmd
+    slide-number: c/t
+    show-slide-number: all
+
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -18,8 +22,6 @@ knitr::opts_chunk$set(echo = TRUE)
 options(tinytex.engine = "xelatex")
 
 ```
-            
-
 
 ```{r}
 #| label: libraries
@@ -54,10 +56,8 @@ Karl Pearson (1900)
 
 # Structural Causal Modelling (SCM)
 
-Structural Causal Modelling (SCM)
+Structural Causal Modelling (SCM) {.smaller}
 -----------------------------------------------
-
-<br>
 
 Step 1. Create a **conceptual model** of the system of interest
 
@@ -79,8 +79,6 @@ Conceptual model - DAGs
 ------------------------------------------
 
 **DAG** - Directed Acyclical Graph
-
-<br>
 
 ```{tikz}
 %| label: dag_1
@@ -126,7 +124,7 @@ Arif and MacNeil (2022). “Utilizing Causal Diagrams Across Quasi‐experimenta
 Conceptual model - DAGs
 ------------------------------------------
 
-Via R packages `dagitty` and `ggdag` 
+Via R packages `dagitty` and `ggdag`
 
 
 ::: {.columns}
@@ -244,11 +242,10 @@ Assumptions:
 - mpa $\perp\!\!\!\perp$ human
 - fishing $\perp\!\!\!\perp$ complexity $|$ mpa, depth
 - coral $\perp\!\!\!\perp$ fishing $|$ biomass, mpa
-
 - many more
 ::::
 :::
- 
+
 Test conceptual model
 ----------------------------------------------------
 
@@ -270,7 +267,7 @@ Test conceptual model
 #| results: markup
 #| eval: true
 #| echo: true
-dagitty::impliedConditionalIndependencies(dag) 
+dagitty::impliedConditionalIndependencies(dag)
 ```
 
 ::::
@@ -283,7 +280,6 @@ Assumptions:
 - mpa $\perp\!\!\!\perp$ human
 - fishing $\perp\!\!\!\perp$ complexity $|$ mpa, depth
 - coral $\perp\!\!\!\perp$ fishing $|$ biomass, mpa
-
 - many more
 
 ::::
@@ -350,7 +346,7 @@ plotLocalTestResults(tests)
 
 # Step 4 - identify and adjust for biases
 
-## All paths
+## All paths {.smaller}
 
 Three open paths between mpa and fish biomass
 
@@ -362,10 +358,10 @@ Three open paths between mpa and fish biomass
 #| fig-width: 12
 #| fig-height: 3
 #| out-width: 900px
-dag |> 
+dag |>
   ggdag_paths(text_col = "black", shadow = TRUE) +
   coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
-  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+  theme_dag_blank(panel.border = element_rect(fill = NA))
 ```
 
 Path 1. **frontdoor** path (via a **mediator**, fishing)
@@ -395,10 +391,10 @@ Criterion for avoiding biases:
 #| fig-width: 12
 #| fig-height: 4
 #| out-width: 700px
-dag |> backDoorGraph() |> 
+dag |> backDoorGraph() |>
   ggdag_paths(text_col = "black", shadow = TRUE) +
   coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
-  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+  theme_dag_blank(panel.border = element_rect(fill = NA))
 ```
 
 
@@ -408,12 +404,10 @@ Criterion for avoiding biases:
 
 - **Backdoor criterion**: rules to block all (backdoor) paths that start with an
   arrow pointing into the exposue variable (MPA)
-
-
 - **Frontdoor criterion**: rules that enable us to go from the
   exposure to the outcome via a mediator in a way that avoids
-  backdoors. 
-  
+  backdoors.
+
 ```{r}
 #| label: dag_paths_frontdoor
 #| results: markup
@@ -427,13 +421,13 @@ g1 <-
   ggdag_paths(text_col = "black", shadow = TRUE,
     to = "fishing", adjust_for=c("depth", "complexity", "human")) +
   coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
-  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+  theme_dag_blank(panel.border = element_rect(fill = NA))
 g2 <-
   dag |>
   ggdag_paths(text_col = "black", shadow = TRUE,
     from = "fishing", adjust_for=c("depth", "complexity", "human")) +
   coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(-0.5, 2.5)) +
-  theme_dag_blank(panel.border = element_rect(fill = NA)) 
+  theme_dag_blank(panel.border = element_rect(fill = NA))
 g1 + g2 + patchwork::plot_layout(guides = "collect")
 ```
 
@@ -442,7 +436,7 @@ g1 + g2 + patchwork::plot_layout(guides = "collect")
   - useful when backdoor paths cannot be blocked.
 
 
-## Relation types
+## Relation types {.smaller}
 
 ```{tikz}
 %| label: dag_pipe
@@ -503,16 +497,16 @@ g1 + g2 + patchwork::plot_layout(guides = "collect")
 ```
 
 ![](25_pres_causation_files/figure-revealjs/dag_pipe-1.png){width="700px"}
-![](25_pres_causation_files/figure-revealjs/dag_pipe1-1.png){width="700px"}  
+![](25_pres_causation_files/figure-revealjs/dag_pipe1-1.png){width="700px"}
 
 - X indirectly effects Y through a mediator, M
 - Conditioning on M blocks the path, resulting in **overcontrol bias**
-- Backdoor criterion 
+- Backdoor criterion
   - **not to** condition on M
   - unless we want to estimate the _direct_ effects of X on Y
 
 
-## Relation types
+## Relation types {.smaller}
 
 ```{tikz}
 %| label: dag_fork
@@ -581,7 +575,7 @@ g1 + g2 + patchwork::plot_layout(guides = "collect")
   - **to** condition on C
 
 
-## Relation types
+## Relation types {.smaller}
 
 
 ```{tikz}
@@ -692,11 +686,9 @@ g1 + g2 + patchwork::plot_layout(guides = "collect")
 
 - **Overcontrol bias**: is caused when we condition on a mediator
 thereby blocking the path from the exposure to the outcome.
-
 - **Confounding bias**: is caused when a variable that is a common
   cause of both the exposure and the outcome (i.e. it is a backdoor
   path) is not included in a model.
-
 - **Collider bias**: is caused when a variable that is a common effect
   of the exposure and the outcome (i.e. it is a frontdoor path) is
   included in a model.
@@ -726,7 +718,7 @@ thereby blocking the path from the exposure to the outcome.
 ![](25_pres_causation_files/figure-revealjs/dag_descendant-1.png){width="250px" style="vertical-align:top;"}
 ::::
 
-::: 
+:::
 
 
 - what paths are between MPA and fish biomass?
@@ -754,7 +746,7 @@ R packages `dagitty` and `ggdag`
 #| fig-height: 2
 ggdag_paths(dag, from = "mpa", to = "biomass", text_col = "black") +
     coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
-    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+    theme_dag_blank(panel.border = element_rect(fill = NA))
 ```
 
 ## Relation types and biases
@@ -802,7 +794,7 @@ ggdag_paths(dag, from = "mpa", to = "biomass", text_col = "black") +
 - Path 3 is a _fork_ ![](25_pres_causation_files/figure-revealjs/dag_fork-1.png){width="300px" style="vertical-align:middle;"}
   - **do** condition on complexity
 
-## Relation types and biases
+## Relation types and biases {.smaller}
 
 **Adjustment sets** - covariates required to close backdoors
 
@@ -865,7 +857,7 @@ ggdag_adjustment_set(dag,
 
 ```
 
-## Relation types and biases
+## Relation types and biases {.smaller}
 
 **Total effect** of Structural complexity on fish biomass
 
@@ -878,7 +870,7 @@ ggdag_adjustment_set(dag,
 #| fig-height: 2
 ggdag_paths(dag, from = "complexity", to = "biomass", text_col = "black") +
     coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
-    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+    theme_dag_blank(panel.border = element_rect(fill = NA))
 ```
 
 ```{r}
@@ -905,7 +897,7 @@ Step 5 - fit the model
 form <- bf(biomass ~ complexity)
 ```
 
-## Relation types and biases
+## Relation types and biases {.smaller}
 
 **Direct effect** of Structural complexity on fish biomass
 
@@ -918,7 +910,7 @@ form <- bf(biomass ~ complexity)
 #| fig-height: 2
 ggdag_paths(dag, from = "complexity", to = "biomass", text_col = "black") +
     coord_cartesian(expand = FALSE, xlim=c(0.5, 3.5), ylim=c(0.5,2.5)) +
-    theme_dag_blank(panel.border = element_rect(fill = NA)) 
+    theme_dag_blank(panel.border = element_rect(fill = NA))
 ```
 
 ```{r}
@@ -956,4 +948,4 @@ form <- bf(biomass ~ scale(complexity) + scale(depth) + factor(mpa))
 
 ::::
 
-::: 
+:::
