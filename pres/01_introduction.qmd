@@ -6,6 +6,7 @@ date-format: "D MMMM YYYY"
 format:
   revealjs:
     embed-resources: true
+    auto-stretch: false
     css: ../resources/pres-style1.css
     logo: ../resources/logo_torn3.png
     footer: https://pcinereus.github.io/SUYRs_documents/01_introduction.qmd
@@ -22,15 +23,11 @@ knitr::opts_chunk$set(echo = TRUE)
 Course
 --------------
 
-<https://pcinereus.github.io/SUYRs_documents/>
-
-<https://pcinereus.github.io/SUYRs_public/>
-
-<https://github.com/pcinereus/SUYRs_public/>
-
+- <https://pcinereus.github.io/SUYRs_documents/>
+- <https://pcinereus.github.io/SUYRs_public/>
+- <https://github.com/pcinereus/SUYRs_public/>
 <!--<http://www.flutterbys.com.au/stats>-->
-
-<http://r4ds.had.co.nz/>
+- <http://r4ds.had.co.nz/>
 
 Topics
 -------
@@ -99,8 +96,7 @@ system("convert -resize 650x ../resources/base-r.pdf ../resources/base-r.png")
 system("mv ../resources/base-r-0.png ../resources/base-r.png")
 ```
 
-![](../resources/base-r.png "base-r")
-
+![](../resources/base-r.png "base-r"){.shadow}
 
 R studio {.smaller}
 --------------------
@@ -112,7 +108,7 @@ system("convert -resize 650x ../resources/rstudio-ide.pdf ../resources/rstudio-i
 system("mv ../resources/rstudio-ide-0.png ../resources/rstudio-ide.png")
 ```
 
-![](../resources/rstudio-ide.png "rstudio-ide")
+![](../resources/rstudio-ide.png "rstudio-ide"){.shadow}
 
 R studio {.fragment}
 --------------------
@@ -279,7 +275,7 @@ system("convert -resize 650x ../resources/rmarkdown.pdf ../resources/rmarkdown.p
 system("mv ../resources/rmarkdown-0.png ../resources/rmarkdown.png")
 ```
 
-![](../resources/rmarkdown.png)
+![](../resources/rmarkdown.png){.shadow}
 
 
 R revision and updates

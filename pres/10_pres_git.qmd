@@ -7,7 +7,7 @@ format:
   revealjs:
     embed-resources: true
     auto-stretch: false
-    margin: 0
+    # margin: 0
     css: ../resources/pres-style1.css
     logo: ../resources/logo_torn3.png
     footer: https://pcinereus.github.io/SUYRs_documents/003_data_wrangling.qmd
@@ -21,20 +21,16 @@ bibliography: ../resources/references.bib
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 options(tinytex.engine = "xelatex")
-
 ```
 
-
-# Background
+Background
+---------------
 
 Required
---------------
 
->- [git](https://git-scm.com/downloads)
-
->- [github account](http://www.github.com)
-
->- RStudio or text editor
+- [git](https://git-scm.com/downloads)
+- [github account](http://www.github.com)
+- RStudio or text editor
 
 Version control
 -----------------
@@ -46,7 +42,7 @@ Version control
 %| fig-width: 13
 %| fig-height: 6
 %| cache: true
-%| class: tikz
+%| class: tikz shadow
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
@@ -91,8 +87,8 @@ Version control
 
 ## Version control
 
->- large space requirements
->- difficult to collaborate
+- large space requirements
+- difficult to collaborate
 
 . . .
 
@@ -103,7 +99,7 @@ Version control
 %| fig-width: 8
 %| fig-height: 6
 %| cache: true
-%| class: tikz
+%| class: tikz shadow
 %| engine-opts:
 %|   template: "../resources/tikz-standalone.tex"
 \tikzstyle{TARGET} = [font={\fontspec[Scale=2]{Ubuntu}}]
@@ -179,14 +175,12 @@ Version control
  . . .
 
 
-## Git
+# Git
 
+## Git - overview {.incremental}
 
-## Git - overview
-
->- Git - is a **distributed version control system**
-
->- Git - stores **snapshots** of the filesystem
+- Git - is a **distributed version control system**
+- Git - stores **snapshots** of the filesystem
     - **commits**
 
 . . .
@@ -830,7 +824,7 @@ child { node {file 1}};
 ## Git - overview
 
 ::: columns
-::: {.column width="40%"}
+::: {.column width="60%"}
 
 ```{tikz}
 %| label: fig4
@@ -973,8 +967,10 @@ child { node {file 1}};
 
 :::
 
+. . .
+
 ::: columns
-::: {.column width="40%"}
+::: {.column width="60%"}
 
 ```{tikz}
 %| label: fig5
@@ -1132,9 +1128,10 @@ child { node {file 1}};
 
 :::
 
+. . .
 
 ::: columns
-::: {.column width="40%"}
+::: {.column width="60%"}
 ```{tikz}
 %| label: fig6
 %| engine: tikz
@@ -1368,9 +1365,10 @@ Git - overview
 
 This is a **once off action** (_per machine_)
 
->- define who you are
+- define who you are
 
 . . .
+
 ```{r, engine='bash',results="markup", prompt=FALSE,eval=FALSE}
 git config --global user.name "Your name"
 git config --global user.email "your_email@whatever.com"
@@ -1445,8 +1443,6 @@ use_git()
 Git - adding content
 ----------------------
 
-<br>
-
 Create a file (text, code etc) <br><br>
 
 - those using R, call it **analysis.R**
@@ -1457,7 +1453,7 @@ y=40 * 2 + rnorm(10, 0, 5)
 plot(x, y)
 ```
 
-<br><br>
+<br>
 
 Otherwise, create any kind of file (**in the folder we just created**)
 
@@ -1481,6 +1477,7 @@ For example:
 cd ~/tmp/Test_repo
 git add analysis.R
 ```
+
 ### RStudio
 
 ```{bash, echo=FALSE, eval=TRUE, include=FALSE}
@@ -2242,12 +2239,9 @@ Remote repositories and github
 ## Github
 
 - Step 1. get a github account and verify email address<br>
-
 - Step 2. create one (or more) Personal Access Tokens (**PAT**)<br>
   - more nuanced than a single password
-
 - Step 3. create a **remote repository** on github<br>
-
 - Step 4. push/pull between remote and local
 
 
@@ -2422,7 +2416,6 @@ Playtime
 - Clone the Test repo of the person next to you
 - Make a change, commit, push
 - Pull the changes of your neighbour
-
 - Try making a branch
 
 

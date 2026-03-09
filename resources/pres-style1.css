@@ -15,12 +15,6 @@
       url("Crayone.otf") format('truetype');
 }
 
-
-
-
-
-
-
 .reveal div.sourceCode {
     border: none !important;
     border-radius: none !important;
@@ -113,8 +107,28 @@
   padding-top: 0px;
   padding-right:100px;
   font-family: Crayone,Arial, serif;
-  font-size:40pt;
+  font-size:30pt;
   line-height: 20pt;
+}
+
+/* .reveal .slides section, .reveal .stack section { */
+.reveal > .slides > section {
+   position: absolute !important;
+   left: 215px !important;
+   width: calc(90% - 180px) !important;
+   box-sizing: border-box;
+}
+/* .reveal .slides>section.stack { */
+/*     left:0px !important; */
+/*     width: 100% !important; */
+/* } */
+.reveal .slides section.offset-left {
+  left: 50px !important;
+  width: calc(100% - 50px) !important;
+}
+
+.reveal .slides section.smaller h2 {
+    font-size: 60px;
 }
 
 .slides > .slide h2 {
@@ -353,12 +367,16 @@ pre.numberSource code > span {
 }
 
 .reveal img.r-stretch {
-    max-width: none !important;
-    max-height: none !important;
-    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
+    max-width: stretch !important;
+    max-height: stretch !important;
+    /* box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5); */
     display: block;
     margin-left: auto;
     margin-right: auto;
+}
+
+.reveal .shadow  img, img.shadow {
+    box-shadow: 1px 1px 15px rgba(0, 0, 0, 0.5);
 }
 
 section {
