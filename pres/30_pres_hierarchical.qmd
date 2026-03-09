@@ -7,8 +7,12 @@ format:
   revealjs:
     embed-resources: true
     auto-stretch: false
-    css: ../resources/pres-style.css
-    margin: 0
+    css: ../resources/pres-style1.css
+    logo: ../resources/logo_torn3.png
+    footer: https://pcinereus.github.io/SUYRs_documents/003_data_wrangling.qmd
+    slide-number: c/t
+    show-slide-number: all
+
 output_dir: "docs"
 bibliography: ../resources/references.bib
 ---
@@ -18,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 options(tinytex.engine = "xelatex")
 
 ```
-            
+
 Linear models
 =========================
 
@@ -26,12 +30,12 @@ Linear models
 -----------------
 
 ```{tikz}
-#| label: fig-linear-model
+#| label: linear-model
 #| eval: true
 #| echo: false
 #| cache: false
 #| fig-width: 9
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 
 \newcommand{\tikzmark}[1]{\tikz[baseline, remember picture] \coordinate (#1) {};}
 
@@ -53,12 +57,12 @@ Linear models
 \coordinate (zeromark) at ($(otherzero.north) + (covnode.west|-covnode)$);
 \path (zeromark) +(1,-1em) node[anchor = west](Z) {\parbox{3cm}{Zero covariance\\ (=independence)}};
 \draw[->] (zeromark)++(.9em,0ex) to [bend left] ($(Z.north west) + (0, -0.5em)$) ;
- 
+
 \coordinate (sigma2mark) at ($(sigma.north) + (dist.west|-dist)$);
 \coordinate (covmark) at ($(cov.north) + (covnode.west|-covnode)$);
 
-\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$) 
-    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm) 
+\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$)
+    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm)
     %.. controls ++(-2cm,-0.1cm) and ++(4cm,-.0cm) ..  ++(-2cm,0cm)
     .. controls ++(-0.8cm, 0cm) and ++ (0.2cm, 1.3cm) .. ($(covmark.north) +(0.7em, 0.7em)$);
 \end{tikzpicture}
@@ -67,12 +71,12 @@ Linear models
 How maximise power?
 
 ```{tikz}
-#| label: fig-linear-model-old
+#| label: linear-model-old
 #| eval: false
 #| echo: false
 #| cache: false
 #| fig-width: 9
-\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns} 
+\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric,patterns}
 
 \newcommand{\tikzmark}[1]{\tikz[baseline, remember picture] \coordinate (#1) {};}
 
@@ -94,12 +98,12 @@ How maximise power?
 \coordinate (zeromark) at ($(otherzero.north) + (covnode.west|-covnode)$);
 \path (zeromark) +(1,-1em) node[anchor = west](Z) {\parbox{3cm}{Zero covariance\\ (=independence)}};
 \draw[->] (zeromark)++(.9em,0ex) to [bend left] ($(Z.north west) + (0, -0.5em)$) ;
- 
+
 \coordinate (sigma2mark) at ($(sigma.north) + (dist.west|-dist)$);
 \coordinate (covmark) at ($(cov.north) + (covnode.west|-covnode)$);
 
-\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$) 
-    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm) 
+\draw[->,thick, black!50!white!50] ($(sigma2mark.east) +(1em, 0.5em)$)
+    .. controls ++(1cm,0.2cm) and ++(1.7cm,0.8em) .. ++(1cm,-1cm)
     .. controls ++(-2cm,-0.1cm) and ++(4cm,-.0cm) ..  ++(-6cm,0cm)
     .. controls ++(-0.8cm, 0cm) and ++ (0.2cm, 1.3cm) .. ($(covmark.north) +(0.7em, 0.7em)$);
 \end{tikzpicture}
@@ -110,7 +114,7 @@ Linear models
 ----------------
 
 ```{tikz}
-#| label: fig-linear-model
+#| label: linear-model
 #| eval: true
 #| echo: false
 #| cache: false
@@ -126,19 +130,19 @@ How maximize power?
 Hierarchical models
 -----------------------
 ```{tikz}
-%| label: fig-design-single-factor
+%| label: design-single-factor
 %| engine: tikz
 %| eval: true
 %| echo: false
 %| cache: false
-%| fig-width: 6
+%| fig-width: 5.5
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 %\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric}
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt}]
-\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}] 
+\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}]
 \tikzstyle{HandBoxTitle} = [font={\fontspec[Scale=1.5, Path=../resources/]{Complete in Him.ttf}}]
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}] 
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}]
 
 \tikzstyle{Plot} = [rectangle,draw,Messy,fill=white,HandLabel]
 \tikzstyle{Season} = [rectangle,draw,Messy]
@@ -206,19 +210,19 @@ Hierarchical models
 ----------------------
 
 ```{tikz}
-%| label: fig-design-nested-factor
+%| label: design-nested-factor
 %| engine: tikz
 %| eval: true
 %| echo: false
 %| cache: false
-%| fig-width: 6
+%| fig-width: 5.5
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 %\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric}
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt}]
-\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}] 
+\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}]
 \tikzstyle{HandBoxTitle} = [font={\fontspec[Scale=1.5, Path=../resources/]{Complete in Him.ttf}}]
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}] 
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}]
 
 \tikzstyle{Plot} = [rectangle,draw,Messy,fill=white,HandLabel]
 \tikzstyle{Season} = [rectangle,draw,Messy]
@@ -307,19 +311,19 @@ Hierarchical models
 ----------------------
 
 ```{tikz}
-%| label: fig-design-factorial
+%| label: design-factorial
 %| engine: tikz
 %| eval: true
 %| echo: false
 %| cache: false
-%| fig-width: 6
+%| fig-width: 5.5
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 %\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric}
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt}]
-\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}] 
+\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}]
 \tikzstyle{HandBoxTitle} = [font={\fontspec[Scale=1.5, Path=../resources/]{Complete in Him.ttf}}]
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}] 
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}]
 
 \tikzstyle{Plot} = [rectangle,draw,Messy,fill=white,HandLabel]
 \tikzstyle{Season} = [rectangle,draw,Messy]
@@ -358,19 +362,19 @@ Hierarchical models
 ----------------------
 
 ```{tikz}
-%| label: fig-design-rcb
+%| label: design-rcb
 %| engine: tikz
 %| eval: true
 %| echo: false
 %| cache: false
-%| fig-width: 6
+%| fig-width: 5.5
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 %\usetikzlibrary{shapes,arrows,shadows,positioning,mindmap,backgrounds,decorations, calc,fit, decorations.pathreplacing,decorations.pathmorphing, shadings,shapes.geometric}
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt}]
-\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}] 
+\tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}]
 \tikzstyle{HandBoxTitle} = [font={\fontspec[Scale=1.5, Path=../resources/]{Complete in Him.ttf}}]
-\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}] 
+\tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}]
 
 \tikzstyle{Plot} = [rectangle,draw,Messy,fill=white,HandLabel]
 \tikzstyle{Season} = [rectangle,draw,Messy]
@@ -459,16 +463,16 @@ Hierarchical models
 ----------------------
 
 ```{tikz}
-%| label: fig-design-crossed
+%| label: design-crossed
 %| engine: tikz
 %| eval: true
 %| echo: false
 %| cache: false
-%| fig-width: 18
+%| fig-height: 18
 %| engine-opts:
 %|   template: "../resources/tikz-minimal.tex"
 \tikzstyle{Messy} = [decorate,decoration={random steps,segment length=3pt, amplitude=0.3pt}]
-% \tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}] 
+% \tikzstyle{HandTitle} = [font={\fontspec[Scale=2.1, Path=../resources/]{CabinSketch-Bold.ttf}}]
 % \tikzstyle{HandBoxTitle} = [font={\fontspec[Scale=1.5, Path=../resources/]{Complete in Him.ttf}}]
 % \tikzstyle{HandLabel} = [font={\fontspec[Scale=1.1, Path=../resources/]{Hannahs_Messy_Handwriting_Regular.ttf}}]
 \setmainfont[Path=../resources/]{Complete in Him.ttf}
@@ -481,14 +485,14 @@ edge from parent 3/.style={draw,-latex},
 parent anchor=south,
 child anchor=north,
 level 1/.style={sibling distance=2.3cm, level distance=1cm,minimum height=0.75cm, minimum width=0.75cm},
-level 2/.style={sibling distance=1.2cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm}, 
+level 2/.style={sibling distance=1.2cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm},
 level 3/.style={sibling distance=0.25cm, level distance=2.0cm,minimum height=0.01cm, minimum width=0.01cm},
 level 4/.style={sibling distance=0.5cm, level distance=1cm},
 level 5/.style={sibling distance=0.5cm, level distance=1.5cm},
 every tree node/.style={align=north,anchor=north},
 mystyle/.style={-latex}
 ]
- 
+
 \path
  node [draw=none, fill=none](top) {}
   child { node (A) {A}
@@ -499,25 +503,25 @@ mystyle/.style={-latex}
       child { node [fill=red!30] (Aa4) {} edge from parent[draw,-latex]}
     }
     child { node (Ab) {b}
- 	  child { node [fill=red!30] (Ab1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Ab1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab4) {} edge from parent[draw,-latex]}
-    } 
+    }
   }
   child { node (B) {B}
     child { node (Bc) {c}
-      child { node [fill=red!30] (Bc1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Bc1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bc2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (BC3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bc4) {} edge from parent[draw,-latex]}
-    }	
+    }
     child { node (Bd) {d}
-      child { node [fill=red!30] (Bd1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Bd1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd4) {} edge from parent[draw,-latex]}
-    } 
+    }
   };
 
 \draw [Messy,-latex](A.south)--(Aa.north);
@@ -539,7 +543,7 @@ mystyle/.style={-latex}
 %%
 %%
 % Nested
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \node [draw](Nested) {
 \begin{tikzpicture}[every node/.style={draw,Messy,fill=blue!20},
 edge from parent/.style={Messy,anchor=south},
@@ -547,14 +551,14 @@ edge from parent 3/.style={draw,-latex},
 parent anchor=south,
 child anchor=north,
 level 1/.style={sibling distance=2.3cm, level distance=1cm,minimum height=0.75cm, minimum width=0.75cm},
-level 2/.style={sibling distance=1.2cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm}, 
+level 2/.style={sibling distance=1.2cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm},
 level 3/.style={sibling distance=0.25cm, level distance=2.0cm,minimum height=0.01cm, minimum width=0.01cm},
 level 4/.style={sibling distance=0.5cm, level distance=1cm},
 level 5/.style={sibling distance=0.5cm, level distance=1.5cm},
 every tree node/.style={align=north,anchor=north},
 mystyle/.style={-latex}
 ]
- 
+
 \path
  node [draw=none, fill=none](top) {}
   child { node (A) {A}
@@ -565,25 +569,25 @@ mystyle/.style={-latex}
       child { node [fill=red!30] (Aa4) {} edge from parent[draw,-latex]}
     }
     child { node [fill=red!30] (Ab) {b}
- 	  child { node [fill=red!30] (Ab1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Ab1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Ab4) {} edge from parent[draw,-latex]}
-    } 
+    }
   }
   child { node (B) {B}
     child { node [fill=red!30] (Bc) {c}
-      child { node [fill=red!30] (Bc1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Bc1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bc2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (BC3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bc4) {} edge from parent[draw,-latex]}
-    }	
+    }
     child { node [fill=red!30] (Bd) {d}
-      child { node [fill=red!30] (Bd1) {} edge from parent[draw,-latex]}	
+      child { node [fill=red!30] (Bd1) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd2) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd3) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (Bd4) {} edge from parent[draw,-latex]}
-    } 
+    }
   };
 \draw [Messy,-latex](A.south)--(Aa.north);
 \draw [Messy,-latex](A.south)--(Ab.north);
@@ -603,7 +607,7 @@ mystyle/.style={-latex}
 \end{tikzpicture}
 
 % Randomized block
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \node [draw, minimum width=3cm](RCB) {
 \begin{tikzpicture}[every node/.style={draw,Messy,fill=blue!20},
 edge from parent/.style={Messy,anchor=south},
@@ -611,18 +615,18 @@ edge from parent 3/.style={draw,-latex},
 parent anchor=south,
 child anchor=north,
 level 1/.style={sibling distance=1.1cm, level distance=1cm,minimum height=0.75cm, minimum width=0.75cm},
-level 2/.style={sibling distance=1.1cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm}, 
+level 2/.style={sibling distance=1.1cm, level distance=2cm,minimum height=0.75cm, minimum width=0.75cm},
 level 3/.style={sibling distance=0.25cm, level distance=2.0cm,minimum height=0.1cm, minimum width=0.1cm},
 level 4/.style={sibling distance=0.5cm, level distance=1cm},
 level 5/.style={sibling distance=0.5cm, level distance=1.5cm},
 every tree node/.style={align=north,anchor=north},
 mystyle/.style={-latex}
 ]
- 
+
 \path
  node [draw=none, fill=none](top) {}
   child { node [fill=red!30](a) {a}
-    child { node [draw=none, fill=none] (Aa) {} 
+    child { node [draw=none, fill=none] (Aa) {}
       child { node [draw=none, fill=none] (a01) {} }
       child { node [draw=none, fill=none] (a02) {} }
       child { node [draw=none, fill=none] (a03) {} }
@@ -641,10 +645,10 @@ mystyle/.style={-latex}
       child { node [fill=red!30] (aA6) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (aA7) {} edge from parent[draw,-latex]}
       child { node [fill=red!30] (aA8) {} edge from parent[draw,-latex]}
-      }  
+      }
   }
   child { node [fill=red!30] (b) {b}
-  } 
+  }
   child { node [fill=red!30] (c) {c}
     child { node [draw=none, fill=none] (cB) {}
       child { node [draw=none, fill=none] (c01) {} }
@@ -688,7 +692,7 @@ mystyle/.style={-latex}
 %%
 %%
 % Split-plot
-\begin{tikzpicture} 
+\begin{tikzpicture}
 \node [draw](SplitPlot) {
 \begin{tikzpicture}[every node/.style={draw,Messy,fill=blue!20},
 edge from parent/.style={Messy,anchor=south},
@@ -696,49 +700,49 @@ edge from parent 3/.style={draw,-latex},
 parent anchor=south,
 child anchor=north,
 level 1/.style={sibling distance=2.3cm, level distance=1cm,minimum height=0.75cm, minimum width=0.75cm},
-level 2/.style={sibling distance=1.2cm, level distance=1.5cm,minimum height=0.75cm, minimum width=0.75cm}, 
+level 2/.style={sibling distance=1.2cm, level distance=1.5cm,minimum height=0.75cm, minimum width=0.75cm},
 level 3/.style={sibling distance=1.2cm, level distance=1.5cm,minimum height=0.75cm, minimum width=0.75cm},
 level 4/.style={sibling distance=0.25cm, level distance=1.5cm,minimum height=0.01cm, minimum width=0.01cm},
 level 5/.style={sibling distance=0.5cm, level distance=1.5cm},
 every tree node/.style={align=north,anchor=north},
 mystyle/.style={-latex}
 ]
- 
+
 \path
  node [draw=none, fill=none](top) {}
   child { node (A) {A}
     child { node [fill=red!30] (Aa) {a}
       child { node [fill=none, draw=none] (Aa0) {} }
       child { node (Aa1) {1} edge from parent[draw,-latex]
-        child { node [fill=red!30] (Ao21) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao22) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao23) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao24) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao25) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao26) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao27) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Ao28) {} edge from parent[draw,-latex]} 
+        child { node [fill=red!30] (Ao21) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao22) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao23) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao24) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao25) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao26) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao27) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Ao28) {} edge from parent[draw,-latex]}
       }
     }
     child { node [fill=red!30] (Ab) {b}
-    } 
+    }
   }
   child { node (B) {B}
     child { node [fill=red!30] (Bc) {c}
       child { node [fill=none, draw=none] (Bc1) {} }
       child { node (Bc2) {2} edge from parent[draw,-latex]
-        child { node [fill=red!30] (Bo21) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo22) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo23) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo24) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo25) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo26) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo27) {} edge from parent[draw,-latex]} 
-        child { node [fill=red!30] (Bo28) {} edge from parent[draw,-latex]} 
+        child { node [fill=red!30] (Bo21) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo22) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo23) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo24) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo25) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo26) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo27) {} edge from parent[draw,-latex]}
+        child { node [fill=red!30] (Bo28) {} edge from parent[draw,-latex]}
       }
-    }	
+    }
     child { node [fill=red!30] (Bd) {d}
-    } 
+    }
   };
 \draw [Messy,-latex](A.south)--(Aa.north);
 \draw [Messy,-latex](A.south)--(Ab.north);
@@ -756,7 +760,7 @@ mystyle/.style={-latex}
 \node[Messy,anchor=east,draw=none,fill=none] at ($(A.west) + (-2cm,0)$) (Factor1) {Factor 1 (F)};
 \node[Messy,anchor=east,draw=none,fill=none] at ($(Factor1.east|-Aa.west) + (0cm,0)$) (Block) {Block (R)};
 \node[Messy,anchor=east,draw=none,fill=none] at ($(Factor1.east|-Aa1.west) + (0cm,0)$) (Factor2) {Factor2 (F)};
-\node[Messy,anchor=east,draw=none,fill=none] at ($(Factor1.east|-Ao21.west) + (0cm,0)$) (Observations) {Obs (R)}; 
+\node[Messy,anchor=east,draw=none,fill=none] at ($(Factor1.east|-Ao21.west) + (0cm,0)$) (Observations) {Obs (R)};
 \end{tikzpicture}
 };
 \node [anchor=north west] at (Nested.north west) {Split-plot design};
@@ -769,11 +773,11 @@ Linear modelling assumptions
 
 - Normality
 - Homogeneity of Variance
-- Linearity 
+- Linearity
 - **Independence**
 
 ```{tikz}
-#| label: fig-linear-model
+#| label: linear-model
 #| eval: true
 #| echo: false
 #| cache: false
@@ -788,7 +792,7 @@ Non-independence
 - **nested (hierarchical) design structures**
 
 ```{tikz}
-#| label: fig-linear-model
+#| label: linear-model
 #| eval: true
 #| echo: false
 #| cache: false
@@ -848,7 +852,10 @@ data.rcb <- data.frame(y=y, x=cx+mn, block=block)
 #| fig-height: 4
 head(data.rcb)
 library(ggplot2)
-ggplot(data.rcb, aes(y=y, x=x)) + geom_point() + geom_smooth(method='lm')
+ggplot(data.rcb, aes(y = y, x = x)) +
+    geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
 ```
 
 Example
@@ -862,23 +869,34 @@ Example
 #| fig-width: 6
 #| fig-height: 4
 library(ggplot2)
-ggplot(data.rcb, aes(y=y, x=x, colour = block)) + geom_point() + geom_smooth(method='lm')
+ggplot(data.rcb, aes(y = y, x = x, colour = block)) +
+    geom_point() +
+  geom_smooth(method = "lm") +
+  theme_classic()
 ```
 
-Example
---------------
-Simple linear regression 
+Example - analysis options
+-----------------------------------
+Simple linear regression
 
 :::{.columns}
 
 ::::{.column width="50%"}
+
 $$
 y \sim{} x
 $$
 
+::: {.fragment}
+
 NO!
+
+:::
+
 ::::
+
 ::::{.column width="50%"}
+
 ```{r}
 #| label: MixedEffectsPlot3
 #| eval: true
@@ -901,13 +919,15 @@ wrap_elements(~testUniformity(resids)) +
                wrap_elements(~plotResiduals(resids, form = factor(data.rcb$block))) +
                wrap_elements(~plotResiduals(resids)) +
                wrap_elements(~testDispersion(resids))
-```   
+```
 ::::
 :::
 
+Note, I have plotted the residuals against the blocks
 
-Example
+Example - analysis options
 --------------
+
 Simple ANCOVA
 
 :::{.columns}
@@ -917,6 +937,12 @@ $$
 y \sim{} x + block\\
 y \sim{} x * block
 $$
+
+::: {.fragment}
+
+NO!
+
+:::
 
 ::::
 ::::{.column width="50%"}
@@ -942,7 +968,7 @@ wrap_elements(~testUniformity(resids)) +
                wrap_elements(~plotResiduals(resids, form = factor(data.rcb$block))) +
                wrap_elements(~plotResiduals(resids)) +
                wrap_elements(~testDispersion(resids))
-```   
+```
 ::::
 :::
 
@@ -955,10 +981,10 @@ Example
 
 $$
 \text{Variance-covariance per Block:} \mathbf{V} = \begin{pmatrix}
-	\sigma^2&\rho&\cdots&\rho\\
-		\rho&\sigma^2&\cdots&\vdots\\
-			\vdots&\cdots&\sigma^2&\vdots\\
-				\rho&\cdots&\cdots&\sigma^2\\
+    \sigma^2&\rho&\cdots&\rho\\
+        \rho&\sigma^2&\cdots&\vdots\\
+            \vdots&\cdots&\sigma^2&\vdots\\
+                \rho&\cdots&\cdots&\sigma^2\\
 \end{pmatrix}
 $$
 
@@ -992,12 +1018,13 @@ library(tidyverse)
 library(glmmTMB)
 library(DHARMa)
 data.rcb.lm <- glmmTMB(y ~ x + (1 | block), data.rcb)
+
 resids <- simulateResiduals(data.rcb.lm, plot = FALSE)
 library(patchwork)
 wrap_elements(~testUniformity(resids)) +
                wrap_elements(~plotResiduals(resids, form = factor(data.rcb$block))) +
                wrap_elements(~plotResiduals(resids)) +
                wrap_elements(~testDispersion(resids))
-```   
+```
 ::::
 :::
